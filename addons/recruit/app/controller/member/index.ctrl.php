@@ -6,6 +6,7 @@ wl_load()->model('verify');
 if($op=="index"){
     unset($_SESSION['uid']);
     unset($_SESSION['utype']);
+
     include wl_template("member/login");exit();
 }
 

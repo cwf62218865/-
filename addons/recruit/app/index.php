@@ -30,6 +30,7 @@ if(!$_SESSION['uid']){
 		$op = "index";
 	}
 }else{
+
 	if($_SESSION['utype']==2){
 		$company_statistics = company_statistics();
 		$company_integrity = company_integrity();
