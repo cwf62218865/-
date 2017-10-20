@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/mobileuoload.css" rel="stylesheet">
+    <title>手机照片上传</title>
+</head>
+<body>
+<div class="mobilebox">
+    <div class="top_structure">
+        <img class="logo" src="{WL_URL_ARES}images/logo_1.png">
+        <div class="file_name">
+            {if $_GPC['kind']==1}
+            上传营业执照
+            {elseif $_GPC['kind']==2}
+            法人身份证(正面)
+            {else}
+            法人身份证(反面)
+            {/if}
+        </div>
+
+        <div class="imgbox">
+            <svg class="icon icon1" aria-hidden="true" >
+                <use xlink:href="#icon-shangchuan"></use>
+            </svg>
+        </div>
+        <input type='file' name='file' id='file' accept='image/*' style="display: none">
+        <span class="file_btn camera">选择文件</span>
+        <span class="file_btn camera1">确定上传</span>
+        <span class="file_btn Album1">更换照片</span>
+    </div>
+</div>
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/ajaxfileupload.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/mobileuoload.js" rel="script"></script>
+
+<script>
+
+    //上传文件
+    $('.camera,.Album1').on('click',function(){
+        var file=$("#file");
+        file.click();
+        file.on('change',function(e){
+            var height=$(window).height();
+
+            var imgfile=this.files[0];
+            var src=URL.createObjectURL(imgfile);
+            var uploadsuccesspic="<img style='height:"+height*20.5/100+"px;width:"+height*20.5/100+"px;margin-top:"+height*2/100+"px;margin-bottom:"+height*2/100+"px' src='"+src+"'>"
+            $('.imgbox').html(uploadsuccesspic);
+            $(".camera1").css("display","block");
+            $(".Album1").css("display","block");
+            $(".camera").css("display","none")
+            //uploadFile(this,'file');
+        });
+    });
+    
+    
+    $(".camera1").on("click",function () {
+        uploadFile($("#file"),'file');
+    })
+
+    function uploadFile(obj, type) {
+
+        $.ajaxFileUpload({
+            url : "{php echo app_url('member/company_register/save_license',array('identity'=>$_GPC['identity'],'kind'=>$_GPC['kind']))}",
+            secureuri : false,// 一般设置为false
+            fileElementId :type,// 文件上传表单的id <input type="file" id="fileUpload" name="file" />
+            dataType : 'json',// 返回值类型 一般设置为json
+            data: {'type': type, "type2":2},
+            success : function(data) // 服务器成功响应处理函数
+            {
+                console.log(data);
+                var data = JSON.parse(data);
+                if(data.status==1){
+                    var imgfile=obj.files[0];
+                    var src=URL.createObjectURL(imgfile);
+                    var uploadsuccesspic="<span class='uploadpic'><img src='"+src+"'></span>"
+                    $('.adduploadpic').before(uploadsuccesspic);
+                }
+            },
+            error : function(data)// 服务器响应失败处理函数
+            {
+                console.log("服务器异常");
+            }
+        });
+        return false;
+    };
+    
+    $(function () {
+        
+    })
+
+</script>
+</html>

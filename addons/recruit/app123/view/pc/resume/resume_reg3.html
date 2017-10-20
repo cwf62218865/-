@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
+    <title>简历填写</title>
+</head>
+<style>
+    .chec_tip, .chec_tip1{
+        margin-bottom: 20px;
+    }
+</style>
+<body>
+{php include wl_template('common/header');}
+<div class="resume_content">
+    <div class="relative" style="width: 620px;margin: 0 auto">
+        {php include wl_template('common/resume_reg_nav');}
+
+        <div class="resume_step_progress">
+            <i class="resume_step_ready" style="width: 470px"></i>
+        </div>
+    </div>
+
+
+    <!--操作-->
+    <div class="cwfresume_reg3">
+        <p class="cwftitle">工作经历</p>
+        <div id="hidden_cwfaddexp" class="exp" style="display: none;">
+            <div class="cwfreg3content">
+                <label class="general-input cwfre3inputleft" >
+                    <input type="text" class="company_name" placeholder="公司名称" >
+                </label>
+                <label class="general-input cwfre3inputright" >
+                    <input type="text" class="job_name" placeholder="职位">
+                </label>
+                <div class="chec_tip1">
+                    <div class="left_align"></div>
+                    <div class="right_align" style="width: 160px;"></div>
+                </div>
+            </div>
+
+            <div class="cwfreg3content">
+                <label class="general-input cwfre3inputleft" style="width:460px">
+                    <input type="text" class="leave_reason" placeholder="离职原因" style="width: 420px">
+                </label>
+                <div class="chec_tip1">
+                    <div class="left_align"></div>
+                </div>
+            </div>
+
+            <div class="cwfreg3content">
+                <div class=" relative general-select cwfre3inputleft" style="height: 46px;width: 220px;display: inline-block">
+                    <label class="general-input relative general-select" style="margin-left: 0;width: 220px">
+                        <input type="text" readonly class="job_starttime" placeholder="开始时间" style="width: 200px;padding-left: 20px;margin: 0;background-color: rgba(0,0,0,0);position: absolute;z-index: 10;top: 0px">
+                        <svg class="icon inputicon colorbbb" aria-hidden="true">
+                            <use xlink:href="#icon-xiala"></use>
+                        </svg>
+                    </label>
+                    <div class="options" style="left: 0;width: 242px;top: 48px">
+                        <div class="cwftimeoptions" style="height: 147px;">
+
+                        </div>
+                        <div class="cwfmonths" style="height: 147px;">
+                            <span>1月</span>
+                            <span>2月</span>
+                            <span>3月</span>
+                            <span>4月</span>
+                            <span>5月</span>
+                            <span>6月</span>
+                            <span>7月</span>
+                            <span>8月</span>
+                            <span>9月</span>
+                            <span>10月</span>
+                            <span>11月</span>
+                            <span>12月</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class=" relative general-select cwfre3inputright" style="height: 46px;width: 220px">
+                    <label class="general-input relative general-select" style="margin-left: 0;width: 220px">
+                        <input type="text" readonly class="job_endtime" placeholder="结束时间" style="width: 200px;padding-left: 20px;margin: 0;background-color: rgba(0,0,0,0);position: absolute;z-index: 10;top: 0px">
+                        <svg class="icon inputicon colorbbb" aria-hidden="true">
+                            <use xlink:href="#icon-xiala"></use>
+                        </svg>
+                    </label>
+                    <div class="options" style="left: 0;width: 242px;top: 48px">
+                        <div class="cwftimeoptions" style="height: 147px;">
+
+                        </div>
+                        <div class="cwfmonths" style="height: 147px;">
+                            <span>1月</span>
+                            <span>2月</span>
+                            <span>3月</span>
+                            <span>4月</span>
+                            <span>5月</span>
+                            <span>6月</span>
+                            <span>7月</span>
+                            <span>8月</span>
+                            <span>9月</span>
+                            <span>10月</span>
+                            <span>11月</span>
+                            <span>12月</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="chec_tip1">
+                    <div class="left_align"></div>
+                    <div class="right_align" style="width: 222px;"></div>
+                </div>
+            </div>
+
+
+        </div>
+        {loop $work_experience $id $list}
+        <div id="cwfaddexp" class="exp">
+            {if $id}
+                <span class='cwfdashed460'></span>
+            {/if}
+            <div class="cwfreg3content">
+                <label class="general-input cwfre3inputleft" >
+                    <input type="text" class="company_name" placeholder="公司名称" value="{php echo $list['company_name']}">
+                </label>
+                <label class="general-input cwfre3inputright" >
+                    <input type="text" class="job_name" placeholder="职位" value="{php echo $list['job_name']}">
+                </label>
+                <div class="chec_tip1">
+                    <div class="left_align"></div>
+                    <div class="right_align" style="width: 160px;"></div>
+                </div>
+            </div>
+
+            <div class="cwfreg3content">
+                <label class="general-input cwfre3inputleft" style="width:460px">
+                    <input type="text" class="leave_reason" placeholder="离职原因" style="width: 420px" value="{php echo $list['leave_reason']}">
+                </label>
+                <div class="chec_tip1">
+                    <div class="left_align"></div>
+                </div>
+            </div>
+
+            <div class="cwfreg3content">
+                <div class=" relative general-select cwfre3inputleft" style="height: 46px;width: 220px;display: inline-block">
+                    <label class="general-input relative general-select" style="margin-left: 0;width: 220px">
+                        <input type="text" readonly class="job_starttime" placeholder="开始时间" style="width: 200px;padding-left: 20px;margin: 0;background-color: rgba(0,0,0,0);position: absolute;z-index: 10;top: 0px" value="{php echo $list['job_starttime']}">
+                        <svg class="icon inputicon colorbbb" aria-hidden="true">
+                            <use xlink:href="#icon-xiala"></use>
+                        </svg>
+                    </label>
+                    <div class="options" style="left: 0;width: 242px;top: 48px">
+                        <div class="cwftimeoptions" style="height: 147px;">
+
+                        </div>
+                        <div class="cwfmonths" style="height: 147px;">
+                            <span>1月</span>
+                            <span>2月</span>
+                            <span>3月</span>
+                            <span>4月</span>
+                            <span>5月</span>
+                            <span>6月</span>
+                            <span>7月</span>
+                            <span>8月</span>
+                            <span>9月</span>
+                            <span>10月</span>
+                            <span>11月</span>
+                            <span>12月</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class=" relative general-select cwfre3inputright" style="height: 46px;width: 220px">
+                    <label class="general-input relative general-select" style="margin-left: 0;width: 220px">
+                        <input type="text" readonly class="job_endtime" placeholder="结束时间" style="width: 200px;padding-left: 20px;margin: 0;background-color: rgba(0,0,0,0);position: absolute;z-index: 10;top: 0px"  value="{php echo $list['job_endtime']}">
+                        <svg class="icon inputicon colorbbb" aria-hidden="true">
+                            <use xlink:href="#icon-xiala"></use>
+                        </svg>
+                    </label>
+                    <div class="options" style="left: 0;width: 242px;top: 48px">
+                        <div class="cwftimeoptions" style="height: 147px;">
+
+                        </div>
+                        <div class="cwfmonths" style="height: 147px;">
+                            <span>1月</span>
+                            <span>2月</span>
+                            <span>3月</span>
+                            <span>4月</span>
+                            <span>5月</span>
+                            <span>6月</span>
+                            <span>7月</span>
+                            <span>8月</span>
+                            <span>9月</span>
+                            <span>10月</span>
+                            <span>11月</span>
+                            <span>12月</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="chec_tip1">
+                    <div class="left_align"></div>
+                    <div class="right_align" style="width: 222px;"></div>
+                </div>
+            </div>
+
+
+        </div>
+        {/loop}
+
+
+        <div class="cwfreg3content" id="addexp">
+            <span class="cwfaddexp">添加更多经历</span>
+        </div>
+
+        <div class="cwfgoing">
+            <span class="cwfgoingleft">上一步</span>
+            <span class="cwfgoingright" id="work_submit_next_step">最后一步：介绍自己</span>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/resume_reg3.js" rel="script"></script>
+<script>
+    $(document).ready(function(){
+        $(".cwfgoingleft").on("click",function () {
+            window.location.href = "{php echo app_url('resume/resume_reg/2')}";
+        })
+        $(".job_starttime").on("click",function(){
+            $(this).closest(".cwfre3inputleft").next().next().find(".left_align").html("");
+        })
+
+        $("body").on("click",".job_starttime",function(){
+            $(this).closest(".cwfre3inputleft").next().next().find(".left_align").html("");
+        })
+
+        $(".job_endtime").on("click",function(){
+            $(this).closest(".cwfre3inputright").next().find(".right_align").html("");
+        })
+
+        $("body").on("click",".job_endtime",function(){
+            $(this).closest(".cwfre3inputright").next().find(".right_align").html("");
+        })
+
+
+
+        $("#work_submit_next_step").click(function(){
+            var explength=$(".exp").length;
+
+            var job_data=[];
+            for(var i=1;i<explength;i++){
+                job_data[i-1]={};
+                var company_name=$(".company_name").eq(i).val();
+                var job_name=$(".job_name").eq(i).val();
+                var leave_reason=$(".leave_reason").eq(i).val();
+                var job_starttime=$(".job_starttime").eq(i).val();
+                var job_endtime=$(".job_endtime").eq(i).val();
+
+                var name_input=$(".company_name").eq(i).closest(".general-input");
+                var job_input=$(".job_name").eq(i).closest(".general-input");
+                var leave_input=$(".leave_reason").eq(i).closest(".general-input");
+
+                var starttime_input=$(".job_starttime").eq(i).closest(".general-input");
+                var starttime_border=$(".job_starttime").eq(i).closest(".cwfre3inputleft");
+
+                var endtime_input=$(".job_endtime").eq(i).closest(".general-input");
+                var endtime_border=$(".job_endtime").eq(i).closest(".cwfre3inputright");
+
+                if(company_name==""){
+                    name_input.css("border-color","#e23d46");
+                    name_input.next().next().find(".left_align").html(tipmsg("error","请输入公司名称"));
+                    return false;
+                }
+                if(job_name==""){
+                    job_input.css("border-color","#e23d46");
+                    job_input.next().find(".right_align").html(tipmsg("error","请输入职位"));
+                    return false;
+                }
+
+                if(leave_reason==""){
+                    leave_input.css("border-color","#e23d46");
+                    leave_input.next().find(".left_align").html(tipmsg("error","请输入离职原因"));
+                    return false;
+                }
+
+                if(job_starttime==""){
+                    starttime_input.css("border-color","#e23d46");
+                    starttime_border.next().next().find(".left_align").html(tipmsg("error","请选择开始时间"));
+                    return false;
+                }
+
+                if(job_endtime==""){
+                    endtime_input.css("border-color","#e23d46");
+                    endtime_border.next().find(".right_align").html(tipmsg("error","请选择结束时间"));
+                    return false;
+                }
+
+                job_data[i-1]["company_name"]=company_name;
+                job_data[i-1]["job_name"]=job_name;
+                job_data[i-1]["leave_reason"]=leave_reason;
+                job_data[i-1]["job_starttime"]=job_starttime;
+                job_data[i-1]["job_endtime"]=job_endtime;
+
+            }
+            $.ajax({
+                url:"{php echo app_url('resume/resume_reg/step3_save')}",
+                type:"post",
+                data:{
+                    data:job_data
+                },
+                success:function(data){
+                    var data=JSON.parse(data);
+                    if(data.status==1){
+                        window.location.href=data.content;
+                    }else{
+                        console.log(data.content);
+                    }
+                }
+            })
+
+        });
+
+    });
+</script>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
+    <title>登录</title>
+</head>
+<body>
+{php include wl_template('common/header');}
+<div class="resume_content">
+
+    <div class="login_msg">
+        <div class="login_zj">
+
+            <div class="title_zj " style="font-size: 16px">账户登录</div>
+
+            <label class="general-input wrap" >
+                <input type="text" id="user_name" placeholder="请输入您的手机号码/用户名">
+            </label>
+            <div class="chec_tip"></div>
+            <label class="general-input wrap psw" >
+                <input type="password" id="password" placeholder="请输入密码">
+            </label>
+            <div class="chec_tip"></div>
+            <div class="wrap forget"><a href="{php echo app_url('member/login/forget_password')}">忘记密码？</a></div>
+            <span class="public_bigbtn bg1aa wrap" id="login">登录</span>
+        </div>
+        <div class="foot_btns">
+            <div class="con">
+                <span class="icons">
+                    <svg class="icon" aria-hidden="true" style="color: #ffffff">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                </span>
+                <a href="" class="icons left">
+                    <svg class="icon" aria-hidden="true" style="color: #ffffff">
+                        <use xlink:href="#icon-weixin"></use>
+                    </svg>
+                </a>
+                <span class="icons left">
+                    <svg class="icon" aria-hidden="true" style="color: #ffffff">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                </span>
+                <span class="icons left">
+                    <svg class="icon" aria-hidden="true" style="color: #ffffff">
+                        <use xlink:href="#icon-baidu"></use>
+                    </svg>
+                </span>
+                <div class="register font_zj1">
+                    还没有账号：<a href="{php echo app_url('member/reg_screen')}"><span class="color">立即注册</span>
+                    <svg class="icon" aria-hidden="true" style="color: #ffffff;">
+                        <use xlink:href="#icon-youjiantou"></use>
+                    </svg></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script>
+    $(document).ready(function(){
+
+        $(".general-input input").focus(function(){
+            var _this=$(this);
+            if(_this.closest(".general-input").css("borderColor")=="rgb(226, 61, 70)"){
+                _this.closest(".general-input").nextAll(".chec_tip").html("");
+            }
+        });
+
+
+
+        $("#login").on("click",function(){
+            var username=$('#user_name').val();//用户名
+            var password=$("#password").val();//密码
+            if($.trim(username)==""){
+                $("#user_name").closest(".general-input").css("border-color","#e23d46");
+                $("#user_name").closest(".general-input").next().html(tipmsg("error","请输入用户名"));
+                return false;
+            };
+            if(password.length<6){
+                $("#password").closest(".general-input").css("border-color","#e23d46");
+                $("#password").closest(".general-input").next().html(tipmsg("error","请输入6-15位密码"));
+                return false;
+            };
+            $.ajax({
+                url:"{php echo app_url('member/login/login')}",
+                type:"post",
+                data:{
+                    user_name:username,
+                    password:password
+                },
+                success:function(data){
+                    var data = JSON.parse(data);
+                    if(data.status==1){
+                        window.location.href=data.content;
+                    }else{
+                        console.log(data.content);
+                    }
+                }
+            })
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,264 @@
+.company_width770{
+    width: 770px;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+.company_logo{
+    display: inline-block;
+    width: 180px;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+}
+.company_logo img{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.company_basacmsg{
+    width: 560px;
+    float: right;
+    margin-top: 40px;
+}
+.company_name{
+    font-size: 24px;
+    color: #333;
+}
+.company_introduce{
+    text-align: left;
+    margin-top: 20px;
+    width: 100%;
+}
+.basic_msg_contents1:first-child{
+    padding-left: 0;
+}
+.basic_msg_contents1:last-child{
+    border-right:none ;
+}
+.company_title{
+    font-size: 20px;
+}
+.company_title:after{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 640px;
+    height: 1px;
+    background-color: #eee;
+    right: 0;
+    top: 13px;
+}
+.introduces{
+    font-size: 14px;
+    color: #666;
+    line-height: 20px;
+    margin-top: 35px;
+}
+.showoehideall{
+    font-size: 14px;
+    color: #8590a6;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.company_img{
+    width: 480px;
+    height: 320px;
+    text-align: center;
+    margin: 0 auto;
+}
+.company_img img{
+    height: 320px;
+}
+.welfare{
+    margin-top: 40px;
+
+}
+.welfare span{
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 10px;
+    border: 1px solid #eee;
+    border-radius: 13px;
+    margin-right: 12px;
+    color: #666;
+    font-size: 12px;
+}
+.welfare span:first-child{
+    margin-left: 50px;
+}
+.website{
+    display: inline-block;
+    font-size: 16px;
+    color: #09c;
+    margin-top: 40px;
+    margin-left: 50px;
+    cursor: pointer
+}
+.company_logo_upload{
+    display: inline-block;
+    width: 120px;
+    height:120px;
+    background-color: #ccc;
+    position: relative;
+    overflow: hidden;
+}
+.company_logo_upload img{
+
+    width: 100%;
+}
+.company_logo_upload span{
+    position: absolute;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    font-size: 48px;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    line-height: 120px;
+}
+.fontbbb{
+    font-size: 14px;
+    color: #bbb;
+}
+.edit_company_name{
+    margin-left: 40px;
+    color: #09c;
+    cursor: pointer;
+}
+.width320{
+    display: inline-block;
+    width: 308px;
+}
+.companymsg_name{
+    float: left;
+    width: 68px;
+    line-height: 48px;
+    text-align: right;
+}
+.redxing{
+    position: relative;
+}
+.redxing:after{
+    content: "*";
+    color: #e23d46;
+    position: absolute;
+    left: 0;
+}
+.hangye {
+    width: 360px;
+    height: auto;
+    background: #fff;
+    box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.1), /*å·¦è¾¹é˜´å½±*/ 1px -1px 6px rgba(0, 0, 0, 0.1), /*å³è¾¹é˜´å½±*/ 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+.hangye_con {
+    width: 340px;
+    margin: 30px auto;
+}
+.hangye .select-option {
+    display: inline-block;
+    width: 70px;
+    font-size: 12px;
+    border-radius: 13px;
+    height: 24px;
+    line-height: 24px;
+    margin-top: 20px;
+    margin-left: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+.hangye_con span {
+    margin-left: 0;
+}
+.hangye .select-option:nth-child(1),
+.hangye .select-option:nth-child(2),
+.hangye .select-option:nth-child(3),
+.hangye .select-option:nth-child(4){
+    margin-top: 0;
+}
+ .hangye .select-option:nth-child(1),
+ .hangye .select-option:nth-child(5),
+ .hangye .select-option:nth-child(9),
+ .hangye .select-option:nth-child(13){
+    margin-left: 0;
+}
+ .areacity{
+     height: 185px;
+     overflow-y: auto;
+     overflow-x: hidden;
+ }
+ .cwftextarea{
+     width: 536px;
+     height: 134px;
+     margin-left: 20px;
+     margin-top: 20px;
+     border: none;
+     outline: none;
+     resize: none;
+     background-color: #f5f5f5;
+ }
+ .company_welfare{
+     display: inline-block;
+     margin-left: 20px;
+     width: 582px;
+     margin-top: 5px;
+ }
+ .company_welfare span{
+     display: inline-block;
+     float: left;
+     width: 98px;
+     height: 34px;
+     line-height: 34px;
+     border: 1px solid #eee;
+     text-align: center;
+     margin-right: 8px;
+     margin-bottom: 20px;
+     cursor: pointer;
+ }
+.company_welfare  .welfare_choice{
+     position: relative;
+     background-color: #a8c9ea;
+     color: #fff;
+     border-color:#a8c9ea ;
+ }
+.welfare_choice .icon{
+    position: absolute;
+    font-size: 10px;
+    padding: 2px;
+    right: 0;
+    top: 0;
+}
+.chioce_template_job_search{
+    display: inline-block;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+.job_search_key{
+    display: inline-block;
+    width: 160px;
+    padding: 8px;
+    border: 1px solid #eee;
+    background-color: #fff;
+}
+.edit_name_tips{
+    display: none;
+    position: absolute;
+    left: 40px;
+    top: 32px;
+    z-index: 100;
+    padding: 20px;
+    background-color: #fffeef;
+    width: 338px;
+    font-size: 12px;
+    color: #666;
+    line-height: 24px;
+    border: 1px solid #eee;
+}
+.change_company_name{
+    display: inline-block;
+    height:32px;
+}

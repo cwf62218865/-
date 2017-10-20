@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/swiper-3.4.2.min.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/company_msg.css" rel="stylesheet">
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=YrLaqu3cNGX66NynxPIWR9sS7n5ASDd1"></script>
+    <title>公司信息</title>
+    <style>
+        .abnormal .formtip{
+            position: absolute;
+            margin-top: 0;
+        }
+        .relative input{
+            position: absolute;
+        }
+        #l-map{
+            width: 582px;
+            height: 320px;
+            margin-left: 88px;
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+<body bgcolor="#f4f4f4">
+{php include wl_template('common/header');}
+<div class="width1200 p1content">
+    <!--{php include wl_template('common/company_nav');}-->
+    <div class="p1_left">
+        <div class="con_list" style="padding-bottom: 80px">
+           <div class="width670" id="company_nomsgbox">
+
+               <!--上传logo-->
+               <div style="margin-top: 80px;width: 100%;text-align: center">
+                   <span class="company_logo_upload">
+                       <img src="{WL_URL_ARES}images/person_img.png">
+                       <span>
+                           <svg class="icon" aria-hidden="true">
+                               <use  xlink:href="#icon-xiangji"></use>
+                           </svg>
+                       </span>
+                   </span>
+                   <div class="fontbbb" style="margin-top: 16px">*Logo尺寸要求 200*200，图片大小在2M以内</div>
+
+
+                       <input type="file" id="company_logo"  accept="image/*"  style="display: none">
+
+
+
+                   <input type="text" name="company_logo" style="display: none">
+               </div>
+
+               <!--基本信息-->
+               <div class="person_changes" style="margin-top: 40px">
+                   <div>
+                       <span class="color666 companymsg_name">公司全称</span>
+                       <span style="line-height: 48px;margin-left: 20px">{php echo $company['companyname']}</span>
+                       <span class="relative change_company_name">
+                           <span class="edit_company_name">修改公司名称</span>
+                           <span class="edit_name_tips">
+                               修改公司名称，需要重新上传营业执照和法人身份证，并提供法人签字、公司盖章的修改协议照片。
+                               <a href="#" style="color: #09c">前往修改</a>
+                           </span>
+                       </span>
+
+                   </div>
+               </div>
+               <div>
+                   <div class="person_changes" style="margin-top: 20px">
+                       <div class="width320 person_changes_left">
+                           <span class="color666 redxing companymsg_name">公司性质</span>
+                           <div class=" relative general-select " style="float: none">
+                               <label class="general-input relative general-select" style="float: none">
+                                   <input type="text" readonly=""  name="company_nature" value="{php echo $company['nature']}">
+                                   <svg class="icon inputicon" aria-hidden="true">
+                                       <use  xlink:href="#icon-xiala" class="colorbbb"></use>
+                                   </svg>
+                               </label>
+                               <div class="options noscend" style="width: 220px;top:48px">
+                                   <div class="select-option"><span>国营企业</span></div>
+                                   <div class="select-option"><span>民营企业</span></div>
+                                   <div class="select-option"><span>私有企业</span> </div>
+                                   <div class="select-option"><span>创业型</span> </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="width320 person_changes_right">
+                           <span class="color666 redxing companymsg_name">公司规模</span>
+                           <div class=" relative general-select " style="float: none">
+                               <label class="general-input relative general-select" style="float: none">
+                                   <input type="text" readonly=""  name="company_scale" value="{php echo $company['number']}">
+                                   <svg class="icon inputicon" aria-hidden="true">
+                                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                                   </svg>
+                               </label>
+                               <div class="options noscend" style="width: 220px;top:48px">
+                                   <div class="select-option"><span>20人以下</span></div>
+                                   <div class="select-option"><span>20-50人</span></div>
+                                   <div class="select-option"><span>50-200人</span> </div>
+                                   <div class="select-option"><span>200-500人</span> </div>
+                                   <div class="select-option"><span>500-1000人</span> </div>
+                                   <div class="select-option"><span>1000人以上</span> </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+
+                   <div class="person_changes" style="margin-top: 20px">
+                       <div class="width320 person_changes_left">
+                           <span class="color666 redxing companymsg_name">所处行业</span>
+                           <div class=" relative general-select  " style="float: none">
+                               <label class="general-input relative general-select" style="float: none">
+                                   <input type="text" readonly=""  name="company_industry" value="{php echo $company['industry']}">
+                                   <svg class="icon inputicon" aria-hidden="true">
+                                       <use  xlink:href="#icon-xiala" class="colorbbb"></use>
+                                   </svg>
+                               </label>
+                               <div class="options hangye" style="height: 0px;top: 48px">
+                                   <div class="hangye_con">
+                                       <div class="select-option"><span>IT互联网</span></div>
+                                       <div class="select-option"><span>物流运输</span></div>
+                                       <div class="select-option"><span>制造加工</span> </div>
+                                       <div class="select-option"><span>房地产</span> </div>
+                                       <div class="select-option"><span>教育培训</span> </div>
+                                       <div class="select-option"><span>医疗医药</span> </div>
+                                       <div class="select-option"><span>能源化工</span></div>
+                                       <div class="select-option"><span>餐饮百货</span></div>
+                                       <div class="select-option"><span>通信</span> </div>
+                                       <div class="select-option"><span>广告媒体</span> </div>
+                                       <div class="select-option"><span>旅游</span> </div>
+                                       <div class="select-option"><span>农林牧渔</span> </div>
+                                       <div class="select-option"><span>人力资源</span> </div>
+                                       <div class="select-option" style="width:90px "><span>金融投资证券</span> </div>
+                                       <div class="select-option"><span>其他</span> </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="width320 person_changes_right">
+                           <span class="color666 redxing companymsg_name">所在地区</span>
+                           <div class=" relative general-select " style="float: none">
+                               <label class="general-input relative general-select" style="float: none">
+                                   <input type="text" readonly=""  name="company_area" value="{php echo $company['city']}">
+                                   <svg class="icon inputicon" aria-hidden="true">
+                                       <use  xlink:href="#icon-xiala" class="colorbbb"></use>
+                                   </svg>
+                               </label>
+                               <div class="options" style="width: 220px;top:48px">
+                                    <div class="areacity">
+
+                                    </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+
+
+
+                   <div class=" person_changes_left" style="margin-top: 20px">
+                       <span class="color666  companymsg_name" style="width: 78px;margin-left: -10px">公司slogan</span>
+                       <label class="general-input relative" style="width: 580px;">
+                           <input type="text" placeholder="请输入公司一句话广告语（30字以内）"  style="width: 540px;" name="slogan" value="{php echo $company['slogan']}">
+                       </label>
+                   </div>
+
+
+                   <div class=" person_changes_left" style="margin-top: 40px">
+                       <span class="color666  redxing companymsg_name">公司介绍</span>
+                       <div class="cwfreg4content" style="display: inline-block;margin-left: 20px;height: 174px;border: 1px solid #f5f5f5;width: 580px;background-color: #f5f5f5">
+                           <textarea   class="cwftextarea" id="companymsg_introduce"  placeholder="请输入公司详细介绍">{php echo $company['introduce']}</textarea>
+                       </div>
+
+                       <div  class="cwftextareatip" style="height: auto;margin-top: 10px;padding-bottom: 13px">
+                           <label class="general-input relative" style="width: 260px;;margin-left: 88px;height: 0;border: none">
+                               <input type="hidden" name="companymsg_introduce" id="companymsg_introduceinput" data-error="请输入公司详细介绍" value="{php echo $company['introduce']}">
+                           </label>
+                       </div>
+
+                   </div>
+
+
+                   <div  class="width670">
+                       <div class="person_changes" style="margin-top: 0px">
+
+                           <input type="hidden" name="works_url" id="works_id">
+                           <span class="color666  redxing companymsg_name">公司图集</span>
+                           <div class="person_worksbox" style="margin-left: 88px">
+                               <!--<div class="person_worksbtn">-->
+                                   <!--<img src="{WL_URL_ARES}images/person_img.png">-->
+                                    <!--<span class="person_worksdelbtn">-->
+                                        <!--<svg class="icon" aria-hidden="true">-->
+                                            <!--<use xlink:href="#icon-shanchu"></use>-->
+                                        <!--</svg>-->
+                                    <!--</span>-->
+                               <!--</div>-->
+
+                               <!--<div class="person_worksbtn">-->
+                                   <!--<img src="{WL_URL_ARES}images/person_img.png">-->
+                                    <!--<span class="person_worksdelbtn">-->
+                                        <!--<svg class="icon" aria-hidden="true">-->
+                                            <!--<use xlink:href="#icon-shanchu"></use>-->
+                                        <!--</svg>-->
+                                    <!--</span>-->
+                               <!--</div>-->
+
+                               <div class="person_worksbtn1">
+                                <span id="person_worksaddbtn">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-shangchuan"></use>
+                                    </svg>
+                                </span>
+                               </div>
+
+                           </div>
+
+                           <label class="general-input relative abnormal" style="width: 460px;height: 20px;border: none;margin-left: 88px;background:none">
+                               <input type="hidden"  data-error="请上传公司图片" style="width: 420px;" value="" id="person_worksinput" name="person_works">
+                           </label>
+
+
+
+                       </div>
+                   </div>
+
+
+                   <div>
+                       <div class=" person_changes_left">
+                           <span class="color666  redxing companymsg_name">详细地址</span>
+                           <div class=" relative general-select " style="float: none">
+                               <label class="general-input relative general-select" style="width: 140px;float: none">
+                                   <input type="text" readonly="" data-error="请选择现居住地址" name="city" value="{php echo $company['city']}" placeholder="省/市" style="width: 120px">
+                                   <svg class="icon inputicon" aria-hidden="true">
+                                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                                   </svg>
+                               </label>
+                               <div class="options scend" style="width: 242px;top:48px">
+                                   <div class="cwfcityoptions1 cityoptions">
+
+                                   </div>
+                               </div>
+                           </div>
+                           <label class="general-input relative" style="width: 256px;margin-left: 20px;float:right">
+                               <input type="text" name="address"   placeholder="详细地址（选填）" value="{php echo $company['address']}">
+                           </label>
+                           <div class=" relative general-select " style="float: right">
+                               <label class="general-input relative general-select" style="width: 140px;float: none">
+                                   <input type="text" readonly="" id="area" name="area" value="{php echo $company['city_area']}" placeholder="区/县" style="width: 120px">
+                                   <svg class="icon inputicon" aria-hidden="true">
+                                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                                   </svg>
+                               </label>
+                               <div class="options scend" style="width: 242px;top:48px">
+                                   <div class="cwfcityoptions1 areaoptions" >
+                                       <div class="select-option" style="width:140px;"><span></span></div>
+                                   </div>
+                               </div>
+                           </div>
+
+
+                           <div id="l-map"></div>
+                           <div id="r-result" class="person_changes_left" style="margin-top: 20px">
+                               <span class="color666  redxing companymsg_name">地图定位</span>
+                               <label class="general-input relative" style="width: 256px;margin-left: 20px">
+                                   <input type="text" id="suggestId" style="width: 216px"  placeholder="请输入公司地址获取定位" value="{php echo $company['district']}">
+                                   <input type="hidden" id="coordinate"  name="coordinate" data-error="请输入公司地址获取定位"  value="{php echo $company['district']}">
+                               </label>
+                           </div>
+                           <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+                       </div>
+                   </div>
+
+
+
+                   <div class=" person_changes_left" style="margin-top: 40px">
+                       <span class="color666  redxing companymsg_name">福利标签</span>
+                       <div class="company_welfare">
+                           {loop array_filter(explode(",",$company['tag'])) $list}
+                            <span>{php echo $list}</span>
+                            {/loop}
+                       </div>
+                       <div style="margin-left: 58px">
+                           <div class="chioce_template_job_search" style="margin-top: 0">
+                               <div class="job_search_key">
+                                   <svg class="icon" style="color: #bbbbbb;margin-left: 10px">
+                                       <use xlink:href="#icon-sousuo"></use>
+                                   </svg>
+                                   <input class="input_job" maxlength="5" id="welfare_key" style="width: 130px;outline: none" type="text" placeholder="输入5个字以内标签">
+                               </div>
+                               <span class="btn_sou" style="float: right;height: 37px">添加</span>
+                           </div>
+                       </div>
+
+                       <label class="general-input relative abnormal" style="width: 460px;height: 20px;border: none;margin-left: 88px;background:none;margin-top: 10px">
+                           <input type="hidden"  data-error="请选择福利标签" style="width: 420px;" value="" id="company_welfare" name="company_welfare">
+                       </label>
+
+                   </div>
+
+
+
+                   <div class=" person_changes_left" style="margin-top: 10px">
+                       <span class="color666  companymsg_name" style="width: 78px;margin-left: -10px">公司网站</span>
+                       <label class="general-input relative" style="width: 580px;">
+                           <input type="text" placeholder="请输入公司网址"  style="width: 540px;" name="company_url" value="{php echo $company['website']}">
+                       </label>
+                   </div>
+
+                   <div class="person_changes"  style="margin-top: 30px">
+                       <div class=" person_changes_left" >
+                           <span class="color666  companymsg_name" style="float: left;height: 1px"></span>
+                           <div style="display: inline-block;margin-left: 20px">
+                               <span class="savebtn public_bigbtn bg1aa" id="save_company_nomsg" style="padding: 0 30px 0 30px">保存</span>
+                               <span class="cancelbtn">取消</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+
+           </div>
+        </div>
+    </div>
+    {php include wl_template('common/company_right');}
+
+
+
+
+<!--弹框-->
+<div class="modalbox loginn_zj" id="modalbox" style="display: none;">
+    <div class="modal">
+        <p class="title_content">标题内容</p>
+            <span class="modalclose">
+                <img src="{WL_URL_ARES}images/close.png"/>
+            </span>
+        <div class="modal_con">
+            <div class="one_btn">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-shangchuan"></use>
+                </svg>
+                <div class="upload" style="display: none">
+                    <img src="{WL_URL_ARES}images/timg22.png" class="rzpic"/>
+                    <div class="meng"><span>重新上传</span></div>
+                </div>
+            </div>
+            <form id="choosefile1" enctype="multipart/form-data">
+                <input type="file" name='file' id="choosefile"   accept='image/*'/>
+            </form>
+            <div class="erweima">
+                <!--<img src="{WL_URL_ARES}images/erweima.png" class="pic"/>-->
+            </div>
+        </div>
+        <div class="title">
+            <span>电脑上传</span>
+            <span>手机扫码上传</span>
+        </div>
+        <span class="public_bigbtn bg1aa modalbtn"> 立即上传</span>
+    </div>
+</div>
+<!--弹框end-->
+
+
+
+</div>
+
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/swiper.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/area.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/company_nomsg.js" rel="script"></script>
+<script>
+//    上传logo
+    $(".company_logo_upload span").on("click",function(){
+        $("#company_logo").click();
+    });
+
+$("#company_logo").on("change",function(){
+    var f=$(this).prop('files')[0];
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var data = e.target.result;
+        //加载图片获取图片真实宽度和高度
+        var image = new Image();
+        image.onload=function(){
+            var width = image.width;
+            var height = image.height;
+            var size = f.size;
+            if(width>200||height>200||size>2097152){
+                $("#company_logo").val("");
+                hint("error","Logo尺寸要求 200*200，图片大小在2M以内。");
+               setTimeout(function(){$(".promptbox").remove()},2000);
+            }else{
+                var updatafile = new FormData();
+                updatafile.append('file', $("#company_logo")[0].files[0]);
+                $.ajax({
+                    url:"{php echo app_url('company/company_profile/hedimgurl_upload')}",
+                    type:"post",
+                    processData: false,
+                    cache: false,
+                    contentType: false,
+                    data:updatafile,
+                    success:function(data1){
+                       var data1=JSON.parse(data1);
+                        if(data1.status==1){
+
+                            if($(".company_logo_upload img").length==0){
+                                $(".company_logo_upload span").before("<img src="+data1.content+">");
+                            }else{
+                                $(".company_logo_upload img").attr("src",data1.content);
+                            }
+                            $("#company_logo").next().val(data1.content)
+                            $(".company_logo_upload span").css("background-color","rgba(0,0,0,0.4)");
+                        }
+                    }
+                })
+            }
+        };
+        image.src= data;
+    };
+
+    reader.readAsDataURL(f);
+})
+
+
+$.fromdata("#company_nomsgbox","{php echo app_url('company/company_profile/save_company_profile')}","#save_company_nomsg",function(data){
+    //do something
+    var data = JSON.parse(data);
+    if(data.status==1){
+        location = location;
+    }
+})
+
+
+
+// 百度地图API功能
+function G(id) {
+    return document.getElementById(id);
+}
+
+var map = new BMap.Map("l-map");
+map.centerAndZoom("重庆市",12);                   // 初始化地图,设置城市和地图级别。
+
+var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+        {"input" : "suggestId"
+            ,"location" : map
+        });
+
+ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+    var str = "";
+    var _value = e.fromitem.value;
+    var value = "";
+    if (e.fromitem.index > -1) {
+        value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+    }
+    str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+    value = "";
+    if (e.toitem.index > -1) {
+        _value = e.toitem.value;
+        value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+    }
+    str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+    G("searchResultPanel").innerHTML = str;
+});
+
+var myValue;
+ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+    var _value = e.item.value;
+    myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+    G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+
+    setPlace();
+});
+
+function setPlace(){
+    map.clearOverlays();    //清除地图上所有覆盖物
+    function myFun(){
+        var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+        console.log(pp);
+        $("#coordinate").val(pp.lng+","+pp.lat);
+        map.centerAndZoom(pp, 18);
+        map.addOverlay(new BMap.Marker(pp));    //添加标注
+    }
+    var local = new BMap.LocalSearch(map, { //智能搜索
+        onSearchComplete: myFun
+    });
+    local.search(myValue);
+}
+
+//选择文件
+$('#choosefile').on('change',function(e){
+    var imgfile=this.files[0];
+    var src=URL.createObjectURL(imgfile);
+    var uploadimg="<img style='width:100%' src='"+src+"' id='upload_pic'>";
+    $(this).parent().prev().html(uploadimg);
+
+    //uploadFile(this,'choosefile',boxbum);
+});
+
+$(".modalbtn").on("click",function(){
+    var uploadFormData =new FormData($("#choosefile1")[0]);
+    var uploadurl = "{php echo app_url('company/company_profile/change_company_atlas')}";
+    $.ajax({
+        url: uploadurl,
+        type:"post",
+        processData: false,
+        cache: false,
+        contentType: false,
+        async: false,
+        data:uploadFormData,
+        success:function (data) {
+            var data=JSON.parse(data);
+            if(data.status==1){
+                //location = location;
+                var html ="<div class=\"person_worksbtn\">\n" +
+                    "<img src="+data.content+">\n" +
+                    "<span class=\"person_worksdelbtn\">\n" +
+                    "<svg class=\"icon\" aria-hidden=\"true\">\n" +
+                    "<use xlink:href=\"#icon-shanchu\"></use>\n" +
+                    "</svg>\n" +
+                    "</span>\n" +
+                    "</div>";
+
+                $(".person_worksbtn1").before(html);
+                $("#person_worksinput").val(data.content);
+//                       $(".img_tx img").eq(0).attr("src",data.others);
+            }
+            $(".chec_tip1").eq(1).html("");
+        }
+    });
+    $("#modalbox").animate({"opacity":0},300);
+    setTimeout(function(){
+        $("#modalbox").css("display","none");
+    },300)
+})
+</script>
+
+</html>

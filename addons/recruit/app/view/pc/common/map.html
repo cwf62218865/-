@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=YrLaqu3cNGX66NynxPIWR9sS7n5ASDd1"></script>
+    <title></title>
+    <style>
+        html,body,#allmap{
+            width: 550px;
+            height: 430px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body bgcolor="#f4f4f4">
+<div class="ditu_content"  id="allmap"></div>
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script>
+    $(function () {
+            // 百度地图API功能
+            var map = new BMap.Map("allmap");
+            var point = new BMap.Point("{php echo $retoate_x}","{php echo $retoate_y}");
+            map.centerAndZoom(point, 20);
+            map.addOverlay(new BMap.Marker(point));
+        });
+</script>
+</html>

@@ -1,0 +1,636 @@
+.collection_logo{
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+}
+.collection_logo img{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.collection_companymsg{
+    display: inline-block;
+    width: 260px;
+    float: right;
+    line-height: normal;
+}
+.collection_companymsg .company_name{
+    width: 100%;
+    color: #666;
+    line-height: 14px;
+    margin-top: 9px;
+}
+.collection_companymsg .company_address{
+    width: 100%;
+    color: #bbb;
+    font-size: 12px;
+    line-height: 12px;
+    margin-top: 20px;
+}
+.collection_action{
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    float: left;
+}
+.list_content .list_item{
+    height: auto;
+}
+.left_actionbtn{
+    display: inline-block;
+    width: 199px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-right: 1px solid #eee;
+}
+.right_actionbtn{
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    float: right;
+
+}
+.post_action{
+    color: #09c;
+    cursor: pointer;
+}
+.revoke_action{
+    color: #666;
+    cursor: pointer;
+}
+.no_action{
+    color: #bbb;
+    cursor: not-allowed;
+}
+.find_morejob{
+    display: inline-block;
+    float: left;
+    width: 370px;
+    height: 46px;
+    color: #09c;
+    line-height: 46px;
+    margin-top: 30px;
+    text-align: center;
+    border: 1px solid #09c;
+    margin-left: 250px;
+    margin-bottom: 90px;
+    cursor: pointer;
+}
+.find_morejob:hover{
+    background-color: #09c;
+    color: #fff;
+}
+.exptime{
+    margin-right: 24px;
+    color: #666;
+}
+.date{
+    float: right;
+}
+.hang2{
+    width: 340px;
+}
+
+
+/*个人简历*/
+.resume_header{
+    width: 100%;
+    height: 160px;
+    position: relative;
+    background: url("../images/head_bg.png") no-repeat;
+}
+.resume_manage_header{
+    display: inline-block;
+    position: absolute;
+    top: 95px;
+    width: 130px;
+    height: 130px;
+    border-radius: 65px;
+    background-color: #fff;
+    left: 370px;
+    text-align: center;
+    line-height: 130px;
+}
+.resume_manage_headerimg{
+    display: inline-block;
+    margin-top: 5px;
+    width: 120px;
+    height: 120px;
+    border-radius: 120px;
+    overflow: hidden;
+}
+.resume_manage_headerimg img{
+    width: 120px;
+    height: 120px;
+}
+.resume_manage_header .img_con{
+    position: absolute;
+    display: none;
+    width: 120px;height: 120px;
+    z-index: 999;
+    font-size:38px;
+    color: #fff;
+    top:5px;
+    left: 5px;
+    border-radius: 60px;
+    background: rgba(0,0,0,0.4);
+    text-align: center;
+    line-height: 120px;
+    cursor: pointer;
+}
+.width670{
+    width: 670px;
+    margin: 0 auto;
+}
+.basic_msg{
+    margin-top: 95px;
+    position: relative;
+}
+.addandeditbtn{
+    position: absolute;
+    right: 0;
+    top:5px;
+    color: #09c;
+    font-size: 16px;
+    cursor: pointer;
+}
+.basic_msg_content{
+    width: 100%;
+}
+.user_name{
+    font-size: 30px;
+    color: #333;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+
+}
+.font666{
+    color: #666;
+    font-size: 16px;
+    text-align: center;
+}
+.font666 .icon{
+    margin-right: 3px;
+    color: #a0a0a0;
+    font-size: 18px;
+}
+.basic_msg_contents{
+    margin-right: 15px;
+}
+.basic_msg_contents1{
+    display: inline-block;
+    padding: 0 12px 0 8px;
+    border-right: 1px solid #eee;
+}
+.basic_msg_contents2{
+    display: inline-block;
+    padding: 0 35px 0 0;
+}
+.personmsg{
+    width: 520px;
+    color: #999;
+    font-size: 14px;
+    margin: 0 auto;
+    margin-top:24px;
+    line-height: 1.4;
+}
+.resume_title{
+    width: 570px;
+    position: relative;
+    height: 17px;
+    border-bottom: 1px solid #eee;
+}
+.resume_title span{
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    background-color: #eee;
+    color: #333;
+    font-size: 20px;
+    width: 120px;
+    text-align: center;
+    border-radius: 18px;
+    margin-left: 275px;
+}
+.font999{
+    font-size: 14px;
+    color: #999;
+}
+.font999 .icon{
+    font-size: 18px;
+}
+.resume_exp{
+    margin-top: 18px;
+    width: 100%;
+}
+.left_line{
+    display: inline-block;
+    width: 12px;
+    margin-top: 48px;
+    border-right: 1px solid #eee;
+    float: left;
+}
+.resume_exp_content{
+    display: inline-block;
+    width: 637px;
+    margin-left: 20px;
+}
+.exp_title{
+    font-size: 18px;
+    color: #666;
+}
+.relative{
+    position: relative;
+}
+.exp_job{
+    margin-top: 12px;
+    font-size: 12px;
+    color: #999;
+}
+.exp_jobright{
+    float: right;
+}
+.exp_content{
+    width: 100%;
+    font-size: 14px;
+    line-height: 24px;
+    color: #666;
+    margin-top: 20px;
+}
+.resume_exp_content .relative{
+    margin-top: 40px;
+}
+.resume_exp_content .relative:after{
+    content: "";
+    position: absolute;
+    left: -26px;
+    top:6px;
+    width: 11px;
+    height: 11px;
+    border-radius: 10px;
+    background-color:#09c ;
+}
+.person_works{
+    margin-top: 58px;
+}
+.person_work{
+    display: inline-block;
+    width: 320px;
+    text-align: left;
+}
+.person_work .img_box{
+    display: inline-block;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+}
+.person_work .img_box img{
+    width: 100%;
+}
+.person_workmsg{
+    display: inline-block;
+    width: 100%;
+    margin-top: 12px;
+}
+.person_work:nth-child(2),.person_work:nth-child(3){
+    float: right;
+    margin-left: 20px;
+}
+.certificate{
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+    margin-left: 26px;
+    position: relative;
+}
+.certificate:after{
+    content: "";
+    position: absolute;
+    left: -26px;
+    top:6px;
+    width: 11px;
+    height: 11px;
+    border-radius: 10px;
+    background-color:#09c ;
+}
+.person_works .relative{
+    margin-top: 16px;
+}
+.resume_left_menu{
+    position: fixed;
+    display: inline-block;
+    width: 68px;
+    top: 50%;
+    left: 50%;
+    margin-top: -210px;
+    margin-left: -700px;
+}
+.resume_left_menu .menus{
+    display: inline-block;
+    width: 100%;
+    height: 68px;
+    margin-bottom: 2px;
+    font-size: 12px;
+    background-color: #555566;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+.resume_left_menu .menus svg{
+    margin-top: 6px;
+}
+.resume_left_menu .menus:hover{
+    background-color: #ff6060;
+}
+.sexbox{
+    width: 100%;
+    text-align: center;
+}
+.sexbox_span{
+    display: inline-block;
+    width: 80px;
+    height: 46px;
+    line-height: 46px;
+    border: 1px solid #ddd;
+    color: #666;
+    margin: 0 6px 0 6px;
+    cursor: pointer;
+}
+.sexbox .radio_sec{
+    border: 1px solid #1aa9d2;
+    color: #1aa9d2;
+}
+.width300{
+    display: inline-block;
+    width: 300px;
+}
+.resume_msg_name{
+    display: inline-block;
+    width: 58px;
+    text-align: right;
+    height: 48px;
+    line-height: 48px;
+    float: left;
+}
+.person_changes{
+    margin-top: 20px;
+    display: inline-block;
+    width: 100%;
+}
+.person_changes_right{
+    float: right;
+}
+.person_changes label{
+    width: 218px;
+}
+.person_changes label input{
+    width: 200px;
+    height: 48px;
+    line-height: 48px;
+    position: absolute;
+    z-index: 99;
+}
+.person_changes .select-option{
+    width: 218px;
+}
+.person_changes .select-option:hover{
+    background-color: rgb(26, 169, 210);
+    color: rgb(255, 255, 255);
+}
+.cancelbtn{
+    display: inline-block;
+    padding: 10px;
+    margin-left: 20px;
+    color: #09c;
+    font-size: 16px;
+    cursor: pointer;
+}
+.delbtn{
+    display: inline-block;
+    padding: 10px;
+    font-size: 16px;
+    margin-left: 260px;
+    color: #f39698;
+    cursor: pointer;
+}
+
+.want_jobbtns{
+    margin-left: 20px;
+    position: absolute;
+    top: 0;
+    z-index: 1000
+}
+.want_jobbtns span{
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    margin-right: 10px;
+    padding: 5px 8px;
+    background-color: #fff;
+    cursor: pointer;
+}
+.wanted_tip{
+    display: inline-block;
+    float: right;
+    color: #E23D46;
+    font-size: 14px;
+    height: 48px;
+    margin-right: 40px;
+    line-height: 48px;
+}
+.cwfcityoptions1{
+    max-height: 147px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 140px;
+    display: inline-block;
+    float: left;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.cwftextareatip .formtip{
+    margin-top: 0px;
+}
+/*.person_changes_left{*/
+    /*display: inline-block;*/
+    /*width: 100%;*/
+/*}*/
+.autooptions {
+    height: 185px;
+    top: 48px;
+    overflow-y: auto;
+}
+.wrap{
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.person_worksbox{
+
+    margin-left: 78px;
+}
+.person_worksbtn{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    overflow:hidden ;
+    margin: 0 30px 30px 0;
+}
+.person_worksbtn1{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    overflow:hidden ;
+    margin: 0 30px 30px 0;
+}
+.person_worksbtn img{
+    width: 100%;
+}
+.person_worksdelbtn{
+    display: inline-block;
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    line-height:150px;
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.4);
+}
+#person_worksaddbtn{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    line-height:150px;
+    font-size: 200px;
+    cursor: pointer;
+}
+#person_worksaddbtn .icon{
+    position: absolute;
+    left: -25px;
+    top: -25px;
+}
+#certificateaddbtn{
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    line-height:120px;
+    font-size: 160px;
+    cursor: pointer;
+    overflow: hidden;
+}
+#certificateaddbtn .icon{
+    position: absolute;
+    left: -20px;
+    top: -20px;
+}
+.go_studetent{
+    display: inline-block;
+    width: 100px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    border: 1px solid #09c;
+    color: #0099cc;
+    margin-left: 30px;
+}
+.go_studetent:hover{
+    color: #fff;
+    background-color: #0099cc;
+}
+.envelope_modal{
+    display: inline-block;
+    position: absolute;
+    width: 596px;
+    height: 556px;
+    left: 50%;
+    top:50%;
+    margin-top: -278px;
+    margin-left: -298px;
+    background: url("../images/envelope.png") no-repeat ;
+    background-position-y: 10px;
+}
+.envelope{
+    display: inline-block;
+    width: 556px;
+    height: 546px;
+    margin-left: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.close_envelopebtn{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    position: absolute;
+    right: -30px;
+    top:0;
+    background-color: #fff;
+    line-height: 30px;
+    text-align: center;
+    color: #999;
+    cursor: pointer;
+}
+.envelope_content{
+    margin-left: 30px;
+    margin-top: 50px;
+}
+.post_envelopebtn{
+    padding: 0 22px 0 22px;
+    margin-left: 20px;
+}
+.envelope_content_msg{
+    margin-top: 30px;
+    height: 310px;
+    width: 495px;
+}
+.envelope_content_textarea{
+    display: inline-block;
+    width: 100%;
+    height: 310px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: none;
+    resize: none;
+    outline: none;
+    line-height: 24px;
+    color: #666;
+}
+.envelope_enclosure{
+    position: absolute;
+    left: 50px;
+    bottom: 60px;
+    width: 495px;
+}
+.font20666{
+    font-size: 20px;
+    color: #666;
+}
+.pdficon{
+    font-size: 32px;
+    color:#e1514e ;
+    margin-left: 15px;
+}
+.envelope_resume{
+    margin-left: 6px;
+    color: #29677c;
+}

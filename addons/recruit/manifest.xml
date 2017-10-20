@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.zheyitianshi.com" versionCode="0.6">
+	<application setting="false">
+		<name><![CDATA[微信挪车]]></name>
+		<identifie><![CDATA[weliam_shiftcar]]></identifie>
+		<version><![CDATA[1.0.3]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[微信挪车]]></ability>
+		<description><![CDATA[微信挪车]]></description>
+		<author><![CDATA[折翼天使源码社区]]></author>
+		<url><![CDATA[http://www.zheyitianShi.Com]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+			<message type="image" />
+			<message type="voice" />
+			<message type="location" />
+			<message type="subscribe" />
+			<message type="qr" />
+			<message type="trace" />
+			<message type="click" />
+		</handles>
+		<rule embed="false" />
+		<card embed="false" />
+	</platform>
+	<bindings>
+		<cover>
+			<entry title="首页" do="index" state="" direct="false" />
+		</cover>
+		<menu>
+			<entry title="后台管理" do="dashboard" state="" direct="false" />
+		</menu>
+	</bindings>
+	<permissions>
+	</permissions>
+	<install><![CDATA[install.php]]></install>
+	<uninstall><![CDATA[]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

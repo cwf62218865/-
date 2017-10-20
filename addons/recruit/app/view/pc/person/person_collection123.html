@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
+    <title>收藏订阅</title>
+</head>
+<body bgcolor="#f4f4f4">
+{php include wl_template('common/header');}
+<div class="width1200 p1content">
+    {php include wl_template('common/person_nav');}
+    <div class="p1_left">
+        <div class="con_list">
+            <div class="list_top">
+                <div class="list_item_btn select">收藏的职位</div>
+                <div class="list_item_btn" style="margin-left: 2px">订阅的职位</div>
+            </div>
+            <div class="list_content">
+                {loop $jobs $list}
+                <div class="list_item">
+                    <div class="item_con">
+                        <div class="hang1">
+                            <a class="jobname nowrap">{php echo $list['jobs_name']}</a>
+                            <a class="salary">{php echo $list['wage_min']}-{php echo $list['wage_max']}</a>
+                        </div>
+                        <div class="hang2">
+                            <a class="exptime nowrap">3-5年工作经验</a>
+                            <span class="exptime nowrap">大专</span>
+                            <span class="date">{php echo date('Y-m-d',$list['createtime'])}</span>
+                        </div>
+                        <div class="hang3">
+                            {loop explode(",",$list['tag']) $value}
+                            <span class="fuli">{php echo $value}</span>
+                            {/loop}
+                        </div>
+                        <div class="xian1"></div>
+                        <div class="status">
+                            <div class="collection_logo"><img src="{WL_URL_ARES}images/logo.png"></div>
+                            <div class="collection_companymsg">
+                                <span class="nowrap company_name">{php echo $list['companyname']}</span>
+                                <span class="nowrap company_address">{php echo $list['city']}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="collection_action">
+                        <span class="left_actionbtn post_action">投递简历</span>
+                        <span class="right_actionbtn revoke_action">取消收藏</span>
+                    </div>
+                </div>
+                {/loop}
+            </div>
+            <span class="find_morejob">发现更多好职位>></span>
+        </div>
+    </div>
+    <div class="p1_right">
+        <div class="tongjis">
+            <div class="items1">
+                <a class="number" href="">5</a>
+                <p class="font1_zj chengxian">通过申请</p>
+            </div>
+            <div class="items1">
+                <a class="number" href="">8</a>
+                <p class="font1_zj chengxian">面试邀请</p>
+            </div>
+            <div class="items1">
+                <a class="number" href="">9</a>
+                <p class="font1_zj chengxian">我的评价</p>
+            </div>
+            <div class="items1">
+                <a class="number" href="">6</a>
+                <p class="font1_zj chengxian">收到评价</p>
+            </div>
+            <div class="items1">
+                <a class="number" href="">13</a>
+                <p class="font1_zj chengxian">新增订阅</p>
+            </div>
+            <div class="items1">
+                <a class="number" href="">99+</a>
+                <p class="font1_zj chengxian">我的回答</p>
+            </div>
+        </div>
+        <div class="resume_district">
+            <div class="wanzhengdu">
+                <div class="jianli"><span>简历完整度：</span><span class="color_main">80%</span>
+                    <a class="color_main resume_view" href="">预览</a>
+                    <a class="color_main resume_edit" href="">修改</a></div>
+                <div class="jindutiao">
+                    <div class="jindu_con"></div>
+                </div>
+                <div class="sousuo">
+                    <svg class="icon icon_sousuo" aria-hidden="true">
+                        <use xlink:href="#icon-sousuo"></use>
+                    </svg>
+                    <input type="text" class="sousuo_content font1_zj" placeholder="输入职位" style="font-size: 12px;">
+                </div>
+                <input type="button" class="sousuo_btn" value="找工作">
+            </div>
+        </div>
+        <div class="ads">
+            <div class="ads_con">
+                <a class="ads1" href="">
+                    <span class="topnum">Top1</span>
+                    <div class="title">
+                        <p class="title_con">IOS11更新了，给你100+个IOS11实用技巧</p>
+                    </div>
+                    <img src="{WL_URL_ARES}images/ads1.png" class="ads_pic">
+                </a>
+                <a class="ads2" href="">
+                    <span class="topnum1">Top2</span>
+                    <div class="title">
+                        <p class="title_con">IOS11更新了，给你100+个IOS11实用技巧</p>
+                    </div>
+                    <img src="{WL_URL_ARES}images/ads2.png" class="ads_pic">
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--弹框-->
+    <div class="modalbox" id="modalbox" style="display: none;">
+        <div class="modal" style="width: 650px;margin-left: -325px;height: auto">
+            <p class="title_content">公司地址</p>
+            <span class="modalclose">
+                <img src="{WL_URL_ARES}images/close.png"/>
+            </span>
+            <div class="ditu_content"  id="allmap"></div>
+        </div>
+    </div>
+    <!--弹框end-->
+</div>
+
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+
+<script>
+    $(function () {
+        $(".btn_ditu").click(function () {
+            boxbum=1;
+            $("#modalbox").animate({"opacity":1},300);
+            setTimeout(function(){
+                $("#modalbox").css("display","block");
+            },300)
+        });
+
+        $(".modalclose").on("click",function(){
+            $("#modalbox").animate({"opacity":0},300);
+            setTimeout(function(){
+                $("#modalbox").css("display","none");
+            },300)
+        });
+    })
+</script>
+</html>
