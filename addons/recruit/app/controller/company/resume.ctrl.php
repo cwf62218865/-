@@ -35,13 +35,20 @@ elseif ($op=="received_resume"){
 elseif ($op=="received_resume_page"){
     if($_POST['page']){
         $page = $_POST['page']-1;
-        $received_resume  = m("company")->getall_resume($_SESSION['uid'],$page,1);
+        $received_resume  = m("company")->getall_resume($_SESSION['uid'],$page,1,$_POST['jobs_id']);
+
+
         $html = "";
         foreach ($received_resume as $list){
             if($list['sex']==2){$list['sex'] = '女生';}else{$list['sex'] = '男生';}
             $list['age']=ceil(date('Y-m-d')-$list['birthday']);
+            if($list['collect_resume']){
+                $collect = "<div class=\"jujue1 shoucangbtn statussc\" data-id=\"{$list['apply_id']}\">已收藏</div>";
+            }else{
+                $collect = "<div class=\"jujue1 shoucangbtn shoucang_resume\" data-id=\"{$list['apply_id']}\">收藏简历</div>";
+            }
             $html .=
-                "<div class=\"list_item \" data-id=\"{$list['id']}\">
+                "<div class=\"list_item \" data-id=\"{$list['apply_id']}\">
                     <div class=\"item_con\">
                         <a class=\"touxiang_pic\" href=".app_url('resume/index',array('uid'=>$list['uid']))." target=\"_blank\">
                             <img src=\"{$list['headimgurl']}\" style=\"width: 100px;\">
@@ -82,7 +89,7 @@ elseif ($op=="received_resume_page"){
                     <div class=\"review_statas\">
                                                     <div class=\"tongyi1 agree_review\" data-id=\"{$list['apply_id']}\">同意面试</div>
                             <div class=\"jujue1 refuse_review\" data-id=\"{$list['apply_id']}\">拒绝面试</div>
-                            <div class=\"jujue1 shoucang_resume\" data-id=\"{$list['apply_id']}\">收藏简历</div>
+                            {$collect}
                                            </div>
                 </div>";
         }
@@ -93,8 +100,9 @@ elseif ($op=="received_resume_page"){
 //我收藏的简历分页处理
 elseif ($op=="collect_resume_page"){
     if($_POST['page']){
-        $page = $_POST['page']-1;
+        $page = $_POST['page'];
         $collect_resume  = m("company")->getall_collect($_SESSION['uid'],$page);
+        var_dump($collect_resume);exit();
         $html = "";
         foreach ($collect_resume as $list){
             if($list['sex']==2){$list['sex'] = '女生';}else{$list['sex'] = '男生';}
@@ -203,6 +211,7 @@ elseif ($op=="refuse_review"){
 
 //面试邀请
 elseif ($op=="send_review"){
+
     $data['apply_id'] = check_pasre($_POST['data_id'],"参数错误1");
     pdo_update(WL."jobs_apply",array('status'=>'3'),array('id'=>$data['apply_id'],'uid'=>$_SESSION['uid']));
     $jobs_apply = pdo_fetch("select resume_id,jobs_id,puid,uid from ".tablename(WL.'jobs_apply')." where id=".$data['apply_id']);
@@ -212,11 +221,11 @@ elseif ($op=="send_review"){
     $data['uid'] =$jobs_apply['uid'];
     $data['interview_time'] = check_pasre($_POST['reviewtime'],"参数错误2");
     $data['linker'] = check_pasre($_POST['contacts_name'],"参数错误3");
-    $data['link_phone'] = check_pasre($_POST['contacts_tel'],"参数错误4");
+    $data['mobile'] = check_pasre($_POST['contacts_tel'],"参数错误4");
     $data['city'] = check_pasre($_POST['city'],"参数错误5");
     $data['city_area'] = check_pasre($_POST['city_area'],"参数错误6");
     $data['address'] = check_pasre($_POST['detail_address'],"参数错误7");
-//    var_dump($data);exit();
+
     $interview = pdo_fetch("select id from ".tablename(WL.'interview')." where apply_id=".$data['apply_id']);
     if($interview){
         call_back(2,"面试邀请已存在");
@@ -233,25 +242,37 @@ elseif ($op=="send_review"){
 
 //收藏简历
 elseif ($op=="collect"){
+
     $data_id = check_pasre($_POST['data_id'],"参数错误");
     $data['remark'] = check_pasre($_POST['beizhu'],"参数错误");
-    $jobs_apply = pdo_fetch("select * from ".tablename(WL.'jobs_apply')." where id=".$data_id);
-    $data['uid'] = $jobs_apply['uid'];
-    $data['puid'] = $jobs_apply['puid'];
-    $data['jobs_id'] = $jobs_apply['jobs_id'];
-    $data['resume_id'] = $jobs_apply['resume_id'];
-    $collect_resume = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where uid=".$_SESSION['uid']." and resume_id=".$data['resume_id']);
-    if($collect_resume){
-        call_back(2,"该简历已收藏");
-    }else{
-        $data['createtime'] = time();
-        $r = insert_table($data,WL."collect_resume");
+    if($_POST['methods']){
+        $data['updatetime'] = time();
+        $r = pdo_update(WL."collect_resume",$data,array('id'=>$data_id));
         if($r){
-            call_back(1,"ok");
+            call_back(1,$data['remark']);
         }else{
             call_back(2,"no");
         }
+    }else{
+        $jobs_apply = pdo_fetch("select * from ".tablename(WL.'jobs_apply')." where id=".$data_id);
+        $data['uid'] = $jobs_apply['uid'];
+        $data['puid'] = $jobs_apply['puid'];
+        $data['jobs_id'] = $jobs_apply['jobs_id'];
+        $data['resume_id'] = $jobs_apply['resume_id'];
+        $collect_resume = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where uid=".$_SESSION['uid']." and resume_id=".$data['resume_id']." and jobs_id=".$data['jobs_id']);
+        if($collect_resume){
+            call_back(2,"该简历已收藏");
+        }else{
+            $data['createtime'] = time();
+            $r = insert_table($data,WL."collect_resume");
+            if($r){
+                call_back(1,"ok");
+            }else{
+                call_back(2,"no");
+            }
+        }
     }
+
 
 }
 
@@ -267,7 +288,9 @@ elseif ($op=="remove_collect"){
 
 }
 
+
+
 //搜索职位检索简历
-elseif ($op=="search_resume"){
-    
+elseif ($op=="search_jobs"){
+
 }

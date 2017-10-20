@@ -36,8 +36,9 @@
                             <use xlink:href="#icon-xiala"></use>
                         </svg>
                     <div class="my_joblist">
+                        <p class="option_select"  data-id="0">全部职位</p>
                         {loop $job $list}
-                        <p class="option_select">{php echo $list['jobs_name']}</p>
+                        <p class="option_select" data-id="{$list['id']}">{php echo $list['jobs_name']}</p>
                         {/loop}
                     </div>
                 </div>
@@ -100,7 +101,7 @@
                             <div class="tongyi1 agree_review" data-id="{php echo $list['apply_id']}">同意面试</div>
                             <div class="jujue1 refuse_review" data-id="{php echo $list['apply_id']}">拒绝面试</div>
                             {if $list['collect_resume']}
-                            <div class="jujue1 shoucangbtn shoucang_resume" data-id="{php echo $list['apply_id']}">已收藏</div>
+                            <div class="jujue1 shoucangbtn statussc" data-id="{php echo $list['apply_id']}">已收藏</div>
                             {else}
                             <div class="jujue1 shoucangbtn shoucang_resume" data-id="{php echo $list['apply_id']}">收藏简历</div>
                             {/if}
@@ -115,7 +116,7 @@
             <!--收藏简历start---------------------------------------------------------------------------->
             <div class="resume_content">
                 {loop $collect_resume $list}
-                <div class="list_item">
+                <div class="list_item" data-id="{php echo $list['collect_id']}">
                     <div class="item_con">
                         <div class="touxiang_pic">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;"/>
@@ -153,7 +154,7 @@
                             </p>
                             <p class="shoucang_beizhu">
                                 <span>备注：</span>
-                                <span style="margin-left: 18px">{php echo $list['remark']}</span>
+                                <span style="margin-left: 18px" class="remark">{php echo $list['remark']}</span>
                                 <svg class="icon edit_ico cur">
                                     <use xlink:href="#icon-xiugai"></use>
                                 </svg>
@@ -182,7 +183,7 @@
             <span class="modalclose">
                 <img src="{WL_URL_ARES}images/close.png"/>
             </span>
-            <textarea class="scbz_input" placeholder="自定义备注，15字以内。"></textarea>
+            <textarea class="scbz_input" placeholder="自定义备注，15字以内。" maxlength="15"></textarea>
             <div class="btns" style="margin-bottom: 22px">
                 <button class="tijiao1" id="shoucang">确定</button>
                 <span class="quxiao">取消</span>
@@ -302,6 +303,26 @@
         send_resume();
     })
 
+
+
+    $("body").on("click",".option_select",function () {
+       var jobs_name = $(this).html();
+       var id = $(this).attr("data-id");
+       $(".wenzi").attr("data-id",id);
+       $(".list_content .list_item").each(function () {
+           var hope_job = $(this).find(".hope_job").html();
+           if(hope_job==jobs_name){
+               $(this).show();
+           }else{
+               $(this).hide();
+           }
+       })
+
+        if(jobs_name=="全部职位"){
+            $(".list_content .list_item").show();
+        }
+    })
+
     //取消收藏
     $("body").on("click",".jujue",function () {
         var _this = $(this);
@@ -324,6 +345,7 @@
 
     //面试邀请
     $("body").on("click","#send_review",function () {
+        var _this=$(this);
         var reviewtime=$("#review_time").val();
         var contacts_name=$("#contacts_name").val();
         var contacts_tel=$("#contacts_tel").val();
@@ -362,13 +384,6 @@
             return;
         }
 
-        $("#invite_box").hide();
-        var lists=$(".list_content .list_item");
-        lists.each(function () {
-            if($(this).attr("data-id")==data_id){
-                $(this).hide();
-            }
-        })
 
         $.ajax({
             url:"{php echo app_url('company/resume/send_review')}",
@@ -383,8 +398,20 @@
                 detail_address:detail_address
             },
             success:function(data){
+                var data = JSON.parse(data);
                 if(data.status==1){
-                    window.location.href="";
+                    $("#invite_box").hide();
+                    $(".list_content .list_item").each(function () {
+                        var item_data_id=$(this).attr("data-id");
+                        if(item_data_id==data_id){
+                            var status=$(this).find(".tongyi1");
+                            status.html("等待面试");
+                            status.next().remove();
+                            status.removeClass("agree_review");
+                            status.addClass("statussc");
+                        }
+                    })
+
                 }else{
                     console.log(data.content);
                 }
@@ -423,29 +450,48 @@
             alert("请填写备注！")
             return;
         }
-        $("#beizhubox").hide();
-        var lists=$(".list_content .list_item");
 
-        lists.each(function () {
-            if($(this).attr("data-id")==data_flag){
-//               $(this).find(".beizhu_content").val(beizhu);
-                var states=$(this).find(".shoucangbtn");
-                states.html("已收藏");
-                states.removeClass("shoucang_resume");
-                states.addClass("statussc");
+        for(var i=0;i<$(".list_item_btn").length;i++){
+            if($(".list_item_btn").eq(i).hasClass("select")){
+                var methods=i;
             }
-        })
+        }
+
 
         $.ajax({
             url:"{php echo app_url('company/resume/collect')}",
             type:"post",
             data:{
                 beizhu:beizhu,
-                data_id:data_flag
+                data_id:data_flag,
+                methods:methods
             },
             success:function (data) {
+                var data = JSON.parse(data);
                 if(data.status==1){
-                    window.location.href="";
+                    $("#beizhubox").hide();
+
+                    if(methods==0){
+                        var lists=$(".list_content .list_item");
+                        lists.each(function () {
+                            if($(this).attr("data-id")==data_flag){
+                                var states=$(this).find(".shoucangbtn");
+                                states.html("已收藏");
+                                states.removeClass("shoucang_resume");
+                                states.addClass("statussc");
+                            }
+                        })
+                    }else if(methods==1){
+                        var lists=$(".resume_content .list_item");
+                        lists.each(function () {
+                            if($(this).attr("data-id")==data_flag){
+                                $(this).find(".remark").html(data.content);
+                            }
+                        })
+
+                    }
+
+
                 }else{
                     console.log(data.content);
                 }
@@ -498,11 +544,13 @@
     $(".received_resume_page").click(function () {
         var _this = $(this);
         var morejob = _this.clone(true);
+        var jobs_id = $(".wenzi").attr("data-id");
         $.ajax({
             type:"post",
             url:"{php echo app_url('company/resume/received_resume_page')}",
             data:{
-                page:received_resume_page
+                page:received_resume_page,
+                jobs_id:jobs_id
             },
             success:function (data) {
                 var data = JSON.parse(data);
@@ -525,7 +573,7 @@
             type:"post",
             url:"{php echo app_url('company/resume/collect_resume_page')}",
             data:{
-                page:collect_resume_page
+                page:collect_resume_page,
             },
             success:function (data) {
                 var data = JSON.parse(data);
@@ -540,6 +588,21 @@
         })
     })
 
+    $(".btn_sou").click(function () {
+        var jobs_name = $("#job_name_sou").val();
+        $(".resume_content .list_item").each(function () {
+            var hope_job = $(this).find(".hope_job").html();
+            if(jobs_name==hope_job){
+                $(this).show();
+            }else{
+                $(this).hide();
+            }
+        })
+
+        if(jobs_name==""){
+            $(".resume_content .list_item").show();
+        }
+    })
 </script>
 
 
