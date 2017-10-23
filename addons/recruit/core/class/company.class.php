@@ -81,7 +81,7 @@ class company{
         foreach ($resume_jobs as $list){
             $resume = pdo_fetch("select * from ".tablename(WL.'resume')." where id=".$list['resume_id']);
             $job = pdo_fetch("select jobs_name from ".tablename(WL.'jobs')." where id=".$list['jobs_id']);
-            $resume['collect_resume'] = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where uid=".$list['uid']." and resume_id=".$list['resume_id']);
+            $resume['collect_resume'] = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where jobs_id=".$list['jobs_id']." and resume_id=".$list['resume_id']);
 
             $resume['jobs_name'] = $job['jobs_name'];
             $resume['apply_id'] = $list['id'];
@@ -91,6 +91,8 @@ class company{
                 $resume['linker'] = $interview['linker'];
                 $resume['link_phone'] = $interview['link_phone'];
                 $resume['interview_time'] = $interview['interview_time'];
+                $interview_time = explode(" ",$interview['interview_time']);
+                $resume['interview_date'] = str_replace("月","-",str_replace("日","",$interview_time[0]));
             }
             $edu_experience = unserialize($resume['edu_experience']);
             $education = "";
@@ -142,8 +144,9 @@ class company{
         if($resume_id){
             $wheresql .=" and resume_id=".$resume_id;
         }
-        $limit = " limit ".$page.",4";
+        $limit = " limit ".($page*6).",6";
         $resume_jobs = pdo_fetchall("select * from ".tablename(WL.'collect_resume').$wheresql.$limit);
+//        var_dump($resume_jobs);exit();
         $resumes = "";
         foreach ($resume_jobs as $list){
             $resume = pdo_fetch("select * from ".tablename(WL.'resume')." where id=".$list['resume_id']);
