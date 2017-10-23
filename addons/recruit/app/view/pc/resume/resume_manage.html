@@ -453,32 +453,31 @@
 
                         <div class=" relative general-select " style="float: none;width: 480px">
                             <label class="general-input relative general-select" style="float: none;width: 460px">
-                                <div class="want_jobbtns">
-                                    <span>Java<svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan" class="colorbbb"></use>
-                                    </svg></span>
-                                    <span>Java
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan" class="colorbbb"></use>
-                                    </svg>
-                                    </span>
-                                    <span>Java
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan" class="colorbbb"></use>
-                                    </svg>
-                                    </span>
+                                <div class="want_jobbtns" id="want_jobbtns">
+
                                 </div>
-                                <input type="text" readonly="" data-error="请选择期望行业"  name="want_job" value="" style="width: 440px;opacity: 0;top: 0">
+                                <input type="text" readonly="" id="want_job" data-error="请选择期望行业"  name="want_industry" value="" style="width: 440px;opacity: 0;top: 0">
                                 <svg class="icon inputicon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
                                 </svg>
                             </label>
-                            <div class="options scend" style="width: 242px;top:48px">
-                                <div class="cwfcityoptions">
-
-                                </div>
-                                <div class="cwfarea">
-                                    <span>请先选择城市</span>
+                            <div class="options hangye" style="height: 0px;top: 48px">
+                                <div class="hangye_con">
+                                    <div class="select-option"><span>IT互联网</span></div>
+                                    <div class="select-option"><span>物流运输</span></div>
+                                    <div class="select-option"><span>制造加工</span> </div>
+                                    <div class="select-option"><span>房地产</span> </div>
+                                    <div class="select-option"><span>教育培训</span> </div>
+                                    <div class="select-option"><span>医疗医药</span> </div>
+                                    <div class="select-option"><span>能源化工</span></div>
+                                    <div class="select-option"><span>餐饮百货</span></div>
+                                    <div class="select-option"><span>通信</span> </div>
+                                    <div class="select-option"><span>广告媒体</span> </div>
+                                    <div class="select-option"><span>旅游</span> </div>
+                                    <div class="select-option"><span>农林牧渔</span> </div>
+                                    <div class="select-option"><span>人力资源</span> </div>
+                                    <div class="select-option" style="width:90px "><span>金融投资证券</span> </div>
+                                    <div class="select-option"><span>其他</span> </div>
                                 </div>
                             </div>
                         </div>
@@ -511,7 +510,7 @@
                         <span class="font999 resume_msg_name">期望地点</span>
                         <div class=" relative general-select " style="float: none">
                             <label class="general-input relative general-select" style="float: none">
-                                <input type="text" readonly="" data-error="请选择籍贯" name="city" value="">
+                                <input type="text" readonly="" data-error="请选择期望地点" placeholder="期望地点" name="city" value="">
                                 <svg class="icon inputicon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
                                 </svg>
@@ -552,7 +551,7 @@
                     <div class=" person_changes_left">
                         <span class="font999 resume_msg_name" style="float: left;height: 1px"></span>
                         <div style="display: inline-block;margin-left: 20px">
-                            <span class="savebtn public_bigbtn bg1aa" id="save_wanted_job_msg" style="padding: 0 30px 0 30px">保存</span>
+                            <span class="savebtn public_bigbtn bg1aa" id="save_wanted_jobbox_msg" style="padding: 0 30px 0 30px">保存</span>
                             <span class="cancelbtn">取消</span>
                         </div>
                     </div>
@@ -1352,6 +1351,19 @@
         }
         console.log(data.content);
     })
+
+
+
+    //求职意向
+    $.fromdata("#wanted_jobbox","{php echo app_url('person/resume/save_work_exp')}","#save_wanted_jobbox_msg",function(data){
+        var data = JSON.parse(data);
+        if(data.status==1){
+            location = location;
+        }
+        //do something
+    })
+
+
 
     //工作经历
     $.fromdata("#job_expbox","{php echo app_url('person/resume/save_work_exp')}","#save_job_exp_msg",function(data){
