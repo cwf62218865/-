@@ -62,6 +62,7 @@ class resume{
         foreach ($jobs_apply as $key=>$list){
             $jobs[$key] = m('jobs')->get_jobs($list['jobs_id']);
             $jobs[$key]['status'] = $list['status'];
+            $jobs[$key]['apply_id'] = $list['id'];
             $jobs[$key]['direction'] = $list['direction'];
             $jobs[$key]['createtime'] = $list['createtime'];
             $jobs[$key]['offer'] = $list['offer'];

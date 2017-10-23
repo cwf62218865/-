@@ -74,7 +74,7 @@ class company{
         }
         $limit = " limit ".($page*6).",6";
 //        echo "select id,resume_id,jobs_id,status from ".tablename(WL.'jobs_apply').$wheresql;exit();
-        $resume_jobs = pdo_fetchall("select id,resume_id,jobs_id,uid,status from ".tablename(WL.'jobs_apply').$wheresql.$limit);
+        $resume_jobs = pdo_fetchall("select id,resume_id,jobs_id,uid,status from ".tablename(WL.'jobs_apply').$wheresql." order by createtime desc".$limit);
 //        $count = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL.'jobs_apply').$wheresql);
 
         $resumes = "";

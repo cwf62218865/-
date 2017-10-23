@@ -14,10 +14,10 @@
 {php include wl_template('common/header');}
 <div class="width1200 p1content">
     <div class="search_nav">
-        <form>
+        <div>
         <input type="text" class="input_search" placeholder="请输入搜索的职位">
         <button class="btn_search cur" type="button">搜索</button>
-        </form>
+        </div>
         <div class="search_items">
             <label class="title">热门搜索：</label>
             <span class="job_item">java</span>
@@ -74,7 +74,7 @@
                     </div>
                 </label>
             </div>
-            <div class="xingzheng_item" style="display: none">
+            <div class="xingzheng_item xzq" style="display: none">
                 <label class="title one_st">行政区：</label>
                 <div class="district_list">
                 <span class="city_item all_item city_select">不限</span>
@@ -100,12 +100,23 @@
         <div class="con_list">
             <div class="list_top">
                 <div class="con_top1">
-                    <label class="xinzi_color">
-                        <span>薪资待遇</span>
-                        <svg class="icon xiala">
-                            <use xlink:href="#icon-xiala"></use>
-                        </svg>
-                    </label>
+
+                        <!--<label class="relative xinzi_color">-->
+                        <!--<input type="text"   readonly=""  name="company_area" value="薪资待遇">-->
+                        <!--<svg class="icon xiala">-->
+                            <!--<use xlink:href="#icon-xiala"></use>-->
+                        <!--</svg>-->
+                    <!--</label>-->
+
+
+                    <!--<span class="relative">-->
+                    <!--<label class="general-input relative general-select" style="float: none;margin-left: 0">-->
+                        <!--<input type="text" readonly="" id="money"  name="company_area" value="薪资待遇">-->
+                        <!--<svg class="icon inputicon" aria-hidden="true">-->
+                            <!--<use  xlink:href="#icon-xiala" class="colorbbb"></use>-->
+                        <!--</svg>-->
+                    <!--</label>-->
+                        <!--</span>-->
                     <label class="pailie">排列方式：</label>
                     <span class="select_item1 city_select">默认</span>
                     <span class="select_item1 magl20">最新</span>
@@ -254,6 +265,8 @@
 </body>
 <script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.mousewheel.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/style_zj.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/area.js" rel="script"></script>
@@ -261,15 +274,89 @@
 
 <script>
     $(function () {
+
+        var salarychoice= $.salarychoice({
+            data:["面议","1k","2k","3k","4k","5k","6k","7k","8k"],
+            input:"#money",
+            width:"218px"
+        })
+
+
         var option={
             job_name:"",
             job_address:"",
+            job_address1:"",
             job_education:"",
             job_nature:"",
             job_money:"",
             job_order:"",
             page:1
         };//搜索职位的相关数据
+
+        //搜索职位按钮请求
+        $(".btn_search").on("click",function () {
+            option.job_name=$(this).prev().val();
+            option.page=1;
+            layer(option);
+        });
+
+        //热门职位
+        $(".job_item").on("click",function () {
+            option.job_name=$(this).html();
+            option.job_address="";
+            option.job_address1="";
+            option.job_education="";
+            option.job_nature="";
+            option.job_money="";
+            option.job_order="";
+            option.page=1;
+            layer(option);
+        });
+
+
+        //工作地点
+        $(".gzdd .city_item").on("click",function () {
+            option.job_address=$(this).html();
+            option.page=1;
+            layer(option);
+        });
+
+        //行政区
+        $("body").on("click",".district_list .city_item",function () {
+            option.job_address1=$(this).html();
+            option.page=1;
+            layer(option);
+        });
+
+        //学历要求
+        $(".xueli .city_item").on("click",function () {
+            option.job_education=$(this).html();
+            option.page=1;
+            layer(option);
+        });
+
+
+        //工作性质
+        $(".gzxz .city_item").on("click",function () {
+            option.job_nature=$(this).html();
+            option.page=1;
+            layer(option);
+        });
+
+        //薪资待遇
+//        $(".xueli .job_item").on("click",function () {
+//            option.job_money=$(this).html();
+//            option.page=1;
+//            layer(option);
+//        });
+
+        //排序方式
+        $(".select_item1").on("click",function () {
+            option.job_order=$(this).html();
+            option.page=1;
+            layer(option);
+        });
+
 
 
         $("body").on("click",".toudijianli",function () {
@@ -353,11 +440,12 @@
                         $("#current_page").html(option.page);
                         $(".list_item").remove();
                         $(".resume_content").html(data.content);
-                        $("#pages_btnbox").html(pages(option.page,"{php echo ceil($jobs_count/6)}"));
+                        var page_num = parseInt(data.others/6);
+                        $("#pages_btnbox").html(pages(option.page,page_num));
                         if(option.page==1){
                             $(".yemabtn .yema").eq(0).removeClass("slected");
                             $(".yemabtn .yema").eq(1).addClass("slected");
-                        }else if(option.page=="{php echo ceil($jobs_count/6)}"){
+                        }else if(option.page==page_num){
                             $(".yemabtn .yema").eq(0).addClass("slected");
                             $(".yemabtn .yema").eq(1).removeClass("slected");
                         }else{
@@ -414,17 +502,17 @@
                 }
                 console.log("shan...."+arr_select);
                 //删除需要请求
-                $.ajax({
-                    url:"",
-                    post:"post",
-                    data:{
-                        arr_select:arr_select,
-                        page:1
-                    },
-                    success:function () {
-
-                    }
-                })
+//                $.ajax({
+//                    url:"",
+//                    post:"post",
+//                    data:{
+//                        arr_select:arr_select,
+//                        page:1
+//                    },
+//                    success:function () {
+//
+//                    }
+//                })
 
             })
 
@@ -445,56 +533,56 @@
         })
         
         //点击热门搜索列表发送请求
-        $("body").on("click",".job_item",function () {
-            var hot=$(this).html();
-            var list=$(".select_item");
-            var arr_select=[];
-            list.each(function () {
-                arr_select.push($(this).find(".cont_list").html());
-            });
-            arr_select.push(hot);
-
-            console.log("sou....."+arr_select);
-
-            $(".input_search").val(hot);
-            $(".search_in").html(hot);
-            $.ajax({
-                url:"",
-                post:"post",
-                data:{
-                    hot:hot,
-                    page:1
-                },
-                success:function () {
-
-                }
-            })
-        })
+//        $("body").on("click",".job_item",function () {
+//            var hot=$(this).html();
+//            var list=$(".select_item");
+//            var arr_select=[];
+//            list.each(function () {
+//                arr_select.push($(this).find(".cont_list").html());
+//            });
+//            arr_select.push(hot);
+//
+//            console.log("sou....."+arr_select);
+//
+//            $(".input_search").val(hot);
+//            $(".search_in").html(hot);
+//            $.ajax({
+//                url:"",
+//                post:"post",
+//                data:{
+//                    hot:hot,
+//                    page:1
+//                },
+//                success:function () {
+//
+//                }
+//            })
+//        })
 
         //点击搜索按钮发送请求
-        $(".btn_search").click(function () {
-            var serch=$(".input_search").val();
-            $(".search_in").html(serch);
-            var list=$(".select_item");
-            var arr_select=[];
-            list.each(function () {
-                arr_select.push($(this).find(".cont_list").html());
-            });
-            arr_select.push(serch);
-
-            console.log("sou1....."+arr_select);
-            $.ajax({
-                url:"",
-                post:"post",
-                data:{
-                    arr_select:arr_select,
-                    page:1
-                },
-                success:function () {
-
-                }
-            })
-        })
+//        $(".btn_search").click(function () {
+//            var serch=$(".input_search").val();
+//            $(".search_in").html(serch);
+//            var list=$(".select_item");
+//            var arr_select=[];
+//            list.each(function () {
+//                arr_select.push($(this).find(".cont_list").html());
+//            });
+//            arr_select.push(serch);
+//
+//            console.log("sou1....."+arr_select);
+//            $.ajax({
+//                url:"",
+//                post:"post",
+//                data:{
+//                    arr_select:arr_select,
+//                    page:1
+//                },
+//                success:function () {
+//
+//                }
+//            })
+//        })
 
         //城市选择和行政区弹出
         var area=new Array();

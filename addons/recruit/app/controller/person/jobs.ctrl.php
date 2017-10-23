@@ -56,6 +56,15 @@ elseif ($op=="remove_collect_jobs"){
     }
 }
 
-elseif ($op==""){
-    
+
+//职位申请处理
+elseif ($op=="apply_deal"){
+    $data['apply_id'] = check_pasre($_POST['dataid'],'参数错误');
+    $r = pdo_update(WL."jobs_apply",array('offer'=>1),array('id'=>$data['apply_id']));
+    if($r){
+        call_back(1,"ok");
+    }else{
+        call_back(2,"no");
+    }
+//    var_dump($_POST);exit();
 }
