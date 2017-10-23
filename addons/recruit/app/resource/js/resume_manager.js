@@ -12,9 +12,14 @@ $(".resume_manage_header").on("mouseover",function(){
 $(".img_con").click(function () {
     $(".title_content").html("上传头像");
     $("#modalbox").show();
+    $("#choosefile").attr("accept","image/*").val("");
+    $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
+        '<use xlink:href="#icon-shangchuan"></use>'+
+        '</svg>');
+
     $(".erweima").attr("id","code1").children().remove();
     code_url("#code1","/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&");
-    $("#modalbox").css("display","block");
+
 
 });
 
@@ -26,11 +31,13 @@ $("#person_worksaddbtn").click(function () {
     $("#upload_pic").remove();
     $(".one_btn").html('<svg class="icon" aria-hidden="true">\n' +
         '                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shangchuan"></use>\n' +
-        '                </svg>')
+        '                </svg>');
+    $("#modalbox").show();
     $(".title_content").html("个人作品");
+    $("#choosefile").attr("accept","image/*").val("");
     $(".erweima").attr("id","code2").children().remove();
     code_url("#code2","/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&");
-    $("#modalbox").css("display","block");
+
 
 });
 

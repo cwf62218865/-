@@ -1113,16 +1113,21 @@
             </span>
         <div class="modal_con">
             <div class="one_btn">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-shangchuan"></use>
-                </svg>
+
+                <div class="uploadimgbox">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-shangchuan"></use>
+                    </svg>
+                </div>
+
                 <div class="upload" style="display: none">
                     <img src="{WL_URL_ARES}images/timg22.png" class="rzpic"/>
                     <div class="meng"><span>重新上传</span></div>
                 </div>
+
             </div>
             <form id="choosefile1" enctype="multipart/form-data">
-                <input type="file" name='file' id="choosefile" />
+                <input type="file" name='file' id="choosefile" accept="image/*" />
             </form>
             <div class="erweima">
                 <!--<img src="{WL_URL_ARES}images/erweima.png" class="pic"/>-->
@@ -1633,23 +1638,29 @@
 
     $(".honor_certificate").click(function () {
         $(".title_content").html("个人作品");
+        $("#choosefile").attr("accept","image/*").val("");
+        $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
+                '<use xlink:href="#icon-shangchuan"></use>'+
+                '</svg>');
         $(".erweima").attr("id","code3").children().remove();
         code_url("#code3","/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=resume_worksupload&identity="+identity);
-        $("#modalbox").animate({"opacity":1},300);
-        setTimeout(function(){
-            $("#modalbox").css("display","block");
-        },0)
+        $("#modalbox").css("display","block");
+
     });
 
 
     //选择文件
     $('#choosefile').on('change',function(e){
+        if($(this).attr("accept")=="image/*"){
+            var imgfile=this.files[0];
+            var src=URL.createObjectURL(imgfile);
+            var uploadimg="<img style='width:100%' src='"+src+"' id='upload_pic'>";
+            $(this).parent().prev().html(uploadimg);
+        }else if($(this).attr("accept")=="video/*"){
+            $("#choosefile1").prev().find("use").attr("xlink:href","#icon-wangzhi");
+            //console.log(videofile.name);
+        }
 
-
-        var imgfile=this.files[0];
-        var src=URL.createObjectURL(imgfile);
-        var uploadimg="<img style='width:100%' src='"+src+"' id='upload_pic'>";
-        $(this).parent().prev().html(uploadimg);
 
         //uploadFile(this,'choosefile',boxbum);
     });
@@ -1657,12 +1668,59 @@
 
     $(".upload_video").click(function () {
         $(".title_content").html("上传个人视频");
-        $("#modalbox").animate({"opacity":1},300);
+        $("#choosefile").attr("accept","video/*").val("");
+        $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
+                '<use xlink:href="#icon-shangchuan"></use>'+
+                '</svg>');
         $(".erweima").attr("id","code4").children().remove();
-        code_url("#code1","/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&");
-        setTimeout(function(){
-            $("#modalbox").css("display","block");
-        },0)
+        code_url("#code4","/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&");
+
+        $("#modalbox").css("display","block");
+
     });
+
+//    var uploader = new plupload.Uploader({
+//        runtimes : 'html5,flash,silverlight,html4',
+//        browse_button : 'pickfiles', // you can pass an id...
+//        container: document.getElementById('container'), // ... or DOM Element itself
+//        url : 'upload.php',
+//        flash_swf_url : '{WL_URL_ARES}/js/Moxie.swf',
+//        silverlight_xap_url : '{WL_URL_ARES}/js/Moxie.xap',
+//
+//        filters : {
+//            max_file_size : '10mb',
+//            mime_types: [
+//                {title : "Image files", extensions : "jpg,gif,png"},
+//                {title : "Zip files", extensions : "zip"}
+//            ]
+//        },
+//
+//        init: {
+//            PostInit: function() {
+//                document.getElementById('filelist').innerHTML = '';
+//
+//                document.getElementById('uploadfiles').onclick = function() {
+//                    uploader.start();
+//                    return false;
+//                };
+//            },
+//
+//            FilesAdded: function(up, files) {
+//                plupload.each(files, function(file) {
+//                    document.getElementById('filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+//                });
+//            },
+//
+//            UploadProgress: function(up, file) {
+//                document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+//            },
+//
+//            Error: function(up, err) {
+//                document.getElementById('console').appendChild(document.createTextNode("\nError #" + err.code + ": " + err.message));
+//            }
+//        }
+//    });
+//
+//    uploader.init();
 </script>
 </html>
