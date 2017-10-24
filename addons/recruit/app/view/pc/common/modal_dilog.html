@@ -3,7 +3,7 @@
     <div class="modal" style="width: 980px;margin-left: -490px;top:10%;">
         <p class="title_content">选择简历模板</p>
         <span class="modalclose">
-                <img src="../images/close.png"/>
+                <img src="{WL_URL_ARES}images/close.png"/>
             </span>
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -11,50 +11,66 @@
                     <div class="modal_item cur">
                         <div class="modal_title">官方版</div>
                         <div class="modal_style">
-                            <img src="../images/modal1.png" style="width:200px; "/>
+                            <img src="{WL_URL_ARES}images/modal1.png" style="width:200px; "/>
                         </div>
-                        <label class="using">使用中</label>
+                        {if $resume['template_id']==1}
+                            <label class="using">使用中</label>
+                        {/if}
                     </div>
                 </div>
                 <div class="swiper-slide" data-id="2">
                     <div class="modal_item cur">
                         <div class="modal_title">吉祥橙</div>
                         <div class="modal_style">
-                            <img src="../images/modal2.png" style="width:200px; "/>
+                            <img src="{WL_URL_ARES}images/modal2.png" style="width:200px; "/>
                         </div>
-
+                        {if $resume['template_id']==2}
+                        <label class="using">使用中</label>
+                        {/if}
                     </div>
                 </div>
                 <div class="swiper-slide" data-id="3">
                     <div class="modal_item cur">
                         <div class="modal_title">极简风</div>
                         <div class="modal_style">
-                            <img src="../images/modal3.png" style="width:200px; "/>
+                            <img src="{WL_URL_ARES}images/modal3.png" style="width:200px; "/>
                         </div>
+                        {if $resume['template_id']==3}
+                        <label class="using">使用中</label>
+                        {/if}
                     </div>
                 </div>
                 <div class="swiper-slide" data-id="4">
                     <div class="modal_item cur">
                         <div class="modal_title">清新绿</div>
                         <div class="modal_style">
-                            <img src="../images/modal4.png" style="width:200px; "/>
+                            <img src="{WL_URL_ARES}images/modal4.png" style="width:200px; "/>
                         </div>
+                        {if $resume['template_id']==4}
+                        <label class="using">使用中</label>
+                        {/if}
                     </div>
                 </div>
                 <div class="swiper-slide" data-id="6">
                     <div class="modal_item cur">
                         <div class="modal_title">银色灰</div>
                         <div class="modal_style">
-                            <img src="../images/modal5.png" style="width:200px; "/>
+                            <img src="{WL_URL_ARES}images/modal5.png" style="width:200px; "/>
                         </div>
+                        {if $resume['template_id']==6}
+                        <label class="using">使用中</label>
+                        {/if}
                     </div>
                 </div>
                 <div class="swiper-slide" data-id="5">
                     <div class="modal_item cur">
                         <div class="modal_title">尊贵紫</div>
                         <div class="modal_style">
-                            <img src="../images/modal6.png" style="width:200px; "/>
+                            <img src="{WL_URL_ARES}images/modal6.png" style="width:200px; "/>
                         </div>
+                        {if $resume['template_id']==5}
+                        <label class="using">使用中</label>
+                        {/if}
                     </div>
                 </div>
             </div>
