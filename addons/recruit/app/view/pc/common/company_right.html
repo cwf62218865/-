@@ -13,7 +13,7 @@
             <p class="font1_zj chengxian">收到评价</p>
         </div>
         <div class="items2">
-            <a class="number" href="">{php echo $company_statistics['jobs_num']}</a>
+            <a class="number" href="{php echo app_url('company/index/job_manage')}">{php echo $company_statistics['jobs_num']}</a>
             <p class="font1_zj chengxian">在招职位</p>
         </div>
     </div>
@@ -31,7 +31,9 @@
                 </svg>
                 <input type="text" class="sousuo_content font1_zj" placeholder="输入职位" style="font-size: 12px;">
             </div>
-            <input type="button" class="sousuo_btn" value="找人才">
+            <a href="{php echo app_url('member/index/search_jobs')}">
+                <input type="button" class="sousuo_btn" value="找人才">
+            </a>
         </div>
     </div>
     <div class="ads">

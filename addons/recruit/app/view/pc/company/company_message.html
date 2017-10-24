@@ -100,7 +100,7 @@
                    <!--上传logo-->
                    <div style="margin-top: 80px;width: 100%;text-align: center">
                    <span class="company_logo_upload">
-                       <!--<img src="{php echo $company['headimgurl']}">-->
+                       <img src="{php echo $company['headimgurl']}">
                        <span>
                            <svg class="icon" aria-hidden="true">
                                <use  xlink:href="#icon-xiangji"></use>
@@ -109,7 +109,7 @@
                    </span>
                        <div class="fontbbb" style="margin-top: 16px">*Logo尺寸要求 200*200，图片大小在2M以内</div>
                        <input type="file" id="company_logo"  accept="image/*"  style="display: none">
-                       <input type="text" name="company_logo" style="display: none">
+                       <input type="text" name="company_logo" style="display: none" class="company_logo">
                    </div>
 
                    <!--基本信息-->
@@ -222,7 +222,7 @@
                        <div class=" person_changes_left" style="margin-top: 20px">
                            <span class="color666  companymsg_name" style="width: 78px;margin-left: -10px">公司slogan</span>
                            <label class="general-input relative" style="width: 580px;">
-                               <input type="text" placeholder="请输入公司一句话广告语（30字以内）"  style="width: 540px;" name="slogan">
+                               <input type="text" placeholder="请输入公司一句话广告语（30字以内）"  style="width: 540px;" name="slogan" value="{php echo $company['slogan']}">
                            </label>
                        </div>
 
@@ -303,18 +303,11 @@
                    <div style="margin-top: 40px"  id="company_img">
                        <div class="swiper-container">
                            <div class="swiper-wrapper">
+                               {loop explode(',',$company['atlas']) $list}
                                <div class="swiper-slide">
-                                    <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
+                                   <div class="company_img"><img src="{$list}"></div>
                                </div>
-                               <div class="swiper-slide">
-                                   <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
-                               </div>
-                               <div class="swiper-slide">
-                                   <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
-                               </div>
-                               <div class="swiper-slide">
-                                   <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
-                               </div>
+                               {/loop}
                            </div>
                            <div class="swiper-pagination" ></div>
                            <!-- 如果需要导航按钮 -->
@@ -332,24 +325,6 @@
                        <input type="hidden" name="works_url" id="works_id">
                        <span class="color666  redxing companymsg_name">公司图集</span>
                        <div class="person_worksbox" style="margin-left: 88px">
-                           <div class="person_worksbtn">
-                               <img src="{WL_URL_ARES}images/person_img.png">
-                                    <span class="person_worksdelbtn">
-                                        <svg class="icon" aria-hidden="true">
-                                            <use xlink:href="#icon-shanchu"></use>
-                                        </svg>
-                                    </span>
-                           </div>
-
-                           <div class="person_worksbtn">
-                               <img src="{WL_URL_ARES}images/person_img.png">
-                                    <span class="person_worksdelbtn">
-                                        <svg class="icon" aria-hidden="true">
-                                            <use xlink:href="#icon-shanchu"></use>
-                                        </svg>
-                                    </span>
-                           </div>
-
                            <div class="person_worksbtn1">
                                 <span id="person_worksaddbtn">
                                     <svg class="icon" aria-hidden="true">
@@ -567,10 +542,13 @@
     {php include wl_template('common/company_right');}
 
 
+
+
+
     <!--弹框-->
     <div class="modalbox loginn_zj" id="modalbox" style="display: none;">
         <div class="modal">
-            <p class="title_content">公司图集</p>
+            <p class="title_content">标题内容</p>
             <span class="modalclose">
                 <img src="{WL_URL_ARES}images/close.png"/>
             </span>
@@ -579,17 +557,23 @@
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-shangchuan"></use>
                     </svg>
+                    <div class="upload" style="display: none">
+                        <img src="{WL_URL_ARES}images/timg22.png" class="rzpic"/>
+                        <div class="meng" ><span>重新上传</span></div>
+                    </div>
                 </div>
+                <form id="choosefile1" enctype="multipart/form-data">
+                    <input type="file" name='file' id="choosefile"   accept='image/*'/>
+                </form>
                 <div class="erweima">
-                    <img src="{WL_URL_ARES}images/erweima.png" class="pic"/>
+                    <!--<img src="{WL_URL_ARES}images/erweima.png" class="pic"/>-->
                 </div>
             </div>
             <div class="title">
                 <span>电脑上传</span>
                 <span>手机扫码上传</span>
             </div>
-            <input type='file' name='file' id='file' accept='image/*' style="display: none">
-            <span class="public_bigbtn bg1aa modalbtn">立即上传</span>
+            <span class="public_bigbtn bg1aa modalbtn"> 立即上传</span>
         </div>
     </div>
     <!--弹框end-->
@@ -717,10 +701,13 @@
                     setTimeout(function(){$(".promptbox").remove()},2000);
                 }else{
                     var updatafile = new FormData();
-                    updatafile.append('avatar', f);
+                    updatafile.append('file', f);
                     $.ajax({
-                        url:"",
+                        url:"{php echo app_url('company/company_profile/hedimgurl_upload')}",
                         type:"post",
+                        processData: false,
+                        cache: false,
+                        contentType: false,
                         data:updatafile,
                         success:function(data1){
                             var data1=JSON.parse(data1);
@@ -732,6 +719,7 @@
                                 }
                                 $("#company_logo").next().val(data1.content)
                                 $(".company_logo_upload span").css("background-color","rgba(0,0,0,0.4)");
+                                $(".company_logo").val(data1.content);
                             }
                         }
                     })
@@ -746,8 +734,9 @@
 
 
     //修改公司基本信息
-    $.fromdata("#basic_msgbox","test.php","#basic_msgbox .savebtn",function(data){
+    $.fromdata("#basic_msgbox","{php echo app_url('company/company_profile/save_base')}","#basic_msgbox .savebtn",function(data){
         //do something
+        location = location;
     });
 
 
@@ -757,7 +746,7 @@
     });
 
     //修改公司图集
-    $.fromdata("#company_imgbox","test.php","#company_imgbox .savebtn",function(data){
+    $.fromdata("#company_imgbox","{php echo app_url('company/company_profile/save_imgbox')}","#company_imgbox .savebtn",function(data){
         //do something
     });
 
@@ -777,5 +766,56 @@
         //do something
     });
 
+
+    //选择文件
+    $('#choosefile').on('change',function(e){
+        var imgfile=this.files[0];
+        var src=URL.createObjectURL(imgfile);
+        var uploadimg="<img style='width:100%' src='"+src+"' id='upload_pic'>";
+//           $(".upload").css("display","block").find("img").attr("src",src);
+        $(this).parent().prev().html(uploadimg);
+
+        //uploadFile(this,'choosefile',boxbum);
+    });
+
+
+
+    $(".modalbtn").on("click",function(){
+        var uploadFormData =new FormData($("#choosefile1")[0]);
+        var uploadurl = "{php echo app_url('company/company_profile/change_company_atlas')}";
+        $.ajax({
+            url: uploadurl,
+            type:"post",
+            processData: false,
+            cache: false,
+            contentType: false,
+            async: false,
+            data:uploadFormData,
+            success:function (data) {
+                var data=JSON.parse(data);
+                if(data.status==1){
+                    var html = "<div class=\"person_worksbtn\">\n" +
+                        "                               <img src='"+data.content+"'>\n" +
+                        "                                    <span class=\"person_worksdelbtn\">\n" +
+                        "                                        <svg class=\"icon\" aria-hidden=\"true\">\n" +
+                        "                                            <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#icon-shanchu\"></use>\n" +
+                        "                                        </svg>\n" +
+                        "                                    </span>\n" +
+                        "                           </div>";
+
+                    $(".person_worksbtn1").before(html);
+                    var person_worksinput = $("#person_worksinput").val();
+                    if(person_worksinput){
+                        person_worksinput = person_worksinput +","+data.content;
+                    }else{
+                        person_worksinput = data.content;
+                    }
+                    $("#person_worksinput").val(person_worksinput);
+                }
+                $(".chec_tip1").eq(1).html("");
+            }
+        });
+        $("#modalbox").css("display","none");
+    })
 </script>
 </html>

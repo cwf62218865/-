@@ -23,8 +23,6 @@ elseif ($op=="job_manage_release"){
 
 elseif ($op=="show_base"){
 
-}elseif ($op==""){
-
 }elseif ($op=="step2_save"){
     $data['companyname'] =check_pasre($_POST['companyname'],"请输入公司名称");
     $data['license'] =check_pasre($_POST['license'],"请上传营业执照");
@@ -59,6 +57,46 @@ elseif($op=="manage_resume"){
 
     $resume  = m("company")->getall_resume($_SESSION['uid'],0,2);
     $resume1 =m("resume")->getall_resume();
+    $arr = pdo_fetchall("select r.* from ".tablename(WL."jobs_apply")." as j,".tablename(WL."resume")." as r  where j.resume_id=r.id and j.offer=1 and j.status=3 and j.uid=".$_SESSION['uid']);
+    $evaluate = "";
+    foreach ($arr as $resume){
+        $edu_experience = unserialize($resume['edu_experience']);
+        $education = "";
+        $id = "";
+        $edu = array('专科以下','专科','本科','硕士','博士','博士以上');
+        $arr_edu = array_flip($edu);
+        foreach ($edu_experience as $key=>$list){
+            $value = $list['edu_district'];
+            if(empty($education)){
+                $education = $arr_edu[$value];
+                $id = $key;
+            }else{
+                if($arr_edu[$value]>$education){
+                    $education = $arr_edu[$value];
+                    $id = $key;
+                }
+            }
+        }
+        $resume['education'] = $edu[$education];
+        $resume['arr_education'] = $edu_experience[$id];
+        $work_experience = unserialize($resume['work_experience']);
+
+        $work_time = "";
+        foreach ($work_experience as $list){
+            $list['job_starttime'] = str_replace("月","",str_replace("年","-",$list['job_starttime']));
+            $time = strtotime($list['job_starttime']);
+            if(empty($work_time)){
+                $work_time = $time;
+            }else{
+                if($time<$work_time){
+                    $work_time = $time;
+                }
+            }
+        }
+        $resume['work_time'] =  date('Y')-date('Y',$work_time);
+        $evaluate[] = $resume;
+    }
+
     include wl_template('company/hr_manage_resume');
 }
 

@@ -301,18 +301,11 @@
                    <div style="margin-top: 40px"  id="company_img">
                        <div class="swiper-container">
                            <div class="swiper-wrapper">
+                               {loop explode(',',$company['atlas']) $list}
                                <div class="swiper-slide">
-                                    <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
+                                   <div class="company_img"><img src="{$list}"></div>
                                </div>
-                               <div class="swiper-slide">
-                                   <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
-                               </div>
-                               <div class="swiper-slide">
-                                   <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
-                               </div>
-                               <div class="swiper-slide">
-                                   <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
-                               </div>
+                               {/loop}
                            </div>
                            <div class="swiper-pagination" ></div>
                            <!-- 如果需要导航按钮 -->

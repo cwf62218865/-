@@ -22,16 +22,22 @@
             </div>
             <!--收藏职位-------------------------------->
             <div class="list_content">
-                {loop $jobs $list}
+                {loop $collect_jobs $list}
                 <div class="list_item">
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap">{php echo $list['jobs_name']}</a>
-                            <a class="salary">{php echo $list['wage_min']}-{php echo $list['wage_max']}</a>
+                            <a class="salary">
+                                {if $list['wage_min']>0 && $list['wage_max']>0}
+                                    {$list['wage_min']}-{$list['wage_max']}K
+                                {else}
+                                    面议
+                                {/if}
+                            </a>
                         </div>
                         <div class="hang2">
-                            <a class="exptime nowrap">3-5年工作经验</a>
-                            <span class="exptime nowrap">大专</span>
+                            <a class="exptime nowrap">{php echo $list['experience']}</a>
+                            <span class="exptime nowrap">{php echo $list['education']}</span>
                             <span class="date">{php echo date('Y-m-d',$list['createtime'])}</span>
                         </div>
                         <div class="hang3">
@@ -51,7 +57,7 @@
                     </div>
                     <div class="collection_action" data-id="{php echo $list['uid']}">
                         <span class="left_actionbtn post_action" data-id="{php echo $list['id']}">投递简历</span>
-                        <span class="right_actionbtn revoke_action" data-id="{php echo $list['id']}">取消收藏</span>
+                        <span class="right_actionbtn  revoke_action remove_collect" data-id="{php echo $list['id']}">取消收藏</span>
                     </div>
                 </div>
                 {/loop}
@@ -405,23 +411,42 @@
             })
         })
         
-        //收藏职位
-        $("body").on("click",".revoke_action",function () {
-           var _this=$(this);
-           $.ajax({
-               type:"post",
-               url:"{php echo app_url('person/index/post_resume')}",
-               data:{
-                   data_id:_this.attr("data-id"),
-                    uid:_this.parent().attr('data-id')
-               },
+//        //收藏职位
+//        $("body").on("click",".revoke_action",function () {
+//           var _this=$(this);
+//           $.ajax({
+//               type:"post",
+//               url:"{php echo app_url('person/index/post_resume')}",
+//               data:{
+//                   data_id:_this.attr("data-id"),
+//                    uid:_this.parent().attr('data-id')
+//               },
+//                success:function (data) {
+//                    var data = JSON.parse(data);
+//                    if(data.status==1){
+//                        _this.html("已收藏");
+//                    }
+//                }
+//           })
+//        })
+
+
+        //取消收藏
+        $("body").on("click",".remove_collect",function () {
+            var _this = $(this);
+            $.ajax({
+                type:"post",
+                url:"{php echo app_url('person/collection/remove_collection_jobs')}",
+                data:{
+                    jobs_id:_this.attr("data-id")
+                },
                 success:function (data) {
                     var data = JSON.parse(data);
                     if(data.status==1){
-                        _this.html("已收藏");
+                        _this.parent().parent().hide();
                     }
                 }
-           })
+            })
         })
     })
 </script>
