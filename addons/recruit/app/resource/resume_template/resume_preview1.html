@@ -24,41 +24,7 @@
     </style>
 </head>
 <body bgcolor="#f4f4f4">
-<div class="header" style="background: #ffffff">
-    <div class="width1200 align_center" style="padding-top: 14px;justify-content: space-between">
-        <div class="resume_btns" style="margin-left: 156px;" id="download_resume">
-            <svg class="icon icon_resume" aria-hidden="true">
-                <use xlink:href="#icon-xiazaijianli"></use>
-            </svg>
-            下载简历
-        </div>
-        <div class="resume_btns" id="print_resume">
-            <svg class="icon icon_resume" aria-hidden="true">
-                <use xlink:href="#icon-dayinjianli"></use>
-            </svg>
-            打印简历
-        </div>
-        <div class="resume_btns" id="change_modal">
-            <svg class="icon icon_resume" aria-hidden="true">
-                <use xlink:href="#icon-genghuanmoban"></use>
-            </svg>
-            更换模板
-        </div>
-        <div class="resume_btns" id="exit_view">
-            <svg class="icon icon_resume" aria-hidden="true">
-                <use xlink:href="#icon-tuichuyulan"></use>
-            </svg>
-            退出预览
-        </div>
-        <div class="genghuanbeijing">
-            <span class="wenzi">更换背景</span>
-            <span class="color color1"></span>
-            <span class="color color2"></span>
-            <span class="color color3"></span>
-            <span class="color color4"></span>
-        </div>
-    </div>
-</div>
+{php include wl_template('common/resume_top');}
 <div class="width1200 p1content preview">
     <div class="p1_left">
 
@@ -303,96 +269,17 @@
     </div>
 
 </div>
-<!--更换模板弹框-->
-<div class="modalbox" id="modal_box" style="display: block;opacity: 0">
-    <div class="modal" style="width: 980px;margin-left: -490px;top:10%;">
-        <p class="title_content">选择简历模板</p>
-        <span class="modalclose">
-                <img src="../images/close.png"/>
-            </span>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" data-id="1">
-                    <div class="modal_item cur">
-                    <div class="modal_title">官方版</div>
-                    <div class="modal_style">
-                    <img src="../images/modal1.png" style="width:200px; "/>
-                    </div>
-                        <label class="using">使用中</label>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-id="2">
-                    <div class="modal_item cur">
-                        <div class="modal_title">吉祥橙</div>
-                        <div class="modal_style">
-                            <img src="../images/modal2.png" style="width:200px; "/>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="swiper-slide" data-id="3">
-                    <div class="modal_item cur">
-                        <div class="modal_title">极简风</div>
-                        <div class="modal_style">
-                            <img src="../images/modal3.png" style="width:200px; "/>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-id="4">
-                    <div class="modal_item cur">
-                        <div class="modal_title">清新绿</div>
-                        <div class="modal_style">
-                            <img src="../images/modal4.png" style="width:200px; "/>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-id="6">
-                    <div class="modal_item cur">
-                        <div class="modal_title">银色灰</div>
-                        <div class="modal_style">
-                            <img src="../images/modal5.png" style="width:200px; "/>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-id="5">
-                    <div class="modal_item cur">
-                        <div class="modal_title">尊贵紫</div>
-                        <div class="modal_style">
-                            <img src="../images/modal6.png" style="width:200px; "/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 如果需要导航按钮 -->
-            <div class="swiper-button-prev" id="previous">
-                <svg class="icon jiantou" aria-hidden="true">
-                <use xlink:href="#icon-zuojiantouxi"></use>
-                </svg>
-            </div>
-
-            <div class="swiper-button-next" id="next">
-                <svg class="icon jiantou" aria-hidden="true">
-                <use xlink:href="#icon-youjiantouxi"></use>
-                </svg>
-            </div>
-        </div>
 
 
-        <div class="btns" style="margin-bottom: 50px;margin-top: 60px;">
-            <button class="tijiao modal_tijiao" style="margin-left: 410px">确定使用</button>
-            <span class="quxiao color_main">取消</span>
-        </div>
-    </div>
-</div>
-<!--弹框end-->
+{php include wl_template('common/modal_dilog');}
 
 
 </body>
 <script src="../js/swiper.js" rel="script"></script>
 <script src="../js/jquery.js" rel="script"></script>
 <script src="../js/iconfont.js" rel="script"></script>
-
 <script src="../js/formdata.js" rel="script"></script>
+<script src="../js/change_modal.js" rel="script"></script>
 <script>
     $(document).ready(function () {
 
@@ -405,44 +292,14 @@
             prevButton: '.swiper-button-prev',
         })
         $("#modal_box").hide().css("opacity",1);
-    })
-$(function () {
-    $(".color").click(function () {
-        var html="<i class='select'></i>";
-        var color=$(this).css("background-color");
-        $("body").css("background-color",color);
-        $(".color").html("");
-        $(this).append(html);
-    })
 
-    $(".modal_item").click(function () {
-        $(".biankuang").remove();
-        $(this).append("<div class='biankuang'></div>");
-    })
-
-
-    //选择使用模板
-    $("body").on("click",".modal_tijiao",function () {
-        var list_modal=$(".swiper-slide");
-        list_modal.each(function () {
-            if($(this).find(".biankuang").length>0){
-                var i=$(this).attr("data-id");
-                window.location.href="resume_preview"+i+".html";
-            }
+        $("#change_modal").click(function () {
+            $("#modal_box").show();
         })
-
+        $(".modalclose,.quxiao").on("click",function(){
+            $("#modal_box").hide();
+        });
     })
 
-})
-
-
-
-
-    $("#change_modal").click(function () {
-        $("#modal_box").show();
-    })
-    $(".modalclose,.quxiao").on("click",function(){
-        $("#modal_box").hide();
-    });
 </script>
 </html>
