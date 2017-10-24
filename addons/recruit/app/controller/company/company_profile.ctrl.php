@@ -41,6 +41,7 @@ elseif ($op=="change_company_atlas"){
 elseif ($op=="save_base"){
 
     $data['nature'] = check_pasre($_POST['data']['company_nature'],"1");
+    $data['headimgurl'] = check_pasre($_POST['data']['company_logo'],"1");
     $data['number'] = check_pasre($_POST['data']['company_scale'],"2");
     $data['industry'] = check_pasre($_POST['data']['company_industry'],"3");
     $data['city'] = check_pasre($_POST['data']['company_area'],"4");

@@ -28,8 +28,8 @@
     <div class="resume_district">
         <div class="wanzhengdu">
             <div class="jianli"><span>简历完整度：</span><span class="color_main">{php echo $resume_integrity}%</span>
-                <a class="color_main resume_view" href="">预览</a>
-                <a class="color_main resume_edit" href="">修改</a></div>
+                <a class="color_main resume_view" href="{php echo app_url('resume/index',array('uid'=>$_SESSION['uid']))}">预览</a>
+                <a class="color_main resume_edit" href="{php echo app_url('person/resume/manage_resume')}">修改</a></div>
             <div class="jindutiao">
                 <div class="jindu_con"></div>
             </div>

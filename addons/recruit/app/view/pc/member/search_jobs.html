@@ -149,7 +149,13 @@
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
-                            <label class="salary nowrap">{$list['wage_min']}-{$list['wage_max']}K</label>
+                            <label class="salary nowrap">
+                                {if $list['wage_min']>0 && $list['wage_max']>0}
+                                    {$list['wage_min']}-{$list['wage_max']}K
+                                {else}
+                                    面议
+                                {/if}
+                            </label>
                         </div>
                         <div class="hang2">
                             <label class="experience nowrap">{$list['experience']}</label>

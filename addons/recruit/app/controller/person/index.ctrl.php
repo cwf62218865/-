@@ -104,12 +104,7 @@ elseif ($op=="send_resume_ajax"){
 
 //收藏职位列表
 elseif ($op=="collection_jobs_list"){
-    $collect_jobs = pdo_fetchall("select jobs_id,createtime from ".tablename(WL."collect_jobs")." where uid=".$_SESSION['uid']);
-    $jobs = "";
-    foreach ($collect_jobs as $key=>$list){
-        $jobs[$key] = pdo_fetch("select * from ".tablename(WL."jobs")." where id=".$list['jobs_id']);
-        $jobs[$key]['createtime'] = $list['createtime'];
-    }
+    $collect_jobs = pdo_fetchall("select c.createtime,j.* from ".tablename(WL."collect_jobs")." as c,".tablename(WL."jobs")." as j where c.jobs_id=j.id and c.uid=".$_SESSION['uid']);
 
     $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
 //    var_dump($order_jobs);exit();

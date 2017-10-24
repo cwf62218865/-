@@ -533,23 +533,24 @@
             <!--面试评价end---------------------------------------------------->
             <!--工作评价start---------------------------------------------------------------------------->
             <div class="gzpj_content" style="display: none;">
+                {loop $evaluate $list}
                 <div class="list_item gzpj">
                     <div class="item_con">
                         <div class="touxiang_pic">
-                            <img src="{WL_URL_ARES}images/resume_tx.png" style="width: 100px;"/>
+                            <img src="{$list['headimgurl']}" style="width: 100px;"/>
                         </div>
                         <div class="basic_massage">
                             <div class="bm_hang1">
-                                <span class="name">张雪茹</span>
-                                <span class="basic_xx" style="float: right">本科</span>
+                                <span class="name">{$list['fullname']}</span>
+                                <span class="basic_xx" style="float: right">{$list['education']}</span>
                             </div>
                             <div class="bm_hang2">
-                                <span class="basic_xx">女</span>
-                                <span class="basic_xx" style="margin-left: 10px;">22岁</span>
+                                <span class="basic_xx">{if $list['sex']==1}男{else}女{/if}</span>
+                                <span class="basic_xx" style="margin-left: 10px;">{php echo ceil(date('Y-m-d')-$list['birthday'])}岁</span>
                             </div>
                             <div class="bm_hang3">
-                                <span class="basic_xx">重庆大学</span>
-                                <span class="basic_xx"  style="margin-left: 16px;">广播电视新闻学</span>
+                                <span class="basic_xx">{php echo $list['school_name']}</span>
+                                <span class="basic_xx"  style="margin-left: 16px;">{php echo $list['edu_major']}</span>
                             </div>
                         </div>
                         <div class="relative general-select pj_hang">
@@ -592,66 +593,7 @@
                         <div class="pjbtn cur pjmargin send_value">发布评价</div>
                     </div>
                 </div>
-                <div class="list_item gzpj">
-                    <div class="item_con">
-                        <div class="touxiang_pic">
-                            <img src="{WL_URL_ARES}images/resume_tx.png" style="width: 100px;"/>
-                        </div>
-                        <div class="basic_massage">
-                            <div class="bm_hang1">
-                                <span class="name">张雪茹</span>
-                                <span class="basic_xx" style="float: right">本科</span>
-                            </div>
-                            <div class="bm_hang2">
-                                <span class="basic_xx">女</span>
-                                <span class="basic_xx" style="margin-left: 10px;">22岁</span>
-                            </div>
-                            <div class="bm_hang3">
-                                <span class="basic_xx">重庆大学</span>
-                                <span class="basic_xx"  style="margin-left: 16px;">广播电视新闻学</span>
-                            </div>
-                        </div>
-                        <div class="relative general-select pj_hang">
-                            <div class="tit_gzpj">离职时间</div>
-                            <label class="general-input relative general-select">
-                                <input type="text" readonly=""  value="2017.06" class="time_zaizhi">
-                                <svg class="icon inputicon" aria-hidden="true">
-                                    <use  xlink:href="#icon-xiala" class="colorbbb"></use>
-                                </svg>
-                            </label>
-                            <div class="options" style="left: 80px;width: 242px;top: 48px">
-                                <div class="cwftimeoptions" style="height: 148px;overflow-y: auto;width: 90px;overflow-x: hidden;"></div>
-                                <div class="cwfmonths" style="height: 147px;">
-                                    <span>1月</span>
-                                    <span>2月</span>
-                                    <span>3月</span>
-                                    <span>4月</span>
-                                    <span>5月</span>
-                                    <span>6月</span>
-                                    <span>7月</span>
-                                    <span>8月</span>
-                                    <span>9月</span>
-                                    <span>10月</span>
-                                    <span>11月</span>
-                                    <span>12月</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="">
-                            <div class="tit_gzpj">任职岗位</div>
-                            <label class="general-input">
-                                <input type="text" style="width: 224px" placeholder="请输入任职岗位"   class="gangwei">
-                            </label>
-                            <div class="options" style="height: 0px;"></div>
-                        </div>
-                        <p class="title_bx">任职期间工作表现</p>
-                        <div class="huifupinglun" style="margin-top: 16px;">
-                            请输入职员工作表现
-                            <textarea class="shurupl biaoxian"></textarea>
-                        </div>
-                        <div class="pjbtn cur pjmargin send_value">发布评价</div>
-                    </div>
-                </div>
+                {/loop}
             </div>
             <!--工作评价end---------------------------------------------------->
         </div>

@@ -84,7 +84,13 @@
                     </div>
 
                     <div style="margin-top: 20px">
-                        <span class="jobs_salary">{php echo $jobs['wage_min']}K-{php echo $jobs['wage_max']}K</span>
+                        <span class="jobs_salary">
+                            {if $jobs['wage_min']>0 && $jobs['wage_max']>0}
+                                    {$jobs['wage_min']}-{$jobs['wage_max']}K
+                                {else}
+                                    面议
+                                {/if}
+                        </span>
                         <span class="jobs_requirement">{php echo $jobs['education']}</span>
                         <span class="jobs_requirement">{php echo $jobs['experience']}</span>
                         <span class="jobs_requirement">{php echo $jobs['work_nature']}</span>

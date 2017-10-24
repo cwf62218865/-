@@ -26,7 +26,7 @@ if($op=="collection_jobs"){
 
 //取消收藏
 elseif ($op=="remove_collection_jobs"){
-    $data['jobs_id'] = check_pasre($_GPC['jobs_id'],"参数错误");
+    $data['jobs_id'] = check_pasre($_GPC['jobs_id'],"1");
     $data['uid'] = $_SESSION['uid'];
     $r = delete_table($data,WL."collect_jobs");
     if($r){
