@@ -49,7 +49,7 @@ $(".sexbox_span").on("click",function(){
 })
 
 
-$(".general-select input").on("mousedown",function(){
+$(".general-input input").on("mousedown",function(){
 
     var _this=$(this);
     if(_this.closest(".general-select").next().height()=="0"){
@@ -241,6 +241,154 @@ $("#edit_person_msg").on("click",function(){
     $(".formtip").remove();
 });
 
+//期望职位
+var jobsnewfile=jobsnewfile;//期望职位数据
+
+
+//添加以及分类数据
+var hope_job_label="";
+var hopejobhtml="";//容器
+
+
+hope_job_label=$("#hope_job").val().split(",");//已选择职位
+hopejobhtml="";
+for(var i=0 ; i<jobsnewfile["00"].length ; i++){
+
+    hopejobhtml+='<div><span class="hopejob1" data-id="'+i+'">'+jobsnewfile["00"][i]+'</span></div>'
+}
+$(".hope_jobbox1").html(hopejobhtml);
+
+var hope_jobbox2html1="";
+for(var i=1 ; i<=jobsnewfile["00_1"].length ; i++){
+    hope_jobbox2html1+="<div>";
+    hope_jobbox2html1+="<span class='secend_jobname'>"+jobsnewfile["00_1"][i-1]+"</span>";
+    hope_jobbox2html1+="<div class='third_jobname'>";
+
+    for(var k=0 ;k<jobsnewfile["00_1_"+i].length ; k++){
+        hope_jobbox2html1+="<span";
+        for(var m=0 ;m<hope_job_label.length ;m++){
+            if(jobsnewfile["00_1_"+i][k]==hope_job_label[m]){
+                hope_jobbox2html1+=' class="check1"';
+            }else{
+
+            }
+        }
+        hope_jobbox2html1+=">"+jobsnewfile["00_1_"+i][k]+"</span>"
+    }
+    hope_jobbox2html1+="</div></div>";
+}
+$(".hope_jobbox2").html(hope_jobbox2html1);
+
+
+
+
+//第一级菜单鼠标移入事件
+$(".hope_jobbox1").on("mouseover",".hopejob1",function(){
+    hope_job_label=$("#hope_job").val().split(",");//已选择职位
+    $(".hope_jobbox1 .hopejob1").each(function(){
+        $(this).removeClass("check1");
+    });
+    $(this).addClass("check1");
+    var data_id=$(this).attr("data-id");
+    var hope_jobbox2html="";
+    for(var i=1 ; i<=jobsnewfile["00_"+(parseInt(data_id)+1)].length ; i++){
+        hope_jobbox2html+="<div>";
+        hope_jobbox2html+="<span class='secend_jobname'>"+jobsnewfile["00_"+(parseInt(data_id)+1)][i-1]+"</span>";
+        hope_jobbox2html+="<div class='third_jobname'>";
+
+        for(var k=0 ;k<jobsnewfile["00_"+(parseInt(data_id)+1)+"_"+i].length ; k++){
+            hope_jobbox2html+="<span";
+            for(var m=0 ;m<hope_job_label.length ;m++){
+                if(jobsnewfile["00_"+(parseInt(data_id)+1)+"_"+i][k]==hope_job_label[m]){
+                    hope_jobbox2html+=' class="check1"';
+                }else{
+
+                }
+            }
+            hope_jobbox2html+=">"+jobsnewfile["00_"+(parseInt(data_id)+1)+"_"+i][k]+"</span>"
+        }
+        hope_jobbox2html+="</div></div>";
+    };
+    $(".hope_jobbox2").html(hope_jobbox2html);
+});
+
+
+
+//选择职位事件
+$(".hope_jobbox2").on("click",".third_jobname span",function(){
+    var _this=$(this);
+    if(!_this.hasClass("check1")){
+        hope_job_label=$("#hope_job").val().split(",");
+        if(hope_job_label.length<3){
+            var content=_this.html();
+            var html='<span>'+content+
+                '<svg class="icon" aria-hidden="true">'+
+                '<use  xlink:href="#icon-shan" class="colorbbb"></use>'+
+                '</svg></span>';
+            $("#hope_jobs").append(html);
+            if($("#hope_job").val()){
+                $("#hope_job").val($("#hope_job").val()+","+content);
+            }else{
+                $("#hope_job").val(content);
+            }
+            _this.addClass("check1").unbind("click");
+        }else{
+            return;
+        }
+    }
+});
+
+//删除职位事件
+$("#hope_jobs").on("click",".icon",function(){
+    var content=$(this).parent().html();
+    var labelcontent=content.split("<")[0];
+    hope_job_label=$("#hope_job").val().split(",");
+    var newlabel="";
+    for(var i =0 ;i<hope_job_label.length;i++){
+        if(hope_job_label[i]!=labelcontent){
+            newlabel+=","+hope_job_label[i];
+        }
+    }
+    $(".third_jobname span").each(function(){
+        if($(this).html()==labelcontent){
+            $(this).removeClass("check1");
+        }
+    });
+    $("#hope_job").val(newlabel.substring(1,newlabel.length));
+
+    $(this).parent().remove();
+});
+//添加期望职位
+$(".add_hope_job").on("click",function(){
+    hope_job_label=$("#hope_job").val().split(",");
+    var addcontent=$("#hope_jobinput").val();
+    if(hope_job_label.length<3&&addcontent!=""){
+        var html='<span>'+addcontent+
+            '<svg class="icon" aria-hidden="true">'+
+            '<use  xlink:href="#icon-shan" class="colorbbb"></use>'+
+            '</svg></span>';
+        $("#hope_jobs").append(html);
+        $("#hope_jobinput").val("");
+        if($("#hope_job").val()){
+            $("#hope_job").val($("#hope_job").val()+","+addcontent);
+        }else{
+            $("#hope_job").val(addcontent);
+        }
+    }
+});
+
+$("#save_hope_job").on("click",function(){
+    $(".hope_jobbox").height("0")
+});
+$("#cancel_hope_job").on("click",function(){
+    $(".hope_jobbox").height("0");
+})
+
+
+
+
+
+//期望行业
 function wantjob(obj){
     var _this=$(obj);
     var checkval=$("#want_job").val();
@@ -257,7 +405,7 @@ function wantjob(obj){
         }else{
             $("#want_job").val(content);
         }
-        _this.css({"background-color":"#09c","color":"#fff"}).unbind("click");
+        _this.addClass("select").unbind("click");
     }else{
         return;
     }
@@ -274,12 +422,12 @@ $("#want_jobbtns").on("click",".icon",function(){
     var html="";
     $(".hangye_con .select-option").each(function(){
         if($(this).find("span").eq(0).html()==labelcontent){
-            $(this).css({"background-color":"#fff","color":"#333"}).bind("click",function(){
+            $(this).removeClass("select").bind("click",function(){
                 wantjob(this);
             });
         }
 
-        if($(this).css("color")=="rgb(255, 255, 255)"){
+        if($(this).hasClass("select")){
             html+=$(this).find("span").eq(0).html()+",";
         }
 
@@ -288,7 +436,11 @@ $("#want_jobbtns").on("click",".icon",function(){
     $("#want_job").val(html.substring(0,html.length-1));
     $(this).parent().remove();
 
-})
+});
+
+$("#hope_jobinput").on("mousedown",function(){
+    $(".hope_jobbox").css("height","auto");
+});
 
 
 

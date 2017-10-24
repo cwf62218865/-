@@ -413,6 +413,14 @@
     font-size: 16px;
     cursor: pointer;
 }
+.cancelbtn1{
+    display: inline-block;
+    padding: 10px;
+    margin-left: 20px;
+    color: #09c;
+    font-size: 16px;
+    cursor: pointer;
+}
 .delbtn{
     display: inline-block;
     padding: 10px;
@@ -426,7 +434,7 @@
     margin-left: 20px;
     position: absolute;
     top: 0;
-    z-index: 1000
+    z-index: 999
 }
 .want_jobbtns span{
     display: inline-block;
@@ -654,6 +662,10 @@
 .hangye_con span {
     margin-left: 0;
 }
+.hangye_con .select{
+    background-color: #0099cc;
+    color: #fff;
+}
 .hangye .select-option:nth-child(1),
 .hangye .select-option:nth-child(2),
 .hangye .select-option:nth-child(3),
@@ -665,4 +677,80 @@
 .hangye .select-option:nth-child(9),
 .hangye .select-option:nth-child(13){
     margin-left: 0;
+}
+.hope_jobbox{
+    width: 660px;
+    box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.hope_jobbox1{
+    display: inline-block;
+    width: 150px;
+    height: 551px;
+    background-color: #f5f5f5;
+}
+.hope_jobbox1 div{
+    color: #666;
+    line-height: 34px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.hope_jobbox1 .check{
+    color: #0099cc;
+}
+.hope_jobbox1 .check1,.hope_jobbox2 .check1{
+    color: #0099cc;
+}
+
+.hope_jobbox1 div:first-child{
+    margin-top: 24px;
+}
+.hope_jobboxright{
+    display: inline-block;
+    float: right;
+    width: 510px;
+}
+.add_hope_job{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    width: 80px;
+    padding: 0;
+    border-radius: 0;
+    text-align: center;
+    background-color: #0099cc;
+    color: #fff;
+    float: right;
+    margin-right: 20px;
+}
+.hope_jobbox2{
+    padding: 30px 40px 0 30px;
+    height: 350px;
+    border-bottom: 1px solid #eee;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.secend_jobname{
+    display: inline-block;
+    width: 104px;
+    color: #0099cc;
+    float: left;
+}
+
+.third_jobname{
+    display: inline-block;
+    width: 319px;
+}
+.third_jobname span{
+    display: inline-block;
+    color: #666;
+    line-height: 14px;
+    padding: 0 10px;
+    border-right: 1px solid #666;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+.third_jobname span:last-child{
+    border:none ;
 }
