@@ -30,7 +30,7 @@
                             <input type="checkbox" name="like" value="">
                             <div class="checkboxbox">
                                 <svg class="icon iconfont color1aa ico_right">
-                                    <use xlink:href="#icon-zhengque1"></use>
+                                    <use xlink:href=""></use>
                                 </svg>
                             </div>
                         </label>
@@ -41,7 +41,7 @@
                             <input type="checkbox" name="like" value="">
                             <div class="checkboxbox">
                                 <svg class="icon iconfont color1aa ico_right">
-                                    <use xlink:href="#icon-zhengque1"></use>
+                                    <use xlink:href=""></use>
                                 </svg>
                             </div>
                         </label>
@@ -55,7 +55,7 @@
                         </svg>
                         </div>
                         <div class="datalist date_list">
-                            <div class="option_date">日期不限</div>
+                            <div class="option_date" data-date="0">日期不限</div>
                         </div>
                     </div>
                 </div>
@@ -92,11 +92,12 @@
                             <div class="status1">
                                 <div class="status_con">
                                     <p><span class="resume_name">{php echo $list['linker']}</span><span class="resume_tel">{php echo $list['link_phone']}</span></p>
-                                    <p>面试时间：<span>{php echo $list['interview_time']}</span></p>
+                                    <p>面试时间：<span class="mianshi_time">{php echo $list['interview_time']}</span></p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" class="interview_date" value="{$list['interview_date']}" />
                     <a class="review_statas" href="{php echo app_url('resume/index/print',array('uid'=>$list['uid']))}" target="_blank">
                         <div class="tongyi2" data-id="1">打印简历</div>
                     </a>
@@ -851,6 +852,56 @@
             }
         })
     })
+
+    //简历筛选-时间
+    $(".checkboxbox").click(function () {
+        var i=$(this).index(".checkboxbox");//0表示今天，1表示明天
+//        $(".checkboxbox").find("use").attr("xlink:href","");
+        var right=$(this).find("use").attr("xlink:href");
+        var list=$(".list_content .list_item");
+        var date=new Date();
+
+        if(i==1){//明天就是今天+1
+            var today=date.getDate()+1;
+        }else{
+            var today=date.getDate();
+        }
+        if(right!=""){
+            //未选择状态
+//            $(".checkboxbox").find("use").attr("xlink:href","");
+        }else{
+            //选择状态
+            list.each(function () {
+                var mianshi_time=$(this).find(".interview_date").val().split("-");
+                if(today==mianshi_time[1]){
+                    $(this).show()
+                }else{
+                    $(this).hide();
+                }
+            })
+//            $(".checkboxbox").find("use").attr("xlink:href","");
+//            $(this).find("use").attr("xlink:href","#icon-zhengque1").nextAll().find("use").attr("xlink:href","");
+            $(".checkboxbox").find("use").attr("xlink:href","");
+        }
+
+    })
+
+
+//    一周时间筛选
+    $("body").on("click",".option_date",function () {
+        var date=$(this).attr("data-date");
+        var list=$(".list_content .list_item");
+        list.each(function () {
+            var mianshi_time=$(this).find(".interview_date").val().split("-");
+            if(date==mianshi_time[1]){
+                $(this).show()
+            }else{
+                $(this).hide();
+            }
+        })
+
+    })
+
 
 
     //收藏备注

@@ -54,14 +54,15 @@ class resume{
      * 我投递过的职位
      */
     public function jobs_apply($uid,$page=1){
-        $limit = " limit ".($page*6).",6";
-//        echo "select * from ".tablename(WL."jobs_apply")." where direction=2 and puid=".$uid.$limit;exit();
+        $limit = " limit ".(($page-1)*6).",6";
+
         $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=2 and puid=".$uid.$limit);
 //        var_dump($jobs_apply);exit();
         $jobs = "";
         foreach ($jobs_apply as $key=>$list){
             $jobs[$key] = m('jobs')->get_jobs($list['jobs_id']);
             $jobs[$key]['status'] = $list['status'];
+            $jobs[$key]['apply_id'] = $list['id'];
             $jobs[$key]['direction'] = $list['direction'];
             $jobs[$key]['createtime'] = $list['createtime'];
             $jobs[$key]['offer'] = $list['offer'];

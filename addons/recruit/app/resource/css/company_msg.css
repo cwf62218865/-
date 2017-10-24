@@ -152,7 +152,7 @@
     width: 360px;
     height: auto;
     background: #fff;
-    box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.1), /*å·¦è¾¹é˜´å½±*/ 1px -1px 6px rgba(0, 0, 0, 0.1), /*å³è¾¹é˜´å½±*/ 0 1px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.1);
 }
 .hangye_con {
     width: 340px;

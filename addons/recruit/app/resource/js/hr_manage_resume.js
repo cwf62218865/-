@@ -79,9 +79,9 @@ $(function () {
         dayis.setTime(datatime.getTime()+24*i*60*60*1000);
         day3[i]=(dayis.getMonth()+1)+"."+dayis.getDate()+"."+dayis.getDay();
         if(dayis.getDay()==0 || dayis.getDay()==6){
-            $(".date_list").append("<div class='option_date weekend'>"+dayis.getDate()+"号"+weekarr[dayis.getDay()]+"</div>");
+            $(".date_list").append("<div class='option_date weekend'  data-date='"+dayis.getDate()+"'>"+dayis.getDate()+"号"+weekarr[dayis.getDay()]+"</div>");
         }else{
-            $(".date_list").append("<div class='option_date'>"+dayis.getDate()+"号"+weekarr[dayis.getDay()]+"</div>");
+            $(".date_list").append("<div class='option_date' data-date='"+dayis.getDate()+"'>"+dayis.getDate()+"号"+weekarr[dayis.getDay()]+"</div>");
         }
     }
 });

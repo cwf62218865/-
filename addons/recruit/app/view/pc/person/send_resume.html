@@ -88,15 +88,15 @@
             <!--面试邀请start---------------------------------------------------------------------------->
             <div class="resume_content">
                 {loop $apply_jobs $list}
-                    {if $list['status']==3 && $list['direction']==1}
+                    {if $list['status']==3}
                         <div class="list_item">
                     <div class="item_con">
                         <div class="hang1">
-                            <a class="jobname nowrap">{php echo $list['jobs_name']}</a>
-                            <a class="salary">{php echo $list['wage_min']}-{php echo $list['wage_max']}</a>
+                            <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['jobs_id']))}">{php echo $list['jobs_name']}</a>
+                            <a class="salary">{php echo $list['wage_min']}-{php echo $list['wage_max']}k</a>
                         </div>
                         <div class="hang2">
-                            <a class="company nowrap">{php echo $list['companyname']}</a>
+                            <a class="company nowrap" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
                             <span class="address nowrap">{php echo $list['city']}</span>
                             <span class="date">{php echo date('Y-m-d',$list['createtime'])}</span>
                         </div>
@@ -130,8 +130,8 @@
                     </div>
                     {if $list['offer']==0}
                     <div class="review_statas">
-                        <div class="tongyi" data-id="2">同意面试</div>
-                        <div class="jujue"  data-id="2">拒绝面试</div>
+                        <div class="tongyi" data-id="{$list['apply_id']}">同意面试</div>
+                        <div class="jujue"  data-id="{$list['apply_id']}">拒绝面试</div>
                     </div>
                     {elseif $list['offer']==1}
                     <div class="review_statas tongyi_statas">
@@ -317,8 +317,8 @@
             $(this).parent().addClass("tongyi_statas");
             $(this).parent().html("已同意面试");
             $.ajax({
-                url:"",
-                post:post,
+                url:"{php echo app_url('person/jobs/apply_deal')}",
+                type:"post",
                 data:{
                     dataid:dataid
                 },

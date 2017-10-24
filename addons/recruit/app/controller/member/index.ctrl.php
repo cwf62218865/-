@@ -55,7 +55,7 @@ elseif ($op=="login_deal"){
                     $url = app_url('company/resume/received_resume');
                 }
             }
-
+            pdo_update(WL."members",array('last_login_time'=>time()),array('id'=>$member['id']));
             call_back(1,$url);
         }else{
             call_back(2,"请输入正确的密码");
@@ -252,10 +252,28 @@ elseif($op=="company_detail"){
 
 //职位详情页
 elseif($op=="jobs_detail"){
+
     if($_GPC['jobs_id']){
         $jobs = pdo_fetch("select * from ".tablename(WL."jobs")." where id=".$_GPC['jobs_id']);
         $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$jobs['uid']);
         $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where jobs_id=".$_GPC['jobs_id']." and puid=".$_SESSION['uid']);
+        $last_login_time = pdo_fetch("select last_login_time from ".tablename(WL."members")." where id=".$jobs['uid']);
+//        echo $last_login_time['last_login_time'];exit();
+        $last_login_time = intval((time()-$last_login_time['last_login_time'])/86400);
+        if($last_login_time==1){
+            $last_login_time = "昨天";
+        }elseif ($last_login_time==2){
+            $last_login_time = "前天";
+        }elseif ($last_login_time>2 && $last_login_time<8){
+            $last_login_time = "3天前";
+        }elseif($last_login_time>7){
+            $last_login_time = "一周前";
+        }else{
+            $last_login_time = "今天";
+        }
+
+        $similar_jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$jobs['jobs_name']."%' and id<>".$jobs['id']);
+//        echo date()-date("Y-m-d",$last_login_time['last_login_time']);exit();
 //        echo "select id from ".tablename(WL."jobs_apply")." where jobs_id=".$_GPC['jobs_id']." and puid=".$_SESSION['uid'];exit();
 //        var_dump($jobs_apply);exit();
         include wl_template("member/jobs_detail");exit();
@@ -267,18 +285,22 @@ elseif($op=="jobs_detail"){
 elseif ($op=="search_jobs"){
     $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs"));
 //    echo $jobs_count;exit();
-    $jobs = m("jobs")->getall_jobs_page();
+    if($_GET['jobs_name']){
+        $data['data']['job_name'] = $_GET['jobs_name'];
+    }
+    $jobs = m("jobs")->getall_jobs_page($data);
+    $jobs = $jobs['more'];
     include wl_template("member/search_jobs");exit();
 }
 
 //职位搜索ajax
 elseif ($op=="search_jobs_ajax"){
-
+//    var_dump($_POST);exit();
     if ($_POST['data']){
         $page = $_POST['data']['page'];
-        $jobs = m("jobs")->getall_jobs_page($page);
+        $jobs = m("jobs")->getall_jobs_page($_POST);
         $html = "";
-        foreach ($jobs as $key=>$list){
+        foreach ($jobs['more'] as $key=>$list){
             if($list['post_status']=="已投递"){
                 $toudijianli = "toudijianli1";
             }else{
@@ -317,7 +339,7 @@ elseif ($op=="search_jobs_ajax"){
                     </div>
                 </div>";
         }
-        call_back(1,$html);
+        call_back(1,$html,$jobs['count']);
     }
 }
 
@@ -327,6 +349,27 @@ elseif ($op=="show_map"){
     $retoate_y = $_GPC['retoate_y'];
     include wl_template("common/map");exit();
 }
+
+//举报职位
+elseif ($op=="tip_off"){
+    $data['jobs_id'] = check_pasre($_POST['data']['jobs_id'],"1");
+    $data['company_scale'] = check_pasre($_POST['data']['company_scale'],"2");
+    $data['report_content'] = check_pasre($_POST['data']['report_content'],"3");
+    $report = pdo_fetch("select id from ".tablename(WL."report")." where jobs_id=".$data['jobs_id']." and report_uid=".$_SESSION['uid']);
+    if (empty($report)){
+        $data['addtime'] = time();
+        $data['report_uid'] = $_SESSION['uid'];
+        $r = insert_table($data,WL."report");
+        if($r){
+            call_back(1,"ok");
+        }else{
+            call_back(2,"no");
+        }
+    }else{
+        call_back(2,"已存在");
+    }
+}
+
 
 if(empty($_SESSION['mid'])){
     header("location:".app_url("member/index/index"));

@@ -1,11 +1,11 @@
 <div class="p1_right">
     <div class="tongjis">
         <div class="items1">
-            <a class="number" href="">{php echo $person_statistics['apply_num']}</a>
+            <a class="number" href="{php echo app_url('person/index/send_resume')}">{php echo $person_statistics['apply_num']}</a>
             <p class="font1_zj chengxian">通过申请</p>
         </div>
         <div class="items1">
-            <a class="number" href="">{php echo $person_statistics['interview_num']}</a>
+            <a class="number" href="{php echo app_url('person/index/send_resume')}">{php echo $person_statistics['interview_num']}</a>
             <p class="font1_zj chengxian">面试邀请</p>
         </div>
         <div class="items1">
@@ -33,13 +33,22 @@
             <div class="jindutiao">
                 <div class="jindu_con"></div>
             </div>
-            <div class="sousuo">
-                <svg class="icon icon_sousuo" aria-hidden="true">
-                    <use xlink:href="#icon-sousuo"></use>
-                </svg>
-                <input type="text" class="sousuo_content font1_zj" placeholder="输入职位" style="font-size: 12px;">
-            </div>
-            <input type="button" class="sousuo_btn" value="找工作">
+            <form action="{php echo app_url('member/index/search_jobs')}" type="get">
+                <input type="hidden" name="c" value="site">
+                <input type="hidden" name="a" value="entry">
+                <input type="hidden" name="m" value="recruit">
+                <input type="hidden" name="do" value="member">
+                <input type="hidden" name="ac" value="index">
+                <input type="hidden" name="op" value="search_jobs">
+                <div class="sousuo">
+                    <svg class="icon icon_sousuo" aria-hidden="true">
+                        <use xlink:href="#icon-sousuo"></use>
+                    </svg>
+                    <input type="text" class="sousuo_content font1_zj" placeholder="输入职位" style="font-size: 12px;" name="jobs_name">
+                </div>
+                <input type="submit" class="sousuo_btn" value="找工作">
+            </form>
+
         </div>
     </div>
     <div class="ads">

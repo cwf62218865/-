@@ -37,6 +37,23 @@ elseif ($op=="change_company_atlas"){
     call_back(1,$atlas);
 }
 
+//修改公司基本信息
+elseif ($op=="save_base"){
+
+    $data['nature'] = check_pasre($_POST['data']['company_nature'],"1");
+    $data['number'] = check_pasre($_POST['data']['company_scale'],"2");
+    $data['industry'] = check_pasre($_POST['data']['company_industry'],"3");
+    $data['city'] = check_pasre($_POST['data']['company_area'],"4");
+    $data['slogan'] = check_pasre($_POST['data']['slogan'],"5");
+    $data['updatetime'] = time();
+    $r = pdo_update(WL."company_profile",$data,array('uid'=>$_SESSION['uid']));
+    if($r){
+        call_back(1,"ok");
+    }else{
+        call_back(2,"no");
+    }
+}
+
 //保存公司介绍
 elseif ($op=="save_introduce"){
 //    var_dump($_POST);exit();
@@ -125,6 +142,29 @@ elseif ($op=="save_company_profile"){
 //    var_dump($_POST);exit();
 }
 
+
+//保存公司图集
+elseif ($op=="save_imgbox"){
+    if($_POST['data']['person_works']){
+        $person_works = $_POST['data']['person_works'];
+        $person_works = explode(",",$person_works);
+        foreach ($person_works as $list){
+            if(strpos($list,"/temp/")){
+                $new_list = str_replace("/temp/","/file/",$list);
+                rename($_SERVER['DOCUMENT_ROOT'].$list,$_SERVER['DOCUMENT_ROOT'].$new_list);
+            }
+        }
+        $person_works = str_replace("/temp/","/file/",$_POST['data']['person_works']);
+        $r = pdo_update(WL."company_profile",array('atlas'=>$person_works,'updatetime'=>time()),array('uid'=>$_SESSION['uid']));
+        if($r){
+            call_back(1,"ok");
+        }else{
+            call_back(2,"no");
+        }
+
+    }
+
+}
 
 
 

@@ -8,7 +8,7 @@
     <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
-    <title>完善企业信息-手机号</title>
+    <title>个人用户-注册</title>
 </head>
 <body>
 {php include wl_template('common/header');}
@@ -204,7 +204,8 @@
 //                        console.log(data.content);
                         window.location.href="{php echo app_url('member/person_register/feelings')}";
                     }else{
-                        console.log(1);
+                        hint("error",data.content);
+                        setTimeout(function(){$(".promptbox").remove()},2000);
                         console.log(data.content);
                     }
                 }

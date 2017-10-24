@@ -12,9 +12,14 @@ $(".resume_manage_header").on("mouseover",function(){
 $(".img_con").click(function () {
     $(".title_content").html("上传头像");
     $("#modalbox").show();
+    $("#choosefile").attr("accept","image/*").val("");
+    $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
+        '<use xlink:href="#icon-shangchuan"></use>'+
+        '</svg>');
+
     $(".erweima").attr("id","code1").children().remove();
     code_url("#code1","/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&");
-    $("#modalbox").css("display","block");
+
 
 });
 
@@ -26,11 +31,13 @@ $("#person_worksaddbtn").click(function () {
     $("#upload_pic").remove();
     $(".one_btn").html('<svg class="icon" aria-hidden="true">\n' +
         '                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shangchuan"></use>\n' +
-        '                </svg>')
+        '                </svg>');
+    $("#modalbox").show();
     $(".title_content").html("个人作品");
+    $("#choosefile").attr("accept","image/*").val("");
     $(".erweima").attr("id","code2").children().remove();
     code_url("#code2","/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&");
-    $("#modalbox").css("display","block");
+
 
 });
 
@@ -47,7 +54,7 @@ $(".general-select input").on("mousedown",function(){
     var _this=$(this);
     if(_this.closest(".general-select").next().height()=="0"){
         $(".options").css("height","0px");
-        _this.closest(".general-select").next().css("height","185px");
+        _this.closest(".general-select").next().css("height","auto");
     }else {
         _this.closest(".general-select").next().css("height","0px");
     }
@@ -234,6 +241,57 @@ $("#edit_person_msg").on("click",function(){
     $(".formtip").remove();
 });
 
+function wantjob(obj){
+    var _this=$(obj);
+    var checkval=$("#want_job").val();
+    if(checkval.split(",").length<3){
+
+        var content=_this.find("span").eq(0).html();
+        var html='<span>'+content+
+            '<svg class="icon" aria-hidden="true">'+
+            '<use  xlink:href="#icon-shan" class="colorbbb"></use>'+
+            '</svg></span>';
+        $("#want_jobbtns").append(html);
+        if(checkval){
+            $("#want_job").val(checkval+","+content);
+        }else{
+            $("#want_job").val(content);
+        }
+        _this.css({"background-color":"#09c","color":"#fff"}).unbind("click");
+    }else{
+        return;
+    }
+};
+
+//求职意向
+$(".hangye_con .select-option").on("click",function(){
+    wantjob(this);
+});
+
+$("#want_jobbtns").on("click",".icon",function(){
+    var content=$(this).parent().html();
+    var labelcontent=content.split("<")[0];
+    var html="";
+    $(".hangye_con .select-option").each(function(){
+        if($(this).find("span").eq(0).html()==labelcontent){
+            $(this).css({"background-color":"#fff","color":"#333"}).bind("click",function(){
+                wantjob(this);
+            });
+        }
+
+        if($(this).css("color")=="rgb(255, 255, 255)"){
+            html+=$(this).find("span").eq(0).html()+",";
+        }
+
+    });
+
+    $("#want_job").val(html.substring(0,html.length-1));
+    $(this).parent().remove();
+
+})
+
+
+
 
 //工作经历
 //添加工作经历
@@ -255,11 +313,12 @@ $("#addjobexp").on("click",function(){
 
 //教育经历
 
-var endstarttime_options="";
+var endstarttime_options="<div style='height: 185px'>";
 for(var i=0;i<15;i++){
     endstarttime_options+="<div class='select-option' style='width:138px;'><span>"+(year_date-i)+"</span></div>"
-};
-$("#identity").val(year_date)
+}
+endstarttime_options+="</div>";
+$("#identity").val(year_date);
 $('#endstarttime_options').append(endstarttime_options);
 
 //添加教育经历

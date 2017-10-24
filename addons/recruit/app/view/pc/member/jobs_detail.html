@@ -50,34 +50,37 @@
                         </span>
                     </div>
                     <div class="relative" id="sharebox">
-                        <div class="share">
-                                <span class="sharebtn">
-                                    <svg class="icon">
-                                        <use xlink:href="#icon-qq"></use>
-                                    </svg>
-                                </span>
-                                <span class="sharebtn">
-                                    <svg class="icon">
-                                        <use xlink:href="#icon-weixin"></use>
-                                    </svg>
-                                </span>
-                                <span class="sharebtn">
-                                    <svg class="icon">
-                                        <use xlink:href="#icon-weibo"></use>
-                                    </svg>
-                                </span>
-                                <span class="sharebtn">
-                                    <svg class="icon">
-                                        <use xlink:href="#icon-pengyouquan"></use>
-                                    </svg>
-                                </span>
-                                <span class="sharebtn">
-                                    <svg class="icon">
-                                        <use xlink:href="#icon-QQkongjian"></use>
-                                    </svg>
-                                </span>
-                            <em></em><i></i>
-                        </div>
+                        <div class="bdsharebuttonbox share"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+                        <!--<div class="share">-->
+                                <!--<span class="sharebtn">-->
+                                    <!--<svg class="icon">-->
+                                        <!--<use xlink:href="#icon-qq"></use>-->
+                                    <!--</svg>-->
+                                <!--</span>-->
+                                <!--<span class="sharebtn">-->
+                                    <!--<svg class="icon">-->
+                                        <!--<use xlink:href="#icon-weixin"></use>-->
+                                    <!--</svg>-->
+                                <!--</span>-->
+                                <!--<span class="sharebtn">-->
+                                    <!--<svg class="icon">-->
+                                        <!--<use xlink:href="#icon-weibo"></use>-->
+                                    <!--</svg>-->
+                                <!--</span>-->
+                                <!--<span class="sharebtn">-->
+                                    <!--<svg class="icon">-->
+                                        <!--<use xlink:href="#icon-pengyouquan"></use>-->
+                                    <!--</svg>-->
+                                <!--</span>-->
+                                <!--<span class="sharebtn">-->
+                                    <!--<svg class="icon">-->
+                                        <!--<use xlink:href="#icon-QQkongjian"></use>-->
+                                    <!--</svg>-->
+                                <!--</span>-->
+                            <!--<em></em><i></i>-->
+                        <!--</div>-->
                     </div>
 
                     <div style="margin-top: 20px">
@@ -256,12 +259,12 @@
             </div>
 
             <div class="company_recruit_msg">
-                <div class="font18 color333" style="margin-top: 20px">
+                <a class="font18 color333" style="margin-top: 20px" href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['id']))}">
                     {php echo $company['companyname']}
                     <svg class="icon" style="font-size: 22px;color: #09c">
                         <use xlink:href="#icon-renzheng"></use>
                     </svg>
-                </div>
+                </a>
                 <div style="margin-top: 14px"><img src="{WL_URL_ARES}images/surper_employer.png"></div>
 
                 <div class="company_recruit">
@@ -292,7 +295,7 @@
                     </span>
 
                     <span>
-                        <a href="#" class="results " style="color: #999">昨天</a>
+                        <a href="#" class="results " style="color: #999">{php echo $last_login_time}</a>
                         <div class="color999">企业最近登录</div>
                     </span>
                 </div>
@@ -305,26 +308,18 @@
             <div class="title-top">
                 <label class="top_con">相似职位</label>
             </div>
+            {loop $similar_jobs $list}
             <div class="items_list">
                 <div class="logo1">
-                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
+                    <img src="" class="logopic">
                 </div>
                 <div class="company_name">
-                    <p class="job_n">Java工程师</p>
-                    <p class="job_s">5-8K</p>
-                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
+                    <p class="job_n">{$list['jobs_name']}</p>
+                    <p class="job_s">{$list['wage_min']}-{$list['wage_max']}K</p>
+                    <p class="companyn nowrap">{$list['city']}{$list['city_area']}{$list['address']}</p>
                 </div>
             </div>
-            <div class="items_list">
-                <div class="logo1">
-                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
-                </div>
-                <div class="company_name">
-                    <p class="job_n">Java工程师</p>
-                    <p class="job_s">5-8K</p>
-                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
-                </div>
-            </div>
+            {/loop}
         </div>
         <div class="part_one">
             <div class="title-top">
@@ -394,7 +389,7 @@
                     <textarea   class="cwftextarea" id="companymsg_introduce"  placeholder="请输入详细描述"></textarea>
                 </div>
                 <input type="hidden" name="report_content" id="companymsg_introduceinput">
-
+                <input type="hidden" name="jobs_id" value="{php echo $jobs['id']}">
 
             </div>
 
@@ -424,7 +419,7 @@
 $(function () {
 
     //举报提交
-    $.fromdata("#modalbox","test.php","#save_company_nomsg",function(data){
+    $.fromdata("#modalbox","{php echo app_url('member/index/tip_off')}","#save_company_nomsg",function(data){
         //do something
     })
     $(".collections").eq(2).on("click",function(){
