@@ -6,7 +6,12 @@ wl_load()->model('verify');
 if($op=="index"){
     unset($_SESSION['uid']);
     unset($_SESSION['utype']);
+    include_once( WL_CORE.'/common/libweibo-master/config.php' );
+    include_once( WL_CORE.'/common/libweibo-master/saetv2.ex.class.php' );
 
+    $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+
+    $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
     include wl_template("member/login");exit();
 }
 

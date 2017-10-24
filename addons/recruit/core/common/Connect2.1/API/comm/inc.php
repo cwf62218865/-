@@ -1,0 +1,2 @@
+<?php die('forbidden'); ?>
+{"appid":"101430181","appkey":"a50a572e3bacf2166c1d9d5c6bc18689","callback":"http://localhost/addons/recruit/core/common/Connect2.1/example/oauth/callback.php","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test","scope":null}
