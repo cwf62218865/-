@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
-    <link href="{WL_URL_ARES}css/swiper-3.4.2.min.css" rel="stylesheet">
-    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
-    <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
-    <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
-    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
-    <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
-    <title>简历预览4</title>
+    <link href="../css/header.css" rel="stylesheet">
+    <link href="../css/swiper-3.4.2.min.css" rel="stylesheet">
+    <link href="../css/control.css" rel="stylesheet">
+    <link href="../css/reguser1.css" rel="stylesheet">
+    <link href="../css/resume.css" rel="stylesheet">
+    <link href="../css/personal.css" rel="stylesheet">
+    <link href="../css/personal1.css" rel="stylesheet">
+    <link href="../css/resume_template4.css" rel="stylesheet">
+    <title>简历预览</title>
     <style>
         .swiper-container {
             width: 910px;
@@ -24,360 +25,273 @@
     </style>
 </head>
 <body bgcolor="#f4f4f4">
-<div class="header" style="background: #ffffff">
-    <div class="width1200 align_center" style="padding-top: 14px;justify-content: space-between">
-        <div class="resume_btns" style="margin-left: 156px;" id="download_resume">
-            <svg class="icon icon_resume" aria-hidden="true">
-                <use xlink:href="#icon-xiazaijianli"></use>
-            </svg>
-            下载简历
-        </div>
-        <div class="resume_btns" id="print_resume" >
-            <svg class="icon icon_resume" aria-hidden="true">
-                <use xlink:href="#icon-dayinjianli"></use>
-            </svg>
-            打印简历
-        </div>
-        <div class="resume_btns" id="change_modal">
-            <svg class="icon icon_resume" aria-hidden="true">
-                <use xlink:href="#icon-genghuanmoban"></use>
-            </svg>
-            更换模板
-        </div>
-        <div class="resume_btns" id="exit_view">
-            <svg class="icon icon_resume" aria-hidden="true">
-                <use xlink:href="#icon-tuichuyulan"></use>
-            </svg>
-            退出预览
-        </div>
-        <div class="genghuanbeijing">
-            <span class="wenzi">更换背景</span>
-            <span class="color color1"></span>
-            <span class="color color2"></span>
-            <span class="color color3"></span>
-            <span class="color color4"></span>
-        </div>
-    </div>
-</div>
-<!--startprint1-->
+{php include wl_template('common/resume_top');}
 <div class="width1200 p1content preview">
     <div class="p1_left">
 
         <div class="con_list">
-            <!--头像-->
-            <div class="resume_header">
-                <div class="resume_manage_header">
-                    <span style="display: inline-block;position: absolute;left: 5px;top: 5px;width: 120px;height: 120px;border-radius: 60px;overflow: hidden">
-                        <img  src="{php echo $resume['headimgurl']}">
+
+<!--基本信息-->
+            <div class="basic_msg_con">
+                    <div class="touxiang_con">
+                        <img class="picture_tx" src="../images/resume_tx1.png"/>
+                    </div>
+                <div class="basic_miaoshu">
+
+                    <div class="basic_jieshao">
+                        <div class="namew">张三</div>
+                        <div class="bshang1">
+                            <label class="basic_style1">男</label>
+                            <label class="basic_style">22岁</label>
+                            <label class="basic_style">党员</label>
+                            <label class="basic_style">本科</label>
+                            <label class="basic_style" style="padding-left: 0">1年工作经验</label>
+                            <label class="basic_style">正在找工作</label>
+                        </div>
+                        <div class="basic_msg_h">
+                            <div class="title_top_con">
+                                <div class="title_top">基本信息</div>
+                            </div>
+                            <div>姓名：<span class="basic_name">张三</span></div>
+                            <div>性别：<span class="basic_name">男</span></div>
+                            <div>民族：<span class="basic_name">汉族</span></div>
+                            <div>政治面貌：<span class="basic_name">团员</span></div>
+                            <div>籍贯：<span class="basic_name">重庆江北区</span></div>
+                            <div>出生年月：<span class="basic_name">1993年4月</span></div>
+                            <div>毕业学校：<span class="basic_name">中央美术学院</span></div>
+                            <div>学历：<span class="basic_name">本科</span></div>
+                            <div>专业：<span class="basic_name">环境艺术设计</span></div>
+                        </div>
+                        <div class="basic_msg_h">
+                            <div class="title_top_con">
+                                <div class="title_top">联系方式</div>
+                            </div>
+                            <div class="basic_item dianhua">
+                                <svg class="icon bsc_ico1" aria-hidden="true">
+                                    <use xlink:href="#icon-lianxidianhuajianli"></use>
+                                </svg>
+                                <p class="detailw">18787878787</p>
+                            </div>
+                            <div class="basic_item email">
+                                <svg class="icon bsc_ico1" aria-hidden="true">
+                                    <use xlink:href="#icon-lianxiyouxiangjianli"></use>
+                                </svg>
+                                <p class="detailw">18787878787</p>
+                            </div>
+                            <div class="basic_item email">
+                                <svg class="icon bsc_ico1" aria-hidden="true">
+                                    <use xlink:href="#icon-lianxidizhijianli"></use>
+                                </svg>
+                                <p class="detailw">上海市虹口区四川纳川区北路
+                                    1027号</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+<!--基本信息end-->
+            <div class="right_con">
+
+            <!--自我介绍-->
+
+                <div class="content540">
+                    <div class="items_title">
+                    <span class="itme_name">
+                        <svg class="icon bsc_ico" aria-hidden="true">
+                            <use xlink:href="#icon-ziwojieshao"></use>
+                        </svg>
+                        自我介绍
                     </span>
-                </div>
-            </div>
-
-
-            <!--基本信息-->
-            <div class="basic_msg width670" id="person_msg">
-                <div class="basic_msg_content">
-                    <span class="user_name">{php echo $resume['fullname']}</span>
-                    <div class="font666" style="margin-top: 20px">
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-gerenxinxi"></use>
-                        </svg>
-                        <span class="basic_msg_contents">{if $resume['sex']==1}男{else}女{/if}</span>
-                        <span class="basic_msg_contents">{php echo date('Y-m-d')-$resume['birthday']}岁</span>
-                        <span class="basic_msg_contents">{php echo $resume['political_status']}</span>
-                        <span class="basic_msg_contents">{php echo $resume['education']}</span>
-                        <span class="basic_msg_contents">{php echo $resume['work_status']}</span>
+                        <div class="line_title"></div>
                     </div>
+                    <div class="bbshang1 lineheight">
 
-                    <div class="font666" style="margin-top: 16px">
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-shouji"></use>
-                        </svg>
-                        <span class="basic_msg_contents">{php echo $resume['telphone']}</span>
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-youxiang"></use>
-                        </svg>
-                        <span class="basic_msg_contents">{php echo $resume['email']}</span>
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-didian"></use>
-                        </svg>
-                        <span class="basic_msg_contents">{php echo $resume['city']}{php echo $resume['city_area']}{php echo $resume['address']}</span>
-                    </div>
-                    <div class="font666" style="margin-top: 16px">
-                        <span class="basic_msg_contents1">{php echo $resume['arr_education']['school_name']}</span>
-                        <span class="basic_msg_contents1">{php echo $resume['arr_education']['edu_major']}</span>
-                        <span class="basic_msg_contents1">{if $resume['work_time']}{php echo $resume['work_time']}年工作经验{/if}</span>
-                        <span class="basic_msg_contents1" style="border-right: none">{php echo $resume['origin_place']}（籍贯）</span>
-                    </div>
-                    <div class="personmsg">
-                        {php echo $resume['introduce']}
+                        我是一个对理想有着执着追求的人，坚信是金子总会发光。大学毕业后的工作，让我在文案策划方面有了很大的提高，文笔流畅。
+
                     </div>
                 </div>
-            </div>
 
 
-<!--求职意向-->
+                <!--求职意向-->
 
-            <div class="basic_msg width670"  style="margin-top: 50px">
-                <div class="basic_msg_content">
-                    <div class="resume_title">
-                        <span>求职意向</span>
+                <div class="content540 matop30">
+                    <div class="items_title">
+                    <span class="itme_name">
+                        <svg class="icon bsc_ico" aria-hidden="true">
+                            <use xlink:href="#icon-qiuzhiyixiang"></use>
+                        </svg>
+                        求职意向
+                    </span>
+                        <div class="line_title"></div>
+                    </div>
+                    <div class="lineheight">
+                        <label class="basic_style2">期望职位：
+                            <span class="jlcontent">Java工程师</span>
+                            <span class="jlcontent">Java工程师</span>
+                            <span class="jlcontent">Java工程师</span>
+                        </label>
+                    </div>
+                    <div class="lineheight">
+                        <label class="basic_style2">期望行业：
+                            <span class="jlcontent">互联网</span>
+                            <span class="jlcontent">移动软件</span>
+                            <span class="jlcontent">IT运营</span>
+                        </label>
+                    </div>
+                    <div class="lineheight">
+                        <label class="basic_style2">期望薪资：
+                            <span class="jlcontent">5K-6K</span>
+                        </label>
+                        <label class="basic_style2 margin_l">期望工作性质：
+                            <span class="jlcontent">全职</span>
+                        </label>
+                        <label class="basic_style2 margin_l">期望工作地点：
+                            <span class="jlcontent">北京</span>
+                        </label>
                     </div>
 
-                    <div class="font999" id="wanted_job" style=";margin-top: 58px;line-height: 2">
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-zhiwei"></use>
-                        </svg>
-                        <span class="basic_msg_contents1" style="padding-left: 0">Java工程师</span>
-                        <span class="basic_msg_contents1">技术经理</span>
-                        <span class="basic_msg_contents1" style="border-right: none">Java程序员</span>
-
-                        <svg class="icon" aria-hidden="true" style="margin-left: 20px">
-                            <use xlink:href="#icon-hangye"></use>
-                        </svg>
-                        <span class="basic_msg_contents1" style="padding-left: 0">Java工程师</span>
-                        <span class="basic_msg_contents1">技术经理</span>
-                        <span class="basic_msg_contents1" style="border-right: none">Java程序员</span>
-
-                        <br/>
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-xinzi"></use>
-                        </svg>
-                        <span class="basic_msg_contents2">5K-6K</span>
-
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-quanzhi"></use>
-                        </svg>
-                        <span class="basic_msg_contents2">全职</span>
-
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-didian"></use>
-                        </svg>
-                        <span class="basic_msg_contents2">北京</span>
-                    </div>
                 </div>
-            </div>
 
-<!--工作经历-->
+                <!--工作经历-->
 
-            <div class="basic_msg width670" style="margin-top: 50px">
-                <div class="basic_msg_content">
-                    <div class="resume_title">
-                        <span>工作经历</span>
+                <div class="content540 matop30">
+                    <div class="items_title itemmb">
+                        <span class="itme_name">
+                            <svg class="icon bsc_ico" aria-hidden="true">
+                            <use xlink:href="#icon-gongzuojingli"></use>
+                        </svg>
+                            工作经历
+                        </span>
+                        <div class="line_title"></div>
                     </div>
-
-                    <div class="resume_exp">
-                        <div class="left_line">
+                    <div class="work_exprience">
+                        <div class="work_company">重庆大唐科技股份有限公司</div>
+                        <div class="work_itmes">
+                            <span class="zhiwu">助理工程师</span>
+                            <span class="shijian">2015.9-2017.11</span>
+                            <span class="lizhi">离职原因：<lable>实习结束</lable></span>
                         </div>
-                        <div class="resume_exp_content">
-                            {loop unserialize($resume['work_experience']) $id $list}
-                            <div class="relative">
-                                <span class="exp_title">{php echo $list['company_name']}</span>
-                            </div>
-
-                            <div class="exp_job">
-                                <span class="exp_jobleft">{php echo $list['job_name']}</span>
-                                <span class="exp_jobright">{php echo $list['job_starttime']} — {php echo $list['job_endtime']}</span>
-                            </div>
-
-                            <div class="exp_content">
-                                {php echo $list['job_content']}
-                            </div>
-
-                            <div class="exp_job">
-                                <span class="exp_jobleft">离职原因：{php echo  $list['leave_reason']}</span>
-                            </div>
-                            {/loop}
+                        <div class="work_jieshao">公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃</div>
+                    </div>
+                    <div class="work_exprience">
+                        <div class="work_company">重庆大唐科技股份有限公司</div>
+                        <div class="work_itmes">
+                            <span class="zhiwu">助理工程师</span>
+                            <span class="shijian">2015.9-2017.11</span>
+                            <span class="lizhi">离职原因：<lable>实习结束</lable></span>
                         </div>
+                        <div class="work_jieshao">公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃</div>
+                    </div>
+                </div>
+
+
+
+                <!--教育经历-->
+
+                <div class="content540 matop30">
+                    <div class="items_title itemmb">
+                        <span class="itme_name">
+                            <svg class="icon bsc_ico" aria-hidden="true">
+                            <use xlink:href="#icon-jiaoyujingli"></use>
+                        </svg>
+                            教育经历
+                        </span>
+                        <div class="line_title"></div>
+                    </div>
+                    <div class="edu_exprience">
+                        <div class="work_company">重庆大学</div>
+                        <div class="work_itmes">
+                            <span class="zhuanye">计算机</span>
+                            <span class="xueli">本科</span>
+                            <span class="biyeshijian">2017届</span>
+                        </div>
+                        <div class="edu_jieshao">公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃</div>
+                    </div>
+
+                </div>
+
+
+                <!--荣誉证书-->
+                <div class="content540 matop30">
+                    <div class="items_title">
+                        <span class="itme_name">
+                            <svg class="icon bsc_ico" aria-hidden="true">
+                            <use xlink:href="#icon-rongyu"></use>
+                        </svg>
+                            荣誉证书
+                        </span>
+                        <div class="line_title"></div>
+                    </div>
+
+                    <p class="basic_linheit">2013年3月获得全国中小学生数学竞赛一等奖</p>
+                    <p class="basic_linheit">2013年3月获得全国中小学生数学竞赛一等奖</p>
+                    <p class="basic_linheit">2013年3月获得全国中小学生数学竞赛一等奖</p>
+                </div>
+
+            </div>
+
+            <!--个人作品-->
+            <div class="width670 matop60">
+                <div class="items_title itemmb">
+                        <span class="itme_name">
+                            <svg class="icon bsc_ico" aria-hidden="true">
+                            <use xlink:href="#icon-gerenzuopin"></use>
+                        </svg>
+                            个人作品
+                        </span>
+                    <div class="line_title1"></div>
+                </div>
+                <div class="gerenhj">
+                    <div class="hj_item">
+                        <img src="../images/person_img.png" class="hj_fm">
+                        <p class="hj_biaoti">商务合作官网首页商务合作官网首页</p>
+                    </div>
+                    <div class="hj_item">
+                        <img src="../images/person_img.png" class="hj_fm">
+                        <p class="hj_biaoti">画册设计展示</p>
                     </div>
                 </div>
             </div>
 
-<!--教育经历-->
-            <div class="basic_msg width670" style="margin-top: 50px">
-                <div class="basic_msg_content">
-                    <div class="resume_title">
-                        <span>教育经历</span>
-                    </div>
-                    <div class="resume_exp">
-                        <div class="left_line">
-                        </div>
-                        <div class="resume_exp_content">
-                            {loop $edu_experience $id $list}
-                            <div class="relative">
-                                <span class="exp_title">{php echo $list['school_name']}</span>
-                            </div>
-                            <div class="exp_job">
-                                <span class="exp_jobleft">{php echo $list['edu_major']}</span>
-                                <span class="exp_jobleft" style="margin-left: 8px">{php echo $list['edu_district']}</span>
-                                <span class="exp_jobright">{if $list['edu_finish_time']}{php echo $list['edu_finish_time']}届{/if}</span>
-                            </div>
-                            <div class="exp_content">
-                                {php echo $list['edu_content']}
-                            </div>
-                            {/loop}
-                        </div>
+
+            <!--30秒个人视频-->
+
+            <div class="width670 matop60">
+                <div class="items_title itemmb">
+                        <span class="itme_name">
+                            <svg class="icon bsc_ico" aria-hidden="true">
+                            <use xlink:href="#icon-shipin"></use>
+                        </svg>
+                            30秒个人视频
+                        </span>
+                    <div class="line_title1 line_t"></div>
+                </div>
+                <div class="resume_exp">
+                    <div class="person_works relative">
+                        <video src="http://www.zhangxinxu.com/study/media/cat.mp4" width="500" height="300" controls="" autobuffer="" style="margin-left: 85px"></video>
                     </div>
                 </div>
             </div>
 
-<!--个人作品-->
-            <div class="basic_msg width670" style="margin-top: 50px">
-                <div class="basic_msg_content">
-                    <div class="resume_title">
-                        <span>个人作品</span>
-                    </div>
 
-                    <div class="resume_exp">
 
-                        <div class="person_works">
-                            {loop $personal_works $id $list}
-                            <div class="person_work">
-                                <div class="img_box"><img src="{php echo $list['thumb']}"></div>
-                                <div class="person_workmsg relative">
-                                    <span>{php echo $list['person_workmsg']}</span>
-                                </div>
-                            </div>
-                            {/loop}
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--endprint1-->
-<!--30秒个人视频-->
-            <div class="basic_msg width670" style="margin-top: 50px">
-                <div class="basic_msg_content">
-                    <div class="resume_title">
-                        <span style="width: 150px;margin-left: 260px">30秒个人视频</span>
-                    </div>
-                    <div class="resume_exp">
-                        <div class="person_works relative">
-                            <video src="http://www.zhangxinxu.com/study/media/cat.mp4" width="500" height="300" controls autobuffer style="margin-left: 85px"></video>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--startprint2-->
-
-            <!--荣誉证书-->
-            <div class="basic_msg width670" style="margin-top: 50px;margin-bottom: 180px">
-                <div class="basic_msg_content">
-                    <div class="resume_title">
-                        <span >荣誉证书</span>
-                    </div>
-                    <div class="resume_exp">
-                        <div class="person_works">
-                            <div class="relative">
-                                <span class="certificate">2013年3月获得全国中小学生数学竞赛一等奖</span>
-                            </div>
-
-                            <div class="relative">
-                                <span class="certificate">2013年3月获得全国中小学生数学竞赛一等奖</span>
-                            </div>
-
-                            <div class="relative">
-                                <span class="certificate">2013年3月获得全国中小学生数学竞赛一等奖</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--endprint2-->
         </div>
     </div>
 
 </div>
-<!--更换模板弹框-->
-<div class="modalbox" id="modal_box" style="display: block;opacity: 0">
-    <div class="modal" style="width: 980px;margin-left: -490px;top:10%;">
-        <p class="title_content">选择简历模板</p>
-        <span class="modalclose">
-                <img src="{WL_URL_ARES}images/close.png"/>
-            </span>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" data-id="1">
-                    <div class="modal_item cur">
-                    <div class="modal_title">扁平化风格</div>
-                    <div class="modal_style">
-                    <img src="{WL_URL_ARES}images/modal.png" style="width:200px; "/>
-                    </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-id="2">
-                    <div class="modal_item cur">
-                        <div class="modal_title">简约风格</div>
-                        <div class="modal_style">
-                            <img src="{WL_URL_ARES}images/modal.png" style="width:200px; "/>
-                        </div>
-                        <label class="using">使用中</label>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-id="3">
-                    <div class="modal_item cur">
-                        <div class="modal_title">游戏风格</div>
-                        <div class="modal_style">
-                            <img src="{WL_URL_ARES}images/modal.png" style="width:200px; "/>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-id="4">
-                    <div class="modal_item cur">
-                        <div class="modal_title">水墨风格</div>
-                        <div class="modal_style">
-                            <img src="{WL_URL_ARES}images/modal.png" style="width:200px; "/>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-id="5">
-                    <div class="modal_item cur">
-                        <div class="modal_title">扁平化风格</div>
-                        <div class="modal_style">
-                            <img src="{WL_URL_ARES}images/modal.png" style="width:200px; "/>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide" data-id="6">
-                    <div class="modal_item cur">
-                        <div class="modal_title">古典风格</div>
-                        <div class="modal_style">
-                            <img src="{WL_URL_ARES}images/modal.png" style="width:200px; "/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 如果需要导航按钮 -->
-            <div class="swiper-button-prev" id="previous">
-                <svg class="icon jiantou" aria-hidden="true">
-                <use xlink:href="#icon-zuojiantouxi"></use>
-                </svg>
-            </div>
-
-            <div class="swiper-button-next" id="next">
-                <svg class="icon jiantou" aria-hidden="true">
-                <use xlink:href="#icon-youjiantouxi"></use>
-                </svg>
-            </div>
-        </div>
-
-
-        <div class="btns" style="margin-bottom: 50px;margin-top: 60px;">
-            <button class="tijiao" style="margin-left: 410px">确定使用</button>
-            <span class="quxiao color_main">取消</span>
-        </div>
-    </div>
-</div>
-<!--弹框end-->
+{php include wl_template('common/modal_dilog');}
 
 
 </body>
-<script src="{WL_URL_ARES}js/swiper.js" rel="script"></script>
-<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
-<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="../js/swiper.js" rel="script"></script>
+<script src="../js/jquery.js" rel="script"></script>
+<script src="../js/iconfont.js" rel="script"></script>
 
-<script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
+<script src="../js/formdata.js" rel="script"></script>
+<script src="../js/change_modal.js" rel="script"></script>
 <script>
     $(document).ready(function () {
 
@@ -391,62 +305,13 @@
         })
         $("#modal_box").hide().css("opacity",1);
 
-        $("#print_resume").click(function () {
-            bdhtml=window.document.body.innerHTML;//获取当前页的html代码
-            sprnstr="<!--startprint1-->";//设置打印开始区域
-            eprnstr="<!--endprint1-->";//设置打印结束区域
-            prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
-            prnhtmlprnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
-            window.document.body.innerHTML=prnhtml;
-            window.print();
-            window.document.body.innerHTML=bdhtml;
+        $("#change_modal").click(function () {
+            $("#modal_box").show();
         })
-
-    })
-$(function () {
-    $(".color").click(function () {
-        var html="<i class='select'></i>";
-        var color=$(this).css("background-color");
-        $("body").css("background-color",color);
-        $(".color").html("");
-        $(this).append(html);
+        $(".modalclose,.quxiao").on("click",function(){
+            $("#modal_box").hide();
+        });
     })
 
-    $(".modal_item").click(function () {
-        $(".biankuang").remove();
-        $(this).append("<div class='biankuang'></div>");
-    })
-
-})
-
-
-
-
-    $("#change_modal").click(function () {
-        $("#modal_box").show();
-    })
-    $(".modalclose,.quxiao").on("click",function(){
-        $("#modal_box").hide();
-    });
-
-    $(".tijiao").click(function () {
-        var template_id = $(".biankuang").parent().parent().attr('data-id');
-        $.ajax({
-            type:"post",
-            data:{
-                template_id:template_id
-            },
-            success:function (data) {
-                var data =JSON.parse(data);
-                if(data.status==1){
-                    location = location;
-                }
-            }
-        })
-    })
-
-    $("#exit_view").click(function () {
-        window.history.go(-1);
-    })
 </script>
 </html>
