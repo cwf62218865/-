@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../css/header.css" rel="stylesheet">
+    <link href="../css/swiper-3.4.2.min.css" rel="stylesheet">
+    <link href="../css/control.css" rel="stylesheet">
+    <link href="../css/reguser1.css" rel="stylesheet">
+    <link href="../css/resume.css" rel="stylesheet">
+    <link href="../css/personal.css" rel="stylesheet">
+    <link href="../css/personal1.css" rel="stylesheet">
+    <link href="../css/resume_template3.css" rel="stylesheet">
+
+
+
+    <title>简历预览</title>
+    <style>
+        .swiper-container {
+            width: 910px;
+            height: 400px;margin-top: 50px;
+        }
+
+        .swiper-wrapper{
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body bgcolor="#f4f4f4">
+<div class="header" style="background: #ffffff">
+    <div class="width1200 align_center" style="padding-top: 14px;justify-content: space-between">
+        <div class="resume_btns" style="margin-left: 156px;" id="download_resume">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-xiazaijianli"></use>
+            </svg>
+            下载简历
+        </div>
+        <div class="resume_btns" id="print_resume">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-dayinjianli"></use>
+            </svg>
+            打印简历
+        </div>
+        <div class="resume_btns" id="change_modal">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-genghuanmoban"></use>
+            </svg>
+            更换模板
+        </div>
+        <div class="resume_btns" id="exit_view">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-tuichuyulan"></use>
+            </svg>
+            退出预览
+        </div>
+        <div class="genghuanbeijing">
+            <span class="wenzi">更换背景</span>
+            <span class="color color1"></span>
+            <span class="color color2"></span>
+            <span class="color color3"></span>
+            <span class="color color4"></span>
+        </div>
+    </div>
+</div>
+<div class="width1200 p1content preview">
+    <div class="p1_left">
+
+        <div class="con_list">
+
+<!--基本信息-->
+            <div class="basic_msg_con6">
+                <div class="top_title6">个人简历</div>
+
+                <div class="basic_miaoshu6" style="float: left">
+                    <div class="jibenhang">
+                        <label class="namew nowrap" style="margin-right: 40px;">张三</label>
+                        <label class="basic_style1">男</label>
+                        <label class="basic_style">22岁</label>
+                        <label class="basic_style">党员</label>
+                        <label class="basic_style">1年工作经验</label>
+                        <label class="basic_style">正在找工作</label>
+                        <label class="basic_style" style="padding-right: 0"><span class="jiguan_con">重庆万州</span>（籍贯）</label>
+                    </div>
+                    <div class="mobilemsg">
+                    <span class="tel_number">
+                       <svg class="icon bsc_ico" aria-hidden="true">
+                            <use xlink:href="#icon-shouji"></use>
+                        </svg>
+                        <label>18789898989</label>
+                    </span>
+                        <span class="email_number">
+                       <svg class="icon bsc_ico" aria-hidden="true">
+                            <use xlink:href="#icon-youxiang"></use>
+                        </svg>
+                        <label>2390909023@qq.com</label>
+                    </span>
+                        <span class="address_con nowrap">
+                       <svg class="icon bsc_ico" aria-hidden="true">
+                            <use xlink:href="#icon-didian"></use>
+                        </svg>
+                        <label>重庆市江北区观音桥</label>
+                    </span>
+                    </div>
+                    <div class="bshang1 lineheight">
+
+                        我是一个对理想有着执着追求的人，坚信是金子总会发光。大学毕业后的工作，让我在文案策划方面有了很大的提高，文笔流畅。
+
+                    </div>
+                </div>
+                <div class="tx6">
+                    <img class="txpic6" src="../images/resume_tx1.png"/>
+                </div>
+            </div>
+<!--基本信息end-->
+
+<!--求职意向-->
+            <div class="content770">
+                <div class="items_title item_title6">
+                        求职意向
+                </div>
+                <div class="bshang1 lineheight">
+                    <label class="basic_style2">期望职位：
+                        <span class="jlcontent">Java工程师</span>
+                        <span class="jlcontent">Java工程师</span>
+                        <span class="jlcontent">Java工程师</span>
+                    </label>
+                </div>
+                <div class="bshang1 lineheight">
+                    <label class="basic_style2">期望行业：
+                        <span class="jlcontent">互联网</span>
+                        <span class="jlcontent">移动软件</span>
+                        <span class="jlcontent">IT运营</span>
+                    </label>
+                </div>
+                <div class="bshang1 lineheight">
+                    <label class="basic_style2">期望薪资：
+                        <span class="jlcontent">5K-6K</span>
+                    </label>
+                </div>
+                <div class="bshang1 lineheight">
+                    <label class="basic_style2">期望工作性质：
+                        <span class="jlcontent">全职</span>
+                    </label>
+                </div>
+                <div class="bshang1 lineheight">
+                    <label class="basic_style2">期望工作地点：
+                        <span class="jlcontent">北京</span>
+                    </label>
+                </div>
+            </div>
+
+
+<!--工作经历-->
+            <div class="content770">
+                <div class="items_title item_title6">
+                    工作经历
+                </div>
+                <div class="work_exprience">
+                    <div class="work_company">重庆大唐科技股份有限公司</div>
+                    <div class="work_itmes">
+                        <span class="zhiwu">助理工程师</span>
+                        <span class="shijian">2015.9-2017.11</span>
+                    </div>
+                    <div class="work_jieshao">公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃</div>
+                    <div class="lizhi_reason">
+                        离职原因：
+                        <span class="lizhi">实习结束</span>
+                    </div>
+                </div>
+                <div class="work_exprience">
+                    <div class="work_company">重庆大唐科技股份有限公司</div>
+                    <div class="work_itmes">
+                        <span class="zhiwu">助理工程师</span>
+                        <span class="shijian">2015.9-2017.11</span>
+                    </div>
+                    <div class="work_jieshao">公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃</div>
+                    <div class="lizhi_reason">
+                        离职原因：
+                        <span class="lizhi">实习结束</span>
+                    </div>
+                </div>
+            </div>
+
+
+<!--教育经历-->
+            <div class="content770">
+                <div class="items_title item_title6">
+                    教育经历
+                </div>
+                <div class="edu_exprience">
+                    <div class="work_company">重庆大学</div>
+                    <div class="work_itmes">
+                        <span class="zhuanye">计算机</span>
+                        <span class="xueli">本科</span>
+                        <span class="biyeshijian">2017届</span>
+                    </div>
+                    <div class="edu_jieshao">公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃</div>
+                </div>
+                <div class="edu_exprience">
+                    <div class="work_company">重庆大学</div>
+                    <div class="work_itmes">
+                        <span class="zhuanye">计算机</span>
+                        <span class="xueli">本科</span>
+                        <span class="biyeshijian">2017届</span>
+                    </div>
+                    <div class="edu_jieshao">公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃</div>
+                </div>
+            </div>
+
+
+            <!--荣誉证书-->
+            <div class="content770">
+                <div class="items_title item_title6">
+                    荣誉证书
+                </div>
+                <div class="bshang1">
+                    <p class="basic_style3 lineheight">2013年3月获得全国中小学生数学竞赛一等奖</p>
+                    <p class="basic_style3 lineheight">2013年3月获得全国中小学生数学竞赛一等奖</p>
+                    <p class="basic_style3 lineheight">2013年3月获得全国中小学生数学竞赛一等奖</p>
+                </div>
+            </div>
+
+
+<!--个人作品-->
+
+            <div class="content770">
+                <div class="items_title item_title6">
+                    个人作品
+                </div>
+                <div class="gerenhj">
+                    <div class="hj_item">
+                        <img src="../images/person_img.png" class="hj_fm"/>
+                        <p class="hj_biaoti">商务合作官网首页商务合作官网首页</p>
+                    </div>
+                    <div class="hj_item">
+                        <img src="../images/person_img.png" class="hj_fm"/>
+                        <p class="hj_biaoti">画册设计展示</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+<!--30秒个人视频-->
+
+            <div class="content770">
+                <div class="items_title item_title6">
+                    30秒个人视频
+                </div>
+                <div class="resume_exp">
+                    <div class="person_works relative">
+                        <video src="http://www.zhangxinxu.com/study/media/cat.mp4" width="500" height="300" controls autobuffer style="margin-left: 85px"></video>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>
+<!--更换模板弹框-->
+<div class="modalbox" id="modal_box" style="display: block;opacity: 0">
+    <div class="modal" style="width: 980px;margin-left: -490px;top:10%;">
+        <p class="title_content">选择简历模板</p>
+        <span class="modalclose">
+                <img src="../images/close.png"/>
+            </span>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="modal_item cur">
+                    <div class="modal_title">官方版</div>
+                    <div class="modal_style">
+                    <img src="../images/modal1.png" style="width:200px; "/>
+                    </div>
+                        <label class="using">使用中</label>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="modal_item cur">
+                        <div class="modal_title">吉祥橙</div>
+                        <div class="modal_style">
+                            <img src="../images/modal2.png" style="width:200px; "/>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="modal_item cur">
+                        <div class="modal_title">极简风</div>
+                        <div class="modal_style">
+                            <img src="../images/modal3.png" style="width:200px; "/>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="modal_item cur">
+                        <div class="modal_title">清新绿</div>
+                        <div class="modal_style">
+                            <img src="../images/modal4.png" style="width:200px; "/>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="modal_item cur">
+                        <div class="modal_title">银色灰</div>
+                        <div class="modal_style">
+                            <img src="../images/modal5.png" style="width:200px; "/>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="modal_item cur">
+                        <div class="modal_title">尊贵紫</div>
+                        <div class="modal_style">
+                            <img src="../images/modal6.png" style="width:200px; "/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev" id="previous">
+                <svg class="icon jiantou" aria-hidden="true">
+                <use xlink:href="#icon-zuojiantouxi"></use>
+                </svg>
+            </div>
+
+            <div class="swiper-button-next" id="next">
+                <svg class="icon jiantou" aria-hidden="true">
+                <use xlink:href="#icon-youjiantouxi"></use>
+                </svg>
+            </div>
+        </div>
+
+
+        <div class="btns" style="margin-bottom: 50px;margin-top: 60px;">
+            <button class="tijiao" style="margin-left: 410px">确定使用</button>
+            <span class="quxiao color_main">取消</span>
+        </div>
+    </div>
+</div>
+<!--弹框end-->
+
+
+</body>
+<script src="../js/swiper.js" rel="script"></script>
+<script src="../js/jquery.js" rel="script"></script>
+<script src="../js/iconfont.js" rel="script"></script>
+
+<script src="../js/formdata.js" rel="script"></script>
+<script>
+    $(document).ready(function () {
+
+        var mySwiper = new Swiper ('.swiper-container', {
+            direction: 'horizontal',
+            slidesPerView: 4,
+            roundLengths : true,
+            // 如果需要前进后退按钮
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+        })
+        $("#modal_box").hide().css("opacity",1);
+    })
+$(function () {
+    $(".color").click(function () {
+        var html="<i class='select'></i>";
+        var color=$(this).css("background-color");
+        $("body").css("background-color",color);
+        $(".color").html("");
+        $(this).append(html);
+    })
+
+    $(".modal_item").click(function () {
+        $(".biankuang").remove();
+        $(this).append("<div class='biankuang'></div>");
+    })
+
+})
+
+
+
+
+    $("#change_modal").click(function () {
+        $("#modal_box").show();
+    })
+    $(".modalclose,.quxiao").on("click",function(){
+        $("#modal_box").hide();
+    });
+</script>
+</html>
