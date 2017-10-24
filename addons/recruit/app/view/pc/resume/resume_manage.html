@@ -416,34 +416,38 @@
 
                         <div class=" relative general-select " style="float: none;width: 480px">
                             <label class="general-input relative general-select" style="float: none;width: 460px">
-                                <div class="want_jobbtns">
-                                    <span>Java<svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan" class="colorbbb"></use>
-                                    </svg></span>
-                                    <span>Java
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan" class="colorbbb"></use>
-                                    </svg>
-                                    </span>
-                                    <span>Java
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan" class="colorbbb"></use>
-                                    </svg>
-                                    </span>
-                                </div>
-                                <input type="text" readonly="" data-error="请选择期望职位"  name="want_job" value="" style="width: 440px;opacity: 0;top: 0">
+                                <div class="want_jobbtns" id="hope_jobs"></div>
+                                <input type="text" readonly="" id="hope_job" data-error="请选择期望职位"  name="want_job" value="" style="width: 440px;opacity: 0;top: 0">
                                 <svg class="icon inputicon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
                                 </svg>
                             </label>
-                            <div class="options scend" style="width: 242px;top:48px">
-                                <div class="cwfcityoptions">
+                            <div class="options hope_jobbox" style="height: 0px;top: 48px">
+                                <div class="hope_jobbox1"></div>
+                                <div class="hope_jobboxright">
+                                    <div style="padding: 19px;border: 1px solid #eee">
+                                        <span class="font999 resume_msg_name" style="margin-left: 10px;width: auto;height: 40px;line-height: 40px;float: none">添加期望职位</span>
+                                        <span class="add_hope_job public_bigbtn">添加</span>
+                                        <label class="general-input" style="height: 38px;line-height: 38px;width:250px ;float: right">
+                                            <input type="text" id="hope_jobinput" maxlength="6" placeholder="输入6字以内职位名" style="height: 38px;line-height: 38px">
+                                        </label>
+                                    </div>
+
+                                    <div class="hope_jobbox2">
+
+                                    </div>
+
+                                    <!--保存-->
+                                    <div>
+                                        <div style="display: inline-block;margin: 20px 0;float: right;margin-right: 40px">
+                                            <span class="savebtn public_bigbtn bg1aa" id="save_hope_job" style="padding: 0 30px 0 30px">保存</span>
+                                            <span class="cancelbtn1" id="cancel_hope_job">取消</span>
+                                        </div>
+                                    </div>
 
                                 </div>
-                                <div class="cwfarea">
-                                    <span>请先选择城市</span>
-                                </div>
                             </div>
+
                         </div>
                         <span class="wanted_tip">最多选3项</span>
                     </div>
@@ -1225,6 +1229,7 @@
         });
     }
 </script>
+<script src="{WL_URL_ARES}js/newfile.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/resume_manager.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/jquery.qrcode.min.js" rel="script"></script>
