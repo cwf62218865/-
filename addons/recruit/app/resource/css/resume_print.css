@@ -1,0 +1,18 @@
+
+
+@media print {
+    body { color: #000; background: #fff; }
+    .header{
+        display: none;
+    }
+    .width1200{
+        width: 100%;
+    }
+    .preview .p1_left{
+        float: left;
+    }
+    .resume_video{
+        display: none;
+    }
+
+}

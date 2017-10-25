@@ -140,15 +140,12 @@
 }
 .hj_item{
     width: 320px;
-    float: left;
 }
 .hj_fm{
     width: 320px;
     overflow: hidden;
 }
-.hj_item:nth-of-type(odd){
-    margin-right: 30px;
-}
+
 .hj_biaoti{
     margin-top: 10px;
     color: #666666;

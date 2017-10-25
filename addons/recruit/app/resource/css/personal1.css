@@ -686,6 +686,59 @@
     box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.1);
     background-color: #fff;
 }
+.hj_biaotiti{
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.hj_fm{
+    margin-bottom: 20px;
+    display: block;
+}
+.hj_fm:last-child{
+    margin-bottom: 40px;
+}
+.jiangtitle{
+    margin-bottom: 20px;
+}
+.jiangpic{
+    margin-bottom: 40px;
+    width: 320px;
+    overflow: hidden;
+}
+.diandian{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    margin-right: 15px;
+}
+.bclolor1{
+    background: #0099cc;
+}
+.bclolor2{
+    background: #fc7900;
+}
+.bclolor3{
+    background: #51516b;
+}
+.bclolor4{
+    background: #1ac078;
+}
+.bclolor5{
+    background: #51516b;
+}
+.bclolor6{
+    background: #e5e5e5;
+}
+
+<<<<<<< Updated upstream
+=======
+.hope_jobbox{
+    width: 660px;
+    box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+>>>>>>> Stashed changes
 
 .hope_jobbox1{
     display: inline-block;

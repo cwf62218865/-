@@ -182,17 +182,13 @@
 .gerenhj{
     width: 670px;
     height: auto;
-    margin-left: 50px;
     float: left;
 }
 .hj_item{
     width: 320px;
     height: auto;
-    float: left;
 }
-.hj_item:nth-of-type(odd){
-    margin-right: 30px;
-}
+
 .hj_fm{
     width: 320px;
 }
