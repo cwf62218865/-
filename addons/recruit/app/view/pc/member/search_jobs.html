@@ -442,11 +442,13 @@
                 },
                 success:function (data) {
                     var data = JSON.parse(data);
+                    console.log(data.others);
                     if(data.status==1){
                         $("#current_page").html(option.page);
                         $(".list_item").remove();
                         $(".resume_content").html(data.content);
-                        var page_num = parseInt(data.others/6);
+                        var page_num = Math.ceil(data.others/6);
+                        $(".total_page").html(page_num);
                         $("#pages_btnbox").html(pages(option.page,page_num));
                         if(option.page==1){
                             $(".yemabtn .yema").eq(0).removeClass("slected");
