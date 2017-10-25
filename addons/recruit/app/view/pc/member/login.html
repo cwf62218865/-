@@ -106,7 +106,8 @@
                     if(data.status==1){
                         window.location.href=data.content;
                     }else{
-                        console.log(data.content);
+                        hint("error","用户名或密码错误。");
+
                     }
                 }
             })

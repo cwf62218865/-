@@ -69,7 +69,8 @@ function hint(state,msg){
     promptbox+="<div class='promptmsg'>"+msg+"</div>";
     promptbox+="</div></div>";
     $("body").append(promptbox);
-
+    $(".promptbox").animate({"top":"340px","opacity":1},300);
+    setTimeout(function(){$(".promptbox").remove()},1200);
 }
 
 
@@ -77,81 +78,86 @@ function hint(state,msg){
 function pages(page,totalpage){
     var page=parseInt(page);
     var totalpage=parseInt(totalpage);
-    var pagehtml='<div class="pages_btn">';
-    if(page==1){//判断当前显示的页数是否为第一页
-        pagehtml+='<span class="pre_page no_page">上一页</span>';
-        pagehtml+='<span class="page select">1</span>';
+    if(totalpage=="0"){
+        return false;
     }else{
-        pagehtml+='<span class="pre_page">上一页</span>';
-        pagehtml+='<span class="page">1</span>';
-    }
-    if(totalpage>8){
-        if(page>=4){
-            pagehtml+='<span class="page1">...</span>';
-            if(page<=totalpage-3){
-
-            }else{
-
-            }
-
-            if(page<=totalpage-3){
-                pagehtml+='<span class="page">'+(page-1)+'</span>';
-                pagehtml+='<span class="page select">'+page+'</span>';
-                pagehtml+='<span class="page">'+(page+1)+'</span>';
+        var pagehtml='<div class="pages_btn">';
+        if(page==1){//判断当前显示的页数是否为第一页
+            pagehtml+='<span class="pre_page no_page">上一页</span>';
+            pagehtml+='<span class="page select">1</span>';
+        }else{
+            pagehtml+='<span class="pre_page">上一页</span>';
+            pagehtml+='<span class="page">1</span>';
+        }
+        if(totalpage>8){
+            if(page>=4){
                 pagehtml+='<span class="page1">...</span>';
-                pagehtml+='<span class="page">'+totalpage+'</span>';
-            }
-            if(page>totalpage-3){
-                if(page==totalpage-2){
-                    pagehtml+='<span class="page">'+(page-1)+'</span>';
-                    pagehtml+='<span class="page select">'+page+'</span>';
-                    pagehtml+='<span class="page">'+(totalpage-1)+'</span>';
-                    pagehtml+='<span class="page">'+totalpage+'</span>';
-                }else if(page==totalpage-1){
-                    pagehtml+='<span class="page">'+(page-1)+'</span>';
-                    pagehtml+='<span class="page select">'+page+'</span>';
-                    pagehtml+='<span class="page">'+totalpage+'</span>';
+                if(page<=totalpage-3){
+
                 }else{
-                    pagehtml+='<span class="page">'+(page-2)+'</span>';
+
+                }
+
+                if(page<=totalpage-3){
                     pagehtml+='<span class="page">'+(page-1)+'</span>';
                     pagehtml+='<span class="page select">'+page+'</span>';
+                    pagehtml+='<span class="page">'+(page+1)+'</span>';
+                    pagehtml+='<span class="page1">...</span>';
+                    pagehtml+='<span class="page">'+totalpage+'</span>';
+                }
+                if(page>totalpage-3){
+                    if(page==totalpage-2){
+                        pagehtml+='<span class="page">'+(page-1)+'</span>';
+                        pagehtml+='<span class="page select">'+page+'</span>';
+                        pagehtml+='<span class="page">'+(totalpage-1)+'</span>';
+                        pagehtml+='<span class="page">'+totalpage+'</span>';
+                    }else if(page==totalpage-1){
+                        pagehtml+='<span class="page">'+(page-1)+'</span>';
+                        pagehtml+='<span class="page select">'+page+'</span>';
+                        pagehtml+='<span class="page">'+totalpage+'</span>';
+                    }else{
+                        pagehtml+='<span class="page">'+(page-2)+'</span>';
+                        pagehtml+='<span class="page">'+(page-1)+'</span>';
+                        pagehtml+='<span class="page select">'+page+'</span>';
+                    }
+                }
+            }else{
+                if(page==2){
+                    pagehtml+='<span class="page select">2</span>';
+                    pagehtml+='<span class="page">3</span>';
+                }else if(page==3){
+                    pagehtml+='<span class="page">2</span>';
+                    pagehtml+='<span class="page select">3</span>';
+                }else{
+                    pagehtml+='<span class="page">2</span>';
+                    pagehtml+='<span class="page">3</span>';
+                }
+                if(page<=totalpage-3){
+                    pagehtml+='<span class="page">4</span>';
+                    pagehtml+='<span class="page1">...</span>';
+                    pagehtml+='<span class="page">'+totalpage+'</span>';
                 }
             }
+
+
         }else{
-            if(page==2){
-                pagehtml+='<span class="page select">2</span>';
-                pagehtml+='<span class="page">3</span>';
-            }else if(page==3){
-                pagehtml+='<span class="page">2</span>';
-                pagehtml+='<span class="page select">3</span>';
-            }else{
-                pagehtml+='<span class="page">2</span>';
-                pagehtml+='<span class="page">3</span>';
-            }
-            if(page<=totalpage-3){
-                pagehtml+='<span class="page">4</span>';
-                pagehtml+='<span class="page1">...</span>';
-                pagehtml+='<span class="page">'+totalpage+'</span>';
+            for(var i=2;i<=totalpage;i++){
+                if(i==page){
+                    pagehtml+='<span class="page select">'+i+'</span>'
+                }else{
+                    pagehtml+='<span class="page">'+i+'</span>'
+                }
             }
         }
-
-
-    }else{
-        for(var i=2;i<=totalpage;i++){
-            if(i==page){
-                pagehtml+='<span class="page select">'+i+'</span>'
-            }else{
-                pagehtml+='<span class="page">'+i+'</span>'
-            }
+        if(page==totalpage){//判断当前显示的页数是否为最后一页
+            pagehtml+='<span class="next_page no_page">下一页</span>';
+        }else{
+            pagehtml+='<span class="next_page">下一页</span>';
         }
+        pagehtml+='</div>';
+        return pagehtml;
     }
-    if(page==totalpage){//判断当前显示的页数是否为最后一页
-        pagehtml+='<span class="next_page no_page">下一页</span>';
-    }else{
-        pagehtml+='<span class="next_page">下一页</span>';
-    }
-    pagehtml+='</div>';
-    return pagehtml;
+
 }
 
 //手机正则
