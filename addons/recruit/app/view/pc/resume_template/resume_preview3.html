@@ -213,34 +213,13 @@
                 <div class="gerenhj">
                     {loop $personal_works $id $list}
                     <div class="hj_item">
+                        <p class="hj_biaotiti">{php echo $list['person_workmsg']}</p>
                         <img src="{php echo $list['thumb']}" class="hj_fm"/>
-                        <p class="hj_biaoti">{php echo $list['person_workmsg']}</p>
                     </div>
                    {/loop}
                 </div>
-
             </div>
 
-
-<!--30秒个人视频-->
-
-            <div class="content670">
-                <div class="items_title">
-                    <span class="itme_name">
-                        <svg class="icon bsc_ico1" aria-hidden="true">
-                            <use xlink:href="#icon-shipin"></use>
-                        </svg>
-                        30秒个人视频
-                    </span>
-                    <div class="line_title widline"></div>
-                </div>
-                <div class="resume_exp">
-                    <div class="person_works relative">
-                        <video src="{$resume['person_video']}" width="500" height="300" controls autobuffer style="margin-left: 85px"></video>
-                    </div>
-                </div>
-
-            </div>
 
 
 
@@ -257,11 +236,37 @@
                     <div class="line_title"></div>
                 </div>
                 <div class="bshang1">
-                    {loop unserialize($resume['honor']) $list}
-                    <p class="basic_style3 lineheight">{$list}</p>
-                    {/loop}
+                    <div class="basic_style3 lineheight">
+                        <p class="jiangtitle"><span class="diandian bclolor3"></span>2013年3月获得全国中小学生数学竞赛一等奖</p>
+                        <img class="jiangpic" src="{WL_URL_ARES}images/person_img.png">
+                    </div>
+                    <div class="basic_style3 lineheight">
+                        <p class="jiangtitle"><span class="diandian bclolor3"></span>2013年3月获得全国中小学生数学竞赛一等奖</p>
+                        <img class="jiangpic" src="{WL_URL_ARES}images/person_img.png">
+                    </div>
+                    <!--{loop unserialize($resume['honor']) $list}-->
+                    <!--<p class="basic_style3 lineheight">{$list}</p>-->
+                    <!--{/loop}-->
                 </div>
+            </div>
 
+            <!--30秒个人视频-->
+
+            <div class="content670 resume_video">
+                <div class="items_title">
+                    <span class="itme_name">
+                        <svg class="icon bsc_ico1" aria-hidden="true">
+                            <use xlink:href="#icon-shipin"></use>
+                        </svg>
+                        30秒个人视频
+                    </span>
+                    <div class="line_title widline"></div>
+                </div>
+                <div class="resume_exp">
+                    <div class="person_works relative">
+                        <video src="{$resume['person_video']}" width="500" height="300" controls autobuffer style="margin-left: 85px"></video>
+                    </div>
+                </div>
             </div>
 
         </div>

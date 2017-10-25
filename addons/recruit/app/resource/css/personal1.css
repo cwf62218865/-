@@ -121,6 +121,14 @@
     left: 370px;
     text-align: center;
     line-height: 130px;
+    overflow: hidden
+}
+.resume_manage_header img{
+    width: 120px;
+    height: 120px;
+    margin-top: 5px;
+    /*margin-left: 5px;*/
+    border-radius: 50%;
 }
 .resume_manage_headerimg{
     display: inline-block;
@@ -712,12 +720,13 @@
     width: 320px;
     overflow: hidden;
 }
-.diandian{
+.jiangtitle .diandian{
     display: inline-block;
     width: 10px;
     height: 10px;
     border-radius: 100%;
     margin-right: 15px;
+    margin-left: 0px;
 }
 .bclolor1{
     background: #0099cc;
@@ -742,6 +751,7 @@
     box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.1);
     background-color: #fff;
 }
+
 
 .hope_jobbox1{
     display: inline-block;

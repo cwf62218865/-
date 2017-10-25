@@ -41,7 +41,7 @@ if($op=="index"){
         $r = pdo_update(WL."resume",array('template_id'=>$_GPC['template_id']),array('uid'=>$_SESSION['uid']));
         call_back(1,"ok");
     }else{
-
+//        echo "resume_template/resume_preview".$resume['template_id'];exit();
         include wl_template("resume_template/resume_preview".$resume['template_id']);
     }
 }

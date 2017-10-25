@@ -60,27 +60,58 @@
     </style>
 </head>
 <body bgcolor="#f4f4f4">
-{php include wl_template('common/header');}
+<div class="header" style="background: #ffffff">
+    <div class="width1200 align_center" style="padding-top: 14px;justify-content: space-between">
+        <img src="{WL_URL_ARES}images/logo.png"/>
+        <div style="height: 52px;line-height: 52px"><span class="city">全国</span><span class="changecity">[切换]</span></div>
+        <div class="menu">
+            <a href="#" class="menuactive">首页</a>
+            <a  href="#">找工作</a>
+            <a  href="#">实习/兼职</a>
+            <a  href="#">求职保镖</a>
+            <a  href="#">职场信用</a>
+            <a  href="#">就业大数据</a>
+        </div>
+        <div class="login">
+            <a href="#">登陆</a>
+            <a href="#">注册</a>
+            <a href="#">企业入口</a>
+        </div>
+    </div>
+</div>
 <div class="width1200 p1content">
 
     <!--公司基本信息-->
     <div id="basic_msg">
-        <span class="company_logo"><img src="{php echo $company['headimgurl']}"></span>
+        <span class="company_logo"><img src="{WL_URL_ARES}images/qiyelogo.png"></span>
         <div class="company_basacmsg">
             <div class="relative">
-                <span class="company_name">{php echo $company['companyname']}</span>
-                <span>秒猎认证</span>
-                <span>明星雇主</span>
+                <span class="company_name">重庆大唐科技股份有限公司</span>
+                <span class="biaoqian_ico1">
+                        <svg class="icon renzheng">
+                            <use xlink:href="#icon-renzheng"></use>
+                        </svg>
+                        秒猎认证
+                </span>
+                <span class="biaoqian_ico2">
+                        <svg class="icon renzheng">
+                            <use xlink:href="#icon-iconfontslogoqimingxing"></use>
+                        </svg>
+                        明星雇主
+                </span>
+                <span class="btn_xiny color_main cur">查看该公司信用</span>
             </div>
 
-            <div class="font666 company_introduce wrap" >{php echo $company['introduce']}</div>
+            <div class="font666 company_introduce wrap" >提供最鲜活的城市资讯，记录最有温暖的城市生活我们所做的一切都</div>
 
             <div class="font999" style="margin-top: 16px">
-                {loop explode(',',$company['tag']) $list}
-                    <span class="basic_msg_bq">{$list}</span>
-                {/loop}
+                <span class="basic_msg_bq">年终奖</span>
+                <span class="basic_msg_bq">住房公积金</span>
+                <span class="basic_msg_bq">带薪年假</span>
+                <span class="basic_msg_bq">绩效奖金</span>
+                <span class="basic_msg_bq">内部培训</span>
             </div>
-            <div class="zpzhuangtai">
+            <div class="zpzhuangtai relative">
                 <div class="tjitem">
                     <p class="tongjinum">5个</p>
                     <p  class="tongjititle">在招职位</p>
@@ -93,168 +124,33 @@
                     <p class="tongjinum">昨天</p>
                     <p  class="tongjititle">企业最近登录</p>
                 </div>
+                <div class="company_icos">
+                    <span class="com_ico"><svg class="icon fexico">
+                            <use xlink:href="#icon-fenxiang"></use>
+                        </svg>分享</span>
+                    <span class="com_ico"><svg class="icon fexico">
+                            <use xlink:href="#icon-tishi"></use>
+                        </svg>举报</span>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="p1_left">
-
-        <div class="con_list" style="padding-bottom: 100px">
-           <div class="company_width770">
-
-               <div class="width670" style="display: none" id="basic_msgbox">
-                   <!--上传logo-->
-                   <div style="margin-top: 80px;width: 100%;text-align: center">
-                   <span class="company_logo_upload">
-                       <!--<img src="{WL_URL_ARES}images/person_img.png">-->
-                       <span>
-                           <svg class="icon" aria-hidden="true">
-                               <use  xlink:href="#icon-xiangji"></use>
-                           </svg>
-                       </span>
-                   </span>
-                       <div class="fontbbb" style="margin-top: 16px">*Logo尺寸要求 200*200，图片大小在2M以内</div>
-                       <input type="file" id="company_logo"  accept="image/*"  style="display: none">
-                       <input type="text" name="company_logo" style="display: none">
-                   </div>
-
-                   <!--基本信息-->
-                   <div class="person_changes" style="margin-top: 40px">
-                       <div>
-                           <span class="color666 companymsg_name">公司全称</span>
-                           <span style="line-height: 48px;margin-left: 20px">{php echo $company['companyname']}</span>
-                       <span class="relative change_company_name">
-                           <span class="edit_company_name">修改公司名称</span>
-                           <span class="edit_name_tips">
-                               修改公司名称，需要重新上传营业执照和法人身份证，并提供法人签字、公司盖章的修改协议照片。
-                               <a href="#" style="color: #09c">前往修改</a>
-                           </span>
-                       </span>
-
-                       </div>
-                   </div>
-
-                   <div>
-                       <div class="person_changes" style="margin-top: 20px">
-                           <div class="width320 person_changes_left">
-                               <span class="color666 redxing companymsg_name">公司性质</span>
-                               <div class=" relative general-select " style="float: none">
-                                   <label class="general-input relative general-select" style="float: none">
-                                       <input type="text" readonly=""  name="company_nature" value="{php echo $company['nature']}">
-                                       <svg class="icon inputicon" aria-hidden="true">
-                                           <use  xlink:href="#icon-xiala" class="colorbbb"></use>
-                                       </svg>
-                                   </label>
-                                   <div class="options noscend" style="width: 220px;top:48px">
-                                       <div class="select-option"><span>国营企业</span></div>
-                                       <div class="select-option"><span>民营企业</span></div>
-                                       <div class="select-option"><span>私有企业</span> </div>
-                                       <div class="select-option"><span>创业型</span> </div>
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="width320 person_changes_right">
-                               <span class="color666 redxing companymsg_name">公司规模</span>
-                               <div class=" relative general-select " style="float: none">
-                                   <label class="general-input relative general-select" style="float: none">
-                                       <input type="text" readonly=""  name="company_scale" value="{php echo $company['number']}">
-                                       <svg class="icon inputicon" aria-hidden="true">
-                                           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                       </svg>
-                                   </label>
-                                   <div class="options noscend" style="width: 220px;top:48px">
-                                       <div class="select-option"><span>20人以下</span></div>
-                                       <div class="select-option"><span>20-50人</span></div>
-                                       <div class="select-option"><span>50-200人</span> </div>
-                                       <div class="select-option"><span>200-500人</span> </div>
-                                       <div class="select-option"><span>500-1000人</span> </div>
-                                       <div class="select-option"><span>1000人以上</span> </div>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-
-                       <div class="person_changes" style="margin-top: 20px">
-                           <div class="width320 person_changes_left">
-                               <span class="color666 redxing companymsg_name">所处行业</span>
-                               <div class=" relative general-select  " style="float: none">
-                                   <label class="general-input relative general-select" style="float: none">
-                                       <input type="text" readonly=""  name="company_industry" value="{php echo $company['industry']}">
-                                       <svg class="icon inputicon" aria-hidden="true">
-                                           <use  xlink:href="#icon-xiala" class="colorbbb"></use>
-                                       </svg>
-                                   </label>
-                                   <div class="options hangye" style="height: 0px;top: 48px">
-                                       <div class="hangye_con">
-                                           <div class="select-option"><span>IT互联网</span></div>
-                                           <div class="select-option"><span>物流运输</span></div>
-                                           <div class="select-option"><span>制造加工</span> </div>
-                                           <div class="select-option"><span>房地产</span> </div>
-                                           <div class="select-option"><span>教育培训</span> </div>
-                                           <div class="select-option"><span>医疗医药</span> </div>
-                                           <div class="select-option"><span>能源化工</span></div>
-                                           <div class="select-option"><span>餐饮百货</span></div>
-                                           <div class="select-option"><span>通信</span> </div>
-                                           <div class="select-option"><span>广告媒体</span> </div>
-                                           <div class="select-option"><span>旅游</span> </div>
-                                           <div class="select-option"><span>农林牧渔</span> </div>
-                                           <div class="select-option"><span>人力资源</span> </div>
-                                           <div class="select-option" style="width:90px "><span>金融投资证券</span> </div>
-                                           <div class="select-option"><span>其他</span> </div>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="width320 person_changes_right">
-                               <span class="color666 redxing companymsg_name">所在地区</span>
-                               <div class=" relative general-select " style="float: none">
-                                   <label class="general-input relative general-select" style="float: none">
-                                       <input type="text" readonly=""  name="company_area" value="{php echo $company['city']}">
-                                       <svg class="icon inputicon" aria-hidden="true">
-                                           <use  xlink:href="#icon-xiala" class="colorbbb"></use>
-                                       </svg>
-                                   </label>
-                                   <div class="options" style="width: 220px;top:48px">
-                                       <div class="areacity">
-
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-
-
-
-                       <div class=" person_changes_left" style="margin-top: 20px">
-                           <span class="color666  companymsg_name" style="width: 78px;margin-left: -10px">公司slogan</span>
-                           <label class="general-input relative" style="width: 580px;">
-                               <input type="text" placeholder="请输入公司一句话广告语（30字以内）"  style="width: 540px;" name="slogan" value="{php echo $company['slogan']}">
-                           </label>
-                       </div>
-
-                       <div class="person_changes"  style="margin-top: 30px">
-                           <div class=" person_changes_left" style="text-align: center">
-                               <div style="display: inline-block">
-                                   <span class="savebtn public_bigbtn bg1aa"  style="padding: 0 30px 0 30px">保存</span>
-                                   <span class="cancelbtn">取消</span>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-
-
-
-               <!--公司介绍-->
-                <div style="margin-top: 50px">
-                    <div class="company_title relative">
-                        <span >公司介绍</span>
-
+        <div class="con_list" style="padding-bottom: 80px">
+           <div class="company_width730">
+                <div style="">
+                    <div class="select_title" style="margin-bottom: 40px;">
+                        <span class="cur title_se sleft">公司介绍</span>
+                        <span class="cur title_se">在招职位<label class="num_jobing">(18)</label></span>
                     </div>
 
+                    <!--公司介绍信息---------------------------------------------->
                     <div  id="introduces_msg">
                         <div class="introduces">
-                            {php echo $company['introduce']}
+                            猪八戒网作为中国领先的服务众包平台，自2006年成立以来，始终立足服务交易，致力让天下人享受诚信服务，助力中小微企业的成长与发展。
+                            服务涵盖平面设计、开发建站、营销推广、文案策划、动画视频、工业设计、建筑设计，八大主打类目，六百细分品类，为创业者提供一站式的企业全生命周期服务猪八戒网作为中国领先的服务众包平台，自2006年成立以来，始终立足服务交易，致力让天下人享受诚信服务，助力中小微企业的成长与发展。
+                            服务涵盖平面设计、开发建站、营销推广、文案策划、动画视频、工业设计、建筑设计，八大主打类目，六百细分品类，为创业者提供一站式的企业全生命周期服务…
                         </div>
                         <span class="showoehideall">
                             <span>显示全部</span>
@@ -262,285 +158,450 @@
                                 <use  xlink:href="#icon-xiajiantou"></use>
                             </svg>
                         </span>
+                        <div style="margin-top: 60px">
+                            <div style="margin-top: 40px"  id="company_img">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-pagination" ></div>
+                                    <!-- 如果需要导航按钮 -->
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--面试评价-->
+                        <div class="evaluate" style="margin-top: 60px">
+                            <div class="company_title relative">
+                                <span >面试评价(3)</span>
+                            </div>
+                            <div class="zongtipingfen">
+                                <p class="point">5.0</p>
+                                <p class="miaoshus">总体评分</p>
+                            </div>
+                            <div class="xingxing_list">
+                                <div class="xing1">
+                                    <span class="xing_title">信息真实:</span>
+                                    <span class="stars_n">
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                           </span>
+                                    <span class="point_num">5.0分</span>
+                                </div>
+                                <div class="xing1">
+                                    <span class="xing_title">公司环境:</span>
+                                    <span class="stars_n">
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                           </span>
+                                    <span class="point_num">5.0分</span>
+                                </div>
+                                <div class="xing1">
+                                    <span class="xing_title">面试官:</span>
+                                    <span class="stars_n">
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfenbanfen"></use>
+                                </svg>
+                               <svg class="icon starhui" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfenbanfen"></use>
+                                </svg>
+                           </span>
+                                    <span class="point_num">5.0分</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="biaoqian">
+                            <label class="fulibiaoq">环境好<span class="num_totla">(10)</span></label>
+                            <label class="fulibiaoq">环境好<span class="num_totla">(10)</span></label>
+                            <label class="fulibiaoq">环境好<span class="num_totla">(10)</span></label>
+                            <label class="fulibiaoq">环境好<span class="num_totla">(10)</span></label>
+                            <label class="fulibiaoq">环境好<span class="num_totla">(10)</span></label>
+                        </div>
+                        <div class="select_title1">
+                            <span class="cur title_sr selsrt" data-id="1">推荐度排序</span>
+                            <span class="cur title_sr" data-id="2">时间排序</span>
+                        </div>
+                        <div class="evaluate_list">
+                            <div class="evaluate_item">
+                                <div class="left_tx">
+                                    <img class="touxiangpic" src="{WL_URL_ARES}images/resume_tx.png">
+                                    <div class="eva_name nowrap">匿名</div>
+                                </div>
+                                <div class="xiangqing">
+                                    <div class="xqhang">
+                                        <span class="">总体评价:</span>
+                                        <span class="stars_n">
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               </span>
+                                        <span class="point_num">5.0分</span>
+                                        <span class="jobname_eva">面试职位：<label class="namedd">新媒体运营</label></span>
+                                        <span class="date_eva">2017-9-29</span>
+                                    </div>
+                                    <div class="xqhang" style="margin-top: 18px;">
+                                        <span class="pingjiabq">环境好</span>
+                                        <span class="pingjiabq">环境好</span>
+                                        <span class="pingjiabq">环境好</span>
+                                    </div>
+                                    <div class="xqhang" style="margin-top: 20px;">
+                                        [面试过程]<span class="evaluate_con">两个面试官一起面的，他们技术还是很nice的，就是态度更好一点就好了，一个一直在皱眉头，一个面无表情。hr态度还是非常好的，很亲切，不过面试自己没有发挥好，下次还有机会再去。</span>
+                                    </div>
+                                    <div class="hangxq">
+                                        <svg class="icon zan1" aria-hidden="true">
+                                            <use  xlink:href="#icon-zan1"></use>
+                                        </svg>
+                                        <span class="zannum">(122)</span>
+                                    </div>
+                                    <div class="evaluate_huifu">
+                                        <img class="hrtx" src="{WL_URL_ARES}images/qiyelogo.png"/>
+                                        <div class="hrhf">
+                                            <p class="hftitle">HR回复：</p><span class="date_num">2017-9-29</span>
+                                            <p class="hfcon">综合能力蛮好的，已经将档案留存。很遗憾整体评价后选择了一位大学期间有更多相关实践经验在应聘者。谢谢关注我司和提出的的意见。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="evaluate_item">
+                                <div class="left_tx">
+                                    <img class="touxiangpic" src="{WL_URL_ARES}images/resume_tx.png">
+                                    <div class="eva_name nowrap">匿名</div>
+                                </div>
+                                <div class="xiangqing">
+                                    <div class="xqhang">
+                                        <span class="">总体评价:</span>
+                                        <span class="stars_n">
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               </span>
+                                        <span class="point_num">5.0分</span>
+                                        <span class="jobname_eva">面试职位：<label class="namedd">新媒体运营</label></span>
+                                        <span class="date_eva">2017-9-29</span>
+                                    </div>
+                                    <div class="xqhang" style="margin-top: 18px;">
+                                        <span class="pingjiabq">环境好</span>
+                                        <span class="pingjiabq">环境好</span>
+                                        <span class="pingjiabq">环境好</span>
+                                    </div>
+                                    <div class="xqhang" style="margin-top: 20px;">
+                                        [面试过程]<span class="evaluate_con">两个面试官一起面的，他们技术还是很nice的，就是态度更好一点就好了，一个一直在皱眉头，一个面无表情。hr态度还是非常好的，很亲切，不过面试自己没有发挥好，下次还有机会再去。</span>
+                                    </div>
+                                    <div class="hangxq">
+                                        <svg class="icon zan1" aria-hidden="true">
+                                            <use  xlink:href="#icon-zan1"></use>
+                                        </svg>
+                                        <span class="zannum">(122)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="evaluate_item">
+                                <div class="left_tx">
+                                    <img class="touxiangpic" src="{WL_URL_ARES}images/resume_tx.png">
+                                    <div class="eva_name nowrap">匿名</div>
+                                </div>
+                                <div class="xiangqing">
+                                    <div class="xqhang">
+                                        <span class="">总体评价:</span>
+                                        <span class="stars_n">
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               <svg class="icon star" aria-hidden="true">
+                                <use  xlink:href="#icon-pingfen"></use>
+                                </svg>
+                               </span>
+                                        <span class="point_num">5.0分</span>
+                                        <span class="jobname_eva">面试职位：<label class="namedd">新媒体运营</label></span>
+                                        <span class="date_eva">2017-9-29</span>
+                                    </div>
+                                    <div class="xqhang" style="margin-top: 18px;">
+                                        <span class="pingjiabq">环境好</span>
+                                        <span class="pingjiabq">环境好</span>
+                                        <span class="pingjiabq">环境好</span>
+                                    </div>
+                                    <div class="xqhang" style="margin-top: 20px;">
+                                        [面试过程]<span class="evaluate_con">两个面试官一起面的，他们技术还是很nice的，就是态度更好一点就好了，一个一直在皱眉头，一个面无表情。hr态度还是非常好的，很亲切，不过面试自己没有发挥好，下次还有机会再去。</span>
+                                    </div>
+                                    <div class="hangxq">
+                                        <svg class="icon zan1" aria-hidden="true">
+                                            <use  xlink:href="#icon-zan1"></use>
+                                        </svg>
+                                        <span class="zannum">(122)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pages_btn compagefy">
+                                <span class="pre_page">上一页</span>
+                                <span class="page select">1</span>
+                                <span class="page">2</span>
+                                <span class="page">3</span>
+                                <span class="page">4</span>
+                                <span class="page">5</span>
+                                <span class="page">6</span>
+                                <span class="page">…</span>
+                                <span class="page">15</span>
+                                <span class="next_page">下一页</span>
+                            </div>
+                        </div>
                     </div>
-
+                    <!--公司介绍信息end---------------------------------------------->
+                    <!--在招职位列表---------------------------------------------->
+                    <div class="job_list" style="display: none;">
+                        <div class="job_list_con">
+                            <a class="job_iteme">
+                                <p class="job_hang relative">
+                                    <span class="job_names">排课专员</span>
+                                    <span class="refume_statas">昨天刷新</span>
+                                </p>
+                                <p class="miaosu">
+                                    <span class="salery_num">2K-4K</span>
+                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
+                                </p>
+                            </a>
+                            <a class="job_iteme">
+                                <p class="job_hang relative">
+                                    <span class="job_names">排课专员</span>
+                                    <span class="refume_statas">昨天刷新</span>
+                                </p>
+                                <p class="miaosu">
+                                    <span class="salery_num">2K-4K</span>
+                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
+                                </p>
+                            </a>
+                            <a class="job_iteme">
+                                <p class="job_hang relative">
+                                    <span class="job_names">排课专员</span>
+                                    <span class="refume_statas">昨天刷新</span>
+                                </p>
+                                <p class="miaosu">
+                                    <span class="salery_num">2K-4K</span>
+                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
+                                </p>
+                            </a>
+                            <a class="job_iteme">
+                                <p class="job_hang relative">
+                                    <span class="job_names">排课专员</span>
+                                    <span class="refume_statas">昨天刷新</span>
+                                </p>
+                                <p class="miaosu">
+                                    <span class="salery_num">2K-4K</span>
+                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
+                                </p>
+                            </a>
+                            <a class="job_iteme">
+                                <p class="job_hang relative">
+                                    <span class="job_names">排课专员</span>
+                                    <span class="refume_statas">昨天刷新</span>
+                                </p>
+                                <p class="miaosu">
+                                    <span class="salery_num">2K-4K</span>
+                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
+                                </p>
+                            </a>
+                            <a class="job_iteme">
+                                <p class="job_hang relative">
+                                    <span class="job_names">排课专员</span>
+                                    <span class="refume_statas">昨天刷新</span>
+                                </p>
+                                <p class="miaosu">
+                                    <span class="salery_num">2K-4K</span>
+                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
+                                </p>
+                            </a>
+                            <a class="job_iteme">
+                                <p class="job_hang relative">
+                                    <span class="job_names">排课专员</span>
+                                    <span class="refume_statas">昨天刷新</span>
+                                </p>
+                                <p class="miaosu">
+                                    <span class="salery_num">2K-4K</span>
+                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
+                                </p>
+                            </a>
+                            <a class="job_iteme">
+                                <p class="job_hang relative">
+                                    <span class="job_names">排课专员</span>
+                                    <span class="refume_statas">昨天刷新</span>
+                                </p>
+                                <p class="miaosu">
+                                    <span class="salery_num">2K-4K</span>
+                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
+                                </p>
+                            </a>
+                        </div>
+                        <div class="pages_btn compagefy">
+                            <span class="pre_page">上一页</span>
+                            <span class="page select">1</span>
+                            <span class="page">2</span>
+                            <span class="page">3</span>
+                            <span class="page">4</span>
+                            <span class="page">5</span>
+                            <span class="page">6</span>
+                            <span class="page">…</span>
+                            <span class="page">15</span>
+                            <span class="next_page">下一页</span>
+                        </div>
+                    </div>
+                    <!--在招职位列表end---------------------------------------------->
                 </div>
-
-
-               <div class="width670" style="display: none" id="introduces_msgbox">
-                       <div class=" person_changes_left" style="margin-top: 40px">
-                           <span class="color666  redxing companymsg_name">公司介绍</span>
-                           <div class="cwfreg4content" style="display: inline-block;margin-left: 20px;height: 174px;border: 1px solid #f5f5f5;width: 580px;background-color: #f5f5f5">
-                               <textarea   class="cwftextarea" id="companymsg_introduce"  placeholder="请输入公司详细介绍">{php echo $company['introduce']}</textarea>
-                           </div>
-
-                           <div  class="cwftextareatip" style="height: auto;margin-top: 10px;padding-bottom: 13px">
-                               <label class="general-input relative" style="width: 260px;;margin-left: 88px;height: 0;border: none">
-                                   <input type="hidden" name="companymsg_introduce" id="companymsg_introduceinput" data-error="请输入公司详细介绍" value="{php echo $company['introduce']}">
-                               </label>
-                           </div>
-
-                       </div>
-
-                       <div class="person_changes"  style="margin-top: 0">
-                           <div class=" person_changes_left" style="text-align: center">
-                               <div style="display: inline-block">
-                                   <span class="savebtn public_bigbtn bg1aa"  style="padding: 0 30px 0 30px">保存</span>
-                                   <span class="cancelbtn">取消</span>
-                               </div>
-                           </div>
-                       </div>
-               </div>
-
-               <!--公司图集-->
-               <div style="margin-top: 60px">
-                   <div class="company_title relative">
-                       <span >公司图集</span>
-
-                   </div>
-                   <div style="margin-top: 40px"  id="company_img">
-                       <div class="swiper-container">
-                           <div class="swiper-wrapper">
-                               {loop explode(',',$company['atlas']) $list}
-                               <div class="swiper-slide">
-                                   <div class="company_img"><img src="{$list}"></div>
-                               </div>
-                               {/loop}
-                           </div>
-                           <div class="swiper-pagination" ></div>
-                           <!-- 如果需要导航按钮 -->
-                           <div class="swiper-button-prev"></div>
-                           <div class="swiper-button-next"></div>
-
-                       </div>
-                   </div>
-               </div>
-
-
-               <div  class="width670" style="display: none" id="company_imgbox">
-                   <div class="person_changes" style="margin-top: 60px">
-
-                       <input type="hidden" name="works_url" id="works_id">
-                       <span class="color666  redxing companymsg_name">公司图集</span>
-                       <div class="person_worksbox" style="margin-left: 88px">
-                           <div class="person_worksbtn">
-                               <img src="{WL_URL_ARES}images/person_img.png">
-                                    <span class="person_worksdelbtn">
-                                        <svg class="icon" aria-hidden="true">
-                                            <use xlink:href="#icon-shanchu"></use>
-                                        </svg>
-                                    </span>
-                           </div>
-
-                           <div class="person_worksbtn">
-                               <img src="{WL_URL_ARES}images/person_img.png">
-                                    <span class="person_worksdelbtn">
-                                        <svg class="icon" aria-hidden="true">
-                                            <use xlink:href="#icon-shanchu"></use>
-                                        </svg>
-                                    </span>
-                           </div>
-
-                           <div class="person_worksbtn1">
-                                <span id="person_worksaddbtn">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-shangchuan"></use>
-                                    </svg>
-                                </span>
-                           </div>
-
-                       </div>
-
-                       <label class="general-input relative abnormal" style="width: 460px;height: 20px;border: none;margin-left: 88px;background:none">
-                           <input type="hidden"  data-error="请上传公司图片" style="width: 420px;" value="" id="person_worksinput" name="person_works">
-                       </label>
-
-                       <div class="person_changes"  style="margin-top: 0">
-                           <div class=" person_changes_left" style="text-align: center">
-                               <div style="display: inline-block">
-                                   <span class="savebtn public_bigbtn bg1aa"  style="padding: 0 30px 0 30px">保存</span>
-                                   <span class="cancelbtn">取消</span>
-                               </div>
-                           </div>
-                       </div>
-
-                   </div>
-               </div>
-
-
-               <!--公司地址-->
-               <div style="margin-top: 60px">
-                   <div class="company_title relative">
-                       <span >公司地址</span>
-                   </div>
-
-                   <div  id="company_address">
-                       <div id="allmap" style="width: 640px;height: 320px;margin-top: 40px;margin-left: 65px"></div>
-                       <div style="margin-top: 20px;text-align: center">
-                           <span style="font-size: 16px;color: #333">{php echo $company['city'].$company['city_area']}</span>
-                           <span style="font-size: 14px;color: #666">{php echo $company['address']}</span>
-                       </div>
-                   </div>
-
-               </div>
-
-               <div  class="width670" style="display: none" id="company_addressbox">
-                   <div class="person_changes" style="margin-top: 60px">
-                       <div class=" person_changes_left">
-                           <span class="color666  redxing companymsg_name">详细地址</span>
-                           <div class=" relative general-select " style="float: none">
-                               <label class="general-input relative general-select" style="width: 140px;float: none">
-                                   <input type="text" readonly="" data-error="请选择现居住地址" name="city" value="{php echo $company['city']}" placeholder="省/市" style="width: 120px">
-                                   <svg class="icon inputicon" aria-hidden="true">
-                                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                   </svg>
-                               </label>
-                               <div class="options scend" style="width: 242px;top:48px">
-                                   <div class="cwfcityoptions1 cityoptions">
-
-                                   </div>
-                               </div>
-                           </div>
-                           <label class="general-input relative" style="width: 256px;margin-left: 20px;float:right">
-                               <input type="text" name="address"   placeholder="详细地址（选填）" value="{php echo $company['address']}">
-                           </label>
-                           <div class=" relative general-select " style="float: right">
-                               <label class="general-input relative general-select" style="width: 140px;float: none">
-                                   <input type="text" readonly="" id="area" name="area" value="{php echo $company['city_area']}" placeholder="区/县" style="width: 120px">
-                                   <svg class="icon inputicon" aria-hidden="true">
-                                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                   </svg>
-                               </label>
-                               <div class="options scend" style="width: 242px;top:48px">
-                                   <div class="cwfcityoptions1 areaoptions" >
-                                       <div class="select-option" style="width:140px;"><span></span></div>
-                                   </div>
-                               </div>
-                           </div>
-
-
-                           <div id="l-map"></div>
-                           <div id="r-result" class="person_changes_left" style="margin-top: 20px">
-                               <span class="color666  redxing companymsg_name">地图定位</span>
-                               <label class="general-input relative" style="width: 256px;margin-left: 20px">
-                                   <input type="text" id="suggestId" style="width: 216px"  placeholder="请输入公司地址获取定位" value="{php echo $company['retoate_x']}">
-                                   <input type="hidden" id="coordinate"  name="coordinate" data-error="请输入公司地址获取定位"  value="{php echo $company['retoate_x']}">
-                               </label>
-                           </div>
-                           <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
-
-
-                       </div>
-
-                       <div class="person_changes"  style="margin-top: 30px">
-                           <div class=" person_changes_left" style="text-align: center">
-                               <div style="display: inline-block">
-                                   <span class="savebtn public_bigbtn bg1aa"  style="padding: 0 30px 0 30px">保存</span>
-                                   <span class="cancelbtn">取消</span>
-                               </div>
-                           </div>
-                       </div>
-
-                   </div>
-               </div>
-
-               <!--福利标签-->
-               <div style="margin-top: 60px">
-                   <div class="company_title relative">
-                       <span >福利标签</span>
-                   </div>
-
-                   <div class="welfare" id="welfare_msg">
-                       {loop explode(',',$company['tag']) $list}
-                       <span>{$list}</span>
-                       {/loop}
-                   </div>
-
-               </div>
-
-
-
-               <div class=" person_changes_left" id="welfare_msgbox" style="margin-top: 40px;display: none">
-                   <span class="color666  redxing companymsg_name">福利标签</span>
-                   <div class="company_welfare">
-                       <span>五险</span>
-                       <span>住房公积金</span>
-                       <span>带薪年假</span>
-                       <span>绩效奖金</span>
-                       <span>内部培训</span>
-                       <span>年终奖</span>
-                       <span>晋升平台</span>
-                       <span>有偿加班</span>
-                       <span>股权奖励</span>
-                       <span>交通补贴</span>
-                   </div>
-                   <div style="margin-left: 58px">
-                       <div class="chioce_template_job_search" style="margin-top: 0">
-                           <div class="job_search_key">
-                               <svg class="icon" style="color: #bbbbbb;margin-left: 10px">
-                                   <use xlink:href="#icon-sousuo"></use>
-                               </svg>
-                               <input class="input_job" maxlength="5" id="welfare_key" style="width: 130px;outline: none" type="text" placeholder="输入5个字以内标签">
-                           </div>
-                           <span class="btn_sou" style="float: right;height: 37px">添加</span>
-                       </div>
-                   </div>
-
-                   <label class="general-input relative abnormal" style="width: 460px;height: 20px;border: none;margin-left: 88px;background:none;margin-top: 10px">
-                       <input type="hidden"  data-error="请选择福利标签" style="width: 420px;" value="" id="company_welfare" name="company_welfare">
-                   </label>
-
-
-                   <div class="person_changes"  style="margin-top: 0">
-                       <div class=" person_changes_left" style="text-align: center">
-                           <div style="display: inline-block">
-                               <span class="savebtn public_bigbtn bg1aa"  style="padding: 0 30px 0 30px">保存</span>
-                               <span class="cancelbtn">取消</span>
-                           </div>
-                       </div>
-                   </div>
-
-               </div>
-
-
-
-               <!--公司网站-->
-               <div style="margin-top: 60px">
-                   <div class="company_title relative">
-                       <span >公司网站</span>
-                   </div>
-
-                   <span class="website" id="website_msg">
-                       {php echo $company['website']}
-                   </span>
-
-               </div>
-
-
-               <div class=" person_changes_left width670" id="website_msgbox" style="margin-top: 40px;display: none">
-                   <span class="color666  companymsg_name" style="width: 78px;margin-left: -10px">公司网站</span>
-                   <label class="general-input relative" style="width: 580px;">
-                       <input type="text" placeholder="请输入公司网址"  style="width: 540px;" name="company_url" value="{php echo $company['website']}">
-                   </label>
-
-                   <div class="person_changes"  style="margin-top: 20px">
-                       <div class=" person_changes_left" style="text-align: center">
-                           <div style="display: inline-block">
-                               <span class="savebtn public_bigbtn bg1aa"  style="padding: 0 30px 0 30px">保存</span>
-                               <span class="cancelbtn">取消</span>
-                           </div>
-                       </div>
-                   </div>
-               </div>
            </div>
         </div>
     </div>
     <div class="p1_right">
-        <div class="tongjis tongjis1">
-
+        <div class="part_one">
+            <div class="title-top">
+                <label class="top_con">公司基本信息</label>
+            </div>
+            <div class="company_list1">
+                <div class="list_itema">
+                    <svg class="icon comicoa" aria-hidden="true">
+                        <use  xlink:href="#icon-gongsixingzhi_blue"></use>
+                    </svg>
+                    <span class="titlsc">民营</span>
+                </div>
+                <div class="list_itema">
+                    <svg class="icon comicoa" aria-hidden="true">
+                        <use  xlink:href="#icon-guimo"></use>
+                    </svg>
+                    <span class="titlsc">20人以下</span>
+                </div>
+                <div class="list_itema">
+                    <svg class="icon comicoa" aria-hidden="true">
+                        <use  xlink:href="#icon-hangye"></use>
+                    </svg>
+                    <span class="titlsc">互联网</span>
+                </div>
+                <div class="list_itema">
+                    <svg class="icon comicoa" aria-hidden="true">
+                        <use  xlink:href="#icon-wangzhi"></use>
+                    </svg>
+                    <span class="titlsc">www.baidu.com</span>
+                </div>
+                <div class="list_itema">
+                    <svg class="icon comicoa" aria-hidden="true">
+                        <use  xlink:href="#icon-didian"></use>
+                    </svg>
+                    <span class="titlsc">重庆-南岸</span>
+                </div>
+            </div>
+            <!--地图加载-->
+            <div class="qiyeditu" id="allmap"></div>
+            <div class="btnditu">查看地图</div>
         </div>
     </div>
-
 
 </div>
 
@@ -554,26 +615,56 @@
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/company_msg.js" rel="script"></script>
+
 <script type="text/javascript">
     // 百度地图API功能
     var map = new BMap.Map("allmap");
     var point = new BMap.Point(116.331398,39.897445);
-//    map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
-//    map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
-//    map.centerAndZoom(point,12);
+    //    map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
+    //    map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+    //    map.centerAndZoom(point,12);
     map.centerAndZoom(point, 16);
     map.addOverlay(new BMap.Marker(point));
-    // 创建地址解析器实例
     var myGeo = new BMap.Geocoder();
-    // 将地址解析结果显示在地图上,并调整地图视野
-//    myGeo.getPoint("北京市海淀区上地10街", function(point){
-//        if (point) {
-//            map.centerAndZoom(point, 16);
-//            map.addOverlay(new BMap.Marker(point));
-//        }else{
-//            alert("您选择地址没有解析到结果!");
-//        }
-//    }, "北京市");
+
+    
+    $(".title_se").click(function () {
+        $(".title_se").removeClass("sleft");
+        $(this).addClass("sleft");
+    })
+    $(".title_sr").click(function () {
+        $(".title_sr").removeClass("selsrt");
+        $(this).addClass("selsrt");
+    })
+    $(".title_se").eq(0).click(function () {
+        $("#introduces_msg").show();
+        $(".job_list").hide();
+    })
+    $(".title_se").eq(1).click(function () {
+        $("#introduces_msg").hide();
+        $(".job_list").show();
+    })
+    $("body").on("click",".hangxq",function () {
+        $(this).css("color","#0099cc");
+        $(this).find(".zan1").css("color","#0099cc");
+    })
+    
+    $(".title_sr").click(function () {
+        //定义排序方式，0为推荐度排序，1为时间排序
+        var sort_method=$(this).attr("data-id");
+        $.ajax({
+            url:"",
+            post:"post",
+            data:{
+                sort_method:sort_method,
+                page:1
+            },
+            success:function () {
+                
+            }
+        })
+
+    })
 
 
 

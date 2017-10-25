@@ -1143,6 +1143,12 @@
     padding-right: 15px;
     color: #666666;
     cursor: pointer;
+    border-right: 1px solid #999999;
+    height: 15px;
+    line-height: 15px
+}
+.major_list:last-child{
+    border: none;
 }
 .date_num{
     width: 60px;

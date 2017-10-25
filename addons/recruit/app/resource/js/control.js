@@ -69,7 +69,8 @@ function hint(state,msg){
     promptbox+="<div class='promptmsg'>"+msg+"</div>";
     promptbox+="</div></div>";
     $("body").append(promptbox);
-
+    $(".promptbox").animate({"top":"340px","opacity":1},300);
+    setTimeout(function(){$(".promptbox").remove()},1200);
 }
 
 
