@@ -7,7 +7,7 @@
 require_once("../../API/qqConnectAPI.php");
 $qc = new QC();
 $arr = $qc->get_user_info();
-var_dump($arr);exit();
+
 
 echo '<meta charset="UTF-8">';
 echo "<p>";
