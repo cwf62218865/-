@@ -686,6 +686,13 @@
     box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.1);
     background-color: #fff;
 }
+
+.hope_jobbox1 {
+    display: inline-block;
+    width: 150px;
+    height: 551px;
+    background-color: #f5f5f5;
+}
 .hj_biaotiti{
     font-size: 16px;
     margin-bottom: 20px;
@@ -730,15 +737,11 @@
 .bclolor6{
     background: #e5e5e5;
 }
-
-<<<<<<< Updated upstream
-=======
 .hope_jobbox{
     width: 660px;
     box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.1);
     background-color: #fff;
 }
->>>>>>> Stashed changes
 
 .hope_jobbox1{
     display: inline-block;
