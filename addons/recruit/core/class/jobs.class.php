@@ -33,7 +33,7 @@ class jobs{
             $wheresql .=" and city_area='".$data['data']['job_address1']."' ";
         }
         if($data['data']['job_address'] && $data['data']['job_address']<>"全国"){
-            $wheresql .=" and city='".$data['data']['job_address']."' ";
+            $wheresql .=" and city like '%".$data['data']['job_address']."%' ";
         }
         if($data['data']['job_education'] && $data['data']['job_education']<>"不限"){
             $wheresql .=" and education='".$data['data']['job_education']."' ";

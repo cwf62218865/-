@@ -312,12 +312,17 @@ elseif ($op=="search_jobs_ajax"){
                 $toudijianli = "toudijianli";
             }
             $list['updatetime'] = date("Y-m-d",$list['updatetime']);
+            if($list['wage_min']>0 && $list['wage_max']>0){
+                $list['salary'] = $list['wage_min']."-".$list['wage_max']."k";
+            }else{
+                $list['salary'] = "面议";
+            }
             $html .=
                 "<div class=\"list_item\">
                     <div class=\"item_con\">
                         <div class=\"hang1\">
                             <a class=\"jobname nowrap\" href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."'>{$list['jobs_name']}</a>
-                            <label class=\"salary\">{$list['wage_min']}-{$list['wage_max']}K</label>
+                            <label class=\"salary\">{$list['salary']}</label>
                         </div>
                         <div class=\"hang2\">
                             <label class=\"experience nowrap\">{$list['experience']}</label>
