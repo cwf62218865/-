@@ -420,3 +420,20 @@ elseif ($op=="video_upload"){
         }
     }
 }
+
+
+elseif ($op=="save_intention"){
+//    var_dump($_POST);exit();
+    $data['hope_job'] = check_pasre($_POST['data']['want_job'],"1");
+    $data['trade'] = check_pasre($_POST['data']['want_industry'],"1");
+    $data['salary'] = check_pasre($_POST['data']['salary'],"1");
+    $data['hope_place'] = check_pasre($_POST['data']['city'],"1");
+    $data['nature'] = check_pasre($_POST['data']['identity'],"1");
+    $data['updatetime'] = time();
+    $r = pdo_update(WL."resume",$data,array('uid'=>$_SESSION['uid']));
+    if($r){
+        call_back(1,"ok");
+    }else{
+        call_back(2,"no");
+    }
+}

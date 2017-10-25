@@ -84,13 +84,18 @@
                         <div class="xian1"></div>
                         <div class="status">
                             <p class="time">
-                                <span>期望职位：<label class="job_hope">播音</label><label  class="job_hope">编导</label><label  class="job_hope">记者</label></span>
+                                <div style="height: 26px">
+                                    <span style=";display:inline-block;float: left;line-height: 26px">期望职位：</span>
+                                    {loop explode(",",$list['hope_job']) $li}
+                                    <span class="job_hope nowrap">{$li}</span>
+                                    {/loop}
+                                </div>
                             </p>
                             <p class="review_tel">
-                                <span>期望薪资：<label>5k-8k</label></span>
+                                <span>期望薪资：<label>{$list['salary']}</label></span>
                             </p>
                             <p class="review_address">
-                                <span>期望工作地点：<label>重庆</label></span>
+                                <span>期望工作地点：<label>{$list['hope_place']}</label></span>
                             </p>
                         </div>
                     </div>
@@ -144,13 +149,18 @@
                         <div class="xian1"></div>
                         <div class="status">
                             <p class="time">
-                                <span>期望职位：<label class="job_hope">播音</label><label  class="job_hope">编导</label><label  class="job_hope">记者</label></span>
+                            <div style="height: 26px">
+                                <span style=";display:inline-block;float: left;line-height: 26px">期望职位：</span>
+                                {loop explode(",",$list['hope_job']) $li}
+                                <span class="job_hope nowrap">{$li}</span>
+                                {/loop}
+                            </div>
                             </p>
                             <p class="review_tel">
-                                <span>期望薪资：<label>5k-8k</label></span>
+                                <span>期望薪资：<label>{php echo $list['salary']}</label></span>
                             </p>
                             <p class="">
-                                <span>期望工作地点：<label>重庆</label></span>
+                                <span>期望工作地点：<label>{php echo $list['hope_place']}</label></span>
                             </p>
                             <p class="shoucang_beizhu">
                                 <span>备注：</span>

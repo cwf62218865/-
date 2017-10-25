@@ -190,7 +190,7 @@
 }
 .basic_msg_contents1{
     display: inline-block;
-    padding: 0 12px 0 8px;
+    padding-right:20px;
     border-right: 1px solid #eee;
 }
 .basic_msg_contents2{

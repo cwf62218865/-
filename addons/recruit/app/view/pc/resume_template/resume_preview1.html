@@ -46,7 +46,7 @@
                             <use xlink:href="#icon-gerenxinxi"></use>
                         </svg>
                         <span class="basic_msg_contents">{if $resume['sex']==1}男{else}女{/if}</span>
-                        <span class="basic_msg_contents">{php echo date('Y-m-d')-$resume['birthday']}岁</span>
+                        <span class="basic_msg_contents">{php echo ceil(date('Y-m-d')-$resume['birthday'])}岁</span>
                         <span class="basic_msg_contents">{php echo $resume['political_status']}</span>
                         <span class="basic_msg_contents">{php echo $resume['education']}</span>
                         <span class="basic_msg_contents">{php echo $resume['work_status']}</span>
@@ -91,32 +91,30 @@
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-zhiwei"></use>
                         </svg>
-                        <span class="basic_msg_contents1" style="padding-left: 0">Java工程师</span>
-                        <span class="basic_msg_contents1">技术经理</span>
-                        <span class="basic_msg_contents1" style="border-right: none">Java程序员</span>
-
+                        {loop explode(",",$resume['hope_job']) $list}
+                        <span class="basic_msg_contents1">{$list}</span>
+                        {/loop}
                         <svg class="icon" aria-hidden="true" style="margin-left: 20px">
                             <use xlink:href="#icon-hangye"></use>
                         </svg>
-                        <span class="basic_msg_contents1" style="padding-left: 0">Java工程师</span>
-                        <span class="basic_msg_contents1">技术经理</span>
-                        <span class="basic_msg_contents1" style="border-right: none">Java程序员</span>
-
+                        {loop explode(",",$resume['trade']) $list}
+                        <span class="basic_msg_contents1">{$list}</span>
+                        {/loop}
                         <br/>
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-xinzi"></use>
                         </svg>
-                        <span class="basic_msg_contents2">5K-6K</span>
+                        <span class="basic_msg_contents2">{php echo $resume['salary']}</span>
 
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-quanzhi"></use>
                         </svg>
-                        <span class="basic_msg_contents2">全职</span>
+                        <span class="basic_msg_contents2">{php echo $resume['nature']}</span>
 
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-didian"></use>
                         </svg>
-                        <span class="basic_msg_contents2">北京</span>
+                        <span class="basic_msg_contents2">{php echo $resume['hope_place']}</span>
                     </div>
                 </div>
             </div>
@@ -214,7 +212,7 @@
                     </div>
                     <div class="resume_exp">
                         <div class="person_works relative">
-                            <video src="http://www.zhangxinxu.com/study/media/cat.mp4" width="500" height="300" controls autobuffer style="margin-left: 85px"></video>
+                            <video src="{php echo $resume['person_video']}" width="500" height="300" controls autobuffer style="margin-left: 85px"></video>
                         </div>
                     </div>
                 </div>
@@ -230,17 +228,11 @@
                     </div>
                     <div class="resume_exp">
                         <div class="person_works">
+                            {loop unserialize($resume['honor']) $list}
                             <div class="relative">
-                                <span class="certificate">2013年3月获得全国中小学生数学竞赛一等奖</span>
+                                <span class="certificate">{$list}</span>
                             </div>
-
-                            <div class="relative">
-                                <span class="certificate">2013年3月获得全国中小学生数学竞赛一等奖</span>
-                            </div>
-
-                            <div class="relative">
-                                <span class="certificate">2013年3月获得全国中小学生数学竞赛一等奖</span>
-                            </div>
+                            {/loop}
                         </div>
                     </div>
                 </div>
