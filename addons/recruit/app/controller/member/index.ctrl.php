@@ -71,6 +71,7 @@ elseif ($op=="login_deal"){
 
 //忘记密码
 elseif ($op=="forget_password"){
+
     include wl_template("member/forget_password");
 }
 
@@ -250,6 +251,9 @@ elseif($op=="company_detail"){
 
     if($_GPC['company_id']) {
         $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where id=".$_GPC['company_id']);
+        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where open=1 and uid=".$company['uid']);
+        $jobs_num = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs")." where uid=".$company['uid']);
+        $last_login_time = m("member")->last_login($company['uid']);
         include wl_template("member/company_pages");
         exit();
     }
@@ -262,20 +266,7 @@ elseif($op=="jobs_detail"){
         $jobs = pdo_fetch("select * from ".tablename(WL."jobs")." where id=".$_GPC['jobs_id']);
         $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$jobs['uid']);
         $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where jobs_id=".$_GPC['jobs_id']." and puid=".$_SESSION['uid']);
-        $last_login_time = pdo_fetch("select last_login_time from ".tablename(WL."members")." where id=".$jobs['uid']);
-//        echo $last_login_time['last_login_time'];exit();
-        $last_login_time = intval((time()-$last_login_time['last_login_time'])/86400);
-        if($last_login_time==1){
-            $last_login_time = "昨天";
-        }elseif ($last_login_time==2){
-            $last_login_time = "前天";
-        }elseif ($last_login_time>2 && $last_login_time<8){
-            $last_login_time = "3天前";
-        }elseif($last_login_time>7){
-            $last_login_time = "一周前";
-        }else{
-            $last_login_time = "今天";
-        }
+        $last_login_time = m("member")->last_login($jobs['uid']);
 
         $similar_jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$jobs['jobs_name']."%' and id<>".$jobs['id']);
 //        echo date()-date("Y-m-d",$last_login_time['last_login_time']);exit();

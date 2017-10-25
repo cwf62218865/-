@@ -185,9 +185,10 @@
                 <div class="gerenhj">
                     {loop $personal_works $id $list}
                     <div class="hj_item">
-
-                        <p class="hj_biaotiti">{php echo $list['person_workmsg']}</p>
-                        <img src="{php echo $list['thumb']}" class="hj_fm"/>
+                        <p class="hj_biaotiti">{$list['person_workmsg']}</p>
+                        {loop explode(",",$list['person_works']) $li}
+                        <img src="{$li}" class="hj_fm"/>
+                        {/loop}
                     </div>
                     {/loop}
                 </div>
@@ -203,17 +204,12 @@
                     <div class="line_title"></div>
                 </div>
                 <div class="bshang1">
-                    <!--{loop unserialize($resume['honor']) $list}-->
-                    <!--<label class="basic_style3 lineheight">{$list}</label>-->
-                    <!--{/loop}-->
+                    {loop $honor $id $list}
                     <div class="basic_style3 lineheight">
-                        <p class="jiangtitle"><span class="diandian bclolor2"></span>2013年3月获得全国中小学生数学竞赛一等奖</p>
-                        <img class="jiangpic" src="{WL_URL_ARES}images/person_img.png">
+                        <p class="jiangtitle"><span class="diandian bclolor6">{$list['certificate_content']}</span></p>
+                        <img class="jiangpic" src="{$list['certificate_img']}">
                     </div>
-                    <div class="basic_style3 lineheight">
-                        <p class="jiangtitle"><span class="diandian bclolor2"></span>2013年3月获得全国中小学生数学竞赛一等奖</p>
-                        <img class="jiangpic" src="{WL_URL_ARES}images/person_img.png">
-                    </div>
+                    {/loop}
                 </div>
             </div>
 
