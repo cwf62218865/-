@@ -134,6 +134,7 @@
                             {loop unserialize($resume['work_experience']) $id $list}
                             <div class="relative">
                                 <span class="exp_title">{php echo $list['company_name']}</span>
+<<<<<<< Updated upstream
                             </div>
 
                             <div class="exp_job">
@@ -146,6 +147,20 @@
                             </div>
 
                             <div class="exp_job">
+=======
+                            </div>
+
+                            <div class="exp_job">
+                                <span class="exp_jobleft">{php echo $list['job_name']}</span>
+                                <span class="exp_jobright">{php echo $list['job_starttime']} — {php echo $list['job_endtime']}</span>
+                            </div>
+
+                            <div class="exp_content">
+                                {php echo $list['job_content']}
+                            </div>
+
+                            <div class="exp_job">
+>>>>>>> Stashed changes
                                 <span class="exp_jobleft">离职原因：{php echo  $list['leave_reason']}</span>
                             </div>
                             {/loop}
@@ -198,6 +213,7 @@
                                 <div class="person_workmsg relative">
                                     <span class="hj_biaoti">{php echo $list['person_workmsg']}</span>
                                 </div>
+<<<<<<< Updated upstream
 
                             <div class="hj_item">
                                 <p class="hj_biaotiti">商务合作官网首页商务合作官网首页</p>
@@ -210,23 +226,25 @@
                                 <p class="hj_biaotiti">画册设计展示</p>
                                 <img src="{WL_URL_ARES}images/person_img.png" class="hj_fm"/>
                                 <img src="{WL_URL_ARES}images/person_img.png" class="hj_fm"/>
+=======
+>>>>>>> Stashed changes
                             </div>
+                            {/loop}
                         </div>
                     </div>
                 </div>
             </div>
 
-
-
-            <!--荣誉证书-->
-            <div class="basic_msg width670" style="margin-top: 50px;">
+<!--30秒个人视频-->
+            <div class="basic_msg width670" style="margin-top: 50px">
                 <div class="basic_msg_content">
-                    <div class="resume_title"  style="width: 670px;">
-                        <span >荣誉证书</span>
+                    <div class="resume_title">
+                        <span style="width: 150px;margin-left: 260px">30秒个人视频</span>
                     </div>
                     <div class="resume_exp">
                         <div class="person_works relative">
                             <video src="{php echo $resume['person_video']}" width="500" height="300" controls autobuffer style="margin-left: 85px"></video>
+<<<<<<< Updated upstream
                         </div>
                     </div>
                 </div>
@@ -251,6 +269,8 @@
                             <div class="basic_style3 lineheight">
                                 <p class="jiangtitle"><span class="diandian bclolor1"></span>2013年3月获得全国中小学生数学竞赛一等奖</p>
                             </div>
+=======
+>>>>>>> Stashed changes
                         </div>
                     </div>
                     <div class="resume_exp">
@@ -264,15 +284,20 @@
             </div>
 
 
-            <!--30秒个人视频-->
-            <div class="basic_msg width670 resume_video" style="margin-top: 50px;margin-bottom: 180px">
+
+            <!--荣誉证书-->
+            <div class="basic_msg width670" style="margin-top: 50px;margin-bottom: 180px">
                 <div class="basic_msg_content">
                     <div class="resume_title">
-                        <span style="width: 150px;margin-left: 260px">30秒个人视频</span>
+                        <span >荣誉证书</span>
                     </div>
                     <div class="resume_exp">
-                        <div class="person_works relative">
-                            <video src="http://www.zhangxinxu.com/study/media/cat.mp4" width="500" height="300" controls autobuffer style="margin-left: 85px"></video>
+                        <div class="person_works">
+                            {loop unserialize($resume['honor']) $list}
+                            <div class="relative">
+                                <span class="certificate">{$list}</span>
+                            </div>
+                            {/loop}
                         </div>
                     </div>
                 </div>

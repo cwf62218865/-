@@ -731,6 +731,14 @@
     background: #e5e5e5;
 }
 
+<<<<<<< Updated upstream
+=======
+.hope_jobbox{
+    width: 660px;
+    box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+>>>>>>> Stashed changes
 
 .hope_jobbox1{
     display: inline-block;
