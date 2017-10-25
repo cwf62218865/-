@@ -29,6 +29,7 @@ input {
     width: 100%;
     height: 80px;
     border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 30px;
 }
 .align_center{
     display: -webkit-flex;  /* 新版本语法: Chrome 21+ */

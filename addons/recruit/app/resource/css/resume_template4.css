@@ -1,7 +1,7 @@
 .basic_msg_con{
     width: 240px;
     height: auto;
-    min-height: 1230px;
+    min-height: 1180px;
     background: #1ac078;
     color: #FFFFFF;
     float: left;
@@ -231,12 +231,9 @@
 .gerenhj {
     width: 100%;
 }
-.hj_item:nth-of-type(odd) {
-    margin-right: 30px;
-}
+
 .hj_item {
     width: 320px;
-    float: left;
 }
 .hj_biaoti{
     margin-top: 10px;
