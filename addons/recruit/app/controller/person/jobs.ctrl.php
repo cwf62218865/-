@@ -9,11 +9,18 @@
 //修改个人职位订阅器
 if($op=="save_order_jobs"){
 
-    $data['jobs_name'] = check_pasre($_GPC['job_name'],"请输入职位名称");
-    $data['work_place'] = check_pasre($_GPC['gz_address'],"请选择工作地点");
-    $data['wage_range'] = check_pasre($_GPC['salery'],"请选择月薪");
-    $data['trade'] = check_pasre($_GPC['hy_district'],"请选择行业");
-    $data['order_time'] = check_pasre($_GPC['dy_pinlv'],"请选择订阅频率");
+//    $data['jobs_name'] = check_pasre($_GPC['job_name'],"请输入职位名称");
+//    $data['work_place'] = check_pasre($_GPC['gz_address'],"请选择工作地点");
+//    $data['wage_range'] = check_pasre($_GPC['salery'],"请选择月薪");
+//    $data['trade'] = check_pasre($_GPC['hy_district'],"请选择行业");
+//    $data['order_time'] = check_pasre($_GPC['dy_pinlv'],"请选择订阅频率");
+
+
+    $data['jobs_name'] = $_GPC['job_name'];
+    $data['work_place'] = $_GPC['gz_address'];
+    $data['wage_range'] = $_GPC['salery'];
+    $data['trade'] = $_GPC['hy_district'];
+    $data['order_time'] = $_GPC['dy_pinlv'];
     $order_jobs = pdo_fetch("select id from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
     if($order_jobs){
         $data['updatetime'] =time();

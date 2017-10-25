@@ -17,13 +17,13 @@ elseif ($op=="job_manage_release"){
 //        var_dump($jobs);exit();
     }
 
+    $company = m('company')->get_profile($_SESSION['uid']);
+    if(!$company['atlas'] ||!$company['introduce']){
+        include wl_template("company/company_nomessage");exit();
+    }
     include wl_template('company/job_manage_release');
 }
-
-
-elseif ($op=="show_base"){
-
-}elseif ($op=="step2_save"){
+elseif ($op=="step2_save"){
     $data['companyname'] =check_pasre($_POST['companyname'],"请输入公司名称");
     $data['license'] =check_pasre($_POST['license'],"请上传营业执照");
     $data['idcard1'] =check_pasre($_POST['idcard1'],"请上传法人身份证(正面)");

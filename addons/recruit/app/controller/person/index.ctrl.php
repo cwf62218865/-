@@ -27,6 +27,7 @@ if($op=="index"){
 //已投递职位列表
 elseif ($op=="send_resume"){
     $apply_jobs = m("resume")->jobs_apply($_SESSION['uid']);
+    $interview_jobs = m("resume")->jobs_interview($_SESSION['uid']);
 //    var_dump($apply_jobs);exit();
     include wl_template("person/send_resume");exit();
 }
@@ -104,7 +105,18 @@ elseif ($op=="send_resume_ajax"){
 
 //收藏职位列表
 elseif ($op=="collection_jobs_list"){
-    $collect_jobs = pdo_fetchall("select c.createtime,j.* from ".tablename(WL."collect_jobs")." as c,".tablename(WL."jobs")." as j where c.jobs_id=j.id and c.uid=".$_SESSION['uid']);
+    $collect_job = pdo_fetchall("select c.createtime,j.* from ".tablename(WL."collect_jobs")." as c,".tablename(WL."jobs")." as j where c.jobs_id=j.id and c.uid=".$_SESSION['uid']);
+    $collect_jobs = "";
+    foreach ($collect_job as $list){
+        $headimgurl = pdo_fetch("select headimgurl from ".tablename(WL."company_profile")." where uid=".$list['uid']);
+        $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and jobs_id=".$list['id']);
+        if(empty($jobs_apply)){
+            $list['post_status'] = 1;
+        }
+        $list['headimgurl'] = $headimgurl['headimgurl'];
+        $collect_jobs[] = $list;
+    }
+
 
     $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
 //    var_dump($order_jobs);exit();
@@ -116,8 +128,13 @@ elseif ($op=="collection_jobs_list"){
         $list['companyname'] = $company_profile['companyname'];
         $list['tag'] = $company_profile['tag'];
         $list['address'] = $company_profile['city'].$company_profile['city_erea'].$company_profile['district'];
+        $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and jobs_id=".$list['id']);
+        if(empty($jobs_apply)){
+            $list['post_status'] = 1;
+        }
         $order_jobs_list[] = $list;
     }
+
 
     include wl_template("person/person_collection");exit();
 }

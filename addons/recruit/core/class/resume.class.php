@@ -78,6 +78,32 @@ class resume{
         return $jobs;
     }
 
+    public function jobs_interview($uid,$page=1){
+        $limit = " limit ".(($page-1)*6).",6";
+
+        $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and puid=".$uid.$limit);
+//        var_dump($jobs_apply);exit();
+        $jobs = "";
+        foreach ($jobs_apply as $key=>$list){
+            $jobs[$key] = m('jobs')->get_jobs($list['jobs_id']);
+            $jobs[$key]['status'] = $list['status'];
+            $jobs[$key]['apply_id'] = $list['id'];
+            $jobs[$key]['direction'] = $list['direction'];
+            $jobs[$key]['createtime'] = $list['createtime'];
+            $jobs[$key]['offer'] = $list['offer'];
+            if($list['status']==3){
+                $jobs[$key]['interview'] = pdo_fetch("select * from ".tablename(WL.'interview')." where jobs_id=".$list['jobs_id']." and resume_id=".$list['resume_id']);
+            }
+            $company_profile = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$list['uid']);
+            $jobs[$key]['tag'] = $company_profile['tag'];
+            $jobs[$key]['retoate_x'] = $company_profile['retoate_x'];
+            $jobs[$key]['retoate_y'] = $company_profile['retoate_y'];
+            $jobs[$key]['city'] = $company_profile['city'];
+        }
+        return $jobs;
+    }
+
+
     /*
      * 获取多行简历
      */

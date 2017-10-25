@@ -67,6 +67,7 @@
     height: 320px;
     text-align: center;
     margin: 0 auto;
+    overflow: hidden;
 }
 .company_img img{
     height: 320px;

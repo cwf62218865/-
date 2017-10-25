@@ -35,33 +35,33 @@
 <!--基本信息-->
             <div class="basic_msg_con">
                     <div class="touxiang_con">
-                        <img class="picture_tx" src="{WL_URL_ARES}images/resume_tx1.png"/>
+                        <img class="picture_tx" src="{php echo $resume['headimgurl']}"/>
                     </div>
                 <div class="basic_miaoshu">
 
                     <div class="basic_jieshao">
-                        <div class="namew">张三</div>
+                        <div class="namew">{php echo $resume['fullname']}</div>
                         <div class="bshang1">
-                            <label class="basic_style1">男</label>
-                            <label class="basic_style">22岁</label>
-                            <label class="basic_style">党员</label>
-                            <label class="basic_style">本科</label>
-                            <label class="basic_style" style="padding-left: 0">1年工作经验</label>
-                            <label class="basic_style">正在找工作</label>
+                            <label class="basic_style1">{if $resume['sex']==1}男{else}女{/if}</label>
+                            <label class="basic_style">{php echo ceil(date('Y-m-d')-$resume['birthday'])}岁</label>
+                            <label class="basic_style">{php echo $resume['political_status']}</label>
+                            <label class="basic_style">{php echo $resume['education']}</label>
+                            <label class="basic_style" style="padding-left: 0">{if $resume['work_time']}{php echo $resume['work_time']}年工作经验{/if}</label>
+                            <label class="basic_style">{php echo $resume['work_status']}</label>
                         </div>
                         <div class="basic_msg_h">
                             <div class="title_top_con">
                                 <div class="title_top">基本信息</div>
                             </div>
-                            <div>姓名：<span class="basic_name">张三</span></div>
-                            <div>性别：<span class="basic_name">男</span></div>
-                            <div>民族：<span class="basic_name">汉族</span></div>
-                            <div>政治面貌：<span class="basic_name">团员</span></div>
-                            <div>籍贯：<span class="basic_name">重庆江北区</span></div>
-                            <div>出生年月：<span class="basic_name">1993年4月</span></div>
-                            <div>毕业学校：<span class="basic_name">中央美术学院</span></div>
-                            <div>学历：<span class="basic_name">本科</span></div>
-                            <div>专业：<span class="basic_name">环境艺术设计</span></div>
+                            <div>姓名：<span class="basic_name">{php echo $resume['fullname']}</span></div>
+                            <div>性别：<span class="basic_name">{if $resume['sex']==1}男{else}女{/if}</span></div>
+                            <div>民族：<span class="basic_name">{$resume['nation']}</span></div>
+                            <div>政治面貌：<span class="basic_name">{$resume['political_status']}</span></div>
+                            <div>籍贯：<span class="basic_name">{$resume['origin_place']}</span></div>
+                            <div>出生年月：<span class="basic_name">{$resume['birthday']}</span></div>
+                            <div>毕业学校：<span class="basic_name">{php echo $resume['arr_education']['school_name']}</span></div>
+                            <div>学历：<span class="basic_name">{php echo $resume['education']}</span></div>
+                            <div>专业：<span class="basic_name">{php echo $resume['arr_education']['edu_major']}</span></div>
                         </div>
                         <div class="basic_msg_h">
                             <div class="title_top_con">
@@ -71,20 +71,19 @@
                                 <svg class="icon bsc_ico1" aria-hidden="true">
                                     <use xlink:href="#icon-lianxidianhuajianli"></use>
                                 </svg>
-                                <p class="detailw">18787878787</p>
+                                <p class="detailw">{$resume['telphone']}</p>
                             </div>
                             <div class="basic_item email">
                                 <svg class="icon bsc_ico1" aria-hidden="true">
                                     <use xlink:href="#icon-lianxiyouxiangjianli"></use>
                                 </svg>
-                                <p class="detailw">18787878787</p>
+                                <p class="detailw">{$resume['email']}</p>
                             </div>
                             <div class="basic_item email">
                                 <svg class="icon bsc_ico1" aria-hidden="true">
                                     <use xlink:href="#icon-lianxidizhijianli"></use>
                                 </svg>
-                                <p class="detailw">上海市虹口区四川纳川区北路
-                                    1027号</p>
+                                <p class="detailw">{php echo $resume['city']}{php echo $resume['city_area']}{php echo $resume['address']}</p>
                             </div>
                         </div>
 
@@ -109,7 +108,7 @@
                     </div>
                     <div class="bbshang1 lineheight">
 
-                        我是一个对理想有着执着追求的人，坚信是金子总会发光。大学毕业后的工作，让我在文案策划方面有了很大的提高，文笔流畅。
+                        {$resume['introduce']}
 
                     </div>
                 </div>
@@ -129,27 +128,27 @@
                     </div>
                     <div class="lineheight">
                         <label class="basic_style2">期望职位：
-                            <span class="jlcontent">Java工程师</span>
-                            <span class="jlcontent">Java工程师</span>
-                            <span class="jlcontent">Java工程师</span>
+                            {loop explode(",",$resume['hope_job']) $list}
+                            <span class="jlcontent">{$list}</span>
+                            {/loop}
                         </label>
                     </div>
                     <div class="lineheight">
                         <label class="basic_style2">期望行业：
-                            <span class="jlcontent">互联网</span>
-                            <span class="jlcontent">移动软件</span>
-                            <span class="jlcontent">IT运营</span>
+                            {loop explode(",",$resume['trade']) $list}
+                            <span class="jlcontent">{$list}</span>
+                            {/loop}
                         </label>
                     </div>
                     <div class="lineheight">
                         <label class="basic_style2">期望薪资：
-                            <span class="jlcontent">5K-6K</span>
+                            <span class="jlcontent">{$resume['salary']}</span>
                         </label>
                         <label class="basic_style2 margin_l">期望工作性质：
-                            <span class="jlcontent">全职</span>
+                            <span class="jlcontent">{$resume['nature']}</span>
                         </label>
                         <label class="basic_style2 margin_l">期望工作地点：
-                            <span class="jlcontent">北京</span>
+                            <span class="jlcontent">{$resume['hope_place']}</span>
                         </label>
                     </div>
 
@@ -167,24 +166,19 @@
                         </span>
                         <div class="line_title"></div>
                     </div>
+                    {loop unserialize($resume['work_experience']) $id $list}
                     <div class="work_exprience">
-                        <div class="work_company">重庆大唐科技股份有限公司</div>
+                        <div class="work_company">{php echo $list['company_name']}</div>
                         <div class="work_itmes">
-                            <span class="zhiwu">助理工程师</span>
-                            <span class="shijian">2015.9-2017.11</span>
-                            <span class="lizhi">离职原因：<lable>实习结束</lable></span>
+                            <span class="zhiwu">{php echo $list['job_name']}</span>
+                            <span class="shijian">{php echo $list['job_starttime']} — {php echo $list['job_endtime']}</span>
+                            <span class="lizhi">离职原因：<lable>{php echo  $list['leave_reason']}</lable></span>
                         </div>
-                        <div class="work_jieshao">公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃</div>
-                    </div>
-                    <div class="work_exprience">
-                        <div class="work_company">重庆大唐科技股份有限公司</div>
-                        <div class="work_itmes">
-                            <span class="zhiwu">助理工程师</span>
-                            <span class="shijian">2015.9-2017.11</span>
-                            <span class="lizhi">离职原因：<lable>实习结束</lable></span>
+                        <div class="work_jieshao">
+                            {php echo $list['job_content']}
                         </div>
-                        <div class="work_jieshao">公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃</div>
                     </div>
+                    {/loop}
                 </div>
 
 
@@ -201,16 +195,19 @@
                         </span>
                         <div class="line_title"></div>
                     </div>
+                    {loop $edu_experience $id $list}
                     <div class="edu_exprience">
-                        <div class="work_company">重庆大学</div>
+                        <div class="work_company">{php echo $list['school_name']}</div>
                         <div class="work_itmes">
-                            <span class="zhuanye">计算机</span>
-                            <span class="xueli">本科</span>
-                            <span class="biyeshijian">2017届</span>
+                            <span class="zhuanye">{php echo $list['edu_major']}</span>
+                            <span class="xueli">{php echo $list['edu_district']}</span>
+                            <span class="biyeshijian">{if $list['edu_finish_time']}{php echo $list['edu_finish_time']}届{/if}</span>
                         </div>
-                        <div class="edu_jieshao">公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃儿给我色干不完噶我是个挖施工为啥改为按干部物色个丝袜给我公司UI及VI方面工作娃</div>
+                        <div class="edu_jieshao">
+                            {php echo $list['edu_content']}
+                        </div>
                     </div>
-
+                    {/loop}
                 </div>
 
             </div>

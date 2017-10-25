@@ -9,6 +9,18 @@
     <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
     <title>登录</title>
+    <script type="text/javascript">
+        var childWindow;
+        function toQzoneLogin()
+        {
+            childWindow = window.open("http://localhost/addons/recruit/core/common/Connect2.1/example/oauth/index.php","TencentLogin","width=450,height=320,menubar=0,scrollbars=1, resizable=1,status=1,titlebar=0,toolbar=0,location=1");
+        }
+
+        function closeChildWindow()
+        {
+            childWindow.close();
+        }
+    </script>
 </head>
 <body>
 {php include wl_template('common/header');}
@@ -32,21 +44,21 @@
         </div>
         <div class="foot_btns">
             <div class="con">
-                <span class="icons">
+                <a class="icons" onclick='toQzoneLogin()' href="#">
                     <svg class="icon" aria-hidden="true" style="color: #ffffff">
                         <use xlink:href="#icon-qq"></use>
                     </svg>
-                </span>
+                </a>
                 <a href="" class="icons left">
                     <svg class="icon" aria-hidden="true" style="color: #ffffff">
                         <use xlink:href="#icon-weixin"></use>
                     </svg>
                 </a>
-                <span class="icons left">
+                <a class="icons left" href="{$code_url}" target="_blank">
                     <svg class="icon" aria-hidden="true" style="color: #ffffff">
                         <use xlink:href="#icon-weibo"></use>
                     </svg>
-                </span>
+                </a>
                 <span class="icons left">
                     <svg class="icon" aria-hidden="true" style="color: #ffffff">
                         <use xlink:href="#icon-baidu"></use>
@@ -78,7 +90,6 @@
                 _this.closest(".general-input").nextAll(".chec_tip").html("");
             }
         });
-
 
 
         $("#login").on("click",function(){

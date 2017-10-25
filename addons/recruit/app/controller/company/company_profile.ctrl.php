@@ -9,8 +9,6 @@ defined('IN_IA') or exit('Access Denied');
 
 if($op=="index"){
     $company = m('company')->get_profile($_SESSION['uid']);
-//    var_dump($company);exit();
-//    include wl_template("company/company_message");exit();
     if(!$company['atlas'] ||!$company['introduce']){
         include wl_template("company/company_nomessage");
     }else{
@@ -62,7 +60,7 @@ elseif ($op=="save_introduce"){
         $introduce = $_POST['data']['companymsg_introduce'];
         $r = pdo_update(WL."company_profile",array('introduce'=>$introduce,'updatetime'=>time()),array('uid'=>$_SESSION['uid']));
         if($r){
-            call_back(1,"ok");
+            call_back(1,$introduce);
         }else{
             call_back(2,"no");
         }

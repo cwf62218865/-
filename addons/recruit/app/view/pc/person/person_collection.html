@@ -47,7 +47,7 @@
                         </div>
                         <div class="xian1"></div>
                         <div class="status">
-                            <div class="collection_logo"><img src="{WL_URL_ARES}images/logo.png"></div>
+                            <div class="collection_logo"><img src="{php echo $list['headimgurl']}"></div>
                             <div class="collection_companymsg">
                                 <span class="nowrap company_name">{php echo $list['companyname']}</span>
                                 <span class="nowrap company_address">{php echo $list['city']}</span>
@@ -56,8 +56,12 @@
 
                     </div>
                     <div class="collection_action" data-id="{php echo $list['uid']}">
+                        {if $list['post_status']}
                         <span class="left_actionbtn post_action" data-id="{php echo $list['id']}">投递简历</span>
-                        <span class="right_actionbtn  revoke_action remove_collect" data-id="{php echo $list['id']}">取消收藏</span>
+                        {else}
+                        <span class="left_actionbtn " data-id="{php echo $list['id']}" style="color: #bbb;">已投递</span>
+                        {/if}
+                        <span class="right_actionbtn  remove_collect" data-id="{php echo $list['id']}">取消收藏</span>
                     </div>
                 </div>
                 {/loop}
@@ -180,11 +184,17 @@
                     订阅成功，次日生效。<span class="color_main cur" id="alter_dy">修改订阅条件>></span>
                     <p class="why_zi" id="dy_job_name">{php echo $order_jobs['jobs_name']}</p>
                     <p class="font_grey margin_t">
+                        {if $order_jobs['work_place']}
                         <span class="dy_tiaojian" id="dy_dz">{php echo $order_jobs['work_place']}</span>|
+                        {/if}
+                        {if $order_jobs['trade']}
                         {loop explode(',',$order_jobs['trade']) $id $list}
                         <span class="dy_tiaojian" id="dy_hy{php echo $id+1;}">{php echo $list}</span>|
                         {/loop}
+                        {/if}
+                        {if $order_jobs['order_time']}
                         <span  class="dy_tiaojian" id="dy_pl">{php echo $order_jobs['order_time']}</span>|
+                        {/if}
                         <span  class="dy_tiaojian" id="dy_gz">{php echo $order_jobs['wage_range']}</span>
                     </p>
                 </div>
@@ -223,12 +233,19 @@
 
                     </div>
                     <div class="collection_action"  data-id="{php echo $list['uid']}">
+                        {if $list['post_status']}
                         <span class="left_actionbtn post_action" data-id="{php echo $list['id']}">投递简历</span>
+                        {else}
+                        <span class="left_actionbtn " data-id="{php echo $list['id']}" style="color: #bbb;">已投递</span>
+                        {/if}
                         <span class="right_actionbtn revoke_action" data-id="{php echo $list['id']}">收藏职位</span>
                     </div>
                 </div>
                 {/loop}
-                <span class="find_morejob">发现更多好职位>></span>
+
+                    {if count($order_jobs_list)>6}
+                        <span class="find_morejob">发现更多好职位>></span>
+                    {/if}
                 </div>
                 <!--订阅生效之后，显示订阅职位end-->
             </div>
@@ -280,32 +297,32 @@
             var salery_input=$("#salery").closest(".input_wai");
             var district_input=$("#hy_district").closest(".p1content");
             var pinlv_input=$("#dy_pinlv").closest(".p1content");
-
-            if($.trim(job_name)==""){
-                $("#job_name").closest(".general-input").css("border-color","#e23d46");
-                job_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","请输入职位名称"))
-                return;
-            }
-            if($.trim(gz_address)==""){
-                $("#gz_address").closest(".general-input").css("border-color","#e23d46");
-                address_input.nextAll(".chec_tip1").eq(0).find(".center_align").html(tipmsg("error","请输入工作地点"))
-                return;
-            }
-            if($.trim(salery)==""){
-                $("#salery").closest(".general-input").css("border-color","#e23d46");
-                salery_input.nextAll(".chec_tip1").eq(0).find(".right_align").html(tipmsg("error","请输入月薪"))
-                return;
-            }
-            if($.trim(hy_district)==""){
-                $("#hy_district").closest(".general-input").css("border-color","#e23d46");
-                district_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","请输入行业"))
-                return;
-            }
-            if($.trim(dy_pinlv)==""){
-                $("#dy_pinlv").closest(".general-input").css("border-color","#e23d46");
-                pinlv_input.nextAll(".chec_tip1").eq(0).find(".right_align").html(tipmsg("error","请输入订阅频率"))
-                return;
-            }
+//
+//            if($.trim(job_name)==""){
+//                $("#job_name").closest(".general-input").css("border-color","#e23d46");
+//                job_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","请输入职位名称"))
+//                return;
+//            }
+//            if($.trim(gz_address)==""){
+//                $("#gz_address").closest(".general-input").css("border-color","#e23d46");
+//                address_input.nextAll(".chec_tip1").eq(0).find(".center_align").html(tipmsg("error","请输入工作地点"))
+//                return;
+//            }
+//            if($.trim(salery)==""){
+//                $("#salery").closest(".general-input").css("border-color","#e23d46");
+//                salery_input.nextAll(".chec_tip1").eq(0).find(".right_align").html(tipmsg("error","请输入月薪"))
+//                return;
+//            }
+//            if($.trim(hy_district)==""){
+//                $("#hy_district").closest(".general-input").css("border-color","#e23d46");
+//                district_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","请输入行业"))
+//                return;
+//            }
+//            if($.trim(dy_pinlv)==""){
+//                $("#dy_pinlv").closest(".general-input").css("border-color","#e23d46");
+//                pinlv_input.nextAll(".chec_tip1").eq(0).find(".right_align").html(tipmsg("error","请输入订阅频率"))
+//                return;
+//            }
             //订阅设置之后，保存的效果，写入ajax中
             $("#dy_hy1").html("");
             $("#dy_hy2").html("");
@@ -335,6 +352,7 @@
                     var data=JSON.parse(data);
                     if(data.status==1){
                         $(".edit_dingyue").hide();
+                        $(".no_dingyue_list").hide();
                         $(".success_dingyue").show();
                     }
                 }
@@ -411,24 +429,23 @@
             })
         })
         
-//        //收藏职位
-//        $("body").on("click",".revoke_action",function () {
-//           var _this=$(this);
-//           $.ajax({
-//               type:"post",
-//               url:"{php echo app_url('person/index/post_resume')}",
-//               data:{
-//                   data_id:_this.attr("data-id"),
-//                    uid:_this.parent().attr('data-id')
-//               },
-//                success:function (data) {
-//                    var data = JSON.parse(data);
-//                    if(data.status==1){
-//                        _this.html("已收藏");
-//                    }
-//                }
-//           })
-//        })
+        //收藏职位
+        $("body").on("click",".revoke_action",function () {
+           var _this=$(this);
+           $.ajax({
+               type:"post",
+               url:"{php echo app_url('person/collection/collection_jobs')}",
+               data:{
+                   jobs_id:_this.attr("data-id")
+               },
+                success:function (data) {
+                    var data = JSON.parse(data);
+                    if(data.status==1){
+                        _this.html("已收藏").removeClass("revoke_action").unbind("click");
+                    }
+                }
+           })
+        })
 
 
         //取消收藏
