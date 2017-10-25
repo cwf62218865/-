@@ -371,33 +371,33 @@
                 var endtime_border=$(".job_endtime").eq(i).closest(".cwfre3inputright");
 
                 if(company_name==""){
-                    name_input.css("border-color","#e23d46");
-                    name_input.next().next().find(".left_align").html(tipmsg("error","请输入公司名称"));
-                    return false;
-                }
-                if(job_name==""){
-                    job_input.css("border-color","#e23d46");
-                    job_input.next().find(".right_align").html(tipmsg("error","请输入职位"));
-                    return false;
+
+                }else{
+                    if(job_name==""){
+                        job_input.css("border-color","#e23d46");
+                        job_input.next().find(".right_align").html(tipmsg("error","请输入职位"));
+                        return false;
+                    }
+
+                    if(leave_reason==""){
+                        leave_input.css("border-color","#e23d46");
+                        leave_input.next().find(".left_align").html(tipmsg("error","请输入离职原因"));
+                        return false;
+                    }
+
+                    if(job_starttime==""){
+                        starttime_input.css("border-color","#e23d46");
+                        starttime_border.next().next().find(".left_align").html(tipmsg("error","请选择开始时间"));
+                        return false;
+                    }
+
+                    if(job_endtime==""){
+                        endtime_input.css("border-color","#e23d46");
+                        endtime_border.next().find(".right_align").html(tipmsg("error","请选择结束时间"));
+                        return false;
+                    }
                 }
 
-                if(leave_reason==""){
-                    leave_input.css("border-color","#e23d46");
-                    leave_input.next().find(".left_align").html(tipmsg("error","请输入离职原因"));
-                    return false;
-                }
-
-                if(job_starttime==""){
-                    starttime_input.css("border-color","#e23d46");
-                    starttime_border.next().next().find(".left_align").html(tipmsg("error","请选择开始时间"));
-                    return false;
-                }
-
-                if(job_endtime==""){
-                    endtime_input.css("border-color","#e23d46");
-                    endtime_border.next().find(".right_align").html(tipmsg("error","请选择结束时间"));
-                    return false;
-                }
 
                 job_data[i-1]["company_name"]=company_name;
                 job_data[i-1]["job_name"]=job_name;

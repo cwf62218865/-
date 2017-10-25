@@ -57,7 +57,7 @@
                     <div class="chec_tip"></div>
                     <div class=" relative general-select left_align city1">
                         <label class="general-input relative general-select">
-                            <input type="text" readonly="" id="city" value="{if $resume}{php echo $resume['city']}{else}重庆市{/if}">
+                            <input type="text" readonly="" id="city" placeholder="居住城市" value="{if $resume}{php echo $resume['city']}{/if}">
                             <svg class="icon inputicon" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
                             </svg>
@@ -67,7 +67,7 @@
                     </div>
                     <div class=" relative general-select district1">
                         <label class="general-input relative general-select" >
-                            <input type="text" readonly="" id="city_area" value="{if $resume}{php echo $resume['city_area']}{else}渝中区{/if}">
+                            <input type="text" readonly="" id="city_area" placeholder="区域" value="{if $resume}{php echo $resume['city_area']}{/if}">
                             <svg class="icon inputicon" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
                             </svg>
@@ -163,11 +163,7 @@
                    var data=JSON.parse(data);
                    if(data.status==1){
                        //location = location;
-                       var html = '<img src="'+data.others+'">'+
-                               ' <div class="img_con">'+
-                               '<svg class="icon icon2" aria-hidden="true">'+
-                               '<use xlink:href="#icon-xiangji"></use>'+
-                               '</svg></div>';
+                       var html = '<img src="'+data.others+'">';
                        $(".resume_reg1headimgbox").html(html);
 //                       $(".img_tx img").eq(0).attr("src",data.others);
                    }
