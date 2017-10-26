@@ -81,7 +81,7 @@
                     </span>
                        </div>
 
-                       <div class="font666 company_introduce wrap" >{php echo $company['introduce']}</div>
+                       <div class="font666 company_introduce wrap" >{php echo $company['slogan']}</div>
 
                        <div class="font999" style="margin-top: 10px">
                            <span class="basic_msg_contents1">{php echo $company['nature']}</span>
@@ -101,7 +101,7 @@
                    <div style="margin-top: 80px;width: 100%;text-align: center">
                    <span class="company_logo_upload">
                        <img src="{php echo $company['headimgurl']}">
-                       <span>
+                       <span style="background-color: rgba(0, 0, 0, 0.4);">
                            <svg class="icon" aria-hidden="true">
                                <use  xlink:href="#icon-xiangji"></use>
                            </svg>
@@ -109,7 +109,7 @@
                    </span>
                        <div class="fontbbb" style="margin-top: 16px">*Logo尺寸要求 200*200，图片大小在2M以内</div>
                        <input type="file" id="company_logo"  accept="image/*"  style="display: none">
-                       <input type="text" name="company_logo" style="display: none" class="company_logo">
+                       <input type="hidden" name="company_logo" value="{php echo $company['headimgurl']}"  class="company_logo">
                    </div>
 
                    <!--基本信息-->
@@ -117,13 +117,13 @@
                        <div>
                            <span class="color666 companymsg_name">公司全称</span>
                            <span style="line-height: 48px;margin-left: 20px">{php echo $company['companyname']}</span>
-                       <span class="relative change_company_name">
-                           <span class="edit_company_name">修改公司名称</span>
-                           <span class="edit_name_tips">
-                               修改公司名称，需要重新上传营业执照和法人身份证，并提供法人签字、公司盖章的修改协议照片。
-                               <a href="#" style="color: #09c">前往修改</a>
-                           </span>
-                       </span>
+                       <!--<span class="relative change_company_name">-->
+                           <!--<span class="edit_company_name">修改公司名称</span>-->
+                           <!--<span class="edit_name_tips">-->
+                               <!--修改公司名称，需要重新上传营业执照和法人身份证，并提供法人签字、公司盖章的修改协议照片。-->
+                               <!--<a href="#" style="color: #09c">前往修改</a>-->
+                           <!--</span>-->
+                       <!--</span>-->
 
                        </div>
                    </div>
@@ -222,7 +222,7 @@
                        <div class=" person_changes_left" style="margin-top: 20px">
                            <span class="color666  companymsg_name" style="width: 78px;margin-left: -10px">公司slogan</span>
                            <label class="general-input relative" style="width: 580px;">
-                               <input type="text" placeholder="请输入公司一句话广告语（30字以内）"  style="width: 540px;" name="slogan" value="{php echo $company['slogan']}">
+                               <input type="text" maxlength="30" placeholder="请输入公司一句话广告语（30字以内）"  style="width: 540px;" name="slogan" value="{php echo $company['slogan']}">
                            </label>
                        </div>
 
@@ -252,8 +252,14 @@
 
                     <div  id="introduces_msg">
                         <div class="introduces">
-                           {php echo $company['introduce']}
+                            {if mb_strlen($company['introduce'],'utf-8')<300}
+                            {php echo $company['introduce']}
+                            {else}
+                            {php echo mb_substr($company['introduce'],0,300,'utf-8')}...
+                            {/if}
+
                         </div>
+                        <input type="hidden" value="{php echo $company['introduce']}" id="introduces">
                         <span class="showoehideall">
                             <span>显示全部</span>
                             <svg class="icon" aria-hidden="true" style="font-size: 18px">
@@ -477,7 +483,7 @@
                <div class=" person_changes_left" id="welfare_msgbox" style="margin-top: 40px;display: none">
                    <span class="color666  redxing companymsg_name">福利标签</span>
                    <div class="company_welfare">
-                       {if $company['tag']}
+                       <input type="hidden" id="welfarelabel" value="{php echo $company['tag']}">
                        <span>五险</span>
                        <span>住房公积金</span>
                        <span>带薪年假</span>
@@ -488,14 +494,6 @@
                        <span>有偿加班</span>
                        <span>股权奖励</span>
                        <span>交通补贴</span>
-                       {loop array_filter(explode(",",$company['tag'])) $list}
-                       <span class="welfare_choice">
-                               {php echo $list}
-                                <svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan"></use></svg>
-                       </span>
-                       {/loop}
-
-                       {/if}
                    </div>
                    <div style="margin-left: 58px">
                        <div class="chioce_template_job_search" style="margin-top: 0">
@@ -528,7 +526,7 @@
 
 
                <!--公司网站-->
-               <div style="margin-top: 60px">
+               <div style="margin-top: 40px">
                    <div class="company_title relative">
                        <span >公司网站</span>
                         <span class="addandeditbtn" style="right: auto;top: 2px">
@@ -635,7 +633,7 @@
             map.centerAndZoom(point, 16);
             map.addOverlay(new BMap.Marker(point));
         }else{
-            alert("您选择地址没有解析到结果!");
+            hint("error","您选择地址没有解析到结果!");
         }
     }, "{php echo $company['city']}");
 
@@ -651,8 +649,8 @@
         }
 
         var map1 = new BMap.Map("l-map");
-        map1.centerAndZoom("重庆市",18);                   // 初始化地图,设置城市和地图级别。
-
+        map1.centerAndZoom(point, 16);                   // 初始化地图,设置城市和地图级别。
+        map1.addOverlay(new BMap.Marker(point));
         var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
                 {"input" : "suggestId"
                     ,"location" : map1
@@ -749,6 +747,8 @@
                                 $("#company_logo").next().val(data1.content)
                                 $(".company_logo_upload span").css("background-color","rgba(0,0,0,0.4)");
                                 $(".company_logo").val(data1.content);
+                            }else{
+                                hint("error",data.content);
                             }
                         }
                     })
@@ -764,8 +764,19 @@
 
     //修改公司基本信息
     $.fromdata("#basic_msgbox","{php echo app_url('company/company_profile/save_base')}","#basic_msgbox .savebtn",function(data){
-        //do something
-        location = location;
+        var data=JSON.parse(data);
+        if(data.status==1){
+            $("#basic_msg").show();
+            $("#basic_msgbox").hide();
+            $(".company_logo img").attr("src",$("input[name=company_logo]").val());
+            $(".company_introduce").html($("input[name=slogan]").val());
+            $(".basic_msg_contents1").eq(0).html($("input[name=company_nature]").val());
+            $(".basic_msg_contents1").eq(1).html($("input[name=company_scale]").val());
+            $(".basic_msg_contents1").eq(2).html($("input[name=company_industry]").val());
+            $(".basic_msg_contents1").eq(3).html($("input[name=company_area]").val());
+        }else{
+            hint("error",data.content);
+        }
     });
 
 
@@ -775,7 +786,12 @@
         if(data.status==1){
             $("#introduces_msgbox").hide();
             $("#introduces_msg").show();
-            $("#introduces_msg .introduces").html(data.content);
+            $("#introduces").val($("#companymsg_introduce").val());
+            $(".introduces").html($("#companymsg_introduce").val());
+            $(".showoehideall").find("span").eq(0).html("收起内容");
+            $(".showoehideall").find("use").eq(0).attr("xlink:href","#icon-shangjiantou");
+        }else{
+            hint("error",data.content);
         }
     });
 
@@ -784,6 +800,8 @@
         var data=JSON.parse(data);
         if(data.status==1){
             location = location;
+        }else{
+            hint("error",data.content);
         }
     });
 
@@ -805,17 +823,39 @@
 
     //修改公司地址
     $.fromdata("#company_addressbox","{php echo app_url('company/company_profile/save_address')}","#company_addressbox .savebtn",function(data){
-        //do something
+        var data=JSON.parse(data);
+        if(data.status==1){
+            location = location;
+        }else{
+            hint("error",data.content);
+        }
     });
 
     //修改福利标签
     $.fromdata("#welfare_msgbox","{php echo app_url('company/company_profile/save_tag')}","#welfare_msgbox .savebtn",function(data){
-        //do something
+        var data=JSON.parse(data);
+        if(data.status==1){
+            $("#welfare_msg").show();
+            $("#welfare_msgbox").hide();
+            var welfarelabel=$("#company_welfare").val().split(",");
+            var welfarehtml="";
+            for(var i in welfarelabel){
+                welfarehtml+="<span>"+welfarelabel[i]+"</span>";
+            }
+            $("#welfare_msg").html(welfarehtml);
+        }else{
+            hint("error",data.content);
+        }
     });
 
     //修改公司网站
     $.fromdata("#website_msgbox","{php echo app_url('company/company_profile/save_website')}","#website_msgbox .savebtn",function(data){
-        //do something
+        var data=JSON.parse(data);
+        if(data.status==1){
+            location = location;
+        }else{
+            hint("error",data.content);
+        }
     });
 
 

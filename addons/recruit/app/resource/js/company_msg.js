@@ -14,12 +14,12 @@ $(document).ready(function(){
 })
 
 //显示全部公司介绍
-var introducecontent=$(".introduces").eq(0).html();
-var introducecontentlength=introducecontent.length;
-if(introducecontentlength>300){
-    $(".introduces").eq(0).html(introducecontent.toString().substring(0,300)+"...");
-}
+//var introducecontentlength=introducecontent.length;
+//if(introducecontentlength>300){
+//    $(".introduces").eq(0).html(introducecontent.toString().substring(0,300)+"...");
+//}
  $(".showoehideall").on("click",function(){
+     var introducecontent=$("#introduces").val();
      if($(this).find("span").eq(0).html()=="显示全部"){
          $(".introduces").eq(0).html(introducecontent);
          $(this).find("span").eq(0).html("收起内容");
@@ -82,6 +82,24 @@ $("#company_addressbox .cancelbtn").on("click",function(){
 $(".addandeditbtn").eq(4).on("click",function(){
     $("#welfare_msg").hide();
     $("#welfare_msgbox").show();
+    var welfarelabel=$("#welfarelabel").val().split(",");
+    for(var i in welfarelabel){
+        var length=$(".company_welfare span").length;
+        $(".company_welfare span").each(function(){
+            var _this=$(this);
+            if(_this.html()==welfarelabel[i]){
+                _this.html(welfarelabel[i]+'<svg class="icon" aria-hidden="true"><use  xlink:href="#icon-shan"></use></svg>').addClass("welfare_choice")
+            }else{
+                length-=1;
+            }
+        });
+        if(length==0){
+            $(".company_welfare").append('<span class="welfare_choice">'+
+                welfarelabel[i]+
+                '<svg class="icon" aria-hidden="true"><use  xlink:href="#icon-shan"></use></svg>'+
+                '</span>')
+        }
+    }
 });
 
 $("#welfare_msgbox .cancelbtn").on("click",function(){
