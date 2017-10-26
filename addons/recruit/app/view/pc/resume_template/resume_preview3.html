@@ -236,17 +236,12 @@
                     <div class="line_title"></div>
                 </div>
                 <div class="bshang1">
+                    {loop $honor $id $list}
                     <div class="basic_style3 lineheight">
-                        <p class="jiangtitle"><span class="diandian bclolor3"></span>2013年3月获得全国中小学生数学竞赛一等奖</p>
-                        <img class="jiangpic" src="{WL_URL_ARES}images/person_img.png">
+                        <p class="jiangtitle"><span class="diandian bclolor6">{$list['certificate_content']}</span></p>
+                        <img class="jiangpic" src="{$list['certificate_img']}">
                     </div>
-                    <div class="basic_style3 lineheight">
-                        <p class="jiangtitle"><span class="diandian bclolor3"></span>2013年3月获得全国中小学生数学竞赛一等奖</p>
-                        <img class="jiangpic" src="{WL_URL_ARES}images/person_img.png">
-                    </div>
-                    <!--{loop unserialize($resume['honor']) $list}-->
-                    <!--<p class="basic_style3 lineheight">{$list}</p>-->
-                    <!--{/loop}-->
+                    {/loop}
                 </div>
             </div>
 

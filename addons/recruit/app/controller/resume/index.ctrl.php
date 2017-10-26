@@ -29,6 +29,12 @@ if($_GPC['uid']){
     }else{
         $personal_works = array();
     }
+
+    if(trim($resume['honor'])){
+        $honor = unserialize($resume['honor']);
+    }else{
+        $honor = array();
+    }
 }
 if($op=="index"){
 //    $data['template'] = "扁平化风格";
@@ -37,6 +43,7 @@ if($op=="index"){
 //    $data['template'] = "水墨风格";
 //    $data['createtime'] = time();
 //    insert_table($data,WL."resume_template");
+//    var_dump($honor);exit();
     if($_POST['template_id'] && $_SESSION['utype']==1){
         $r = pdo_update(WL."resume",array('template_id'=>$_GPC['template_id']),array('uid'=>$_SESSION['uid']));
         call_back(1,"ok");
