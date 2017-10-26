@@ -123,12 +123,15 @@
     line-height: 130px;
     overflow: hidden
 }
-.resume_manage_header img{
+.resume_manage_header1{
     width: 120px;
     height: 120px;
-    margin-top: 5px;
-    /*margin-left: 5px;*/
+    margin: 5px;
     border-radius: 50%;
+    overflow: hidden;
+}
+.resume_manage_header1 img{
+    width: 100%;
 }
 .resume_manage_headerimg{
     display: inline-block;

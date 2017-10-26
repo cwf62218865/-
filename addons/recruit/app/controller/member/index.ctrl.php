@@ -83,7 +83,7 @@ elseif ($op=="pwd_bytel"){
         if($member){
             if($_POST['yanzheng']==$_SESSION['phone_code']){
                 $_SESSION['uid'] = $member['id'];
-                call_back(1,app_url("member/login/set_password"));
+                call_back(1,app_url("member/index/set_password"));
             }else{
                 call_back(2,"验证码不正确");
             }
@@ -127,7 +127,7 @@ elseif ($op=="bind_account"){
     include wl_template("member/create_bind_account");exit();
 }
 
-//发送二维码
+//发送验证码
 elseif ($op=="send_code"){
 
     wl_load()->model('sms');

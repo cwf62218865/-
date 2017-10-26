@@ -75,7 +75,7 @@
 }
 .welfare{
     margin-top: 40px;
-
+    margin-left: 50px;
 }
 .welfare span{
     display: inline-block;
@@ -85,11 +85,9 @@
     border: 1px solid #eee;
     border-radius: 13px;
     margin-right: 12px;
+    margin-bottom: 20px;
     color: #666;
     font-size: 12px;
-}
-.welfare span:first-child{
-    margin-left: 50px;
 }
 .website{
     display: inline-block;
@@ -243,6 +241,8 @@
     display: inline-block;
     width: 160px;
     padding: 8px;
+    height: 19px;
+    line-height: 19px;
     border: 1px solid #eee;
     background-color: #fff;
 }

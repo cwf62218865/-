@@ -25,7 +25,7 @@ class jobs{
         }
         $page = ($data['data']['page'] -1)*6;
         $wheresql = " where 1=1 ";
-        $orderby = " order by open desc";
+        $orderby = " order by addtime desc,open desc";
         if($data['data']['job_nature'] && $data['data']['job_nature']<>"不限"){
             $wheresql .=" and work_nature='".$data['data']['job_nature']."' ";
         }

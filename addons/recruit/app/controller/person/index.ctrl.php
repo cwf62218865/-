@@ -32,6 +32,7 @@ elseif ($op=="send_resume"){
     include wl_template("person/send_resume");exit();
 }
 
+//投递管理投递记录分页
 elseif ($op=="send_resume_ajax"){
     if($_POST['page']){
         $apply_jobs = m("resume")->jobs_apply($_SESSION['uid'],$_POST['page']);
@@ -103,6 +104,67 @@ elseif ($op=="send_resume_ajax"){
     }
 }
 
+//投递管理面试邀请分页
+elseif ($op=="invite_ajax"){
+    if($_POST['page']){
+        $apply_jobs = m("resume")->jobs_interview($_SESSION['uid'],$_POST['page']);
+
+        $html = "";
+        foreach ($apply_jobs as $list){
+            $tag = "";
+            foreach (array_filter(explode(",",$list['tag'])) as $li){
+                $tag .="<span class=\"fuli\">$li</span>";
+            }
+
+
+            $html .= "<div class=\"list_item\">
+                    <div class=\"item_con\">
+                        <div class=\"hang1\">
+                            <a class=\"jobname nowrap\" href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."'>{$list['jobs_name']}</a>
+                            <a class=\"salary\">{$list['wage_min']}-{$list['wage_max']}k</a>
+                        </div>
+                        <div class=\"hang2\">
+                            <a class=\"company nowrap\" href='".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."'>{$list['companyname']}</a>
+                            <span class=\"address nowrap\">{$list['city']}</span>
+                            <span class=\"date\">".date('Y-m-d',$list['updatetime'])."</span>
+                        </div>
+                        <div class=\"hang3\">
+                                                        {$tag}
+                                                    </div>
+                        <div class=\"xian1\"></div>
+                        <div class=\"status\">
+                            <p class=\"time\">
+                                <svg class=\"icon icon_time\" aria-hidden=\"true\">
+                                    <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#icon-shijian\"></use>
+                                </svg>
+                                <span>时间：{$list['interview']['interview_time']}</span>
+                            </p>
+                            <p class=\"review_tel\">
+                                <svg class=\"icon icon_tel\" aria-hidden=\"true\">
+                                    <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#icon-lianxiren\"></use>
+                                </svg>
+                                <span>联系人：{$list['interview']['linker']}</span>
+                            </p>
+                            <p class=\"review_address\">
+                                <svg class=\"icon icon_address\" aria-hidden=\"true\">
+                                    <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#icon-didian\"></use>
+                                </svg>
+                                <span>地址：{$list['interview']['address']}</span>
+                            </p>
+                            <div class=\"btn_ditu\"></div>
+                        </div>
+                    </div>
+                                        <div class=\"review_statas\">
+                        <div class=\"tongyi\" data-id=\"{$list['apply_id']}\">同意面试</div>
+                        <div class=\"jujue\" data-id=\"{$list['apply_id']}\">拒绝面试</div>
+                    </div>
+                                    </div>";
+        }
+
+        call_back(1,$html);
+    }
+}
+
 //收藏职位列表
 elseif ($op=="collection_jobs_list"){
     $collect_job = pdo_fetchall("select c.createtime,j.* from ".tablename(WL."collect_jobs")." as c,".tablename(WL."jobs")." as j where c.jobs_id=j.id and c.uid=".$_SESSION['uid']);
@@ -119,7 +181,7 @@ elseif ($op=="collection_jobs_list"){
 
 
     $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
-//    var_dump($order_jobs);exit();
+    $differ_time = (time()-$order_jobs['updatetime'])/86400;
     $order_jobs_lists = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$order_jobs['jobs_name']."%'");
     $order_jobs_list = "";
     foreach ($order_jobs_lists as $list){
