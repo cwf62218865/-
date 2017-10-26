@@ -708,6 +708,7 @@
 .hj_fm{
     margin-bottom: 20px;
     display: block;
+    width: 420px;
 }
 .hj_fm:last-child{
     margin-bottom: 40px;
@@ -717,7 +718,7 @@
 }
 .jiangpic{
     margin-bottom: 40px;
-    width: 320px;
+    width: 420px;
     overflow: hidden;
 }
 .jiangtitle .diandian{

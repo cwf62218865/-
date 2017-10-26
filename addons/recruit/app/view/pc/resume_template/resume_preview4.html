@@ -224,17 +224,12 @@
                     <div class="line_title1"></div>
                 </div>
                 <div class="gerenhj">
+                    {loop $personal_works $id $list}
                     <div class="hj_item">
-                        <p class="hj_biaotiti">商务合作官网首页商务合作官网首页</p>
-                        <img src="{WL_URL_ARES}images/person_img.png" class="hj_fm"/>
-                        <img src="{WL_URL_ARES}images/person_img.png" class="hj_fm"/>
-                        <img src="{WL_URL_ARES}images/person_img.png" class="hj_fm"/>
+                        <p class="hj_biaotiti">{php echo $list['person_workmsg']}</p>
+                        <img src="{php echo $list['thumb']}" class="hj_fm"/>
                     </div>
-                    <div class="hj_item">
-                        <p class="hj_biaotiti">画册设计展示</p>
-                        <img src="{WL_URL_ARES}images/person_img.png" class="hj_fm"/>
-                        <img src="{WL_URL_ARES}images/person_img.png" class="hj_fm"/>
-                    </div>
+                    {/loop}
                 </div>
             </div>
 
@@ -252,17 +247,12 @@
             </div>
 
 
-            <div class="basic_style3 lineheight">
-                <p class="jiangtitle"><span class="diandian bclolor4"></span>2013年3月获得全国中小学生数学竞赛一等奖</p>
-                <img class="jiangpic" src="{WL_URL_ARES}images/person_img.png">
-            </div>
-            <div class="basic_style3 lineheight">
-                <p class="jiangtitle"><span class="diandian bclolor4"></span>2013年3月获得全国中小学生数学竞赛一等奖</p>
-                <img class="jiangpic" src="{WL_URL_ARES}images/person_img.png">
-            </div>
-            <div class="basic_style3 lineheight">
-                <p class="jiangtitle"><span class="diandian bclolor4"></span>2013年3月获得全国中小学生数学竞赛一等奖</p>
-            </div>
+                {loop $honor $id $list}
+                <div class="basic_style3 lineheight">
+                    <p class="jiangtitle"><span class="diandian bclolor6">{$list['certificate_content']}</span></p>
+                    <img class="jiangpic" src="{$list['certificate_img']}">
+                </div>
+                {/loop}
 
             </div>
 

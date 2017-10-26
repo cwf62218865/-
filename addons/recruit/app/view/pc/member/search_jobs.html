@@ -15,7 +15,7 @@
 <div class="width1200 p1content">
     <div class="search_nav">
         <div>
-        <input type="text" class="input_search" placeholder="请输入搜索的职位">
+        <input type="text" class="input_search" id="search_jobs" placeholder="请输入搜索的职位">
         <button class="btn_search cur" type="button">搜索</button>
         </div>
         <div class="search_items">
@@ -143,7 +143,7 @@
             </div>
 
             <!--职位列表start---------------------------------------------------------------------------->
-            <div class="resume_content" style="display: inline-block;height: 1116px">
+            <div class="resume_content" style="display: inline-block">
                 {loop $jobs $list}
                 <div class="list_item">
                     <div class="item_con">
@@ -184,6 +184,7 @@
                 {/loop}
 
             </div>
+            <div style="clear: both"></div>
             <div id="pages_btnbox">
 
             </div>
@@ -309,12 +310,13 @@
         //热门职位
         $(".job_item").on("click",function () {
             option.job_name=$(this).html();
-            option.job_address="";
-            option.job_address1="";
-            option.job_education="";
-            option.job_nature="";
-            option.job_money="";
-            option.job_order="";
+            $("#search_jobs").val($(this).html());
+//            option.job_address="";
+//            option.job_address1="";
+//            option.job_education="";
+//            option.job_nature="";
+//            option.job_money="";
+//            option.job_order="";
             option.page=1;
             layer(option);
         });
@@ -323,6 +325,7 @@
         //工作地点
         $(".gzdd .city_item").on("click",function () {
             option.job_address=$(this).html();
+            option.job_address1="";
             option.page=1;
             layer(option);
         });
@@ -359,7 +362,6 @@
         //排序方式
         $(".select_item1").on("click",function () {
             option.job_order=$(this).html();
-            option.page=1;
             layer(option);
         });
 
@@ -450,9 +452,17 @@
                         var page_num = Math.ceil(data.others/6);
                         $(".total_page").html(page_num);
                         $("#pages_btnbox").html(pages(option.page,page_num));
-                        if(option.page==1){
+                        if(page_num==0){
                             $(".yemabtn .yema").eq(0).removeClass("slected");
-                            $(".yemabtn .yema").eq(1).addClass("slected");
+                            $(".yemabtn .yema").eq(1).removeClass("slected");
+                        }else if(option.page==1){
+                            $(".yemabtn .yema").eq(0).removeClass("slected");
+                            if(option.page==page_num){
+                                $(".yemabtn .yema").eq(1).removeClass("slected");
+                            }else{
+                                $(".yemabtn .yema").eq(1).addClass("slected");
+                            }
+
                         }else if(option.page==page_num){
                             $(".yemabtn .yema").eq(0).addClass("slected");
                             $(".yemabtn .yema").eq(1).removeClass("slected");
@@ -508,7 +518,7 @@
                     }
 
                 }
-                console.log("shan...."+arr_select);
+//                console.log("shan...."+arr_select);
                 //删除需要请求
 //                $.ajax({
 //                    url:"",
@@ -522,6 +532,12 @@
 //                    }
 //                })
 
+                for(var key in option){
+                   if(option[key]== value){
+                       option[key]=""
+                   }
+                };
+                layer(option);
             })
 
 

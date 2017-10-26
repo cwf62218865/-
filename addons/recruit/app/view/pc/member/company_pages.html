@@ -60,33 +60,15 @@
     </style>
 </head>
 <body bgcolor="#f4f4f4">
-<div class="header" style="background: #ffffff">
-    <div class="width1200 align_center" style="padding-top: 14px;justify-content: space-between">
-        <img src="{WL_URL_ARES}images/logo.png"/>
-        <div style="height: 52px;line-height: 52px"><span class="city">全国</span><span class="changecity">[切换]</span></div>
-        <div class="menu">
-            <a href="#" class="menuactive">首页</a>
-            <a  href="#">找工作</a>
-            <a  href="#">实习/兼职</a>
-            <a  href="#">求职保镖</a>
-            <a  href="#">职场信用</a>
-            <a  href="#">就业大数据</a>
-        </div>
-        <div class="login">
-            <a href="#">登陆</a>
-            <a href="#">注册</a>
-            <a href="#">企业入口</a>
-        </div>
-    </div>
-</div>
+{php include wl_template('common/header');}
 <div class="width1200 p1content">
 
     <!--公司基本信息-->
     <div id="basic_msg">
-        <span class="company_logo"><img src="{WL_URL_ARES}images/qiyelogo.png"></span>
+        <span class="company_logo"><img src="{php echo $company['headimgurl']}"></span>
         <div class="company_basacmsg">
             <div class="relative">
-                <span class="company_name">重庆大唐科技股份有限公司</span>
+                <span class="company_name">{php echo $company['companyname']}</span>
                 <span class="biaoqian_ico1">
                         <svg class="icon renzheng">
                             <use xlink:href="#icon-renzheng"></use>
@@ -102,18 +84,16 @@
                 <span class="btn_xiny color_main cur">查看该公司信用</span>
             </div>
 
-            <div class="font666 company_introduce wrap" >提供最鲜活的城市资讯，记录最有温暖的城市生活我们所做的一切都</div>
+            <div class="font666 company_introduce wrap" >{php echo $company['introduce']}</div>
 
             <div class="font999" style="margin-top: 16px">
-                <span class="basic_msg_bq">年终奖</span>
-                <span class="basic_msg_bq">住房公积金</span>
-                <span class="basic_msg_bq">带薪年假</span>
-                <span class="basic_msg_bq">绩效奖金</span>
-                <span class="basic_msg_bq">内部培训</span>
+                {loop explode(',',$company['tag']) $list}
+                <span class="basic_msg_bq">{$list}</span>
+                {/loop}
             </div>
             <div class="zpzhuangtai relative">
                 <div class="tjitem">
-                    <p class="tongjinum">5个</p>
+                    <p class="tongjinum">{$jobs_num}个</p>
                     <p  class="tongjititle">在招职位</p>
                 </div>
                 <div class="tjitem">
@@ -121,13 +101,16 @@
                     <p  class="tongjititle">面试评价</p>
                 </div>
                 <div class="tjitem">
-                    <p class="tongjinum">昨天</p>
+                    <p class="tongjinum">{$last_login_time}</p>
                     <p  class="tongjititle">企业最近登录</p>
                 </div>
                 <div class="company_icos">
                     <span class="com_ico"><svg class="icon fexico">
                             <use xlink:href="#icon-fenxiang"></use>
                         </svg>分享</span>
+                    <div class="bdsharebuttonbox share" style="float: left"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>
+                    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
                     <span class="com_ico"><svg class="icon fexico">
                             <use xlink:href="#icon-tishi"></use>
                         </svg>举报</span>
@@ -142,15 +125,13 @@
                 <div style="">
                     <div class="select_title" style="margin-bottom: 40px;">
                         <span class="cur title_se sleft">公司介绍</span>
-                        <span class="cur title_se">在招职位<label class="num_jobing">(18)</label></span>
+                        <span class="cur title_se">在招职位<label class="num_jobing">({$jobs_num})</label></span>
                     </div>
 
                     <!--公司介绍信息---------------------------------------------->
                     <div  id="introduces_msg">
                         <div class="introduces">
-                            猪八戒网作为中国领先的服务众包平台，自2006年成立以来，始终立足服务交易，致力让天下人享受诚信服务，助力中小微企业的成长与发展。
-                            服务涵盖平面设计、开发建站、营销推广、文案策划、动画视频、工业设计、建筑设计，八大主打类目，六百细分品类，为创业者提供一站式的企业全生命周期服务猪八戒网作为中国领先的服务众包平台，自2006年成立以来，始终立足服务交易，致力让天下人享受诚信服务，助力中小微企业的成长与发展。
-                            服务涵盖平面设计、开发建站、营销推广、文案策划、动画视频、工业设计、建筑设计，八大主打类目，六百细分品类，为创业者提供一站式的企业全生命周期服务…
+                            {php echo $company['introduce']}
                         </div>
                         <span class="showoehideall">
                             <span>显示全部</span>
@@ -162,18 +143,12 @@
                             <div style="margin-top: 40px"  id="company_img">
                                 <div class="swiper-container">
                                     <div class="swiper-wrapper">
+                                        {loop explode(',',$company['atlas']) $list}
                                         <div class="swiper-slide">
-                                            <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
+                                            <div class="company_img"><img src="{$list}"></div>
                                         </div>
-                                        <div class="swiper-slide">
-                                            <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="company_img"><img src="{WL_URL_ARES}images/person_img.png"></div>
-                                        </div>
+                                       {/loop}
+
                                     </div>
                                     <div class="swiper-pagination" ></div>
                                     <!-- 如果需要导航按钮 -->
@@ -429,118 +404,28 @@
                     <!--在招职位列表---------------------------------------------->
                     <div class="job_list" style="display: none;">
                         <div class="job_list_con">
+                            {loop $jobs $list}
                             <a class="job_iteme">
                                 <p class="job_hang relative">
-                                    <span class="job_names">排课专员</span>
-                                    <span class="refume_statas">昨天刷新</span>
+                                    <span class="job_names">{$list['jobs_name']}</span>
+                                    <span class="refume_statas">{php echo date('Y-m-d',$list['updatetime'])}</span>
                                 </p>
                                 <p class="miaosu">
-                                    <span class="salery_num">2K-4K</span>
-                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
+                                    <span class="salery_num">
+                                        {if $list['wage_min']>0 && $list['wage_max']>0}
+                                            {$list['wage_min']}-{$list['wage_max']}K
+                                        {else}
+                                            面议
+                                        {/if}
+                                    </span>
+                                    <span class="miaoshuitem"><label class="itaemm">{php echo $list['education']}</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">{php echo $list['experience']}</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">{php echo $list['work_nature']}</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">招聘{php echo $list['number_range']}人</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">{php echo $list['city']."-".$list['city_area']}</label></span>
                                 </p>
                             </a>
-                            <a class="job_iteme">
-                                <p class="job_hang relative">
-                                    <span class="job_names">排课专员</span>
-                                    <span class="refume_statas">昨天刷新</span>
-                                </p>
-                                <p class="miaosu">
-                                    <span class="salery_num">2K-4K</span>
-                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
-                                </p>
-                            </a>
-                            <a class="job_iteme">
-                                <p class="job_hang relative">
-                                    <span class="job_names">排课专员</span>
-                                    <span class="refume_statas">昨天刷新</span>
-                                </p>
-                                <p class="miaosu">
-                                    <span class="salery_num">2K-4K</span>
-                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
-                                </p>
-                            </a>
-                            <a class="job_iteme">
-                                <p class="job_hang relative">
-                                    <span class="job_names">排课专员</span>
-                                    <span class="refume_statas">昨天刷新</span>
-                                </p>
-                                <p class="miaosu">
-                                    <span class="salery_num">2K-4K</span>
-                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
-                                </p>
-                            </a>
-                            <a class="job_iteme">
-                                <p class="job_hang relative">
-                                    <span class="job_names">排课专员</span>
-                                    <span class="refume_statas">昨天刷新</span>
-                                </p>
-                                <p class="miaosu">
-                                    <span class="salery_num">2K-4K</span>
-                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
-                                </p>
-                            </a>
-                            <a class="job_iteme">
-                                <p class="job_hang relative">
-                                    <span class="job_names">排课专员</span>
-                                    <span class="refume_statas">昨天刷新</span>
-                                </p>
-                                <p class="miaosu">
-                                    <span class="salery_num">2K-4K</span>
-                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
-                                </p>
-                            </a>
-                            <a class="job_iteme">
-                                <p class="job_hang relative">
-                                    <span class="job_names">排课专员</span>
-                                    <span class="refume_statas">昨天刷新</span>
-                                </p>
-                                <p class="miaosu">
-                                    <span class="salery_num">2K-4K</span>
-                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
-                                </p>
-                            </a>
-                            <a class="job_iteme">
-                                <p class="job_hang relative">
-                                    <span class="job_names">排课专员</span>
-                                    <span class="refume_statas">昨天刷新</span>
-                                </p>
-                                <p class="miaosu">
-                                    <span class="salery_num">2K-4K</span>
-                                    <span class="miaoshuitem"><label class="itaemm">1-2年工作经验</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">大专</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">全职</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">招聘5人</label></span>
-                                    <span class="miaoshuitem"><label class="itaemm">重庆-江北区</label></span>
-                                </p>
-                            </a>
+                            {/loop}
                         </div>
                         <div class="pages_btn compagefy">
                             <span class="pre_page">上一页</span>
@@ -570,31 +455,31 @@
                     <svg class="icon comicoa" aria-hidden="true">
                         <use  xlink:href="#icon-gongsixingzhi_blue"></use>
                     </svg>
-                    <span class="titlsc">民营</span>
+                    <span class="titlsc">{$company['nature']}</span>
                 </div>
                 <div class="list_itema">
                     <svg class="icon comicoa" aria-hidden="true">
                         <use  xlink:href="#icon-guimo"></use>
                     </svg>
-                    <span class="titlsc">20人以下</span>
+                    <span class="titlsc">{$company['number']}</span>
                 </div>
                 <div class="list_itema">
                     <svg class="icon comicoa" aria-hidden="true">
                         <use  xlink:href="#icon-hangye"></use>
                     </svg>
-                    <span class="titlsc">互联网</span>
+                    <span class="titlsc">{$company['industry']}</span>
                 </div>
                 <div class="list_itema">
                     <svg class="icon comicoa" aria-hidden="true">
                         <use  xlink:href="#icon-wangzhi"></use>
                     </svg>
-                    <span class="titlsc">www.baidu.com</span>
+                    <span class="titlsc">{$company['website']}</span>
                 </div>
                 <div class="list_itema">
                     <svg class="icon comicoa" aria-hidden="true">
                         <use  xlink:href="#icon-didian"></use>
                     </svg>
-                    <span class="titlsc">重庆-南岸</span>
+                    <span class="titlsc">{$company['city']}-{$company['city_area']}</span>
                 </div>
             </div>
             <!--地图加载-->
