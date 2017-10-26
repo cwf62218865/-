@@ -168,11 +168,11 @@
                         </div>
                         <div class="xian1"></div>
                         <div class="companylogo">
-                            <a class="logo" href="#">
+                            <a class="logo" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">
                                 <img src="{$list['headimgurl']}">
                             </a>
                             <div class="companyname">
-                                <a class="name" href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['id']))}">{$list['companyname']}</a>
+                                <a class="name" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{$list['companyname']}</a>
                                 <p class="shuxin">{php echo date('Y-m-d',$list['updatetime'])}</p>
                             </div>
                         </div>

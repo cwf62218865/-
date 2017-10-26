@@ -69,6 +69,22 @@ $(function () {
         })
     })
 
+    $(document.not(".selectinput")).click(function(){
+        alert(1)
+        // if($(".datalist").css('display')=='block'){
+        //     $(".datalist").hide();
+        // }
+        var list=$(".datalist");
+        list.each(function () {
+
+                $(this).hide();
+
+        })
+    });
+    // $(".selectinput").on("mouseleave",function () {
+    //     $(".datalist").hide();
+    // })
+
 
 
     $(".shurupl").focus(function () {
