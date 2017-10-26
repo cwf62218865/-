@@ -121,8 +121,13 @@ $("body").on("click",".company_welfare .new_welfare .icon",function(){
 //添加福利
 $(".btn_sou").on("click",function(){
     var welfare=$("#welfare_key").val();
-    $(".company_welfare").append("<span class='new_welfare welfare_choice'>"+welfare+"<svg class='icon' aria-hidden='true'><use  xlink:href='#icon-shan'></use></svg></span>");
-    addwelfare();
+    if(welfare==""){
+        return false;
+    }else{
+        $(".company_welfare").append("<span class='new_welfare welfare_choice'>"+welfare+"<svg class='icon' aria-hidden='true'><use  xlink:href='#icon-shan'></use></svg></span>");
+        addwelfare();
+    }
+
 })
 
 var addwelfare=function(){
