@@ -94,6 +94,12 @@ elseif ($op=="pwd_bytel"){
 
 }
 
+
+elseif ($op=="pwd_byemail"){
+
+    var_dump($_POST);exit();
+}
+
 //设置密码
 elseif ($op=="set_password"){
     if($_SESSION['uid']){
