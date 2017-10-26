@@ -241,6 +241,8 @@
     display: inline-block;
     width: 160px;
     padding: 8px;
+    height: 19px;
+    line-height: 19px;
     border: 1px solid #eee;
     background-color: #fff;
 }
@@ -262,3 +264,80 @@
     display: inline-block;
     height:32px;
 }
+.fenxiang_con{
+    display: none;
+    width: 250px;
+    height: 60px;
+    background: #fff;
+    position: absolute;
+    left: -90px;
+    top: 40px;
+    border: 1px solid #eeeeee;
+}
+.fenxiang_con:before{
+    content: "";
+    position: absolute;
+    top:-10px;
+    left: 120px;
+    z-index: 999;
+    border-left:8px solid transparent;
+    border-right:8px solid transparent;
+    border-bottom:10px solid #fff;
+}
+.fenxiang_con:after{
+    content: "";
+    position: absolute;
+    top:-11px;
+    left: 119px;
+    z-index: 998;
+    border-left:8px solid transparent;
+    border-right:8px solid transparent;
+    border-bottom:10px solid #eee;
+    visibility: visible !important;
+}
+.fenxiang_con .icons{
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    display: inline-block;
+    border-radius: 50px;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    margin: 0;
+    margin-top: 14px;
+    margin-left: 16px;
+}
+
+.fenxiang .fenxiang_con .iconb1{
+    background: url("../images/ico_QQ.png") #22a4ff no-repeat;
+    background-position: 6px 6px;
+}
+.fenxiang .fenxiang_con .iconb2{
+    background: url("../images/ico_weixin.png") #04b00f  no-repeat;
+    background-position:  6px 6px;
+}
+.fenxiang .fenxiang_con .iconb3{
+    background: url("../images/ico_weibo.png") #ff424f  no-repeat;
+    background-position:  6px 6px;
+ }
+.fenxiang .fenxiang_con .iconb4{
+    background: url("../images/ico_pengyouquan.png") #04b00f  no-repeat;
+    background-position:  6px 6px;
+  }
+.fenxiang .fenxiang_con .iconb5{
+    background: url("../images/ico_kongjian.png") #f5c22b no-repeat;
+    background-position:  6px 6px;
+   }
+.fenxiang:hover .fenxiang_con{
+    display: block;
+}
+#page .pages_btn{
+    margin-top: 50px;
+    margin-bottom: 80px;
+    margin-left: 212px;
+}
+
+

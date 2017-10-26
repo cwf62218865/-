@@ -77,29 +77,43 @@ $("body").on("mousedown",".areaoptions .select-option",function(){
 
 
 //福利标签
-$(".company_welfare span").on("click",function(){
-    var _this=$(this);
-    if(_this.hasClass("welfare_choice")){
-        return;
+//$(".company_welfare span").on("click",function(){
+//    var company_welfares=$("#company_welfare").val().split(",");
+//    console.log(company_welfares.length);
+//    if(company_welfares.length>=5){
+//        return false;
+//    }else{
+//        var _this=$(this);
+//        if(_this.hasClass("welfare_choice")){
+//            return;
+//        }else{
+//            _this.addClass("welfare_choice");
+//            _this.append('<svg class="icon" aria-hidden="true"><use  xlink:href="#icon-shan"></use></svg>')
+//        }
+//
+//        addwelfare();
+//    }
+//
+//});
+$("body").on("click",".company_welfare span",function(){
+    var company_welfares=$("#company_welfare").val().split(",");
+    if(company_welfares.length>=5){
+
     }else{
-        _this.addClass("welfare_choice");
-        _this.append('<svg class="icon" aria-hidden="true"><use  xlink:href="#icon-shan"></use></svg>')
+        var _this=$(this);
+        if(_this.hasClass("welfare_choice")){
+            return;
+        }else{
+            _this.addClass("welfare_choice");
+            _this.append('<svg class="icon" aria-hidden="true"><use  xlink:href="#icon-shan"></use></svg>')
+        }
+        addwelfare();
     }
 
-    addwelfare();
-});
-$("body").on("click",".company_welfare .new_welfare",function(){
-    var _this=$(this);
-    if(_this.hasClass("welfare_choice")){
-        return;
-    }else{
-        _this.addClass("welfare_choice");
-        _this.append('<svg class="icon" aria-hidden="true"><use  xlink:href="#icon-shan"></use></svg>')
-    }
-    addwelfare();
 });
 
 $("body").on("click",".company_welfare .welfare_choice .icon",function(){
+
     var _this=$(this);
     _this.closest("span").removeClass("welfare_choice");
     _this.remove();
@@ -107,11 +121,12 @@ $("body").on("click",".company_welfare .welfare_choice .icon",function(){
 });
 
 //阻止冒泡
-$("body").on("click",".company_welfare .welfare_choice .icon",function(event){
+$("body").on("click",".company_welfare   .icon",function(event){
     event.stopPropagation();
 });
 
 $("body").on("click",".company_welfare .new_welfare .icon",function(){
+
     var _this=$(this);
     _this.closest("span").removeClass("welfare_choice");
     _this.remove();
@@ -120,14 +135,19 @@ $("body").on("click",".company_welfare .new_welfare .icon",function(){
 
 //添加福利
 $(".btn_sou").on("click",function(){
-    var welfare=$("#welfare_key").val();
-    if(welfare==""){
-        return false;
-    }else{
-        $(".company_welfare").append("<span class='new_welfare welfare_choice'>"+welfare+"<svg class='icon' aria-hidden='true'><use  xlink:href='#icon-shan'></use></svg></span>");
-        addwelfare();
-    }
+    var company_welfares=$("#company_welfare").val().split(",");
+    console.log(company_welfares.length);
+    if(company_welfares.length>=5){
 
+    }else{
+        var welfare=$("#welfare_key").val();
+        if(welfare==""){
+            return false;
+        }else{
+            $(".company_welfare").append("<span class='new_welfare welfare_choice'>"+welfare+"<svg class='icon' aria-hidden='true'><use  xlink:href='#icon-shan'></use></svg></span>");
+            addwelfare();
+        }
+    }
 })
 
 var addwelfare=function(){

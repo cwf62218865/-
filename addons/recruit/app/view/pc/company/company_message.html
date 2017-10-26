@@ -483,7 +483,7 @@
                <div class=" person_changes_left" id="welfare_msgbox" style="margin-top: 40px;display: none">
                    <span class="color666  redxing companymsg_name">福利标签</span>
                    <div class="company_welfare">
-                       <input type="hidden" id="welfarelabel" value="{php echo $company['tag']}">
+                       <!--<input type="hidden" id="welfarelabel" value="{php echo $company['tag']}">-->
                        <span>五险</span>
                        <span>住房公积金</span>
                        <span>带薪年假</span>
@@ -498,7 +498,7 @@
                    <div style="margin-left: 58px">
                        <div class="chioce_template_job_search" style="margin-top: 0">
                            <div class="job_search_key">
-                               <svg class="icon" style="color: #bbbbbb;margin-left: 10px">
+                               <svg class="icon" style="color: #bbbbbb">
                                    <use xlink:href="#icon-sousuo"></use>
                                </svg>
                                <input class="input_job" maxlength="5" id="welfare_key" style="width: 130px;outline: none" type="text" placeholder="输入5个字以内标签">
@@ -508,7 +508,7 @@
                    </div>
 
                    <label class="general-input relative abnormal" style="width: 460px;height: 20px;border: none;margin-left: 88px;background:none;margin-top: 10px">
-                       <input type="hidden"  data-error="请选择福利标签" style="width: 420px;" value="" id="company_welfare" name="company_welfare">
+                       <input type="hidden"  data-error="请选择福利标签" style="width: 420px;" value="{php echo $company['tag']}" id="company_welfare" name="company_welfare">
                    </label>
 
 
@@ -836,6 +836,10 @@
     $.fromdata("#welfare_msgbox","{php echo app_url('company/company_profile/save_tag')}","#welfare_msgbox .savebtn",function(data){
         var data=JSON.parse(data);
         if(data.status==1){
+            $(".addandeditbtn").eq(4).bind("click",function () {
+                $("#welfare_msg").hide();
+                $("#welfare_msgbox").show();
+            });
             $("#welfare_msg").show();
             $("#welfare_msgbox").hide();
             var welfarelabel=$("#company_welfare").val().split(",");

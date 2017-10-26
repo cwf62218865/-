@@ -456,10 +456,10 @@
         var item=$(this).closest("#beizhubox");
         var beizhu=item.find(".scbz_input").val();
         var data_flag=item.attr("data-id");
-        if(beizhu==""){
-            alert("请填写备注！")
-            return;
-        }
+//        if(beizhu==""){
+//            alert("请填写备注！")
+//            return;
+//        }
 
         for(var i=0;i<$(".list_item_btn").length;i++){
             if($(".list_item_btn").eq(i).hasClass("select")){
