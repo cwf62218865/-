@@ -80,7 +80,7 @@ $("#company_addressbox .cancelbtn").on("click",function(){
 
 //福利标签
 function editwelfare() {
-    var welfarelabel=$("#welfarelabel").val().split(",");
+    var welfarelabel=$("#company_welfare").val().split(",");
     for(var i in welfarelabel){
         var length=$(".company_welfare span").length;
         $(".company_welfare span").each(function(){
