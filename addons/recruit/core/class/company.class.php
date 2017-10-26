@@ -131,7 +131,6 @@ class company{
             $resume['work_time'] =  date('Y')-date('Y',$work_time);
             $resumes[] = $resume;
         }
-
         return $resumes;
     }
 

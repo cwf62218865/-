@@ -56,11 +56,12 @@ elseif ($op=="step2_save"){
 elseif($op=="manage_resume"){
 
     $resume  = m("company")->getall_resume($_SESSION['uid'],0,2);
+
     $resume1 =m("resume")->getall_resume();
     $arr = pdo_fetchall("select r.* from ".tablename(WL."jobs_apply")." as j,".tablename(WL."resume")." as r  where j.resume_id=r.id and j.offer=1 and j.status=3 and j.uid=".$_SESSION['uid']);
     $evaluate = "";
-    foreach ($arr as $resume){
-        $edu_experience = unserialize($resume['edu_experience']);
+    foreach ($arr as $li){
+        $edu_experience = unserialize($li['edu_experience']);
         $education = "";
         $id = "";
         $edu = array('专科以下','专科','本科','硕士','博士','博士以上');
@@ -77,9 +78,9 @@ elseif($op=="manage_resume"){
                 }
             }
         }
-        $resume['education'] = $edu[$education];
-        $resume['arr_education'] = $edu_experience[$id];
-        $work_experience = unserialize($resume['work_experience']);
+        $li['education'] = $edu[$education];
+        $li['arr_education'] = $edu_experience[$id];
+        $work_experience = unserialize($li['work_experience']);
 
         $work_time = "";
         foreach ($work_experience as $list){
@@ -93,8 +94,8 @@ elseif($op=="manage_resume"){
                 }
             }
         }
-        $resume['work_time'] =  date('Y')-date('Y',$work_time);
-        $evaluate[] = $resume;
+        $li['work_time'] =  date('Y')-date('Y',$work_time);
+        $evaluate[] = $li;
     }
 
     include wl_template('company/hr_manage_resume');

@@ -143,7 +143,7 @@
                 </div>
                     {/if}
                 {/loop}
-                <div class="morejob">发现更多好职位>></div>
+                <div class="morejob invite_more">发现更多好职位>></div>
             </div>
             <!--面试邀请end---------------------------------------------------->
         </div>
@@ -359,6 +359,26 @@
                 }
             })
         })
+
+
+        $(".invite_more").click(function () {
+            invite_page +=1;
+            var _this = $(this);
+            $.ajax({
+                type:"post",
+                url:"{php echo app_url('person/index/invite_ajax')}",
+                data:{
+                    page:invite_page
+                },
+                success:function (data) {
+                    var data = JSON.parse(data);
+                    if(data.status==1){
+                        _this.before(data.content);
+                    }
+                }
+            })
+        })
+
     })
 </script>
 </html>
