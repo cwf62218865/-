@@ -79,9 +79,7 @@ $("#company_addressbox .cancelbtn").on("click",function(){
 
 
 //福利标签
-$(".addandeditbtn").eq(4).on("click",function(){
-    $("#welfare_msg").hide();
-    $("#welfare_msgbox").show();
+function editwelfare() {
     var welfarelabel=$("#welfarelabel").val().split(",");
     for(var i in welfarelabel){
         var length=$(".company_welfare span").length;
@@ -100,11 +98,22 @@ $(".addandeditbtn").eq(4).on("click",function(){
                 '</span>')
         }
     }
+}
+
+$(".addandeditbtn").eq(4).on("click",function(){
+    $("#welfare_msg").hide();
+    $("#welfare_msgbox").show();
+    editwelfare();
+    $(".addandeditbtn").eq(4).unbind("click");
 });
 
 $("#welfare_msgbox .cancelbtn").on("click",function(){
     $("#welfare_msg").show();
     $("#welfare_msgbox").hide();
+    $(".addandeditbtn").eq(4).bind("click",function () {
+        $("#welfare_msg").hide();
+        $("#welfare_msgbox").show();
+    });
 });
 
 //公司网址

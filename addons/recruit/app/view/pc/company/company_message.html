@@ -624,18 +624,19 @@
     var point = new BMap.Point("{php echo $company['retoate_x']}","{php echo $company['retoate_y']}");
 //    map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
 //    map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
-    map.centerAndZoom(point,12);
+    map.centerAndZoom(point,16);
+    map.addOverlay(new BMap.Marker(point));
     // 创建地址解析器实例
-    var myGeo = new BMap.Geocoder();
+//    var myGeo = new BMap.Geocoder();
     // 将地址解析结果显示在地图上,并调整地图视野
-    myGeo.getPoint("{php echo $company['city'].$company['city_area'].$company['district']}", function(point){
-        if (point) {
-            map.centerAndZoom(point, 16);
-            map.addOverlay(new BMap.Marker(point));
-        }else{
-            hint("error","您选择地址没有解析到结果!");
-        }
-    }, "{php echo $company['city']}");
+//    myGeo.getPoint("{php echo $company['city'].$company['city_area'].$company['district']}", function(point){
+//        if (point) {
+//            map.centerAndZoom(point, 16);
+//            map.addOverlay(new BMap.Marker(point));
+//        }else{
+//            hint("error","您选择地址没有解析到结果!");
+//        }
+//    }, "{php echo $company['city']}");
 
 
     $(".addandeditbtn").eq(3).on("click",function(){
