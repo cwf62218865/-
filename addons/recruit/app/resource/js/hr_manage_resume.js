@@ -52,15 +52,25 @@ $(function () {
         }
     })
 
-
-    $(".selectinput").click(function () {
+    var flag=1;
+    $(".selectinput").on("mousedown",function () {
         $(".datalist").hide();
-        $(this).next().show();
+        if(flag){
+            $(this).next().css("display","block");
+            flag=0;
+        }else{
+            $(this).next().css("display","none");
+            flag=1;
+        }
+
         $(".option_date").click(function () {
             $(this).parent().prev().find(".date_num").val($(this).html());
             $(".datalist").hide();
         })
     })
+
+
+
     $(".shurupl").focus(function () {
         $(this).css("background","#f5f5f5");
     })
