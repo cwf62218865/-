@@ -53,7 +53,8 @@ $(function () {
     })
 
     var flag=1;
-    $(".selectinput").on("mousedown",function () {
+    $(".selectinput").on("mousedown",function (e) {
+        // e.stopPropagation();
         $(".datalist").hide();
         if(flag){
             $(this).next().css("display","block");
@@ -69,21 +70,13 @@ $(function () {
         })
     })
 
-    $(document.not(".selectinput")).click(function(){
-        alert(1)
-        // if($(".datalist").css('display')=='block'){
-        //     $(".datalist").hide();
-        // }
-        var list=$(".datalist");
-        list.each(function () {
-
-                $(this).hide();
-
-        })
+    $(document).click(function(e){
+        var _con = $('.selectinput');   // 设置目标区域
+        if(!_con.is(e.target) && _con.has(e.target).length === 0){
+            $(".datalist").hide();
+        };
     });
-    // $(".selectinput").on("mouseleave",function () {
-    //     $(".datalist").hide();
-    // })
+
 
 
 
