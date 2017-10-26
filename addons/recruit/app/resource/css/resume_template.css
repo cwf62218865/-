@@ -67,7 +67,8 @@
     float: left;
 }
 .namew{
-    width: 120px;
+    width: 130px;
+    text-align: left;
 }
 .basic_style,.basic_style1{
     line-height: 44px;
