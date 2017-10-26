@@ -78,6 +78,10 @@ $("body").on("mousedown",".areaoptions .select-option",function(){
 
 //福利标签
 $(".company_welfare span").on("click",function(){
+    var company_welfares=$("#company_welfare").val();
+    if(company_welfares.length>=5){
+        return false;
+    }
     var _this=$(this);
     if(_this.hasClass("welfare_choice")){
         return;
@@ -89,6 +93,10 @@ $(".company_welfare span").on("click",function(){
     addwelfare();
 });
 $("body").on("click",".company_welfare .new_welfare",function(){
+    var company_welfares=$("#company_welfare").val();
+    if(company_welfares.length>=5){
+        return false;
+    }
     var _this=$(this);
     if(_this.hasClass("welfare_choice")){
         return;
@@ -100,6 +108,7 @@ $("body").on("click",".company_welfare .new_welfare",function(){
 });
 
 $("body").on("click",".company_welfare .welfare_choice .icon",function(){
+
     var _this=$(this);
     _this.closest("span").removeClass("welfare_choice");
     _this.remove();
@@ -112,6 +121,7 @@ $("body").on("click",".company_welfare .welfare_choice .icon",function(event){
 });
 
 $("body").on("click",".company_welfare .new_welfare .icon",function(){
+
     var _this=$(this);
     _this.closest("span").removeClass("welfare_choice");
     _this.remove();
@@ -120,6 +130,10 @@ $("body").on("click",".company_welfare .new_welfare .icon",function(){
 
 //添加福利
 $(".btn_sou").on("click",function(){
+    var company_welfares=$("#company_welfare").val();
+    if(company_welfares.length>=5){
+        return false;
+    }
     var welfare=$("#welfare_key").val();
     $(".company_welfare").append("<span class='new_welfare welfare_choice'>"+welfare+"<svg class='icon' aria-hidden='true'><use  xlink:href='#icon-shan'></use></svg></span>");
     addwelfare();
