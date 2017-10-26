@@ -175,8 +175,8 @@ elseif ($op=="save_edu_exp"){
     $data['edu_district'] = check_pasre($_POST['data']['education'],"请输入学历");
     $data['edu_major'] = check_pasre($_POST['data']['edu_major'],"请输入专业");
     $data['edu_finish_time'] = check_pasre($_POST['data']['identity'],"请输入毕业时间");
-    if(is_numeric($_POST['data']['exp_id'])===true){
-        $id = $_POST['data']['exp_id'];
+    if(is_numeric($_POST['data']['edu_id'])===true){
+        $id = $_POST['data']['edu_id'];
         $edu_experience[$id] = $data;
     }else{
         array_push($edu_experience,$data);

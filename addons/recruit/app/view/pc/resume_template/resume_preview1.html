@@ -33,7 +33,10 @@
             <!--头像-->
             <div class="resume_header">
                 <div class="resume_manage_header">
-                    <img  src="{php echo $resume['headimgurl']}">
+                    <div class="resume_manage_header1">
+                        <img  src="{php echo $resume['headimgurl']}">
+                    </div>
+
                 </div>
             </div>
 
@@ -287,6 +290,20 @@
         $(".modalclose,.quxiao").on("click",function(){
             $("#modal_box").hide();
         });
+
+        $("#download_resume").click(function(){
+            $.ajax({
+                type:"post",
+                url:"http://ios.huiliewang.com/app/index.php",
+                data:{
+                    uid:"{php echo $_GPC['uid']}"
+                },
+                success:function (data) {
+                    hint("success","ok");
+                }
+            })
+        })
+
     })
 
 </script>

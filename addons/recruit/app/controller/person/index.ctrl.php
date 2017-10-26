@@ -181,7 +181,7 @@ elseif ($op=="collection_jobs_list"){
 
 
     $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
-//    var_dump($order_jobs);exit();
+    $differ_time = (time()-$order_jobs['updatetime'])/86400;
     $order_jobs_lists = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$order_jobs['jobs_name']."%'");
     $order_jobs_list = "";
     foreach ($order_jobs_lists as $list){
