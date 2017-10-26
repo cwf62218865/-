@@ -80,8 +80,8 @@ class resume{
 
     public function jobs_interview($uid,$page=1){
         $limit = " limit ".(($page-1)*6).",6";
-
-        $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and puid=".$uid.$limit);
+        $orderby = " order by createtime desc";
+        $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and puid=".$uid.$orderby.$limit);
 //        var_dump($jobs_apply);exit();
         $jobs = "";
         foreach ($jobs_apply as $key=>$list){
