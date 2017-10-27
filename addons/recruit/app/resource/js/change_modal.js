@@ -44,19 +44,7 @@ $(function () {
 
 
 
-    $("#download_resume").click(function(){
-        var uid = "{php echo $_GPC['uid']}";
-        $.ajax({
-            type:"post",
-            url:"http://ios.huiliewang.com/app/pdf_enter.php",
-            data:{
-                resumeuid:"{php echo $_GPC['uid']}"
-            },
-            success:function (data) {
-                window.location.href = "http://ios.huiliewang.com/app/"+data+".pdf";
-            }
-        })
-    })
+
 
     $("#exit_view").click(function () {
         window.history.go(-1);

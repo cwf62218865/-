@@ -194,6 +194,7 @@
                            <input type="hidden" name="works_url" id="works_id">
                            <span class="color666  redxing companymsg_name">公司图集</span>
                            <div class="person_worksbox" style="margin-left: 88px">
+                               {if $company['atlas']}
                                {loop explode(',',$company['atlas']) $list}
                                <div class="person_worksbtn">
                                    <img src="{$list}">
@@ -204,6 +205,7 @@
                                     </span>
                                </div>
                                {/loop}
+                               {/if}
                                <!--<div class="person_worksbtn">-->
                                    <!--<img src="{WL_URL_ARES}images/person_img.png">-->
                                     <!--<span class="person_worksdelbtn">-->

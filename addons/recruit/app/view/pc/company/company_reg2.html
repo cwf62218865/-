@@ -163,6 +163,7 @@
                 height:100, //高度
                 text: "{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'license'))}" //任意内容
             });
+            upload_refresh();
             setTimeout(function(){
                 $("#modalbox").css("display","block");
             },300)
@@ -177,6 +178,7 @@
                text: "{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'id1'))}" //任意内容
            });
            $("#modalbox").animate({"opacity":1},300);
+           upload_refresh();
            setTimeout(function(){
                $("#modalbox").css("display","block");
            },300)
@@ -191,6 +193,7 @@
                text: "{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'id2'))}" //任意内容
            });
            $("#modalbox").animate({"opacity":1},300);
+           upload_refresh();
            setTimeout(function(){
                $("#modalbox").css("display","block");
            },300)
@@ -244,26 +247,28 @@
            },300)
        })
 
+        function upload_refresh() {
+            window.setInterval(
+                function(){
+                    $.ajax({
+                        url:"{php echo app_url('member/company_register/upload_refresh')}",
+                        type:"post",
+                        data:{
+                            companyname:$(".detail_zj input").val()
+                        },
+                        success:function(data){
+                            if(data){
+                                var data = JSON.parse(data);
+                                if(data.status==1){
+                                    location = location;
+                                }
+                            }
+                        }
+                    })
+                },5000
+            );
+        }
 
-       window.setInterval(
-           function(){
-               $.ajax({
-                   url:"{php echo app_url('member/company_register/upload_refresh')}",
-                   type:"post",
-                   data:{
-                       companyname:$(".detail_zj input").val()
-                   },
-                   success:function(data){
-                       if(data){
-                           var data = JSON.parse(data);
-                           if(data.status==1){
-                              location = location;
-                           }
-                       }
-                   }
-               })
-           },5000
-       );
 
        //提交申请
        $("#uploadcompany_pic").on("click",function(){
