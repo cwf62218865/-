@@ -13,12 +13,14 @@
             </svg>
             打印简历
         </div>
+        {if $_SESSION['uid']==$_GPC['uid']}
         <div class="resume_btns" id="change_modal">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-genghuanmoban"></use>
             </svg>
             更换模板
         </div>
+        {/if}
         <div class="resume_btns" id="exit_view">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-tuichuyulan"></use>
@@ -34,4 +36,25 @@
         </div>
     </div>
 </div>
+
+<script>
+$("#download_resume").click(function(){
+    var uid = "{php echo $_GPC['uid']}";
+    $.ajax({
+    type:"post",
+    url:"http://ios.huiliewang.com/app/pdf_enter.php",
+    data:{
+    resumeuid:"{php echo $_GPC['uid']}"
+    },
+    success:function (data) {
+    window.location.href = "http://ios.huiliewang.com/app/"+data+".pdf";
+    }
+})
+})
+
+$(body).on("click","#exit_view",function () {
+    window.history.go(-1);
+})
+</script>
+
 

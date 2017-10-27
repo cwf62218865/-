@@ -189,7 +189,10 @@
                 <div class="bshang1">
                     {loop $honor $id $list}
                     <div class="basic_style3 lineheight">
-                        <p class="jiangtitle"><span class="diandian bclolor6">{$list['certificate_content']}</span></p>
+                        <p class="jiangtitle">
+                            <span class="diandian bclolor6"></span>
+                            {$list['certificate_content']}
+                        </p>
                         <img class="jiangpic" src="{$list['certificate_img']}">
                     </div>
                     {/loop}

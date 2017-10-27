@@ -206,7 +206,9 @@
                 <div class="bshang1">
                     {loop $honor $id $list}
                     <div class="basic_style3 lineheight">
-                        <p class="jiangtitle"><span class="diandian bclolor6">{$list['certificate_content']}</span></p>
+                        <p class="jiangtitle">
+                            <span class="diandian bclolor2"></span>
+                            {$list['certificate_content']}</p>
                         <img class="jiangpic" src="{$list['certificate_img']}">
                     </div>
                     {/loop}
@@ -217,8 +219,8 @@
 
             <div class="content770 resume_video">
                 <div class="items_title">
-                    <span class="itme_name">30秒个人视频</span>
-                    <div class="line_title"></div>
+                    <span class="itme_name" style="width: 160px;">30秒个人视频</span>
+                    <div class="line_title" style="width: 580px;"></div>
                 </div>
                 <div class="resume_exp">
                     <div class="person_works relative">

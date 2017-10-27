@@ -56,7 +56,7 @@
     line-height: 50px;
     text-align: center;
     float: right;
-
+    cursor: pointer;
 }
 .hj_biaoti{
     color: #666666;
