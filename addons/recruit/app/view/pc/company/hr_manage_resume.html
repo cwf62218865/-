@@ -49,7 +49,7 @@
                     <div class="biezhu"> 明天</div>
                     <div class="select_date_option">
                         <div class="selectinput">
-                            <input class="date_num" value="选择日期"  />
+                            <input class="date_num cur" value="选择日期"  readonly="readonly" id="weekday"/>
                         <svg class="icon ico66">
                             <use xlink:href="#icon-xiala"></use>
                         </svg>
@@ -805,48 +805,130 @@
     })
 
     //简历筛选-时间
-    $(".checkboxbox").click(function () {
-        var i=$(this).index(".checkboxbox");//0表示今天，1表示明天
-//        $(".checkboxbox").find("use").attr("xlink:href","");
-        var right=$(this).find("use").attr("xlink:href");
-        var list=$(".list_content .list_item");
-        var date=new Date();
-
-        if(i==1){//明天就是今天+1
-            var today=date.getDate()+1;
-        }else{
-            var today=date.getDate();
-        }
-        if(right!=""){
-            //未选择状态
+//    $(".checkboxbox").click(function () {
+//        var i=$(this).index(".checkboxbox");//0表示今天，1表示明天
+////        $(".checkboxbox").find("use").attr("xlink:href","");
+//        var right=$(this).find("use").attr("xlink:href");
+//        alert(right)
+//        var list=$(".list_content .list_item");
+//        var date=new Date();
+//
+//        if(i==1){//明天就是今天+1
+//            var today=date.getDate()+1;
+//        }else{
+//            var today=date.getDate();
+//        }
+//        if(right!=""){
+//            //未选择状态
+////            $(".checkboxbox").find("use").attr("xlink:href","");
+//        }else{
+//            //选择状态
+//            list.each(function () {
+//                var mianshi_time=$(this).find(".interview_date").val().split("-");
+//                if(today==mianshi_time[1]){
+//                    $(this).show()
+//                }else{
+//                    $(this).hide();
+//                }
+//            })
+////            $(".checkboxbox").find("use").attr("xlink:href","");
+////            $(this).find("use").attr("xlink:href","#icon-zhengque1").nextAll().find("use").attr("xlink:href","");
 //            $(".checkboxbox").find("use").attr("xlink:href","");
+//        }
+//
+//    })
+    var date=new Date();
+    $(".checkboxbox").click(function () {
+        var today=0,tomorrow=0,isweek=0;
+        var i=$(this).index(".checkboxbox");//0表示今天，1表示明天
+        if($(this).find("use").attr("xlink:href")=="" && i==0){
+            today=1;
+            if($(".checkboxbox").eq(1).find("use").attr("xlink:href")==""){
+                tomorrow=0;
+            }else{
+                tomorrow=1;
+            }
+        }else if($(this).find("use").attr("xlink:href")=="" && i==1){
+            tomorrow=1;
+            if($(".checkboxbox").eq(0).find("use").attr("xlink:href")==""){
+                today=0;
+            }else{
+                today=1;
+            }
+        }else if(i==0 && $(".checkboxbox").eq(1).find("use").attr("xlink:href")==""){
+            today=0;tomorrow=0;
+        }else if(i==0 && $(".checkboxbox").eq(1).find("use").attr("xlink:href")!=""){
+            today=0;tomorrow=1;
+        }else if(i==1 && $(".checkboxbox").eq(0).find("use").attr("xlink:href")==""){
+            today=0;tomorrow=0;
+        }else if(i==1 && $(".checkboxbox").eq(0).find("use").attr("xlink:href")!=""){
+            today=1;tomorrow=0;
+        }
+        var weekday=$("#weekday").val();
+        if(weekday=="选择日期"){
+            isweek=0
+        }else if(weekday=="日期不限"){
+            isweek=2;
         }else{
-            //选择状态
+            isweek=1;
+        }
+        if(isweek){
+            weekday=parseInt(weekday);
+        }else{
+            weekday=0;
+        }
+        var select_arr=[[today,date.getDate()],[tomorrow,date.getDate()+1],[isweek,weekday]];
+        var list=$(".list_content .list_item");
+
             list.each(function () {
+
                 var mianshi_time=$(this).find(".interview_date").val().split("-");
-                if(today==mianshi_time[1]){
-                    $(this).show()
-                }else{
+                var time=mianshi_time[1];
+
+                if((time==select_arr[0][1] && select_arr[0][0]==1)||(time==select_arr[1][1] && select_arr[1][0]==1) || (time==select_arr[2][1] && select_arr[2][0]==1)){
+                    $(this).show();
+                }else if(select_arr[2][0]==2){
+                    list.show();
+                }
+                else{
                     $(this).hide();
                 }
-            })
-//            $(".checkboxbox").find("use").attr("xlink:href","");
-//            $(this).find("use").attr("xlink:href","#icon-zhengque1").nextAll().find("use").attr("xlink:href","");
-            $(".checkboxbox").find("use").attr("xlink:href","");
-        }
 
+            })
     })
 
 
 //    一周时间筛选
     $("body").on("click",".option_date",function () {
-        var date=$(this).attr("data-date");
+        var isweek,today=0,tomorrow=0;
+        var weekday=$(this).attr("data-date");
+        if(weekday==0){
+            isweek=2
+        }else{
+            isweek=1;
+        }
+        if($(".checkboxbox").eq(0).find("use").attr("xlink:href")!=""){
+            today=1;
+        }
+        if($(".checkboxbox").eq(1).find("use").attr("xlink:href")!=""){
+            tomorrow=1;
+        }else{
+            today=0;tomorrow=0;
+        }
+        var select_arr=[[today,date.getDate()],[tomorrow,date.getDate()+1],[isweek,weekday]];
+
+
         var list=$(".list_content .list_item");
         list.each(function () {
             var mianshi_time=$(this).find(".interview_date").val().split("-");
-            if(date==mianshi_time[1]){
-                $(this).show()
-            }else{
+            var time=mianshi_time[1];
+
+            if((time==select_arr[0][1] && select_arr[0][0]==1)||(time==select_arr[1][1] && select_arr[1][0]==1) || (time==select_arr[2][1] && select_arr[2][0]==1)){
+                $(this).show();
+            }else if(select_arr[2][0]==2){
+                list.show();
+            }
+            else{
                 $(this).hide();
             }
         })

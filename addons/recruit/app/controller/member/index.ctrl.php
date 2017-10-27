@@ -168,9 +168,26 @@ elseif ($op=="send_code"){
 
 
 //手机上传头像界面
-elseif ($op=="resume_headimgupload"){
-    $kind = "简历头像上传";
-    include wl_template("resume/mobileupload1");exit();
+elseif ($op=="mobile_upload"){
+    if($_GPC['kind']=="resume"){
+        $kind = "简历头像上传";
+    }elseif($_GPC['kind']=="id1"){
+        $kind = "法人身份证(正面)";
+    }elseif($_GPC['kind']=="id2"){
+        $kind = "法人身份证(反面)";
+    }elseif($_GPC['kind']=="license"){
+        $kind = "营业执照上传";
+    }elseif($_GPC['kind']=="person_works"){
+        $kind = "个人作品上传";
+    }elseif($_GPC['kind']=="honor"){
+        $kind = "荣誉证书上传";
+    }elseif($_GPC['kind']=="company_logo"){
+        $kind = "公司logo上传";
+    }elseif($_GPC['kind']=="atlas"){
+        $kind = "公司图集上传";
+    }
+    include wl_template("member/mobileupload1");exit();
+
 }
 
 elseif ($op=="resume_worksupload"){
@@ -289,6 +306,7 @@ elseif ($op=="search_jobs"){
 //    echo $jobs_count;exit();
     if($_GET['jobs_name']){
         $data['data']['job_name'] = $_GET['jobs_name'];
+        $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where jobs_name like '%".$_GET['jobs_name']."%'");
     }
     $jobs = m("jobs")->getall_jobs_page($data);
     $jobs = $jobs['more'];
@@ -359,10 +377,18 @@ elseif ($op=="show_map"){
 
 //举报职位
 elseif ($op=="tip_off"){
-    $data['jobs_id'] = check_pasre($_POST['data']['jobs_id'],"1");
-    $data['company_scale'] = check_pasre($_POST['data']['company_scale'],"2");
-    $data['report_content'] = check_pasre($_POST['data']['report_content'],"3");
-    $report = pdo_fetch("select id from ".tablename(WL."report")." where jobs_id=".$data['jobs_id']." and report_uid=".$_SESSION['uid']);
+    $wheresql = "";
+    if($_POST['data']['jobs_id']){
+        $data['jobs_id'] = check_pasre($_POST['data']['jobs_id'],"参数错误");
+        $wheresql = " jobs_id=".$data['jobs_id'];
+    }
+    if($_POST['data']['company_uid']){
+        $data['company_uid'] = check_pasre($_POST['data']['company_uid'],"参数错误");
+        $wheresql = " company_uid=".$data['company_uid'];
+    }
+    $data['company_scale'] = check_pasre($_POST['data']['company_scale'],"请填写举报原因");
+    $data['report_content'] = check_pasre($_POST['data']['report_content'],"请填写详细描述");
+    $report = pdo_fetch("select id from ".tablename(WL."report")." where ".$wheresql." and report_uid=".$_SESSION['uid']);
     if (empty($report)){
         $data['addtime'] = time();
         $data['report_uid'] = $_SESSION['uid'];
@@ -375,6 +401,8 @@ elseif ($op=="tip_off"){
     }else{
         call_back(2,"已存在");
     }
+
+
 }
 
 

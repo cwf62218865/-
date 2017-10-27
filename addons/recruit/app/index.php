@@ -40,7 +40,7 @@ if(!$_SESSION['uid']){
 	}
 }
 if(empty($controller) || empty($action)) {
-	$_GPC['do'] = $controller = 'dashboard';
+	$_GPC['do'] = $controller = 'member';
 	$_GPC['ac'] = $action = 'index';
 }
 
@@ -63,7 +63,7 @@ if (!empty($auth) && $controller != 'system') {
 	}
 }
 if (!file_exists($file)) {
-	header("Location: index.php?c=site&a=entry&m=".WL_NAME."&do=dashboard&ac=index");
+	header("Location: index.php?c=site&a=entry&m=".WL_NAME."&do=member&ac=index");
 	exit;
 }
 

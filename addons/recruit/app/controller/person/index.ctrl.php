@@ -182,6 +182,7 @@ elseif ($op=="collection_jobs_list"){
 
     $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
     $differ_time = (time()-$order_jobs['updatetime'])/86400;
+
     $order_jobs_lists = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$order_jobs['jobs_name']."%'");
     $order_jobs_list = "";
     foreach ($order_jobs_lists as $list){
@@ -191,8 +192,12 @@ elseif ($op=="collection_jobs_list"){
         $list['tag'] = $company_profile['tag'];
         $list['address'] = $company_profile['city'].$company_profile['city_erea'].$company_profile['district'];
         $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and jobs_id=".$list['id']);
+        $is_collect = pdo_fetch("select id from ".tablename(WL."collect_jobs")." where uid=".$_SESSION['uid']." and jobs_id=".$list['id']);
         if(empty($jobs_apply)){
             $list['post_status'] = 1;
+        }
+        if(empty($is_collect)){
+            $list['is_collect'] = 1;
         }
         $order_jobs_list[] = $list;
     }

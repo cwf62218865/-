@@ -115,10 +115,10 @@ elseif ($op=="save_website"){
 //保存公司信息
 elseif ($op=="save_company_profile"){
 //    var_dump($_POST);exit();
-    $data['nature'] = check_pasre($_POST['data']['company_nature'],"参数错误1");
-    $data['headimgurl'] = check_pasre($_POST['data']['company_logo'],"参数错误2");
-    $data['number'] = check_pasre($_POST['data']['company_scale'],"参数错误3");
-    $data['industry'] = check_pasre($_POST['data']['company_industry'],"参数错误4");
+    $data['nature'] = check_pasre($_POST['data']['company_nature'],"1");
+    $data['headimgurl'] = check_pasre($_POST['data']['company_logo'],"2");
+    $data['number'] = check_pasre($_POST['data']['company_scale'],"3");
+    $data['industry'] = check_pasre($_POST['data']['company_industry'],"4");
     $data['city'] = check_pasre($_POST['data']['area'],"5");
     $data['slogan'] = check_pasre($_POST['data']['slogan'],"参数错误6");
     $data['introduce'] = check_pasre($_POST['data']['companymsg_introduce'],"参数错误7");

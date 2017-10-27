@@ -27,9 +27,11 @@
                             <img src="{php echo $resume['headimgurl']}">
                         </span>
                         {else}
+                        <span class="resume_reg1headimgbox">
                         <svg class="icon icon1" aria-hidden="true">
                             <use xlink:href="#icon-xuesheng"></use>
                         </svg>
+                        </span>
                         {/if}
                         <div class="img_con">
                             <svg class="icon icon2" aria-hidden="true">
@@ -259,7 +261,7 @@
 
        $(".img_con").click(function () {
            $(".erweima").attr("id","code1").children().remove();
-           code_url("#code1","/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=resume_headimgupload&identity="+identity);
+           code_url("#code1","{php echo app_url('member/index/mobile_upload')}kind=resume&identity="+identity);
        })
    }) 
 </script>

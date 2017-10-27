@@ -13,12 +13,14 @@
             </svg>
             打印简历
         </div>
+        {if $_SESSION['uid']==$_GPC['uid']}
         <div class="resume_btns" id="change_modal">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-genghuanmoban"></use>
             </svg>
             更换模板
         </div>
+        {/if}
         <div class="resume_btns" id="exit_view">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-tuichuyulan"></use>
@@ -34,4 +36,7 @@
         </div>
     </div>
 </div>
+
+
+
 

@@ -84,7 +84,7 @@
                 <span class="btn_xiny color_main cur">查看该公司信用</span>
             </div>
 
-            <div class="font666 company_introduce wrap" >{php echo $company['introduce']}</div>
+            <div class="font666 company_introduce wrap" >{php echo $company['slogan']}</div>
 
             <div class="font999" style="margin-top: 16px">
                 {loop explode(',',$company['tag']) $list}
@@ -149,8 +149,15 @@
                     <!--公司介绍信息---------------------------------------------->
                     <div  id="introduces_msg">
                         <div class="introduces">
+                            {if mb_strlen($company['introduce'],'utf-8')<300}
                             {php echo $company['introduce']}
+                            {else}
+                            {php echo mb_substr($company['introduce'],0,300,'utf-8')}...
+                            {/if}
+
                         </div>
+                        <input type="hidden" value="{php echo $company['introduce']}" id="introduces">
+
                         <span class="showoehideall">
                             <span>显示全部</span>
                             <svg class="icon" aria-hidden="true" style="font-size: 18px">
@@ -503,7 +510,7 @@
             </div>
             <!--地图加载-->
             <div class="qiyeditu" id="allmap"></div>
-            <div class="btnditu">查看地图</div>
+            <div class="btnditu" data-id="{php echo $company['retoate_x'].','.$company['retoate_y']}" data-city="{$company['city']}">查看地图</div>
         </div>
     </div>
 
@@ -515,8 +522,8 @@
             <span class="modalclose">
                 <img src="{WL_URL_ARES}images/close.png"/>
             </span>
-        <p class="title_content" style="margin-top: 34px">举报该职位</p>
-        <p class="color666" style="margin-top: 34px;text-align: center">若你发现本职位存在违规现象，欢迎举报</p>
+        <p class="title_content" style="margin-top: 34px">举报该公司</p>
+        <p class="color666" style="margin-top: 34px;text-align: center">若你发现该公司存在违规现象，欢迎举报</p>
 
         <div style="margin-left: 40px;margin-top: 34px">
             <span class="color666" style="display: inline-block;vertical-align: top;margin-top: 15px;">举报原因</span>
@@ -541,7 +548,7 @@
                 <textarea   class="cwftextarea" id="companymsg_introduce"  placeholder="请输入详细描述" style="width: 296px;height: 80px;"></textarea>
             </div>
             <input type="hidden" name="report_content" id="companymsg_introduceinput">
-            <input type="hidden" name="jobs_id" value="{php echo $jobs['id']}">
+            <input type="hidden" name="company_uid" value="{php echo $company['uid']}">
 
         </div>
 
@@ -556,7 +563,17 @@
 </div>
 <!--举报-->
 
-
+<!--地图弹框-->
+<div class="modalbox" id="modalbox1" style="display: none;">
+    <div class="modal" style="width: 650px;margin-left: -325px;height: auto">
+        <p class="title_content">公司地址</p>
+        <span class="modalclose">
+                <img src="{WL_URL_ARES}images/close.png"/>
+            </span>
+        <iframe style="width: 550px;height: 430px;border: none;margin: 40px 50px"></iframe>
+    </div>
+</div>
+<!--地图弹框end-->
 
 </body>
 <script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
@@ -571,7 +588,7 @@
 <script type="text/javascript">
     // 百度地图API功能
     var map = new BMap.Map("allmap");
-    var point = new BMap.Point(116.331398,39.897445);
+    var point = new BMap.Point("{$company['retoate_x']}","{$company['retoate_y']}");
     //    map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
     //    map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
     //    map.centerAndZoom(point,12);
@@ -579,7 +596,16 @@
     map.addOverlay(new BMap.Marker(point));
     var myGeo = new BMap.Geocoder();
 
-    
+    $(".btnditu").on("click",function () {
+        $("#modalbox1").show();
+        var points=$(this).attr("data-id").split(",");
+        $("iframe").attr("src","{php echo app_url('member/index/show_map')}retoate_x="+points[0]+"&retoate_y="+points[1]);
+    });
+
+    $(".modalclose").on("click",function () {
+        $("#modalbox1").hide();
+    })
+
     $(".title_se").click(function () {
         $(".title_se").removeClass("sleft");
         $(this).addClass("sleft");
@@ -636,6 +662,13 @@
     //举报提交
     $.fromdata("#modalbox","{php echo app_url('member/index/tip_off')}","#save_company_nomsg",function(data){
         //do something
+        var data = JSON.parse(data);
+        if(data.status==1){
+            hint("success","提交成功");
+            $(".modalbox").hide();
+        }else {
+            hint("error",data.content);
+        }
     })
 
 

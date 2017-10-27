@@ -175,13 +175,18 @@ $(".change_company_name").on("mouseleave",function(){
 
 
 //公司图集
-$(".person_worksdelbtn").on("click",function(){
+$("body").on("click",".person_worksdelbtn",function(){
     var _this=$(this);
     var images="";
     _this.closest(".person_worksbtn").remove();
     $(".person_worksbox img").each(function(){
         images+=$(this).attr("src")+",";
     });
+    if($(".person_worksbox img").length>=6){
+        $(".person_worksbtn1").hide();
+    }else{
+        $(".person_worksbtn1").show();
+    }
     $("#person_worksinput").val(images.substring(0,images.length-1));
 })
 
