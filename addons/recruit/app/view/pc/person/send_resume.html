@@ -258,17 +258,6 @@
         $("body").on("click",".btn_ditu",function () {
             var points=$(this).attr("data-id").split(",");
             $("iframe").attr("src","{php echo app_url('member/index/show_map')}retoate_x="+points[0]+"&retoate_y="+points[1]);
-//            $.ajax({
-//                url:"{php echo app_url('member/index/show_map')}",
-//                type:"data",
-//                data:{
-//                    retoate_x:points[0],
-//                    retoate_y:points[1]
-//                },
-//                success:function (data) {
-//                    $("iframe").attr("src","{php echo app_url('member/index/show_map')}");
-//                }
-//            })
         });
 
         var dataid="";
