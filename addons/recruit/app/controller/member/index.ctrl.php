@@ -359,10 +359,18 @@ elseif ($op=="show_map"){
 
 //举报职位
 elseif ($op=="tip_off"){
-    $data['jobs_id'] = check_pasre($_POST['data']['jobs_id'],"1");
-    $data['company_scale'] = check_pasre($_POST['data']['company_scale'],"2");
-    $data['report_content'] = check_pasre($_POST['data']['report_content'],"3");
-    $report = pdo_fetch("select id from ".tablename(WL."report")." where jobs_id=".$data['jobs_id']." and report_uid=".$_SESSION['uid']);
+    $wheresql = "";
+    if($_POST['data']['jobs_id']){
+        $data['jobs_id'] = check_pasre($_POST['data']['jobs_id'],"参数错误");
+        $wheresql = " jobs_id=".$data['jobs_id'];
+    }
+    if($_POST['data']['company_uid']){
+        $data['company_uid'] = check_pasre($_POST['data']['company_uid'],"参数错误");
+        $wheresql = " company_uid=".$data['company_uid'];
+    }
+    $data['company_scale'] = check_pasre($_POST['data']['company_scale'],"请填写举报原因");
+    $data['report_content'] = check_pasre($_POST['data']['report_content'],"请填写详细描述");
+    $report = pdo_fetch("select id from ".tablename(WL."report")." where ".$wheresql." and report_uid=".$_SESSION['uid']);
     if (empty($report)){
         $data['addtime'] = time();
         $data['report_uid'] = $_SESSION['uid'];
@@ -375,6 +383,8 @@ elseif ($op=="tip_off"){
     }else{
         call_back(2,"已存在");
     }
+
+
 }
 
 
