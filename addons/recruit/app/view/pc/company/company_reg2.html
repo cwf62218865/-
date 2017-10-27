@@ -161,7 +161,7 @@
             $('#code1').qrcode({
                 width: 100, //宽度
                 height:100, //高度
-                text: "{php echo app_url('member/company_register/mobileupload',array('identity'=>$identity,'kind'=>1))}" //任意内容
+                text: "{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'license'))}" //任意内容
             });
             setTimeout(function(){
                 $("#modalbox").css("display","block");
@@ -174,7 +174,7 @@
            $('#code2').qrcode({
                width: 100, //宽度
                height:100, //高度
-               text: "{php echo app_url('member/company_register/mobileupload',array('identity'=>$identity,'kind'=>2))}" //任意内容
+               text: "{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'id1'))}" //任意内容
            });
            $("#modalbox").animate({"opacity":1},300);
            setTimeout(function(){
@@ -188,7 +188,7 @@
            $('#code3').qrcode({
                width: 100, //宽度
                height:100, //高度
-               text: "{php echo app_url('member/company_register/mobileupload',array('identity'=>$identity,'kind'=>3))}" //任意内容
+               text: "{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'id2'))}" //任意内容
            });
            $("#modalbox").animate({"opacity":1},300);
            setTimeout(function(){

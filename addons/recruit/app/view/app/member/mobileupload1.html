@@ -12,13 +12,7 @@
     <div class="top_structure">
         <img class="logo" src="{WL_URL_ARES}images/logo_1.png">
         <div class="file_name">
-            {if $_GPC['kind']==1}
-            上传营业执照
-            {elseif $_GPC['kind']==2}
-            法人身份证(正面)
-            {else}
-            法人身份证(反面)
-            {/if}
+            {$kind}
         </div>
 
         <div class="imgbox">
