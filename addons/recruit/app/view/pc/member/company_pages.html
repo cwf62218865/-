@@ -92,28 +92,46 @@
                 {/loop}
             </div>
             <div class="zpzhuangtai relative">
-                <div class="tjitem">
+                <div class="tjitem cur" id="jobs_list">
                     <p class="tongjinum">{$jobs_num}个</p>
                     <p  class="tongjititle">在招职位</p>
                 </div>
-                <div class="tjitem">
+                <a class="tjitem cur evaluate" href="#evaluate_list">
                     <p class="tongjinum">8条</p>
                     <p  class="tongjititle">面试评价</p>
-                </div>
+                </a>
                 <div class="tjitem">
                     <p class="tongjinum">{$last_login_time}</p>
                     <p  class="tongjititle">企业最近登录</p>
                 </div>
                 <div class="company_icos">
-                    <span class="com_ico"><svg class="icon fexico">
+                    <span class="com_ico fenxiang" style="position: relative;"><svg class="icon fexico">
                             <use xlink:href="#icon-fenxiang"></use>
-                        </svg>分享</span>
-                    <div class="bdsharebuttonbox share" style="float: left"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>
-                    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
-                    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-                    <span class="com_ico"><svg class="icon fexico">
+                        </svg>分享
+                        <div class="fenxiang_con bdsharebuttonbox share">
+                            <a class="icons iconb1 bds_sqq" href="#" data-cmd="sqq" title="分享到QQ好友"></a>
+                            <a class="icons iconb2 bds_weixin" href="#" data-cmd="weixin" title="分享到微信"></a>
+                            <a class="icons iconb3 bds_tsina" href="#" data-cmd="tsina" title="分享到新浪微博"></a>
+                            <a class="icons iconb4 bds_weixin" href="#" data-cmd="weixin" title="分享到微信"></a>
+                            <a class="icons iconb5 bds_qzone" href="#" data-cmd="qzone" title="分享到QQ空间"></a>
+                        </div>
+                    </span>
+                    <span class="com_ico jubao"><svg class="icon fexico">
                             <use xlink:href="#icon-tishi"></use>
-                        </svg>举报</span>
+                        </svg>举报
+                    </span>
+
+                    <!--<div class="bdsharebuttonbox share" style="float: left;display: none">-->
+                        <!--<a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>-->
+                        <!--<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>-->
+                        <!--<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>-->
+                        <!--<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>-->
+                    <!--</div>-->
+                    <script>
+                        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+
                 </div>
             </div>
         </div>
@@ -123,7 +141,7 @@
         <div class="con_list" style="padding-bottom: 80px">
            <div class="company_width730">
                 <div style="">
-                    <div class="select_title" style="margin-bottom: 40px;">
+                    <div class="select_title" style="margin-bottom: 40px;margin-top: 0;">
                         <span class="cur title_se sleft">公司介绍</span>
                         <span class="cur title_se">在招职位<label class="num_jobing">({$jobs_num})</label></span>
                     </div>
@@ -159,6 +177,7 @@
                         </div>
                         <!--面试评价-->
                         <div class="evaluate" style="margin-top: 60px">
+                            <div id="evaluate_list"></div>
                             <div class="company_title relative">
                                 <span >面试评价(3)</span>
                             </div>
@@ -243,7 +262,7 @@
                             <span class="cur title_sr selsrt" data-id="1">推荐度排序</span>
                             <span class="cur title_sr" data-id="2">时间排序</span>
                         </div>
-                        <div class="evaluate_list">
+                        <div class="evaluate_list" >
                             <div class="evaluate_item">
                                 <div class="left_tx">
                                     <img class="touxiangpic" src="{WL_URL_ARES}images/resume_tx.png">
@@ -270,7 +289,7 @@
                                 </svg>
                                </span>
                                         <span class="point_num">5.0分</span>
-                                        <span class="jobname_eva">面试职位：<label class="namedd">新媒体运营</label></span>
+                                        <span class="jobname_eva">面试职位：<a class="namedd" href="#">新媒体运营</a></span>
                                         <span class="date_eva">2017-9-29</span>
                                     </div>
                                     <div class="xqhang" style="margin-top: 18px;">
@@ -386,7 +405,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="pages_btn compagefy">
+                            <div class="pages_btn compagefy" style="margin-top: 50px;float: left;">
                                 <span class="pre_page">上一页</span>
                                 <span class="page select">1</span>
                                 <span class="page">2</span>
@@ -490,6 +509,53 @@
 
 </div>
 
+<!--举报-->
+<div class="modalbox jubaobox" id="modalbox" style="display: none;">
+    <div class="modal" style="width: 496px;margin-left: -248px;height: auto;padding-bottom: 20px">
+            <span class="modalclose">
+                <img src="{WL_URL_ARES}images/close.png"/>
+            </span>
+        <p class="title_content" style="margin-top: 34px">举报该职位</p>
+        <p class="color666" style="margin-top: 34px;text-align: center">若你发现本职位存在违规现象，欢迎举报</p>
+
+        <div style="margin-left: 40px;margin-top: 34px">
+            <span class="color666" style="display: inline-block;vertical-align: top;margin-top: 15px;">举报原因</span>
+            <div class=" relative general-select " style="float: none">
+                <label class="general-input relative general-select" style="float: none;width: 330px">
+                    <input class="relative" type="text" readonly=""  name="company_scale" value="实际与描述不符" style="width: 310px;z-index: 10">
+                    <svg class="icon inputicon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                    </svg>
+                </label>
+                <div class="options" style="width: 332px;top:48px">
+                    <div class="select-option" style="width: 330px"><span>培训机构</span></div>
+                    <div class="select-option" style="width: 330px"><span>实际与描述不符</span></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="margin-left: 40px;margin-top: 34px">
+            <span class="color666" style="float: left">详细描述</span>
+            <div class="cwfreg4content" style="display: inline-block;margin-left: 24px;height: 120px;border: 1px solid #f5f5f5;width: 330px;background-color: #f5f5f5">
+                <textarea   class="cwftextarea" id="companymsg_introduce"  placeholder="请输入详细描述" style="width: 296px;height: 80px;"></textarea>
+            </div>
+            <input type="hidden" name="report_content" id="companymsg_introduceinput">
+            <input type="hidden" name="jobs_id" value="{php echo $jobs['id']}">
+
+        </div>
+
+
+        <div class="person_changes"  style="margin-top: 30px;text-align: center">
+            <span class="savebtn public_bigbtn bg1aa" id="save_company_nomsg" style="padding: 0 30px 0 30px">提交</span>
+            <span class="cancelbtn" style="margin-left: 30px;color: #09c;cursor: pointer">取消</span>
+        </div>
+
+
+    </div>
+</div>
+<!--举报-->
+
 
 
 </body>
@@ -500,6 +566,7 @@
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/company_msg.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/job_detail.js" rel="script"></script>
 
 <script type="text/javascript">
     // 百度地图API功能
@@ -529,6 +596,18 @@
         $("#introduces_msg").hide();
         $(".job_list").show();
     })
+    $("#jobs_list").click(function () {
+        $("#introduces_msg").hide();
+        $(".job_list").show();
+        $(".title_se").removeClass("sleft");
+        $(".title_se").eq(1).addClass("sleft");
+    })
+    $(".evaluate").click(function () {
+        $("#introduces_msg").show();
+        $(".job_list").hide();
+        $(".title_se").removeClass("sleft");
+        $(".title_se").eq(0).addClass("sleft");
+    })
     $("body").on("click",".hangxq",function () {
         $(this).css("color","#0099cc");
         $(this).find(".zan1").css("color","#0099cc");
@@ -551,8 +630,13 @@
 
     })
 
-
-
+    $(".jubao").click(function () {
+        $(".jubaobox").show();
+    })
+    //举报提交
+    $.fromdata("#modalbox","{php echo app_url('member/index/tip_off')}","#save_company_nomsg",function(data){
+        //do something
+    })
 
 
 </script>

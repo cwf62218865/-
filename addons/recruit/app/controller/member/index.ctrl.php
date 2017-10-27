@@ -94,6 +94,12 @@ elseif ($op=="pwd_bytel"){
 
 }
 
+
+elseif ($op=="pwd_byemail"){
+
+    var_dump($_POST);exit();
+}
+
 //设置密码
 elseif ($op=="set_password"){
     if($_SESSION['uid']){
@@ -250,7 +256,7 @@ elseif ($op=="add"){
 elseif($op=="company_detail"){
 
     if($_GPC['company_id']) {
-        $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where id=".$_GPC['company_id']);
+        $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$_GPC['company_id']);
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where open=1 and uid=".$company['uid']);
         $jobs_num = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs")." where uid=".$company['uid']);
         $last_login_time = m("member")->last_login($company['uid']);

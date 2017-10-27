@@ -43,7 +43,7 @@
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap">{php echo $list['jobs_name']}</a>
-                            <a class="salary">{if is_numeric($list['wage_min'])===true && is_numeric($list['wage_max'])===true}{php echo $list['wage_min']}-{php echo $list['wage_max']}K{else}面议{/if}</a>
+                            <a class="salary">{if $list['wage_min']>0 && $list['wage_max']>0}{php echo $list['wage_min']}-{php echo $list['wage_max']}K{else}面议{/if}</a>
                         </div>
                         <div class="hang2">
                             <a class="exptime nowrap" style="color: #666">工作地点：{php echo $list['city'].$list['city_erea'].$list['address']}</a>
@@ -71,7 +71,11 @@
                     <div class="item_con">
                         <div class="hang1" >
                             <a class="jobname nowrap" style="color: #999">{php echo $list['jobs_name']}<span class="font999">（已停止招聘）</span></a>
-                            <a class="salary" style="color: #999">{if is_numeric($list['wage_min'])===true && is_numeric($list['wage_max'])===true}{php echo $list['wage_min']}-{php echo $list['wage_max']}K{else}面议{/if}</a>
+                            <a class="salary" style="color: #999">
+                                {if $list['wage_min']>0 && $list['wage_max']>0}
+                                {php echo $list['wage_min']}-{php echo $list['wage_max']}K
+                                {else}面议{/if}
+                            </a>
                         </div>
                         <div class="hang2">
                             <a class="exptime nowrap" style="color: #666">工作地点：{php echo $list['city'].$list['city_erea'].$list['address']}</a>

@@ -52,15 +52,34 @@ $(function () {
         }
     })
 
-
-    $(".selectinput").click(function () {
+    var flag=1;
+    $(".selectinput").on("mousedown",function (e) {
+        // e.stopPropagation();
         $(".datalist").hide();
-        $(this).next().show();
+        if(flag){
+            $(this).next().css("display","block");
+            flag=0;
+        }else{
+            $(this).next().css("display","none");
+            flag=1;
+        }
+
         $(".option_date").click(function () {
             $(this).parent().prev().find(".date_num").val($(this).html());
             $(".datalist").hide();
         })
     })
+
+    $(document).click(function(e){
+        var _con = $('.selectinput');   // 设置目标区域
+        if(!_con.is(e.target) && _con.has(e.target).length === 0){
+            $(".datalist").hide();
+        };
+    });
+
+
+
+
     $(".shurupl").focus(function () {
         $(this).css("background","#f5f5f5");
     })

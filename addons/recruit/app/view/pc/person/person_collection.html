@@ -110,7 +110,7 @@
                         <div class="center_align" style="width: 120px;margin-left: 340px;"></div>
                         <div class="right_align" style="width: 120px;float: right"></div>
                     </div>
-                    <div class=" relative general-select p1content statesinput">
+                    <div class=" relative general-select p1content statesinput" style="margin-top: 30px;">
                         <label class="current1 general-input relative general-select current2" style="margin-left: 0">
                             <input type="text" id="hy_district" readonly="" placeholder="选择行业（最多三项）" class="" style="width: 420px;" value="{php echo $order_jobs['trade']}">
                             <svg class="icon inputicon" aria-hidden="true">
@@ -134,7 +134,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="relative general-select p1content statesinput">
+                    <div class="relative general-select p1content statesinput"  style="margin-top: 30px;">
                         <label class="current1 general-input relative general-select current1">
                             <input type="text" readonly="" id="dy_pinlv" placeholder="订阅频率" class="" style="width: 80px;" value="{php echo $order_jobs['order_time']}">
                             <svg class="icon inputicon" aria-hidden="true">
@@ -424,6 +424,7 @@
                     var data = JSON.parse(data);
                     if(data.status==1){
                         _this.html("已投递");
+                        _this.css("color","#bbb");
                     }
                 }
             })

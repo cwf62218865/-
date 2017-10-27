@@ -7,8 +7,10 @@
     <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+
     <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/job_detail.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/company_msg.css" rel="stylesheet">
     <title>职位详情</title>
 </head>
 <body bgcolor="#f4f4f4">
@@ -34,12 +36,18 @@
 
 
 
-                        <span class="collections ">
+                        <span class="collections fenxiang" style="position: relative;">
                             <svg class="icon">
                                 <use xlink:href="#icon-fenxiang"></use>
                             </svg>
                             分享
-
+                            <div class="fenxiang_con bdsharebuttonbox share">
+                                <a class="icons iconb1 bds_sqq" href="#" data-cmd="sqq" title="分享到QQ好友"></a>
+                                <a class="icons iconb2 bds_weixin" href="#" data-cmd="weixin" title="分享到微信"></a>
+                                <a class="icons iconb3 bds_tsina" href="#" data-cmd="tsina" title="分享到新浪微博"></a>
+                                <a class="icons iconb4 bds_weixin" href="#" data-cmd="weixin" title="分享到微信"></a>
+                                <a class="icons iconb5 bds_qzone" href="#" data-cmd="qzone" title="分享到QQ空间"></a>
+                            </div>
                         </span>
 
                         <span class="collections collection" data-id="{php echo $jobs['id']}">
@@ -49,39 +57,39 @@
                             收藏
                         </span>
                     </div>
-                    <div class="relative" id="sharebox">
-                        <div class="bdsharebuttonbox share"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>
+                    <!--<div class="relative" id="sharebox">-->
+                        <!--<div class="bdsharebuttonbox share"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>-->
                         <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
                         with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-                        <!--<div class="share">-->
-                                <!--<span class="sharebtn">-->
-                                    <!--<svg class="icon">-->
-                                        <!--<use xlink:href="#icon-qq"></use>-->
-                                    <!--</svg>-->
-                                <!--</span>-->
-                                <!--<span class="sharebtn">-->
-                                    <!--<svg class="icon">-->
-                                        <!--<use xlink:href="#icon-weixin"></use>-->
-                                    <!--</svg>-->
-                                <!--</span>-->
-                                <!--<span class="sharebtn">-->
-                                    <!--<svg class="icon">-->
-                                        <!--<use xlink:href="#icon-weibo"></use>-->
-                                    <!--</svg>-->
-                                <!--</span>-->
-                                <!--<span class="sharebtn">-->
-                                    <!--<svg class="icon">-->
-                                        <!--<use xlink:href="#icon-pengyouquan"></use>-->
-                                    <!--</svg>-->
-                                <!--</span>-->
-                                <!--<span class="sharebtn">-->
-                                    <!--<svg class="icon">-->
-                                        <!--<use xlink:href="#icon-QQkongjian"></use>-->
-                                    <!--</svg>-->
-                                <!--</span>-->
-                            <!--<em></em><i></i>-->
-                        <!--</div>-->
-                    </div>
+                        <!--&lt;!&ndash;<div class="share">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span class="sharebtn">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<svg class="icon">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<use xlink:href="#icon-qq"></use>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</svg>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span class="sharebtn">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<svg class="icon">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<use xlink:href="#icon-weixin"></use>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</svg>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span class="sharebtn">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<svg class="icon">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<use xlink:href="#icon-weibo"></use>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</svg>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span class="sharebtn">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<svg class="icon">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<use xlink:href="#icon-pengyouquan"></use>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</svg>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span class="sharebtn">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<svg class="icon">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<use xlink:href="#icon-QQkongjian"></use>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</svg>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<em></em><i></i>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--</div>-->
 
                     <div style="margin-top: 20px">
                         <span class="jobs_salary">
@@ -265,7 +273,7 @@
             </div>
 
             <div class="company_recruit_msg">
-                <a class="font18 color333" style="margin-top: 20px" href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['id']))}">
+                <a class="font18 color333" style="margin-top: 20px" href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">
                     {php echo $company['companyname']}
                     <svg class="icon" style="font-size: 22px;color: #09c">
                         <use xlink:href="#icon-renzheng"></use>
@@ -392,7 +400,7 @@
             <div style="margin-left: 40px;margin-top: 34px">
                 <span class="color666" style="float: left">详细描述</span>
                 <div class="cwfreg4content" style="display: inline-block;margin-left: 24px;height: 120px;border: 1px solid #f5f5f5;width: 330px;background-color: #f5f5f5">
-                    <textarea   class="cwftextarea" id="companymsg_introduce"  placeholder="请输入详细描述"></textarea>
+                    <textarea   class="cwftextarea" id="companymsg_introduce"  placeholder="请输入详细描述" style="width: 296px;height: 80px;"></textarea>
                 </div>
                 <input type="hidden" name="report_content" id="companymsg_introduceinput">
                 <input type="hidden" name="jobs_id" value="{php echo $jobs['id']}">

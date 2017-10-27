@@ -121,6 +121,8 @@
                         <div class="btn_sou cur">搜索</div>
                     </div>
                     <div class="selecter_list">
+
+                        <!--专业-->
                         <div class="select_option" style="margin-left: 30px;">
                             <div class="selectinput cur">
                                 <input class="date_num" id="major_select" value="专业不限" readonly="readonly"/>
@@ -148,6 +150,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!--专业end-->
+                        <!--工资-->
                         <div class="select_option" style="margin-left: 10px;">
                             <div class=" relative general-select selectinput" style="">
                                 <label class="general-input relative " style="float: none">
@@ -158,9 +162,11 @@
                                 </label>
                             </div>
                         </div>
+                        <!--工资end-->
+                        <!--经验-->
                         <div class="select_option" style="margin-left: 10px;">
                             <div class="selectinput cur">
-                                <input class="date_num" id="apperience_select" value="经验不限"/>
+                                <input class="date_num" id="apperience_select" value="经验不限"readonly="readonly"/>
                                 <svg class="icon ico66">
                                     <use xlink:href="#icon-xiala"></use>
                                 </svg>
@@ -168,9 +174,11 @@
                             <div class="datalist expirence" style="width: 120px;">
                             </div>
                         </div>
+                        <!--经验end-->
+                        <!--工作地点-->
                         <div class="select_option" style="margin-left: 10px;">
                             <div class="selectinput cur">
-                                <input class="date_num" id="didian_select" value="地点不限"/>
+                                <input class="date_num" id="didian_select" value="地点不限"readonly="readonly"/>
                                 <svg class="icon ico66">
                                     <use xlink:href="#icon-xiala"></use>
                                 </svg>
@@ -179,10 +187,11 @@
                                 <div class="option_date">互联网/IT</div>
                             </div>
                         </div>
+                        <!--工作地点end-->
                     </div>
                 </div>
                 {loop $resume1 $list}
-                <div class="list_item">
+                <div class="list_item" data-id="{php echo $list['id']}">
                     <div class="item_con">
                         <div class="touxiang_pic">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;"/>
@@ -218,8 +227,8 @@
                         </div>
                     </div>
                     <div class="review_statas">
-                        <div class="tongyi yaoqing_interview" data-id="1">邀请面试</div>
-                        <div class="jujue shoucang_resume" data-id="1">收藏简历</div>
+                        <div class="tongyi yaoqing_interview"  data-id="{php echo $list['id']}">邀请面试</div>
+                        <div class="jujue shoucang shoucang_resume"  data-id="{php echo $list['id']}">收藏简历</div>
                     </div>
                 </div>
                 {/loop}
@@ -852,16 +861,17 @@
         var beizhu=item.find(".scbz_input").val();
         var data_flag=item.attr("data-id");
 
-        var item=$(this).closest("")
-        if(beizhu==""){
-            alert("请填写备注！")
-            return;
-        }
+//        if(beizhu==""){
+//            alert("请填写备注！")
+//            return;
+//        }
         $("#beizhubox").hide();
         var lists=$(".resume_content .list_item");
         lists.each(function () {
             if($(this).attr("data-id")==data_flag){
-                $(this).find(".beizhu_content").val(beizhu);
+                $(this).find(".shoucang").html("已收藏");
+                $(this).find(".shoucang").removeClass("shoucang_resume");
+                $(this).find(".shoucang").addClass("colorbb");
             }
         })
 
