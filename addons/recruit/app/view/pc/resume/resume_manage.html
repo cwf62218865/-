@@ -359,38 +359,51 @@
                     </div>
 
                     <div class="font999" id="wanted_job" style=";margin-top: 58px;line-height: 2">
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-zhiwei"></use>
-                        </svg>
-                        {loop explode(",",$resume['hope_job']) $list}
-                        <span class="basic_msg_contents1">{$list}</span>
-                        {/loop}
+                        <span class="see_hope_job">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-zhiwei"></use>
+                            </svg>
+                            {loop explode(",",$resume['hope_job']) $list}
+                            <span class="basic_msg_contents1">{$list}</span>
+                            {/loop}
+                        </span>
 
-                        <svg class="icon" aria-hidden="true" style="margin-left: 20px">
-                            <use xlink:href="#icon-hangye"></use>
-                        </svg>
-                        {loop explode(",",$resume['trade']) $list}
-                        <span class="basic_msg_contents1">{$list}</span>
-                        {/loop}
+
+                        <span class="see_hope_job">
+                            <svg class="icon" aria-hidden="true" style="margin-left: 20px">
+                                <use xlink:href="#icon-hangye"></use>
+                            </svg>
+                            {loop explode(",",$resume['trade']) $list}
+                            <span class="basic_msg_contents1">{$list}</span>
+                            {/loop}
+                        </span>
+
 
                         <br/>
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-xinzi"></use>
-                        </svg>
-                        <span class="basic_msg_contents2">{php echo $resume['salary']}</span>
+                        <span class="see_hope_job">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-xinzi"></use>
+                            </svg>
+                            <span class="basic_msg_contents2">{php echo $resume['salary']}</span>
+                        </span>
 
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-quanzhi"></use>
-                        </svg>
-                        <span class="basic_msg_contents2">{php echo $resume['nature']}</span>
 
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-didian"></use>
-                        </svg>
-                        <span class="basic_msg_contents2">{php echo $resume['hope_place']}</span>
+                        <span class="see_hope_job">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-quanzhi"></use>
+                            </svg>
+                            <span class="basic_msg_contents2">{php echo $resume['nature']}</span>
+                        </span>
+
+
+                        <span class="see_hope_job">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-didian"></use>
+                            </svg>
+                            <span class="basic_msg_contents2">{php echo $resume['hope_place']}</span>
+                        </span>
+
                     </div>
-
-
                 </div>
                 <!--<span class="addandeditbtn" id="edit_wanted_job">-->
                     <!--<svg class="icon" aria-hidden="true">-->
@@ -1355,12 +1368,27 @@
     $(".left_line").each(function(){
         $(this).css("height",$(this).parent().height()-48+"px")
     })
+
+
+
     $.fromdata("#person_msgbox","{php echo app_url('person/resume/manage_resume_deal')}","#save_person_msg",function(data){
         var data =JSON.parse(data);
         if(data.status==1){
-            location =location;
+//            location =location;
+            $("#person_msgbox").hide();
+            $("#person_msg").show();
+            $(".basic_msg_content  .user_name").html($("#person_msgbox input[name=user_name]").val());//姓名
+            $(".basic_msg_content  .basic_msg_contents").eq(0).html($("#person_msgbox input[name=sex]").val().substring(0,1));//性别
+            $(".basic_msg_content  .basic_msg_contents").eq(2).html($("#person_msgbox input[name=identity]").val());//政治面貌
+            $(".basic_msg_content  .basic_msg_contents").eq(4).html($("#person_msgbox input[name=job_status]").val());//工作状态
+            $(".basic_msg_content  .basic_msg_contents").eq(5).html($("#person_msgbox input[name=moblie]").val());//电话
+            $(".basic_msg_content  .basic_msg_contents").eq(6).html($("#person_msgbox input[name=email]").val());//邮箱
+            $(".basic_msg_content  .basic_msg_contents").eq(7).html($("#person_msgbox input[name=city]").val()+$("#person_msgbox input[name=area]").val()+$("#person_msgbox input[name=address_msg]").val());//邮箱
+            $(".personmsg").html($("#person_msgbox input[name=introduce]").val());
+        }else{
+            hint("error",data.content);
         }
-        console.log(data.content);
+
     })
 
 
@@ -1369,9 +1397,58 @@
     $.fromdata("#wanted_jobbox","{php echo app_url('person/resume/save_intention')}","#save_wanted_jobbox_msg",function(data){
         var data = JSON.parse(data);
         if(data.status==1){
-            location = location;
+            $("#wanted_job").show();
+            $("#wanted_jobbox").hide();
+            //期望职位
+            var hope1=$("#hope_job").val().split(",");
+            var hope1html='<svg class="icon" aria-hidden="true">'+
+                    '<use  xlink:href="#icon-zhiwei"></use>'+
+                    '</svg>';
+            for(var i in hope1){
+                hope1html+='<span class="basic_msg_contents1">'+hope1[i]+'</span>'
+            }
+            $(".see_hope_job").eq(0).html(hope1html);
+
+            //期望行业
+            var hope2=$("#want_job").val().split(",");
+            var hope1htm2='<svg class="icon" aria-hidden="true" style="margin-left: 20px">'+
+                '<use  xlink:href="#icon-hangye"></use>'+
+            '</svg>';
+            for(var i in hope2){
+                hope1htm2+='<span class="basic_msg_contents1">'+hope2[i]+'</span>'
+            }
+            $(".see_hope_job").eq(1).html(hope1htm2);
+
+
+            //期望薪资
+            var hope3=$("#wanted_jobbox input[name=salary]").val();
+            var hope1htm3='<svg class="icon" aria-hidden="true">'+
+                    '<use  xlink:href="#icon-xinzi"></use>'+
+                    '</svg>';
+            hope1htm3+='<span class="basic_msg_contents2">'+hope3+'</span>';
+            $(".see_hope_job").eq(2).html(hope1htm3);
+
+
+            //期望地点
+            var hope4=$("#wanted_jobbox input[name=city]").val();
+            var hope1htm4='<svg class="icon" aria-hidden="true">'+
+                    '<use  xlink:href="#icon-didian"></use>'+
+                    '</svg>';
+            hope1htm4+='<span class="basic_msg_contents2">'+hope4+'</span>';
+            $(".see_hope_job").eq(4).html(hope1htm4);
+
+
+            //工作性质
+            var hope5=$("#wanted_jobbox input[name=identity]").val();
+            var hope1htm5='<svg class="icon" aria-hidden="true">'+
+                    '<use  xlink:href="#icon-quanzhi"></use>'+
+                    '</svg>';
+            hope1htm5+='<span class="basic_msg_contents2">'+hope5+'</span>';
+            $(".see_hope_job").eq(3).html(hope1htm5);
+
+        }else{
+            hint("error",data.content);
         }
-        //do something
     })
 
 
@@ -1381,6 +1458,8 @@
         var data = JSON.parse(data);
         if(data.status==1){
             location = location;
+        }else{
+            hint("error",data.content);
         }
         //do something
     })
@@ -1445,6 +1524,8 @@
         var data = JSON.parse(data);
         if(data.status==1){
             location = location;
+        }else{
+            hint("error",data.content);
         }
     })
 
@@ -1493,6 +1574,8 @@
                 var data=JSON.parse(data);
                 if(data.status==1){
                     location = location;
+                }else{
+                    hint("error",data.content);
                 }
             }
         })
@@ -1504,6 +1587,8 @@
        var data = JSON.parse(data);
         if(data.status==1){
             location = location;
+        }else{
+            hint("error",data.content);
         }
     })
 
@@ -1580,6 +1665,8 @@
                 if(data.status==1){
                         location = location;
 //                    window.location.href="";
+                }else{
+                    hint("error",data.content);
                 }
             }
         })
@@ -1591,6 +1678,8 @@
         var data = JSON.parse(data);
         if(data.status==1){
             location = location;
+        }else{
+            hint("error",data.content);
         }
     })
 
@@ -1654,6 +1743,8 @@
                     window.location.href="";
 //                    $("#job_expbox").hide();
 //                    $(".resume_exps[data-id="+data_id+"]").remove();
+                }else{
+                    hint("error",data.content);
                 }
             }
         })
