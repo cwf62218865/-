@@ -1,7 +1,7 @@
 <div class="p1_right">
     <div class="tongjis tongjis1">
         <div class="items2">
-            <a class="number" href="">{php echo $company_statistics['apply_num']}</a>
+            <a class="number" href="{php echo app_url('company/resume/received_resume')}">{php echo $company_statistics['apply_num']}</a>
             <p class="font1_zj chengxian">收到申请</p>
         </div>
         <div class="items2">
@@ -23,7 +23,7 @@
                 <a class="color_main resume_view" href="">预览</a>
                 <a class="color_main resume_edit" href="">修改</a></div>
             <div class="jindutiao">
-                <div class="jindu_con"></div>
+                <div class="jindu_con" style="width: {$company_integrity}%"></div>
             </div>
             <div class="sousuo">
                 <svg class="icon icon_sousuo" aria-hidden="true">

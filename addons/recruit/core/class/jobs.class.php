@@ -67,8 +67,74 @@ class jobs{
         return $job;
     }
 
-public function search_jobs(){
 
+
+    //自己的订阅器信息
+    public function order_jobs(){
+        $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
+        return $order_jobs;
+    }
+
+
+    //订阅器职位搜索
+    public function show_order_jobs($order_jobs){
+        $wheresql = " where 1=1 ";
+        if($order_jobs['jobs_name']){
+            $wheresql .= " jobs_name like '%".$order_jobs['jobs_name']."%'";
+        }
+
+        if($order_jobs['work_place']){
+            $wheresql .= " city_area like '%".$order_jobs['work_place']."%'";
+        }
+
+        if($order_jobs['wage_range']){
+            if($order_jobs['wage_range']=="2k以下"){
+                $wheresql .= " wage_max<2";
+            }elseif ($order_jobs['wage_range']=="2k-4k"){
+                $wheresql .= " wage_max<=4 and wage_min>=2";
+            }elseif ($order_jobs['wage_range']=="4k-6k"){
+                $wheresql .= " wage_max<=6 and wage_min>=4";
+            }elseif ($order_jobs['wage_range']=="6k-10k"){
+                $wheresql .= " wage_max<=10 and wage_min>=6";
+            }elseif ($order_jobs['wage_range']=="10k以上"){
+                $wheresql .= " wage_max>=10";
+            }
+
+//            if($order_jobs['trade']){
+//
+//                $wheresql .= " city_area like '%".$order_jobs['work_place']."%'";
+//            }
+
+        }
+        $order_jobs_lists = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql." order by addtime desc");
+        return $order_jobs_lists;
+    }
+
+
+    //订阅器时间判断
+    public function check_order_jobs($order_times,$differ_time){
+        $order_jobs = $this->order_jobs();
+        if($order_times=="三天一次"){
+            if($differ_time>3){
+                return show_order_jobs($order_jobs);
+            }
+        }elseif ($order_times=="一周一次"){
+            if($differ_time>7){
+                return show_order_jobs($order_jobs);
+            }
+        }elseif ($order_times=="一个月一次"){
+            if($differ_time>30){
+                return show_order_jobs($order_jobs);
+            }
+        }elseif ($order_times=="半年一次"){
+            if($differ_time>182){
+                return show_order_jobs($order_jobs);
+            }
+        }elseif ($order_times=="一年一次"){
+            if($differ_time>365){
+                return show_order_jobs($order_jobs);
+            }
+        }
     }
 }
 

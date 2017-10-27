@@ -168,9 +168,26 @@ elseif ($op=="send_code"){
 
 
 //手机上传头像界面
-elseif ($op=="resume_headimgupload"){
-    $kind = "简历头像上传";
-    include wl_template("resume/mobileupload1");exit();
+elseif ($op=="mobile_upload"){
+    if($_GPC['kind']=="resume"){
+        $kind = "简历头像上传";
+    }elseif($_GPC['kind']=="id1"){
+        $kind = "法人身份证(正面)";
+    }elseif($_GPC['kind']=="id2"){
+        $kind = "法人身份证(反面)";
+    }elseif($_GPC['kind']=="license"){
+        $kind = "营业执照上传";
+    }elseif($_GPC['kind']=="person_works"){
+        $kind = "个人作品上传";
+    }elseif($_GPC['kind']=="honor"){
+        $kind = "荣誉证书上传";
+    }elseif($_GPC['kind']=="company_logo"){
+        $kind = "公司logo上传";
+    }elseif($_GPC['kind']=="atlas"){
+        $kind = "公司图集上传";
+    }
+    include wl_template("member/mobileupload1");exit();
+
 }
 
 elseif ($op=="resume_worksupload"){
@@ -289,6 +306,7 @@ elseif ($op=="search_jobs"){
 //    echo $jobs_count;exit();
     if($_GET['jobs_name']){
         $data['data']['job_name'] = $_GET['jobs_name'];
+        $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where jobs_name like '%".$_GET['jobs_name']."%'");
     }
     $jobs = m("jobs")->getall_jobs_page($data);
     $jobs = $jobs['more'];
