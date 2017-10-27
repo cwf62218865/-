@@ -641,6 +641,7 @@
     margin-bottom: 100px;
 }
 .resume_btns{
+    display: block;
     width: 120px;
     height: 40px;
     color: #0099cc;
@@ -931,6 +932,7 @@
     /*-webkit-box-orient: vertical;*/
     /*-webkit-line-clamp: 3;*/
     /*overflow: hidden;*/
+    min-height: 66px;
 }
 .icon_all,.icon_shouqi{
     position: absolute;bottom: 0px;right: 0;color: #959fb2;z-index: 9999;font-size: 14px;

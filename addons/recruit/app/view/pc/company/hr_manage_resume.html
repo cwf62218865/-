@@ -64,13 +64,13 @@
                 {if $list['status']==3}
                 <div class="list_item">
                     <div class="item_con">
-                        <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}" target="_blank">
+                        <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;"/>
                         </a>
                         <div class="basic_massage">
                             <div class="bm_hang1">
                                 <span class="name nowrap">{php echo $list['fullname']}</span>
-                                <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}" target="_blank">查看</a>
+                                <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">查看</a>
                                 <span class="hope_job">{php echo $list['jobs_name']}</span>
                             </div>
                             <div class="bm_hang2">

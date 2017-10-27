@@ -21,12 +21,12 @@
             更换模板
         </div>
         {/if}
-        <div class="resume_btns" id="exit_view">
+        <a class="resume_btns" id="exit_view" href="javascript:history.go(-1)">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-tuichuyulan"></use>
             </svg>
             退出预览
-        </div>
+        </a>
         <div class="genghuanbeijing">
             <span class="wenzi">更换背景</span>
             <span class="color color1"></span>
@@ -52,9 +52,6 @@ $("#download_resume").click(function(){
 })
 })
 
-$(body).on("click","#exit_view",function () {
-    window.history.go(-1);
-})
 </script>
 
 
