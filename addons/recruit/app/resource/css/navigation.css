@@ -1,0 +1,26 @@
+.nav_title{
+    display: inline-block;
+    width: 1080px;
+    margin: 70px 60px 50px 60px;
+}
+.nav_title_name{
+    color: #333;
+    font-size: 30px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+}
+.nav_title_line{
+    display: inline-block;
+    width: 820px;
+    height: 1px;
+    background-color: #eee;
+    float: right;
+    margin-top:14px ;
+}
+.nav_left{
+    display: inline-block;
+    width: 270px;
+    height: 1110px;
+    background-color: #fafafa;
+}
