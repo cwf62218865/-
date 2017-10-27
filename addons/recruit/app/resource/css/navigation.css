@@ -65,6 +65,18 @@
     border-bottom: 1px dashed #eee;
     margin-bottom: 10px;
 }
+
+.nav_right_btns1{
+    border-bottom: 1px dashed #eee;
+    margin-bottom: 10px;
+}
+.nav_right_btns1 .nav_right_btn{
+    display: inline-block;
+    padding-right: 12px;
+    padding-left: 6px;
+    margin-top: 26px;
+    border-right: 1px solid #666;
+}
 .nav_right_btn{
     padding-right: 12px;
     padding-left: 6px;
