@@ -126,6 +126,7 @@
                     </span>
                         <div class="line_title"></div>
                     </div>
+                    {if $resume['hope_job']}
                     <div class="lineheight">
                         <label class="basic_style2">期望职位：
                             {loop explode(",",$resume['hope_job']) $list}
@@ -133,6 +134,8 @@
                             {/loop}
                         </label>
                     </div>
+                    {/if}
+                    {if $resume['trade']}
                     <div class="lineheight">
                         <label class="basic_style2">期望行业：
                             {loop explode(",",$resume['trade']) $list}
@@ -140,16 +143,24 @@
                             {/loop}
                         </label>
                     </div>
+                    {/if}
+
                     <div class="lineheight">
+                        {if $resume['salary']}
                         <label class="basic_style2">期望薪资：
                             <span class="jlcontent">{$resume['salary']}</span>
                         </label>
+                        {/if}
+                        {if $resume['nature']}
                         <label class="basic_style2 margin_l">期望工作性质：
                             <span class="jlcontent">{$resume['nature']}</span>
                         </label>
+                        {/if}
+                        {if $resume['hope_place']}
                         <label class="basic_style2 margin_l">期望工作地点：
                             <span class="jlcontent">{$resume['hope_place']}</span>
                         </label>
+                        {/if}
                     </div>
 
                 </div>
@@ -172,7 +183,7 @@
                         <div class="work_itmes">
                             <span class="zhiwu">{php echo $list['job_name']}</span>
                             <span class="shijian">{php echo $list['job_starttime']} — {php echo $list['job_endtime']}</span>
-                            <span class="lizhi">离职原因：<lable>{php echo  $list['leave_reason']}</lable></span>
+                            {if $list['leave_reason']}<span class="lizhi">离职原因：<lable>{php echo  $list['leave_reason']}</lable></span>{/if}
                         </div>
                         <div class="work_jieshao">
                             {php echo $list['job_content']}
@@ -296,7 +307,19 @@
 <script src="{WL_URL_ARES}js/change_modal.js" rel="script"></script>
 <script>
     $(document).ready(function () {
-
+        $("#download_resume").click(function(){
+            var uid = "{php echo $_GPC['uid']}";
+            $.ajax({
+                type:"post",
+                url:"http://ios.huiliewang.com/app/pdf_enter.php",
+                data:{
+                    resumeuid:"{php echo $_GPC['uid']}"
+                },
+                success:function (data) {
+                    window.location.href = "http://ios.huiliewang.com/app/"+data+".pdf";
+                }
+            })
+        })
         var mySwiper = new Swiper ('.swiper-container', {
             direction: 'horizontal',
             slidesPerView: 4,

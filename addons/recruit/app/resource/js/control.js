@@ -160,6 +160,22 @@ function pages(page,totalpage){
 
 }
 
+
+//没有数据
+function no_data(boxid,msg1,msg2){
+    var content="<div class='no_data_box'>";
+    content+="<img src='/addons/recruit/app/resource/images/no_data.png' style='float: left'>";
+    content+="<div class='no_data_boxmsg'>";
+    content+="<div style='font-size: 20px;color: #333;margin-top: 20px'>"+msg1.toString().substring(0,15)+"</div>";
+    content+="<div class='color999' style='margin-top: 30px'>"+msg2.toString().substring(0,15)+"</div>";
+    content+="</div></div>";
+    $(boxid).html(content);
+}
+
+
+
+
+
 //手机正则
 var telphonetest=/^1[3|5|7|8][0-9]\d{8}$/;
 var inttest=/^[1-9]\d*$/;

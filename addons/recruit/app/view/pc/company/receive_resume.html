@@ -346,8 +346,9 @@
                 var data = JSON.parse(data);
                 if(data.status==1){
                     _this.parent().parent().hide();
+                    hint("success","取消收藏成功")
                 }else{
-                    console.log(data);
+                    hint("error",data.content);
                 }
             }
         })
@@ -366,31 +367,35 @@
 
         var telphone_reg=/^1[3|5|7|8][0-9]\d{8}$/;
         if(reviewtime==""){
-            alert("请输入面试日期")
+            hint("error","请输入面试日期");
             return;
         }
         if(contacts_name==""){
-            alert("请输入联系人")
+
+            hint("error","请输入联系人");
             return;
         }
         if(contacts_tel==""){
-            alert("请输入联系电话")
+            hint("error","请输入联系电话");
             return;
         }
         if(!telphone_reg.test(contacts_tel)){
-            alert("请输入可联系的电话")
+            hint("error","请输入可联系的电话");
             return;
         }
         if(city==""){
-            alert("请输入城市")
+
+            hint("error","请输入城市");
             return;
         }
         if(city_area==""){
-            alert("请输入区县")
+
+            hint("error","请输入区县");
             return;
         }
         if(detail_address==""){
-            alert("请输入详细地址")
+
+            hint("error","请输入详细地址");
             return;
         }
 
@@ -420,10 +425,12 @@
                             status.removeClass("agree_review");
                             status.addClass("statussc");
                         }
-                    })
+                    });
+
+                    hint("success","邀请面试成功");
 
                 }else{
-                    console.log(data.content);
+                    hint("error",data.content);
                 }
             }
         })
@@ -444,7 +451,9 @@
                 var data = JSON.parse(data);
                 if(data.status==1){
                     _this.closest(".review_statas").html("<div class='jujuestatus cur' data-id='1'>已拒绝面试</div>");
-
+                    hint("success","拒绝面试成功");
+                }else{
+                    hint("error",data.content);
                 }
             }
         })
@@ -501,9 +510,9 @@
 
                     }
 
-
+                    hint("success","收藏成功");
                 }else{
-                    console.log(data.content);
+                    hint("error",data.content);
                 }
             }
         })

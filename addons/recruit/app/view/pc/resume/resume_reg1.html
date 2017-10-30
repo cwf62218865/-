@@ -261,7 +261,23 @@
 
        $(".img_con").click(function () {
            $(".erweima").attr("id","code1").children().remove();
-           code_url("#code1","{php echo app_url('member/index/mobile_upload')}kind=resume&identity="+identity);
+           code_url("#code1","{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'resume'))}");
+           window.setInterval(
+               function(){
+                   $.ajax({
+                       url:"{php echo app_url('member/index/upload_refresh')}",
+                       type:"post",
+                       success:function(data){
+                           if(data){
+                               var data = JSON.parse(data);
+                               if(data.status==1){
+                                   location = location;
+                               }
+                           }
+                       }
+                   })
+               },5000
+           );
        })
    }) 
 </script>

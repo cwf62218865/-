@@ -92,33 +92,42 @@
                     </div>
 
                     <div class="font999" id="wanted_job" style=";margin-top: 58px;line-height: 2">
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-zhiwei"></use>
-                        </svg>
-                        {loop explode(",",$resume['hope_job']) $list}
-                        <span class="basic_msg_contents1">{$list}</span>
-                        {/loop}
-                        <svg class="icon" aria-hidden="true" style="margin-left: 20px">
-                            <use xlink:href="#icon-hangye"></use>
-                        </svg>
-                        {loop explode(",",$resume['trade']) $list}
-                        <span class="basic_msg_contents1">{$list}</span>
-                        {/loop}
+                        {if $resume['hope_job']}
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-zhiwei"></use>
+                            </svg>
+                            {loop explode(",",$resume['hope_job']) $list}
+                            <span class="basic_msg_contents1">{$list}</span>
+                            {/loop}
+                        {/if}
+                        {if $resume['trade']}
+                            <svg class="icon" aria-hidden="true" style="margin-left: 20px">
+                                <use xlink:href="#icon-hangye"></use>
+                            </svg>
+                            {loop explode(",",$resume['trade']) $list}
+                            <span class="basic_msg_contents1">{$list}</span>
+                            {/loop}
+                        {/if}
                         <br/>
+                        {if $resume['salary']}
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-xinzi"></use>
                         </svg>
                         <span class="basic_msg_contents2">{php echo $resume['salary']}</span>
+                        {/if}
 
+                        {if $resume['nature']}
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-quanzhi"></use>
                         </svg>
                         <span class="basic_msg_contents2">{php echo $resume['nature']}</span>
-
+                        {/if}
+                        {if $resume['hope_place']}
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-didian"></use>
                         </svg>
                         <span class="basic_msg_contents2">{php echo $resume['hope_place']}</span>
+                        {/if}
                     </div>
                 </div>
             </div>
@@ -275,7 +284,19 @@
 <script src="{WL_URL_ARES}js/change_modal.js" rel="script"></script>
 <script>
     $(document).ready(function () {
-
+        $("#download_resume").click(function(){
+            var uid = "{php echo $_GPC['uid']}";
+            $.ajax({
+                type:"post",
+                url:"http://ios.huiliewang.com/app/pdf_enter.php",
+                data:{
+                    resumeuid:"{php echo $_GPC['uid']}"
+                },
+                success:function (data) {
+                    window.location.href = "http://ios.huiliewang.com/app/"+data+".pdf";
+                }
+            })
+        })
         var mySwiper = new Swiper ('.swiper-container', {
             direction: 'horizontal',
             slidesPerView: 4,
