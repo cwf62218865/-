@@ -8,7 +8,7 @@
     <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
-    <title>完善企业信息-手机号</title>
+    <title>企业注册</title>
 </head>
 <body>
 {php include wl_template('common/header');}
@@ -59,7 +59,7 @@
                     <label class="general-input chema left_align">
                         <input type="text" placeholder="请输入验证码" id="identify_code" onkeyup="value=value.replace(/[^\d]/g,'')">
                     </label>
-                    <span class="code right_align">获取验证码</span>
+                    <span class="code right_align" id="reg_code">获取验证码</span>
                     <div class="chec_tip"></div>
                     <label class="general-input password">
                         <input type="password" placeholder="请输入6-15位密码" id="password" maxlength="15">
@@ -128,7 +128,11 @@
             var _this=$(this);
             var mobie=$("#mobie").val();
             if(telphone_reg.test(mobie)){
-                $(".msg_zj .code").addClass("click");
+                if($("#reg_code").html()=="获取验证码"){
+                    $(".msg_zj .code").addClass("click");
+                }else{
+                    $(".msg_zj .code").removeClass("click");
+                }
             }else{
                 $(".msg_zj .code").removeClass("click");
             }

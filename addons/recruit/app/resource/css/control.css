@@ -586,3 +586,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     margin-top: 30px;
     text-align: center;
 }
+.no_data_box{
+    margin: 160px 0 0 170px;
+}
+.no_data_boxmsg{
+    display: inline-block;
+    width: 300px;
+    margin-left: 60px;
+}
