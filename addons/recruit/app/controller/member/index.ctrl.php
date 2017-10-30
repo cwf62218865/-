@@ -387,11 +387,11 @@ elseif($op=="jobs_detail"){
 
 //职位搜索
 elseif ($op=="search_jobs"){
-    $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs"));
+    $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where open=1 and display=1");
 //    echo $jobs_count;exit();
     if($_GET['jobs_name']){
         $data['data']['job_name'] = $_GET['jobs_name'];
-        $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where jobs_name like '%".$_GET['jobs_name']."%'");
+        $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where open=1 and display=1 and jobs_name like '%".$_GET['jobs_name']."%'");
     }
     $jobs = m("jobs")->getall_jobs_page($data);
     $jobs = $jobs['more'];

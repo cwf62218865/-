@@ -56,11 +56,11 @@ class resume{
     public function jobs_apply($uid,$page=1){
         $limit = " limit ".(($page-1)*6).",6";
 
-        $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=2 and puid=".$uid.$limit);
+        $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=2 and puid=".$uid." order by createtime desc ".$limit);
 //        var_dump($jobs_apply);exit();
         $jobs = "";
         foreach ($jobs_apply as $key=>$list){
-            $jobs[$key] = m('jobs')->get_jobs($list['jobs_id']);
+            $jobs[$key] = pdo_fetch("select * from ".tablename(WL.'jobs')." where id=".$list['jobs_id']);
             $jobs[$key]['status'] = $list['status'];
             $jobs[$key]['apply_id'] = $list['id'];
             $jobs[$key]['direction'] = $list['direction'];
