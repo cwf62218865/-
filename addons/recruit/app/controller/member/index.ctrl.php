@@ -171,23 +171,108 @@ elseif ($op=="send_code"){
 elseif ($op=="mobile_upload"){
     if($_GPC['kind']=="resume"){
         $kind = "简历头像上传";
+        $url = app_url("member/index/save_members_temp",array('kind'=>'headimgurl'));
     }elseif($_GPC['kind']=="id1"){
         $kind = "法人身份证(正面)";
+        $url = app_url("member/index/save_members_temp",array('kind'=>'idcard1'));
     }elseif($_GPC['kind']=="id2"){
         $kind = "法人身份证(反面)";
+        $url = app_url("member/index/save_members_temp",array('kind'=>'idcard2'));
     }elseif($_GPC['kind']=="license"){
         $kind = "营业执照上传";
+        $url = app_url("member/index/save_members_temp",array('kind'=>'license'));
     }elseif($_GPC['kind']=="person_works"){
         $kind = "个人作品上传";
+        $url = app_url("member/index/save_members_temp",array('kind'=>'person_works'));
     }elseif($_GPC['kind']=="honor"){
         $kind = "荣誉证书上传";
+        $url = app_url("member/index/save_members_temp",array('kind'=>'honor'));
     }elseif($_GPC['kind']=="company_logo"){
         $kind = "公司logo上传";
+        $url = app_url("member/index/save_members_temp",array('kind'=>'company_logo'));
     }elseif($_GPC['kind']=="atlas"){
         $kind = "公司图集上传";
+        $url = app_url("member/index/save_members_temp",array('kind'=>'atlas'));
     }
     include wl_template("member/mobileupload1");exit();
 
+}
+
+//简历头像上传保存
+elseif ($op=="save_members_temp"){
+
+    if($_GPC['identity']){
+        $id = encrypt($_GPC['identity'], 'D');
+        $member = m("member")->get_member($id);
+        if($member){
+            $file = upload_img($_FILES);
+            $data['uid'] = $id;
+            $kind = $_GPC['kind'];
+            $data[$kind] = $file;
+            $temp = pdo_fetch("select id from ".tablename(WL."members_temp")." where uid=".$id);
+            if(empty($temp)){
+                $r = pdo_insert(WL."members_temp",$data);
+            }
+            if($r){
+                call_back(1,"1");
+            }else{
+                call_back(2,"2");
+            }
+
+        }
+    }else{
+        call_back(2,"身份验证失败");
+    }
+}
+
+//ajax请求上传结果,刷新页面
+elseif ($op=="upload_refresh"){
+    $uid = $_SESSION['uid'];
+    $temp = pdo_fetch("select * from ".tablename(WL.'members_temp')." where uid=".$uid);
+
+    if($temp['license'] || $temp['idcard1'] || $temp['idcard2']){
+        if($temp['license']){
+            $data['license'] = $temp['license'];
+        }
+        if($temp['idcard1']) {
+            $data['idcard1'] = $temp['idcard1'];
+        }
+        if($temp['idcard2']) {
+            $data['idcard2'] = $temp['idcard2'];
+        }
+        $company_profile = pdo_fetch("select * from ".tablename(WL.'company_profile')." where uid=".$uid);
+        if($company_profile){
+            $r = pdo_update(WL."company_profile",$data,array('uid'=>$uid));
+        }else{
+            $data['uid'] = $uid;
+            $data['createtime']=time();
+            $r = pdo_insert(WL."company_profile",$data);
+        }
+    }
+
+    if($temp['headimgurl']){
+        $data['headimgurl'] = $temp['headimgurl'];
+        $resume = pdo_fetch("select * from ".tablename(WL.'resume')." where uid=".$uid);
+        if($resume){
+            $data['updatetime'] = time();
+            $r = pdo_update(WL."resume",$data,array('uid'=>$uid));
+        }else{
+            $data['uid'] = $uid;
+            $data['createtime']=time();
+            $r = pdo_insert(WL."resume",$data);
+        }
+    }
+
+    if($temp['person_works']){
+        $data['person_works'] = $temp['person_works'];
+        $data['updatetime'] = time();
+        $r = pdo_update(WL."resume",$data,array('uid'=>$uid));
+    }
+
+    if($r){
+        pdo_delete(WL."members_temp",array("uid"=>$uid));
+        call_back(1,"上传成功");
+    }
 }
 
 elseif ($op=="resume_worksupload"){

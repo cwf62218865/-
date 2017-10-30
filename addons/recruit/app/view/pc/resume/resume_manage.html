@@ -359,6 +359,7 @@
                     </div>
 
                     <div class="font999" id="wanted_job" style=";margin-top: 58px;line-height: 2">
+                        {if $resume['hope_job']}
                         <span class="see_hope_job">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-zhiwei"></use>
@@ -367,8 +368,9 @@
                             <span class="basic_msg_contents1">{$list}</span>
                             {/loop}
                         </span>
+                        {/if}
 
-
+                        {if $resume['trade']}
                         <span class="see_hope_job">
                             <svg class="icon" aria-hidden="true" style="margin-left: 20px">
                                 <use xlink:href="#icon-hangye"></use>
@@ -377,32 +379,35 @@
                             <span class="basic_msg_contents1">{$list}</span>
                             {/loop}
                         </span>
-
+                        {/if}
 
                         <br/>
+                        {if $resume['salary']}
                         <span class="see_hope_job">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-xinzi"></use>
                             </svg>
                             <span class="basic_msg_contents2">{php echo $resume['salary']}</span>
                         </span>
+                        {/if}
 
-
+                        {if $resume['nature']}
                         <span class="see_hope_job">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-quanzhi"></use>
                             </svg>
                             <span class="basic_msg_contents2">{php echo $resume['nature']}</span>
                         </span>
+                        {/if}
 
-
+                        {if $resume['hope_place']}
                         <span class="see_hope_job">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-didian"></use>
                             </svg>
                             <span class="basic_msg_contents2">{php echo $resume['hope_place']}</span>
                         </span>
-
+                        {/if}
                     </div>
                 </div>
                 <!--<span class="addandeditbtn" id="edit_wanted_job">-->
@@ -595,6 +600,7 @@
                         </div>
 
                         <div class="resume_exp_content">
+                            {if $resume['work_experience']}
                             {loop unserialize($resume['work_experience']) $id $list}
                             <div class="resume_exps" data-id="{php echo $id}">
                                 <div class="relative">
@@ -621,7 +627,7 @@
                                 </div>
                             </div>
                             {/loop}
-
+                            {/if}
                         </div>
                     </div>
 
