@@ -58,7 +58,7 @@ if(function_exists($getlistFrames)){
 }
 //$top_menus = get_top_menus();
 $file = WL_APP . 'controller/'.$controller.'/'.$action.'.ctrl.php';
-//echo $file;exit();
+
 if (!empty($auth) && $controller != 'system') {
 	$addressid = pdo_getcolumn('weliam_shiftcar_wechataddr',array('acid' => $_W['acid']),'addressid');
 	if (empty($addressid) && !empty($auth) && $controller != 'system') {
