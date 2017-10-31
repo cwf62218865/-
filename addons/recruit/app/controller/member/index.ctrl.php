@@ -2,19 +2,29 @@
 defined('IN_IA') or exit('Access Denied');
 wl_load()->model('verify');
 
+
 //登录
 if($op=="index"){
+    include wl_template("member/index");exit();
+//    unset($_SESSION['uid']);
+//    unset($_SESSION['utype']);
+//    include_once( WL_CORE.'/common/libweibo-master/config.php' );
+//    include_once( WL_CORE.'/common/libweibo-master/saetv2.ex.class.php' );
+//
+//    $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+//    $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
+//    include wl_template("member/login");exit();
+}
+elseif ($op=="login"){
     unset($_SESSION['uid']);
     unset($_SESSION['utype']);
     include_once( WL_CORE.'/common/libweibo-master/config.php' );
     include_once( WL_CORE.'/common/libweibo-master/saetv2.ex.class.php' );
 
     $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
-
     $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
     include wl_template("member/login");exit();
 }
-
 //注册
 elseif ($op=="register"){
     include wl_template("member/reg_screen");exit();
@@ -212,7 +222,7 @@ elseif ($op=="modify_pwd"){
     if($password==$member['password']){
         if($_GPC['newpsw']==$_GPC['newpswch']){
             $password =  pwd_hash($_GPC['newpsw'],$member['salt']);
-            $r = pdo_update(WL."members",array('password'=>$password,'updatetime'=>time()),array('uid'=>$_SESSION['uid']));
+            $r = pdo_update(WL."members",array('password'=>$password),array('id'=>$_SESSION['uid']));
             call_back(1,"修改成功");
         }else{
             call_back(2,"2次输入密码不一致");

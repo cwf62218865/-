@@ -1,0 +1,39 @@
+<div class="header">
+    <div class="width1200 align_center" style="padding-top: 14px;justify-content: space-between">
+        <img src="{WL_URL_ARES}images/logo.png"/>
+        <div style="height: 52px;line-height: 52px"><span class="city">全国</span><span class="changecity">[切换]</span></div>
+        <div class="menu">
+            <a href="{php echo app_url('member/index')}">首页</a>
+            <a  href="{php echo app_url('member/index/search_jobs')}">找工作</a>
+            <a  href="#">实习/兼职</a>
+            <a  href="#">求职保镖</a>
+            <a  href="#">职场信用</a>
+            <a  href="#">就业大数据</a>
+        </div>
+        <div class="login relative">
+            <span class="relative personal_msgbtn">
+                <div class="login_header">
+                    <svg class="icon">
+                        <use xlink:href="#icon-xuesheng"></use>
+                    </svg>
+                </div>
+                <span class="color666">{$user['mobile']}</span>
+                <span class="red_circular"></span>
+                <svg class="icon" style="margin-left:10px">
+                    <use xlink:href="#icon-xiala"></use>
+                </svg>
+            </span>
+            <a href="#">企业入口</a>
+
+
+            <div class="personal_msgs" id="personal_msgs">
+                <a href="{php echo app_url('person/index/send_resume')}">我的实习僧</a>
+                <a href="{php echo app_url('person/index/send_resume')}">投递记录</a>
+                <a href="#">面试邀请<span class="rednum">4</span></a>
+                <a href="{php echo app_url('member/index/usersetting')}">账号设置</a>
+                <a href="{php echo app_url('member/index/login')}">退出</a>
+            </div>
+
+        </div>
+    </div>
+</div>

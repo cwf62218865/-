@@ -12,7 +12,11 @@
     <title>用户中心</title>
 </head>
 <body>
+{if $_SESSION['uid']}
+{php include wl_template('common/top');}
+{else}
 {php include wl_template('common/header');}
+{/if}
 <div class="width1200" style="background-color: #fff">
 
     <div class="nav_left">
@@ -105,12 +109,7 @@
                 <label class="biezhu_item">不希望以下企业看到我（最多添加5个）</label>
             </div>
             <div class="select_item1 dedail_con" {if $resume['display']==3}style="display:block;"{/if}>
-                <div class="radio_check checked">
-                    <svg class="icon checkico" aria-hidden="true">
-                        <use xlink:href="#icon-kongxingou"></use>
-                    </svg>
-                </div>
-                <label class="biezhu_item">不希望以下企业看到我（最多添加5个）</label>
+
                 <div class="pbbeizhu">
                     <p class="biezhus">如果不想被某企业搜到，可以设置企业黑名单。设置后，含有关该关键词的所有公司都被屏蔽掉。<br/>
                         例如：输入“大风车”，“SD大风车”、“DF大风车”，“大风车科技”等都将被屏蔽。</p>
@@ -141,7 +140,7 @@
             <div class="top_title">修改密码</div>
             <div class="top_line"></div>
             <div class="bind_h">
-                <label>登录账号：13888888888</label>
+                <label>登录账号：{$member['mobile']}</label>
             </div>
             <div class="line_dash"></div>
             <div class="input_33">

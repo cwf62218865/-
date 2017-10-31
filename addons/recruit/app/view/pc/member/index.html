@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/header.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/swiper-3.4.2.min.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/control.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/index.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/swiper-3.4.2.min.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/index.css" rel="stylesheet">
     <title>首页</title>
 </head>
 <style>
@@ -58,61 +58,30 @@
     }
 </style>
 <body>
-<div class="header">
-    <div class="width1200 align_center" style="padding-top: 14px;justify-content: space-between">
-        <img src="/yingjieseng/addons/recruit/app/resource/images/logo.png"/>
-        <div style="height: 52px;line-height: 52px"><span class="city">全国</span><span class="changecity">[切换]</span></div>
-        <div class="menu">
-            <a href="#">首页</a>
-            <a  href="#">找工作</a>
-            <a  href="#">实习/兼职</a>
-            <a  href="#">求职保镖</a>
-            <a  href="#">职场信用</a>
-            <a  href="#">就业大数据</a>
-        </div>
-        <div class="login relative">
-            <span class="relative personal_msgbtn">
-                <div class="login_header">
-                    <svg class="icon">
-                        <use xlink:href="#icon-xuesheng"></use>
-                    </svg>
-                </div>
-                <span class="color666">周川</span>
-                <span class="red_circular"></span>
-                <svg class="icon" style="margin-left:10px">
-                    <use xlink:href="#icon-xiala"></use>
-                </svg>
-            </span>
-            <a href="#">企业入口</a>
-
-
-            <div class="personal_msgs" id="personal_msgs">
-                <a href="#">我的实习僧<span class="rednum">4</span></a>
-                <a href="#">投递记录</a>
-                <a href="#">面试邀请</a>
-                <a href="#">账号设置</a>
-                <a href="#">退出</a>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-
+{if $_SESSION['uid']}
+{php include wl_template('common/top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
 <div class="width1200">
 
     <!--左上角banner-->
     <div class="index_left">
-        <img src="/yingjieseng/addons/recruit/app/resource/images/index_leftbanner.png"/>
+        <img src="{WL_URL_ARES}images/index_leftbanner.png"/>
     </div>
 
 
     <!--热门搜索-->
     <div class="index_right" style="background-color: #fff;">
-        <form class="index_search" action="#">
+        <form class="index_search" action="{php echo app_url('member/index/search_jobs')}">
+            <input type="hidden" name="c" value="site">
+            <input type="hidden" name="a" value="entry">
+            <input type="hidden" name="m" value="recruit">
+            <input type="hidden" name="do" value="member">
+            <input type="hidden" name="ac" value="index">
+            <input type="hidden" name="op" value="search_jobs">
             <label class="index_searchbox">
-                <input type="text" name="job_name" placeholder="请输入搜索的职位">
+                <input type="text" name="jobs_name" placeholder="请输入搜索的职位">
             </label>
             <input type="submit" class="index_searchbtn" value="搜索">
         </form>
@@ -158,20 +127,20 @@
                 <div class="swiper-wrapper">
 
                     <div class="swiper-slide">
-                        <div class="company_img"><img src="/yingjieseng/addons/recruit/app/resource/images/index_big_banner.png"></div>
+                        <div class="company_img"><img src="{WL_URL_ARES}images/index_big_banner.png"></div>
                     </div>
 
                     <div class="swiper-slide">
-                        <div class="company_img"><img src="/yingjieseng/addons/recruit/app/resource/images/index_big_banner.png"></div>
+                        <div class="company_img"><img src="{WL_URL_ARES}images/index_big_banner.png"></div>
                     </div>
 
                     <div class="swiper-slide">
-                        <div class="company_img"><img src="/yingjieseng/addons/recruit/app/resource/images/index_big_banner.png"></div>
+                        <div class="company_img"><img src="{WL_URL_ARES}images/index_big_banner.png"></div>
                     </div>
 
 
                     <div class="swiper-slide">
-                        <div class="company_img"><img src="/yingjieseng/addons/recruit/app/resource/images/index_big_banner.png"></div>
+                        <div class="company_img"><img src="{WL_URL_ARES}images/index_big_banner.png"></div>
                     </div>
 
                 </div>
@@ -210,24 +179,24 @@
 
     <!--明星企业-->
     <div class="relative" style="margin-top: 20px;background-color: #f1f1f1;padding: 10px 20px 20px 10px;height: 390px">
-        <img class="surper_label" src="/yingjieseng/addons/recruit/app/resource/images/surper_company.png">
+        <img class="surper_label" src="{WL_URL_ARES}images/surper_company.png">
 
         <div id="surper_companys">
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
-            <a href="#" class="surper_company"><img src="/yingjieseng/addons/recruit/app/resource/images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
 
         </div>
 
@@ -265,7 +234,7 @@
             <div id="hot_companys">
                 <div class="hot_companys">
                     <div class="hot_companys_logo">
-                        <img src="/yingjieseng/addons/recruit/app/resource/images/qiyelogo.png">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
                     </div>
                     <div class="nowrap hot_companys_name">
                         北京金超三顺科技有限公司
@@ -292,7 +261,7 @@
                 </div>
                 <div class="hot_companys">
                     <div class="hot_companys_logo">
-                        <img src="/yingjieseng/addons/recruit/app/resource/images/qiyelogo.png">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
                     </div>
                     <div class="nowrap hot_companys_name">
                         北京金超三顺科技有限公司
@@ -319,7 +288,7 @@
                 </div>
                 <div class="hot_companys">
                     <div class="hot_companys_logo">
-                        <img src="/yingjieseng/addons/recruit/app/resource/images/qiyelogo.png">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
                     </div>
                     <div class="nowrap hot_companys_name">
                         北京金超三顺科技有限公司
@@ -346,7 +315,7 @@
                 </div>
                 <div class="hot_companys">
                     <div class="hot_companys_logo">
-                        <img src="/yingjieseng/addons/recruit/app/resource/images/qiyelogo.png">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
                     </div>
                     <div class="nowrap hot_companys_name">
                         北京金超三顺科技有限公司
@@ -373,7 +342,7 @@
                 </div>
                 <div class="hot_companys">
                     <div class="hot_companys_logo">
-                        <img src="/yingjieseng/addons/recruit/app/resource/images/qiyelogo.png">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
                     </div>
                     <div class="nowrap hot_companys_name">
                         北京金超三顺科技有限公司
@@ -400,7 +369,7 @@
                 </div>
                 <div class="hot_companys">
                     <div class="hot_companys_logo">
-                        <img src="/yingjieseng/addons/recruit/app/resource/images/qiyelogo.png">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
                     </div>
                     <div class="nowrap hot_companys_name">
                         北京金超三顺科技有限公司
@@ -427,7 +396,7 @@
                 </div>
                 <div class="hot_companys">
                     <div class="hot_companys_logo">
-                        <img src="/yingjieseng/addons/recruit/app/resource/images/qiyelogo.png">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
                     </div>
                     <div class="nowrap hot_companys_name">
                         北京金超三顺科技有限公司
@@ -454,7 +423,7 @@
                 </div>
                 <div class="hot_companys">
                     <div class="hot_companys_logo">
-                        <img src="/yingjieseng/addons/recruit/app/resource/images/qiyelogo.png">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
                     </div>
                     <div class="nowrap hot_companys_name">
                         北京金超三顺科技有限公司
@@ -498,9 +467,15 @@
             <span class="color999 resume_job_title" style="font-size: 16px;margin-left: 70px">最新职位</span>
 
 
-            <form action="#" style="float: right">
+            <form action="{php echo app_url('member/index/search_jobs')}" style="float: right">
+                <input type="hidden" name="c" value="site">
+                <input type="hidden" name="a" value="entry">
+                <input type="hidden" name="m" value="recruit">
+                <input type="hidden" name="do" value="member">
+                <input type="hidden" name="ac" value="index">
+                <input type="hidden" name="op" value="search_jobs">
                  <label class="index_searchbox" style="width: 220px;height: 40px;line-height: 40px">
-                     <input type="text" style="width: 180px;float: left;height: 40px;line-height: 40px" name="job_name" placeholder="请输入搜索的职位">
+                     <input type="text" style="width: 180px;float: left;height: 40px;line-height: 40px" name="jobs_name" placeholder="请输入搜索的职位">
                  </label>
                 <input type="submit" class="index_searchbtn" value="搜索" style="height: 42px;line-height: 42px;width: 80px;font-size: 14px">
             </form>
@@ -1137,61 +1112,16 @@
 
 </div>
 
+{php include wl_template('common/footer');}
 
-<div class="footer">
-    <div class="footer_banner">
-        <div class="width1200" style="text-align: center">
-            <span class="zuianquan">应届僧，最安全的校园招聘平台</span>
-            <div class="company_num"><span>26542</span>公司<span style="margin-left: 50px">26542</span>职位</div>
-            <div class="footer_login">
-                <a href="#">登录</a>
-                <a href="#">注册</a>
-            </div>
-        </div>
-    </div>
-    <div class="width1200 about_me">
-        <a href="#">关于我们</a>
-        <a href="#">联系我们</a>
-        <a href="#">媒体报道</a>
-        <a href="#">留言反馈</a>
-        <a href="#">法律声明</a>
-        <a href="#">隐私政策</a>
-        <a href="#">网址地图</a>
-    </div>
-
-    <div class="width1200 friend_url">
-        <span style="margin-right: 30px">友情链接</span>
-        <a href="#">拉勾网</a>
-        <a href="#">大鲲</a>
-        <a href="#">招聘</a>
-        <a href="#">app下载</a>
-        <a href="#">拉钩云</a>
-        <a href="#">中大网校</a>
-        <a href="#">人人都是产品经理</a>
-        <a href="#">教师招聘</a>
-        <a href="#">新疆人才网</a>
-        <a href="#">研究报告</a>
-        <a href="#">互联网的一些事</a>
-        <a href="#">人才招聘网</a>
-        <a href="#">找工作</a>
-        <a href="#">字典</a>
-    </div>
-
-
-    <div class="width1200 company_record">
-        <img style="float: left" src="/yingjieseng/addons/recruit/app/resource/images/logo.png"/>
-        <span style="margin-left: 50px">服务热线：4006-3228-35 (9:00 -18:00)</span>
-        <span style="margin-left: 50px"> <img style="margin-right: 12px;" src="/yingjieseng/addons/recruit/app/resource/images/beianbgs.png"/>版权所有 Copyright ©2017 Lagou 京ICP备14023790号-2 京公网安备 11010802024043号</span>
-    </div>
-</div>
 
 </body>
-<script src="/yingjieseng/addons/recruit/app/resource/js/jquery.js" rel="script"></script>
-<script src="/yingjieseng/addons/recruit/app/resource/js/newfile.js" rel="script"></script>
-<script src="/yingjieseng/addons/recruit/app/resource/js/iconfont.js" rel="script"></script>
-<script src="/yingjieseng/addons/recruit/app/resource/js/swiper-3.4.2.min.js" rel="script"></script>
-<script src="/yingjieseng/addons/recruit/app/resource/js/control.js" rel="script"></script>
-<script src="/yingjieseng/addons/recruit/app/resource/js/index.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/newfile.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/swiper-3.4.2.min.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/index.js" rel="script"></script>
 <script>
     var big_bannercontent=[
         "应届僧校园招聘",

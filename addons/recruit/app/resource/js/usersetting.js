@@ -166,19 +166,28 @@ $(function () {
             blacklist += $(this).html()+",";
         })
         blacklist =blacklist+","+name;
+        var $elements = $('.pb_items');
+        var len = $elements.length;
+        if(name!="" && len<5){
         $('.input_con').append("<p class='pb_items'>"+name+"<label class='remove'>删除</label></p>" );
         $(".pb_input").val("");
-        $.ajax({
-            type:"post",
-            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=blacklist",
-            data:{
-                name:blacklist
-            },
-            success:function (data) {
-                var data = JSON.parse(data);
+            $.ajax({
+                type:"post",
+                url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=blacklist",
+                data:{
+                    name:blacklist
+                },
+                success:function (data) {
+                    var data = JSON.parse(data);
 
-            }
-        })
+                }
+            })
+        }
+        if(len==5){
+            alert("最多只能添加5个");
+            $(".pb_input").val("");
+        }
+
     })
     $("body").on("click",".remove",function () {
         $(this).closest(".pb_items").remove();

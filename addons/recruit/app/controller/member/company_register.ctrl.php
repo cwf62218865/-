@@ -61,7 +61,6 @@ elseif ($op=="mobileupload"){
         die();
     }
 }
-
 //图片上传保存处理
 elseif ($op=="save_license"){
     $id = encrypt($_GPC['identity'], 'D');
