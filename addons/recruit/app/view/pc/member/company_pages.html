@@ -60,7 +60,11 @@
     </style>
 </head>
 <body bgcolor="#f4f4f4">
+{if $_SESSION['uid']}
+{php include wl_template('common/top');}
+{else}
 {php include wl_template('common/header');}
+{/if}
 <div class="width1200 p1content">
 
     <!--公司基本信息-->

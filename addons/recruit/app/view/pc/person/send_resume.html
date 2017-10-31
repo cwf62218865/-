@@ -22,9 +22,10 @@
 
         <div class="con_list">
             <div class="list_top">
-                <div class="list_item_btn {if $show==1}select{/if}" id="send_list">投递记录</div>
-                <div class="list_item_btn {if $show==2}select{/if}" style="margin-left: 2px" id="review">面试邀请</div>
-                <div class="checkbox ico_rightstatas" style="margin-left: 120px;display:inline-block;">
+                <div class="list_item_btn" id="send_list">投递记录</div>
+                <div class="list_item_btn" style="margin-left: 2px" id="review">面试邀请</div>
+                <div class="beizhus">
+                <div class="checkbox ico_rightstatas"  style="margin-left: 120px;display: inline-block">
                     <label>
                         <input type="checkbox" name="like" value="">
                         <div class="checkboxbox">
@@ -34,9 +35,10 @@
                         </div>
                     </label>
                 </div>
-                <div class="biezhu" style="display: {if $show==1}block{else}none{/if};"> 只看通过申请的记录</div>
+                <div class="biezhu"> 只看通过申请的记录</div>
+                </div>
             </div>
-            <div class="list_content" style="display: {if $show==1}block{else}none{/if};" >
+            <div class="list_content">
                 {loop $apply_jobs $list}
                 {if $list['direction']==2}
                 <div class="list_item {if $list['status']<>3}pass{/if}" >
@@ -98,7 +100,7 @@
                 <div class="morejob apply_more">发现更多好职位>></div>
             </div>
             <!--面试邀请start---------------------------------------------------------------------------->
-            <div class="resume_content" style="display: {if $show==2}block{else}none{/if};" >
+            <div class="resume_content">
                 {loop $interview_jobs $list}
                     {if $list['status']==3}
                         <div class="list_item">
@@ -270,6 +272,17 @@
 
 <script>
     $(function () {
+        var show = "{php echo $show}"-1;
+        $(".list_item_btn").eq(show).addClass("select");
+        if(show==0){
+            $(".list_content").show();
+            $(".resume_content").hide();
+            $(".beizhus").show();
+        }else{
+            $(".list_content").hide();
+            $(".resume_content").show();
+            $(".beizhus").hide();
+        }
         var send_resume_page = 1;
         var invite_page = 1;
         send_resume();
