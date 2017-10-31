@@ -335,6 +335,7 @@ elseif ($op=="upload_refresh"){
         pdo_delete(WL."members_temp",array("uid"=>$uid));
         call_back(1,"上传成功");
     }
+    exit();
 }
 
 elseif ($op=="resume_worksupload"){

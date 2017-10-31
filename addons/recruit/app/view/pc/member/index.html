@@ -340,7 +340,7 @@
                         <svg class="icon" style="color: #d3d3d3;font-size: 16px">
                             <use xlink:href="#icon-shoucang"></use>
                         </svg>
-                        30528人关注了该职位
+                        {$list['collect_count']}人关注了该职位
                     </span>
                 </div>
             </div>
@@ -353,26 +353,32 @@
 
 
         <div class="resume_list" style="display: none">
+            {loop $jobs $list}
             <div class="resume_position">
                 <div style="margin: 40px 24px 24px 24px">
                     <div>
-                        <span style="font-size: 20px">JAVA工程师1</span>
-                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                        <a style="font-size: 20px" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
+                        <span style="font-size: 18px;color: #e23d46;float: right">
+                            {if $list['wage_min']>0 && $list['wage_max']>0}
+                                    {$list['wage_min']}-{$list['wage_max']}K
+                                {else}
+                                    面议
+                                {/if}
+                        </span>
                     </div>
 
                     <div style="margin-top: 20px">
-                        <span >3-5年工作经验</span>
-                        <span style="margin-left: 20px;">大专</span>
-                        <span  style="float: right">2人/全职</span>
+                        <span >{$list['experience']}</span>
+                        <span style="margin-left: 20px;">{$list['education']}</span>
+                        <span  style="float: right">{$list['number_range']}人/{$list['work_nature']}</span>
                     </div>
 
                     <div style="margin-top: 20px">
-                        <span >工作经验：1年以上</span>
-
+                        <span >工作经验：{$list['experience']}</span>
                     </div>
 
                     <div style="margin-top: 20px">
-                        <span >工作地点：重庆  江北区</span>
+                        <span >工作地点：{$list['city']} {$list['city_area']}</span>
                     </div>
 
                     <span class="hot_company_line" style="width: 322px"></span>
@@ -382,274 +388,11 @@
                         <svg class="icon" style="color: #d3d3d3;font-size: 16px">
                             <use xlink:href="#icon-shoucang"></use>
                         </svg>
-                        30528人关注了该职位
+                        {$list['collect_count']}人关注了该职位
                     </span>
                 </div>
             </div>
-            <div class="resume_position">
-                <div style="margin: 40px 24px 24px 24px">
-                    <div>
-                        <span style="font-size: 20px">JAVA工程师</span>
-                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >3-5年工作经验</span>
-                        <span style="margin-left: 20px;">大专</span>
-                        <span  style="float: right">2人/全职</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作经验：1年以上</span>
-
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作地点：重庆  江北区</span>
-                    </div>
-
-                    <span class="hot_company_line" style="width: 322px"></span>
-
-
-                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
-                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
-                            <use xlink:href="#icon-shoucang"></use>
-                        </svg>
-                        30528人关注了该职位
-                    </span>
-                </div>
-            </div>
-            <div class="resume_position">
-                <div style="margin: 40px 24px 24px 24px">
-                    <div>
-                        <span style="font-size: 20px">JAVA工程师</span>
-                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >3-5年工作经验</span>
-                        <span style="margin-left: 20px;">大专</span>
-                        <span  style="float: right">2人/全职</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作经验：1年以上</span>
-
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作地点：重庆  江北区</span>
-                    </div>
-
-                    <span class="hot_company_line" style="width: 322px"></span>
-
-
-                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
-                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
-                            <use xlink:href="#icon-shoucang"></use>
-                        </svg>
-                        30528人关注了该职位
-                    </span>
-                </div>
-            </div>
-            <div class="resume_position">
-                <div style="margin: 40px 24px 24px 24px">
-                    <div>
-                        <span style="font-size: 20px">JAVA工程师</span>
-                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >3-5年工作经验</span>
-                        <span style="margin-left: 20px;">大专</span>
-                        <span  style="float: right">2人/全职</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作经验：1年以上</span>
-
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作地点：重庆  江北区</span>
-                    </div>
-
-                    <span class="hot_company_line" style="width: 322px"></span>
-
-
-                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
-                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
-                            <use xlink:href="#icon-shoucang"></use>
-                        </svg>
-                        30528人关注了该职位
-                    </span>
-                </div>
-            </div>
-            <div class="resume_position">
-                <div style="margin: 40px 24px 24px 24px">
-                    <div>
-                        <span style="font-size: 20px">JAVA工程师</span>
-                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >3-5年工作经验</span>
-                        <span style="margin-left: 20px;">大专</span>
-                        <span  style="float: right">2人/全职</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作经验：1年以上</span>
-
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作地点：重庆  江北区</span>
-                    </div>
-
-                    <span class="hot_company_line" style="width: 322px"></span>
-
-
-                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
-                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
-                            <use xlink:href="#icon-shoucang"></use>
-                        </svg>
-                        30528人关注了该职位
-                    </span>
-                </div>
-            </div>
-            <div class="resume_position">
-                <div style="margin: 40px 24px 24px 24px">
-                    <div>
-                        <span style="font-size: 20px">JAVA工程师</span>
-                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >3-5年工作经验</span>
-                        <span style="margin-left: 20px;">大专</span>
-                        <span  style="float: right">2人/全职</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作经验：1年以上</span>
-
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作地点：重庆  江北区</span>
-                    </div>
-
-                    <span class="hot_company_line" style="width: 322px"></span>
-
-
-                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
-                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
-                            <use xlink:href="#icon-shoucang"></use>
-                        </svg>
-                        30528人关注了该职位
-                    </span>
-                </div>
-            </div>
-            <div class="resume_position">
-                <div style="margin: 40px 24px 24px 24px">
-                    <div>
-                        <span style="font-size: 20px">JAVA工程师</span>
-                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >3-5年工作经验</span>
-                        <span style="margin-left: 20px;">大专</span>
-                        <span  style="float: right">2人/全职</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作经验：1年以上</span>
-
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作地点：重庆  江北区</span>
-                    </div>
-
-                    <span class="hot_company_line" style="width: 322px"></span>
-
-
-                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
-                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
-                            <use xlink:href="#icon-shoucang"></use>
-                        </svg>
-                        30528人关注了该职位
-                    </span>
-                </div>
-            </div>
-            <div class="resume_position">
-                <div style="margin: 40px 24px 24px 24px">
-                    <div>
-                        <span style="font-size: 20px">JAVA工程师</span>
-                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >3-5年工作经验</span>
-                        <span style="margin-left: 20px;">大专</span>
-                        <span  style="float: right">2人/全职</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作经验：1年以上</span>
-
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作地点：重庆  江北区</span>
-                    </div>
-
-                    <span class="hot_company_line" style="width: 322px"></span>
-
-
-                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
-                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
-                            <use xlink:href="#icon-shoucang"></use>
-                        </svg>
-                        30528人关注了该职位
-                    </span>
-                </div>
-            </div>
-            <div class="resume_position">
-                <div style="margin: 40px 24px 24px 24px">
-                    <div>
-                        <span style="font-size: 20px">JAVA工程师</span>
-                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >3-5年工作经验</span>
-                        <span style="margin-left: 20px;">大专</span>
-                        <span  style="float: right">2人/全职</span>
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作经验：1年以上</span>
-
-                    </div>
-
-                    <div style="margin-top: 20px">
-                        <span >工作地点：重庆  江北区</span>
-                    </div>
-
-                    <span class="hot_company_line" style="width: 322px"></span>
-
-
-                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
-                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
-                            <use xlink:href="#icon-shoucang"></use>
-                        </svg>
-                        30528人关注了该职位
-                    </span>
-                </div>
-            </div>
+            {/loop}
 
             <div style="clear: both"></div>
             <div>

@@ -270,12 +270,13 @@
                 },
                 type: "POST",
                 dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                    if(data.status == '1') {
-                        $('.resume_manage_headerimg img').attr('src',src );
-                    }
-                }
+//                success: function(data) {
+////                    console.log(data);
+//                    var data = JSON.parse(data);
+//                    if(data.status == '1') {
+//                        $('.resume_manage_headerimg img').attr('src',src );
+//                    }
+//                }
             });
         }
     </script>
@@ -434,6 +435,7 @@
                                    location = location;
                                }
                            }
+
                        }
                    })
                },5000

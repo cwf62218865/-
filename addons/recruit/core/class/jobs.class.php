@@ -52,6 +52,7 @@ class jobs{
         foreach ($jobs as $li){
             $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where jobs_id=".$li['id']." and puid=".$_SESSION['uid']);
             $headimgurl = pdo_fetch("select headimgurl from ".tablename(WL.'company_profile')." where uid=".$li['uid']);
+            $li['collect_count'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."collect_jobs")." where jobs_id=".$li['id']);
             if($jobs_apply){
                 $li['post_status'] = "已投递";
             }else{

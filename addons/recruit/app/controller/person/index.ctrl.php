@@ -182,12 +182,13 @@ elseif ($op=="collection_jobs_list"){
     $collect_job = pdo_fetchall("select c.createtime,j.* from ".tablename(WL."collect_jobs")." as c,".tablename(WL."jobs")." as j where c.jobs_id=j.id and c.uid=".$_SESSION['uid']);
     $collect_jobs = "";
     foreach ($collect_job as $list){
-        $headimgurl = pdo_fetch("select headimgurl from ".tablename(WL."company_profile")." where uid=".$list['uid']);
+        $headimgurl = pdo_fetch("select headimgurl,tag from ".tablename(WL."company_profile")." where uid=".$list['uid']);
         $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and jobs_id=".$list['id']);
         if(empty($jobs_apply)){
             $list['post_status'] = 1;
         }
         $list['headimgurl'] = $headimgurl['headimgurl'];
+        $list['tag'] = $headimgurl['tag'];
         $collect_jobs[] = $list;
     }
 

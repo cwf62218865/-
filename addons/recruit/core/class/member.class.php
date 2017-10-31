@@ -45,6 +45,7 @@ class member{
             $company_profile[$key] = $list;
             $company_profile[$key]['last_login'] = $this->last_login($list['uid']);
             $company_profile[$key]['jobs_count'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$list['uid']);
+
         }
         return $company_profile;
     }
