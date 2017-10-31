@@ -23,9 +23,14 @@ function create_bind_account(){
     $("#tel_number").on("input", function () {
         var tel=$("#tel_number").val();
         if(telphone_reg.test(tel)){
-            $(".tel_con .code").addClass("click");
+            //$(".tel_con .code").addClass("click");
+            if($("#getcode").html()=="获取验证码"){
+                $("#getcode").addClass("click");
+            }else{
+                $("#getcode").removeClass("click");
+            }
         }else{
-            $(".tel_con .code").removeClass("click");
+            $("#getcode").removeClass("click");
         }
     });
     $("body").on("click",".tel_con .click",function(){
@@ -60,11 +65,18 @@ function forget_password(){
     $("#tel_number").on("input", function () {
         var tel=$("#tel_number").val();
         if(telphone_reg.test(tel)){
-            $(".tel_con .code").addClass("click");
+            //$(".tel_con .code").addClass("click");
+            if($("#getcode").html()=="获取验证码"){
+                $("#getcode").addClass("click");
+            }else{
+                $("#getcode").removeClass("click");
+            }
         }else{
-            $(".tel_con .code").removeClass("click");
+            $("#getcode").removeClass("click");
         }
     });
+
+
     //邮箱
     $("#email_number").on("input", function () {
         var email=$("#email_number").val();
