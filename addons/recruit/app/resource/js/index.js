@@ -32,3 +32,36 @@
         $(".resume_list").eq(1).show();
         $(".resume_list").eq(0).hide();
     });
+
+$(document).on("scroll",function(){
+    var top=$(document).scrollTop();
+    if(top==0){
+        $(".back_topbtn").hide();
+    }else{
+        $(".back_topbtn").show();
+    }
+    if(top>2250){
+        $(".footer_banner").css("position","relative");
+        $(".back_top").css("bottom",(top-2110)+"px");
+
+    }else{
+        $(".footer_banner").css("position","fixed");
+        $(".back_top").css("bottom","140px");
+    }
+});
+
+$(".back_topbtn").on("click",function(){
+    $("html").animate({scrollTop:0},300)
+});
+
+
+//切换全国城市
+$(".changecity").on("click",function(){
+    $(".indexmodal").show();
+});
+
+$(".modalclose").on("click",function(){
+    $(".indexmodal").hide();
+});
+
+

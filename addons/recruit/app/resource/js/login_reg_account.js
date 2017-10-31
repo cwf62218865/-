@@ -139,16 +139,14 @@ function send_resume(){
         $(".list_content").show();
         $(".shoucanginput").hide();
         $(".resume_content").hide();
-        $(".ico_rightstatas").show();
-        $(".biezhu").show();
+        $(".beizhus").show();
         $(".job_send").show();
     });
     $("#review").click(function(){
         $(".resume_content").show();
         $(".shoucanginput").show();
         $(".list_content").hide();
-        $(".ico_rightstatas").hide();
-        $(".biezhu").hide();
+        $(".beizhus").hide();
         $(".job_send").hide();
     })
 }

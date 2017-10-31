@@ -29,7 +29,7 @@
             <div class="personal_msgs" id="personal_msgs">
                 <a href="{php echo app_url('person/index/send_resume')}">我的实习僧</a>
                 <a href="{php echo app_url('person/index/send_resume')}">投递记录</a>
-                <a href="#">面试邀请<span class="rednum">4</span></a>
+                <a href="{php echo app_url('person/index/send_resume',array('kind'=>'interview'))}">面试邀请<span class="rednum">4</span></a>
                 <a href="{php echo app_url('member/index/usersetting')}">账号设置</a>
                 <a href="{php echo app_url('member/index/login')}">退出</a>
             </div>

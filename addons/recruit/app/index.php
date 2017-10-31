@@ -39,6 +39,8 @@ if(!$_SESSION['uid']){
 		$resume_integrity = resume_integrity();
 	}
 	$user = m("member")->get_member($_SESSION['uid']);
+	$company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."company_profile"));
+	$jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs"));
 }
 if(empty($controller) || empty($action)) {
 	$_GPC['do'] = $controller = 'member';
@@ -56,7 +58,7 @@ if(function_exists($getlistFrames)){
 }
 //$top_menus = get_top_menus();
 $file = WL_APP . 'controller/'.$controller.'/'.$action.'.ctrl.php';
-//echo $file;exit();
+
 if (!empty($auth) && $controller != 'system') {
 	$addressid = pdo_getcolumn('weliam_shiftcar_wechataddr',array('acid' => $_W['acid']),'addressid');
 	if (empty($addressid) && !empty($auth) && $controller != 'system') {
