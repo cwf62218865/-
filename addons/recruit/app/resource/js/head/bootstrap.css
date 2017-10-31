@@ -6,7 +6,7 @@
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
-  font-family: sans-serif;
+  /*font-family: sans-serif;*/
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
@@ -114,9 +114,9 @@ input,
 optgroup,
 select,
 textarea {
-  margin: 0;
-  font: inherit;
-  color: inherit;
+  /*margin: 0;*/
+  /*font: inherit;*/
+  /*color: inherit;*/
 }
 button {
   overflow: visible;
@@ -892,9 +892,9 @@ th {
 .glyphicon-open-file:before {
   content: "\e203";
 }
-.glyphicon-level-up:before {
-  content: "\e204";
-}
+/*.glyphicon-level-up:before {*/
+  /*content: "\e204";*/
+/*}*/
 .glyphicon-copy:before {
   content: "\e205";
 }
@@ -5761,7 +5761,7 @@ button.close {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   border: 1px solid #999;
-  border: 1px solid rgba(0, 0, 0, .2);
+  /*border: 1px solid rgba(0, 0, 0, .2);*/
   border-radius: 6px;
   outline: 0;
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);

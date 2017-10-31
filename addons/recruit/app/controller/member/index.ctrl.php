@@ -5,21 +5,19 @@ wl_load()->model('verify');
 
 //登录
 if($op=="index"){
+    $company  = m("member")->company_list();
+
+    $jobs = m("jobs")->getall_jobs_page($data,9);
+    $jobs = $jobs['more'];
+    //var_dump($company);exit();
+//    $company = pdo_fetchall("select * from ".tablename(WL."company")." order by id desc");
     include wl_template("member/index");exit();
-//    unset($_SESSION['uid']);
-//    unset($_SESSION['utype']);
-//    include_once( WL_CORE.'/common/libweibo-master/config.php' );
-//    include_once( WL_CORE.'/common/libweibo-master/saetv2.ex.class.php' );
-//
-//    $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
-//    $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
-//    include wl_template("member/login");exit();
 }
 elseif ($op=="login"){
     unset($_SESSION['uid']);
     unset($_SESSION['utype']);
     include_once( WL_CORE.'/common/libweibo-master/config.php' );
-    include_once( WL_CORE.'/common/libweibo-master/saetv2.ex.class.php' );
+    include_once( WL_CORE.'/common/libweibo-master/saetv2.ex.class.php');
 
     $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
     $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );

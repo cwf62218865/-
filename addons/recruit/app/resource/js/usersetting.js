@@ -229,9 +229,19 @@ $(function () {
             pswy_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","请输入当前密码"))
             return;
         }
+        if(psw.length<6){
+            $("#pswnum").closest(".input_33").css("border-color","#e23d46");
+            pswy_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","请输入大于6位密码"))
+            return;
+        }
         if(newpsw==""){
             $("#newpswnum").closest(".input_33").css("border-color","#e23d46");
             newpsw_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","请输入新的密码"))
+            return;
+        }
+        if(newpsw.length<6){
+            $("#newpswnum").closest(".input_33").css("border-color","#e23d46");
+            newpsw_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","请输入大于6位新密码"))
             return;
         }
         if(newpswch==""){

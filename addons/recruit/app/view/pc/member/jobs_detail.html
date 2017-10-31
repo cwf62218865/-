@@ -14,7 +14,11 @@
     <title>职位详情</title>
 </head>
 <body bgcolor="#f4f4f4">
+{if $_SESSION['uid']}
+{php include wl_template('common/top');}
+{else}
 {php include wl_template('common/header');}
+{/if}
 <div class="width1200 p1content">
 
     <div class="p1_left" style="margin-top: 10px">
