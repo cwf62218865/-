@@ -34,4 +34,20 @@ class member{
 
         return $last_login_time;
     }
+
+
+    //公司列表分页
+    public function company_list($page=0,$pagenum=8){
+        $limit = " limit ".$page*$pagenum.",".$pagenum;
+        $company = pdo_fetchall("select * from ".tablename(WL."company_profile")." order by id desc ".$limit);
+        $company_profile = "";
+        foreach ($company as $key=>$list){
+            $company_profile[$key] = $list;
+            $company_profile[$key]['last_login'] = $this->last_login($list['uid']);
+            $company_profile[$key]['jobs_count'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$list['uid']);
+        }
+        return $company_profile;
+    }
+
+
 }
