@@ -145,6 +145,9 @@
     margin-top: 20px;
     cursor: pointer;
 }
+.select_item1{
+    border: none;margin-top: 0px;
+}
 .radio_check{
     width: 16px;height: 16px;
     border-radius: 50%;
@@ -170,7 +173,7 @@
     margin-top: 20px;font-size: 16px;
 }
 .dedail_con{
-    margin-top: 40px;
+    /*margin-top: 40px;*/
     height: auto;
     padding-bottom: 60px;
 }

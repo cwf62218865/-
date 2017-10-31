@@ -2,19 +2,29 @@
 defined('IN_IA') or exit('Access Denied');
 wl_load()->model('verify');
 
+
 //登录
 if($op=="index"){
+    include wl_template("member/index");exit();
+//    unset($_SESSION['uid']);
+//    unset($_SESSION['utype']);
+//    include_once( WL_CORE.'/common/libweibo-master/config.php' );
+//    include_once( WL_CORE.'/common/libweibo-master/saetv2.ex.class.php' );
+//
+//    $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+//    $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
+//    include wl_template("member/login");exit();
+}
+elseif ($op=="login"){
     unset($_SESSION['uid']);
     unset($_SESSION['utype']);
     include_once( WL_CORE.'/common/libweibo-master/config.php' );
     include_once( WL_CORE.'/common/libweibo-master/saetv2.ex.class.php' );
 
     $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
-
     $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
     include wl_template("member/login");exit();
 }
-
 //注册
 elseif ($op=="register"){
     include wl_template("member/reg_screen");exit();
@@ -165,8 +175,62 @@ elseif ($op=="send_code"){
     }
     exit();
 }
+elseif($op=="normal_send_code"){
 
+    send_codes($_POST['mobie']);exit();
 
+}
+elseif ($op=="change_mobile"){
+    if(check_phone($_GPC['mobie'])){
+        $phone =$_GPC['mobie'];
+        $member = pdo_fetch("select * from ".tablename(WL.'members')." where mobile=".$phone);
+        if($member){
+            call_back(2,"该手机号已被注册");
+
+        }else{
+            if($_POST['yanzheng']==$_SESSION['phone_code']){
+                pdo_update(WL."members",array('mobile'=>$phone),array('id'=>$_SESSION['uid']));
+                call_back(1,"修改成功");
+            }else{
+                call_back(2,"验证码不正确");
+            }
+        }
+    }
+}
+
+elseif ($op=="resume_display_status"){
+    $kind = check_pasre($_POST['kind'],"参数错误");
+    if($kind==2){$kind=1;}
+    $r = pdo_update(WL."resume",array('display'=>$kind,'updatetime'=>time()),array('uid'=>$_SESSION['uid']));
+    call_back(1,"ok");
+}
+//黑名单
+elseif ($op=="blacklist"){
+    $blacklist = check_pasre($_POST['name'],"请输入你想屏蔽的公式名称");
+    $r = pdo_update(WL."resume",array('blacklist'=>$blacklist,'updatetime'=>time()),array('uid'=>$_SESSION['uid']));
+    if($r){
+        call_back(1,"ok");
+    }else{
+        call_back(1,"no");
+    }
+}
+
+//修改密码
+elseif ($op=="modify_pwd"){
+    $member = pdo_fetch("select * from ".tablename(WL."members")." where id=".$_SESSION['uid']);
+    $password = pwd_hash($_GPC['psw'],$member['salt']);
+    if($password==$member['password']){
+        if($_GPC['newpsw']==$_GPC['newpswch']){
+            $password =  pwd_hash($_GPC['newpsw'],$member['salt']);
+            $r = pdo_update(WL."members",array('password'=>$password),array('id'=>$_SESSION['uid']));
+            call_back(1,"修改成功");
+        }else{
+            call_back(2,"2次输入密码不一致");
+        }
+    }else{
+        call_back(2,"原密码不正确");
+    }
+}
 //手机上传头像界面
 elseif ($op=="mobile_upload"){
     if($_GPC['kind']=="resume"){
@@ -387,11 +451,11 @@ elseif($op=="jobs_detail"){
 
 //职位搜索
 elseif ($op=="search_jobs"){
-    $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs"));
+    $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where open=1 and display=1");
 //    echo $jobs_count;exit();
     if($_GET['jobs_name']){
         $data['data']['job_name'] = $_GET['jobs_name'];
-        $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where jobs_name like '%".$_GET['jobs_name']."%'");
+        $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where open=1 and display=1 and jobs_name like '%".$_GET['jobs_name']."%'");
     }
     $jobs = m("jobs")->getall_jobs_page($data);
     $jobs = $jobs['more'];
@@ -490,7 +554,17 @@ elseif ($op=="tip_off"){
 
 }
 
+elseif ($op=="usersetting"){
+    if($_SESSION['uid']){
+        $member = pdo_fetch("select * from ".tablename(WL."members")." where id=".$_SESSION['uid']);
+        $resume = m("resume")->get_resume($_SESSION['uid']);
+        include wl_template("member/usersetting");exit();
+    }
 
+}
+elseif ($op=="navigation"){
+    include wl_template("member/navigation");exit();
+}
 if(empty($_SESSION['mid'])){
     header("location:".app_url("member/index/index"));
 }

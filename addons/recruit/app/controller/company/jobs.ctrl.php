@@ -86,7 +86,8 @@ elseif ($op=="stop_job"){
 //删除职位
 elseif ($op=="delete_jobs"){
     if($_POST['data_id']){
-        $r = pdo_delete(WL."jobs",array('id'=>$_POST['data_id'],'uid'=>$_SESSION['uid']));
+//        $r = pdo_delete(WL."jobs",array('id'=>$_POST['data_id'],'uid'=>$_SESSION['uid']));
+        $r = pdo_update(WL."jobs",array('display'=>0,'updatetime'=>time()),array('id'=>$_POST['data_id'],'uid'=>$_SESSION['uid']));
     }
     if($r){
         call_back(1,"ok");

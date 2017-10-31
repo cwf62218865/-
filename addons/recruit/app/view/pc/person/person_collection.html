@@ -11,7 +11,11 @@
     <title>投递简历</title>
 </head>
 <body bgcolor="#f4f4f4">
+{if $_SESSION['uid']}
+{php include wl_template('common/top');}
+{else}
 {php include wl_template('common/header');}
+{/if}
 <div class="width1200 p1content">
     {php include wl_template('common/person_nav');}
     <div class="p1_left">
@@ -210,7 +214,13 @@
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap">{php echo $list['jobs_name']}</a>
-                            <a class="salary">{php echo $list['wage_min']}-{php echo $list['wage_max']}K</a>
+                            <a class="salary">
+                                {if $list['wage_min']>0 && $list['wage_max']>0}
+                                    {php echo $list['wage_min']}-{php echo $list['wage_max']}k
+                                {else}
+                                    面议
+                                {/if}
+                            </a>
                         </div>
                         <div class="hang2">
                             <a class="exptime nowrap">{php echo $list['experience']}</a>
@@ -322,11 +332,11 @@
 //                district_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","请输入行业"))
 //                return;
 //            }
-//            if($.trim(dy_pinlv)==""){
-//                $("#dy_pinlv").closest(".general-input").css("border-color","#e23d46");
-//                pinlv_input.nextAll(".chec_tip1").eq(0).find(".right_align").html(tipmsg("error","请输入订阅频率"))
-//                return;
-//            }
+            if($.trim(dy_pinlv)==""){
+                $("#dy_pinlv").closest(".general-input").css("border-color","#e23d46");
+                pinlv_input.nextAll(".chec_tip1").eq(0).find(".right_align").html(tipmsg("error","请输入订阅频率"))
+                return;
+            }
             //订阅设置之后，保存的效果，写入ajax中
             $("#dy_hy1").html("");
             $("#dy_hy2").html("");

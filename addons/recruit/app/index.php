@@ -38,6 +38,7 @@ if(!$_SESSION['uid']){
 		$person_statistics = person_statistics();
 		$resume_integrity = resume_integrity();
 	}
+	$user = m("member")->get_member($_SESSION['uid']);
 }
 if(empty($controller) || empty($action)) {
 	$_GPC['do'] = $controller = 'member';

@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/swiper-3.4.2.min.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/index.css" rel="stylesheet">
+    <title>首页</title>
+</head>
+<style>
+    .swiper-container {
+        width: 100%;
+        height:380px;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .swiper-pagination-bullet {
+        width: 120px;
+        height: 30px;
+        text-align: center;
+        line-height:30px;
+        font-size: 14px;
+        border-radius: 0;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        -o-text-overflow:ellipsis;
+        white-space:nowrap;
+        color:#fff;
+        opacity: 1;
+        background: rgba(0,0,0,0.3);
+    }
+    .swiper-pagination-bullet-active {
+        color:#333;
+        background:rgba(255,255,255,0.8);
+    }
+    .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{
+        margin: 0 15px;
+    }
+</style>
+<body>
+{if $_SESSION['uid']}
+{php include wl_template('common/top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
+<div class="width1200">
+
+    <!--左上角banner-->
+    <div class="index_left">
+        <img src="{WL_URL_ARES}images/index_leftbanner.png"/>
+    </div>
+
+
+    <!--热门搜索-->
+    <div class="index_right" style="background-color: #fff;">
+        <form class="index_search" action="{php echo app_url('member/index/search_jobs')}">
+            <input type="hidden" name="c" value="site">
+            <input type="hidden" name="a" value="entry">
+            <input type="hidden" name="m" value="recruit">
+            <input type="hidden" name="do" value="member">
+            <input type="hidden" name="ac" value="index">
+            <input type="hidden" name="op" value="search_jobs">
+            <label class="index_searchbox">
+                <input type="text" name="jobs_name" placeholder="请输入搜索的职位">
+            </label>
+            <input type="submit" class="index_searchbtn" value="搜索">
+        </form>
+        <div class="hot_job">
+            <span style="margin-right: 10px">热门搜索：</span>
+            <a href="#">java</a>
+            <a href="#">java</a>
+            <a href="#">java</a>
+            <a href="#">java</a>
+            <a href="#">java</a>
+            <a href="#">java</a>
+            <a href="#">java</a>
+        </div>
+    </div>
+
+
+    <!--菜单以及banner-->
+    <div style="margin-top: 10px">
+        <div class="index_left relative">
+            <div class="index_menus">
+                <div class="index_menu">
+                    <span class="index_menu_title">文学</span>
+                    <span>翻译</span>
+                    <span>广告</span>
+                    <span>公关/媒体</span>
+                    <svg class="icon">
+                        <use xlink:href="#icon-more"></use>
+                    </svg>
+                </div>
+            </div>
+            <!--<div class="index_menus_urls">-->
+                <!--<div class="index_menus_urlsbox">-->
+                    <!--<a href="#">asdas</a>-->
+                    <!--<a href="#">asdas</a>-->
+                    <!--<a href="#">asdas</a>-->
+                <!--</div>-->
+
+            <!--</div>-->
+
+        </div>
+        <div class="index_right">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <div class="company_img"><img src="{WL_URL_ARES}images/index_big_banner.png"></div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="company_img"><img src="{WL_URL_ARES}images/index_big_banner.png"></div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="company_img"><img src="{WL_URL_ARES}images/index_big_banner.png"></div>
+                    </div>
+
+
+                    <div class="swiper-slide">
+                        <div class="company_img"><img src="{WL_URL_ARES}images/index_big_banner.png"></div>
+                    </div>
+
+                </div>
+                <div class="swiper-pagination" style="bottom: 20px"></div>
+                <!-- 如果需要导航按钮 -->
+            </div>
+
+
+
+            <div>
+                <a href="#" class="index_news">
+                    <div class="index_news_title">《网易新闻》：刺猬体验分享会</div>
+                    <span  class="index_news_content">
+                        经济停止增长、房产税出台，将是终结一线城市房价的紧箍咒紧箍咒…
+                    </span>
+                </a>
+
+                <a href="#" class="index_news">
+                    <div class="index_news_title">《网易新闻》：刺猬体验分享会</div>
+                    <span  class="index_news_content">
+                        经济停止增长、房产税出台，将是终结一线城市房价的紧箍咒紧箍咒…
+                    </span>
+                </a>
+
+                <a href="#" class="index_news">
+                    <div class="index_news_title">《网易新闻》：刺猬体验分享会</div>
+                    <span  class="index_news_content">
+                        经济停止增长、房产税出台，将是终结一线城市房价的紧箍咒紧箍咒…
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--明星企业-->
+    <div class="relative" style="margin-top: 20px;background-color: #f1f1f1;padding: 10px 20px 20px 10px;height: 390px">
+        <img class="surper_label" src="{WL_URL_ARES}images/surper_company.png">
+
+        <div id="surper_companys">
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+            <a href="#" class="surper_company"><img src="{WL_URL_ARES}images/HEIN1.png"> </a>
+
+        </div>
+
+        <span class="new_surper_company">
+            <svg class="icon">
+                <use xlink:href="#icon-huanyipi"></use>
+            </svg>
+            换
+            一
+            批
+        </span>
+        <div style="clear: both"></div>
+    </div>
+
+
+    <!--热门公司-->
+
+    <div style="margin-top: 20px;background-color: #fff">
+        <div class="hot_company_title">
+            <span class="relative remengongsi">热门公司</span>
+            <span class="new_hot_company">
+                <svg class="icon">
+                    <use xlink:href="#icon-huanyipi"></use>
+                </svg>
+                换一批
+            </span>
+        </div>
+
+
+        <div style="margin: 30px 30px 10px 30px">
+
+
+
+
+            <div id="hot_companys">
+                <div class="hot_companys">
+                    <div class="hot_companys_logo">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
+                    </div>
+                    <div class="nowrap hot_companys_name">
+                        北京金超三顺科技有限公司
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        核心技术团队来自BAT，产品技术…
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        移动互联网/上市公司
+                    </div>
+                    <span class="hot_company_line"></span>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>面试评价</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>在招职位</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <span>昨天</span>
+                        <div>企业最近登录</div>
+                    </div>
+                </div>
+                <div class="hot_companys">
+                    <div class="hot_companys_logo">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
+                    </div>
+                    <div class="nowrap hot_companys_name">
+                        北京金超三顺科技有限公司
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        核心技术团队来自BAT，产品技术…
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        移动互联网/上市公司
+                    </div>
+                    <span class="hot_company_line"></span>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>面试评价</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>在招职位</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <span>昨天</span>
+                        <div>企业最近登录</div>
+                    </div>
+                </div>
+                <div class="hot_companys">
+                    <div class="hot_companys_logo">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
+                    </div>
+                    <div class="nowrap hot_companys_name">
+                        北京金超三顺科技有限公司
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        核心技术团队来自BAT，产品技术…
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        移动互联网/上市公司
+                    </div>
+                    <span class="hot_company_line"></span>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>面试评价</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>在招职位</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <span>昨天</span>
+                        <div>企业最近登录</div>
+                    </div>
+                </div>
+                <div class="hot_companys">
+                    <div class="hot_companys_logo">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
+                    </div>
+                    <div class="nowrap hot_companys_name">
+                        北京金超三顺科技有限公司
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        核心技术团队来自BAT，产品技术…
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        移动互联网/上市公司
+                    </div>
+                    <span class="hot_company_line"></span>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>面试评价</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>在招职位</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <span>昨天</span>
+                        <div>企业最近登录</div>
+                    </div>
+                </div>
+                <div class="hot_companys">
+                    <div class="hot_companys_logo">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
+                    </div>
+                    <div class="nowrap hot_companys_name">
+                        北京金超三顺科技有限公司
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        核心技术团队来自BAT，产品技术…
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        移动互联网/上市公司
+                    </div>
+                    <span class="hot_company_line"></span>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>面试评价</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>在招职位</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <span>昨天</span>
+                        <div>企业最近登录</div>
+                    </div>
+                </div>
+                <div class="hot_companys">
+                    <div class="hot_companys_logo">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
+                    </div>
+                    <div class="nowrap hot_companys_name">
+                        北京金超三顺科技有限公司
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        核心技术团队来自BAT，产品技术…
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        移动互联网/上市公司
+                    </div>
+                    <span class="hot_company_line"></span>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>面试评价</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>在招职位</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <span>昨天</span>
+                        <div>企业最近登录</div>
+                    </div>
+                </div>
+                <div class="hot_companys">
+                    <div class="hot_companys_logo">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
+                    </div>
+                    <div class="nowrap hot_companys_name">
+                        北京金超三顺科技有限公司
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        核心技术团队来自BAT，产品技术…
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        移动互联网/上市公司
+                    </div>
+                    <span class="hot_company_line"></span>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>面试评价</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>在招职位</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <span>昨天</span>
+                        <div>企业最近登录</div>
+                    </div>
+                </div>
+                <div class="hot_companys">
+                    <div class="hot_companys_logo">
+                        <img src="{WL_URL_ARES}images/qiyelogo.png">
+                    </div>
+                    <div class="nowrap hot_companys_name">
+                        北京金超三顺科技有限公司
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        核心技术团队来自BAT，产品技术…
+                    </div>
+                    <div class="nowrap hot_companys_introduce">
+                        移动互联网/上市公司
+                    </div>
+                    <span class="hot_company_line"></span>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>面试评价</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <a href="#">12</a>
+                        <div>在招职位</div>
+                    </div>
+                    <div class="hot_company_msg">
+                        <span>昨天</span>
+                        <div>企业最近登录</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="clear: both"></div>
+        </div>
+
+    </div>
+
+
+
+
+    <!--推荐职位-->
+
+    <div style="margin-top: 20px;background-color: #fff">
+        <div class="hot_company_title" style="line-height: 44px;padding-bottom: 0;height: 62px">
+            <span class="relative remengongsi resume_job_title" style="font-size: 16px;">推荐职位</span>
+            <span class="color999 resume_job_title" style="font-size: 16px;margin-left: 70px">最新职位</span>
+
+
+            <form action="{php echo app_url('member/index/search_jobs')}" style="float: right">
+                <input type="hidden" name="c" value="site">
+                <input type="hidden" name="a" value="entry">
+                <input type="hidden" name="m" value="recruit">
+                <input type="hidden" name="do" value="member">
+                <input type="hidden" name="ac" value="index">
+                <input type="hidden" name="op" value="search_jobs">
+                 <label class="index_searchbox" style="width: 220px;height: 40px;line-height: 40px">
+                     <input type="text" style="width: 180px;float: left;height: 40px;line-height: 40px" name="jobs_name" placeholder="请输入搜索的职位">
+                 </label>
+                <input type="submit" class="index_searchbtn" value="搜索" style="height: 42px;line-height: 42px;width: 80px;font-size: 14px">
+            </form>
+
+            <div class="resume_jobsbox">
+                <span class="font999" style="">热门搜索:</span>
+                <a href="#" class="font999 resume_jobs">java</a>
+                <a href="#" class="font999 resume_jobs">java</a>
+                <a href="#" class="font999 resume_jobs">java</a>
+                <a href="#" class="font999 resume_jobs">java</a>
+
+            </div>
+        </div>
+
+
+        <div class="resume_list">
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+            <div>
+                <a href="#" class="find_morejob">发现更多好职位>></a>
+            </div>
+        </div>
+
+
+        <div class="resume_list" style="display: none">
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师1</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+            <div class="resume_position">
+                <div style="margin: 40px 24px 24px 24px">
+                    <div>
+                        <span style="font-size: 20px">JAVA工程师</span>
+                        <span style="font-size: 18px;color: #e23d46;float: right">5K-8K</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >3-5年工作经验</span>
+                        <span style="margin-left: 20px;">大专</span>
+                        <span  style="float: right">2人/全职</span>
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作经验：1年以上</span>
+
+                    </div>
+
+                    <div style="margin-top: 20px">
+                        <span >工作地点：重庆  江北区</span>
+                    </div>
+
+                    <span class="hot_company_line" style="width: 322px"></span>
+
+
+                    <span style="display: inline-block;width: 100%;text-align: center;margin-top: 20px;color: #999">
+                        <svg class="icon" style="color: #d3d3d3;font-size: 16px">
+                            <use xlink:href="#icon-shoucang"></use>
+                        </svg>
+                        30528人关注了该职位
+                    </span>
+                </div>
+            </div>
+
+            <div style="clear: both"></div>
+            <div>
+                <a href="#" class="find_morejob">发现更多好职位>></a>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+    <!--底部导航-->
+
+
+</div>
+
+{php include wl_template('common/footer');}
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/newfile.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/swiper-3.4.2.min.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/index.js" rel="script"></script>
+<script>
+    var big_bannercontent=[
+        "应届僧校园招聘",
+        "应届僧校园招聘",
+        "应届僧校园招聘",
+        "应届僧校园招聘"
+    ];
+
+
+
+
+    var mySwiper = new Swiper ('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay:3000,
+        paginationBulletRender: function (swiper, index, className) {
+            return '<span class="' + className + '">' + big_bannercontent[index] + '</span>';
+        }
+    });
+
+
+    //明星企业换一批
+    var new_surper_companypage=1;
+    $(".new_surper_company").on("click",function(){
+        $.ajax({
+            url:"",
+            type:"post",
+            data:{
+                page:new_surper_companypage
+            },
+            success:function(data){
+                var data=JSON.parse(data);
+                if(data.status==1){
+                    $("#surper_companys").html(data.content);
+                    new_surper_companypage+=1;
+                }else{
+                    hint("error","刷新失败")
+                }
+            },
+            error:function(err){
+                hint("error",err);
+            }
+        })
+    });
+
+    //热门公司换一批
+    var hot_companypage=1;
+    $(".new_hot_company").on("click",function(){
+        $.ajax({
+            url:"",
+            type:"post",
+            data:{
+                page:hot_companypage
+            },
+            success:function(data){
+                var data=JSON.parse(data);
+                if(data.status==1){
+                    $("#hot_companys").html(data.content);
+                    hot_companypage+=1;
+                }else{
+                    hint("error","刷新失败")
+                }
+            },
+            error:function(err){
+                hint("error",err);
+            }
+        })
+    });
+
+
+
+
+
+</script>
+
+</html>

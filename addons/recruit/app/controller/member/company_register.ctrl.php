@@ -48,32 +48,7 @@ elseif($op=="step2"){
 }
 elseif($op=="send_code"){
     send_codes($_POST['mobie']);
-//    var_dump($_POST);exit();
-//    wl_load()->model('sms');
-//    if(check_phone($_GPC['mobie'])){
-//        $phone =$_GPC['mobie'];
-//    }
-//    if(!$_SESSION['last_sendtime'])
-//    {
-//        $_SESSION['phone_code']=mt_rand(1000,9999);
-//        $_SESSION['last_sendtime']=time();
-//        if(sendSms($phone,$_SESSION['phone_code'])){
-//            call_back(1,"ok");
-//        }
-//    }
-//    else
-//    {
-//        if ( (time() - $_SESSION['last_sendtime']) >50 )
-//        {
-//            $_SESSION['phone_code']=mt_rand(1000,9999);
-//            $_SESSION['last_sendtime']=time();
-//            if(sendSms($phone,$_SESSION['phone_code'])){
-//                call_back(1,"ok");
-//            }
-//        }else{
-//            return false;
-//        }
-//    }
+
 }
 
 //手机端图片上传页面
@@ -86,7 +61,6 @@ elseif ($op=="mobileupload"){
         die();
     }
 }
-
 //图片上传保存处理
 elseif ($op=="save_license"){
     $id = encrypt($_GPC['identity'], 'D');

@@ -136,6 +136,17 @@ $(function () {
         if($(this).index()==3){
             $(".dedail_con").show();
         }
+
+        $.ajax({
+            type:"post",
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=resume_display_status",
+            data:{
+                kind:$(this).index()
+            },
+            success:function (data) {
+                var data = JSON.parse(data);
+            }
+        })
     })
     $("body").on("click",".pingbid .radio_check",function () {
         $(this).removeClass("checked");
@@ -150,11 +161,53 @@ $(function () {
     //添加屏蔽企业
     $(".pbbtn").click(function () {
         var name=$(".pb_input").val();
+        var blacklist = "";
+        $(".blacklist").each(function () {
+            blacklist += $(this).html()+",";
+        })
+        blacklist =blacklist+","+name;
+        var $elements = $('.pb_items');
+        var len = $elements.length;
+        if(name!="" && len<5){
         $('.input_con').append("<p class='pb_items'>"+name+"<label class='remove'>删除</label></p>" );
-        $(".pb_input").val("")
+        $(".pb_input").val("");
+            $.ajax({
+                type:"post",
+                url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=blacklist",
+                data:{
+                    name:blacklist
+                },
+                success:function (data) {
+                    var data = JSON.parse(data);
+
+                }
+            })
+        }
+        if(len==5){
+            alert("最多只能添加5个");
+            $(".pb_input").val("");
+        }
+
     })
     $("body").on("click",".remove",function () {
         $(this).closest(".pb_items").remove();
+        var blacklist = "";
+        $(".blacklist").each(function () {
+            blacklist += $(this).html()+",";
+        })
+        blacklist=blacklist.substring(0,blacklist.length-1);
+
+        $.ajax({
+            type:"post",
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=blacklist",
+            data:{
+                name:blacklist
+            },
+            success:function (data) {
+                var data = JSON.parse(data);
+
+            }
+        })
     })
 
 
@@ -192,30 +245,12 @@ $(function () {
             return;
         }
 
-        //修改密码成功有弹框效果，后期放在ajax请求成功内部
-        $(".editpswbox").show();
-        var secons=4;
-        var timer=setInterval(function () {
-            $(".seconds").html(secons);
-            secons--;
-            if(secons==0){
-                clearInterval(timer);
-                //修改密码成功之后跳转链接
-                location=location;
-            }
 
-            $(".denglu").click(function () {
-                clearInterval(timer);
-//                前往登录的链接
-                window.location.href="";
-                location=location;
-            })
-        },1000);
 
 
 
         $.ajax({
-            url:"",
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=modify_pwd",
             type:"post",
             data:{
                 psw:psw,
@@ -226,7 +261,27 @@ $(function () {
                 if(data){
                     var data=JSON.parse(data);
                     if(data.status==1){
-                        window.location.href="";
+                        //修改密码成功有弹框效果，后期放在ajax请求成功内部
+                        $(".editpswbox").show();
+                        var secons=4;
+                        var timer=setInterval(function () {
+                            $(".seconds").html(secons);
+                            secons--;
+                            if(secons==0){
+                                clearInterval(timer);
+                                //修改密码成功之后跳转链接
+                                location=location;
+                            }
+
+                            $(".denglu").click(function () {
+                                clearInterval(timer);
+//                前往登录的链接
+                                window.location.href="";
+                                location=location;
+                            })
+                        },1000);
+                    }else{
+                        hint("error",data.content);
                     }
                 }
             }
@@ -259,9 +314,9 @@ $(function () {
                 $(".yanzhengma").addClass("click").html("获取验证码");
             }
         },1000)
-        var mobie=$("#mobie").val();
+        var mobie=$("#mobile").val();
         $.ajax({
-            url:"",
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=normal_send_code",
             type:"post",
             data:{
                 mobie:mobie
@@ -294,19 +349,20 @@ $(function () {
             return;
         }
 
-        //完成绑定之后的效果，放在ajax请求成功内部
-        $(".changetelbox").hide();
         $.ajax({
-            url:"",
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=change_mobile",
             type:"post",
             data:{
-                mobie:mobie
+                mobie:mobile,
+                yanzheng:yanzheng
             },
             success:function(data){
                 var data = JSON.parse(data);
                 console.log(data);
                 if(data.status==1){
-                    console.log(1);
+                    //完成绑定之后的效果，放在ajax请求成功内部
+                    $(".changetelbox").hide();
+                    $(".mobile").html(mobile);
                 }else{
                     alert(data.content);
                 }
