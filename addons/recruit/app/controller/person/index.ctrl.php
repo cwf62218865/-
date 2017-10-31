@@ -26,6 +26,11 @@ if($op=="index"){
 
 //已投递职位列表
 elseif ($op=="send_resume"){
+    if($_GPC['kind']=="interview"){
+        $show = 2;
+    }else{
+        $show = 1;
+    }
     $apply_jobs = m("resume")->jobs_apply($_SESSION['uid']);
     $interview_jobs = m("resume")->jobs_interview($_SESSION['uid']);
 //    var_dump($apply_jobs);exit();

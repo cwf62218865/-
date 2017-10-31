@@ -222,7 +222,9 @@ elseif ($op=="send_email"){
 }
 //头像上传
 elseif ($op=="headimg_upload"){
-    $temp_headimgurl = upload_img($_FILES);
+//    $temp_headimgurl = upload_img($_FILES);
+    $temp_headimgurl = base64_upload($_POST['file']);
+
     if($temp_headimgurl){
         $headimgurl = str_replace("/temp/","/file/",$temp_headimgurl);
         $resume = pdo_fetch("select id from ".tablename(WL."resume")." where uid=".$_SESSION['uid']);
