@@ -13,7 +13,7 @@ if($op=="save_order_jobs"){
 //    $data['work_place'] = check_pasre($_GPC['gz_address'],"请选择工作地点");
 //    $data['wage_range'] = check_pasre($_GPC['salery'],"请选择月薪");
 //    $data['trade'] = check_pasre($_GPC['hy_district'],"请选择行业");
-//    $data['order_time'] = check_pasre($_GPC['dy_pinlv'],"请选择订阅频率");
+    $data['order_time'] = check_pasre($_GPC['dy_pinlv'],"请选择订阅频率");
 
 
     $data['jobs_name'] = $_GPC['job_name'];
@@ -22,6 +22,12 @@ if($op=="save_order_jobs"){
     $data['trade'] = $_GPC['hy_district'];
     $data['order_time'] = $_GPC['dy_pinlv'];
     $order_jobs = pdo_fetch("select id from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
+    $order_jobs_ids = m("jobs")->show_order_jobs($data,"id");
+    $data['order_jobs_ids'] = "";
+    foreach ($order_jobs_ids as $list){
+        $data['order_jobs_ids'] .=$list['id'].",";
+    }
+    $data['order_jobs_ids'] = substr($data['order_jobs_ids'],0,-1);
     if($order_jobs){
         $data['updatetime'] =time();
         $r =pdo_update(WL."order_jobs",$data,array('puid'=>$_SESSION['uid']));
@@ -29,7 +35,6 @@ if($op=="save_order_jobs"){
         $data['createtime'] =time();
         $data['updatetime'] =time();
         $data['puid'] =$_SESSION['uid'];
-
         $r = insert_table($data,WL."order_jobs");
     }
 

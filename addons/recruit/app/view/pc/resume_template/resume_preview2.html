@@ -284,6 +284,19 @@
         $(".modalclose,.quxiao").on("click",function(){
             $("#modal_box").hide();
         });
+
+        $("#download_resume").click(function(){
+            $.ajax({
+                type:"post",
+                url:"http://ios.huiliewang.com/app/index.php",
+                data:{
+                    uid:"{php echo $_GPC['uid']}"
+                },
+                success:function (data) {
+                    hint("success","ok");
+                }
+            })
+        })
     })
 
 </script>

@@ -3,12 +3,12 @@
 class jobs{
 
     public function get_jobs($id){
-        $jobs = pdo_fetch("select * from ".tablename(WL.'jobs')." where id=".$id);
+        $jobs = pdo_fetch("select * from ".tablename(WL.'jobs')." where display=1 and id=".$id);
         return $jobs;
     }
     
     public function getall_jobs($uid){
-        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where uid=".$uid." order by open desc");
+        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where display=1 and uid=".$uid." order by open desc,addtime desc");
         $arr = "";
         foreach ($jobs as $list){
             $list['resume_count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs_apply")." where jobs_id=".$list['id']);
@@ -24,7 +24,7 @@ class jobs{
             $data['data']['page']=1;
         }
         $page = ($data['data']['page'] -1)*6;
-        $wheresql = " where 1=1 ";
+        $wheresql = " where  display=1 and open=1 ";
         $orderby = " order by addtime desc,open desc";
         if($data['data']['job_nature'] && $data['data']['job_nature']<>"不限"){
             $wheresql .=" and work_nature='".$data['data']['job_nature']."' ";
@@ -76,65 +76,100 @@ class jobs{
     }
 
 
+    public function order_jobs_list($order_jobs_lists){
+//        var_dump($order_jobs_lists);exit();
+        $order_jobs_list = "";
+        foreach ($order_jobs_lists as $list){
+            $company_profile = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$list['uid']);
+            $list['headimgurl'] = $company_profile['headimgurl'];
+            $list['companyname'] = $company_profile['companyname'];
+            $list['tag'] = $company_profile['tag'];
+            $list['address'] = $company_profile['city'].$company_profile['city_erea'].$company_profile['district'];
+            $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and jobs_id=".$list['id']);
+            $is_collect = pdo_fetch("select id from ".tablename(WL."collect_jobs")." where uid=".$_SESSION['uid']." and jobs_id=".$list['id']);
+            if(empty($jobs_apply)){
+                $list['post_status'] = 1;
+            }
+            if(empty($is_collect)){
+                $list['is_collect'] = 1;
+            }
+            $order_jobs_list[] = $list;
+        }
+        return $order_jobs_list;
+    }
+
     //订阅器职位搜索
-    public function show_order_jobs($order_jobs){
-        $wheresql = " where 1=1 ";
+    public function show_order_jobs($order_jobs,$parse=""){
+        $wheresql = " where display=1 and open=1 ";
         if($order_jobs['jobs_name']){
-            $wheresql .= " jobs_name like '%".$order_jobs['jobs_name']."%'";
+            $wheresql .= " and jobs_name like '%".$order_jobs['jobs_name']."%'";
         }
 
         if($order_jobs['work_place']){
-            $wheresql .= " city_area like '%".$order_jobs['work_place']."%'";
+            $wheresql .= " and city_area like '%".$order_jobs['work_place']."%'";
         }
 
         if($order_jobs['wage_range']){
             if($order_jobs['wage_range']=="2k以下"){
-                $wheresql .= " wage_max<2";
+                $wheresql .= " and wage_max<2";
             }elseif ($order_jobs['wage_range']=="2k-4k"){
-                $wheresql .= " wage_max<=4 and wage_min>=2";
+                $wheresql .= " and wage_max<=4 and wage_min>=2";
             }elseif ($order_jobs['wage_range']=="4k-6k"){
-                $wheresql .= " wage_max<=6 and wage_min>=4";
+                $wheresql .= " and wage_max<=6 and wage_min>=4";
             }elseif ($order_jobs['wage_range']=="6k-10k"){
-                $wheresql .= " wage_max<=10 and wage_min>=6";
+                $wheresql .= " and wage_max<=10 and wage_min>=6";
             }elseif ($order_jobs['wage_range']=="10k以上"){
-                $wheresql .= " wage_max>=10";
+                $wheresql .= " and wage_max>=10";
             }
 
-//            if($order_jobs['trade']){
-//
-//                $wheresql .= " city_area like '%".$order_jobs['work_place']."%'";
-//            }
+            if($order_jobs['trade']){
+
+                $wheresql .= " city_area like '%".$order_jobs['work_place']."%'";
+            }
 
         }
-        $order_jobs_lists = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql." order by addtime desc");
+        if(empty($parse)){
+            $parse = "*";
+        }
+
+        $order_jobs_lists = pdo_fetchall("select ".$parse." from ".tablename(WL."jobs").$wheresql." order by addtime desc");
         return $order_jobs_lists;
     }
 
 
     //订阅器时间判断
     public function check_order_jobs($order_times,$differ_time){
+
         $order_jobs = $this->order_jobs();
-        if($order_times=="三天一次"){
-            if($differ_time>3){
-                return show_order_jobs($order_jobs);
-            }
-        }elseif ($order_times=="一周一次"){
-            if($differ_time>7){
-                return show_order_jobs($order_jobs);
-            }
-        }elseif ($order_times=="一个月一次"){
-            if($differ_time>30){
-                return show_order_jobs($order_jobs);
-            }
-        }elseif ($order_times=="半年一次"){
-            if($differ_time>182){
-                return show_order_jobs($order_jobs);
-            }
-        }elseif ($order_times=="一年一次"){
-            if($differ_time>365){
-                return show_order_jobs($order_jobs);
-            }
+        if($order_times=="三天一次" && $differ_time>3){
+            return $this->refresh_jobs($order_jobs);
+        }elseif ($order_times=="一周一次" && $differ_time>7){
+            return $this->refresh_jobs($order_jobs);
+        }elseif ($order_times=="一个月一次" && $differ_time>30){
+            return $this->refresh_jobs($order_jobs);
+        }elseif ($order_times=="半年一次" && $differ_time>182){
+            return $this->refresh_jobs($order_jobs);
+        }elseif ($order_times=="一年一次" && $differ_time>365){
+            return $this->refresh_jobs($order_jobs);
+        }else{
+//            return $this->refresh_jobs($order_jobs);
+            $order_jobs_lists = pdo_fetchall("select * from ".tablename(WL."jobs")." where id in(".$order_jobs['order_jobs_ids'].") order by addtime desc");
+            return $this->order_jobs_list($order_jobs_lists);
         }
+    }
+
+
+    public function refresh_jobs($order_jobs){
+        $order_jobs_lists = $this->show_order_jobs($order_jobs);
+        $order_jobs_ids = $this->order_jobs_list($order_jobs_lists);
+        $data['order_jobs_ids'] = "";
+        foreach ($order_jobs_ids as $list){
+            $data['order_jobs_ids'] .=$list['id'].",";
+        }
+        $data['order_jobs_ids'] = substr($data['order_jobs_ids'],0,-1);
+        $data['updatetime'] = time();
+        pdo_update(WL."order_jobs",$data,array('puid'=>$_SESSION['uid']));
+        return $order_jobs_ids;
     }
 }
 

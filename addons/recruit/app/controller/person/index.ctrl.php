@@ -43,11 +43,18 @@ elseif ($op=="send_resume_ajax"){
                  $tag .="<span class=\"fuli\">$li</span>";
              }
 
+             if($list['wage_min']>0 && $list['wage_max']>0){
+                 $salary = $list['wage_min']."-".$list['wage_max']."k";
+             }else{
+                 $salary = "面议";
+             }
             $status = "";
             if ($list['status']==0){
                  $status = "<div class=\"status1\">HR未查看/待沟通</div>";
             }elseif ($list['status']==1){
                 $status = "<div class=\"status2\">HR已查看</div>";
+            }elseif ($list['status']==-1){
+                $status = "<div class=\"status1\">HR已拒绝</div>";
             }elseif ($list['status']==3){
                 $status = "<p class=\"time\">
                                     <svg class=\"icon icon_time\" aria-hidden=\"true\">
@@ -82,7 +89,7 @@ elseif ($op=="send_resume_ajax"){
                     <div class=\"item_con\">
                         <div class=\"hang1\">
                             <a class=\"jobname nowrap\" href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."'>{$list['jobs_name']}</a>
-                            <a class=\"salary\">{$list['wage_min']}-{$list['wage_max']}k</a>
+                            <a class=\"salary\">{$salary}</a>
                         </div>
                         <div class=\"hang2\">
                             <a class=\"company nowrap\" href='".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."'>{$list['companyname']}</a>
@@ -182,27 +189,7 @@ elseif ($op=="collection_jobs_list"){
 
     $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
     $differ_time = (time()-$order_jobs['updatetime'])/86400;
-
-    $order_jobs_lists = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$order_jobs['jobs_name']."%'");
-    $order_jobs_list = "";
-    foreach ($order_jobs_lists as $list){
-        $company_profile = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$list['uid']);
-        $list['headimgurl'] = $company_profile['headimgurl'];
-        $list['companyname'] = $company_profile['companyname'];
-        $list['tag'] = $company_profile['tag'];
-        $list['address'] = $company_profile['city'].$company_profile['city_erea'].$company_profile['district'];
-        $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and jobs_id=".$list['id']);
-        $is_collect = pdo_fetch("select id from ".tablename(WL."collect_jobs")." where uid=".$_SESSION['uid']." and jobs_id=".$list['id']);
-        if(empty($jobs_apply)){
-            $list['post_status'] = 1;
-        }
-        if(empty($is_collect)){
-            $list['is_collect'] = 1;
-        }
-        $order_jobs_list[] = $list;
-    }
-
-
+    $order_jobs_list = m("jobs")->check_order_jobs($order_jobs['order_time'],$differ_time);
     include wl_template("person/person_collection");exit();
 }
 

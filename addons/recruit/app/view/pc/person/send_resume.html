@@ -39,7 +39,13 @@
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
-                            <a class="salary">{php echo $list['wage_min']}-{php echo $list['wage_max']}k</a>
+                            <a class="salary">
+                                {if $list['wage_min']>0 && $list['wage_max']>0}
+                                {php echo $list['wage_min']}-{php echo $list['wage_max']}k
+                                {else}
+                                面议
+                                {/if}
+                            </a>
                         </div>
                         <div class="hang2">
                             <a class="company nowrap" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
@@ -57,6 +63,8 @@
                             <div class="status1">HR未查看/待沟通</div>
                             {elseif $list['status']==1}
                             <div class="status2">HR已查看</div>
+                            {elseif $list['status']==-1}
+                            <div class="status1">HR已拒绝</div>
                             {else}
                                 <p class="time">
                                     <svg class="icon icon_time" aria-hidden="true">
