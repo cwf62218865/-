@@ -1,0 +1,290 @@
+.index_left{
+    display: inline-block;
+    width: 310px;
+}
+.index_right{
+    display: inline-block;
+    width: 870px;
+    float: right;
+}
+.index_search{
+    margin: 20px;
+}
+.index_searchbox{
+    display: inline-block;
+    height: 48px;
+    border: 1px solid #09c;
+    width: 688px;
+}
+.index_searchbox input{
+    width: 650px;
+    margin-left: 19px;
+    line-height: 48px;
+    outline: none;
+}
+.index_searchbtn{
+    display: inline-block;
+    width: 140px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    outline: none;
+    background-color:#09c ;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+}
+.hot_job{
+    margin: 18px;
+    height: 14px;
+    line-height: 14px;
+}
+.hot_job a{
+    margin-left: 20px;
+    color: #09c;
+}
+.index_menus{
+    width: 100%;
+    height: 520px;
+    background-color: #fff;
+}
+.index_menu{
+    display: inline-block;
+    width: 270px;
+    margin-left: 20px;
+    margin-top: 30px;
+    height: 18px;
+    line-height: 18px;
+    cursor: pointer;
+}
+.index_menu:first-child{
+    margin-top: 36px;
+}
+.index_menu:last-child{
+    margin-bottom: 36px;
+}
+.index_menu span{
+    color: #666;
+    margin-left: 20px;
+}
+.index_menu .icon{
+    float: right;
+    margin-top: 2px;
+    color: #999;
+}
+.index_menu .index_menu_title{
+    font-size: 18px;
+    color: #333;
+    margin-left: 0;
+}
+.index_news{
+    display: inline-block;
+    width: 280px;
+    height: 120px;
+    background-color: #fff;
+    float: left;
+    margin-right: 15px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.index_news:last-child{
+    margin-right: 0;
+}
+.index_news_title{
+    font-size: 16px;
+    display: inline-block;
+    width: 224px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    white-space:nowrap;
+    margin:20px 22px 8px 20px;
+}
+.index_news_content{
+    display: inline-block;
+    margin-left: 20px;
+    width: 224px;
+    color: #999;
+    line-height: 24px;
+}
+.surper_label{
+    position: absolute;
+    left: 0;
+    top:0;
+    z-index: 10;
+}
+.surper_company{
+    display: inline-block;
+    width: 224px;
+    height: 120px;
+    line-height: 120px;
+    text-align: center;
+    background-color: #fff;
+    margin-left: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    float: left;
+}
+.new_surper_company{
+    display: inline-block;
+    position: absolute;
+    top:0;
+    right: -36px;
+    cursor: pointer;
+    width: 26px;
+    height: 75px;
+    font-size: 12px;
+    line-height: 1.4;
+    padding-top: 5px;
+    color: #8590a6;
+    text-align: center;
+    background-color: #f1f1f1;
+}
+.hot_company_title{
+    display: inline-block;
+    margin: 34px 30px  0 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    width: 1140px;
+}
+.new_hot_company{
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+}
+.remengongsi{
+    font-size: 16px;
+}
+.remengongsi:after{
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+    left: 0;
+    top: 50px;
+}
+.hot_companys{
+    display: inline-block;
+    width: 268px;
+    height: 310px;
+    border: 1px solid #eee;
+    text-align: center;
+    float: left;
+    margin: 0 20px 20px 0;
+}
+.hot_companys:nth-child(4),.hot_companys:nth-child(8){
+    margin-right: 0;
+}
+.hot_companys_logo{
+    height: 80px;
+    overflow: hidden;
+    margin-top: 30px;
+}
+.hot_companys_logo img{
+    height: 80px;
+}
+.hot_companys_name{
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+    height: 16px;
+    line-height: 16px;
+    margin-top: 30px;
+}
+.hot_companys_introduce{
+    font-size: 14px;
+    color: #999;
+    width: 100%;
+    height: 14px;
+    line-height: 14px;
+    margin-top: 14px;
+}
+.hot_company_line{
+    display: inline-block;
+    width: 230px;
+    border-bottom: 1px dashed #eee;
+    margin-top: 16px;
+}
+.hot_company_msg{
+    display: inline-block;
+    font-size: 12px;
+    color:#bbb ;
+    margin-top: 10px;
+    padding-right: 15px;
+    margin-right: 15px;
+    border-right: 1px solid #eee;
+}
+.hot_company_msg a{
+    color: #09c;
+    font-size: 14px;
+}
+.hot_company_msg:last-child{
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+}
+.resume_jobs{
+    margin-left: 20px;
+}
+.resume_jobsbox{
+    display: inline-block;
+    float: right;
+    margin-right: 50px;
+}
+.resume_job_title{
+    cursor: pointer;
+}
+.resume_position{
+    display: inline-block;
+    width: 368px;
+    height: 264px;
+    border: 1px solid #eee;
+    float: left;
+    margin: 0 15px 15px 0;
+}
+.resume_position:nth-child(3),.resume_position:nth-child(6),.resume_position:nth-child(9){
+    margin-right: 0;
+}
+.find_morejob{
+    display: inline-block;
+    width: 368px;
+    height: 44px;
+    border: 1px solid #09c;
+    color: #09c;
+    line-height: 44px;
+    text-align: center;
+    margin-left: 385px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+.index_searchbtn:hover{
+    background-color: #289fd1;
+}
+.find_morejob:hover{
+    background-color: #09c;
+    color: #fff;
+}
+.resume_list{
+    margin: 30px 30px 10px 30px
+}
+.index_menus_urls{
+    display: inline-block;
+    width: 500px;
+    background-color: #fafafa;
+    position: absolute;
+    top: 0;
+    left: 310px;
+    z-index: 99;
+}
+.index_menus_urlsbox{
+    margin: 20px;
+    margin-top: 36px
+}
+.index_menus_urlsbox a{
+    color: #666;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
