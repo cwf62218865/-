@@ -143,6 +143,7 @@
 }
 .resume_manage_headerimg img{
     width: 120px;
+    vertical-align: super;
 }
 .resume_manage_header .img_con{
     position: absolute;

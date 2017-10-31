@@ -31,11 +31,12 @@
     height: auto;
     min-height: 770px;
     float: left;
+    padding-bottom: 60px;
 }
 .nav_right1{
     width: 930px;
     float: left;
-    background: #fff;
+    background: #fff;padding-bottom: 60px;
 }
 .bind_con,.secret_con,.psw_con{
     width: 830px;
