@@ -165,8 +165,62 @@ elseif ($op=="send_code"){
     }
     exit();
 }
+elseif($op=="normal_send_code"){
 
+    send_codes($_POST['mobie']);exit();
 
+}
+elseif ($op=="change_mobile"){
+    if(check_phone($_GPC['mobie'])){
+        $phone =$_GPC['mobie'];
+        $member = pdo_fetch("select * from ".tablename(WL.'members')." where mobile=".$phone);
+        if($member){
+            call_back(2,"该手机号已被注册");
+
+        }else{
+            if($_POST['yanzheng']==$_SESSION['phone_code']){
+                pdo_update(WL."members",array('mobile'=>$phone),array('id'=>$_SESSION['uid']));
+                call_back(1,"修改成功");
+            }else{
+                call_back(2,"验证码不正确");
+            }
+        }
+    }
+}
+
+elseif ($op=="resume_display_status"){
+    $kind = check_pasre($_POST['kind'],"参数错误");
+    if($kind==2){$kind=1;}
+    $r = pdo_update(WL."resume",array('display'=>$kind,'updatetime'=>time()),array('uid'=>$_SESSION['uid']));
+    call_back(1,"ok");
+}
+//黑名单
+elseif ($op=="blacklist"){
+    $blacklist = check_pasre($_POST['name'],"请输入你想屏蔽的公式名称");
+    $r = pdo_update(WL."resume",array('blacklist'=>$blacklist,'updatetime'=>time()),array('uid'=>$_SESSION['uid']));
+    if($r){
+        call_back(1,"ok");
+    }else{
+        call_back(1,"no");
+    }
+}
+
+//修改密码
+elseif ($op=="modify_pwd"){
+    $member = pdo_fetch("select * from ".tablename(WL."members")." where id=".$_SESSION['uid']);
+    $password = pwd_hash($_GPC['psw'],$member['salt']);
+    if($password==$member['password']){
+        if($_GPC['newpsw']==$_GPC['newpswch']){
+            $password =  pwd_hash($_GPC['newpsw'],$member['salt']);
+            $r = pdo_update(WL."members",array('password'=>$password,'updatetime'=>time()),array('uid'=>$_SESSION['uid']));
+            call_back(1,"修改成功");
+        }else{
+            call_back(2,"2次输入密码不一致");
+        }
+    }else{
+        call_back(2,"原密码不正确");
+    }
+}
 //手机上传头像界面
 elseif ($op=="mobile_upload"){
     if($_GPC['kind']=="resume"){
@@ -490,7 +544,17 @@ elseif ($op=="tip_off"){
 
 }
 
+elseif ($op=="usersetting"){
+    if($_SESSION['uid']){
+        $member = pdo_fetch("select * from ".tablename(WL."members")." where id=".$_SESSION['uid']);
+        $resume = m("resume")->get_resume($_SESSION['uid']);
+        include wl_template("member/usersetting");exit();
+    }
 
+}
+elseif ($op=="navigation"){
+    include wl_template("member/navigation");exit();
+}
 if(empty($_SESSION['mid'])){
     header("location:".app_url("member/index/index"));
 }
