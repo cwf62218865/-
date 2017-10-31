@@ -526,7 +526,8 @@ $(".modalbtn1").on("click",function(){
             if(_this.height()!="0"){
                 _this.css("height","0")
             }
-        })
+        });
+        $("#personal_msgs").hide();
     });
 
     //$("body").on("click",function(){
@@ -541,5 +542,24 @@ $(".modalbtn1").on("click",function(){
     $(document).on("click",".general-select",function(event){
         event.stopPropagation();
     });
+
+    $(".personal_msgbtn").click(function(event){
+        event.stopPropagation();
+    });
+
+    //公共头部效果
+
+
+    //账户信息下拉
+    $(".personal_msgbtn").on("click",function(){
+        if($("#personal_msgs").css("display")=="none"){
+            $("#personal_msgs").show();
+        }else{
+            $("#personal_msgs").hide()
+        }
+
+    })
+
+    $("input").attr("autocomplete","off");
 
 })
