@@ -294,7 +294,12 @@ $(function () {
         var _this=$(this);
         var mobie=$("#mobile").val();
         if(telphone_reg.test(mobie)){
-            $(".yanzhengma").addClass("click");
+            //$(".yanzhengma").addClass("click");
+            if($(".yanzhengma").eq(0).html()=="获取验证码"){
+                $(".yanzhengma").addClass("click");
+            }else{
+                $(".yanzhengma").removeClass("click");
+            }
         }else{
             $(".yanzhengma").removeClass("click");
         }
