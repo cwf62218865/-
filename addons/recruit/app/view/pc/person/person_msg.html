@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/person_msg.css" rel="stylesheet">
+    <title>消息提醒-求职者</title>
+</head>
+<body>
+{if $_SESSION['uid']}
+{php include wl_template('common/top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
+<div class="width1200 p1content">
+
+    <div class="p1_left" style="margin-top: 10px">
+        <div class="con_list">
+
+
+            <div class="person_msg_titles">
+                <span class="person_msg_title_check">全部消息</span>
+                <span>投递申请</span>
+                <span>面试邀请</span>
+                <span>面试评价</span>
+                <span>问答提醒</span>
+                <span>评论回复</span>
+                <span>系统通知</span>
+            </div>
+
+
+            <!--系统通知-->
+
+            <div class="system_msg">
+                <div class="system_msgbox">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p1_right"  style="margin-top: 20px">
+        <div class="part_one">
+            <div class="title-top">
+                <label class="top_con">猜你喜欢</label>
+            </div>
+            <a href="#" class="items_list">
+                <div class="logo1">
+                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
+                </div>
+                <div class="company_name">
+                    <p class="job_n">Java工程师</p>
+                    <p class="job_s">5-8K</p>
+                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
+                </div>
+            </a>
+            <a href="#" class="items_list">
+                <div class="logo1">
+                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
+                </div>
+                <div class="company_name">
+                    <p class="job_n">Java工程师</p>
+                    <p class="job_s">5-8K</p>
+                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
+                </div>
+            </a>
+
+            <a href="#" class="items_list">
+                <div class="logo1">
+                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
+                </div>
+                <div class="company_name">
+                    <p class="job_n">Java工程师</p>
+                    <p class="job_s">5-8K</p>
+                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
+                </div>
+            </a>
+
+            <a href="#" class="items_list">
+                <div class="logo1">
+                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
+                </div>
+                <div class="company_name">
+                    <p class="job_n">Java工程师</p>
+                    <p class="job_s">5-8K</p>
+                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
+                </div>
+            </a>
+
+            <a href="#" class="items_list">
+                <div class="logo1">
+                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
+                </div>
+                <div class="company_name">
+                    <p class="job_n">Java工程师</p>
+                    <p class="job_s">5-8K</p>
+                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
+                </div>
+            </a>
+            <div style="clear: both"></div>
+            <a href="#" class="seemorejob">查看更多职位>></a>
+        </div>
+
+
+    </div>
+
+
+
+
+</div>
+
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+
+
+</html>

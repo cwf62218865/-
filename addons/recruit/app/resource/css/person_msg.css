@@ -1,0 +1,35 @@
+.seemorejob{
+    display: inline-block;
+    width: 100%;
+    line-height: 54px;
+    text-align: center;
+    color: #999;
+}
+.person_msg_titles{
+    height: 80px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+.person_msg_titles span{
+    display: inline-block;
+    height: 79px;
+    line-height: 80px;
+    margin-right: 40px;
+    color: #999;
+    cursor: pointer;
+}
+.person_msg_titles span:first-child{
+    margin-left: 30px;
+}
+.person_msg_titles .person_msg_title_check{
+    color: #333;
+    height: 79px;
+    border-bottom: 2px solid #333;
+}
+.system_msg{
+    margin: 30px 30px 40px 30px;
+}
+.system_msgbox{
+    height: 368px;
+    border: 1px solid #eee;
+}
