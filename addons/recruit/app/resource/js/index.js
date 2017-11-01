@@ -55,13 +55,5 @@ $(".back_topbtn").on("click",function(){
 });
 
 
-//切换全国城市
-$(".changecity").on("click",function(){
-    $(".indexmodal").show();
-});
-
-$(".modalclose").on("click",function(){
-    $(".indexmodal").hide();
-});
 
 
