@@ -44,6 +44,9 @@ class jobs{
         if($data['data']['job_name']){
             $wheresql .=" and jobs_name like '%".$data['data']['job_name']."%' ";
         }
+        if($_SESSION['city'] && $_SESSION['city']<>"全国"){
+            $wheresql .= " and city like '%".$_SESSION['city']."%' ";
+        }
         $limit = " limit ".$page.",".$pagenum;
 //        echo "select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit;exit();
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit);
@@ -161,8 +164,11 @@ class jobs{
 
 
     public function refresh_jobs($order_jobs){
+        $old_order_jobs_count = count(explode(",",$order_jobs['order_jobs_ids']));
         $order_jobs_lists = $this->show_order_jobs($order_jobs);
         $order_jobs_ids = $this->order_jobs_list($order_jobs_lists);
+        $new_order_jobs_count = count($order_jobs_ids);
+        $data['add_order_num'] = $new_order_jobs_count-$old_order_jobs_count;
         $data['order_jobs_ids'] = "";
         foreach ($order_jobs_ids as $list){
             $data['order_jobs_ids'] .=$list['id'].",";
@@ -171,6 +177,12 @@ class jobs{
         $data['updatetime'] = time();
         pdo_update(WL."order_jobs",$data,array('puid'=>$_SESSION['uid']));
         return $order_jobs_ids;
+    }
+
+    //职位简历关联信息查询
+    public function apply_jobs($id){
+        $jobs_apply = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where id=".$id);
+        return $jobs_apply;
     }
 }
 

@@ -216,8 +216,11 @@ elseif ($op=="send_email"){
     $body = $_POST['data']['envelope_content'];
     $body = str_replace("\r\n","<br/>",$body);
     $body = str_replace("\n","<br/>",$body);
-    ihttp_email($email, $resume['fullname'].'的简历推荐'.date('Y-m-d H:i:s'), $body);
+    $data['path'] = $resume['uid'].".pdf";
+    $data['name'] = $resume['fullname']."的简历.pdf";
+    ihttp_email($email, $resume['fullname'].'的简历推荐'.date('Y-m-d H:i:s'), $body,false,$data);
     call_back(1,"ok");
+
 
 }
 //头像上传

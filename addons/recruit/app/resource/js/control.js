@@ -571,6 +571,25 @@ $(".modalbtn1").on("click",function(){
         $(".indexmodal").hide();
     });
 
+    $(".change_citys span,.quanguo").on("click",function(){
+        var content=$(this).html();
+        $.ajax({
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=switch_city",
+            type:"post",
+            data:{
+                city:content
+            },
+            success:function(data){
+                var data=JSON.parse(data);
+                if(data.status==1){
+                    $(".indexmodal").hide();
+                    $(".city").html(content);
+                }else{
+                    hint("error","切换城市失败")
+                }
+            }
+        })
+    });
 
 })
 

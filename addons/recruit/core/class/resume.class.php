@@ -36,17 +36,21 @@ class resume{
 
         $work_time = "";
         foreach ($work_experience as $list){
-            $list['job_starttime'] = str_replace("月","",str_replace("年","-",$list['job_starttime']));
-            $time = strtotime($list['job_starttime']);
-            if(empty($work_time)){
-                $work_time = $time;
-            }else{
-                if($time<$work_time){
-                    $work_time = $time;
-                }
-            }
+//            $list['job_starttime'] = str_replace("月","",str_replace("年","-",$list['job_starttime']));
+//            $time = strtotime($list['job_starttime']);
+//            if(empty($work_time)){
+//                $work_time = $time;
+//            }else{
+//                if($time<$work_time){
+//                    $work_time = $time;
+//                }
+//            }
+            $work_time =$work_time+($list['job_endtime'] - $list['job_starttime']);
         }
-        $resume['work_time'] =  date('Y')-date('Y',$work_time);
+        if($work_time){
+            $resume['work_time'] =ceil($work_time/31536000);
+        }
+//        $resume['work_time'] =  date('Y')-date('Y',$work_time);
         return $resume;
     }
 

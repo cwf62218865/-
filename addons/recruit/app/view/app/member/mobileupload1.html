@@ -15,7 +15,7 @@
             {php echo $kind}
         </div>
 
-        <div class="imgbox">
+        <div class="imgbox camera"  style="border: 0;background-color: #fff;">
             <svg class="icon icon1" aria-hidden="true" >
                 <use xlink:href="#icon-shangchuan"></use>
             </svg>
@@ -24,7 +24,7 @@
             <input type='file' name='file' id='file' accept='image/*' style="display: none">
             <input type="hidden" name="identity" value="{php echo $_GPC['identity']}">
         </form>
-        <span class="file_btn camera">选择文件</span>
+        <span class="file_btn camera choose_file">选择文件</span>
         <span class="file_btn camera1">确定上传</span>
         <span class="file_btn Album1">更换照片</span>
     </div>
@@ -50,7 +50,7 @@
             $('.imgbox').html(uploadsuccesspic);
             $(".camera1").css("display","block");
             $(".Album1").css("display","block");
-            $(".camera").css("display","none")
+            $(".choose_file").css("display","none")
             //uploadFile(this,'file');
         });
     });
