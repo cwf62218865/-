@@ -449,8 +449,18 @@
                     var data = JSON.parse(data);
                     console.log(data.others);
                     if(data.status==1){
+                        if(!data.content){
+                            no_data(".resume_content","暂时没有符合搜索条件的结果","请重新修改搜索条件后再进行搜索");
+                            $(".yemabtn .yema").eq(0).removeClass("slected");
+                            $(".yemabtn .yema").eq(1).removeClass("slected");
+                            $("#current_page").html(0);
+                            $(".total_page").html(0);
+                            $("#pages_btnbox").html("");
+                            return false;
+                        }
                         $("#current_page").html(option.page);
                         $(".list_item").remove();
+
                         $(".resume_content").html(data.content);
                         var page_num = Math.ceil(data.others/6);
                         $(".total_page").html(page_num);

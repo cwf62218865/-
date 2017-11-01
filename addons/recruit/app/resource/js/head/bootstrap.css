@@ -201,7 +201,7 @@ th {
   }
   a,
   a:visited {
-    text-decoration: underline;
+    /*text-decoration: underline;*/
   }
   a[href]:after {
     content: " (" attr(href) ")";
@@ -1107,7 +1107,7 @@ a {
 a:hover,
 a:focus {
   color: #23527c;
-  text-decoration: underline;
+  /*text-decoration: underline;*/
 }
 a:focus {
   outline: thin dotted;
