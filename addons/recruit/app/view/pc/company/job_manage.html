@@ -29,6 +29,7 @@
                         <use xlink:href="#icon-xiala"></use>
                     </svg>
                     <div class="my_joblist">
+                        <p class="option_select">全部职位</p>
                         {loop $jobs $list}
                         <p class="option_select">{$list['jobs_name']}</p>
                        {/loop}
@@ -140,8 +141,12 @@
             }else{
                 $(".my_joblist").hide();
             }
-
-
+        });
+        $("body").on("click",function(){
+            $(".my_joblist").hide();
+        });
+        $(".wenzi,.ico_xiala").click(function(event){
+            event.stopPropagation();
         });
         $(".option_select").click(function () {
             $(".wenzi").html($(this).html());
@@ -155,7 +160,11 @@
                     $(this).hide();
                 }
             });
-        })
+            if($(this).html()=="全部职位"){
+                $(".list_content .list_item").show();
+            }
+        });
+
         $(".shoucang_resume").click(function () {
             $("#beizhubox").animate({"opacity":1},300);
             setTimeout(function(){

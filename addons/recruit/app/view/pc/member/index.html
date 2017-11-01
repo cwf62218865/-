@@ -347,7 +347,7 @@
             {/loop}
             <div style="clear: both"></div>
             <div>
-                <a href="#" class="find_morejob">发现更多好职位>></a>
+                <a href="{php echo app_url('member/index/search_jobs')}" class="find_morejob">发现更多好职位>></a>
             </div>
         </div>
 
@@ -396,7 +396,7 @@
 
             <div style="clear: both"></div>
             <div>
-                <a href="#" class="find_morejob">发现更多好职位>></a>
+                <a href="{php echo app_url('member/index/search_jobs')}" class="find_morejob">发现更多好职位>></a>
             </div>
         </div>
 
@@ -506,25 +506,7 @@
 
 
 
-    $(".change_citys span,.quanguo").on("click",function(){
-        var content=$(this).html();
-        $.ajax({
-            url:"",
-            type:"post",
-            data:{
-                city:content
-            },
-            success:function(data){
-                var data=JSON.parse(data);
-                if(data.status==1){
-                    $(".indexmodal").hide();
-                    $(".city").html(content);
-                }else{
-                    hint("error","切换城市失败")
-                }
-            }
-        })
-    });
+
 
 
 </script>

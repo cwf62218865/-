@@ -39,6 +39,8 @@ if(!$_SESSION['uid']){
 	}elseif ($_SESSION['utype']==1){
 		$person_statistics = person_statistics();
 		$resume_integrity = resume_integrity();
+		$add_order_num =  add_order_num();
+		$interview_num =  interview_num();
 	}
 	$user = m("member")->get_member($_SESSION['uid']);
 

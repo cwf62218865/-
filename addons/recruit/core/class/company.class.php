@@ -66,7 +66,7 @@ class company{
         if($status==1){
             $wheresql .=" and status<>3";
         }elseif ($status==2){
-            $wheresql .=" and status=3";
+            $wheresql .=" and status=3 and offer=0 ";
         }
 
         if($jobs_id){

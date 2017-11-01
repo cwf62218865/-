@@ -41,7 +41,7 @@ elseif ($op=="received_resume_page"){
         $html = "";
         foreach ($received_resume as $list){
             if($list['sex']==2){$list['sex'] = '女生';}else{$list['sex'] = '男生';}
-            $list['age']=ceil(date('Y-m-d')-$list['birthday']);
+            $list['age']=ceil((time()-$list['birthday'])/31536000);
             if($list['collect_resume']){
                 $collect = "<div class=\"jujue1 shoucangbtn statussc\" data-id=\"{$list['apply_id']}\">已收藏</div>";
             }else{
@@ -244,7 +244,7 @@ elseif ($op=="send_review"){
 elseif ($op=="collect"){
 
     $data_id = check_pasre($_POST['data_id'],"参数错误");
-    $data['remark'] = check_pasre($_POST['beizhu'],"参数错误");
+    $data['remark'] = $_POST['beizhu'];
     if($_POST['methods']){
         $data['updatetime'] = time();
         $r = pdo_update(WL."collect_resume",$data,array('id'=>$data_id));

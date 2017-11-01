@@ -313,13 +313,14 @@
                 type:"post",
                 url:"http://ios.huiliewang.com/app/pdf_enter.php",
                 data:{
-                    resumeuid:"{php echo $_GPC['uid']}"
+                    resumeuid:uid
                 },
                 success:function (data) {
                     window.location.href = "http://ios.huiliewang.com/app/"+data+".pdf";
                 }
             })
         })
+
         var mySwiper = new Swiper ('.swiper-container', {
             direction: 'horizontal',
             slidesPerView: 4,
@@ -337,18 +338,7 @@
             $("#modal_box").hide();
         });
 
-        $("#download_resume").click(function(){
-            $.ajax({
-                type:"post",
-                url:"http://ios.huiliewang.com/app/index.php",
-                data:{
-                    uid:"{php echo $_GPC['uid']}"
-                },
-                success:function (data) {
-                    hint("success","ok");
-                }
-            })
-        })
+
     })
 
 </script>

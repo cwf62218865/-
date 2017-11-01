@@ -25,14 +25,14 @@ function m($name = '') {
 function  company_statistics(){
 	$data['jobs_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$_SESSION['uid']." and open=1");
 	$data['apply_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where uid=".$_SESSION['uid']." and direction=2");
-	$data['interview_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where uid=".$_SESSION['uid']." and direction=1");
+	$data['interview_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where uid=".$_SESSION['uid']." and status=3 and offer=0");
 	return $data;
 }
 
 //求职者个人中心统计
 function person_statistics(){
 	$data['apply_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and direction=2");
-	$data['interview_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and direction=1");
+	$data['interview_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and status=3");
 	return $data;
 }
 
@@ -67,6 +67,18 @@ function resume_integrity(){
 //	echo $score;exit();
 
 
+}
+
+//新增订阅数量
+function add_order_num(){
+    $order_jobs = m("jobs")->order_jobs();
+    return $order_jobs['add_order_num'];
+}
+
+//未处理面试邀请
+function interview_num(){
+    $interview_num = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and status=3 and offer=0");
+    return $interview_num;
 }
 
 //公司信息完整度
@@ -372,7 +384,7 @@ function upload_img($files){
 	mkdirs($upload_path1);
 	$name = time().$_SESSION['uid'].".".$type;
 	$upload_path_name = $upload_path."/".$name;
-//echo $upload_path_name;exit();
+
 	//开始移动文件到相应的文件夹
 	if(move_uploaded_file($file['tmp_name'],$upload_path_name)){
 		$imgurl = "/addons/".WL_NAME."/app/resource/temp/".date("Y-m-d")."/".$name;
