@@ -1176,10 +1176,11 @@
                 </div>
 
             </div>
+            <div class="oneone_btn" style="position: absolute;left: 5px;top: 5px;width: 90px;height: 90px;"></div>
             <!--<form id="choosefile1" enctype="multipart/form-data">-->
                 <!--<input type="file" name='file' id="choosefile" accept="image/*" />-->
             <!--</form>-->
-            <button type="button"  id="choosefile"  class="btn btn-primary"  data-toggle="modal" data-target="#avatar-modal" style="margin: 10px;">修改头像</button>
+
 
             <div class="erweima">
                 <!--<img src="{WL_URL_ARES}images/erweima.png" class="pic"/>-->
@@ -1267,8 +1268,8 @@
 <script src="{WL_URL_ARES}js/head/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 
-    $("#choosefile").click(function () {
-        $("#modalbox").hide();
+    $("body").on("click",".btn-primary",function () {
+        $(".loginn_zj").hide();
     })
     //做个下简易的验证  大小 格式
     $('#avatarInput').on('change', function(e) {
@@ -1452,6 +1453,8 @@
 
 </script>
 <script>
+
+
     //上传图片
     $(".modalbtn").on("click",function(){
         var uploadFormData =new FormData($("#choosefile1")[0]);
@@ -1935,12 +1938,13 @@
 
 
     //选择文件
-    $('#choosefile').on('change',function(e){
+    $('body').on('change',"#choosefile",function(e){
         if($(this).attr("accept")=="image/*"){
             var imgfile=this.files[0];
             var src=URL.createObjectURL(imgfile);
+            console.log(src);
             var uploadimg="<img style='width:100%' src='"+src+"' id='upload_pic'>";
-            $(this).parent().prev().html(uploadimg);
+            $(this).closest(".modal_con").find(".one_btn").html(uploadimg);
         }else if($(this).attr("accept")=="video/*"){
             $("#choosefile1").prev().find("use").attr("xlink:href","#icon-wangzhi");
             //console.log(videofile.name);

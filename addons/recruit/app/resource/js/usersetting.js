@@ -5,20 +5,11 @@ $(function () {
         $(".left_btn_con").removeClass("selectit");
         $(this).find(".left_btn_con").addClass("selectit");
     })
-    $(".left_btn_nav").eq(0).click(function () {
-        $(".bind_con").show();
-        $(".secret_con").hide();
-        $(".psw_con").hide();
-    })
-    $(".left_btn_nav").eq(1).click(function () {
-        $(".bind_con").hide();
-        $(".secret_con").show();
-        $(".psw_con").hide();
-    })
-    $(".left_btn_nav").eq(2).click(function () {
-        $(".bind_con").hide();
-        $(".secret_con").hide();
-        $(".psw_con").show();
+    var list=$(".left_btn_nav");
+    list.click(function () {
+        var i=$(this).index();
+        $(".rightcon").hide();
+        $(".rightcon").eq(i).show();
     })
 
 
@@ -225,32 +216,32 @@ $(function () {
         var newpsw_input=$("#newpswnum").closest(".input_33");
         var newpswch_input=$("#newpswnum_ch").closest(".input_33");
         if(psw==""){
-            $("#pswnum").closest(".input_33").css("border-color","#e23d46");
+            pswy_input.css("border-color","#e23d46");
             pswy_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","请输入当前密码"))
             return;
         }
         if(psw.length<6){
-            $("#pswnum").closest(".input_33").css("border-color","#e23d46");
+            pswy_input.css("border-color","#e23d46");
             pswy_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","请输入大于6位密码"))
             return;
         }
         if(newpsw==""){
-            $("#newpswnum").closest(".input_33").css("border-color","#e23d46");
+            newpsw_input.css("border-color","#e23d46");
             newpsw_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","请输入新的密码"))
             return;
         }
         if(newpsw.length<6){
-            $("#newpswnum").closest(".input_33").css("border-color","#e23d46");
+            newpsw_input.css("border-color","#e23d46");
             newpsw_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","请输入大于6位新密码"))
             return;
         }
         if(newpswch==""){
-            $("#newpswnum_ch").closest(".input_33").css("border-color","#e23d46");
+            newpswch_input.css("border-color","#e23d46");
             newpswch_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","请输入确认密码"))
             return;
         }
         if(newpsw!=newpswch){
-            $("#newpswnum_ch").closest(".input_33").css("border-color","#e23d46");
+            newpswch_input.css("border-color","#e23d46");
             newpswch_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","两次密码不一致！"))
             return;
         }
@@ -354,12 +345,12 @@ $(function () {
         var mobile_input=$("#mobile").closest(".input_33");
         var yanzheng_input=$("#yanzhengma").closest(".input_33");
         if(mobile==""){
-            $("#mobile").closest(".input_33").css("border-color","#e23d46");
+            mobile_input.css("border-color","#e23d46");
             mobile_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","请输入手机号码"))
             return;
         }
         if(yanzheng==""){
-            $("#yanzhengma").closest(".input_33").css("border-color","#e23d46");
+            yanzheng_input.css("border-color","#e23d46");
             yanzheng_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","请输入短信验证码"))
             return;
         }
