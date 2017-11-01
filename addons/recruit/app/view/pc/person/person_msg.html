@@ -25,24 +25,165 @@
 
             <div class="person_msg_titles">
                 <span class="person_msg_title_check">全部消息</span>
-                <span>投递申请</span>
-                <span>面试邀请</span>
-                <span>面试评价</span>
-                <span>问答提醒</span>
-                <span>评论回复</span>
+                <span data-id="投递申请">投递申请</span>
+                <span data-id="面试邀请">面试邀请</span>
+                <span data-id="面试评价">面试评价</span>
+                <span data-id="问答提醒">问答提醒</span>
+                <span data-id="评论回复">评论回复</span>
                 <span>系统通知</span>
             </div>
 
 
-            <!--系统通知-->
 
-            <div class="system_msg">
-                <div class="system_msgbox">
+
+            <div id="all_msg">
+                <!--系统通知-->
+                <div class="system_msg">
+                    <div class="system_msgbox">
+                        <div class="system_msg_title">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-xitongtongzhi"></use>
+                            </svg>
+                            <span class="color999">系统通知</span>
+                            <span class="colorbbb">2017-09-31 15:45</span>
+                        </div>
+
+                        <div class="system_msg_content">
+                            还在打王者荣耀？应届僧邀请你共赴2017腾讯全球合作伙伴大会，作为腾讯公司规模最大的年度行业省会，腾讯旗下20多个业务线将集体在大会上亮相
+                        </div>
+
+                        <div class="system_msg_img">
+                            <img src="{WL_URL_ARES}images/index_big_banner.png">
+                        </div>
+                        <a href="#" class="see_system_msg">查看详情>></a>
+                    </div>
+                </div>
+                <!--一天的消息-->
+                <div class="one_day_msg">
+                    <div class="day_time">
+                        <i></i>
+                        <span>2017/08/30</span>
+                    </div>
+
+
+                    <!--投递申请-->
+                    <div class="day_msgbox">
+                        <div class="system_msg_title">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-qiuzhiyixiang"></use>
+                            </svg>
+                            <span class="color999">投递申请</span>
+                            <span class="colorbbb">2017-09-31 15:45</span>
+                        </div>
+
+                        <div class="delivery_left">
+                        <span class="delivery_logo">
+                            <img src="{WL_URL_ARES}images/qiyelogo.png">
+                        </span>
+                            <span>网络编辑</span>
+                            <span style="margin-left: 20px">重庆大风车科技有限公司</span><br>
+                            <span style="display: inline-block;margin-top: 22px">最新状态：不合适</span>
+                        </div>
+
+                        <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
+                    </div>
+
+                    <!--面试邀请-->
+                    <div class="day_msgbox">
+                        <div class="system_msg_title">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-gongzuojingli"></use>
+                            </svg>
+                            <span class="color999">面试邀请</span>
+                            <span class="colorbbb">2017-09-31 15:45</span>
+                        </div>
+
+                        <div class="delivery_left">
+                        <span class="delivery_logo">
+                            <img src="{WL_URL_ARES}images/qiyelogo.png">
+                        </span>
+                            <span>网络编辑</span><br>
+                            <span style="display: inline-block;margin-top: 22px">重庆大风车科技有限公司</span>
+                        </div>
+
+                        <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
+                    </div>
+
+                    <!--问答提醒-->
+                    <div class="day_msgbox">
+                        <div class="system_msg_title">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-wendatixing"></use>
+                            </svg>
+                            <span class="color999">问答提醒</span>
+                            <span class="colorbbb">2017-09-31 15:45</span>
+                        </div>
+
+                        <div class="delivery_left" style="line-height: 24px">
+                        <span class="delivery_headerimg">
+                            <img src="{WL_URL_ARES}images/qiyelogo.png">
+                        </span>
+                            <span>拒绝了您的问题：</span><br>
+                            <span>刚毕业的大学生找工作如何防止被骗？</span>
+                        </div>
+
+                        <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
+                    </div>
+
+                    <!--评论回复-->
+                    <div class="day_msgbox">
+                        <div class="system_msg_title">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-pinglunhuifu"></use>
+                            </svg>
+                            <span class="color999">评论回复</span>
+                            <span class="colorbbb">2017-09-31 15:45</span>
+                        </div>
+
+                        <div class="delivery_left" style="line-height: 24px">
+                        <span class="delivery_headerimg">
+                            <img src="{WL_URL_ARES}images/qiyelogo.png">
+                        </span>
+                            <span>回复了您在<span style="color: #7b8fc9">“一个刚毕业的会计学生简历上有哪些经历会加分？”</span>中的评论</span>
+                        </div>
+
+                        <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
+                    </div>
+
+                    <!--面试评价-->
+
+                    <div class="day_msgbox">
+                        <div class="system_msg_title">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-pinglunhuifu"></use>
+                            </svg>
+                            <span class="color999">面试评价</span>
+                            <span class="colorbbb">2017-09-31 15:45</span>
+                        </div>
+
+                        <div class="delivery_left">
+                        <span class="delivery_logo">
+                            <img src="{WL_URL_ARES}images/qiyelogo.png">
+                        </span>
+                            <span><span style="color: #7b8fc9">重庆麦飞科技有限公司</span>回复了您的面试评价</span>
+                        </div>
+
+                        <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
+                    </div>
 
                 </div>
             </div>
+
+
+            <div id="one_msg">
+
+            </div>
+
         </div>
     </div>
+
+
+
     <div class="p1_right"  style="margin-top: 20px">
         <div class="part_one">
             <div class="title-top">
@@ -120,6 +261,41 @@
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/person_msg.js" rel="script"></script>
 
+<script>
+    $(".person_msg_titles span").on("click",function(){
+        var _this=$(this);
+        var dataid=_this.attr("data-id");
+        $(".person_msg_titles span").removeClass("person_msg_title_check");
+        _this.addClass("person_msg_title_check");
 
+        if(dataid){
+            $.ajax({
+                url:"",
+                type:"post",
+                data:{
+                    msg:dataid
+                },
+                success:function(data){
+                    var data=JSON.parse(data);
+                    if(data.status==1){
+                        $("#all_msg").hide();
+                        $("#one_msg").show();
+                        $("#one_msg").html(data.content);
+                    }
+                }
+
+            })
+        }else if(_this.html()=="全部消息"){
+            $("#all_msg").show();
+            $(".one_day_msg").show();
+            $("#one_msg").hide();
+        }else if(_this.html()=="系统通知"){
+            $("#all_msg").show();
+            $(".one_day_msg").hide();
+            $("#one_msg").hide();
+        }
+    })
+</script>
 </html>
