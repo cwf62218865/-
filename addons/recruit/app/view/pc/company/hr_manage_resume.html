@@ -79,7 +79,7 @@
                             </div>
                             <div class="bm_hang2">
                                 <span class="basic_xx">{if $list['sex']==2}女生{else}男生{/if}</span>
-                                <span class="basic_xx" style="margin-left: 10px;">{php echo ceil(date('Y-m-d')-$list['birthday'])}岁</span>
+                                <span class="basic_xx" style="margin-left: 10px;">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
                                 <span class="basic_xx" style="margin-left: 26px;">{php echo $list['education']}</span>
                             </div>
                             <div class="bm_hang3">
@@ -205,7 +205,7 @@
                                 <span class="name nowrap">{php echo $list['fullname']}</span>
                                 <span class="view_i">查看</span>
                                 <span class="basic_xx">{if $list['sex']==1}男{else}女{/if}</span>
-                                <span class="basic_xx" style="margin-left: 5px;">{php echo ceil(date('Y-m-d')-$resume['birthday'])}岁</span>
+                                <span class="basic_xx" style="margin-left: 5px;">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
                                 <span class="basic_xx" style="margin-left: 25px;">{php echo $resume['education']}</span>
                             </div>
                             <div class="bm_hang3">
