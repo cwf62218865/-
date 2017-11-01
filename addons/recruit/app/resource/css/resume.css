@@ -6,6 +6,7 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
     height: 380px;
     background: url("../images/resumebg.png") no-repeat center ;
     background-color: #0099cc;
+    float: left;
     filter:alpha(opacity=80);
     -moz-opacity:0.8;
 }
