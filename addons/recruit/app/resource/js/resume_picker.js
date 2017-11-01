@@ -1,11 +1,27 @@
 $(function () {
-    $("body").on("click",".wenzi,.ico_xiala",function () {
-        $(".my_joblist").show();
-        $(".option_select").click(function () {
-            $(".wenzi").html($(this).html());
+    $(".wenzi,.ico_xiala").on("click",function () {
+        if($(".my_joblist").eq(0).css("display")=="none"){
+            $(".my_joblist").show();
+
+        }else{
             $(".my_joblist").hide();
-        })
+        }
+
     });
+
+    $(".job_send .option_select").click(function () {
+        $(".wenzi").html($(this).html());
+        $(".my_joblist").hide();
+    });
+
+    $("body").on("click",function(){
+        $(".my_joblist").hide();
+    });
+    $(".wenzi,.ico_xiala").click(function(event){
+        event.stopPropagation();
+    });
+
+
     //收藏简历
     $("body").on("click",".shoucang_resume,.edit_ico",function () {
         $("#beizhubox").animate({"opacity":1},300);

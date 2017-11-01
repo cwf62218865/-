@@ -58,6 +58,7 @@
             </div>
             <!--收到的简历start------------------------------------------------------------------------------->
             <div class="list_content">
+                {if $received_resume}
                 {loop $received_resume $list}
                 {if $list['status']<1}
                 <div class="list_item {if $list['status']==-1}refuse{/if}" data-id="{php echo $list['apply_id']}" >
@@ -120,10 +121,24 @@
                 {/if}
                 {/loop}
                 <div class="morejob received_resume_page" >更多简历信息>></div>
+                {else}
+                <div class="no_data_box">
+                    <img src="/addons/recruit/app/resource/images/no_data.png" style="float: left">
+                    <div class="no_data_boxmsg">
+                        <div style="font-size: 20px;color: #333;margin-top: 20px">
+                            暂时没有收到简历
+                        </div>
+                        <div class="color999" style="margin-top: 30px">
+                            发布新的职位就能收到更多的简历
+                        </div>
+                    </div>
+                </div>
+                {/if}
             </div>
             <!--收到的简历end-------------------------------------------------------------------------->
             <!--收藏简历start---------------------------------------------------------------------------->
             <div class="resume_content">
+                {if $collect_resume}
                 {loop $collect_resume $list}
                 <div class="list_item" data-id="{php echo $list['collect_id']}">
                     <div class="item_con">
@@ -181,8 +196,20 @@
                     </div>
                 </div>
                 {/loop}
-
                 <div class="morejob collect_resume_page">更多简历信息>></div>
+                {else}
+                <div class="no_data_box">
+                    <img src="/addons/recruit/app/resource/images/no_data.png" style="float: left">
+                    <div class="no_data_boxmsg">
+                        <div style="font-size: 20px;color: #333;margin-top: 20px">
+                            暂时没有收藏简历
+                        </div>
+                        <div class="color999" style="margin-top: 30px">
+                            去人才搜索里面收藏更多的人才
+                        </div>
+                    </div>
+                </div>
+                {/if}
             </div>
             <!--收藏简历end---------------------------------------------------->
         </div>
@@ -535,14 +562,20 @@
         }
     })
     
-    $(".job_send").on("mouseleave",function () {
-        var joblist=$(this).find(".my_joblist");
-        if(joblist.attr("height")!=0){
-            joblist.attr("height","0px");
-            joblist.hide();
-        }
-    })
+//    $(".job_send").on("mouseleave",function () {
+//        var joblist=$(this).find(".my_joblist");
+//        if(joblist.attr("height")!=0){
+//            joblist.attr("height","0px");
+//            joblist.hide();
+//        }
+//    })
 
+//    $("body").on("click",function(){
+//        $(".my_joblist").eq(0).css("display","none")
+//    });
+//    $(".job_send").click(function(event){
+//        event.stopPropagation();
+//    });
     //搜索职位
     $(".btn_sou").click(function () {
         var job_name_sou = $("#job_name_sou").val();
