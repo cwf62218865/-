@@ -18,7 +18,6 @@ if($op=="1"){
 }elseif($op=="4"){
     include wl_template('resume/resume_reg4');
 }elseif ($op=="step1_save"){
-       var_dump($_POST);exit();
     $data['headimgurl'] = $_POST['headimgurl'];
     $data['sex'] = check_pasre($_POST['sex'],"请输入性别");
     $data['fullname'] = check_pasre($_POST['user_name'],"请输入姓名");
@@ -61,6 +60,7 @@ if($op=="1"){
     $data['origin_place'] = check_pasre($_POST['place'],"请选择籍贯");
 
     $data['birthday'] = check_pasre($_POST['birthday'],"请选择出生年月");
+    $data['birthday'] = strtotime(str_replace(".","-",$data['birthday']));
     $data['introduce'] = check_pasre($_POST['introduce'],"请介绍下自己");
     $data['updatetime'] = time();
     $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));

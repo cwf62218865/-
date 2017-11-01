@@ -29,6 +29,8 @@ if(!$_SESSION['uid']){
 		$action = "index";
 		$op = "index";
 	}
+    $company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."company_profile"));
+    $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs"));
 }else{
 
 	if($_SESSION['utype']==2){
@@ -39,8 +41,7 @@ if(!$_SESSION['uid']){
 		$resume_integrity = resume_integrity();
 	}
 	$user = m("member")->get_member($_SESSION['uid']);
-	$company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."company_profile"));
-	$jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs"));
+
 }
 if(empty($controller) || empty($action)) {
 	$_GPC['do'] = $controller = 'member';

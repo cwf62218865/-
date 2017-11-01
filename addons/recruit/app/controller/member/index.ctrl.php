@@ -5,7 +5,12 @@ wl_load()->model('verify');
 
 //登录
 if($op=="index"){
-    $company = pdo_fetchall("select * from ".tablename(WL."company")." order by id desc");
+    $company  = m("member")->company_list();
+
+    $jobs = m("jobs")->getall_jobs_page($data,9);
+    $jobs = $jobs['more'];
+    //var_dump($company);exit();
+//    $company = pdo_fetchall("select * from ".tablename(WL."company")." order by id desc");
     include wl_template("member/index");exit();
 }
 elseif ($op=="login"){
@@ -330,6 +335,7 @@ elseif ($op=="upload_refresh"){
         pdo_delete(WL."members_temp",array("uid"=>$uid));
         call_back(1,"上传成功");
     }
+    exit();
 }
 
 elseif ($op=="resume_worksupload"){

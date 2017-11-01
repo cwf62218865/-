@@ -19,11 +19,11 @@ class jobs{
     }
 
     //职位分页
-    public function getall_jobs_page($data=""){
+    public function getall_jobs_page($data="",$pagenum=6){
         if(empty($data['data']['page'])){
             $data['data']['page']=1;
         }
-        $page = ($data['data']['page'] -1)*6;
+        $page = ($data['data']['page'] -1)*$pagenum;
         $wheresql = " where  display=1 and open=1 ";
         $orderby = " order by addtime desc,open desc";
         if($data['data']['job_nature'] && $data['data']['job_nature']<>"不限"){
@@ -44,7 +44,7 @@ class jobs{
         if($data['data']['job_name']){
             $wheresql .=" and jobs_name like '%".$data['data']['job_name']."%' ";
         }
-        $limit = " limit ".$page.",6";
+        $limit = " limit ".$page.",".$pagenum;
 //        echo "select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit;exit();
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit);
         $job['count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs").$wheresql." order by open desc");
@@ -52,6 +52,7 @@ class jobs{
         foreach ($jobs as $li){
             $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where jobs_id=".$li['id']." and puid=".$_SESSION['uid']);
             $headimgurl = pdo_fetch("select headimgurl from ".tablename(WL.'company_profile')." where uid=".$li['uid']);
+            $li['collect_count'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."collect_jobs")." where jobs_id=".$li['id']);
             if($jobs_apply){
                 $li['post_status'] = "已投递";
             }else{

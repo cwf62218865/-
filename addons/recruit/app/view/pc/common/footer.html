@@ -1,4 +1,5 @@
 <div class="footer">
+    {if empty($_SESSION['uid'])}
     <div class="footer_banner">
         <div class="width1200" style="text-align: center">
             <span class="zuianquan">应届僧，最安全的校园招聘平台</span>
@@ -9,6 +10,7 @@
             </div>
         </div>
     </div>
+    {/if}
     <div class="width1200 about_me">
         <a href="#">关于我们</a>
         <a href="#">联系我们</a>
