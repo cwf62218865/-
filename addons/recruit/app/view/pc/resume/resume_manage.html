@@ -146,7 +146,7 @@
                     <div class="font666" style="margin-top: 16px">
                         <span class="basic_msg_contents1">{php echo $resume['arr_education']['school_name']}</span>
                         <span class="basic_msg_contents1">{php echo $resume['arr_education']['edu_major']}</span>
-                        <span class="basic_msg_contents1">{if $resume['work_time']}{php echo $resume['work_time']}年工作经验{/if}</span>
+                        <span class="basic_msg_contents1">{if $resume['work_time']}{php echo $resume['work_time']}年工作经验{else}无工作经验{/if}</span>
                         <span class="basic_msg_contents1" style="border-right: none">{php echo $resume['origin_place']}（籍贯）</span>
                     </div>
 
@@ -622,8 +622,8 @@
                         </div>
 
                         <div class="resume_exp_content">
-                            {if $resume['work_experience']}
-                            {loop unserialize($resume['work_experience']) $id $list}
+                            {if $work_experience}
+                            {loop $work_experience $id $list}
                             <div class="resume_exps" data-id="{php echo $id}">
                                 <div class="relative">
                                     <span class="exp_title">{php echo $list['company_name']}</span>
@@ -992,7 +992,7 @@
                     </div>
                     <div class="resume_exp">
                         <div class="person_works relative">
-                            <video src="{if $resume['person_video']}{php echo $resume['person_video']}{else}http://www.zhangxinxu.com/study/media/cat.mp4{/if}" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>
+                            <video src="{if $resume['person_video']}{php echo $resume['person_video']}{/if}" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>
                             <!--<span class="addandeditbtn" style="top: 0" data-id="2">-->
                                 <!--<svg class="icon" aria-hidden="true">-->
                                     <!--<use xlink:href="#icon-xiugai"></use>-->
@@ -1176,10 +1176,11 @@
                 </div>
 
             </div>
+            <div class="oneone_btn" style="position: absolute;left: 5px;top: 5px;width: 90px;height: 90px;"></div>
             <!--<form id="choosefile1" enctype="multipart/form-data">-->
                 <!--<input type="file" name='file' id="choosefile" accept="image/*" />-->
             <!--</form>-->
-            <button type="button"  id="choosefile"  class="btn btn-primary"  data-toggle="modal" data-target="#avatar-modal" style="margin: 10px;">修改头像</button>
+
 
             <div class="erweima">
                 <!--<img src="{WL_URL_ARES}images/erweima.png" class="pic"/>-->
@@ -1267,8 +1268,8 @@
 <script src="{WL_URL_ARES}js/head/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 
-    $("#choosefile").click(function () {
-        $("#modalbox").hide();
+    $("body").on("click",".btn-primary",function () {
+        $(".loginn_zj").hide();
     })
     //做个下简易的验证  大小 格式
     $('#avatarInput').on('change', function(e) {
@@ -1379,7 +1380,7 @@
                 <svg class="icon pdficon" aria-hidden="true">
                     <use xlink:href="#icon-file-pdf"></use>
                 </svg>
-                <a href="{php echo app_url('resume/index',array('uid'=>$_SESSION['uid']))}" class="envelope_resume" target="_blank">{php echo $resume['fullname']}的个人简历</a>
+                <a href="{php echo '/app/'.$_SESSION['uid'].'.pdf'}" class="envelope_resume" target="_blank">{php echo $resume['fullname']}的个人简历</a>
             </div>
 
             <div style="float: right;text-align: center;line-height: 24px;color: #666">
@@ -1430,6 +1431,15 @@
     //打开邮箱
     $("#post_envelope").on("click",function(){
         $("#envelope_modal").show();
+        var uid = "{$_SESSION['uid']}";
+        $.ajax({
+            type:"post",
+            url:"http://ios.huiliewang.com/app/pdf_enter.php",
+            data:{
+                resumeuid:"{$_SESSION['uid']}"
+            }
+        })
+
     })
     //关闭邮箱
     $("#envelope_modal .close_envelopebtn").on("click",function(){
@@ -1452,6 +1462,8 @@
 
 </script>
 <script>
+
+
     //上传图片
     $(".modalbtn").on("click",function(){
         var uploadFormData =new FormData($("#choosefile1")[0]);
@@ -1935,12 +1947,13 @@
 
 
     //选择文件
-    $('#choosefile').on('change',function(e){
+    $('body').on('change',"#choosefile",function(e){
         if($(this).attr("accept")=="image/*"){
             var imgfile=this.files[0];
             var src=URL.createObjectURL(imgfile);
+            console.log(src);
             var uploadimg="<img style='width:100%' src='"+src+"' id='upload_pic'>";
-            $(this).parent().prev().html(uploadimg);
+            $(this).closest(".modal_con").find(".one_btn").html(uploadimg);
         }else if($(this).attr("accept")=="video/*"){
             $("#choosefile1").prev().find("use").attr("xlink:href","#icon-wangzhi");
             //console.log(videofile.name);

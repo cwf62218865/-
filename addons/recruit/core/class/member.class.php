@@ -38,8 +38,13 @@ class member{
 
     //公司列表分页
     public function company_list($page=0,$pagenum=8){
+        if($_SESSION['city'] && $_SESSION['city']<>"全国"){
+            $wheresql = " where city like '%".$_SESSION['city']."%' ";
+        }else{
+            $wheresql = "";
+        }
         $limit = " limit ".$page*$pagenum.",".$pagenum;
-        $company = pdo_fetchall("select * from ".tablename(WL."company_profile")." order by id desc ".$limit);
+        $company = pdo_fetchall("select * from ".tablename(WL."company_profile").$wheresql." order by id desc ".$limit);
         $company_profile = "";
         foreach ($company as $key=>$list){
             $company_profile[$key] = $list;

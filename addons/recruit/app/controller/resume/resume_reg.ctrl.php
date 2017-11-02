@@ -7,6 +7,7 @@ if($_SESSION['uid']){
 
 if($op=="1"){
     $identity = encrypt($_SESSION['uid'], 'E');
+    $member = m("member")->get_member($_SESSION['uid']);
     include wl_template('resume/resume_reg1');
 }elseif($op=="2"){
     $edu_experience = unserialize($resume['edu_experience']);

@@ -35,67 +35,67 @@
 
         <div class="register_msg">
             <div class="msg_zj">
-                    <div  class="img_tx">
-                        {if $resume['headimgurl']}
-                        <span class="resume_reg1headimgbox">
+                <div  class="img_tx">
+                    {if $resume['headimgurl']}
+                    <span class="resume_reg1headimgbox">
                             <img src="{php echo $resume['headimgurl']}">
                         </span>
-                        {else}
-                        <span class="resume_reg1headimgbox">
+                    {else}
+                    <span class="resume_reg1headimgbox">
                         <svg class="icon icon1" aria-hidden="true">
                             <use xlink:href="#icon-xuesheng"></use>
                         </svg>
                         </span>
-                        {/if}
-                        <div class="img_con">
-                            <svg class="icon icon2" aria-hidden="true">
-                                <use xlink:href="#icon-xiangji"></use>
-                            </svg>
-                        </div>
+                    {/if}
+                    <div class="img_con">
+                        <svg class="icon icon2" aria-hidden="true">
+                            <use xlink:href="#icon-xiangji"></use>
+                        </svg>
                     </div>
-                    <div class="title_zj font_zj1">基本信息</div>
-                    <span class="radio_box font_zj1 {if $resume}{if $resume['sex']==1}radio_sec{/if}{else}radio_sec{/if}">我是男生</span>
-                    <span class="radio_box font_zj1 right_align {if $resume['sex']==2}radio_sec{/if}">我是女生</span>
-                    <label class="general-input name">
-                        <input type="text" id="user_name" style="width: 120px" placeholder="姓名" value="{php echo $resume['fullname']}">
-                    </label>
+                </div>
+                <div class="title_zj font_zj1">基本信息</div>
+                <span class="radio_box font_zj1 {if $resume}{if $resume['sex']==1}radio_sec{/if}{else}radio_sec{/if}">我是男生</span>
+                <span class="radio_box font_zj1 right_align {if $resume['sex']==2}radio_sec{/if}">我是女生</span>
+                <label class="general-input name">
+                    <input type="text" id="user_name" style="width: 120px" placeholder="姓名" value="{php echo $resume['fullname']}">
+                </label>
 
-                    <label class="general-input right_align" >
-                        <input type="text" id="telphone" style="width: 120px" placeholder="13888888888" value="{php echo $resume['telphone']}">
+                <label class="general-input right_align" >
+                    <input type="text" id="telphone" style="width: 120px" placeholder="手机号" value="{php echo $member['mobile']}">
+                </label>
+                <div class="chec_tip1">
+                    <div class="left_align"></div>
+                    <div class="right_align" style="width: 162px;"></div>
+                </div>
+                <label class="general-input email_zj" >
+                    <input type="text" id="email" style="width: 300px" placeholder="邮箱"  value="{php echo $resume['email']}">
+                </label>
+                <div class="chec_tip"></div>
+                <div class=" relative general-select left_align city1">
+                    <label class="general-input relative general-select">
+                        <input type="text" readonly="" id="city" placeholder="居住城市" value="{if $resume}{php echo $resume['city']}{/if}">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
                     </label>
-                    <div class="chec_tip1">
-                        <div class="left_align"></div>
-                        <div class="right_align" style="width: 162px;"></div>
+                    <div class="options" style="height: 0px;">
                     </div>
-                    <label class="general-input email_zj" >
-                        <input type="text" id="email" style="width: 300px" placeholder="邮箱"  value="{php echo $resume['email']}">
+                </div>
+                <div class=" relative general-select district1">
+                    <label class="general-input relative general-select" >
+                        <input type="text" readonly="" id="city_area" placeholder="区域" value="{if $resume}{php echo $resume['city_area']}{/if}">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
                     </label>
-                    <div class="chec_tip"></div>
-                    <div class=" relative general-select left_align city1">
-                        <label class="general-input relative general-select">
-                            <input type="text" readonly="" id="city" placeholder="居住城市" value="{if $resume}{php echo $resume['city']}{/if}">
-                            <svg class="icon inputicon" aria-hidden="true">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                            </svg>
-                        </label>
-                        <div class="options" style="height: 0px;">
-                        </div>
-                    </div>
-                    <div class=" relative general-select district1">
-                        <label class="general-input relative general-select" >
-                            <input type="text" readonly="" id="city_area" placeholder="区域" value="{if $resume}{php echo $resume['city_area']}{/if}">
-                            <svg class="icon inputicon" aria-hidden="true">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                            </svg>
-                        </label>
-                        <div class="options" style="height: 0px">
+                    <div class="options" style="height: 0px">
 
-                        </div>
                     </div>
-                    <label class="general-input detail_zj" >
-                        <input type="text" id="address" placeholder="详细地址（选填）" value="{php echo $resume['address']}">
-                    </label>
-                    <span class="public_bigbtn bg1aa wrap" id="post_next">下一步：完善教育信息</span>
+                </div>
+                <label class="general-input detail_zj" >
+                    <input type="text" id="address" placeholder="详细地址（选填）" value="{php echo $resume['address']}">
+                </label>
+                <span class="public_bigbtn bg1aa wrap" id="post_next">下一步：完善教育信息</span>
             </div>
         </div>
     </div>
@@ -121,7 +121,7 @@
                     </div>
                 </div>
                 <!--<form id="choosefile1" enctype="multipart/form-data">-->
-                    <!--<input type="file" name='file' id="choosefile"   accept='image/*'/>-->
+                <!--<input type="file" name='file' id="choosefile"   accept='image/*'/>-->
                 <!--</form>-->
                 <button type="button"  id="choosefile"  class="btn btn-primary"  data-toggle="modal" data-target="#avatar-modal" style="margin: 10px;">修改头像</button>
 
@@ -309,138 +309,144 @@
 </script>
 <script src="{WL_URL_ARES}js/resume_reg1.js" rel="script"></script>
 <script>
-   $(function () {
+    $(function () {
+        var timer1 = "";
+        $(".modalbtn").on("click",function(){
+            var uploadFormData =new FormData($("#choosefile1")[0]);
+            var uploadurl = "{php echo app_url('person/resume/headimg_upload')}";
+            $.ajax({
+                url: uploadurl,
+                type:"post",
+                processData: false,
+                cache: false,
+                contentType: false,
+                async: false,
+                data:uploadFormData,
+                success:function (data) {
+                    var data=JSON.parse(data);
+                    if(data.status==1){
+                        //location = location;
+                        var html = '<img src="'+data.others+'">';
+                        $(".resume_reg1headimgbox").html(html);
 
-   $(".modalbtn").on("click",function(){
-           var uploadFormData =new FormData($("#choosefile1")[0]);
-           var uploadurl = "{php echo app_url('person/resume/headimg_upload')}";
-           $.ajax({
-               url: uploadurl,
-               type:"post",
-               processData: false,
-               cache: false,
-               contentType: false,
-               async: false,
-               data:uploadFormData,
-               success:function (data) {
-                   var data=JSON.parse(data);
-                   if(data.status==1){
-                       //location = location;
-                       var html = '<img src="'+data.others+'">';
-                       $(".resume_reg1headimgbox").html(html);
+                        window.clearInterval(timer1);
 //                       $(".img_tx img").eq(0).attr("src",data.others);
-                   }
-                   $(".chec_tip1").eq(1).html("");
-               }
-           });
-       $("#modalbox").css("display","none");
-       })
+                    }
+                    $(".chec_tip1").eq(1).html("");
+                }
+            });
+            $("#modalbox").css("display","none");
+        })
 
-    $("#post_next").on("click",function(){
-    var headimgurl=$(".img_tx img").eq(0).attr("src");//头像
-    var sex="1";//1男，2女
-    if($(".radio_sec").html()=="我是女生"){
-        var sex="2"
-    }else{
-        var sex="1"
-    }
-    var user_name=$("#user_name").val();//用户名
-    var telphone=$("#telphone").val();//电话
-    var email=$("#email").val();//邮箱
-    var city=$("#city").val();//省市
-    var city_area=$("#city_area").val();//二级城市
-    var address=$("#address").val();//地址
 
-    if($.trim(user_name)==""){
-        var input_box=$("#user_name").closest(".general-input");
-        input_box.css("border-color","#e23d46");
-        $(".chec_tip1 .left_align").eq(0).html(tipmsg("error","请输入用户名"));
-        return false;
-    }
-
-    if($.trim(telphone)==""){
-        var input_box=$("#telphone").closest(".general-input");
-        input_box.css("border-color","#e23d46");
-        $(".chec_tip1 .right_align").html(tipmsg("error","请输入电话号码"));
-        return false;
-    }else if(!telphonetest.test(telphone)){
-        var input_box=$("#telphone").closest(".general-input");
-        input_box.css("border-color","#e23d46");
-        $(".chec_tip1 .right_align").html(tipmsg("error","输入号码有误"));
-        return false;
-    }
-
-    if($.trim(email)==""){
-        var input_box=$("#email").closest(".general-input");
-        input_box.css("border-color","#e23d46");
-        input_box.next().html(tipmsg("error","请输入邮箱"));
-        return false;
-    }else if(!eamiltest.test(email)){
-        var input_box=$("#email").closest(".general-input");
-        input_box.css("border-color","#e23d46");
-        input_box.next().html(tipmsg("error","输入邮箱有误"));
-        return false;
-    }
-
-    $.ajax({
-        url:"{php echo app_url('resume/resume_reg/step1_save')}",
-        type:"post",
-        data:{
-            headimgurl:headimgurl,
-            sex:sex,
-            user_name:user_name,
-            telphone:telphone,
-            email:email,
-            city:city,
-            city_area:city_area,
-            address:address
-        },
-        success:function(data){
-            var data=JSON.parse(data);
-            if(data.status==1){
-                window.location.href=data.content;
+        $(".modalclose").click(function () {
+            window.clearInterval(timer1);
+        })
+        $("#post_next").on("click",function(){
+            var headimgurl=$(".img_tx img").eq(0).attr("src");//头像
+            var sex="1";//1男，2女
+            if($(".radio_sec").html()=="我是女生"){
+                var sex="2"
             }else{
-                console.log(data);
+                var sex="1"
             }
-        }
+            var user_name=$("#user_name").val();//用户名
+            var telphone=$("#telphone").val();//电话
+            var email=$("#email").val();//邮箱
+            var city=$("#city").val();//省市
+            var city_area=$("#city_area").val();//二级城市
+            var address=$("#address").val();//地址
 
-    })
+            if($.trim(user_name)==""){
+                var input_box=$("#user_name").closest(".general-input");
+                input_box.css("border-color","#e23d46");
+                $(".chec_tip1 .left_align").eq(0).html(tipmsg("error","请输入用户名"));
+                return false;
+            }
 
-})
+            if($.trim(telphone)==""){
+                var input_box=$("#telphone").closest(".general-input");
+                input_box.css("border-color","#e23d46");
+                $(".chec_tip1 .right_align").html(tipmsg("error","请输入电话号码"));
+                return false;
+            }else if(!telphonetest.test(telphone)){
+                var input_box=$("#telphone").closest(".general-input");
+                input_box.css("border-color","#e23d46");
+                $(".chec_tip1 .right_align").html(tipmsg("error","输入号码有误"));
+                return false;
+            }
+
+            if($.trim(email)==""){
+                var input_box=$("#email").closest(".general-input");
+                input_box.css("border-color","#e23d46");
+                input_box.next().html(tipmsg("error","请输入邮箱"));
+                return false;
+            }else if(!eamiltest.test(email)){
+                var input_box=$("#email").closest(".general-input");
+                input_box.css("border-color","#e23d46");
+                input_box.next().html(tipmsg("error","输入邮箱有误"));
+                return false;
+            }
+
+            $.ajax({
+                url:"{php echo app_url('resume/resume_reg/step1_save')}",
+                type:"post",
+                data:{
+                    headimgurl:headimgurl,
+                    sex:sex,
+                    user_name:user_name,
+                    telphone:telphone,
+                    email:email,
+                    city:city,
+                    city_area:city_area,
+                    address:address
+                },
+                success:function(data){
+                    var data=JSON.parse(data);
+                    if(data.status==1){
+                        window.location.href=data.content;
+                    }else{
+                        console.log(data);
+                    }
+                }
+
+            })
+
+        })
 
 
-       //选择文件
-       $('#choosefile').on('change',function(e){
-           var imgfile=this.files[0];
-           var src=URL.createObjectURL(imgfile);
-           var uploadimg="<img style='width:100%' src='"+src+"' id='upload_pic'>";
+        //选择文件
+        $('#choosefile').on('change',function(e){
+            var imgfile=this.files[0];
+            var src=URL.createObjectURL(imgfile);
+            var uploadimg="<img style='width:100%' src='"+src+"' id='upload_pic'>";
 //           $(".upload").css("display","block").find("img").attr("src",src);
-           $(this).parent().prev().html(uploadimg);
+            $(this).parent().prev().html(uploadimg);
 
-           //uploadFile(this,'choosefile',boxbum);
-       });
+            //uploadFile(this,'choosefile',boxbum);
+        });
 
-       $(".img_con").click(function () {
-           $(".erweima").attr("id","code1").children().remove();
-           code_url("#code1","{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'resume'))}");
-           window.setInterval(
-               function(){
-                   $.ajax({
-                       url:"{php echo app_url('member/index/upload_refresh')}",
-                       type:"post",
-                       success:function(data){
-                           if(data){
-                               var data = JSON.parse(data);
-                               if(data.status==1){
-                                   location = location;
-                               }
-                           }
+        $(".img_con").click(function () {
+            $(".erweima").attr("id","code1").children().remove();
+            code_url("#code1","{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'resume'))}");
+            timer1 = window.setInterval(
+                function(){
+                    $.ajax({
+                        url:"{php echo app_url('member/index/upload_refresh')}",
+                        type:"post",
+                        success:function(data){
+                            if(data){
+                                var data = JSON.parse(data);
+                                if(data.status==1){
+                                    location = location;
+                                }
+                            }
 
-                       }
-                   })
-               },5000
-           );
-       })
-   }) 
+                        }
+                    })
+                },5000
+            );
+        })
+    })
 </script>
 </html>
