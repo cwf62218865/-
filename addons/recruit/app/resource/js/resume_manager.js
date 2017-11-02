@@ -10,6 +10,7 @@ $(".resume_manage_header").on("mouseover",function(){
     $(".resume_manage_header .img_con").hide();
 });
 
+
 $(".img_con").click(function () {
     $(".title_content").html("上传头像");
     $("#modalbox").show();

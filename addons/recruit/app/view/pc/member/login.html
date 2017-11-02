@@ -55,7 +55,7 @@
                 </span>
                 <div class="register font_zj1">
                     还没有账号：<a href="{php echo app_url('member/index/register')}"><span class="color">立即注册</span>
-                    <svg class="icon" aria-hidden="true" style="color: #ffffff;">
+                    <svg class="icon" aria-hidden="true" style="color: #ffffff;font-size: 15px">
                         <use xlink:href="#icon-youjiantou"></use>
                     </svg></a>
                 </div>
@@ -80,8 +80,7 @@
             }
         });
 
-
-        $("#login").on("click",function(){
+        function login(){
             var username=$('#user_name').val();//用户名
             var password=$("#password").val();//密码
             if($.trim(username)==""){
@@ -111,7 +110,21 @@
                     }
                 }
             })
-        })
+        }
+
+        $("#login").on("click",function(){
+            login()
+        });
+
+        document.onkeydown = function(e){
+            var ev = document.all ? window.event : e;
+            if(ev.keyCode==13) {
+                login()
+            }
+        }
+
+
+
     })
 </script>
 </html>
