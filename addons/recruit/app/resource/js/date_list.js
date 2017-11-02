@@ -75,3 +75,4 @@ $(".review_input").on("mousedown",function () {
         $(".review_date").hide();
     })
 })
+

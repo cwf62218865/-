@@ -139,8 +139,21 @@ elseif ($op=="navigation"){
     include wl_template("member/navigation");exit();
 }
 
+//关于我们
+elseif ($op=="aboutus"){
+    $nav = $_GPC['nav'];
 
+    include wl_template("member/aboutus");exit();
+}
 
+//验证码
+elseif ($op=="captcha"){
+    header("Content-type:image/png");
+    m("imageCaptcha")->set_show_mode();
+    $code = m("imageCaptcha")->createImage();
+    $_SESSION['imageCaptcha_content'] = strtolower($code);
+    exit();
+}
 
 
 /************************************公用页面主要请求接口***************************************/
@@ -323,7 +336,37 @@ elseif ($op=="modify_pwd"){
         call_back(2,"原密码不正确");
     }
 }
+elseif ($op=="save_books"){
 
+    if($_POST){
+        if($_POST['lycheckma']==$_SESSION['imageCaptcha_content']){
+            $data['fullname'] = check_pasre($_POST['lyname'],"请输入姓名");
+            $data['mobile'] = check_pasre($_POST['lymobile'],"请输入手机号码");
+            $data['email'] = check_pasre($_POST['lyemail'],"请输入邮箱");
+            $data['content'] = check_pasre($_POST['lymsg'],"请输入反馈内容");
+            $data['atlas'] = $_POST['atlas'];
+            $data['addtime'] = time();
+            $books = pdo_fetch("select id from ".tablename(WL."books")." where mobile=".$data['mobile']);
+            if($books){
+                call_back(2,"您已留言，请不要重复提交");
+            }
+            $r = insert_table($data,WL."books");
+            if($r){
+                call_back(1,"留言成功");
+            }else{
+                call_back(2,"异常错误");
+            }
+        }else{
+            call_back(2,"验证码不正确");
+        }
+    }
+    exit();
+}
+
+elseif ($op=="img_upload"){
+    $data = upload_img($_FILES);
+    call_back(1,$data);
+}
 //ajax请求上传结果,刷新页面
 elseif ($op=="upload_refresh"){
     $uid = $_SESSION['uid'];

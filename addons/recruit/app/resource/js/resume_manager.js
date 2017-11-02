@@ -10,6 +10,7 @@ $(".resume_manage_header").on("mouseover",function(){
     $(".resume_manage_header .img_con").hide();
 });
 
+
 $(".img_con").click(function () {
     $(".title_content").html("上传头像");
     $("#modalbox").show();
@@ -25,6 +26,10 @@ $(".img_con").click(function () {
 $("body").on("click",".person_worksbtn1",function () {
     $(".oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="image/*"></form>');
 })
+$("body").on("click",".upload_video",function () {
+    $(".oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="video/*"></form>');
+})
+
 
 $(".modalclose").on("click",function(){
     $("#modalbox").css("display","none");
