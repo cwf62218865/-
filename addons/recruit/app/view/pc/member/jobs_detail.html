@@ -31,11 +31,11 @@
                         <a href="#" class="company_msgbtn">该企业信用详情</a>
 
 
-                        <span class="collections">
+                        <span class="collections1">
                             <svg class="icon">
                                 <use xlink:href="#icon-tishi"></use>
                             </svg>
-                            举报
+                            已举报
                         </span>
 
 
@@ -438,12 +438,20 @@ $(function () {
 
     //举报提交
     $.fromdata("#modalbox","{php echo app_url('member/index/tip_off')}","#save_company_nomsg",function(data){
-        //do something
-    })
-    $(".collections").eq(2).on("click",function(){
-        hint("success","收藏成功。");
-        setTimeout(function(){$(".promptbox").remove()},2000);
-    })
+        var data=JSON.parse(data);
+        if(data.status==1){
+            hint("success","举报成功，我们会在第一时间处理");
+           $("#modalbox").hide();
+            $(".collections").eq(0).html('<svg class="icon">'+
+                    '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tishi"></use>'+
+                    '</svg>已举报').unbind("click");
+        }else{
+            hint("error",data.content);
+        }
+    });
+//    $(".collections").eq(2).on("click",function(){
+//        hint("success","收藏成功。");
+//    })
 
 
     $("#page").html(pages(1,7));
@@ -461,6 +469,7 @@ $(function () {
             success:function (data) {
                 var data=JSON.parse(data);
                 if(data.status==1){
+                    hint("success","投递成功");
                     $(".delivery_resume").html("已投递").removeClass("delivery_resume").addClass("delivery_resume1").unbind("click");
                 }
             }
@@ -477,9 +486,11 @@ $(function () {
             },
             success:function (data) {
                 var data = JSON.parse(data);
-                console.log(data.content);
                 if(data.status==1){
+                    hint("success","收藏成功。");
                     console.log(data.content);
+                }else{
+                    hint("ordinary",data.content);
                 }
             }
         })
