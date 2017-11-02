@@ -26,7 +26,9 @@
     </style>
 </head>
 <body bgcolor="#f4f4f4">
+{if $_GPC['show']<>1}
 {php include wl_template('common/resume_top');}
+{/if}
 <div class="width1200 p1content preview">
     <div class="p1_left">
 
@@ -45,7 +47,7 @@
                         </div>
                         <div class="bshang1">
                             <label class="basic_style1">{if $resume['sex']==1}男{else}女{/if}</label>
-                            <label class="basic_style">{php echo ceil(date('Y-m-d')-$resume['birthday'])}岁</label>
+                            <label class="basic_style">{php echo ceil((time()-$resume['birthday'])/31536000)}岁</label>
                             <label class="basic_style">{php echo $resume['political_status']}</label>
                             <label class="basic_style">{php echo $resume['education']}</label>
                             <label class="basic_style">{if $resume['work_time']}{php echo $resume['work_time']}年工作经验{/if}</label>

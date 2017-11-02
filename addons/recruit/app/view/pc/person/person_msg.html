@@ -87,13 +87,13 @@
                             <span style="margin-left: 20px">{$li['companyname']}</span><br>
                             <span style="display: inline-block;margin-top: 22px">
                                 最新状态：
-                                {if $list['status']==-1}
+                                {if $li['status']==-1}
                                     不合适
-                                {elseif $list['status']==0}
+                                {elseif $li['status']==0}
                                     未查看
-                                {elseif $list['status']==1}
+                                {elseif $li['status']==1}
                                     已查看
-                                {elseif $list['status']==3}
+                                {elseif $li['status']==3}
                                     邀请面试
                                 {/if}
                             </span>
