@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/yingjieseng/addons/recruit/app/resource/css/header.css" rel="stylesheet">
+    <link href="/yingjieseng/addons/recruit/app/resource/css/control.css" rel="stylesheet">
+    <link href="/yingjieseng/addons/recruit/app/resource/css/personal.css" rel="stylesheet">
+    <link href="/yingjieseng/addons/recruit/app/resource/css/resume.css" rel="stylesheet">
+    <link href="/yingjieseng/addons/recruit/app/resource/css/credit_evaluate.css" rel="stylesheet">
+    <title>职场信用-收到评价</title>
+</head>
+<body bgcolor="#f4f4f4">
+{if $_SESSION['uid']}
+{php include wl_template('common/top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
+<div class="width1200 p1content">
+    {php include wl_template('common/company_nav');}
+    <div class="p1_left">
+        <div class="con_list">
+            <div class="list_top">
+                <div class="list_item_btn select" >待评价</div>
+                <div class="list_item_btn" style="margin-left: 2px">收到的评价</div>
+            </div>
+            <!--待评价start------------------------------------------------------------------------------->
+            <div class="lists list_content" style="display: block;">
+
+                <div class="item_conpj">
+                    <div class="item_conpj1">
+                        <div class="">
+
+                        </div>
+                        <div class="pjxingxing">
+                            <div class="one_pj">
+                                <div class="checkbox" style="display: inline-block;float: left">
+                                    <label class="">
+                                        <input type="checkbox" name="like" value="1">
+
+                                            <svg class="icon iconfont color1aa ico_right">
+                                                <use xlink:href="#icon-zhengque1"></use>
+                                            </svg>
+
+                                    </label>
+                                </div>
+                                <svg class="icon flover_ico red_i">
+                                    <use xlink:href="#icon-haoping"></use>
+                                </svg>
+                                <label>好评</label>
+                            </div>
+                            <div class="one_pj">
+                                <div class="checkbox" style="display: inline-block;float: left">
+                                    <label class="">
+                                        <input type="checkbox" name="like" value="2">
+
+                                            <svg class="icon iconfont color1aa ico_right">
+                                                <use xlink:href=""></use>
+                                            </svg>
+
+                                    </label>
+                                </div>
+                                <svg class="icon flover_ico gree_i">
+                                    <use xlink:href="#icon-zhongping"></use>
+                                </svg>
+                                <label>中评</label>
+                            </div>
+                            <div class="one_pj">
+                                <div class="checkbox" style="display: inline-block;float: left">
+                                    <label class="">
+                                        <input type="checkbox" name="like" value="3">
+
+                                            <svg class="icon iconfont color1aa ico_right">
+                                                <use xlink:href=""></use>
+                                            </svg>
+
+                                    </label>
+                                </div>
+                                <svg class="icon flover_ico grey_i">
+                                    <use xlink:href="#icon-zhongping"></use>
+                                </svg>
+                                <label>差评</label>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="morejob">更多简历信息>></div>
+            </div>
+            <!--待评价end-------------------------------------------------------------------------->
+            <!--收到的评价start---------------------------------------------------------------------------->
+            <div class="lists resume_content" style="display: none;background: none;">
+
+                <div class="contanier">
+
+                    <div class="list_item1" data-id="1">
+                        <div class="item_con">
+                            <div class="basic_massage maleft_3">
+                                <div class="bm_hang1" style="font-size: 20px;">
+                                    Java工程师
+                                </div>
+                                <div class="bm_hang3">
+                                    <span class="basic_xx">大风车股份有限公司</span>
+                                </div>
+                                <div class="" style="margin-top: 15px;">
+                                    <span  class="bold33">HR回复</span>
+                                    <span class="jubaopl">举报该评论</span>
+                                </div>
+                                <div class="pingjia_con">
+                                    <span class="pingjia_neir">公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有</span>
+                                    <span class="xianshi_ico">
+                                    显示全部
+                                    <svg class="icon" style="">
+                                        <use xlink:href="#icon-xiajiantou"></use>
+                                    </svg>
+                                </span>
+                                </div>
+                                <div class="my_evaluate" style="display: none;">
+                                    <div class="" style="margin-top: 15px;">
+                                        <span class="bold33">我的评价</span>
+                                    </div>
+                                    <div class="pingjia_con">
+                                        公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有…
+                                    </div>
+                                </div>
+                                <div class="zhankai_btn zhankai">展开我的评价</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list_item1" data-id="2">
+                        <div class="item_con">
+                            <div class="basic_massage maleft_3">
+                                <div class="bm_hang1" style="font-size: 20px;">
+                                    Java工程师
+                                </div>
+                                <div class="bm_hang3">
+                                    <span class="basic_xx">大风车股份有限公司</span>
+                                </div>
+                                <div class="" style="margin-top: 15px;">
+                                    <span  class="bold33">HR回复</span>
+                                    <span class="jubaopl">举报该评论</span>
+                                </div>
+                                <div class="pingjia_con">
+                                    <span class="pingjia_neir">公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有</span>
+                                    <span class="xianshi_ico">
+                                    显示全部
+                                    <svg class="icon" style="">
+                                        <use xlink:href="#icon-xiajiantou"></use>
+                                    </svg>
+                                </span>
+                                </div>
+                                <div class="my_evaluate" style="display: none;">
+                                    <div class="" style="margin-top: 15px;">
+                                        <span class="bold33">我的评价</span>
+                                    </div>
+                                    <div class="pingjia_con">
+                                        公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有…
+                                    </div>
+                                </div>
+                                <div class="zhankai_btn zhankai">展开我的评价</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="contanier">
+
+                        <div class="list_item1" data-id="3">
+                            <div class="item_con">
+                                <div class="basic_massage maleft_3">
+                                    <div class="bm_hang1" style="font-size: 20px;">
+                                        Java工程师
+                                    </div>
+                                    <div class="bm_hang3">
+                                        <span class="basic_xx">大风车股份有限公司</span>
+                                    </div>
+                                    <div class="" style="margin-top: 15px;">
+                                        <span  class="bold33">HR回复</span>
+                                        <span class="jubaopl">举报该评论</span>
+                                    </div>
+                                    <div class="pingjia_con">
+                                        <span class="pingjia_neir">公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有</span>
+                                        <span class="xianshi_ico">
+                                            显示全部
+                                            <svg class="icon" style="">
+                                                <use xlink:href="#icon-xiajiantou"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="my_evaluate" style="display: none;">
+                                    <div class="" style="margin-top: 15px;">
+                                        <span class="bold33">我的评价</span>
+                                    </div>
+                                    <div class="pingjia_con">
+                                        公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有
+                                    </div>
+                                    </div>
+                                    <div class="zhankai_btn zhankai">展开我的评价</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list_item1" data-id="4">
+                            <div class="item_con">
+                                <div class="basic_massage maleft_3">
+                                    <div class="bm_hang1" style="font-size: 20px;">
+                                        Java工程师
+                                    </div>
+                                    <div class="bm_hang3">
+                                        <span class="basic_xx">大风车股份有限公司</span>
+                                    </div>
+                                    <div class="" style="margin-top: 15px;">
+                                        <span  class="bold33">HR回复</span>
+                                        <span class="jubaopl">举报该评论</span>
+                                    </div>
+                                    <div class="pingjia_con">
+                                        <span class="pingjia_neir">公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有</span>
+                                        <span class="xianshi_ico">
+                                    显示全部
+                                    <svg class="icon" style="">
+                                        <use xlink:href="#icon-xiajiantou"></use>
+                                    </svg>
+                                </span>
+                                    </div>
+                                    <div class="my_evaluate" style="display: none;">
+                                        <div class="" style="margin-top: 15px;">
+                                            <span class="bold33">我的评价</span>
+                                        </div>
+                                        <div class="pingjia_con">
+                                            公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有
+                                        </div>
+                                    </div>
+                                    <div class="zhankai_btn zhankai">展开我的评价</div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+
+                <div class="morejob">更多简历信息>></div>
+            </div>
+            <!--收到的评价end---------------------------------------------------->
+
+        </div>
+    </div>
+    {php include wl_template('common/company_right');}
+
+
+    <!--举报弹框--------->
+    <div class="modalbox" id="jubaobox" style="display: none;">
+        <div class="modal" style="width: 496px;margin-left: -248px;">
+            <p class="title_content">举报该评论</p>
+            <span class="modalclose">
+                <img src="/yingjieseng/addons/recruit/app/resource/images/close.png"/>
+            </span>
+            <p class="color666" style="margin-top: 34px;text-align: center">若发现评论存在敏感词句，欢迎举报</p>
+
+            <div style="margin-left: 40px;margin-top: 34px">
+                <span class="color666" style="display: inline-block;vertical-align: top;margin-top: 15px;">举报原因</span>
+                <div class=" relative general-select " style="float: none">
+                    <label class="general-input relative general-select" style="float: none;width: 330px">
+                        <input class="relative" type="text" readonly=""  name="company_scale" value="实际与描述不符" style="width: 310px;z-index: 10">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use  xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                    </label>
+                    <div class="options" style="width: 332px;top:48px">
+                        <div class="select-option" style="width: 330px"><span>培训机构</span></div>
+                        <div class="select-option" style="width: 330px"><span>实际与描述不符</span></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="margin-left: 40px;margin-top: 34px">
+                <span class="color666" style="float: left">详细描述</span>
+                <div class="" style="display: inline-block;margin-left: 24px;height: 120px;border: 1px solid #f5f5f5;width: 330px;background-color: #f5f5f5">
+                    <textarea   class="cwftextarea" id="companymsg_introduce"  placeholder="请输入详细描述" style="width: 296px;height: 92px;"></textarea>
+                </div>
+                <div class="ico_niming">
+                    <div class="checkbox">
+                        <svg class="icon iconfont color1aa ico_right">
+                            <use xlink:href=""></use>
+                        </svg>
+                    </div>
+                    <label class="nimingbz">匿名提交</label>
+                </div>
+            </div>
+            <div class="btns" style="margin-bottom: 20px">
+                <button class="tijiao1"  id="" style="margin-left: 156px;">确定</button>
+                <span class="quxiao" style="color: #0099cc">取消</span>
+            </div>
+        </div>
+    </div>
+    <!--举报弹框end-->
+
+</div>
+
+
+</body>
+<script src="/yingjieseng/addons/recruit/app/resource/js/jquery.js" rel="script"></script>
+<script src="/yingjieseng/addons/recruit/app/resource/js/iconfont.js" rel="script"></script>
+<script src="/yingjieseng/addons/recruit/app/resource/js/control.js" rel="script"></script>
+
+<script>
+    $(function () {
+        $(".list_item_btn ").click(function () {
+            $(".list_item_btn ").removeClass("select");
+            $(this).addClass("select");
+            var i=$(this).index();
+            $(".lists").hide();
+            $(".lists").eq(i).show();
+        })
+    })
+    
+    //我的评价的展开和收起
+    $("body").on("click",".zhankai",function () {
+        $(this).closest(".list_item1").find(".my_evaluate").show();
+        $(this).html("收起我的评价");
+        $(this).removeClass("zhankai");
+        $(this).addClass("shouqi");
+    });
+    $("body").on("click",".shouqi",function () {
+        $(this).closest(".list_item1").find(".my_evaluate").hide();
+        $(this).html("展开我的评价");
+        $(this).removeClass("shouqi");
+        $(this).addClass("zhankai");
+    });
+
+
+    //省略号显示
+    var pj=$(".pingjia_neir").html();
+    if(pj.length>60){
+        $(".pingjia_neir").html(pj.substring(0,60)+"......");
+    }
+    var htmls="收起<svg class='icon' aria-hidden='true'><use xlink:href='#icon-shangjiantou'></use></svg>";
+    var htmls1="显示全部<svg class='icon' aria-hidden='true'><use xlink:href='#icon-xiajiantou'></use></svg>";
+    $("body").on("click",".xianshi_ico",function () {
+        var pj1=$(this).prev().html();
+        if(pj1.length<67){
+            $(this).prev().html(pj);
+            $(this).html(htmls);
+        }else{
+            $(this).prev().html(pj.substring(0,60)+"......");
+            $(this).html(htmls1);
+        }
+    })
+
+    //勾选匿名
+    $(".checkbox").click(function () {
+        var right="<svg class='icon iconfont color1aa ico_right'><use  xlink:href='#icon-zhengque1'></use></svg>";
+        var con=$(this).html();
+        if(con){
+            $(this).html("");
+        }else{
+            $(this).html(right);
+        }
+    })
+
+    //举报弹框
+    $("body").on("click",".jubaopl",function () {
+        $("#jubaobox").show();
+        var data_id=$(this).closest(".list_item1").attr("data-id");
+        $("#jubaobox").attr("data-id",data_id);
+    })
+
+    $(".modalclose,.quxiao").click(function () {
+        $(this).closest(".modalbox").hide();
+    })
+
+
+
+
+</script>
+</html>
