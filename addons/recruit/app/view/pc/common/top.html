@@ -13,9 +13,13 @@
         <div class="login relative">
             <span class="relative personal_msgbtn">
                 <div class="login_header">
+                    {if $portrait['headimgurl']}
+                    <img src="{$portrait['headimgurl']}" alt="">
+                    {else}
                     <svg class="icon">
                         <use xlink:href="#icon-xuesheng"></use>
                     </svg>
+                    {/if}
                 </div>
                 <span class="login_username color666">{$user['mobile']}</span>
                 {if $interview_num }

@@ -13,7 +13,6 @@ $op = $_GPC['op']?$_GPC['op']:"index";
 
 //用户登录判断
 if(!$_SESSION['uid']){
-
 	$controller = "member";
 	$actions = array();
 	$handle = opendir(WL_APP . 'controller/' . $controller);
@@ -31,16 +30,28 @@ if(!$_SESSION['uid']){
 	}
     $company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."company_profile"));
     $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs"));
+    if($_GPC['do']<>"member" && $_POST){
+        call_back(2,"请先登录账号");
+    }
 }else{
 
 	if($_SESSION['utype']==2){
 		$company_statistics = company_statistics();
 		$company_integrity = company_integrity();
+		$portrait = pdo_fetch("select headimgurl from ".tablename(WL.'company_profile')." where uid=".$_SESSION['uid']);
+		if($_GPC['do']=="person"){
+		    die("暂无权限访问");
+        }
 	}elseif ($_SESSION['utype']==1){
 		$person_statistics = person_statistics();
 		$resume_integrity = resume_integrity();
 		$add_order_num =  add_order_num();
 		$interview_num =  interview_num();
+        $portrait = pdo_fetch("select headimgurl from ".tablename(WL.'resume')." where uid=".$_SESSION['uid']);
+
+        if($_GPC['do']=="company"){
+            die("暂无权限访问");
+        }
 	}
 	$user = m("member")->get_member($_SESSION['uid']);
 

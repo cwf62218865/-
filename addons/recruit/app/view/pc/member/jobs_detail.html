@@ -31,11 +31,11 @@
                         <a href="#" class="company_msgbtn">该企业信用详情</a>
 
 
-                        <span class="collections1">
+                        <span class="{if $report}collections1{else}collections{/if}">
                             <svg class="icon">
                                 <use xlink:href="#icon-tishi"></use>
                             </svg>
-                            已举报
+                            {if $report}已举报{else}举报{/if}
                         </span>
 
 
@@ -471,6 +471,8 @@ $(function () {
                 if(data.status==1){
                     hint("success","投递成功");
                     $(".delivery_resume").html("已投递").removeClass("delivery_resume").addClass("delivery_resume1").unbind("click");
+                }else{
+                    hint("error",data.content);
                 }
             }
         })
