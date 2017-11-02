@@ -184,6 +184,7 @@ class jobs{
         $jobs_apply = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where id=".$id);
         return $jobs_apply;
     }
+
 }
 
 

@@ -24,6 +24,108 @@ if($op=="index"){
     include wl_template("resume/first_index");exit();
 }
 
+//个人消息中心
+elseif ($op=="person_msg"){
+    $jobs = m("jobs")->getall_jobs_page("",5);
+    $jobs = $jobs['more'];
+    $msg = m("resume")->jobs_apply($_SESSION['uid'],-1,0);
+    $new_msg = "";
+    foreach ($msg as $list){
+        $list['addtime'] = date("Y/m/d", $list['createtime']);
+        $new_msg[] = $list;
+    }
+    $arr = "";
+    foreach ($new_msg as $key=>$list){
+        $arr[$list['addtime']][$key] = $list;
+    }
+    $new_arr = "";
+    $i = 0;
+    foreach ($arr as $key=>$list){
+        $new_arr[$i]['time'] =$key;
+        $new_arr[$i]['content'] = $list;
+        $i++;
+    }
+    include wl_template("person/person_msg");exit();
+}
+
+//消息请求
+elseif ($op=="msg_deal"){
+    if($_POST['msg']=="投递申请"){
+        $jobs = m("resume")->jobs_apply($_SESSION['uid'],-1,1);
+        $msg = "";
+        foreach ($jobs as $list){
+            $createtime = date("Y-m-d h:i",$list['createtime']);
+            if($list['status']==-1){
+                $status = "不合适";
+            }elseif($list['status']==0){
+                $status = "未查看";
+            }elseif($list['status']==1){
+                $status = "已查看";
+            }elseif($list['status']==3){
+                $status = "邀请面试";
+            }
+            $msg .= " <div class=\"day_msgbox\">
+                        <div class=\"system_msg_title\">
+                            <svg class=\"icon\" aria-hidden=\"true\">
+                                <use xlink:href=\"#icon-qiuzhiyixiang\"></use>
+                            </svg>
+                            <span class=\"color999\">投递申请</span>
+                            <span class=\"colorbbb\">{$createtime}</span>
+                        </div>
+
+                        <div class=\"delivery_left\">
+                        <span class=\"delivery_logo\">
+                            <img src=\"{$list['headimgurl']}\">
+                        </span>
+                            <span>{$list['jobs_name']}</span>
+                            <span style=\"margin-left: 20px\">{$list['companyname']}</span><br>
+                            <span style=\"display: inline-block;margin-top: 22px\">最新状态：{$status}</span>
+                        </div>
+
+                        <a href=\"#\" class=\"see_system_msg see_day_msg\" >查看详情>></a>
+                    </div>";
+        }
+
+        call_back(1,$msg);
+    }elseif ($_POST['msg']=="面试邀请"){
+        $jobs = m("resume")->jobs_apply($_SESSION['uid'],-1,2);
+        $msg = "";
+        foreach ($jobs as $list){
+            $createtime = date("Y-m-d h:i",$list['createtime']);
+
+            $msg .= " <div class=\"day_msgbox\">
+                        <div class=\"system_msg_title\">
+                            <svg class=\"icon\" aria-hidden=\"true\">
+                                <use xlink:href=\"#icon-gongzuojingli\"></use>
+                            </svg>
+                            <span class=\"color999\">面试邀请</span>
+                            <span class=\"colorbbb\">{$createtime}</span>
+                        </div>
+
+                        <div class=\"delivery_left\">
+                        <span class=\"delivery_logo\">
+                            <img src=\"{$list['headimgurl']}\">
+                        </span>
+                            <span>{$list['jobs_name']}</span><br>
+                            <span style=\"display: inline-block;margin-top: 22px\">{$list['companyname']}</span>
+                        </div>
+
+                        <a href=\"#\" class=\"see_system_msg see_day_msg\" >查看详情>></a>
+                    </div>";
+        }
+
+        call_back(1,$msg);
+    }elseif ($_POST['msg']=="面试邀请"){
+
+    }elseif ($_POST['msg']=="面试评价"){
+
+    }elseif ($_POST['msg']=="问答提醒"){
+
+    }elseif ($_POST['msg']=="评论回复"){
+
+    }
+    var_dump($_POST);exit();
+}
 //已投递职位列表
 elseif ($op=="send_resume"){
     if($_GPC['kind']=="interview"){

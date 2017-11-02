@@ -86,18 +86,21 @@ $(function () {
             return;
         }
 
+        var atlas = $(".atlas").val();
+
         //留言提交成功效果，后期放在ajax请求成功内部
         hint("success","留言成功");
 
         $.ajax({
-            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=modify_pwd",
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=save_books",
             type:"post",
             data:{
                 lyname:lyname,
                 lymobile:lymobile,
                 lyemail:lyemail,
                 lycheckma:lycheckma,
-                lymsg:lymsg
+                lymsg:lymsg,
+                atlas:atlas
             },
             success:function(data){
                 if(data){
@@ -120,23 +123,15 @@ $(function () {
     $("body").on("click",".shanchu",function () {
         var _this=$(this).closest(".ico_shangchuan");
         var data_id=_this.attr("data-id");
-        $.ajax({
-            url:"",
-            type:"post",
-            data:{
-                data_id:data_id
-            },
-            success: function (data) {
-                var data=JSON.parse(data);
-                if(data.status==1){
-                    location = location;
-//
-                }else{
-                    hint("error",data.content);
-                }
-            }
-        })
+        var pic_tianjia = $(".pic_tianjia").attr("src");
+
         $(this).closest(".ico_shangchuan").remove();
+        var atlas = "";
+        $(".pic_tianjia").each(function () {
+            atlas = atlas+$(this).attr("src")+",";
+        })
+        atlas = atlas.substring(0,atlas.length-1);
+        $(".atlas").val(atlas);
     })
 
     //上传图片弹框
@@ -161,7 +156,7 @@ $(function () {
         //成功的效果，放在ajax内部
         $("#modalbox").hide();
         $.ajax({
-            url: "",
+            url: "/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=img_upload",
             type:"post",
             processData: false,
             cache: false,
@@ -172,14 +167,19 @@ $(function () {
                 var data=JSON.parse(data);
                 if(data.status==1){
                     $(".ico_shangchuan").eq(0).before("<div class='ico_shangchuan'  data-id='4'>" +
-                        "                        <img class='pic_tianjia' src='"+uploadFormData.content+"'/>" +
+                        "                        <img class='pic_tianjia' src='"+data.content+"'/>" +
                         "                        <div class='pic_meng'></div>" +
                         "                        <svg class='icon shanchu'>" +
                         "                            <use xlink:href='#icon-shanchu'></use>" +
                         "                        </svg>" +
                         "                    </div>");
 
-
+                    var atlas = $(".atlas").val();
+                    if(atlas){
+                        $(".atlas").val(atlas+","+data.content);
+                    }else{
+                        $(".atlas").val(data.content);
+                    }
 
 
                 }

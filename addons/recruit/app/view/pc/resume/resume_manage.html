@@ -991,14 +991,16 @@
                         <span style="width: 150px;margin-left: 260px">30秒个人视频</span>
                     </div>
                     <div class="resume_exp">
-                        <div class="person_works relative">
-                            <video src="{if $resume['person_video']}{php echo $resume['person_video']}{/if}" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>
+                        <div class="person_works relative vedio_source">
+                            {if $resume['person_video']}
+                            <video src="{php echo $resume['person_video']}" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>
                             <!--<span class="addandeditbtn" style="top: 0" data-id="2">-->
                                 <!--<svg class="icon" aria-hidden="true">-->
                                     <!--<use xlink:href="#icon-xiugai"></use>-->
                                 <!--</svg>-->
                                 <!--修改-->
                             <!--</span>-->
+                            {/if}
                         </div>
                     </div>
                 </div>
@@ -1517,6 +1519,7 @@
                         $("#certificateaddbtn").html("<img style='width: 100%' src='"+data.content+"'>");
                         $("#certificate_img").val(data.content);
                     }else if(id=="code4"){
+                        $(".vedio_source").html('<video src="" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>');
                         $(".person_video").attr("src",data.others);
                     }
 

@@ -56,12 +56,22 @@ class resume{
 
     /*
      * 我投递过的职位
+     * status 0表示所有 1表示投递申请 2表示面试邀请
      */
-    public function jobs_apply($uid,$page=1){
-        $limit = " limit ".(($page-1)*6).",6";
+    public function jobs_apply($uid,$page=1,$status=1){
+        if($page==-1){
+            $limit = "";
+        }else{
+            $limit = " limit ".(($page-1)*6).",6";
+        }
+        if($status==1){
+            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=2 and puid=".$uid." order by createtime desc ".$limit);
+        }elseif($status==2){
+            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and puid=".$uid." order by createtime desc ".$limit);
+        }elseif ($status==0){
+            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where puid=".$uid." order by createtime desc ".$limit);
+        }
 
-        $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=2 and puid=".$uid." order by createtime desc ".$limit);
-//        var_dump($jobs_apply);exit();
         $jobs = "";
         foreach ($jobs_apply as $key=>$list){
             $jobs[$key] = pdo_fetch("select * from ".tablename(WL.'jobs')." where id=".$list['jobs_id']);
@@ -75,6 +85,7 @@ class resume{
             }
             $company_profile = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$list['uid']);
             $jobs[$key]['tag'] = $company_profile['tag'];
+            $jobs[$key]['headimgurl'] = $company_profile['headimgurl'];
             $jobs[$key]['retoate_x'] = $company_profile['retoate_x'];
             $jobs[$key]['retoate_y'] = $company_profile['retoate_y'];
             $jobs[$key]['city'] = $company_profile['city'];

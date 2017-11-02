@@ -25,6 +25,10 @@ $(".img_con").click(function () {
 $("body").on("click",".person_worksbtn1",function () {
     $(".oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="image/*"></form>');
 })
+$("body").on("click",".upload_video",function () {
+    $(".oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="video/*"></form>');
+})
+
 
 $(".modalclose").on("click",function(){
     $("#modalbox").css("display","none");

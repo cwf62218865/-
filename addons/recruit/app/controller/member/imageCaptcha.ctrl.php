@@ -227,7 +227,10 @@ public function createImage()//@生成验证码图片
 }
 }
 
-
+    header("Content-type:image/png");
+    m("imageCaptcha")->set_show_mode();
+    $code = m("imageCaptcha")->createImage();
+    $_SESSION['imageCaptcha_content'] = strtolower($code);
 
 
 
