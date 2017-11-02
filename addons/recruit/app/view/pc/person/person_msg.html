@@ -59,55 +59,74 @@
                     </div>
                 </div>
                 <!--一天的消息-->
+                {loop $new_arr $list}
                 <div class="one_day_msg">
                     <div class="day_time">
                         <i></i>
-                        <span>2017/08/30</span>
+                        <span>{$list['time']}</span>
                     </div>
 
 
                     <!--投递申请-->
+                    {loop $list['content'] $li}
+                    {if $li['direction']==2}
                     <div class="day_msgbox">
                         <div class="system_msg_title">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-qiuzhiyixiang"></use>
                             </svg>
                             <span class="color999">投递申请</span>
-                            <span class="colorbbb">2017-09-31 15:45</span>
+                            <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
                         </div>
 
                         <div class="delivery_left">
                         <span class="delivery_logo">
-                            <img src="{WL_URL_ARES}images/qiyelogo.png">
+                            <img src="{$li['headimgurl']}">
                         </span>
-                            <span>网络编辑</span>
-                            <span style="margin-left: 20px">重庆大风车科技有限公司</span><br>
-                            <span style="display: inline-block;margin-top: 22px">最新状态：不合适</span>
+                            <span>{$li['jobs_name']}</span>
+                            <span style="margin-left: 20px">{$li['companyname']}</span><br>
+                            <span style="display: inline-block;margin-top: 22px">
+                                最新状态：
+                                {if $list['status']==-1}
+                                    不合适
+                                {elseif $list['status']==0}
+                                    未查看
+                                {elseif $list['status']==1}
+                                    已查看
+                                {elseif $list['status']==3}
+                                    邀请面试
+                                {/if}
+                            </span>
                         </div>
 
                         <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
                     </div>
-
+                    {/if}
+                    {/loop}
                     <!--面试邀请-->
+                    {loop $list['content'] $li}
+                    {if $li['status']==3}
                     <div class="day_msgbox">
                         <div class="system_msg_title">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-gongzuojingli"></use>
                             </svg>
                             <span class="color999">面试邀请</span>
-                            <span class="colorbbb">2017-09-31 15:45</span>
+                            <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
                         </div>
 
                         <div class="delivery_left">
                         <span class="delivery_logo">
-                            <img src="{WL_URL_ARES}images/qiyelogo.png">
+                            <img src="{$li['headimgurl']}">
                         </span>
-                            <span>网络编辑</span><br>
-                            <span style="display: inline-block;margin-top: 22px">重庆大风车科技有限公司</span>
+                            <span>{$li['jobs_name']}</span><br>
+                            <span style="display: inline-block;margin-top: 22px">{$li['companyname']}</span>
                         </div>
 
                         <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
                     </div>
+                    {/if}
+                    {/loop}
 
                     <!--问答提醒-->
                     <div class="day_msgbox">
@@ -172,6 +191,7 @@
                     </div>
 
                 </div>
+                {/loop}
             </div>
 
 
@@ -189,59 +209,24 @@
             <div class="title-top">
                 <label class="top_con">猜你喜欢</label>
             </div>
+            {loop $jobs $list}
             <a href="#" class="items_list">
                 <div class="logo1">
-                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
+                    <img src="{$list['headimgurl']}" class="logopic">
                 </div>
                 <div class="company_name">
-                    <p class="job_n">Java工程师</p>
-                    <p class="job_s">5-8K</p>
-                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
+                    <p class="job_n">{$list['jobs_name']}</p>
+                    <p class="job_s">
+                        {if $list['wage_min']>0 && $list['wage_max']>0}
+                        {$list['wage_min']}-{$list['wage_max']}K
+                        {else}
+                        面议
+                        {/if}
+                    </p>
+                    <p class="companyn nowrap">{$list['companyname']}</p>
                 </div>
             </a>
-            <a href="#" class="items_list">
-                <div class="logo1">
-                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
-                </div>
-                <div class="company_name">
-                    <p class="job_n">Java工程师</p>
-                    <p class="job_s">5-8K</p>
-                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
-                </div>
-            </a>
-
-            <a href="#" class="items_list">
-                <div class="logo1">
-                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
-                </div>
-                <div class="company_name">
-                    <p class="job_n">Java工程师</p>
-                    <p class="job_s">5-8K</p>
-                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
-                </div>
-            </a>
-
-            <a href="#" class="items_list">
-                <div class="logo1">
-                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
-                </div>
-                <div class="company_name">
-                    <p class="job_n">Java工程师</p>
-                    <p class="job_s">5-8K</p>
-                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
-                </div>
-            </a>
-
-            <a href="#" class="items_list">
-                <div class="logo1">
-                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
-                </div>
-                <div class="company_name">
-                    <p class="job_n">Java工程师</p>
-                    <p class="job_s">5-8K</p>
-                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
-                </div>
-            </a>
+            {/loop}
             <div style="clear: both"></div>
             <a href="#" class="seemorejob">查看更多职位>></a>
         </div>
@@ -272,7 +257,7 @@
 
         if(dataid){
             $.ajax({
-                url:"",
+                url:"{php echo app_url('person/index/msg_deal')}",
                 type:"post",
                 data:{
                     msg:dataid

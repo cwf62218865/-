@@ -299,13 +299,24 @@
                    <div class=" person_changes_left" style="margin-top: 40px">
                        <span class="color666  redxing companymsg_name">福利标签</span>
                        <div class="company_welfare">
-                           {loop array_filter(explode(",",$company['tag'])) $list}
-                           <span class="welfare_choice">
-                               {php echo $list}
-                                <svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan"></use></svg>
-                           </span>
+                           <!--{loop array_filter(explode(",",$company['tag'])) $list}-->
+                           <!--<span class="welfare_choice">-->
+                               <!--{php echo $list}-->
+                                <!--<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan"></use></svg>-->
+                           <!--</span>-->
 
-                            {/loop}
+                            <!--{/loop}-->
+
+                           <span>五险</span>
+                           <span>住房公积金</span>
+                           <span>带薪年假</span>
+                           <span>绩效奖金</span>
+                           <span>内部培训</span>
+                           <span>年终奖</span>
+                           <span>晋升平台</span>
+                           <span>有偿加班</span>
+                           <span>股权奖励</span>
+                           <span>交通补贴</span>
                        </div>
                        <div style="margin-left: 58px">
                            <div class="chioce_template_job_search" style="margin-top: 0">
@@ -399,6 +410,7 @@
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/company_msg.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/company_nomsg.js" rel="script"></script>
 <script>
 //    上传logo
