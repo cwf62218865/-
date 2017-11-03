@@ -572,6 +572,7 @@ elseif ($op=="show_map"){
 
 //举报职位
 elseif ($op=="tip_off"){
+
     $wheresql = "";
     if($_POST['data']['jobs_id']){
         $data['jobs_id'] = check_pasre($_POST['data']['jobs_id'],"参数错误");
@@ -581,6 +582,7 @@ elseif ($op=="tip_off"){
         $data['company_uid'] = check_pasre($_POST['data']['company_uid'],"参数错误");
         $wheresql = " company_uid=".$data['company_uid'];
     }
+    $data['hide'] = $_POST['data']['niming'];
     $data['company_scale'] = check_pasre($_POST['data']['company_scale'],"请填写举报原因");
     $data['report_content'] = check_pasre($_POST['data']['report_content'],"请填写详细描述");
     $report = pdo_fetch("select id from ".tablename(WL."report")." where ".$wheresql." and report_uid=".$_SESSION['uid']);
@@ -592,12 +594,12 @@ elseif ($op=="tip_off"){
         $data['report_uid'] = $_SESSION['uid'];
         $r = insert_table($data,WL."report");
         if($r){
-            call_back(1,"ok");
+            call_back(1,"举报成功");
         }else{
-            call_back(2,"no");
+            call_back(2,"举报失败");
         }
     }else{
-        call_back(2,"已存在");
+        call_back(2,"您已经举报过该职位");
     }
 
 }

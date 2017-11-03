@@ -98,6 +98,7 @@ elseif($op=="manage_resume"){
         $evaluate[] = $li;
     }
 
+
     include wl_template('company/hr_manage_resume');
 }
 
