@@ -36,6 +36,7 @@ elseif($op=="jobs_detail"){
         $jobs = pdo_fetch("select * from ".tablename(WL."jobs")." where id=".$_GPC['jobs_id']);
         $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$jobs['uid']);
         $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where jobs_id=".$_GPC['jobs_id']." and puid=".$_SESSION['uid']);
+        $report = pdo_fetch("select id from ".tablename(WL."report")." where jobs_id=".$_GPC['jobs_id']." and report_uid=".$_SESSION['uid']);
         $last_login_time = m("member")->last_login($jobs['uid']);
 
         $similar_jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$jobs['jobs_name']."%' and id<>".$jobs['id']);
@@ -74,13 +75,31 @@ elseif($op=="company_detail"){
 }
 
 
-//忘记密码
+//忘记密码by手机
 elseif ($op=="forget_password"){
 
     include wl_template("member/forget_password");
 }
+
+//忘记密码by邮箱
+elseif ($op=="forget_password_email"){
+
+    include wl_template("member/forget_password_email");
+}
+//忘记密码by邮箱
+elseif ($op=="forget_password_permit"){
+
+    include wl_template("member/forget_password_permit");
+}
 //设置密码
 elseif ($op=="set_password"){
+    $identity = explode("*",$_GPC['identity']);
+    $id = encrypt($identity[0], 'D');
+    $time = $identity[1];
+    $member = pdo_fetch("select id from ".tablename(WL."members")." where id=".$id." and last_login_time=".$time);
+    if($member){
+        $_SESSION['uid'] = $member['id'];
+    }
     if($_SESSION['uid']){
         include wl_template("member/set_password");exit();
     }else{
@@ -231,7 +250,42 @@ elseif ($op=="pwd_bytel"){
 
 //邮箱找回密码
 elseif ($op=="pwd_byemail"){
-    var_dump($_POST);exit();
+    $mobile = check_pasre($_POST['tel'],"请输入手机号");
+    $email = check_pasre($_POST['yanzheng'],"请输入邮箱");
+
+    $member = pdo_fetch("select id,last_login_time from ".tablename(WL."members")." where mobile='".$mobile."' and email='".$email."'");
+    if($member){
+        $identity = encrypt($member['id'], 'E');
+        $body = "
+    点击以下链接找回密码:<br/>
+    <a href='".app_url('member/index/set_password',array('identity'=>$identity.'*'.$member['last_login_time']))."'>".app_url('member/index/set_password',array('identity'=>$identity.'*'.$member['last_login_time']))."</a>
+    ";
+        ihttp_email($email, "应届僧密码找回", $body);
+        call_back(1,"已向您的邮箱发送了找回密码");
+    }else{
+        call_back(2,"此手机号与邮箱暂未注册");
+    }
+}
+
+//执照找回密码
+elseif ($op=="pwd_bypermit"){
+    $data['companyname'] = check_pasre($_POST['companyname'],"请输入公司名称");
+    $data['license'] = check_pasre($_POST['license'],"请上传营业执照");
+    $data['idcard1'] = check_pasre($_POST['idcard1'],"请上传法人身份证(正面)");
+    $data['idcard2'] = check_pasre($_POST['idcard2'],"请上传法人身份证(反面)");
+    $data['send_mobile'] = check_pasre($_POST['company_tel'],"请输入接受密码的手机号");
+    $data['addtime'] = time();
+    $r = insert_table($data,WL."permit_validate");
+    if($r){
+        call_back(1,"提交成功");
+    }else{
+        call_back(2,"异常错误");
+    }
+}
+//执照找回之图片上传
+elseif ($op=="permit_validate"){
+    $img = upload_img($_FILES);
+    call_back(1,$img);
 }
 //设置新密码处理
 elseif ($op=="set_newpwd"){
@@ -336,6 +390,7 @@ elseif ($op=="modify_pwd"){
         call_back(2,"原密码不正确");
     }
 }
+//保存留言板
 elseif ($op=="save_books"){
 
     if($_POST){
@@ -524,6 +579,9 @@ elseif ($op=="tip_off"){
     $data['company_scale'] = check_pasre($_POST['data']['company_scale'],"请填写举报原因");
     $data['report_content'] = check_pasre($_POST['data']['report_content'],"请填写详细描述");
     $report = pdo_fetch("select id from ".tablename(WL."report")." where ".$wheresql." and report_uid=".$_SESSION['uid']);
+    if(empty($_SESSION['uid'])){
+        call_back(2,"登录之后，才可以举报职位");
+    }
     if (empty($report)){
         $data['addtime'] = time();
         $data['report_uid'] = $_SESSION['uid'];

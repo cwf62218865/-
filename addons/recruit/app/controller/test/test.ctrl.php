@@ -53,6 +53,6 @@ echo $url;exit();
     $url = app_url("person/collection/collection_jobs");
     echo $url."&jobs_id=".$data['jobs_id'];exit();
 }elseif ($op=="person_msg"){
-    include wl_template("person/person_msg");exit();
+    include wl_template("member/forget_password_permit");exit();
  }
 

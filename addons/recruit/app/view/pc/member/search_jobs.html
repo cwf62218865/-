@@ -125,6 +125,7 @@
                     <span class="select_item1 city_select">默认</span>
                     <span class="select_item1 magl20">最新</span>
                     <label class="yemabtn">
+                        {if $jobs}
                         <span class="magr50 hangver">
                             <label class="current_page" id="current_page">1</label>
                             /
@@ -141,6 +142,25 @@
                             <use xlink:href="#icon-youjiantouxi"></use>
                         </svg>
                         </span>
+                        {else}
+                        <span class="magr50 hangver">
+                            <label class="current_page" id="current_page">0</label>
+                            /
+                            <label class="total_page">0</label>
+                        </span>
+                        <span class="yema">
+                            <svg class="icon ">
+                                <use xlink:href="#icon-zuojiantouxi"></use>
+                            </svg>
+                        </span>
+
+                        <span class="yema">
+                            <svg class="icon  ">
+                                <use xlink:href="#icon-youjiantouxi"></use>
+                            </svg>
+                        </span>
+
+                        {/if}
 
                     </label>
                 </div>
@@ -148,6 +168,7 @@
 
             <!--职位列表start---------------------------------------------------------------------------->
             <div class="resume_content" style="display: inline-block">
+                {if $jobs}
                 {loop $jobs $list}
                 <div class="list_item">
                     <div class="item_con">
@@ -186,6 +207,9 @@
                     </div>
                 </div>
                 {/loop}
+                {else}
+                <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有符合搜索条件的结果</div><div class="color999" style="margin-top: 30px">请重新修改搜索条件后再进行搜索</div></div></div>
+                {/if}
 
             </div>
             <div style="clear: both"></div>
@@ -302,6 +326,9 @@
             job_order:"",
             page:1
         };//搜索职位的相关数据
+        if("{$_GPC['jobs_name']}"){
+            option.job_name="{$_GPC['jobs_name']}"
+        }
 
         //搜索职位按钮请求
         $(".btn_search").on("click",function () {

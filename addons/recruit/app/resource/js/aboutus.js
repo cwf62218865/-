@@ -118,6 +118,15 @@ $(function () {
     })
 
 
+    function deladd() {
+        var yrls=$(".atlas").eq(0).val().split(",");
+
+        if(yrls.length>=6){
+            $("#ico_shangchuan").hide();
+        }else{
+            $("#ico_shangchuan").show();
+        }
+    }
 
     //删除图片
     $("body").on("click",".shanchu",function () {
@@ -132,6 +141,7 @@ $(function () {
         })
         atlas = atlas.substring(0,atlas.length-1);
         $(".atlas").val(atlas);
+        deladd();
     })
 
     //上传图片弹框
@@ -180,7 +190,7 @@ $(function () {
                     }else{
                         $(".atlas").val(data.content);
                     }
-
+                    deladd()
 
                 }
             }

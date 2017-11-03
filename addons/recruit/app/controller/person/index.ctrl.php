@@ -318,6 +318,9 @@ elseif ($op=="post_resume"){
     $data['createtime'] = time();
 
     $jobs_apply = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where jobs_id=".$data['jobs_id']." and resume_id=".$data['resume_id']);
+    if(empty($_SESSION['uid'])){
+        call_back(2,"请先登录账号");
+    }
     if($jobs_apply){
         call_back(2,"已存在");
     }else{

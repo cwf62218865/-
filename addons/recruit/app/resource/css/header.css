@@ -134,10 +134,14 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     width: 30px;
     height: 30px;
     border-radius: 15px;
+    overflow: hidden;
     background-color:#e7eef0 ;
     text-align: center;
     line-height: 30px;
     font-size: 18px;
+    float: left;
+    margin-top: 9px;
+    margin-right: 5px;
 }
 .login_username{
     display: inline-block;
