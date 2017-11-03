@@ -269,14 +269,13 @@
                     file:src
                 },
                 type: "POST",
-                dataType: 'json',
-//                success: function(data) {
-////                    console.log(data);
-//                    var data = JSON.parse(data);
-//                    if(data.status == '1') {
-//                        $('.resume_manage_headerimg img').attr('src',src );
-//                    }
-//                }
+                success: function(data) {
+//                    console.log(data);
+                    var data = JSON.parse(data);
+                    if(data.status == '1') {
+                        $('.resume_manage_headerimg img').attr('src',src );
+                    }
+                }
             });
         }
     </script>
@@ -356,31 +355,31 @@
             if($.trim(user_name)==""){
                 var input_box=$("#user_name").closest(".general-input");
                 input_box.css("border-color","#e23d46");
-                $(".chec_tip1 .left_align").eq(0).html(tipmsg("error","请输入用户名"));
+                hint("error","请输入用户名");
                 return false;
             }
 
             if($.trim(telphone)==""){
                 var input_box=$("#telphone").closest(".general-input");
                 input_box.css("border-color","#e23d46");
-                $(".chec_tip1 .right_align").html(tipmsg("error","请输入电话号码"));
+                hint("error","请输入电话号码");
                 return false;
             }else if(!telphonetest.test(telphone)){
                 var input_box=$("#telphone").closest(".general-input");
                 input_box.css("border-color","#e23d46");
-                $(".chec_tip1 .right_align").html(tipmsg("error","输入号码有误"));
+                hint("error","输入号码有误");
                 return false;
             }
 
             if($.trim(email)==""){
                 var input_box=$("#email").closest(".general-input");
                 input_box.css("border-color","#e23d46");
-                input_box.next().html(tipmsg("error","请输入邮箱"));
+                hint("error","请输入邮箱");
                 return false;
             }else if(!eamiltest.test(email)){
                 var input_box=$("#email").closest(".general-input");
                 input_box.css("border-color","#e23d46");
-                input_box.next().html(tipmsg("error","输入邮箱有误"));
+                hint("error","输入邮箱有误");
                 return false;
             }
 
@@ -402,6 +401,7 @@
                     if(data.status==1){
                         window.location.href=data.content;
                     }else{
+                        hint("error",data.content);
                         console.log(data);
                     }
                 }

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/header.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/control.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/personal.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/resume.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/credit_evaluate.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/credit_evaluate.css" rel="stylesheet">
     <title>职场信用-收到评价</title>
 </head>
 <body bgcolor="#f4f4f4">
@@ -18,7 +18,7 @@
 {php include wl_template('common/header');}
 {/if}
 <div class="width1200 p1content">
-    {php include wl_template('common/company_nav');}
+    {php include wl_template('common/person_nav');}
     <div class="p1_left">
         <div class="con_list">
             <div class="list_top">
@@ -27,13 +27,13 @@
             </div>
             <!--待评价start------------------------------------------------------------------------------->
             <div class="lists list_content" style="display: block;">
-
-                <div class="item_conpj" data-id="1">
+                {loop $agree_jobs $list}
+                <div class="item_conpj" data-id="{$list['apply_id']}">
                     <div class="item_conpj1">
                         <div class="">
-                            <span class="jobname">Java工程师</span>
-                            <span class="companyname">重庆大风车科技有限公司</span>
-                            <span class="icos_jubao">
+                            <span class="jobname">{$list['jobs_name']}</span>
+                            <span class="companyname">{$list['companyname']}</span>
+                            <span class="icos_jubao" data-id="{$list['company_uid']}">
                                 <label class="com_ico jubaoms">
                                     <svg class="icon fexico">
                                         <use  xlink:href="#icon-tishi"></use>
@@ -102,10 +102,9 @@
                         <div class="hang_pj bg_con" style="margin-top: 10px">
                             <label class="biaoqiantt">选择标签：</label>
                             <label class="biaoqians">
-                                <span class="onebq" flag="0">年中奖1</span>
-                                <span class="onebq" flag="0">年中奖2</span>
-                                <span class="onebq" flag="0">年中奖3</span>
-                                <span class="onebq" flag="0">年中奖4</span>
+                                {loop explode(",",$list['tag']) $id $li}
+                                <span class="onebq" flag="0">{$li}</span>
+                                {/loop}
                             </label>
                             <label class="bqmorebtn gengduo">
                                 更多标签
@@ -180,187 +179,14 @@
                                 <label>差评</label>
                             </div>
                             <div class="ico_niming plnm">
-                                <div class="checkbox" style=" margin-right: 15px;">
-                                    <!--<svg class="icon iconfont color1aa ico_right">-->
-                                        <!--<use xlink:href=""></use>-->
-                                    <!--</svg>-->
-                                </div>
+                                <div class="checkbox" style=" margin-right: 15px;"></div>
                                 <label class="nimingbz">匿名提交</label>
                             </div>
                             <div class="tijiao1 pjtjbtn">提交评价</div>
                         </div>
-
-
-
                     </div>
                 </div>
-
-                <div class="item_conpj" data-id="2">
-                    <div class="item_conpj1">
-                        <div class="">
-                            <span class="jobname">Java工程师</span>
-                            <span class="companyname">重庆大风车科技有限公司</span>
-                            <span class="icos_jubao">
-                                <label class="com_ico jubaoms">
-                                    <svg class="icon fexico">
-                                        <use  xlink:href="#icon-tishi"></use>
-                                    </svg>举报
-                                </label>
-                                <label class="com_ico weicanjia">未参加</label>
-                            </span>
-                        </div>
-                        <div class="hang_pj">
-                            <span class="one_xing xinxi">
-                                <label class="pingjiabz">信息真实:</label>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                            </span>
-                            <span class="one_xing huanjing">
-                                <label class="pingjiabz">公司环境:</label>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                            </span>
-                            <span class="one_xing hrmianshi">
-                                <label class="pingjiabz">面试官:</label>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                                <svg class="icon xingxing">
-                                    <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="biaoqianxuanze"></div>
-                        <div class="hang_pj bg_con" style="margin-top: 10px">
-                            <label class="biaoqiantt">选择标签：</label>
-                            <label class="biaoqians">
-                                <span class="onebq" flag="0">年中奖1</span>
-                                <span class="onebq" flag="0">年中奖2</span>
-                                <span class="onebq" flag="0">年中奖3</span>
-                                <span class="onebq" flag="0">年中奖4</span>
-                            </label>
-                            <label class="bqmorebtn gengduo">
-                                更多标签
-                                <svg class="icon" style="">
-                                    <use xlink:href="#icon-xiajiantou"></use>
-                                </svg>
-                            </label>
-                            <div class="morebiaoqian">
-                                <div class="biaoqian_con">
-                                    <div class="changebq">
-                                        <svg class="icon" style="">
-                                            <use xlink:href="#icon-huanyipi"></use>
-                                        </svg>
-                                        换一批
-                                    </div>
-                                    <label class="biaoqians">
-                                        <span class="onebq tjbq" flag="0">年终奖</span>
-                                        <span class="onebq tjbq" flag="0">五险一金</span>
-                                        <span class="onebq tjbq" flag="0">带薪年假</span>
-                                        <span class="onebq tjbq" flag="0">有偿加班</span>
-                                        <span class="onebq tjbq" flag="0">绩效奖金</span>
-                                        <span class="onebq tjbq" flag="0">美女多</span>
-                                        <span class="onebq tjbq" flag="0">公司环境好</span>
-                                        <span class="onebq tjbq" flag="0">年终奖的</span>
-                                        <span class="onebq tjbq" flag="0">五险一金2</span>
-                                        <span class="onebq tjbq" flag="0">带薪年假3</span>
-                                        <span class="onebq tjbq" flag="0">有偿加班4</span>
-                                        <span class="onebq tjbq" flag="0">绩效奖金5</span>
-                                        <span class="onebq tjbq" flag="0">美女多6</span>
-                                        <span class="onebq tjbq" flag="0">公司</span>
-                                    </label>
-                                    <div class="zidingyibq">
-                                        <div class="inputbox">
-                                            <input type="text" class="bqzidingyi" placeholder="输入8字以内标签" maxlength="8">
-                                        </div>
-                                        <div class="tijiao1 btntj">添加</div>
-                                        <label class="tishibq">最多可添加5个标签</label>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="hang_pj" style="font-size: 16px;">面试经过:</div>
-                        <div class="textareacon">
-                            <textarea class="plarea" placeholder="请输入面试内容"></textarea>
-                        </div>
-                        <div class="pjxingxing" style="margin-top: 30px" value="0">
-                            <div class="one_pj">
-                                <div class="checkbox">
-                                    <svg class="icon iconfont color1aa ico_right">
-                                        <use xlink:href="#icon-zhengque1"></use>
-                                    </svg>
-                                </div>
-                                <svg class="icon flover_ico red_i">
-                                    <use xlink:href="#icon-haoping"></use>
-                                </svg>
-                                <label>好评</label>
-                            </div>
-                            <div class="one_pj">
-                                <div class="checkbox"></div>
-                                <svg class="icon flover_ico gree_i">
-                                    <use xlink:href="#icon-zhongping"></use>
-                                </svg>
-                                <label>中评</label>
-                            </div>
-                            <div class="one_pj">
-                                <div class="checkbox">
-                                </div>
-                                <svg class="icon flover_ico grey_i">
-                                    <use xlink:href="#icon-chaping"></use>
-                                </svg>
-                                <label>差评</label>
-                            </div>
-                            <div class="ico_niming plnm">
-                                <div class="checkbox" style=" margin-right: 15px;">
-                                    <!--<svg class="icon iconfont color1aa ico_right">-->
-                                    <!--<use xlink:href=""></use>-->
-                                    <!--</svg>-->
-                                </div>
-                                <label class="nimingbz">匿名提交</label>
-                            </div>
-                            <div class="tijiao1 pjtjbtn">提交评价</div>
-                        </div>
-
-
-
-                    </div>
-                </div>
+                {/loop}
 
                 <div class="morejob">更多简历信息>></div>
             </div>
@@ -520,7 +346,7 @@
 
         </div>
     </div>
-    {php include wl_template('common/company_right');}
+    {php include wl_template('common/person_right');}
 
 
     <!--举报弹框--------->
@@ -528,7 +354,7 @@
         <div class="modal" style="width: 496px;margin-left: -248px;">
             <p class="title_content">举报该评论</p>
             <span class="modalclose">
-                <img src="/yingjieseng/addons/recruit/app/resource/images/close.png"/>
+                <img src="{WL_URL_ARES}images/close.png"/>
             </span>
             <p class="color666" style="margin-top: 34px;text-align: center">若发现评论存在敏感词句，欢迎举报</p>
 
@@ -575,7 +401,7 @@
         <div class="modal" style="width: 516px;margin-left: -258px;">
             <p class="title_content">未参加面试理由</p>
             <span class="modalclose">
-                <img src="/yingjieseng/addons/recruit/app/resource/images/close.png"/>
+                <img src="{WL_URL_ARES}images/close.png"/>
             </span>
             <div class="xuanxiang">
                 <div class="itemsxx">
@@ -616,12 +442,19 @@
 
 
 </body>
-<script src="/yingjieseng/addons/recruit/app/resource/js/jquery.js" rel="script"></script>
-<script src="/yingjieseng/addons/recruit/app/resource/js/iconfont.js" rel="script"></script>
-<script src="/yingjieseng/addons/recruit/app/resource/js/control.js" rel="script"></script>
-<script src="/yingjieseng/addons/recruit/app/resource/js/credit_evaluate.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/credit_evaluate.js" rel="script"></script>
 
 <script>
+
+    $(document).click(function(e){
+//        var _con = $('.morebiaoqian');   // 设置目标区域
+//        if(!_con.is(e.target) && _con.has(e.target).length === 0){
+//            $(".morebiaoqian").hide();//点击的动作
+//        };
+    });
 
 
 </script>
