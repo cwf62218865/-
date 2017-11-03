@@ -180,13 +180,14 @@ function person_collection(){
 
     $("body").on("mousedown",".cwfcityoptions2 .select-option",function(){
         var _this=$(this);
-        $(".cwfcityoptions2 .select-option").each(function(){
-            var _that=$(this);
-            //_that.css({'background-color':'#fff','color':'#333'})
-        });
+        // $(".cwfcityoptions2 .select-option").each(function(){
+        //     var _that=$(this);
+        //     //_that.css({'background-color':'#fff','color':'#333'})
+        // });
         //_this.css({'background-color':'#1aa9d2','color':'#fff'});
         var areas="";
         var data_id=_this.attr("data-id");
+        var content=_this.find("span").eq(0).html();
         if(data_id<=3){
             var listnum="0_"+data_id+"_0";
         }else{
@@ -197,6 +198,7 @@ function person_collection(){
             areas+="<span>"+areamsg[i]+"</span>"
         }
         $(".cwfarea").html(areas);
+        _this.closest(".options").prev().find("input").val(content);
     });
     $("body").on("mousedown",".cwfarea span",function(){
         var _this=$(this);

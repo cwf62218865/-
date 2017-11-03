@@ -45,7 +45,7 @@ $("#person_worksaddbtn").click(function () {
     $(".title_content").html("个人作品");
     $("#choosefile").attr("accept","image/*").val("");
     $(".erweima").attr("id","code2").children().remove();
-    code_url("#code2","/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&");
+    code_url("#code2","/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=mobile_upload&kind=person_works&identity="+identity);
 
 
 });

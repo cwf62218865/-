@@ -1,7 +1,7 @@
 <div class="header">
     <div class="width1200 align_center" style="padding-top: 14px;justify-content: space-between">
         <img src="{WL_URL_ARES}images/logo.png"/>
-        <div style="height: 52px;line-height: 52px"><span class="city">全国</span><span class="changecity">[切换]</span></div>
+        <div style="height: 52px;line-height: 52px"><span class="city">{if $_SESSION['city']}{$_SESSION['city']}{else}全国{/if}</span><span class="changecity">[切换]</span></div>
         <div class="menu">
             <a href="{php echo app_url('member/index')}">首页</a>
             <a  href="{php echo app_url('member/index/search_jobs')}">找工作</a>
@@ -53,7 +53,7 @@
             切换城市
         </div>
         <div style="margin: 50px;margin-bottom: 40px;font-size: 16px;color: #666">
-            尊敬的用户， 您当前选择的城市为 <span style="color:#7b8fc9 ">[全国]</span>，您也可以切换到以下城市
+            尊敬的用户， 您当前选择的城市为 <span style="color:#7b8fc9 " class="current_city">[{if $_SESSION['city']}{$_SESSION['city']}{else}全国{/if}]</span>，您也可以切换到以下城市
         </div>
 
         <div class="change_citys">

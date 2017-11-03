@@ -88,8 +88,7 @@ $(function () {
 
         var atlas = $(".atlas").val();
 
-        //留言提交成功效果，后期放在ajax请求成功内部
-        hint("success","留言成功");
+
 
         $.ajax({
             url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=save_books",
@@ -106,8 +105,10 @@ $(function () {
                 if(data){
                     var data=JSON.parse(data);
                     if(data.status==1){
-
-
+                        hint("success","留言成功");
+                        window.setInterval(function () {
+                            window.location.href = "/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=aboutus&nav=3";
+                        },1200)
 
                     }else{
                         hint("error",data.content);

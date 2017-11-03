@@ -27,7 +27,7 @@
                 <div class="list_item_btn" style="margin-left: 2px">工作评价</div>
             </div>
             <!--等待面试start------------------------------------------------------------------------------->
-            <div class="list_content" style="display: block;">
+            <div class="list_content sign_content" style="display: block;">
                 <div class="time_selecter">
                     <div class="checkbox ico_rightstatas" style="display: inline-block;">
                         <label class="right_ico">
@@ -113,7 +113,7 @@
             </div>
             <!--等待面试end-------------------------------------------------------------------------->
             <!--职位搜索start---------------------------------------------------------------------------->
-            <div class="resume_content" style="display: none;background: none;">
+            <div class="resume_content sign_content" style="display: none;background: none;">
                 <div class="job_selecter">
                     <div class="job_secon">
                         <div class="inputcon">
@@ -245,7 +245,7 @@
             </div>
             <!--职位搜索end---------------------------------------------------->
             <!--面试评价start---------------------------------------------------------------------------->
-            <div class="pingjia_content" style="display: none;">
+            <div class="pingjia_content sign_content" style="display: none;">
                 <div class="list_item">
                     <div class="item_con">
                         <div class="pj_hang1">
@@ -550,7 +550,7 @@
             </div>
             <!--面试评价end---------------------------------------------------->
             <!--工作评价start---------------------------------------------------------------------------->
-            <div class="gzpj_content" style="display: none;">
+            <div class="gzpj_content sign_content" style="display: none;">
                 {loop $evaluate $list}
                 <div class="list_item gzpj">
                     <div class="item_con">
@@ -737,6 +737,11 @@
 <script>
     $(function () {
         send_resume();
+        var nav = "{$nav}";
+        $(".list_item_btn").removeClass("select");
+        $(".list_item_btn").eq(nav).addClass("select");
+        $(".sign_content").css("display","none");
+        $(".sign_content").eq(nav).css("display","block");
     })
 
     $('body').on("mousedown",".general-select input",function(){
@@ -750,6 +755,7 @@
         }
 
     });
+
 
     //面试邀请
     $("#send_review").click(function () {

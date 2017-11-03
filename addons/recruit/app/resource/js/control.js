@@ -583,6 +583,7 @@ $(".modalbtn1").on("click",function(){
                 var data=JSON.parse(data);
                 if(data.status==1){
                     $(".indexmodal").hide();
+                    $(".current_city").html("["+content+"]");
                     $(".city").html(content);
                 }else{
                     hint("error","切换城市失败")

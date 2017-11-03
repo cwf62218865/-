@@ -48,7 +48,6 @@ class jobs{
             $wheresql .= " and city like '%".$_SESSION['city']."%' ";
         }
         $limit = " limit ".$page.",".$pagenum;
-//        echo "select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit;exit();
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit);
         $job['count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs").$wheresql." order by open desc");
         $job['more'] = "";
@@ -110,7 +109,7 @@ class jobs{
         }
 
         if($order_jobs['work_place']){
-            $wheresql .= " and city_area like '%".$order_jobs['work_place']."%'";
+            $wheresql .= " and (city_area like '%".$order_jobs['work_place']."%' or city like '%".$order_jobs['work_place']."%') ";
         }
 
         if($order_jobs['wage_range']){

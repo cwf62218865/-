@@ -20,8 +20,11 @@ class company{
         }
     }
 
-    public function get_profile($uid){
-        $company = pdo_fetch("select * from ".tablename(WL.'company_profile')." where uid=".$uid);
+    public function get_profile($uid,$field=""){
+        if(empty($field)){
+            $field = "*";
+        }
+        $company = pdo_fetch("select ".$field." from ".tablename(WL.'company_profile')." where uid=".$uid);
         return $company;
     }
 
