@@ -3,7 +3,7 @@
  */
 function tipmsg(pic,tip){
     var html="";
-    html+="<div class='tips'><img class='tip_ico' src='/yingjieseng/addons/recruit/app/resource/images/ico_"+pic+".png'> <span class='tip_msg'>"+tip+"</span></div> ";
+    html+="<div class='tips'><img class='tip_ico' src='/addons/recruit/app/resource/images/ico_"+pic+".png'> <span class='tip_msg'>"+tip+"</span></div> ";
     return html;
 }
 

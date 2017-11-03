@@ -249,14 +249,16 @@ $(".modalclose,.quxiao").click(function () {
 
 //更多标签
 $("body").on("click",".gengduo",function () {
+    var _this=$(this).closest(".item_conpj");
     $(this).html('收起<svg class="icon"><use xlink:href="#icon-shangjiantou"></use></svg>');
-    $(".morebiaoqian").show();
+    _this.find(".morebiaoqian").show();
     $(this).removeClass("gengduo");
     $(this).addClass("shouqi");
 })
 $("body").on("click",".shouqi",function () {
+    var _this=$(this).closest(".item_conpj");
     $(this).html('更多标签<svg class="icon"><use xlink:href="#icon-xiajiantou"></use></svg>');
-    $(".morebiaoqian").hide();
+    _this.find(".morebiaoqian").hide();
     $(this).removeClass("shouqi");
     $(this).addClass("gengduo");
 })
@@ -313,22 +315,24 @@ $.each(arr,function(i,value){
 //添加评论标签
 
 $("body").on("click",".onebq",function () {
-    var len=$(".one_se").length;
+    var _this=$(this).closest(".item_conpj");
+    var len=_this.find(".one_se").length;
     var bq=$(this).html();
     var flag=$(this).attr("flag");
     if(flag==0 && len<5){
-        $(".biaoqianxuanze").append('<span class="one_se">' +bq +'<svg class="icon shnchuico" style=""><use  xlink:href="#icon-shan"></use></svg></span>')
+        _this.find(".biaoqianxuanze").append('<span class="one_se">' +bq +'<svg class="icon shnchuico" style=""><use  xlink:href="#icon-shan"></use></svg></span>')
         $(this).attr("flag",1);}
     if(len==5){
         alert("最多只能添加5个标签！")
     }
 })
 $("body").on("click",".btntj",function () {
-    var len=$(".one_se").length;
-    var zbq=$(".bqzidingyi").val();
+    var _this=$(this).closest(".item_conpj");
+    var len=_this.find(".one_se").length;
+    var zbq=_this.find(".bqzidingyi").val();
     if(zbq && len<5){
-        $(".biaoqianxuanze").append('<span class="one_se">' +zbq +'<svg class="icon shnchuico" style=""><use  xlink:href="#icon-shan"></use></svg></span>')
-        var zbq=$(".bqzidingyi").val("");
+        _this.find(".biaoqianxuanze").append('<span class="one_se">' +zbq +'<svg class="icon shnchuico" style=""><use  xlink:href="#icon-shan"></use></svg></span>')
+        var zbq= _this.find(".bqzidingyi").val("");
     }
     if(len==5){
         alert("最多只能添加5个标签！")
