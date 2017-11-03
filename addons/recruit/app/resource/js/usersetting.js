@@ -150,7 +150,7 @@ $(function () {
 
 
     //添加屏蔽企业
-    $(".pbbtn").click(function () {
+    $("body").on("click",".pbbtn",function () {
         var name=$(".pb_input").val();
         var blacklist = "";
         $(".blacklist").each(function () {
@@ -160,7 +160,7 @@ $(function () {
         var $elements = $('.pb_items');
         var len = $elements.length;
         if(name!="" && len<5){
-        $('.input_con').append("<p class='pb_items'>"+name+"<label class='remove'>删除</label></p>" );
+        $('.input_con').append("<p class='pb_items'><span class='blacklist'>"+name+"</span><label class='remove'>删除</label></p>" );
         $(".pb_input").val("");
             $.ajax({
                 type:"post",

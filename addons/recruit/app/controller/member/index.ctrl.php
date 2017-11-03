@@ -50,13 +50,12 @@ elseif($op=="jobs_detail"){
 
 //职位搜索
 elseif ($op=="search_jobs"){
-    $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where open=1 and display=1");
-//    echo $jobs_count;exit();
     if($_GET['jobs_name']){
         $data['data']['job_name'] = $_GET['jobs_name'];
         $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where open=1 and display=1 and jobs_name like '%".$_GET['jobs_name']."%'");
     }
     $jobs = m("jobs")->getall_jobs_page($data);
+    $jobs_count = $jobs['count'];
     $jobs = $jobs['more'];
     include wl_template("member/search_jobs");exit();
 }
@@ -361,7 +360,12 @@ elseif ($op=="change_mobile"){
 elseif ($op=="resume_display_status"){
     $kind = check_pasre($_POST['kind'],"参数错误");
     if($kind==2){$kind=1;}
-    $r = pdo_update(WL."resume",array('display'=>$kind,'updatetime'=>time()),array('uid'=>$_SESSION['uid']));
+    $data['display'] = $kind;
+    $data['updatetime'] = time();
+    if($kind<>3){
+        $data['blacklist'] = "";
+    }
+    $r = pdo_update(WL."resume",$data,array('uid'=>$_SESSION['uid']));
     call_back(1,"ok");
 }
 //黑名单
@@ -489,11 +493,12 @@ elseif ($op=="save_members_temp"){
             $temp = pdo_fetch("select id from ".tablename(WL."members_temp")." where uid=".$id);
             if(empty($temp)){
                 $r = pdo_insert(WL."members_temp",$data);
+                $temp = pdo_fetch("select id from ".tablename(WL."members_temp")." where uid=".$id);
             }
             if($r){
-                call_back(1,"1");
+                call_back(1,$temp[$kind]);
             }else{
-                call_back(2,"2");
+                call_back(2,"no file upload");
             }
 
         }
