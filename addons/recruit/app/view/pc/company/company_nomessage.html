@@ -579,25 +579,24 @@ $(".modalbtn").on("click",function(){
             $(".chec_tip1").eq(1).html("");
         }
     });
-    $("#modalbox").animate({"opacity":0},300);
-    setTimeout(function(){
-        $("#modalbox").css("display","none");
-    },300)
 
-    //删除公司图集
-    $("body").on("click",".person_worksdelbtn",function () {
-        $(this).parent().remove();
-        var company_imgs="";
-        $(".person_worksbox img").each(function () {
-            company_imgs+=$(this).attr("src")+",";
-        });
-        if($(".person_worksbox img").length>=6){
-            $(".person_worksbtn1").hide();
-        }else{
-            $(".person_worksbtn1").show();
-        }
-        $("#person_worksinput").val(company_imgs.substring(0,company_imgs.length-1));
-    });
+        $("#modalbox").css("display","none");
+
+
+//    //删除公司图集
+//    $("body").on("click",".person_worksdelbtn",function () {
+//        $(this).parent().remove();
+//        var company_imgs="";
+//        $(".person_worksbox img").each(function () {
+//            company_imgs+=$(this).attr("src")+",";
+//        });
+//        if($(".person_worksbox img").length>=6){
+//            $(".person_worksbtn1").hide();
+//        }else{
+//            $(".person_worksbtn1").show();
+//        }
+//        $("#person_worksinput").val(company_imgs.substring(0,company_imgs.length-1));
+//    });
 })
 </script>
 

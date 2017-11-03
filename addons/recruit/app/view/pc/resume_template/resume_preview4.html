@@ -26,7 +26,9 @@
     </style>
 </head>
 <body bgcolor="#f4f4f4">
+{if $_GPC['show']<>1}
 {php include wl_template('common/resume_top');}
+{/if}
 <div class="width1200 p1content preview">
     <div class="p1_left">
 
@@ -58,7 +60,7 @@
                             <div>民族：<span class="basic_name">{$resume['nation']}</span></div>
                             <div>政治面貌：<span class="basic_name">{$resume['political_status']}</span></div>
                             <div>籍贯：<span class="basic_name">{$resume['origin_place']}</span></div>
-                            <div>出生年月：<span class="basic_name">{$resume['birthday']}</span></div>
+                            <div>出生年月：<span class="basic_name">{php echo date("Y-m",$resume['birthday'])}</span></div>
                             <div>毕业学校：<span class="basic_name">{php echo $resume['arr_education']['school_name']}</span></div>
                             <div>学历：<span class="basic_name">{php echo $resume['education']}</span></div>
                             <div>专业：<span class="basic_name">{php echo $resume['arr_education']['edu_major']}</span></div>

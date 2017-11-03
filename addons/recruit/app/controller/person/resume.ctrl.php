@@ -193,25 +193,6 @@ elseif ($op=="save_edu_exp"){
 
 //发送邮箱
 elseif ($op=="send_email"){
-
-
-//    require(WL_CORE.'common/html2fpdf_zh_cn/html2fpdf.php');
-//    $pdf=new HTML2FPDF();
-//    $pdf->AddGBFont('GB','仿宋_GB2312');
-//    $pdf->AddPage();
-//    $fp = fopen("http://localhost/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&","r");
-//
-////    echo filesize("../data/tpl/app/recruit/app/view/pc/resume/resume_manage.tpl.php");exit();
-//    $strContent = fread($fp,"99999");
-//
-//    fclose($fp);
-////    $strContent = file_get_contents("http://localhost/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&");
-//
-//    $pdf->WriteHTML(iconv("UTF-8","GB2312",$strContent));
-//    $pdf->Output("111.pdf");
-//    echo "PDF file is generated successfully!";exit();
-
-
    $email = check_pasre($_POST['data']['email'],"请输入收件邮箱");
     $body = $_POST['data']['envelope_content'];
     $body = str_replace("\r\n","<br/>",$body);
