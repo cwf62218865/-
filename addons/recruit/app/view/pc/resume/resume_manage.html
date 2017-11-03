@@ -1937,13 +1937,13 @@
     })
 
     $(".honor_certificate").click(function () {
-        $(".title_content").html("个人作品");
+        $(".title_content").html("个人荣誉");
         $("#choosefile").attr("accept","image/*").val("");
         $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
                 '<use xlink:href="#icon-shangchuan"></use>'+
                 '</svg>');
         $(".erweima").attr("id","code3").children().remove();
-        code_url("#code3","/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=resume_worksupload&identity="+identity);
+        code_url("#code3","/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=mobile_upload&kind=person_works&identity="+identity);
         $("#modalbox").css("display","block");
 
     });

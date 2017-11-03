@@ -160,9 +160,29 @@ class resume{
                 }
             }
             $resume['work_time'] =  date('Y')-date('Y',$work_time);
-            $arr[] = $resume;
+            $blacklist = explode(",",$resume['blacklist']);
+            if($_SESSION['utype']==2){
+               if($this->blacklist($blacklist)){
+                   $arr[] = "";
+               }else{
+                   $arr[] = $resume;
+               }
+            }else{
+                $arr[] = $resume;
+            }
         }
-        return $arr;
+        return array_filter($arr);
+    }
 
+    /*
+     * 黑名单针对当前身份为企业
+     */
+    public function blacklist($blacklist){
+        $company_profile = m('company')->get_profile($_SESSION['uid'],"companyname");
+        foreach ($blacklist as $li){
+            if(strpos($company_profile['companyname'],$li)!==false){
+                return true;
+            }
+        }
     }
 }

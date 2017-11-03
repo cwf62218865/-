@@ -54,7 +54,7 @@ elseif ($op=="step2_save"){
 
 
 elseif($op=="manage_resume"){
-
+    $nav = isset($_GPC['nav'])?$_GPC['nav']:0;
     $resume  = m("company")->getall_resume($_SESSION['uid'],0,2);
 
     $resume1 =m("resume")->getall_resume();
