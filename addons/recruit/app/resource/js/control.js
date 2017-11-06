@@ -582,15 +582,56 @@ $(".modalbtn1").on("click",function(){
             success:function(data){
                 var data=JSON.parse(data);
                 if(data.status==1){
-                    $(".indexmodal").hide();
-                    $(".current_city").html("["+content+"]");
-                    $(".city").html(content);
+                    //$(".indexmodal").hide();
+                    //$(".current_city").html("["+content+"]");
+                    //$(".city").html(content);
+                    location=location
                 }else{
                     hint("error","切换城市失败")
                 }
             }
         })
     });
+
+    //小登录窗口
+
+    $(".smallmodalclose").on("click",function(){
+        $("#small_modalbox").hide();
+    });
+
+
+    $("#login").on("click",function(){
+        var user_name=$("#user_name").val();
+        var password=$("#password").val();
+
+        if(!user_name){
+            hint("error","请输入用户名");
+            return false;
+        }
+
+        if(!password){
+            hint("error","请输入密码");
+            return false;
+        }
+
+        $.ajax({
+            url:"",
+            type:"post",
+            data:{
+                user_name:user_name,
+                password:password
+            },
+            success:function(data){
+                var data=JSON.parse(data);
+                if(data.status==1){
+                    location=location
+                }else{
+                    hint("error",data.content);
+                }
+            }
+        })
+    })
+
 
 })
 

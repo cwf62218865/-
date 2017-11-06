@@ -452,8 +452,10 @@ $(function () {
                 if(data.status==1){
                     hint("success","收藏成功。");
                     console.log(data.content);
+                }else if(data.status==3){
+                    $("#small_modalbox").show();
                 }else{
-                    hint("ordinary",data.content);
+                    hint("error",data.content);
                 }
             }
         })
