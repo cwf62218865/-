@@ -184,15 +184,28 @@ class jobs{
         return $jobs_apply;
     }
 
-    //评论面试职位 针对企业
-    public function comment_apply($uid){
-        $comment_jobs = pdo_fetchall("select * from ".tablename(WL."comment")." where uid=".$uid);
+    /*
+     * 评论面试职位
+     *
+     */
+    public function comment_apply($data){
+        $wheresql = "where 1=1 ";
+        if($data['uid']){
+            $wheresql .= " and hr_reply='' and uid=".$data['uid'];
+        }
+        if($data['jobs_id']){
+            $wheresql .= " and jobs_id=".$data['jobs_id'];
+        }
+        $comment_jobs = pdo_fetchall("select * from ".tablename(WL."comment").$wheresql);
+        $comment = "";
         foreach ($comment_jobs as $list){
             $jobs = pdo_fetch("select jobs_name from ".tablename(WL."jobs")." where id=".$list['jobs_id']);
             $resume = pdo_fetch("select fullname from ".tablename(WL."resume")." where uid=".$list['puid']);
             $list['jobs_name'] = $jobs['jobs_name'];
             $list['fullname'] = $resume['fullname'];
+            $comment[] = $list;
         }
+        return $comment;
     }
 }
 

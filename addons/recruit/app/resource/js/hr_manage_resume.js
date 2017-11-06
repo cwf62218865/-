@@ -167,7 +167,8 @@ $(".checkbox input[type=checkbox]").on("click",function(){
 $(".mspjbtn").click(function () {
     var _this=$(this);
     var pl_content=_this.closest(".item_con").find(".shurupl").val();
-    var xingxing=1;//1为好评，2为中评，3为差评，默认好评
+    var xingxing=0;//0为好评，1为中评，2为差评，默认好评
+
     _this.closest(".item_con").find(".iconfont use").each(function () {
         if($(this).attr("xlink:href")!=""){
             xingxing=$(this).closest(".one_pj").find(".checkbox input[type=checkbox]").val();
@@ -177,20 +178,23 @@ $(".mspjbtn").click(function () {
         alert("请输入评价回复的内容！");
         return;
     }
-    console.log(xingxing+pl_content);
+    var _this = $(this);
     //回复评价
     $.ajax({
-        url:"",
+        url:"/app/index.php?c=site&a=entry&m=recruit&do=company&ac=index&op=comment_reply",
         type:"post",
         data:{
             pl_content:pl_content,
-            xingxing:xingxing
+            xingxing:xingxing,
+            data_id:$(this).attr("data-id")
         },
         success:function(data){
+            var data = JSON.parse(data);
             if(data.status==1){
-                window.location.href="";
+                hint("success",data.content);
+                _this.parent().parent().hide();
             }else{
-                console.log(data.content);
+                hint("error",data.content);
             }
         }
     })
