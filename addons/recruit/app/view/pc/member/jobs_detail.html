@@ -150,11 +150,14 @@
 
                     <!--面试评价-->
                     <div class="jobs_detail_title1">面试评价（3）</div>
-
+                    {loop $comment_jobs $list}
                     <div class="jobs_detail" style="margin-top: 36px">
                         <div class="interviewter_head">
                             <div class="interviewter_header">
-                                <img src="{WL_URL_ARES}images/resume_tx.png">
+                                <svg class="icon">
+                                    <use xlink:href="#icon-xuesheng"></use>
+                                </svg>
+                                <!--<img src="{WL_URL_ARES}images/resume_tx.png">-->
                             </div>
                             <div style="margin-top: 12px">匿名</div>
                         </div>
@@ -239,12 +242,8 @@
 
 
                         </div>
-
-
-
-
                     </div>
-
+                    {/loop}
                     <div id="page">
 
                     </div>

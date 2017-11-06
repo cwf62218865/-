@@ -40,9 +40,8 @@ elseif($op=="jobs_detail"){
         $last_login_time = m("member")->last_login($jobs['uid']);
 
         $similar_jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$jobs['jobs_name']."%' and id<>".$jobs['id']);
-//        echo date()-date("Y-m-d",$last_login_time['last_login_time']);exit();
-//        echo "select id from ".tablename(WL."jobs_apply")." where jobs_id=".$_GPC['jobs_id']." and puid=".$_SESSION['uid'];exit();
-//        var_dump($jobs_apply);exit();
+        $data['jobs_id'] = $_GPC['jobs_id'];
+        $comment_jobs = m("jobs")->comment_apply($data);
         include wl_template("member/jobs_detail");exit();
     }
 

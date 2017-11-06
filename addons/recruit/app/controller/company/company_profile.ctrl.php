@@ -25,7 +25,7 @@ elseif ($op=="first_index"){
 //跟换头像
 elseif ($op=="hedimgurl_upload"){
 
-    $worksurl = upload_img($_FILES);
+    $worksurl = base64_upload($_POST['file']);
     call_back(1,$worksurl);
 }
 
@@ -37,7 +37,7 @@ elseif ($op=="change_company_atlas"){
 
 //修改公司基本信息
 elseif ($op=="save_base"){
-
+//    var_dump($_POST);exit();
     $data['nature'] = check_pasre($_POST['data']['company_nature'],"1");
     $data['headimgurl'] = check_pasre($_POST['data']['company_logo'],"1");
     $data['number'] = check_pasre($_POST['data']['company_scale'],"2");
