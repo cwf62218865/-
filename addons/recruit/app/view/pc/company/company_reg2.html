@@ -130,7 +130,7 @@
                 <form id="choosefile1" enctype="multipart/form-data">
                     <input type="file" name='file' id="choosefile"   accept='image/*'/>
                 </form>
-                <div class="erweima">
+                <div class="erweima" data-id="{$identity}">
                     <!--<img src="{WL_URL_ARES}images/erweima.png" class="pic"/>-->
                 </div>
             </div>
@@ -150,58 +150,32 @@
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/jquery.qrcode.min.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/upload_refresh.js" rel="script"></script>
 <script>
    $(function () {
        var boxbum="";
-       var identity = "{$identity}";
-       var timer1;
+
         $(".btn1").click(function () {
             boxbum=1;
             $(".title_content").html("上传营业执照");
-            $(".erweima").attr("id","code1").children().remove();
-            $('#code1').qrcode({
-                width: 100, //宽度
-                height:100, //高度
-                text: "/code.php?identity="+identity+"&kind=license" //任意内容
-            });
+            code_url("license");
             $("#modalbox").css("display","block");
-            window.clearTimeout(timer1);
-            timer1=setTimeout(function(){
-                upload_refresh()
-            },4000);
-
+            upload_timer();
         });
        $(".btn2").click(function () {
            boxbum=2;
            $(".title_content").html("上传身份证正面照");
-           $(".erweima").attr("id","code2").children().remove();
-           $('#code2').qrcode({
-               width: 100, //宽度
-               height:100, //高度
-               text: "/code.php?identity="+identity+"&kind=id1" //任意内容
-           });
-
+           code_url("id1");
            $("#modalbox").css("display","block");
-           window.clearTimeout(timer1);
-           timer1=setTimeout(function(){
-               upload_refresh()
-           },4000);
+           upload_timer();
 
        });
        $(".btn3").click(function () {
            boxbum=3;
            $(".title_content").html("上传身份证反面照");
-           $(".erweima").attr("id","code3").children().remove();
-           $('#code3').qrcode({
-               width: 100, //宽度
-               height:100, //高度
-               text: "/code.php?identity="+identity+"&kind=id2" //任意内容
-           });
+           code_url("id2");
            $("#modalbox").css("display","block");
-           window.clearTimeout(timer1);
-           timer1=setTimeout(function(){
-               upload_refresh()
-           },4000);
+           upload_timer();
        });
 
        $(".modalclose").click(function(){

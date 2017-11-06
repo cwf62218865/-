@@ -210,23 +210,7 @@
                                </div>
                                {/loop}
                                {/if}
-                               <!--<div class="person_worksbtn">-->
-                                   <!--<img src="{WL_URL_ARES}images/person_img.png">-->
-                                    <!--<span class="person_worksdelbtn">-->
-                                        <!--<svg class="icon" aria-hidden="true">-->
-                                            <!--<use xlink:href="#icon-shanchu"></use>-->
-                                        <!--</svg>-->
-                                    <!--</span>-->
-                               <!--</div>-->
 
-                               <!--<div class="person_worksbtn">-->
-                                   <!--<img src="{WL_URL_ARES}images/person_img.png">-->
-                                    <!--<span class="person_worksdelbtn">-->
-                                        <!--<svg class="icon" aria-hidden="true">-->
-                                            <!--<use xlink:href="#icon-shanchu"></use>-->
-                                        <!--</svg>-->
-                                    <!--</span>-->
-                               <!--</div>-->
 
                                <div class="person_worksbtn1">
                                 <span id="person_worksaddbtn">
@@ -384,7 +368,7 @@
             <form id="choosefile1" enctype="multipart/form-data">
                 <input type="file" name='file' id="choosefile"   accept='image/*'/>
             </form>
-            <div class="erweima">
+            <div class="erweima" data-id="{$identity}">
                 <!--<img src="{WL_URL_ARES}images/erweima.png" class="pic"/>-->
             </div>
         </div>
@@ -413,8 +397,10 @@
 <script src="{WL_URL_ARES}js/company_msg.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/company_nomsg.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/jquery.qrcode.min.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/upload_refresh.js" rel="script"></script>
 <script>
     <!--手机扫描上传图片-->
+    var timer1;
     var identity = "{$identity}";
     //二维码生成
     function code_url(id,url) {
@@ -429,13 +415,23 @@
         $.ajax({
             url:"{php echo app_url('member/index/upload_refresh')}",
             type:"post",
-            data:{
-                companyname:$(".detail_zj input").val()
-            },
             async:true,
             success:function(data){
                 var data = JSON.parse(data);
                 if(data.status==1){
+                    var html =
+                        "<div class=\"person_worksbtn\">\n" +
+                        "                                   <img src="+data.content+">\n" +
+                        "                                   <span class=\"person_worksdelbtn\">\n" +
+                        "                                        <svg class=\"icon\" aria-hidden=\"true\">\n" +
+                        "                                            <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#icon-shanchu\"></use>\n" +
+                        "                                        </svg>\n" +
+                        "                                    </span>\n" +
+                        "                               </div>";
+
+
+                    $(".person_worksbtn1").before(html);
+                    $("#person_worksinput").val($("#person_worksinput").val()+","+data.content);
                     $("#modalbox").css("display","none");
                     timer1="";
                 }else{
@@ -443,6 +439,12 @@
                         upload_refresh()
                     },4000);
                 }
+                if($(".person_worksbox img").length>=6){
+                    $(".person_worksbtn1").hide();
+                }else{
+                    $(".person_worksbtn1").show();
+                }
+
             }
         })
     }
@@ -452,6 +454,10 @@
     $("#person_worksaddbtn").on("click",function(){
         $(".erweima").attr("id","atlas").children().remove();
         code_url("#atlas","/code.php?identity="+identity+"&kind=atlas");
+        window.clearTimeout(timer1);
+        timer1=setTimeout(function(){
+            upload_refresh()
+        },4000);
     })
 //    上传logo
     $(".company_logo_upload span").on("click",function(){
@@ -612,6 +618,7 @@ $(".modalbtn").on("click",function(){
 
 
                 $(".person_worksbtn1").before(html);
+                window.clearTimeout(timer1);
                 $("#person_worksinput").val($("#person_worksinput").val()+","+data.content);
 //                       $(".img_tx img").eq(0).attr("src",data.others);
             }
