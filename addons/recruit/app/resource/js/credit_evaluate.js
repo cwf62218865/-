@@ -59,7 +59,8 @@ $("body").on("click",".jubaopl,.jubaoms",function () {
     $("#jubaobox .options").html("");
     $(".detailcon").val("");
     $(".ico_niming .checkbox").html("");
-
+    var data_id = $(this).parent().attr("data-id");
+    $("#jubaobox").attr("data-id",data_id);
 })
 
 //举报评论
@@ -99,8 +100,6 @@ $("body").on("click",".jubaopinglun",function () {
         niming=0;
     }
 
-    console.log(select+"。。。。。"+detailcon+"。。。。。。"+niming);
-
 
     $.ajax({
         url:"",
@@ -125,6 +124,7 @@ $("body").on("click",".jubaopinglun",function () {
 $("body").on("click",".jubaogs",function () {
     var select=$(".jubaoreason").val();
     var detailcon=$(".detailcon").val();
+
     var niming;//1为匿名，0为不匿名
     var ico=$(this).closest("#jubaobox").find(".ico_niming .checkbox");
     if(ico.html()){
@@ -132,22 +132,26 @@ $("body").on("click",".jubaogs",function () {
     }else{
         niming=0;
     }
-    console.log(select+"。。。。。"+detailcon+"。。。。。。"+niming);
 
-
+    var data = {
+        company_scale:select,
+        report_content:detailcon,
+        niming:niming,
+        company_uid:$(this).parent().parent().parent().attr("data-id")
+    };
     $.ajax({
-        url:"",
+        url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=tip_off",
         type:"post",
         data:{
-            select:select,
-            detailcon:detailcon,
-            niming:niming
+            data:data
         },
         success:function (data) {
+            var data = JSON.parse(data);
             if(data.status==1){
-                window.location.href="";
+                hint("success","提交成功");
+                $(".modalbox").hide();
             }else{
-                console.log(data.content);
+                hint("error",data.content);
             }
         }
     })
@@ -174,34 +178,38 @@ $("body").on("click",".pjtjbtn",function () {
     var biaoqian=[];
     var detail=_this.find(".plarea").val();
     var pingjia=_this.find(".pjxingxing").attr("value");//好评0，中评1，差评2
-    var niming=0;
+    var niming;
     var biaoqianlist=_this.find(".biaoqianxuanze .one_se");
     for(var i=0;i<biaoqianlist.length;i++){
         biaoqian.push(biaoqianlist.eq(i).text());
     }
-    var ico=_this.find(".ico_niming  .checkbox");
-    if(ico.html()){
+    var ico=_this.find(".ico_niming .checkbox");
+    if(ico.html()!=""){
         niming=1;
     }else{
         niming=0;
     }
     console.log(num1+"<br>"+num2+"<br>"+num3+"<br>"+biaoqian[0]+"<br>"+biaoqian[1]+"<br>"+biaoqian[2]+"<br>"+detail+"<br>"+pingjia+"<br>"+niming)
-
+    var _this = $(this);
     $.ajax({
-        url:"",
+        url:"/app/index.php?c=site&a=entry&m=recruit&do=person&ac=index&op=save_evaluate",
         type:"post",
         data:{
             pingfen:pingfen,
             biaoqian:biaoqian,
             detail:detail,
             pingjia:pingjia,
-            niming:niming
+            niming:niming,
+            apply_id:$(this).parent().parent().parent().attr("data-id")
         },
         success:function (data) {
+            var data = JSON.parse(data);
             if(data.status==1){
-                window.location.href="";
+                // window.location.href="";
+                hint("success",data.content);
+                _this.parent().parent().parent().hide();
             }else{
-                console.log(data.content);
+                hint("error",data.content);
             }
         }
     })

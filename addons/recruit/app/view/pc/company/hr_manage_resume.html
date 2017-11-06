@@ -246,17 +246,15 @@
             <!--职位搜索end---------------------------------------------------->
             <!--面试评价start---------------------------------------------------------------------------->
             <div class="pingjia_content sign_content" style="display: none;">
-                <div class="list_item">
+                {loop $comment_jobs $list}
+                <div class="list_item" data-id="{$list['id']}">
                     <div class="item_con">
                         <div class="pj_hang1">
-                            <span class="job_name">Java工程师</span>
-                            <span class="name_resume">张三/匿名</span>
+                            <span class="job_name">{$list['jobs_name']}</span>
+                            <span class="name_resume">{$list['fullname']}/匿名</span>
                         </div>
                         <div class="pj_content">
-                            <div class="content">公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开
-                                始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有两分境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开
-                                始面谈，HR谈吐得当，问题很有深度HR谈境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开
-                                始面谈，HR谈吐得当，问题很有深度HR谈</div>
+                            <div class="content">{$list['content']}</div>
                             <span class="icon_all cur">
                                 <span class="ico_biaozhu">显示全部</span>
                                 <svg class="icon" aria-hidden="true">
@@ -272,7 +270,7 @@
                             <div class="one_pj">
                                 <div class="checkbox" style="display: inline-block;float: left">
                                     <label class="">
-                                        <input type="checkbox" name="like" value="1">
+                                        <input type="checkbox" name="like" value="0">
                                         <div class="checkboxbox">
                                             <svg class="icon iconfont color1aa ico_right">
                                                 <use xlink:href="#icon-zhengque1"></use>
@@ -288,84 +286,9 @@
                             <div class="one_pj">
                                 <div class="checkbox" style="display: inline-block;float: left">
                                     <label class="">
-                                        <input type="checkbox" name="like" value="2">
-                                        <div class="checkboxbox">
-                                            <svg class="icon iconfont color1aa ico_right">
-                                                <use xlink:href=""></use>
-                                            </svg>
-                                        </div>
-                                    </label>
-                                </div>
-                                <svg class="icon flover_ico gree_i">
-                                    <use xlink:href="#icon-zhongping"></use>
-                                </svg>
-                                <label>中评</label>
-                            </div>
-                            <div class="one_pj">
-                                <div class="checkbox" style="display: inline-block;float: left">
-                                    <label class="">
-                                        <input type="checkbox" name="like" value="3">
-                                        <div class="checkboxbox">
-                                            <svg class="icon iconfont color1aa ico_right">
-                                                <use xlink:href=""></use>
-                                            </svg>
-                                        </div>
-                                    </label>
-                                </div>
-                                <svg class="icon flover_ico grey_i">
-                                    <use xlink:href="#icon-zhongping"></use>
-                                </svg>
-                                <label>差评</label>
-                            </div>
-                        </div>
-                        <div class="pjbtn cur mspjbtn">回复评价</div>
-                    </div>
-                </div>
-                <div class="list_item">
-                    <div class="item_con">
-                        <div class="pj_hang1">
-                            <span class="job_name">Java工程师</span>
-                            <span class="name_resume">张三/匿名</span>
-                        </div>
-                        <div class="pj_content">
-                            <div class="content">公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开
-                                始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有两分境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开
-                                始面谈，HR谈吐得当，问题很有深度HR谈境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开
-                                始面谈，HR谈吐得当，问题很有深度HR谈</div>
-                            <span class="icon_all cur">
-                                <span style="float: left;">显示全部</span>
-                                <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-xiajiantou"></use>
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="huifupinglun">
-                            请输入回复评论内容
-                            <textarea class="shurupl"></textarea>
-                        </div>
-                        <div class="pjxingxing">
-                            <div class="one_pj">
-                                <div class="checkbox" style="display: inline-block;float: left">
-                                    <label class="">
                                         <input type="checkbox" name="like" value="1">
                                         <div class="checkboxbox">
                                             <svg class="icon iconfont color1aa ico_right">
-                                                <use xlink:href="#icon-zhengque1"></use>
-                                            </svg>
-                                        </div>
-                                    </label>
-                                </div>
-                                <svg class="icon flover_ico red_i">
-                                    <use xlink:href="#icon-haoping"></use>
-                                </svg>
-                                <label>好评</label>
-                            </div>
-                            <div class="one_pj">
-                                <div class="checkbox" style="display: inline-block;float: left">
-                                    <label class="">
-                                        <input type="checkbox" name="like" value="2">
-                                        <div class="checkboxbox">
-                                            <svg class="icon iconfont color1aa ico_right">
                                                 <use xlink:href=""></use>
                                             </svg>
                                         </div>
@@ -379,65 +302,6 @@
                             <div class="one_pj">
                                 <div class="checkbox" style="display: inline-block;float: left">
                                     <label class="">
-                                        <input type="checkbox" name="like" value="3">
-                                        <div class="checkboxbox">
-                                            <svg class="icon iconfont color1aa ico_right">
-                                                <use xlink:href=""></use>
-                                            </svg>
-                                        </div>
-                                    </label>
-                                </div>
-                                <svg class="icon flover_ico grey_i">
-                                    <use xlink:href="#icon-zhongping"></use>
-                                </svg>
-                                <label>差评</label>
-                            </div>
-                        </div>
-                        <div class="pjbtn cur mspjbtn">回复评价</div>
-                    </div>
-                </div>
-                <div class="list_item">
-                    <div class="item_con">
-                        <div class="pj_hang1">
-                            <span class="job_name">Java工程师</span>
-                            <span class="name_resume">张三/匿名</span>
-                        </div>
-                        <div class="pj_content">
-                            <div class="content">公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开
-                                始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有两分境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开
-                                始面谈，HR谈吐得当，问题很有深度HR谈境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开
-                                始面谈，HR谈吐得当，问题很有深度HR谈</div>
-                            <span class="icon_all cur">
-                                <span style="float: left;">显示全部</span>
-                                <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-xiajiantou"></use>
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="huifupinglun">
-                            请输入回复评论内容
-                            <textarea class="shurupl"></textarea>
-                        </div>
-                        <div class="pjxingxing">
-                            <div class="one_pj">
-                                <div class="checkbox" style="display: inline-block;float: left">
-                                    <label class="">
-                                        <input type="checkbox" name="like" value="1">
-                                        <div class="checkboxbox">
-                                            <svg class="icon iconfont color1aa ico_right">
-                                                <use xlink:href="#icon-zhengque1"></use>
-                                            </svg>
-                                        </div>
-                                    </label>
-                                </div>
-                                <svg class="icon flover_ico red_i">
-                                    <use xlink:href="#icon-haoping"></use>
-                                </svg>
-                                <label>好评</label>
-                            </div>
-                            <div class="one_pj">
-                                <div class="checkbox" style="display: inline-block;float: left">
-                                    <label class="">
                                         <input type="checkbox" name="like" value="2">
                                         <div class="checkboxbox">
                                             <svg class="icon iconfont color1aa ico_right">
@@ -446,106 +310,16 @@
                                         </div>
                                     </label>
                                 </div>
-                                <svg class="icon flover_ico gree_i">
-                                    <use xlink:href="#icon-zhongping"></use>
-                                </svg>
-                                <label>中评</label>
-                            </div>
-                            <div class="one_pj">
-                                <div class="checkbox" style="display: inline-block;float: left">
-                                    <label class="">
-                                        <input type="checkbox" name="like" value="3">
-                                        <div class="checkboxbox">
-                                            <svg class="icon iconfont color1aa ico_right">
-                                                <use xlink:href=""></use>
-                                            </svg>
-                                        </div>
-                                    </label>
-                                </div>
                                 <svg class="icon flover_ico grey_i">
                                     <use xlink:href="#icon-zhongping"></use>
                                 </svg>
                                 <label>差评</label>
                             </div>
                         </div>
-                        <div class="pjbtn cur mspjbtn">回复评价</div>
+                        <div class="pjbtn cur mspjbtn" data-id="{$list['id']}">回复评价</div>
                     </div>
                 </div>
-                <div class="list_item">
-                    <div class="item_con">
-                        <div class="pj_hang1">
-                            <span class="job_name">Java工程师</span>
-                            <span class="name_resume">张三/匿名</span>
-                        </div>
-                        <div class="pj_content">
-                            <div class="content">公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开
-                                始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有两分境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开
-                                始面谈，HR谈吐得当，问题很有深度HR谈境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开
-                                始面谈，HR谈吐得当，问题很有深度HR谈</div>
-                            <span class="icon_all cur">
-                                <span style="float: left;">显示全部</span>
-                                <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-xiajiantou"></use>
-                                </svg>
-                            </span>
-                        </div>
-                        <div class="huifupinglun">
-                            请输入回复评论内容
-                            <textarea class="shurupl"></textarea>
-                        </div>
-                        <div class="pjxingxing">
-                            <div class="one_pj">
-                                <div class="checkbox" style="display: inline-block;float: left">
-                                    <label class="">
-                                        <input type="checkbox" name="like" value="1">
-                                        <div class="checkboxbox">
-                                            <svg class="icon iconfont color1aa ico_right">
-                                                <use xlink:href="#icon-zhengque1"></use>
-                                            </svg>
-                                        </div>
-                                    </label>
-                                </div>
-                                <svg class="icon flover_ico red_i">
-                                    <use xlink:href="#icon-haoping"></use>
-                                </svg>
-                                <label>好评</label>
-                            </div>
-                            <div class="one_pj">
-                                <div class="checkbox" style="display: inline-block;float: left">
-                                    <label class="">
-                                        <input type="checkbox" name="like" value="2">
-                                        <div class="checkboxbox">
-                                            <svg class="icon iconfont color1aa ico_right">
-                                                <use xlink:href=""></use>
-                                            </svg>
-                                        </div>
-                                    </label>
-                                </div>
-                                <svg class="icon flover_ico gree_i">
-                                    <use xlink:href="#icon-zhongping"></use>
-                                </svg>
-                                <label>中评</label>
-                            </div>
-                            <div class="one_pj">
-                                <div class="checkbox" style="display: inline-block;float: left">
-                                    <label class="">
-                                        <input type="checkbox" name="like" value="3">
-                                        <div class="checkboxbox">
-                                            <svg class="icon iconfont color1aa ico_right">
-                                                <use xlink:href=""></use>
-                                            </svg>
-                                        </div>
-                                    </label>
-                                </div>
-                                <svg class="icon flover_ico grey_i">
-                                    <use xlink:href="#icon-zhongping"></use>
-                                </svg>
-                                <label>差评</label>
-                            </div>
-                        </div>
-                        <div class="pjbtn cur mspjbtn">回复评价</div>
-                    </div>
-                </div>
+                {/loop}
                 <div class="morejob">更多简历信息>></div>
             </div>
             <!--面试评价end---------------------------------------------------->

@@ -301,10 +301,46 @@ elseif ($op=="collection_jobs_list"){
     include wl_template("person/person_collection");exit();
 }
 
-
+//面试评价
+elseif ($op=="credit_evaluate"){
+    $agree_jobs = m("resume")->jobs_apply($_SESSION['uid'],-1,3);
+    include wl_template("person/credit_evaluate");exit();
+}
 //简历管理
 elseif ($op=="resume_center"){
     include wl_template("person/person_collection");exit();
+}
+//待评价保存
+elseif ($op=="save_evaluate"){
+
+    $pingfen = $_POST['pingfen'];
+    $data['evaluate_information'] = intval($pingfen[0]);
+    $data['evaluate_environment'] = intval($pingfen[1]);
+    $data['evaluate_interviewer'] = intval($pingfen[2]);
+    $data['tag'] = implode(",",$_POST['biaoqian']);
+    $data['content'] = check_pasre($_POST['detail'],"请输入面试经过");
+    $data['score'] = $_POST['pingjia'];
+    $data['hide'] = $_POST['niming'];
+    $apply_id=check_pasre($_POST['apply_id'],"参数错误");
+    $apply_jobs = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where id=".$apply_id);
+    $data['uid'] = $apply_jobs['uid'];
+    $data['puid'] = $apply_jobs['puid'];
+    $data['resume_id'] = $apply_jobs['resume_id'];
+    $data['jobs_id'] = $apply_jobs['jobs_id'];
+    $data['createtime'] = time();
+    $apply_jobs = pdo_fetch("select * from ".tablename(WL."comment")." where jobs_id=".$data['jobs_id']." and puid=".$data['puid']);
+    if($apply_jobs){
+        call_back(2,"您对该职位已评价,不要重复提交");
+    }else{
+        pdo_update(WL."jobs_apply",array("comment"=>1),array('id'=>$apply_id));
+        $r = insert_table($data,WL."comment");
+        if($r){
+            call_back(1,"提交成功");
+        }else{
+            call_back(2,"保存失败");
+        }
+    }
+
 }
 
 //投递简历

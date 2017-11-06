@@ -56,7 +56,7 @@ class resume{
 
     /*
      * 我投递过的职位
-     * status 0表示所有 1表示投递申请 2表示面试邀请
+     * status 0表示所有 1表示投递申请 2表示面试邀请 3表示同意面试
      */
     public function jobs_apply($uid,$page=1,$status=1){
         if($page==-1){
@@ -70,6 +70,8 @@ class resume{
             $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and puid=".$uid." order by createtime desc ".$limit);
         }elseif ($status==0){
             $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where puid=".$uid." order by createtime desc ".$limit);
+        }elseif ($status==3){
+            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where comment=0 and offer=1 and status=3 and puid=".$uid." order by createtime desc ".$limit);
         }
 
         $jobs = "";
@@ -77,6 +79,7 @@ class resume{
             $jobs[$key] = pdo_fetch("select * from ".tablename(WL.'jobs')." where id=".$list['jobs_id']);
             $jobs[$key]['status'] = $list['status'];
             $jobs[$key]['apply_id'] = $list['id'];
+            $jobs[$key]['company_uid'] = $list['uid'];
             $jobs[$key]['direction'] = $list['direction'];
             $jobs[$key]['createtime'] = $list['createtime'];
             $jobs[$key]['offer'] = $list['offer'];
@@ -90,6 +93,7 @@ class resume{
             $jobs[$key]['retoate_y'] = $company_profile['retoate_y'];
             $jobs[$key]['city'] = $company_profile['city'];
         }
+
         return $jobs;
     }
 

@@ -40,9 +40,8 @@ elseif($op=="jobs_detail"){
         $last_login_time = m("member")->last_login($jobs['uid']);
 
         $similar_jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$jobs['jobs_name']."%' and id<>".$jobs['id']);
-//        echo date()-date("Y-m-d",$last_login_time['last_login_time']);exit();
-//        echo "select id from ".tablename(WL."jobs_apply")." where jobs_id=".$_GPC['jobs_id']." and puid=".$_SESSION['uid'];exit();
-//        var_dump($jobs_apply);exit();
+        $data['jobs_id'] = $_GPC['jobs_id'];
+        $comment_jobs = m("jobs")->comment_apply($data);
         include wl_template("member/jobs_detail");exit();
     }
 
@@ -68,6 +67,10 @@ elseif($op=="company_detail"){
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where open=1 and uid=".$company['uid']);
         $jobs_num = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs")." where uid=".$company['uid']);
         $last_login_time = m("member")->last_login($company['uid']);
+        $data['company_uid'] = $_GPC['company_id'];
+        $comment_jobs = m("jobs")->comment_apply($data);
+        $company_count = m("jobs")->comment_count($_GPC['company_id']);
+
         include wl_template("member/company_pages");
         exit();
     }
@@ -572,6 +575,7 @@ elseif ($op=="show_map"){
 
 //举报职位
 elseif ($op=="tip_off"){
+
     $wheresql = "";
     if($_POST['data']['jobs_id']){
         $data['jobs_id'] = check_pasre($_POST['data']['jobs_id'],"参数错误");
@@ -581,6 +585,7 @@ elseif ($op=="tip_off"){
         $data['company_uid'] = check_pasre($_POST['data']['company_uid'],"参数错误");
         $wheresql = " company_uid=".$data['company_uid'];
     }
+    $data['hide'] = $_POST['data']['niming'];
     $data['company_scale'] = check_pasre($_POST['data']['company_scale'],"请填写举报原因");
     $data['report_content'] = check_pasre($_POST['data']['report_content'],"请填写详细描述");
     $report = pdo_fetch("select id from ".tablename(WL."report")." where ".$wheresql." and report_uid=".$_SESSION['uid']);
@@ -592,12 +597,12 @@ elseif ($op=="tip_off"){
         $data['report_uid'] = $_SESSION['uid'];
         $r = insert_table($data,WL."report");
         if($r){
-            call_back(1,"ok");
+            call_back(1,"举报成功");
         }else{
-            call_back(2,"no");
+            call_back(2,"举报失败");
         }
     }else{
-        call_back(2,"已存在");
+        call_back(2,"您已经举报过该职位");
     }
 
 }

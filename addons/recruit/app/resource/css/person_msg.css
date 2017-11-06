@@ -142,3 +142,36 @@
     height: 24px;
     line-height: 24px;
 }
+.new_msg{
+    display: inline-block;
+    margin: 20px 20px 0 20px;
+    line-height: 24px;
+    padding-bottom: 19px;
+    border-bottom: 1px dashed #eee;
+    color: #666;
+}
+.new_msg .icon{
+    color: #0099cc;
+    float: left;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+.new_msg span{
+    display: inline-block;
+    width: 250px;
+}
+.erweima_box{
+    text-align: center;
+    margin-top: 40px;
+}
+.about_company{
+    margin: 20px 30px;
+}
+.about_company_title{
+    color: #bbb;
+    margin-right: 40px;
+}
+.about_company_img{
+    margin: 10px 0 20px 0;
+    text-align: center;
+}

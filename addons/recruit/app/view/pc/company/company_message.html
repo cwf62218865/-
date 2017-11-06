@@ -749,12 +749,8 @@
         data.img = src;
         data.jid = $('#jid').val();
 
-        if($(".company_logo_upload img").length==0){
-            $(".company_logo_upload span").before("<img src="+src+">");
-        }else{
-            $(".company_logo_upload img").attr("src",src);
-        }
-        $(".company_logo_upload span").css("background-color","rgba(0,0,0,0.4)");
+
+
 
         $.ajax({
             url: "{php echo app_url('company/company_profile/hedimgurl_upload')}",
@@ -764,14 +760,16 @@
             type: "POST",
             dataType: 'json',
             success: function(data) {
-                console.log(data);
                 if(data.status == '1') {
-//                    if($(".company_logo_upload img").length==0){
-//                        $(".company_logo_upload span").before("<img src="+src+">");
-//                    }else{
-//                        $(".company_logo_upload img").attr("src",src);
-//                    }
-//                    $(".company_logo_upload span").css("background-color","rgba(0,0,0,0.4)");
+                    //成功的回调操作
+                    if($(".company_logo_upload img").length==0){
+                        $(".company_logo_upload span").before("<img src="+src+">");
+                    }else{
+                        $(".company_logo_upload img").attr("src",src);
+                    }
+                    $(".company_logo_upload span").css("background-color","rgba(0,0,0,0.4)");
+//                    $(".company_logo").val();
+                    $(".company_logo").val(data.content);
                 }
             }
         })
@@ -884,55 +882,6 @@
     $(".company_logo_upload span").on("click",function(){
         $("#company_logo").click();
     });
-//
-//    $("#company_logo").on("change",function(){
-//        var f=$(this).prop('files')[0];
-//        var reader = new FileReader();
-//        reader.onload = function (e) {
-//            var data = e.target.result;
-//            //加载图片获取图片真实宽度和高度
-//            var image = new Image();
-//            image.onload=function(){
-//                var width = image.width;
-//                var height = image.height;
-//                var size = f.size;
-//                if(width>200||height>200||size>2097152){
-//                    $("#company_logo").val("");
-//                    hint("error","Logo尺寸要求 200*200，图片大小在2M以内。");
-//                    setTimeout(function(){$(".promptbox").remove()},2000);
-//                }else{
-//                    var updatafile = new FormData();
-//                    updatafile.append('file', f);
-//                    $.ajax({
-//                        url:"{php echo app_url('company/company_profile/hedimgurl_upload')}",
-//                        type:"post",
-//                        processData: false,
-//                        cache: false,
-//                        contentType: false,
-//                        data:updatafile,
-//                        success:function(data1){
-//                            var data1=JSON.parse(data1);
-//                            if(data1.status==1){
-//                                if($(".company_logo_upload img").length==0){
-//                                    $(".company_logo_upload span").before("<img src="+data1.content+">");
-//                                }else{
-//                                    $(".company_logo_upload img").attr("src",data1.content);
-//                                }
-//                                $("#company_logo").next().val(data1.content)
-//                                $(".company_logo_upload span").css("background-color","rgba(0,0,0,0.4)");
-//                                $(".company_logo").val(data1.content);
-//                            }else{
-//                                hint("error",data.content);
-//                            }
-//                        }
-//                    })
-//                }
-//            };
-//            image.src= data;
-//        };
-//
-//        reader.readAsDataURL(f);
-//    })
 
 
 

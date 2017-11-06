@@ -97,10 +97,22 @@ elseif($op=="manage_resume"){
         $li['work_time'] =  date('Y')-date('Y',$work_time);
         $evaluate[] = $li;
     }
+    $data['uid'] = $_SESSION['uid'];
+    $comment_jobs = m("jobs")->comment_apply($data);
 
     include wl_template('company/hr_manage_resume');
 }
-
+elseif ($op=="comment_reply"){
+    $data['hr_reply'] = check_pasre($_POST['pl_content'],"请输入回复内容");
+    $data['hr_sore'] = $_POST['xingxing'];
+    $comment_id = check_pasre($_POST['data_id'],"参数错误");
+    $r = pdo_update(WL."comment",$data,array('id'=>$comment_id));
+    if($r){
+        call_back(1,"提交成功");
+    }else{
+        call_back(2,"提交失败");
+    }
+}
 //职位搜索
 elseif ($op=="job_name_search"){
     var_dump($_POST);exit();
