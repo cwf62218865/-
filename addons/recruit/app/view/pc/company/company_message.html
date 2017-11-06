@@ -749,14 +749,12 @@
         data.img = src;
         data.jid = $('#jid').val();
 
-        //成功的回调操作
         if($(".company_logo_upload img").length==0){
             $(".company_logo_upload span").before("<img src="+src+">");
         }else{
             $(".company_logo_upload img").attr("src",src);
         }
         $(".company_logo_upload span").css("background-color","rgba(0,0,0,0.4)");
-
 
         $.ajax({
             url: "{php echo app_url('company/company_profile/hedimgurl_upload')}",
@@ -768,7 +766,12 @@
             success: function(data) {
                 console.log(data);
                 if(data.status == '1') {
-
+//                    if($(".company_logo_upload img").length==0){
+//                        $(".company_logo_upload span").before("<img src="+src+">");
+//                    }else{
+//                        $(".company_logo_upload img").attr("src",src);
+//                    }
+//                    $(".company_logo_upload span").css("background-color","rgba(0,0,0,0.4)");
                 }
             }
         })
