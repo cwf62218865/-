@@ -412,7 +412,47 @@
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/company_msg.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/company_nomsg.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.qrcode.min.js" rel="script"></script>
 <script>
+    <!--手机扫描上传图片-->
+    var identity = "{$identity}";
+    //二维码生成
+    function code_url(id,url) {
+        $(id).qrcode({
+            width: 100, //宽度
+            height:100, //高度
+            text: url //任意内容
+        });
+    }
+
+    function upload_refresh() {
+        $.ajax({
+            url:"{php echo app_url('member/index/upload_refresh')}",
+            type:"post",
+            data:{
+                companyname:$(".detail_zj input").val()
+            },
+            async:true,
+            success:function(data){
+                var data = JSON.parse(data);
+                if(data.status==1){
+                    $("#modalbox").css("display","none");
+                    timer1="";
+                }else{
+                    timer1=setTimeout(function(){
+                        upload_refresh()
+                    },4000);
+                }
+            }
+        })
+    }
+
+
+
+    $("#person_worksaddbtn").on("click",function(){
+        $(".erweima").attr("id","atlas").children().remove();
+        code_url("#atlas","/code.php?identity="+identity+"&kind=atlas");
+    })
 //    上传logo
     $(".company_logo_upload span").on("click",function(){
         $("#company_logo").click();
@@ -471,8 +511,12 @@ $.fromdata("#company_nomsgbox","{php echo app_url('company/company_profile/save_
     var data = JSON.parse(data);
     if(data.status==1){
         location = location;
+    }else{
+        hint("error",data.content);
     }
 })
+
+
 
 
 

@@ -34,7 +34,7 @@ if(!$_SESSION['uid']){
         call_back(3,"请先登录账号");
     }
 }else{
-
+    $identity = encrypt($_SESSION['uid'], 'E');
 	if($_SESSION['utype']==2){
 		$company_statistics = company_statistics();
 		$company_integrity = company_integrity();

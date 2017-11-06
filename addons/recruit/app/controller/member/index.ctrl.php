@@ -433,61 +433,30 @@ elseif ($op=="img_upload"){
 elseif ($op=="upload_refresh"){
     $uid = $_SESSION['uid'];
     $temp = pdo_fetch("select * from ".tablename(WL.'members_temp')." where uid=".$uid);
+    if($temp){
+        pdo_delete(WL."members_temp",array("uid"=>$uid));
+        if($temp['license'] || $temp['idcard1'] || $temp['idcard2']){
+            if($temp['license']){
+                $data['license'] = $temp['license'];
+                call_back(1,$data['license'],1);
+            }
+            if($temp['idcard1']) {
+                $data['idcard1'] = $temp['idcard1'];
+                call_back(1,$data['idcard1'],2);
+            }
+            if($temp['idcard2']) {
+                $data['idcard2'] = $temp['idcard2'];
+                call_back(1,$data['idcard2'],3);
+            }
 
-    if($temp['license'] || $temp['idcard1'] || $temp['idcard2']){
-        if($temp['license']){
-            $data['license'] = $temp['license'];
-            pdo_delete(WL."members_temp",array("uid"=>$uid));
-            call_back(1,$data['license'],1);
         }
-        if($temp['idcard1']) {
-            $data['idcard1'] = $temp['idcard1'];
-            pdo_delete(WL."members_temp",array("uid"=>$uid));
-            call_back(1,$data['idcard1'],2);
+
+
+        if($temp['atlas']){
+            $data['atlas'] = $temp['atlas'];
+            call_back(1,$data['atlas']);
         }
-        if($temp['idcard2']) {
-            $data['idcard2'] = $temp['idcard2'];
-//            echo $data['idcard2'];exit();
-            pdo_delete(WL."members_temp",array("uid"=>$uid));
-            call_back(1,$data['idcard2'],3);
-        }
-//        $company_profile = pdo_fetch("select * from ".tablename(WL.'company_profile')." where uid=".$uid);
-//        if($company_profile){
-//            $r = pdo_update(WL."company_profile",$data,array('uid'=>$uid));
-//        }else{
-//            $data['uid'] = $uid;
-//            $data['createtime']=time();
-//            $r = pdo_insert(WL."company_profile",$data);
-//        }
     }
-
-//    if($temp['headimgurl']){
-//
-//        $data['headimgurl'] = $temp['headimgurl'];
-//        $resume = pdo_fetch("select * from ".tablename(WL.'resume')." where uid=".$uid);
-//        if($resume){
-//
-//            $data['updatetime'] = time();
-//            $r = pdo_update(WL."resume",$data,array('uid'=>$uid));
-//        }else{
-//            $data['uid'] = $uid;
-//            $data['addtime']=time();
-//            $r = pdo_insert(WL."resume",$data);
-//        }
-//    }
-//
-//    if($temp['person_works']){
-//        $data['person_works'] = $temp['person_works'];
-//        $data['updatetime'] = time();
-//        $r = pdo_update(WL."resume",$data,array('uid'=>$uid));
-//    }
-
-//    if($r){
-//        pdo_delete(WL."members_temp",array("uid"=>$uid));
-//        call_back(1,"上传成功");
-//    }else{
-//        call_back(2,"暂无数据");
-//    }
     call_back(2,"暂无数据");
     exit();
 }
