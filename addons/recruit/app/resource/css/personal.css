@@ -724,6 +724,9 @@
     overflow: hidden;float: left;
     cursor: pointer;
 }
+.touxiang_pic img{
+    width: 100px;height: 100px;
+}
 .basic_massage{
     float: left;
     margin-left: 24px;

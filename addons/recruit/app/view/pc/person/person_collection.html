@@ -26,6 +26,7 @@
             </div>
             <!--收藏职位-------------------------------->
             <div class="list_content">
+                {if $collect_jobs}
                 {loop $collect_jobs $list}
                 <div class="list_item">
                     <div class="item_con">
@@ -69,6 +70,9 @@
                     </div>
                 </div>
                 {/loop}
+                {else}
+                <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有收藏的职位</div><div class="color999" style="margin-top: 30px">请前往职位列表浏览更多职位信息</div></div></div>
+                {/if}
             </div>
             <!--收藏职位end-------------------------------->
             <!--订阅职位-------------------------------->
@@ -209,6 +213,8 @@
                     <span class="grey">以下是您订阅的职位</span>
                     <span class="color_main cur" id="edit_dyq">修改订阅条件>></span>
                 </div>
+
+                    {if $order_jobs_list}
                 {loop $order_jobs_list $list}
                 <div class="list_item">
                     <div class="item_con">
@@ -256,6 +262,9 @@
                     </div>
                 </div>
                 {/loop}
+                    {else}
+                    <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有符合订阅条件的职位</div><div class="color999" style="margin-top: 30px">请重新修改订阅条件</div></div></div>
+                    {/if}
 
                     {if count($order_jobs_list)>6}
                         <span class="find_morejob">发现更多好职位>></span>
