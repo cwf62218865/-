@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/person_msg.css" rel="stylesheet">
+    <title>消息提醒-企业</title>
+</head>
+<body>
+{if $_SESSION['uid']}
+{php include wl_template('common/top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
+<div class="width1200 p1content">
+
+    <div class="p1_left" style="margin-top: 10px">
+        <div class="con_list">
+
+
+            <div class="person_msg_titles">
+                <span class="person_msg_title_check">全部消息</span>
+                <span data-id="邀请反馈">邀请反馈</span>
+                <span data-id="申请通知">申请通知</span>
+                <span>系统通知</span>
+            </div>
+
+
+
+
+            <div id="all_msg">
+                <!--系统通知-->
+                <div class="system_msg">
+                    <div class="system_msgbox">
+                        <div class="system_msg_title">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-xitongtongzhi"></use>
+                            </svg>
+                            <span class="color999">系统通知</span>
+                            <span class="colorbbb">2017-09-31 15:45</span>
+                        </div>
+
+                        <div class="system_msg_content">
+                            还在打王者荣耀？应届僧邀请你共赴2017腾讯全球合作伙伴大会，作为腾讯公司规模最大的年度行业省会，腾讯旗下20多个业务线将集体在大会上亮相
+                        </div>
+
+                        <div class="system_msg_img">
+                            <img src="{WL_URL_ARES}images/index_big_banner.png">
+                        </div>
+                        <a href="#" class="see_system_msg">查看详情>></a>
+                    </div>
+                </div>
+                <!--一天的消息-->
+                {loop $new_arr $list}
+                <div class="one_day_msg">
+                    <div class="day_time">
+                        <i></i>
+                        <span>{$list['time']}</span>
+                    </div>
+
+
+                    <!--投递申请-->
+                    {loop $list['content'] $li}
+                    {if $li['direction']==2}
+                    <div class="day_msgbox">
+                        <div class="system_msg_title">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-qiuzhiyixiang"></use>
+                            </svg>
+                            <span class="color999">邀请反馈</span>
+                            <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
+                        </div>
+
+                        <div class="delivery_left">
+                        <span class="delivery_logo">
+                            <img src="{$li['headimgurl']}">
+                        </span>
+                            <span>{$li['jobs_name']}</span>
+                            <span style="margin-left: 20px">{$li['companyname']}</span><br>
+                            <span style="display: inline-block;margin-top: 22px">
+                                最新状态：
+                                {if $li['status']==-1}
+                                    不合适
+                                {elseif $li['status']==0}
+                                    未查看
+                                {elseif $li['status']==1}
+                                    已查看
+                                {elseif $li['status']==3}
+                                    邀请面试
+                                {/if}
+                            </span>
+                        </div>
+
+                        <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
+                    </div>
+                    {/if}
+                    {/loop}
+                    <!--面试邀请-->
+                    {loop $list['content'] $li}
+                    {if $li['status']==3}
+                    <div class="day_msgbox">
+                        <div class="system_msg_title">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-gongzuojingli"></use>
+                            </svg>
+                            <span class="color999">申请通知</span>
+                            <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
+                        </div>
+
+                        <div class="delivery_left">
+                        <span class="delivery_logo">
+                            <img src="{$li['headimgurl']}">
+                        </span>
+                            <span>{$li['jobs_name']}</span><br>
+                            <span style="display: inline-block;margin-top: 22px">{$li['companyname']}</span>
+                        </div>
+
+                        <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
+                    </div>
+                    {/if}
+                    {/loop}
+
+                </div>
+                {/loop}
+            </div>
+
+
+            <div id="one_msg">
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="p1_right"  style="margin-top: 20px">
+        <div class="part_one">
+            <div class="title-top">
+                <label class="top_con">最新动态</label>
+            </div>
+            <a href="#" class="new_msg">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-solidArrow-right"></use>
+                </svg>
+                <span>应届僧首届HR网络招聘会正式启动</span>
+            </a>
+            <a href="#" class="new_msg">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-solidArrow-right"></use>
+                </svg>
+                <span>福利 | 明星雇主VIP卡限量8折购 福利 明星雇主VIP卡限量8折购</span>
+
+            </a>
+            <a href="#" class="new_msg">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-solidArrow-right"></use>
+                </svg>
+                <span>福利 | 明星雇主VIP卡限量8折购 福利 明星雇主VIP卡限量8折购</span>
+            </a>
+
+            <div class="erweima_box">
+                <img src="{WL_URL_ARES}images/erweima.png">
+                <div class="color999" style="margin: 20px 0 30px 0">
+                    扫描二维码，第一时间接收招聘通知
+                </div>
+            </div>
+
+        </div>
+
+        <div class="part_one">
+            <div class="title-top">
+                <label class="top_con">联系我们</label>
+            </div>
+            <div class="about_company" style="margin-top: 30px">
+                <span class="about_company_title">电话</span>
+                <span class="color666">400 - 3822 - 111</span>
+            </div>
+            <div class="about_company">
+                <span class="about_company_title">邮箱</span>
+                <span class="color666">kf@yingjieseng.com</span>
+            </div>
+            <div class="about_company_img">
+                <img src="{WL_URL_ARES}images/ads1.png">
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/person_msg.js" rel="script"></script>
+
+<script>
+    $(".person_msg_titles span").on("click",function(){
+        var _this=$(this);
+        var dataid=_this.attr("data-id");
+        $(".person_msg_titles span").removeClass("person_msg_title_check");
+        _this.addClass("person_msg_title_check");
+
+        if(dataid){
+            $.ajax({
+                url:"{php echo app_url('person/index/msg_deal')}",
+                type:"post",
+                data:{
+                    msg:dataid
+                },
+                success:function(data){
+                    var data=JSON.parse(data);
+                    if(data.status==1){
+                        $("#all_msg").hide();
+                        $("#one_msg").show();
+                        $("#one_msg").html(data.content);
+                    }
+                }
+
+            })
+        }else if(_this.html()=="全部消息"){
+            $("#all_msg").show();
+            $(".one_day_msg").show();
+            $("#one_msg").hide();
+        }else if(_this.html()=="系统通知"){
+            $("#all_msg").show();
+            $(".one_day_msg").hide();
+            $("#one_msg").hide();
+        }
+    })
+</script>
+</html>
