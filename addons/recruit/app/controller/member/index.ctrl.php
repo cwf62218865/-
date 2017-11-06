@@ -67,6 +67,10 @@ elseif($op=="company_detail"){
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where open=1 and uid=".$company['uid']);
         $jobs_num = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs")." where uid=".$company['uid']);
         $last_login_time = m("member")->last_login($company['uid']);
+        $data['company_uid'] = $_GPC['company_id'];
+        $comment_jobs = m("jobs")->comment_apply($data);
+        $company_count = m("jobs")->comment_count($_GPC['company_id']);
+
         include wl_template("member/company_pages");
         exit();
     }

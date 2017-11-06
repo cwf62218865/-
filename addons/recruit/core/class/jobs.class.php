@@ -196,16 +196,155 @@ class jobs{
         if($data['jobs_id']){
             $wheresql .= " and jobs_id=".$data['jobs_id'];
         }
+
+        if($data['company_uid']){
+            $wheresql .= " and uid=".$data['company_uid'];
+        }
         $comment_jobs = pdo_fetchall("select * from ".tablename(WL."comment").$wheresql);
         $comment = "";
         foreach ($comment_jobs as $list){
             $jobs = pdo_fetch("select jobs_name from ".tablename(WL."jobs")." where id=".$list['jobs_id']);
-            $resume = pdo_fetch("select fullname from ".tablename(WL."resume")." where uid=".$list['puid']);
+            $company = pdo_fetch("select headimgurl from ".tablename(WL."company_profile")." where uid=".$list['uid']);
+            $resume = pdo_fetch("select fullname,headimgurl from ".tablename(WL."resume")." where uid=".$list['puid']);
             $list['jobs_name'] = $jobs['jobs_name'];
-            $list['fullname'] = $resume['fullname'];
+            $list['headimgurl'] = $resume['headimgurl'];
+            $list['logo'] = $company['headimgurl'];
+            if($list['hide']){
+                $list['fullname'] = "匿名";
+            }else{
+                $list['fullname'] = $resume['fullname'];
+            }
+            $list['information_star'] = "";
+            for($i=0;$i<$list['evaluate_information'];$i++){
+                $list['information_star'] .=
+                    "<svg class=\"icon colorffc549\" >
+                        <use xlink:href=\"#icon-pingfen\"></use>
+                    </svg>";
+            }
+
+            for($i=0;$i<(5-$list['evaluate_information']);$i++){
+                $list['information_star'] .=
+                    "<svg class=\"icon colorffc549\" >
+                        <use xlink:href=\"#icon-pingfenbanfen\"></use>
+                    </svg>";
+            }
+
+            $list['environment_star'] = "";
+            for($i=0;$i<$list['evaluate_environment'];$i++){
+                $list['environment_star'] .=
+                    "<svg class=\"icon colorffc549\" >
+                        <use xlink:href=\"#icon-pingfen\"></use>
+                    </svg>";
+            }
+
+            for($i=0;$i<(5-$list['evaluate_environment']);$i++){
+                $list['environment_star'] .=
+                    "<svg class=\"icon colorffc549\" >
+                        <use xlink:href=\"#icon-pingfenbanfen\"></use>
+                    </svg>";
+            }
+
+            $list['interviewer_star'] = "";
+            for($i=0;$i<$list['evaluate_interviewer'];$i++){
+                $list['interviewer_star'] .=
+                    "<svg class=\"icon colorffc549\" >
+                        <use xlink:href=\"#icon-pingfen\"></use>
+                    </svg>";
+            }
+
+            for($i=0;$i<(5-$list['evaluate_interviewer']);$i++){
+                $list['interviewer_star'] .=
+                    "<svg class=\"icon colorffc549\" >
+                        <use xlink:href=\"#icon-pingfenbanfen\"></use>
+                    </svg>";
+            }
+            $count_score = ceil(($list['evaluate_interviewer']+$list['evaluate_environment']+$list['evaluate_information'])/3);
+            $list['count_score'] = "";
+            for($i=0;$i<$count_score;$i++){
+                $list['count_score'] .=
+                    " <svg class=\"icon star\" aria-hidden=\"true\">
+                                <use  xlink:href=\"#icon-pingfen\"></use>
+                                </svg>";
+            }
+
+            for($i=0;$i<(5-$count_score);$i++){
+                $list['count_score'] .=
+                    " <svg class=\"icon star\" aria-hidden=\"true\">
+                                <use  xlink:href=\"#icon-pingfenbanfen\"></use>
+                                </svg>";
+            }
+            $list['score'] = $count_score;
             $comment[] = $list;
         }
         return $comment;
+    }
+
+
+    /*
+     * 面试评价总体评分计算
+     */
+    public function comment_count($company_uid){
+        $comment_jobs = pdo_fetchall("select * from ".tablename(WL."comment")." where uid=".$company_uid);
+        $count = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."comment")." where uid=".$company_uid);
+        $data['comment_count'] = $count;
+        $information_count = "";
+        $environment_count = "";
+        $interviewer_count = "";
+        foreach ($comment_jobs as $list){
+            $information_count +=$list['evaluate_information'];
+            $environment_count +=$list['evaluate_environment'];
+            $interviewer_count +=$list['evaluate_interviewer'];
+        }
+        $data['information_count'] = ceil($information_count/$count);
+        $data['environment_count'] = ceil($environment_count/$count);
+        $data['interviewer_count'] = ceil($interviewer_count/$count);
+        $data['count'] = ceil(($data['information_count']+$data['environment_count']+$data['interviewer_count'])/3);
+        $data['information_star'] = "";
+        for($i=0;$i<$data['information_count'];$i++){
+            $data['information_star'] .=
+                "<svg class=\"icon star\" aria-hidden=\"true\">
+                                <use  xlink:href=\"#icon-pingfen\"></use>
+                                </svg>";
+        }
+
+        for($i=0;$i<(5-$data['information_count']);$i++){
+            $data['information_star'] .=
+                " <svg class=\"icon star\" aria-hidden=\"true\">
+                    <use  xlink:href=\"#icon-pingfenbanfen\"></use>
+                    </svg>";
+        }
+
+        $data['environment_star'] = "";
+        for($i=0;$i<$data['environment_count'];$i++){
+            $data['environment_star'] .=
+                "<svg class=\"icon star\" aria-hidden=\"true\">
+                                <use  xlink:href=\"#icon-pingfen\"></use>
+                                </svg>";
+        }
+
+        for($i=0;$i<(5-$data['environment_count']);$i++){
+            $data['environment_star'] .=
+                " <svg class=\"icon star\" aria-hidden=\"true\">
+                    <use  xlink:href=\"#icon-pingfenbanfen\"></use>
+                    </svg>";
+        }
+
+        $data['interviewer_star'] = "";
+        for($i=0;$i<$data['interviewer_count'];$i++){
+            $data['interviewer_star'] .=
+                "<svg class=\"icon star\" aria-hidden=\"true\">
+                                <use  xlink:href=\"#icon-pingfen\"></use>
+                                </svg>";
+        }
+
+        for($i=0;$i<(5-$data['interviewer_count']);$i++){
+            $data['interviewer_star'] .=
+                " <svg class=\"icon star\" aria-hidden=\"true\">
+                    <use  xlink:href=\"#icon-pingfenbanfen\"></use>
+                    </svg>";
+        }
+
+        return $data;
     }
 }
 
