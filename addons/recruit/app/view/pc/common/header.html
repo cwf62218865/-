@@ -48,5 +48,60 @@
     </div>
 </div>
 
+<div class="modalbox"  id="small_modalbox" style="display: none">
+    <div class="small_login_msg">
+        <span class="smallmodalclose">
+            <img src="{WL_URL_ARES}images/close.png"/>
+        </span>
+        <div style="width: 360px;margin: 0 auto">
+
+            <div class="small_title">账户登录</div>
+
+            <label class="general-input wrap" >
+                <input type="text" id="small_user_name" placeholder="请输入您的手机号码/用户名">
+            </label>
+
+            <label class="general-input wrap" style="margin-top: 20px">
+                <input type="password" id="small_password" placeholder="请输入密码">
+            </label>
+
+            <div class="wrap small_forget">
+                <a href="{php echo app_url('member/index/forget_password')}">忘记密码？</a>
+            </div>
+            <span class="public_bigbtn bg1aa small_login_btn" id="login">登录</span>
+        </div>
+        <div class="small_foot_btns">
+            <div class="small_foot_icons">
+                <a class="icons"  href="http://localhost/addons/recruit/core/common/Connect2.1/example/oauth/index.php" target="_blank">
+                    <svg class="icon" aria-hidden="true" style="color: #ffffff">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                </a>
+                <a href="" class="icons">
+                    <svg class="icon" aria-hidden="true" style="color: #ffffff">
+                        <use xlink:href="#icon-weixin"></use>
+                    </svg>
+                </a>
+                <a class="icons" href="{$code_url}" target="_blank">
+                    <svg class="icon" aria-hidden="true" style="color: #ffffff">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                </a>
+                <a href="#" class="icons">
+                    <svg class="icon" aria-hidden="true" style="color: #ffffff">
+                        <use xlink:href="#icon-baidu"></use>
+                    </svg>
+                </a>
+                <div class="small_register">
+                    还没有账号：<a href="{php echo app_url('member/index/register')}"><span class="color09c">立即注册</span>
+                    <svg class="icon" aria-hidden="true" style="color: #ffffff;font-size: 15px">
+                        <use xlink:href="#icon-youjiantou"></use>
+                    </svg></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
