@@ -39,6 +39,7 @@
                 </div>
             </div>
             <div class="list_content">
+                {if $apply_jobs}
                 {loop $apply_jobs $list}
                 {if $list['direction']==2}
                 <div class="list_item {if $list['status']<>3}pass{/if}" >
@@ -97,10 +98,14 @@
                 </div>
                 {/if}
                 {/loop}
-                <div class="morejob apply_more">发现更多好职位>></div>
+                {else}
+                <!--<div class="morejob apply_more">发现更多好职位>></div>-->
+                <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有投递记录</div><div class="color999" style="margin-top: 30px">请前往<a href="#">职位列表</a>浏览或<a href="#">登录</a></div></div></div>
+                {/if}
             </div>
             <!--面试邀请start---------------------------------------------------------------------------->
             <div class="resume_content">
+                {if $interview_jobs}
                 {loop $interview_jobs $list}
                     {if $list['status']==3}
                         <div class="list_item">
@@ -163,7 +168,10 @@
                 </div>
                     {/if}
                 {/loop}
-                <div class="morejob invite_more">发现更多好职位>></div>
+                {else}
+                    <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有面试邀请记录</div><div class="color999" style="margin-top: 30px">请进行简历投递或完善简历信息</div></div></div>
+                {/if}
+                <!--<div class="morejob invite_more">发现更多好职位>></div>-->
             </div>
             <!--面试邀请end---------------------------------------------------->
         </div>
