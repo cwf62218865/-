@@ -97,6 +97,44 @@ class resume{
         return $jobs;
     }
 
+    /*
+     * 企业邀约简历
+     *
+     */
+    public function resume_apply($uid,$page=1,$status=0){
+        if($page==-1){
+            $limit = "";
+        }else{
+            $limit = " limit ".(($page-1)*6).",6";
+        }
+        if($status==1){
+            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and uid=".$uid." order by createtime desc ".$limit);
+        }elseif ($status==2){
+            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=2 and uid=".$uid." order by createtime desc ".$limit);
+        }else{
+            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where uid=".$uid." order by createtime desc ".$limit);
+        }
+
+        $jobs = "";
+        foreach ($jobs_apply as $key=>$list){
+            $jobs[$key] = pdo_fetch("select id,jobs_name from ".tablename(WL.'jobs')." where id=".$list['jobs_id']);
+            $jobs[$key]['status'] = $list['status'];
+            $jobs[$key]['apply_id'] = $list['id'];
+            $jobs[$key]['company_uid'] = $list['uid'];
+            $jobs[$key]['direction'] = $list['direction'];
+            $jobs[$key]['createtime'] = $list['createtime'];
+            $jobs[$key]['offer'] = $list['offer'];
+            $resume = $this->get_resume($list['puid']);
+            $jobs[$key]['headimgurl'] = $resume['headimgurl'];
+            $jobs[$key]['fullname'] = $resume['fullname'];
+            $jobs[$key]['education'] = $resume['education'];
+            $jobs[$key]['edu_major'] = $resume['arr_education']['edu_major'];
+            $jobs[$key]['school_name'] = $resume['arr_education']['school_name'];
+        }
+
+        return $jobs;
+    }
+
     public function jobs_interview($uid,$page=1){
         $limit = " limit ".(($page-1)*6).",6";
         $orderby = " order by createtime desc";
