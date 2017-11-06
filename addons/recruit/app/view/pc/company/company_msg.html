@@ -13,7 +13,7 @@
 </head>
 <body>
 {if $_SESSION['uid']}
-{php include wl_template('common/top');}
+{php include wl_template('common/company_top');}
 {else}
 {php include wl_template('common/header');}
 {/if}
@@ -66,7 +66,7 @@
 
                     <!--投递申请-->
                     {loop $list['content'] $li}
-                    {if $li['direction']==2}
+                    {if $li['status']==3}
                     <div class="day_msgbox">
                         <div class="system_msg_title">
                             <svg class="icon" aria-hidden="true">
@@ -77,21 +77,19 @@
                         </div>
 
                         <div class="delivery_left">
-                        <span class="delivery_logo">
-                            <img src="{$li['headimgurl']}">
+                         <span class="delivery_headerimg">
+                            <img src="{$li['headimgurl']}" />
                         </span>
-                            <span>{$li['jobs_name']}</span>
-                            <span style="margin-left: 20px">{$li['companyname']}</span><br>
+                            <span>{$li['fullname']}</span>
+                            <span style="margin-left: 20px">{$li['jobs_name']}</span><br>
                             <span style="display: inline-block;margin-top: 22px">
                                 最新状态：
-                                {if $li['status']==-1}
-                                    不合适
-                                {elseif $li['status']==0}
-                                    未查看
-                                {elseif $li['status']==1}
-                                    已查看
-                                {elseif $li['status']==3}
-                                    邀请面试
+                                {if $li['offer']==1}
+                                    同意面试
+                                {elseif $li['offer']==2}
+                                    拒绝面试
+                                {else}
+                                    未处理
                                 {/if}
                             </span>
                         </div>
@@ -100,9 +98,9 @@
                     </div>
                     {/if}
                     {/loop}
-                    <!--面试邀请-->
+                    <!--申请通知-->
                     {loop $list['content'] $li}
-                    {if $li['status']==3}
+                    {if $li['direction']==2}
                     <div class="day_msgbox">
                         <div class="system_msg_title">
                             <svg class="icon" aria-hidden="true">
@@ -113,11 +111,15 @@
                         </div>
 
                         <div class="delivery_left">
-                        <span class="delivery_logo">
-                            <img src="{$li['headimgurl']}">
+                         <span class="delivery_headerimg">
+                            <img src="{$li['headimgurl']}" />
                         </span>
-                            <span>{$li['jobs_name']}</span><br>
-                            <span style="display: inline-block;margin-top: 22px">{$li['companyname']}</span>
+                            <span style="display:inline-block;padding-right: 10px;border-right: 1px solid #666;line-height: 14px">{$li['fullname']}</span>
+                            <span style="margin-left: 8px;padding-right: 10px;border-right: 1px solid #666;display:inline-block;line-height: 14px">{$li['edu_major']}</span>
+                            <span style="margin-left: 8px">{$li['school_name']}-{$li['education']}</span><br>
+                            <span style="display: inline-block;margin-top: 22px">
+                                申请了{$li['jobs_name']}的职位
+                            </span>
                         </div>
 
                         <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
@@ -216,7 +218,7 @@
 
         if(dataid){
             $.ajax({
-                url:"{php echo app_url('person/index/msg_deal')}",
+                url:"{php echo app_url('company/index/msg_deal')}",
                 type:"post",
                 data:{
                     msg:dataid

@@ -105,6 +105,7 @@ elseif($op=="manage_resume"){
 elseif ($op=="comment_reply"){
     $data['hr_reply'] = check_pasre($_POST['pl_content'],"请输入回复内容");
     $data['hr_sore'] = $_POST['xingxing'];
+    $data['reply_time'] = time();
     $comment_id = check_pasre($_POST['data_id'],"参数错误");
     $r = pdo_update(WL."comment",$data,array('id'=>$comment_id));
     if($r){
@@ -113,6 +114,98 @@ elseif ($op=="comment_reply"){
         call_back(2,"提交失败");
     }
 }
+
+//消息中心
+elseif($op=="company_msg"){
+    $msg = m("resume")->resume_apply($_SESSION['uid'],-1);
+    $new_msg = "";
+    foreach ($msg as $list){
+        $list['addtime'] = date("Y/m/d", $list['createtime']);
+        $new_msg[] = $list;
+    }
+    $arr = "";
+    foreach ($new_msg as $key=>$list){
+        $arr[$list['addtime']][$key] = $list;
+    }
+    $new_arr = "";
+    $i = 0;
+    foreach ($arr as $key=>$list){
+        $new_arr[$i]['time'] =$key;
+        $new_arr[$i]['content'] = $list;
+        $i++;
+    }
+    include wl_template('company/company_msg');
+}
+
+elseif ($op=="msg_deal"){
+    if($_POST['msg']=="邀请反馈"){
+        $msg = m("resume")->resume_apply($_SESSION['uid'],-1,1);
+        $content = "";
+        foreach ($msg as $list){
+            if($list['offer']==1){
+                $status = "同意面试";
+            }elseif ($list['offer']==2){
+                $status = "拒绝面试";
+            }else{
+                $status = "未处理";
+            }
+            $content .="<div class=\"day_msgbox\">
+                        <div class=\"system_msg_title\">
+                            <svg class=\"icon\" aria-hidden=\"true\">
+                                <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#icon-qiuzhiyixiang\"></use>
+                            </svg>
+                            <span class=\"color999\">邀请反馈</span>
+                            <span class=\"colorbbb\">".date('Y-m-d',$list['createtime'])."</span>
+                        </div>
+
+                        <div class=\"delivery_left\">
+                         <span class=\"delivery_headerimg\">
+                            <img src=\"{$list['headimgurl']}\">
+                        </span>
+                            <span>{$list['fullname']}</span>
+                            <span style=\"margin-left: 20px\">{$list['jobs_name']}</span><br>
+                            <span style=\"display: inline-block;margin-top: 22px\">
+                                最新状态：
+                                                                    {$status}
+                                                            </span>
+                        </div>
+
+                        <a href=\"#\" class=\"see_system_msg see_day_msg\">查看详情&gt;&gt;</a>
+                    </div>";
+        }
+        call_back(1,$content);
+    }elseif ($_POST['msg']=="申请通知"){
+        $msg = m("resume")->resume_apply($_SESSION['uid'],-1,2);
+        $content = "";
+        foreach ($msg as $list){
+            $content .="<div class=\"day_msgbox\">
+                        <div class=\"system_msg_title\">
+                            <svg class=\"icon\" aria-hidden=\"true\">
+                                <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#icon-gongzuojingli\"></use>
+                            </svg>
+                            <span class=\"color999\">申请通知</span>
+                            <span class=\"colorbbb\">".date("Y-m-d",$list['createtime'])."</span>
+                        </div>
+
+                        <div class=\"delivery_left\">
+                         <span class=\"delivery_headerimg\">
+                            <img src=\"{$list['headimgurl']}\">
+                        </span>
+                            <span style=\"display:inline-block;padding-right: 10px;border-right: 1px solid #666;line-height: 14px\">{$list['fullname']}</span>
+                            <span style=\"margin-left: 8px;padding-right: 10px;border-right: 1px solid #666;display:inline-block;line-height: 14px\">{$list['edu_major']}</span>
+                            <span style=\"margin-left: 8px\">{$list['school_name']}-{$list['education']}</span><br>
+                            <span style=\"display: inline-block;margin-top: 22px\">
+                                申请了{$list['jobs_name']}的职位
+                            </span>
+                        </div>
+
+                        <a href=\"#\" class=\"see_system_msg see_day_msg\">查看详情&gt;&gt;</a>
+                    </div>";
+        }
+        call_back(1,$content);
+    }
+}
+
 //职位搜索
 elseif ($op=="job_name_search"){
     var_dump($_POST);exit();

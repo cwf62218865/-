@@ -153,6 +153,8 @@
 <script>
    $(function () {
        var boxbum="";
+       var identity = "{$identity}";
+       var timer1;
         $(".btn1").click(function () {
             boxbum=1;
             $(".title_content").html("上传营业执照");
@@ -161,12 +163,12 @@
             $('#code1').qrcode({
                 width: 100, //宽度
                 height:100, //高度
-                text: "{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'license'))}" //任意内容
+                text: "/code.php?identity="+identity+"&kind=license" //任意内容
             });
-            upload_refresh();
             setTimeout(function(){
                 $("#modalbox").css("display","block");
             },300)
+
         });
        $(".btn2").click(function () {
            boxbum=2;
@@ -175,13 +177,15 @@
            $('#code2').qrcode({
                width: 100, //宽度
                height:100, //高度
-               text: "{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'id1'))}" //任意内容
+               text: "/code.php?identity="+identity+"&kind=id1" //任意内容
            });
+
            $("#modalbox").animate({"opacity":1},300);
-           upload_refresh();
+
            setTimeout(function(){
                $("#modalbox").css("display","block");
-           },300)
+           },300);
+
        });
        $(".btn3").click(function () {
            boxbum=3;
@@ -190,20 +194,18 @@
            $('#code3').qrcode({
                width: 100, //宽度
                height:100, //高度
-               text: "{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'id2'))}" //任意内容
+               text: "/code.php?identity="+identity+"&kind=id2" //任意内容
            });
-           $("#modalbox").animate({"opacity":1},300);
-           upload_refresh();
-           setTimeout(function(){
-               $("#modalbox").css("display","block");
-           },300)
+           $("#modalbox").css("display","block");
+           window.clearTimeout(timer1);
+           timer1=setTimeout(function(){
+               upload_refresh()
+           },4000);
        });
 
-       $(".modalclose").on("click",function(){
-           $("#modalbox").animate({"opacity":0},300);
-           setTimeout(function(){
-               $("#modalbox").css("display","none");
-           },300)
+       $(".modalclose").click(function(){
+           $("#modalbox").css("display","none");
+           window.clearTimeout(timer1);
        });
 
 
@@ -218,9 +220,7 @@
 
        $(".modalbtn").on("click",function(){
            //uploadFile( $('#choosefile'),"choosefile",boxbum);
-
            var uploadFormData =new FormData($("#choosefile1")[0]);
-
            $.ajax({
                url:"{php echo app_url('member/company_register/upload')}kind="+boxbum,
                type:"post",
@@ -241,33 +241,76 @@
                    $(".chec_tip1").eq(1).html("");
                }
            });
-           $("#modalbox").animate({"opacity":0},300);
-           setTimeout(function(){
-               $("#modalbox").css("display","none");
-           },300)
+           $("#modalbox").css("display","none");
+           window.clearTimeout(timer1);
        })
 
-        function upload_refresh() {
-            window.setInterval(
-                function(){
-                    $.ajax({
-                        url:"{php echo app_url('member/company_register/upload_refresh')}",
-                        type:"post",
-                        data:{
-                            companyname:$(".detail_zj input").val()
-                        },
-                        success:function(data){
-                            if(data){
-                                var data = JSON.parse(data);
-                                if(data.status==1){
-                                    location = location;
-                                }
-                            }
-                        }
-                    })
-                },5000
-            );
-        }
+
+              function upload_refresh() {
+           $.ajax({
+               url:"{php echo app_url('member/index/upload_refresh')}",
+               type:"post",
+               data:{
+                   companyname:$(".detail_zj input").val()
+               },
+               async:true,
+               success:function(data){
+                   var data = JSON.parse(data);
+                   if(data.status==1){
+                       $("#modalbox").css("display","none");
+                       if(data.others==1){
+                           $(".license").find(".upload").css("display","block");
+                           $(".license").find(".rzpic").attr("src",data.content);
+                       }else if(data.others==2){
+                           $(".idcard1").find(".upload").css("display","block");
+                           $(".idcard1").find(".rzpic").attr("src",data.content);
+                       }else if(data.others==3){
+                           $(".idcard2").find(".upload").css("display","block");
+                           $(".idcard2").find(".rzpic").attr("src",data.content);
+                       }
+                       timer1="";
+                   }else{
+                       timer1=setTimeout(function(){
+                           upload_refresh()
+                       },4000);
+                   }
+               }
+           })
+       }
+
+
+
+//       function upload_refresh() {
+//           $.ajax({
+//               url:"{php echo app_url('member/index/upload_refresh')}",
+//               type:"post",
+//               data:{
+//                   companyname:$(".detail_zj input").val()
+//               },
+//               async:true,
+//               success:function(data){
+//                   return false;
+//                   var data = JSON.parse(data);
+//                   if(data.status==1){
+//                       $("#modalbox").css("display","none");
+//                       if(data.others==1){
+//                           $(".license").find(".upload").css("display","block");
+//                           $(".license").find(".rzpic").attr("src",data.content);
+//                       }else if(data.others==2){
+//                           $(".idcard1").find(".upload").css("display","block");
+//                           $(".idcard1").find(".rzpic").attr("src",data.content);
+//                       }else if(data.others==3){
+//                           $(".idcard2").find(".upload").css("display","block");
+//                           $(".idcard2").find(".rzpic").attr("src",data.content);
+//                       }
+//                       return false;
+//                   }else{
+//
+//                   }
+//               }
+//           })
+//       }
+
 
 
        //提交申请
