@@ -190,75 +190,33 @@
                         <div class="evaluate" style="margin-top: 60px">
                             <div id="evaluate_list"></div>
                             <div class="company_title relative">
-                                <span >面试评价(3)</span>
+                                <span >面试评价({$company_count['comment_count']})</span>
                             </div>
                             <div class="zongtipingfen">
-                                <p class="point">5.0</p>
+                                <p class="point">{$company_count['count']}</p>
                                 <p class="miaoshus">总体评分</p>
                             </div>
                             <div class="xingxing_list">
                                 <div class="xing1">
                                     <span class="xing_title">信息真实:</span>
                                     <span class="stars_n">
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
+                                    {$company_count['information_star']}
                            </span>
-                                    <span class="point_num">5.0分</span>
+                                    <span class="point_num">{$company_count['information_count']}分</span>
                                 </div>
                                 <div class="xing1">
                                     <span class="xing_title">公司环境:</span>
                                     <span class="stars_n">
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
+                               {$company_count['environment_star']}
                            </span>
-                                    <span class="point_num">5.0分</span>
+                                    <span class="point_num">{$company_count['environment_count']}分</span>
                                 </div>
                                 <div class="xing1">
                                     <span class="xing_title">面试官:</span>
                                     <span class="stars_n">
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
-                               <svg class="icon starhui" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfenbanfen"></use>
-                                </svg>
+                               {$company_count['interviewer_star']}
                            </span>
-                                    <span class="point_num">5.0分</span>
+                                    <span class="point_num">{$company_count['interviewer_count']}分</span>
                                 </div>
                             </div>
                         </div>
@@ -274,42 +232,37 @@
                             <span class="cur title_sr" data-id="2">时间排序</span>
                         </div>
                         <div class="evaluate_list" >
+                            {loop $comment_jobs $list}
                             <div class="evaluate_item">
                                 <div class="left_tx">
-                                    <img class="touxiangpic" src="{WL_URL_ARES}images/resume_tx.png">
-                                    <div class="eva_name nowrap">匿名</div>
+                                    {if $list['hide']}
+                                    <svg class="icon">
+                                        <use xlink:href="#icon-xuesheng"></use>
+                                    </svg>
+                                    {else}
+                                    <img src="{$list['headimgurl']}"  class="touxiangpic">
+                                    {/if}
+                                    <div class="eva_name nowrap">{$list['fullname']}</div>
                                 </div>
                                 <div class="xiangqing">
                                     <div class="xqhang">
                                         <span class="">总体评价:</span>
                                         <span class="stars_n">
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               </span>
-                                        <span class="point_num">5.0分</span>
-                                        <span class="jobname_eva">面试职位：<a class="namedd" href="#">新媒体运营</a></span>
-                                        <span class="date_eva">2017-9-29</span>
+                                        {$list['count_score']}
+                                        </span>
+                                        <span class="point_num">{$list['score']}分</span>
+                                        <span class="jobname_eva">面试职位：<a class="namedd" href="#">{$list['jobs_name']}</a></span>
+                                        <span class="date_eva">{php echo date('Y-m-d',$list['createtime'])}</span>
                                     </div>
                                     <div class="xqhang" style="margin-top: 18px;">
-                                        <span class="pingjiabq">环境好</span>
-                                        <span class="pingjiabq">环境好</span>
-                                        <span class="pingjiabq">环境好</span>
+                                        {loop explode(",",$list['tag']) $li}
+                                        <span class="pingjiabq">{$li}</span>
+                                        {/loop}
                                     </div>
                                     <div class="xqhang" style="margin-top: 20px;">
-                                        [面试过程]<span class="evaluate_con">两个面试官一起面的，他们技术还是很nice的，就是态度更好一点就好了，一个一直在皱眉头，一个面无表情。hr态度还是非常好的，很亲切，不过面试自己没有发挥好，下次还有机会再去。</span>
+                                        [面试过程]<span class="evaluate_con">
+                                        {$list['content']}
+                                    </span>
                                     </div>
                                     <div class="hangxq">
                                         <svg class="icon zan1" aria-hidden="true">
@@ -317,105 +270,18 @@
                                         </svg>
                                         <span class="zannum">(122)</span>
                                     </div>
+                                    {if $list['hr_reply']}
                                     <div class="evaluate_huifu">
-                                        <img class="hrtx" src="{WL_URL_ARES}images/qiyelogo.png"/>
+                                        <img class="hrtx" src="{$list['logo']}"/>
                                         <div class="hrhf">
-                                            <p class="hftitle">HR回复：</p><span class="date_num">2017-9-29</span>
-                                            <p class="hfcon">综合能力蛮好的，已经将档案留存。很遗憾整体评价后选择了一位大学期间有更多相关实践经验在应聘者。谢谢关注我司和提出的的意见。</p>
+                                            <p class="hftitle">HR回复：</p><span class="date_num">{php echo date("Y-m-d",$list['reply_time'])}</span>
+                                            <p class="hfcon">{$list['hr_reply']}</p>
                                         </div>
                                     </div>
+                                    {/if}
                                 </div>
                             </div>
-                            <div class="evaluate_item">
-                                <div class="left_tx">
-                                    <img class="touxiangpic" src="{WL_URL_ARES}images/resume_tx.png">
-                                    <div class="eva_name nowrap">匿名</div>
-                                </div>
-                                <div class="xiangqing">
-                                    <div class="xqhang">
-                                        <span class="">总体评价:</span>
-                                        <span class="stars_n">
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               </span>
-                                        <span class="point_num">5.0分</span>
-                                        <span class="jobname_eva">面试职位：<label class="namedd">新媒体运营</label></span>
-                                        <span class="date_eva">2017-9-29</span>
-                                    </div>
-                                    <div class="xqhang" style="margin-top: 18px;">
-                                        <span class="pingjiabq">环境好</span>
-                                        <span class="pingjiabq">环境好</span>
-                                        <span class="pingjiabq">环境好</span>
-                                    </div>
-                                    <div class="xqhang" style="margin-top: 20px;">
-                                        [面试过程]<span class="evaluate_con">两个面试官一起面的，他们技术还是很nice的，就是态度更好一点就好了，一个一直在皱眉头，一个面无表情。hr态度还是非常好的，很亲切，不过面试自己没有发挥好，下次还有机会再去。</span>
-                                    </div>
-                                    <div class="hangxq">
-                                        <svg class="icon zan1" aria-hidden="true">
-                                            <use  xlink:href="#icon-zan1"></use>
-                                        </svg>
-                                        <span class="zannum">(122)</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="evaluate_item">
-                                <div class="left_tx">
-                                    <img class="touxiangpic" src="{WL_URL_ARES}images/resume_tx.png">
-                                    <div class="eva_name nowrap">匿名</div>
-                                </div>
-                                <div class="xiangqing">
-                                    <div class="xqhang">
-                                        <span class="">总体评价:</span>
-                                        <span class="stars_n">
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               <svg class="icon star" aria-hidden="true">
-                                <use  xlink:href="#icon-pingfen"></use>
-                                </svg>
-                               </span>
-                                        <span class="point_num">5.0分</span>
-                                        <span class="jobname_eva">面试职位：<label class="namedd">新媒体运营</label></span>
-                                        <span class="date_eva">2017-9-29</span>
-                                    </div>
-                                    <div class="xqhang" style="margin-top: 18px;">
-                                        <span class="pingjiabq">环境好</span>
-                                        <span class="pingjiabq">环境好</span>
-                                        <span class="pingjiabq">环境好</span>
-                                    </div>
-                                    <div class="xqhang" style="margin-top: 20px;">
-                                        [面试过程]<span class="evaluate_con">两个面试官一起面的，他们技术还是很nice的，就是态度更好一点就好了，一个一直在皱眉头，一个面无表情。hr态度还是非常好的，很亲切，不过面试自己没有发挥好，下次还有机会再去。</span>
-                                    </div>
-                                    <div class="hangxq">
-                                        <svg class="icon zan1" aria-hidden="true">
-                                            <use  xlink:href="#icon-zan1"></use>
-                                        </svg>
-                                        <span class="zannum">(122)</span>
-                                    </div>
-                                </div>
-                            </div>
+                            {/loop}
                             <div class="pages_btn compagefy" style="margin-top: 50px;float: left;">
                                 <span class="pre_page">上一页</span>
                                 <span class="page select">1</span>
