@@ -76,7 +76,7 @@
 <body bgcolor="#f4f4f4">
 
 {if $_SESSION['uid']}
-{php include wl_template('common/top');}
+{php include wl_template('common/company_top');}
 {else}
 {php include wl_template('common/header');}
 {/if}
@@ -760,8 +760,6 @@
             type: "POST",
             dataType: 'json',
             success: function(data) {
-//                console.log(data);
-//                var data=JSON.parse(data);
                 if(data.status == '1') {
                     //成功的回调操作
                     if($(".company_logo_upload img").length==0){

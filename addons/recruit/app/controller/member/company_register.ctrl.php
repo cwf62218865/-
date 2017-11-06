@@ -148,10 +148,15 @@ elseif ($op=="upload_refresh"){
 }
 //保存第二步信息处理
 elseif ($op=="step2_save"){
+
     $data['companyname'] =check_pasre($_POST['companyname'],"请输入公司名称");
     $data['license'] =check_pasre($_POST['license'],"请上传营业执照");
     $data['idcard1'] =check_pasre($_POST['idcard1'],"请上传法人身份证(正面)");
     $data['idcard2'] =check_pasre($_POST['idcard2'],"请上传法人身份证(反面)");
+    $data['license'] = file_transfer($data['license']);
+    $data['idcard1'] = file_transfer($data['idcard1']);
+    $data['idcard2'] = file_transfer($data['idcard2']);
+
     $company = pdo_fetch("select id from ".tablename(WL.'company_profile')." where uid=".$_SESSION['uid']);
     if($company){
         $r = pdo_update(WL."company_profile",$data,array('uid'=>$_SESSION['uid']));

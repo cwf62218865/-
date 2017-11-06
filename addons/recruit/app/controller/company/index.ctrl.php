@@ -105,6 +105,7 @@ elseif($op=="manage_resume"){
 elseif ($op=="comment_reply"){
     $data['hr_reply'] = check_pasre($_POST['pl_content'],"请输入回复内容");
     $data['hr_sore'] = $_POST['xingxing'];
+    $data['reply_time'] = time();
     $comment_id = check_pasre($_POST['data_id'],"参数错误");
     $r = pdo_update(WL."comment",$data,array('id'=>$comment_id));
     if($r){
@@ -113,6 +114,12 @@ elseif ($op=="comment_reply"){
         call_back(2,"提交失败");
     }
 }
+
+//消息中心
+elseif($op=="company_msg"){
+    include wl_template('company/company_msg');
+}
+
 //职位搜索
 elseif ($op=="job_name_search"){
     var_dump($_POST);exit();
