@@ -601,8 +601,8 @@ $(".modalbtn1").on("click",function(){
 
 
     $("#login").on("click",function(){
-        var user_name=$("#user_name").val();
-        var password=$("#password").val();
+        var user_name=$("#small_user_name").val();
+        var password=$("#small_password").val();
 
         if(!user_name){
             hint("error","请输入用户名");

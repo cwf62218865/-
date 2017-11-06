@@ -154,7 +154,7 @@
    $(function () {
        var boxbum="";
        var identity = "{$identity}";
-       var timer1 = "";
+       var timer1;
         $(".btn1").click(function () {
             boxbum=1;
             $(".title_content").html("上传营业执照");
@@ -197,14 +197,15 @@
                text: "/code.php?identity="+identity+"&kind=id2" //任意内容
            });
            $("#modalbox").css("display","block");
-           timer1=window.setInterval(function(){
+           window.clearTimeout(timer1);
+           timer1=setTimeout(function(){
                upload_refresh()
            },4000);
        });
 
        $(".modalclose").click(function(){
            $("#modalbox").css("display","none");
-           window.clearInterval(timer1);
+           window.clearTimeout(timer1);
        });
 
 
@@ -219,10 +220,7 @@
 
        $(".modalbtn").on("click",function(){
            //uploadFile( $('#choosefile'),"choosefile",boxbum);
-
-           window.clearInterval(timer1);
            var uploadFormData =new FormData($("#choosefile1")[0]);
-
            $.ajax({
                url:"{php echo app_url('member/company_register/upload')}kind="+boxbum,
                type:"post",
@@ -244,13 +242,11 @@
                }
            });
            $("#modalbox").css("display","none");
+           window.clearTimeout(timer1);
        })
 
 
-
-
-
-       function upload_refresh() {
+              function upload_refresh() {
            $.ajax({
                url:"{php echo app_url('member/index/upload_refresh')}",
                type:"post",
@@ -272,12 +268,48 @@
                            $(".idcard2").find(".upload").css("display","block");
                            $(".idcard2").find(".rzpic").attr("src",data.content);
                        }
+                       timer1="";
                    }else{
-
+                       timer1=setTimeout(function(){
+                           upload_refresh()
+                       },4000);
                    }
                }
            })
        }
+
+
+
+//       function upload_refresh() {
+//           $.ajax({
+//               url:"{php echo app_url('member/index/upload_refresh')}",
+//               type:"post",
+//               data:{
+//                   companyname:$(".detail_zj input").val()
+//               },
+//               async:true,
+//               success:function(data){
+//                   return false;
+//                   var data = JSON.parse(data);
+//                   if(data.status==1){
+//                       $("#modalbox").css("display","none");
+//                       if(data.others==1){
+//                           $(".license").find(".upload").css("display","block");
+//                           $(".license").find(".rzpic").attr("src",data.content);
+//                       }else if(data.others==2){
+//                           $(".idcard1").find(".upload").css("display","block");
+//                           $(".idcard1").find(".rzpic").attr("src",data.content);
+//                       }else if(data.others==3){
+//                           $(".idcard2").find(".upload").css("display","block");
+//                           $(".idcard2").find(".rzpic").attr("src",data.content);
+//                       }
+//                       return false;
+//                   }else{
+//
+//                   }
+//               }
+//           })
+//       }
 
 
 
