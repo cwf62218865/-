@@ -1,0 +1,71 @@
+<div class="header">
+    <div class="width1200 align_center" style="padding-top: 14px;justify-content: space-between">
+        <img src="{WL_URL_ARES}images/logo.png"/>
+        <div style="height: 52px;line-height: 52px"><span class="city">{if $_SESSION['city']}{$_SESSION['city']}{else}全国{/if}</span><span class="changecity">[切换]</span></div>
+        <div class="menu">
+            <a href="{php echo app_url('member/index')}">首页</a>
+            <a  href="{php echo app_url('member/index/search_jobs')}">找工作</a>
+            <a  href="#">实习/兼职</a>
+            <a  href="#">求职保镖</a>
+            <a  href="#">职场信用</a>
+            <a  href="#">就业大数据</a>
+        </div>
+        <div class="login relative">
+            <span class="relative personal_msgbtn">
+                <div class="login_header">
+                    {if $portrait['headimgurl']}
+                    <img src="{$portrait['headimgurl']}" alt="">
+                    {else}
+                    <svg class="icon">
+                        <use xlink:href="#icon-xuesheng"></use>
+                    </svg>
+                    {/if}
+                </div>
+                <span class="login_username color666">{$user['mobile']}</span>
+
+                <svg class="icon" style="margin-left:10px">
+                    <use xlink:href="#icon-xiala"></use>
+                </svg>
+            </span>
+            <a href="#">企业入口</a>
+
+
+            <div class="personal_msgs" id="personal_msgs">
+                <a href="{php echo app_url('company/index/company_msg')}">我的消息</a>
+                <a href="{php echo app_url('member/index/login')}">退出</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="indexmodal">
+    <div class="indexmodalbox">
+        <span class="modalclose">
+            <img src="{WL_URL_ARES}images/close.png"/>
+        </span>
+        <div class="indexmodaltitle">
+            切换城市
+        </div>
+        <div style="margin: 50px;margin-bottom: 40px;font-size: 16px;color: #666">
+            尊敬的用户， 您当前选择的城市为 <span style="color:#7b8fc9 " class="current_city">[{if $_SESSION['city']}{$_SESSION['city']}{else}全国{/if}]</span>，您也可以切换到以下城市
+        </div>
+
+        <div class="change_citys">
+            <span>上海</span>
+            <span>北京</span>
+            <span>广州</span>
+            <span>重庆</span>
+            <span>武汉</span>
+            <span>杭州</span>
+            <div style="clear: both"></div>
+        </div>
+        <div style="text-align: center">
+            其他城市请选<span class="quanguo">[全国]</span>
+        </div>
+        <div style="text-align: center;margin-top: 50px;margin-bottom: 30px;color: #bbb">
+            城市正在开通中，敬请期待～
+        </div>
+    </div>
+</div>
+
