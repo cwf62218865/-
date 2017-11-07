@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/header.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/control.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/personal.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/resume.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/job_apply.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/company_msg.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/credit_evaluate.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/company_msg.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/credit_evaluate.css" rel="stylesheet">
     <title>已下架职位</title>
 </head>
 <body bgcolor="#f4f4f4">
@@ -20,13 +20,12 @@
 {php include wl_template('common/header');}
 {/if}
 <div class="width1200 p1content">
-    {php include wl_template('common/company_nav');}
     <div class="p1_left">
         <div class="con_list">
             <div class="zhiwei_title">
                 <div class="zhiwei_top">
-                    <lable class="zhiwei_name">Java高级工程师</lable>
-                    <img src="/yingjieseng/addons/recruit/app/resource/images/stop_ico.png">
+                    <lable class="zhiwei_name">{php echo $jobs['jobs_name']}</lable>
+                    <img src="{WL_URL_ARES}images/stop_ico.png">
                     <div class="company_icos" style="bottom: 0;">
                     <span class="com_ico fenxiang" style="position: relative;"><svg class="icon fexico">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-fenxiang"></use>
@@ -51,26 +50,32 @@
                     </div>
                 </div>
                 <div class="zhiwei_content">
-                    <label class="salery">8-10k</label>
-                    <label class="cont_detail">大专及以上</label>
-                    <label class="cont_detail">工作经验不限</label>
-                    <label class="cont_detail">全职</label>
-                    <label class="cont_detail bodernone">2人</label>
+                    <label class="salery">
+                        {if $jobs['wage_min']>0 && $jobs['wage_max']>0}
+                        {$jobs['wage_min']}-{$jobs['wage_max']}K
+                        {else}
+                        面议
+                        {/if}
+                    </label>
+                    <label class="cont_detail">{php echo $jobs['education']}</label>
+                    <label class="cont_detail">{php echo $jobs['experience']}</label>
+                    <label class="cont_detail">{php echo $jobs['work_nature']}</label>
+                    <label class="cont_detail bodernone">{php echo $jobs['number_range']}人</label>
                     <label class="shuaxin">
                         <svg class="icon fexico">
                             <use  xlink:href="#icon-shijian"></use>
                         </svg>
-                        刷新于：2017-10-3</label>
+                        刷新于：{php echo date('Y-m-d',$jobs['updatetime'])}</label>
                 </div>
                 <div class="dizhi_content">
-                    工作地点：重庆市江北区汽博中心线外城市花园1-1-1405
+                    工作地点：{php echo $jobs['city'].$jobs['city_area'].$jobs['address']}
                 </div>
                 <div class="dizhi_content" style="margin-top: 20px;">
-                    <span class="basic_msg_bq">年终奖</span>
-                    <span class="basic_msg_bq">年终奖</span>
-                    <span class="basic_msg_bq">年终奖</span>
-                    <span class="basic_msg_bq">年终奖</span>
-                    <span class="basic_msg_bq">年终奖</span>
+                    {if $jobs['tag']}
+                    {loop explode(',',$jobs['tag']) $list}
+                    <span class="basic_msg_bq">{$list}</span>
+                    {/loop}
+                    {/if}
                     <label class="ico_chakan">
                         查看原职位信息
                         <svg class="icon fexico">
@@ -103,7 +108,7 @@
                         <div class="xian1"></div>
                         <div class="qiye_msg_logo">
                             <a href="#">
-                                <img src="/yingjieseng/addons/recruit/app/resource/images/qiyelogo.png" class="qiye_logo">
+                                <img src="{WL_URL_ARES}images/qiyelogo.png" class="qiye_logo">
                             </a>
                             <div class="qiye_names">
                                 <p class="qiye_name">北京金三顺有限公司</p>
@@ -134,7 +139,7 @@
                         <div class="xian1"></div>
                         <div class="qiye_msg_logo">
                             <a href="#">
-                                <img src="/yingjieseng/addons/recruit/app/resource/images/qiyelogo.png" class="qiye_logo">
+                                <img src="{WL_URL_ARES}images/qiyelogo.png" class="qiye_logo">
                             </a>
                             <div class="qiye_names">
                                 <p class="qiye_name">北京金三顺有限公司</p>
@@ -165,7 +170,7 @@
                         <div class="xian1"></div>
                         <div class="qiye_msg_logo">
                             <a href="#">
-                                <img src="/yingjieseng/addons/recruit/app/resource/images/qiyelogo.png" class="qiye_logo">
+                                <img src="{WL_URL_ARES}images/qiyelogo.png" class="qiye_logo">
                             </a>
                             <div class="qiye_names">
                                 <p class="qiye_name">北京金三顺有限公司</p>
@@ -196,7 +201,7 @@
                         <div class="xian1"></div>
                         <div class="qiye_msg_logo">
                             <a href="#">
-                                <img src="/yingjieseng/addons/recruit/app/resource/images/qiyelogo.png" class="qiye_logo">
+                                <img src="{WL_URL_ARES}images/qiyelogo.png" class="qiye_logo">
                             </a>
                             <div class="qiye_names">
                                 <p class="qiye_name">北京金三顺有限公司</p>
@@ -214,9 +219,9 @@
     </div>
     <div class="p1_right" style="margin-top: 20px">
         <div class="part_one">
-            <img src="http://localhost/addons/recruit/app/resource/images/qiyelogo.png" class="qiye_pic">
+            <img src="{$company['headimgurl']}" class="qiye_pic">
             <p class="name_qiye">
-                重庆大风车科技有限公司
+                {php echo $company['companyname']}
                 <svg class="icon rz_ico">
                     <use xlink:href="#icon-renzheng"></use>
                 </svg>
@@ -231,20 +236,20 @@
             </p>
             <div class="gongsi_msg">
                 <p><label class="qiye_titls">公司信用</label><label class="qiye_ms">750分</label></p>
-                <p><label class="qiye_titls">所属行业</label><label class="qiye_ms">互联网</label></p>
-                <p><label class="qiye_titls">公司规模</label><label class="qiye_ms">50-100人</label></p>
+                <p><label class="qiye_titls">所属行业</label><label class="qiye_ms">{php echo $company['industry']}</label></p>
+                <p><label class="qiye_titls">公司规模</label><label class="qiye_ms">{php echo $company['number']}</label></p>
             </div>
             <div class="tongji_qiye">
                 <div class="tj_one">
-                    <a class="mainclor">5个</a>
+                    <a class="mainclor">{$jobs_count}个</a>
                     <p class="styel">在招职位</p>
                 </div>
                 <div class="tj_one">
-                    <a class="mainclor">8条</a>
+                    <a class="mainclor">{$comment_count}条</a>
                     <p class="styel">面试评价</p>
                 </div>
                 <div class="tj_one">
-                    <p class="stye2">昨天</p>
+                    <p class="stye2">{php echo $last_login_time}</p>
                     <p class="styel">面试评价</p>
                 </div>
             </div>
@@ -325,7 +330,7 @@
         <div class="modal" style="width: 496px;margin-left: -248px;">
             <p class="title_content">举报该职位</p>
             <span class="modalclose">
-                <img src="/yingjieseng/addons/recruit/app/resource/images/close.png"/>
+                <img src="{WL_URL_ARES}images/close.png"/>
             </span>
             <p class="color666" style="margin-top: 34px;text-align: center">若发现本职位存在违规现象，欢迎举报</p>
 
@@ -369,9 +374,9 @@
 
 
 </body>
-<script src="/yingjieseng/addons/recruit/app/resource/js/jquery.js" rel="script"></script>
-<script src="/yingjieseng/addons/recruit/app/resource/js/iconfont.js" rel="script"></script>
-<script src="/yingjieseng/addons/recruit/app/resource/js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 
 <script>
 
