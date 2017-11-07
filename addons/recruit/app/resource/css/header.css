@@ -316,7 +316,7 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     width: 430px;
     position: absolute;
     left: 50%;
-    top: 20%;
+    top: 15%;
     margin-left: -215px;
     background-color: #fff;
     border-radius: 10px;

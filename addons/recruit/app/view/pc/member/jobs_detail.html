@@ -53,13 +53,14 @@
                                 <a class="icons iconb5 bds_qzone" href="#" data-cmd="qzone" title="分享到QQ空间"></a>
                             </div>
                         </span>
-
+                        {if $_SESSION['utype']!=2}
                         <span class="collections collection" data-id="{php echo $jobs['id']}">
                             <svg class="icon">
                                 <use xlink:href="#icon-shoucangguanli"></use>
                             </svg>
                             收藏
                         </span>
+                        {/if}
                     </div>
                     <!--<div class="relative" id="sharebox">-->
                         <!--<div class="bdsharebuttonbox share"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>-->
@@ -106,7 +107,7 @@
                         <span class="jobs_requirement">{php echo $jobs['education']}</span>
                         <span class="jobs_requirement">{php echo $jobs['experience']}</span>
                         <span class="jobs_requirement">{php echo $jobs['work_nature']}</span>
-                        <span class="jobs_requirement">{php echo $jobs['number_range']}人</span>
+                        <span class="jobs_requirement" style="border-right: none">{php echo $jobs['number_range']}人</span>
                         <span class="jobs_time">
                             <svg class="icon" style="font-size: 16px">
                                 <use xlink:href="#icon-quanzhi"></use>
@@ -124,7 +125,9 @@
                         {loop explode(',',$jobs['tag']) $list}
                         <span class="welfare_label">{$list}</span>
                         {/loop}
+                        {if $_SESSION['utype']!=2}
                         <span class="{if $jobs_apply}delivery_resume1{else}delivery_resume{/if}" data-id="{php echo $jobs['id']}">{if $jobs_apply}已投递{else}投递简历{/if}</span>
+                        {/if}
                     </div>
 
 
@@ -406,6 +409,8 @@ $(function () {
             $(".collections").eq(0).html('<svg class="icon">'+
                     '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tishi"></use>'+
                     '</svg>已举报').unbind("click");
+        }else if(data.status==3){
+            $("#small_modalbox").show();
         }else{
             hint("error",data.content);
         }
@@ -432,6 +437,8 @@ $(function () {
                 if(data.status==1){
                     hint("success","投递成功");
                     $(".delivery_resume").html("已投递").removeClass("delivery_resume").addClass("delivery_resume1").unbind("click");
+                }else if(data.status==3){
+                    $("#small_modalbox").show();
                 }else{
                     hint("error",data.content);
                 }
