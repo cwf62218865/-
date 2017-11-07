@@ -615,7 +615,7 @@ $(".modalbtn1").on("click",function(){
         }
 
         $.ajax({
-            url:"",
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=login_deal",
             type:"post",
             data:{
                 user_name:user_name,

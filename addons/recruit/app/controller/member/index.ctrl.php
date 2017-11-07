@@ -116,7 +116,7 @@ elseif ($op=="bind_account"){
 
 //手机上传头像界面
 elseif ($op=="mobile_upload"){
-    if($_GPC['kind']=="resume"){
+    if($_GPC['kind']=="headimgurl"){
         $kind = "简历头像上传";
         $url = app_url("member/index/save_members_temp",array('kind'=>'headimgurl'));
     }elseif($_GPC['kind']=="id1"){
@@ -128,7 +128,7 @@ elseif ($op=="mobile_upload"){
     }elseif($_GPC['kind']=="license"){
         $kind = "营业执照上传";
         $url = app_url("member/index/save_members_temp",array('kind'=>'license'));
-    }elseif($_GPC['kind']=="person_works"){
+    }elseif($_GPC['kind']=="resume_works"){
         $kind = "个人作品上传";
         $url = app_url("member/index/save_members_temp",array('kind'=>'person_works'));
     }elseif($_GPC['kind']=="honor"){
@@ -455,6 +455,29 @@ elseif ($op=="upload_refresh"){
         if($temp['atlas']){
             $data['atlas'] = $temp['atlas'];
             call_back(1,$data['atlas']);
+        }
+
+        if($temp['headimgurl']){
+            $data['headimgurl'] = file_transfer($temp['headimgurl']);
+            $resume = pdo_fetch("select id from ".tablename(WL."resume")." where uid=".$_SESSION['uid']);
+            if($resume){
+                pdo_update(WL."resume",array('headimgurl'=>$data['headimgurl'],'updatetime'=>time()),array('uid'=>$_SESSION['uid']));
+            }else {
+                $data['addtime'] = time();
+                $data['updatetime'] = time();
+                $data['uid'] = $_SESSION['uid'];
+               insert_table($data, WL . "resume");
+            }
+            call_back(1, $data['headimgurl'],1);
+        }
+        if($temp['person_works']){
+            $data['person_works'] = $temp['person_works'];
+            call_back(1,$data['person_works'],2);
+        }
+
+        if($temp['honor']){
+            $data['honor'] = $temp['honor'];
+            call_back(1,$data['honor'],3);
         }
     }
     call_back(2,"暂无数据");

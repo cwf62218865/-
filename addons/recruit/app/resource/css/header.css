@@ -236,7 +236,7 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     line-height: 94px;
 }
 .company_num span{
-    font-size: 30px;
+    font-size: 36px;
     margin-right: 10px;
 }
 .footer_login{
@@ -282,10 +282,14 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     width: 1198px;
     border: 1px solid #eee;
     background-color: #f5f5f5;
+    color: #666;
 }
 .friend_url a{
     margin-right: 18px;
     color: #999;
+}
+.friend_url a:hover{
+    color: #666;
 }
 .company_record{
     margin-top: 40px;
@@ -312,7 +316,7 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     width: 430px;
     position: absolute;
     left: 50%;
-    top: 20%;
+    top: 15%;
     margin-left: -215px;
     background-color: #fff;
     border-radius: 10px;
