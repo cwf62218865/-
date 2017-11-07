@@ -342,6 +342,12 @@
             var city_area=$("#city_area").val();//二级城市
             var address=$("#address").val();//地址
 
+
+            if(!headimgurl){
+                hint("error","请上传头像");
+                return false;
+            }
+
             if($.trim(user_name)==""){
                 var input_box=$("#user_name").closest(".general-input");
                 input_box.css("border-color","#e23d46");

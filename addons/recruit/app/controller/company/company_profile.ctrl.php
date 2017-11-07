@@ -9,7 +9,7 @@ defined('IN_IA') or exit('Access Denied');
 
 if($op=="index"){
     $company = m('company')->get_profile($_SESSION['uid']);
-//    include wl_template("company/company_nomessage");exit();
+
     if(!$company['atlas'] ||!$company['introduce']){
         include wl_template("company/company_nomessage");
     }else{

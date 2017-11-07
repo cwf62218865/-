@@ -23,6 +23,7 @@ if($op=="save_order_jobs"){
     $data['order_time'] = $_GPC['dy_pinlv'];
     $order_jobs = pdo_fetch("select id from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
     $order_jobs_ids = m("jobs")->show_order_jobs($data,"id");
+
     $data['order_jobs_ids'] = "";
     foreach ($order_jobs_ids as $list){
         $data['order_jobs_ids'] .=$list['id'].",";
@@ -35,6 +36,7 @@ if($op=="save_order_jobs"){
         $data['createtime'] =time();
         $data['updatetime'] =time();
         $data['puid'] =$_SESSION['uid'];
+        $data['add_order_num'] = count($order_jobs_ids);
         $r = insert_table($data,WL."order_jobs");
     }
 

@@ -215,6 +215,10 @@
 .interviewter_header img{
     width: 100%;
 }
+.interviewter_header .icon{
+    font-size: 40px;
+    margin-top: 10px;
+}
 .interviewter_content{
     display: inline-block;
     width: 640px;
