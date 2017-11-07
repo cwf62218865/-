@@ -258,7 +258,7 @@
                                         <svg class="icon zan1" aria-hidden="true">
                                             <use  xlink:href="#icon-zan1"></use>
                                         </svg>
-                                        <span class="zannum">({php echo count(array_filter(explode(",",$list['zan'])))})</span>
+                                        <span class="zannum">(122)</span>
                                     </div>
                                     {if $list['hr_reply']}
                                     <div class="evaluate_huifu">
@@ -291,7 +291,11 @@
                     <div class="job_list" style="display: none;">
                         <div class="job_list_con">
                             {loop $jobs $list}
+<<<<<<< Updated upstream
                             <a class="job_iteme" href="#">
+=======
+                            <a class="job_iteme" href="#" style="position: relative;">
+>>>>>>> Stashed changes
                                 <p class="job_hang relative">
                                     <div class="job_names" href="#">{$list['jobs_name']}</div>
                                     <span class="refume_statas">{php echo date('Y-m-d',$list['updatetime'])}</span>
