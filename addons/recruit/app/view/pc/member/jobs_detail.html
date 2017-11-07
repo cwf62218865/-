@@ -165,7 +165,7 @@
                                 <img src="{$list['headimgurl']}">
                                 {/if}
                             </div>
-                            <div style="margin-top: 12px">{$list['fullname']}</div>
+                            <div class="hover09c" style="margin-top: 12px">{$list['fullname']}</div>
                         </div>
 
                         <div class="interviewter_content">
@@ -196,7 +196,7 @@
                                 {$list['content']}
                             </div>
                             <div style="margin-top: 16px">
-                                <span class="good color09c" data-id="1">
+                                <span class="good color09c hover09c" data-id="1">
                                     <svg class="icon">
                                         <use xlink:href="#icon-zan1"></use>
                                     </svg>
@@ -237,11 +237,13 @@
         <div class="part_one">
 
             <div class="company_logo" style="float: none">
-                <img src="{php echo $company['headimgurl']}" >
+                <a href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">
+                    <img src="{php echo $company['headimgurl']}" >
+                </a>
             </div>
 
             <div class="company_recruit_msg">
-                <a class="font18 color333" style="margin-top: 20px" href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">
+                <a class="font18 color333 hover09c" style="margin-top: 20px" href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">
                     {php echo $company['companyname']}
                     <svg class="icon" style="font-size: 22px;color: #09c">
                         <use xlink:href="#icon-renzheng"></use>

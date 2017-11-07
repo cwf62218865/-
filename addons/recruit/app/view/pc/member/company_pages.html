@@ -79,12 +79,8 @@
                         </svg>
                         秒猎认证
                 </span>
-                <span class="biaoqian_ico2">
-                        <svg class="icon renzheng">
-                            <use xlink:href="#icon-iconfontslogoqimingxing"></use>
-                        </svg>
-                        明星雇主
-                </span>
+                <img src="{WL_URL_ARES}images/mingxing.png" class="mingxing"/>
+
                 <span class="btn_xiny color_main cur">查看该公司信用</span>
             </div>
 
@@ -125,14 +121,8 @@
                         </svg>举报
                     </span>
 
-                    <!--<div class="bdsharebuttonbox share" style="float: left;display: none">-->
-                        <!--<a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>-->
-                        <!--<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>-->
-                        <!--<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>-->
-                        <!--<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>-->
-                    <!--</div>-->
                     <script>
-                        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
                         with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
                     </script>
 
@@ -301,9 +291,9 @@
                     <div class="job_list" style="display: none;">
                         <div class="job_list_con">
                             {loop $jobs $list}
-                            <a class="job_iteme">
+                            <a class="job_iteme" href="#">
                                 <p class="job_hang relative">
-                                    <span class="job_names">{$list['jobs_name']}</span>
+                                    <div class="job_names" href="#">{$list['jobs_name']}</div>
                                     <span class="refume_statas">{php echo date('Y-m-d',$list['updatetime'])}</span>
                                 </p>
                                 <p class="miaosu">
@@ -380,7 +370,9 @@
             </div>
             <!--地图加载-->
             <div class="qiyeditu" id="allmap"></div>
-            <div class="btnditu" data-id="{php echo $company['retoate_x'].','.$company['retoate_y']}" data-city="{$company['city']}">查看地图</div>
+            <div class="btnditu" data-id="{php echo $company['retoate_x'].','.$company['retoate_y']}" data-city="{$company['city']}">
+                <img src="{WL_URL_ARES}images/ditu_ico.png"/>
+            </div>
         </div>
     </div>
 

@@ -279,11 +279,13 @@
 
            if($.trim(company_name)==""){
                company_name_input.css("border-color","#e23d46");
-               company_name_input.next().html(tipmsg("error","请输入公司名称"));
+               hint("error","请输入公司名称")
+//               company_name_input.next().html(tipmsg("error","请输入公司名称"));
                return false;
            }
            if(!license||!identity_card1||!identity_card2){
-               $(".chec_tip1").eq(1).html(tipmsg("error","请上传营业执照和身份证正反面照片"));
+               hint("error","请上传营业执照和身份证正反面照片")
+//               $(".chec_tip1").eq(1).html(tipmsg("error","请上传营业执照和身份证正反面照片"));
                return false;
            }
 
