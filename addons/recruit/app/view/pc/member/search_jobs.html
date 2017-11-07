@@ -222,26 +222,24 @@
             <div class="title-top">
                 <label class="top_con">猜你喜欢</label>
             </div>
+            {loop $guess_jobs $list}
             <div class="items_list">
-                <a class="logo1" href="#">
-                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
+                <a class="logo1" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">
+                    <img src="{$list['headimgurl']}" class="logopic">
                 </a>
                 <div class="company_name">
-                    <a class="job_n" href="#">Java工程师</a>
-                    <p class="job_s">5-8K</p>
-                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
+                    <a class="job_n" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
+                    <p class="job_s">
+                        {if $list['wage_min']>0 && $list['wage_max']>0}
+                            {$list['wage_min']}-{$list['wage_max']}K
+                        {else}
+                            面议
+                        {/if}
+                    </p>
+                    <p class="companyn nowrap">{$list['companyname']}</p>
                 </div>
             </div>
-            <div class="items_list">
-                <a class="logo1" href="#">
-                    <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
-                </a>
-                <div class="company_name">
-                    <a class="job_n" href="#">Java工程师</a>
-                    <p class="job_s">5-8K</p>
-                    <p class="companyn nowrap">北京金三顺科技有限公司</p>
-                </div>
-            </div>
+           {/loop}
         </div>
         <div class="part_one">
             <div class="title-top">

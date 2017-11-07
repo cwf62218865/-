@@ -212,7 +212,7 @@
                 <label class="top_con">猜你喜欢</label>
             </div>
             {loop $jobs $list}
-            <a href="#" class="items_list">
+            <a href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" class="items_list">
                 <div class="logo1">
                     <img src="{$list['headimgurl']}" class="logopic">
                 </div>
@@ -230,7 +230,7 @@
             </a>
             {/loop}
             <div style="clear: both"></div>
-            <a href="#" class="seemorejob">查看更多职位>></a>
+            <a href="{php echo app_url('member/index/search_jobs')}" class="seemorejob">查看更多职位>></a>
         </div>
 
 
