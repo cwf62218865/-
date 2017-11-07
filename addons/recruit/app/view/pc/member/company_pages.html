@@ -291,9 +291,9 @@
                     <div class="job_list" style="display: none;">
                         <div class="job_list_con">
                             {loop $jobs $list}
-                            <a class="job_iteme"  href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">
+                            <a class="job_iteme" href="#">
                                 <p class="job_hang relative">
-                                    <div class="job_names">{$list['jobs_name']}</div>
+                                    <div class="job_names" href="#">{$list['jobs_name']}</div>
                                     <span class="refume_statas">{php echo date('Y-m-d',$list['updatetime'])}</span>
                                 </p>
                                 <p class="miaosu">
@@ -533,29 +533,7 @@
             hint("error",data.content);
         }
     })
-    $("body").on("click",".colorbbb",function () {
-        var _this = $(this);
-        $.ajax({
-            type:"post",
-            url:"{php echo app_url('member/index/comment_zan')}",
-            data:{
-                comment_id:$(this).attr("data-id")
-            },
-            success:function (data) {
-                var data = JSON.parse(data);
-                console.log(data);
-                if(data.status==1){
-                    var good_num = parseInt(_this.find(".good_num").html())+1;
-                    _this.find(".good_num").html(good_num);
-                    _this.removeClass("colorbbb").addClass("color09c");
-                }else if(data.status==2){
-                    hint("error",data.content);
-                }else if(data.status==3){
-                    $("#small_modalbox").show();
-                }
-            }
-        })
-    })
+
 
 </script>
 </html>
