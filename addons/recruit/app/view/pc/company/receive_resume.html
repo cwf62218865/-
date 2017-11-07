@@ -35,7 +35,7 @@
                 </div>
                 <div class="biezhu">不看已拒绝的简历</div>
                 <div class="job_send">
-                        <span class="wenzi">发布的职位</span>
+                        <span class="wenzi" style="width: 70px;">发布的职位</span>
                         <svg class="icon ico_xiala" style="margin-top: 22px;color: #bbbbbb;margin-left: 10px">
                             <use xlink:href="#icon-xiala"></use>
                         </svg>
@@ -120,7 +120,7 @@
                 </div>
                 {/if}
                 {/loop}
-                <div class="morejob received_resume_page" >更多简历信息>></div>
+                <!--<div class="morejob received_resume_page" >更多简历信息>></div>-->
                 {else}
                 <div class="no_data_box">
                     <img src="/addons/recruit/app/resource/images/no_data.png" style="float: left">
@@ -576,6 +576,13 @@
 //    $(".job_send").click(function(event){
 //        event.stopPropagation();
 //    });
+
+    $("#job_name_sou").focus(function () {
+        $(this).closest(".inputcon").css("border","1px solid #0099cc");
+    })
+    $("#job_name_sou").blur(function () {
+        $(this).closest(".inputcon").css("border","1px solid ##f5f5f5");
+    })
     //搜索职位
     $(".btn_sou").click(function () {
         var job_name_sou = $("#job_name_sou").val();
