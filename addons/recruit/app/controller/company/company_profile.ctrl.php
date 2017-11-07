@@ -9,6 +9,7 @@ defined('IN_IA') or exit('Access Denied');
 
 if($op=="index"){
     $company = m('company')->get_profile($_SESSION['uid']);
+//    include wl_template("company/company_nomessage");exit();
     if(!$company['atlas'] ||!$company['introduce']){
         include wl_template("company/company_nomessage");
     }else{
@@ -114,23 +115,27 @@ elseif ($op=="save_website"){
 
 //保存公司信息
 elseif ($op=="save_company_profile"){
-//    var_dump($_POST);exit();
-    $data['nature'] = check_pasre($_POST['data']['company_nature'],"1");
-    $data['headimgurl'] = check_pasre($_POST['data']['company_logo'],"2");
-    $data['number'] = check_pasre($_POST['data']['company_scale'],"3");
-    $data['industry'] = check_pasre($_POST['data']['company_industry'],"4");
-    $data['city'] = check_pasre($_POST['data']['area'],"5");
-    $data['slogan'] = check_pasre($_POST['data']['slogan'],"参数错误6");
-    $data['introduce'] = check_pasre($_POST['data']['companymsg_introduce'],"参数错误7");
-    $data['city'] = check_pasre($_POST['data']['city'],"参数错误8");
-    $data['address'] = check_pasre($_POST['data']['address'],"参数错误9");
-    $data['city_area'] = check_pasre($_POST['data']['area'],"参数错误0");
-    $data['atlas'] = check_pasre($_POST['data']['person_works'],"参数错误");
+    $data['nature'] = check_pasre($_POST['data']['company_nature'],"请填写公司性质");
+    $data['headimgurl'] = check_pasre($_POST['data']['company_logo'],"请上传logo");
+    $data['number'] = check_pasre($_POST['data']['company_scale'],"请填写公司规模");
+    $data['industry'] = check_pasre($_POST['data']['company_industry'],"请填写所处行业");
+    $data['city'] = check_pasre($_POST['data']['area'],"请填写所在地区");
+    $data['slogan'] = check_pasre($_POST['data']['slogan'],"请填写公司slogan");
+    $data['introduce'] = check_pasre($_POST['data']['companymsg_introduce'],"请填写公司介绍");
+    $data['city'] = check_pasre($_POST['data']['city'],"请选择城市");
+    $data['address'] = $_POST['data']['address'];
+    $data['city_area'] = check_pasre($_POST['data']['area'],"请选择区域");
+    $atlas = check_pasre($_POST['data']['person_works'],"参数错误");
+    $data['atlas']="";
+    foreach (explode(",",$atlas) as $list){
+        $data['atlas'][] = file_transfer($list);
+    }
+    $data['atlas'] = implode(",",$data['atlas']);
     $coordinate = explode(",",$_POST['data']['coordinate']);
     $data['retoate_x'] = $coordinate[0];
     $data['retoate_y'] = $coordinate[1];
     $data['tag'] = check_pasre($_POST['data']['company_welfare'],"参数错误");
-    $data['website'] = check_pasre($_POST['data']['company_url'],"参数错误");
+    $data['website'] = $_POST['data']['company_url'];
     $data['updatetime'] = time();
     $r = pdo_update(WL."company_profile",$data,array('uid'=>$_SESSION['uid']));
     if($r){

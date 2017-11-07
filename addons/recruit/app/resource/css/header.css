@@ -69,8 +69,11 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     cursor: pointer;
     position: relative;
 }
+.menu a:hover{
+    color: #09c;
+}
 .menu .menuactive{
-    color: #1aa9d2;
+    color: #09c;
 }
 .menu .menuactive:after{
     content: "";
@@ -90,6 +93,9 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     display: inline-block;
     margin-left: 14px;
     color: #999;
+}
+.login a:hover{
+    color: #09c;
 }
 .chec_tip,.chec_tip1{
     width: 100%;

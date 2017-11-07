@@ -423,8 +423,8 @@
         });
 
         $(".img_con").click(function () {
-            $(".erweima").attr("id","code1").children().remove();
-            code_url("#code1","{php echo app_url('member/index/mobile_upload',array('identity'=>$identity,'kind'=>'resume'))}");
+            $(".erweima").attr("id","headimgurl").children().remove();
+            code_url("#headimgurl","/code.php?identity"+identity+"&kind=resume");
             timer1 = window.setInterval(
                 function(){
                     $.ajax({

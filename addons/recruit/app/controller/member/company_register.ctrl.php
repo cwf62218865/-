@@ -148,17 +148,19 @@ elseif ($op=="upload_refresh"){
 }
 //保存第二步信息处理
 elseif ($op=="step2_save"){
-
+//    var_dump($_POST);exit();
     $data['companyname'] =check_pasre($_POST['companyname'],"请输入公司名称");
-    $data['license'] =check_pasre($_POST['license'],"请上传营业执照");
-    $data['idcard1'] =check_pasre($_POST['idcard1'],"请上传法人身份证(正面)");
-    $data['idcard2'] =check_pasre($_POST['idcard2'],"请上传法人身份证(反面)");
-    $data['license'] = file_transfer($data['license']);
-    $data['idcard1'] = file_transfer($data['idcard1']);
-    $data['idcard2'] = file_transfer($data['idcard2']);
+    $license =check_pasre($_POST['license'],"请上传营业执照");
+    $idcard1 =check_pasre($_POST['idcard1'],"请上传法人身份证(正面)");
+    $idcard2 =check_pasre($_POST['idcard2'],"请上传法人身份证(反面)");
+    $data['license'] = file_transfer($license);
+    $data['idcard1'] = file_transfer($idcard1);
+    $data['idcard2'] = file_transfer($idcard2);
 
     $company = pdo_fetch("select id from ".tablename(WL.'company_profile')." where uid=".$_SESSION['uid']);
+
     if($company){
+        $data['updatetime'] = time();
         $r = pdo_update(WL."company_profile",$data,array('uid'=>$_SESSION['uid']));
     }else{
         $data['uid'] = $_SESSION['uid'];
@@ -188,29 +190,8 @@ elseif ($op=="step3_save"){
 
 //pc图片上传处理
 elseif ($op=="upload"){
-    $file = $_FILES['file'];//得到传输的数据
-    $name = $file['name'];
-    $type = strtolower(substr($name,strrpos($name,'.')+1)); //得到文件类型，并且都转化成小写
-    $allow_type = array('jpg','jpeg','gif','png'); //定义允许上传的类型
-    //判断文件类型是否被允许上传
-    if(!in_array($type, $allow_type)){
-        //如果不被允许，则直接停止程序运行
-        call_back(2,"文件格式不对") ;
-    }
-    //判断是否是通过HTTP POST上传的
-    if(!is_uploaded_file($file['tmp_name'])){
-        //如果不是通过HTTP POST上传的
-        call_back(2,"上传失败") ;
-    }
-    $upload_path = WL_APP."resource/file/".date("Y-m-d"); //上传文件的存放路径
-    mkdirs($upload_path);
-    $name = time().$_SESSION['uid'].".".$type;
-    $upload_path_name = $upload_path."/".$name;
-
-    //开始移动文件到相应的文件夹
-    if(move_uploaded_file($file['tmp_name'],$upload_path_name)){
-        call_back(1,WL_URL_APP."resource/file/".date("Y-m-d")."/".$name);
-    }
+    $file = upload_img($_FILES);
+    call_back(1,$file);
 }
 
 
