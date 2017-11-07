@@ -13,29 +13,30 @@ class resume{
      */
     public function get_resume($uid){
         $resume = pdo_fetch("select * from ".tablename(WL.'resume')." where uid=".$uid);
-        $edu_experience = unserialize($resume['edu_experience']);
-        $education = "";
-        $id = "";
-        $edu = array('专科以下','专科','本科','硕士','博士','博士以上');
-        $arr_edu = array_flip($edu);
-        foreach ($edu_experience as $key=>$list){
-            $value = $list['edu_district'];
-            if(empty($education)){
-                $education = $arr_edu[$value];
-                $id = $key;
-            }else{
-                if($arr_edu[$value]>$education){
+        if($resume){
+            $edu_experience = unserialize($resume['edu_experience']);
+            $education = "";
+            $id = "";
+            $edu = array('专科以下','专科','本科','硕士','博士','博士以上');
+            $arr_edu = array_flip($edu);
+            foreach ($edu_experience as $key=>$list){
+                $value = $list['edu_district'];
+                if(empty($education)){
                     $education = $arr_edu[$value];
                     $id = $key;
+                }else{
+                    if($arr_edu[$value]>$education){
+                        $education = $arr_edu[$value];
+                        $id = $key;
+                    }
                 }
             }
-        }
-       $resume['education'] = $edu[$education];
-        $resume['arr_education'] = $edu_experience[$id];
-        $work_experience = unserialize($resume['work_experience']);
+            $resume['education'] = $edu[$education];
+            $resume['arr_education'] = $edu_experience[$id];
+            $work_experience = unserialize($resume['work_experience']);
 
-        $work_time = "";
-        foreach ($work_experience as $list){
+            $work_time = "";
+            foreach ($work_experience as $list){
 //            $list['job_starttime'] = str_replace("月","",str_replace("年","-",$list['job_starttime']));
 //            $time = strtotime($list['job_starttime']);
 //            if(empty($work_time)){
@@ -45,10 +46,11 @@ class resume{
 //                    $work_time = $time;
 //                }
 //            }
-            $work_time =$work_time+($list['job_endtime'] - $list['job_starttime']);
-        }
-        if($work_time){
-            $resume['work_time'] =ceil($work_time/31536000);
+                $work_time =$work_time+($list['job_endtime'] - $list['job_starttime']);
+            }
+            if($work_time){
+                $resume['work_time'] =ceil($work_time/31536000);
+            }
         }
 //        $resume['work_time'] =  date('Y')-date('Y',$work_time);
         return $resume;

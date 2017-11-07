@@ -5,10 +5,10 @@ function upload_refresh(content) {
         url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=upload_refresh&",
         type:"post",
         async:true,
-        success:function(data){
+        success:function (data) {
             var data = JSON.parse(data);
             if(data.status==1){
-                content;
+                callback_content(data);
                 timer1="";
             }else{
                 timer1=setTimeout(function(){
@@ -32,6 +32,7 @@ function upload_timer() {
 function code_url(id) {
     var identity = $(".erweima").attr("data-id");
     $(".erweima").attr("id",id).children().remove();
+
     $("#"+id).qrcode({
         width: 100, //宽度
         height:100, //高度

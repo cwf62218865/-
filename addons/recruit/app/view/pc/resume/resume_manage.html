@@ -1184,7 +1184,7 @@
             <!--</form>-->
 
 
-            <div class="erweima">
+            <div class="erweima"  data-id="{$identity}">
                 <!--<img src="{WL_URL_ARES}images/erweima.png" class="pic"/>-->
             </div>
         </div>
@@ -1411,21 +1411,11 @@
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/area.js" rel="script"></script>
-<script>
-    var identity = "{php echo $identity}";
-    //二维码生成
-    function code_url(id,url) {
-        $(id).qrcode({
-            width: 100, //宽度
-            height:100, //高度
-            text: url //任意内容
-        });
-    }
-</script>
 <script src="{WL_URL_ARES}js/newfile.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.qrcode.min.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/upload_refresh.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/resume_manager.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
-<script src="{WL_URL_ARES}js/jquery.qrcode.min.js" rel="script"></script>
 
 
 <script>
@@ -1470,13 +1460,13 @@
     $(".modalbtn").on("click",function(){
         var uploadFormData =new FormData($("#choosefile1")[0]);
         var id = $(this).parent().find(".erweima").attr("id");
-        if(id=="code1"){
+        if(id=="headimgurl"){
             var uploadurl = "{php echo app_url('person/resume/headimg_upload')}";
-        }else if(id=="code2"){
+        }else if(id=="resume_works"){
             var uploadurl = "{php echo app_url('person/resume/works_upload')}";
-        }else if(id=="code3"){
+        }else if(id=="honor"){
             var uploadurl = "{php echo app_url('person/resume/certificate_upload')}";
-        }else if(id=="code4"){
+        }else if(id=="video"){
             var uploadurl = "{php echo app_url('person/resume/video_upload')}";
         }
         $.ajax({
@@ -1491,7 +1481,7 @@
                 var data=JSON.parse(data);
                 if(data.status==1){
                     //location = location;
-                    if(id=="code2"){
+                    if(id=="resume_works"){
                         var imgbox='<div class="person_worksbtn">'+
                                 '<img src="'+data.content+'">'+
                                 '<span class="person_worksdelbtn">'+
@@ -1501,6 +1491,7 @@
 
                         $(".person_worksbtn1").before(imgbox);
                         $("#modalbox").css("display","none");
+                        window.clearTimeout(timer1);
                         $("#person_worksinput").val($("#person_worksinput").val()+","+data.content);
 
                         var images="";
@@ -1512,13 +1503,13 @@
                             $(".person_worksbtn1").remove();
                         }
 
-                    }else if(id=="code1"){
+                    }else if(id=="headimgurl"){
 //                        var uploadurl = "{php echo app_url('person/resume/headimg_upload')}";
                         location = location;
-                    }else if(id=="code3"){
+                    }else if(id=="honor"){
                         $("#certificateaddbtn").html("<img style='width: 100%' src='"+data.content+"'>");
                         $("#certificate_img").val(data.content);
-                    }else if(id=="code4"){
+                    }else if(id=="video"){
                         $(".vedio_source").html('<video src="" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>');
                         $(".person_video").attr("src",data.others);
                     }
@@ -1528,7 +1519,7 @@
             }
         });
         $("#modalbox").css("display","none");
-
+        window.clearTimeout(timer1);
     })
 
     //上传视频弹框显示
@@ -1942,10 +1933,9 @@
         $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
                 '<use xlink:href="#icon-shangchuan"></use>'+
                 '</svg>');
-        $(".erweima").attr("id","code3").children().remove();
-        code_url("#code3","/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=mobile_upload&kind=person_works&identity="+identity);
+        code_url("honor");
         $("#modalbox").css("display","block");
-
+        upload_timer();
     });
 
 
@@ -1973,55 +1963,44 @@
         $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
                 '<use xlink:href="#icon-shangchuan"></use>'+
                 '</svg>');
-        $(".erweima").attr("id","code4").children().remove();
-        code_url("#code4","/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&");
+        code_url("video");
 
         $("#modalbox").css("display","block");
-
+        upload_timer();
     });
 
-//    var uploader = new plupload.Uploader({
-//        runtimes : 'html5,flash,silverlight,html4',
-//        browse_button : 'pickfiles', // you can pass an id...
-//        container: document.getElementById('container'), // ... or DOM Element itself
-//        url : 'upload.php',
-//        flash_swf_url : '{WL_URL_ARES}/js/Moxie.swf',
-//        silverlight_xap_url : '{WL_URL_ARES}/js/Moxie.xap',
-//
-//        filters : {
-//            max_file_size : '10mb',
-//            mime_types: [
-//                {title : "Image files", extensions : "jpg,gif,png"},
-//                {title : "Zip files", extensions : "zip"}
-//            ]
-//        },
-//
-//        init: {
-//            PostInit: function() {
-//                document.getElementById('filelist').innerHTML = '';
-//
-//                document.getElementById('uploadfiles').onclick = function() {
-//                    uploader.start();
-//                    return false;
-//                };
-//            },
-//
-//            FilesAdded: function(up, files) {
-//                plupload.each(files, function(file) {
-//                    document.getElementById('filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
-//                });
-//            },
-//
-//            UploadProgress: function(up, file) {
-//                document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
-//            },
-//
-//            Error: function(up, err) {
-//                document.getElementById('console').appendChild(document.createTextNode("\nError #" + err.code + ": " + err.message));
-//            }
-//        }
-//    });
-//
-//    uploader.init();
+    function callback_content(data) {
+        if(data.others==1){
+            location = location;
+        }else if(data.others==2){
+            var imgbox='<div class="person_worksbtn">'+
+                '<img src="'+data.content+'">'+
+                '<span class="person_worksdelbtn">'+
+                '<svg class="icon" aria-hidden="true">'+
+                '<use xlink:href="#icon-shanchu"></use>'+
+                '</svg></span></div>'
+
+            $(".person_worksbtn1").before(imgbox);
+            window.clearTimeout(timer1);
+            $("#person_worksinput").val($("#person_worksinput").val()+","+data.content);
+
+            var images="";
+            $(".person_worksbox img").each(function(){
+                images+=$(this).attr("src")+",";
+            });
+            $("#person_worksinput").val(images.substring(0,images.length-1));
+            if($(".person_worksbox img").length>5){
+                $(".person_worksbtn1").remove();
+            }
+        }else if(data.others==3){
+            $("#certificateaddbtn").html("<img style='width: 100%' src='"+data.content+"'>");
+            $("#certificate_img").val(data.content);
+        }else if(data.others==4){
+            $(".vedio_source").html('<video src="" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>');
+            $(".person_video").attr("src",data.others);
+        }
+        $("#modalbox").css("display","none");
+    }
+
 </script>
 </html>
