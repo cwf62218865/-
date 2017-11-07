@@ -170,26 +170,28 @@
                     </div>
 
                     <!--面试评价-->
-
+                    {loop $list['content'] $li}
+                    {if $li['hr_reply_status']==1}
                     <div class="day_msgbox">
                         <div class="system_msg_title">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-pinglunhuifu"></use>
                             </svg>
                             <span class="color999">面试评价</span>
-                            <span class="colorbbb">2017-09-31 15:45</span>
+                            <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
                         </div>
 
                         <div class="delivery_left">
                         <span class="delivery_logo">
-                            <img src="{WL_URL_ARES}images/qiyelogo.png">
+                            <img src="{$li['headimgurl']}">
                         </span>
-                            <span><span style="color: #7b8fc9">重庆麦飞科技有限公司</span>回复了您的面试评价</span>
+                            <span><span style="color: #7b8fc9">{$li['companyname']}</span>回复了您的面试评价</span>
                         </div>
 
                         <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
                     </div>
-
+                    {/if}
+                    {/loop}
                 </div>
                 {/loop}
             </div>

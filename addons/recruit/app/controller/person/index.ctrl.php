@@ -304,6 +304,10 @@ elseif ($op=="collection_jobs_list"){
 //面试评价
 elseif ($op=="credit_evaluate"){
     $agree_jobs = m("resume")->jobs_apply($_SESSION['uid'],-1,3);
+    $data['puid'] = $_SESSION['uid'];
+    $data['hr_reply'] = 1;
+    $comment_jobs = m("jobs")->comment_apply($data);
+
     include wl_template("person/credit_evaluate");exit();
 }
 //简历管理

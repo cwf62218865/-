@@ -24,7 +24,7 @@ class jobs{
             $data['data']['page']=1;
         }
         $page = ($data['data']['page'] -1)*$pagenum;
-        $wheresql = " where  display=1 and open=1 ";
+        $wheresql = " where  display=1 ";
         $orderby = " order by addtime desc,open desc";
         if($data['data']['job_nature'] && $data['data']['job_nature']<>"不限"){
             $wheresql .=" and work_nature='".$data['data']['job_nature']."' ";
@@ -188,41 +188,49 @@ class jobs{
      * 评论面试职位
      *
      */
-    public function comment_apply($data){
+    public function comment_apply($data)
+    {
         $wheresql = "where 1=1 ";
-        if($data['uid']){
-            $wheresql .= " and hr_reply='' and uid=".$data['uid'];
+        if ($data['uid']) {
+            $wheresql .= " and hr_reply='' and uid=" . $data['uid'];
         }
-        if($data['jobs_id']){
-            $wheresql .= " and jobs_id=".$data['jobs_id'];
+        if ($data['jobs_id']) {
+            $wheresql .= " and jobs_id=" . $data['jobs_id'];
         }
 
-        if($data['company_uid']){
-            $wheresql .= " and uid=".$data['company_uid'];
+        if ($data['company_uid']) {
+            $wheresql .= " and uid=" . $data['company_uid'];
         }
-        $comment_jobs = pdo_fetchall("select * from ".tablename(WL."comment").$wheresql);
+        if ($data['puid']) {
+            $wheresql .= " and puid=" . $data['puid'];
+        }
+        if ($data['hr_reply']) {
+            $wheresql .= " and hr_reply<>''";
+        }
+        $comment_jobs = pdo_fetchall("select * from " . tablename(WL . "comment") . $wheresql);
         $comment = "";
-        foreach ($comment_jobs as $list){
-            $jobs = pdo_fetch("select jobs_name from ".tablename(WL."jobs")." where id=".$list['jobs_id']);
-            $company = pdo_fetch("select headimgurl from ".tablename(WL."company_profile")." where uid=".$list['uid']);
-            $resume = pdo_fetch("select fullname,headimgurl from ".tablename(WL."resume")." where uid=".$list['puid']);
+        foreach ($comment_jobs as $list) {
+            $jobs = pdo_fetch("select id,jobs_name from " . tablename(WL . "jobs") . " where id=" . $list['jobs_id']);
+            $company = pdo_fetch("select headimgurl from " . tablename(WL . "company_profile") . " where uid=" . $list['uid']);
+            $resume = pdo_fetch("select fullname,headimgurl from " . tablename(WL . "resume") . " where uid=" . $list['puid']);
             $list['jobs_name'] = $jobs['jobs_name'];
+            $list['jobs_id'] = $jobs['id'];
             $list['headimgurl'] = $resume['headimgurl'];
             $list['logo'] = $company['headimgurl'];
-            if($list['hide']){
+            if ($list['hide']) {
                 $list['fullname'] = "匿名";
-            }else{
+            } else {
                 $list['fullname'] = $resume['fullname'];
             }
             $list['information_star'] = "";
-            for($i=0;$i<$list['evaluate_information'];$i++){
+            for ($i = 0; $i < $list['evaluate_information']; $i++) {
                 $list['information_star'] .=
                     "<svg class=\"icon colorffc549\" >
                         <use xlink:href=\"#icon-pingfen\"></use>
                     </svg>";
             }
 
-            for($i=0;$i<(5-$list['evaluate_information']);$i++){
+            for ($i = 0; $i < (5 - $list['evaluate_information']); $i++) {
                 $list['information_star'] .=
                     "<svg class=\"icon colorffc549\" >
                         <use xlink:href=\"#icon-pingfenbanfen\"></use>
@@ -230,14 +238,14 @@ class jobs{
             }
 
             $list['environment_star'] = "";
-            for($i=0;$i<$list['evaluate_environment'];$i++){
+            for ($i = 0; $i < $list['evaluate_environment']; $i++) {
                 $list['environment_star'] .=
                     "<svg class=\"icon colorffc549\" >
                         <use xlink:href=\"#icon-pingfen\"></use>
                     </svg>";
             }
 
-            for($i=0;$i<(5-$list['evaluate_environment']);$i++){
+            for ($i = 0; $i < (5 - $list['evaluate_environment']); $i++) {
                 $list['environment_star'] .=
                     "<svg class=\"icon colorffc549\" >
                         <use xlink:href=\"#icon-pingfenbanfen\"></use>
@@ -245,29 +253,29 @@ class jobs{
             }
 
             $list['interviewer_star'] = "";
-            for($i=0;$i<$list['evaluate_interviewer'];$i++){
+            for ($i = 0; $i < $list['evaluate_interviewer']; $i++) {
                 $list['interviewer_star'] .=
                     "<svg class=\"icon colorffc549\" >
                         <use xlink:href=\"#icon-pingfen\"></use>
                     </svg>";
             }
 
-            for($i=0;$i<(5-$list['evaluate_interviewer']);$i++){
+            for ($i = 0; $i < (5 - $list['evaluate_interviewer']); $i++) {
                 $list['interviewer_star'] .=
                     "<svg class=\"icon colorffc549\" >
                         <use xlink:href=\"#icon-pingfenbanfen\"></use>
                     </svg>";
             }
-            $count_score = ceil(($list['evaluate_interviewer']+$list['evaluate_environment']+$list['evaluate_information'])/3);
+            $count_score = ceil(($list['evaluate_interviewer'] + $list['evaluate_environment'] + $list['evaluate_information']) / 3);
             $list['count_score'] = "";
-            for($i=0;$i<$count_score;$i++){
+            for ($i = 0; $i < $count_score; $i++) {
                 $list['count_score'] .=
                     " <svg class=\"icon star\" aria-hidden=\"true\">
                                 <use  xlink:href=\"#icon-pingfen\"></use>
                                 </svg>";
             }
 
-            for($i=0;$i<(5-$count_score);$i++){
+            for ($i = 0; $i < (5 - $count_score); $i++) {
                 $list['count_score'] .=
                     " <svg class=\"icon star\" aria-hidden=\"true\">
                                 <use  xlink:href=\"#icon-pingfenbanfen\"></use>

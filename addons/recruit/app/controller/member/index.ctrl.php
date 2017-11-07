@@ -34,6 +34,8 @@ elseif($op=="jobs_detail"){
 
     if($_GPC['jobs_id']){
         $jobs = pdo_fetch("select * from ".tablename(WL."jobs")." where id=".$_GPC['jobs_id']);
+        $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$jobs['uid']);
+        $comment_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where uid=".$jobs['uid']);
         $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$jobs['uid']);
         $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where jobs_id=".$_GPC['jobs_id']." and puid=".$_SESSION['uid']);
         $report = pdo_fetch("select id from ".tablename(WL."report")." where jobs_id=".$_GPC['jobs_id']." and report_uid=".$_SESSION['uid']);
@@ -42,7 +44,11 @@ elseif($op=="jobs_detail"){
         $similar_jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$jobs['jobs_name']."%' and id<>".$jobs['id']);
         $data['jobs_id'] = $_GPC['jobs_id'];
         $comment_jobs = m("jobs")->comment_apply($data);
-        include wl_template("member/jobs_detail");exit();
+        if($jobs['open']){
+            include wl_template("member/jobs_detail");exit();
+        }else{
+            include wl_template("member/stop_recruitjob");exit();
+        }
     }
 
 }
