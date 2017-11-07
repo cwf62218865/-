@@ -53,7 +53,7 @@
 .introduces{
     font-size: 16px;
     color: #666;
-    line-height: 20px;
+    line-height: 30px;
     margin-top: 35px;
 }
 .showoehideall{
@@ -312,23 +312,19 @@
 }
 
 .fenxiang .fenxiang_con .iconb1{
-    background: url("../images/ico_QQ.png") #22a4ff no-repeat;
-    background-position: 6px 6px;
+    background: url("../images/ico_QQ.png") #22a4ff no-repeat center;
 }
 .fenxiang .fenxiang_con .iconb2{
-    background: url("../images/ico_weixin.png") #04b00f  no-repeat;
-    background-position:  6px 6px;
+    background: url("../images/ico_weixin.png") #04b00f  no-repeat center;
 }
 .fenxiang .fenxiang_con .iconb3{
-    background: url("../images/ico_weibo.png") #ff424f  no-repeat;
-    background-position:  6px 6px;
+    background: url("../images/ico_weibo.png") #ff424f  no-repeat center;
  }
 .fenxiang .fenxiang_con .iconb4{
-    background: url("../images/ico_pengyouquan.png") #04b00f  no-repeat;
-    background-position:  6px 6px;
+    background: url("../images/ico_pengyouquan.png") #04b00f  no-repeat center;
   }
 .fenxiang .fenxiang_con .iconb5{
-    background: url("../images/ico_kongjian.png") #f5c22b no-repeat;
+    background: url("../images/ico_kongjian.png") #f5c22b no-repeat center;
     background-position:  6px 6px;
    }
 .fenxiang:hover .fenxiang_con{

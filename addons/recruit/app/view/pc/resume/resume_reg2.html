@@ -269,14 +269,16 @@
 
                 if(school_name==""){
                     school_input.css("border-color","#e23d46");
-                    school_input.next().next().find(".left_align").html(tipmsg("error","请输入学校名称"));
+//                    school_input.next().next().find(".left_align").html(tipmsg("error","请输入学校名称"));
+                    hint("error","请输入学校名称");
                     return false;
                 }else{
                     school_input.next().next().find(".left_align").html("");
                 }
                 if(edu_major==""){
                     major_input.css("border-color","#e23d46");
-                    major_input.next().next().find(".left_align").html(tipmsg("error","请输入所学专业"));
+//                    major_input.next().next().find(".left_align").html(tipmsg("error","请输入所学专业"));
+                    hint("error","请输入所学专业");
                     return false;
                 }else{
                     major_input.next().next().find(".left_align").html("");
@@ -284,7 +286,8 @@
 
                 if(edu_finish_time==""){
                     finish_input.css("border-color","#e23d46");
-                    finish_border.next().find(".right_align").html(tipmsg("error","请选择毕业时间"));
+                    hint("error","请选择毕业时间");
+//                    finish_border.next().find(".right_align").html(tipmsg("error","请选择毕业时间"));
                     return false;
                 }
 

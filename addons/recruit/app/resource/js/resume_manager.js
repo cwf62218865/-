@@ -30,6 +30,9 @@ $("body").on("click",".upload_video",function () {
     $(".oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="video/*"></form>');
 })
 
+$("#certificateaddbtn").on("click",function () {
+    $(".oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="image/*"></form>');
+})
 
 $(".modalclose").on("click",function(){
     $("#modalbox").css("display","none");
