@@ -228,7 +228,11 @@
                     if(data.status==1){
                         $("#all_msg").hide();
                         $("#one_msg").show();
-                        $("#one_msg").html(data.content);
+                        if(data.content){
+                            $("#one_msg").html(data.content);
+                        }else{
+                            no_data("#one_msg","没有消息","当前板块没有消息")
+                        }
                     }
                 }
 
