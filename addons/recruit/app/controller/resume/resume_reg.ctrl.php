@@ -19,7 +19,8 @@ if($op=="1"){
 }elseif($op=="4"){
     include wl_template('resume/resume_reg4');
 }elseif ($op=="step1_save"){
-    $data['headimgurl'] = $_POST['headimgurl'];
+
+    $data['headimgurl'] = file_transfer($_POST['headimgurl']);
     $data['sex'] = check_pasre($_POST['sex'],"请输入性别");
     $data['fullname'] = check_pasre($_POST['user_name'],"请输入姓名");
     $data['telphone'] = check_pasre($_POST['telphone'],"请输入手机号");

@@ -20,8 +20,8 @@ $(".img_con").click(function () {
         '</svg>');
     $(".oneone_btn").html("<button type='button' id='choosefile' class='btn btn-primary' data-toggle='modal' data-target='#avatar-modal' style='margin: 10px;' accept='image/*' value=''>修改头像</button>")
 
-    $(".erweima").attr("id","code1").children().remove();
-    code_url("#code1","/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&");
+    code_url("headimgurl");
+    upload_timer();
 });
 $("body").on("click",".person_worksbtn1",function () {
     $(".oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="image/*"></form>');
@@ -33,19 +33,21 @@ $("body").on("click",".upload_video",function () {
 
 $(".modalclose").on("click",function(){
     $("#modalbox").css("display","none");
+    window.clearTimeout(timer1);
     $(".oneone_btn").html("");
 });
 
 $("#person_worksaddbtn").click(function () {
+
     $("#upload_pic").remove();
     $(".one_btn").html('<svg class="icon" aria-hidden="true">\n' +
         '                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shangchuan"></use>\n' +
         '                </svg>');
     $("#modalbox").show();
+    code_url("resume_works");
+    upload_timer();
     $(".title_content").html("个人作品");
     $("#choosefile").attr("accept","image/*").val("");
-    $(".erweima").attr("id","code2").children().remove();
-    code_url("#code2","/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=mobile_upload&kind=person_works&identity="+identity);
 
 
 });
@@ -622,3 +624,5 @@ $(".cancelbtn").eq(5).on("click",function(){
 $(".menus").eq(4).on("click",function(){
     $('html').animate({scrollTop:0},300);
 })
+
+

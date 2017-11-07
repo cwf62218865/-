@@ -33,6 +33,9 @@ if(!$_SESSION['uid']){
     if($_GPC['do']<>"member" && $_POST){
         call_back(3,"请先登录账号");
     }
+    if($_GPC['do']<>"member"){
+        $action = "index";
+    }
 }else{
     $identity = encrypt($_SESSION['uid'], 'E');
 	if($_SESSION['utype']==2){

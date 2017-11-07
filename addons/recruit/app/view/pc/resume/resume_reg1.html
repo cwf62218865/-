@@ -125,7 +125,7 @@
                 <!--</form>-->
                 <button type="button"  id="choosefile"  class="btn btn-primary"  data-toggle="modal" data-target="#avatar-modal" style="margin: 10px;">修改头像</button>
 
-                <div class="erweima">
+                <div class="erweima" data-id="{$identity}">
                     <!--<img src="{WL_URL_ARES}images/erweima.png" class="pic"/>-->
                 </div>
             </div>
@@ -291,17 +291,7 @@
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/area.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/jquery.qrcode.min.js" rel="script"></script>
-<script>
-    var identity = "{php echo $identity}";
-    //二维码生成
-    function code_url(id,url) {
-        $(id).qrcode({
-            width: 100, //宽度
-            height:100, //高度
-            text: url //任意内容
-        });
-    }
-</script>
+<script src="{WL_URL_ARES}js/upload_refresh.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/resume_reg1.js" rel="script"></script>
 <script>
     $(function () {
@@ -320,22 +310,22 @@
                 success:function (data) {
                     var data=JSON.parse(data);
                     if(data.status==1){
-                        //location = location;
                         var html = '<img src="'+data.others+'">';
                         $(".resume_reg1headimgbox").html(html);
-
-                        window.clearInterval(timer1);
-//                       $(".img_tx img").eq(0).attr("src",data.others);
+                        $("#modalbox").css("display","none");
+                        window.clearTimeout(timer1);
+                    }else{
+                        hint("error",data.content);
                     }
                     $(".chec_tip1").eq(1).html("");
                 }
             });
-            $("#modalbox").css("display","none");
+
         })
 
 
         $(".modalclose").click(function () {
-            window.clearInterval(timer1);
+            window.clearTimeout(timer1);
         })
         $("#post_next").on("click",function(){
             var headimgurl=$(".img_tx img").eq(0).attr("src");//头像
@@ -423,26 +413,16 @@
         });
 
         $(".img_con").click(function () {
-            $(".erweima").attr("id","headimgurl").children().remove();
-            code_url("#headimgurl","/code.php?identity"+identity+"&kind=resume");
-            timer1 = window.setInterval(
-                function(){
-                    $.ajax({
-                        url:"{php echo app_url('member/index/upload_refresh')}",
-                        type:"post",
-                        success:function(data){
-                            if(data){
-                                var data = JSON.parse(data);
-                                if(data.status==1){
-                                    location = location;
-                                }
-                            }
-
-                        }
-                    })
-                },5000
-            );
+            code_url("headimgurl");
+            upload_timer();
         })
     })
+
+
+    function callback_content(data) {
+        var html = '<img src="'+data.content+'">';
+        $(".resume_reg1headimgbox").html(html);
+        $("#modalbox").css("display","none");
+    }
 </script>
 </html>
