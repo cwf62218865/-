@@ -426,7 +426,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 .no_page{
     color: #eee;
-    cursor: not-allowed;
+    /*cursor: not-allowed;*/
+}
+.no_page:hover{
+    border: 1px solid #eeeeee;
+    background: #ffffff;
+    color: #eee;
 }
 
 

@@ -236,6 +236,7 @@
 .xinzi_color{
     color: #666666;
     margin-right: 80px;
+    cursor: pointer;
 }
 .pailie{
     color: #999999;
@@ -256,7 +257,7 @@
     line-height: 14px;
     height: 14px;
     padding: 5px;
-    color: #8892a4;
+    color: #838ea2;
     vertical-align: middle;
     border: 1px solid #eeeeee;
     cursor: pointer;
@@ -264,6 +265,9 @@
 .yema:hover{
     background: #0099cc;
     color: #ffffff;
+}
+.companyname .name:hover,.hang1 .jobname:hover{
+    color: #0099cc;
 }
 .hangver{
     height: 22px;
@@ -399,7 +403,7 @@
 }
 .daoshi_list{
     float: left;
-    width: 270px;
+    width: 100%;
     height: auto;
     padding-top:30px ;
     padding-bottom: 30px;
@@ -421,6 +425,7 @@
 }
 .company_name{
     float: left;
+    line-height: 22px;
 }
 .companyn{
     width: 180px ;
@@ -433,7 +438,6 @@
 .job_s{
     color: #e23d46;
     font-size: 16px;
-    margin-top: 10px;
 }
 .daoshi_list{
 

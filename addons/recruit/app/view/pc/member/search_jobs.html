@@ -105,22 +105,24 @@
             <div class="list_top">
                 <div class="con_top1">
 
-                        <!--<label class="relative xinzi_color">-->
-                        <!--<input type="text"   readonly=""  name="company_area" value="薪资待遇">-->
-                        <!--<svg class="icon xiala">-->
-                            <!--<use xlink:href="#icon-xiala"></use>-->
-                        <!--</svg>-->
-                    <!--</label>-->
+
+                    <div class="job_send xinzi_color" style="display: block;float: left;width: 80px;">
+                        <span class="wenzi">薪资待遇</span>
+                        <svg class="icon ico_xiala" style="margin-top: 22px;color: #bbbbbb;margin-left: 10px">
+                            <use xlink:href="#icon-xiala"></use>
+                        </svg>
+                        <div class="my_joblist" style="display: block;height: 0px;padding: 0;">
+                            <p class="option_select" data-id="1">待遇不限</p>
+                            <p class="option_select" data-id="1">2k-4k</p>
+                            <p class="option_select" data-id="2">4k-6k</p>
+                            <p class="option_select" data-id="3">6k-8k</p>
+                            <p class="option_select" data-id="4">8k-15k</p>
+                            <p class="option_select" data-id="5">15k以上</p>
+                        </div>
+                    </div>
 
 
-                    <!--<span class="relative">-->
-                    <!--<label class="general-input relative general-select" style="float: none;margin-left: 0">-->
-                        <!--<input type="text" readonly="" id="money"  name="company_area" value="薪资待遇">-->
-                        <!--<svg class="icon inputicon" aria-hidden="true">-->
-                            <!--<use  xlink:href="#icon-xiala" class="colorbbb"></use>-->
-                        <!--</svg>-->
-                    <!--</label>-->
-                        <!--</span>-->
+
                     <label class="pailie">排列方式：</label>
                     <span class="select_item1 city_select">默认</span>
                     <span class="select_item1 magl20">最新</span>
@@ -221,21 +223,21 @@
                 <label class="top_con">猜你喜欢</label>
             </div>
             <div class="items_list">
-                <div class="logo1">
+                <a class="logo1" href="#">
                     <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
-                </div>
+                </a>
                 <div class="company_name">
-                    <p class="job_n">Java工程师</p>
+                    <a class="job_n" href="#">Java工程师</a>
                     <p class="job_s">5-8K</p>
                     <p class="companyn nowrap">北京金三顺科技有限公司</p>
                 </div>
             </div>
             <div class="items_list">
-                <div class="logo1">
+                <a class="logo1" href="#">
                     <img src="{WL_URL_ARES}images/qiyelogo.png" class="logopic">
-                </div>
+                </a>
                 <div class="company_name">
-                    <p class="job_n">Java工程师</p>
+                    <a class="job_n" href="#">Java工程师</a>
                     <p class="job_s">5-8K</p>
                     <p class="companyn nowrap">北京金三顺科技有限公司</p>
                 </div>
@@ -249,7 +251,7 @@
                 <div class="img_pic">
                     <img src="{WL_URL_ARES}images/resume_tx.png" class="touxiang">
                 </div>
-                <p class="dsname">马化腾<label class="zhiwei">项目总监</label></p>
+                <p class="dsname"><a href="#" class="dsname_lian">马化腾</a><label class="zhiwei">项目总监</label></p>
                 <p class="miaoshu">高级营销总监</p>
                 <p class="miaoshu">2015内地最佳CEO</p>
                 <p class="miaoshu">全球30位最佳CEO上榜</p>
@@ -258,7 +260,7 @@
                 <div class="img_pic">
                     <img src="{WL_URL_ARES}images/resume_tx.png" class="touxiang">
                 </div>
-                <p class="dsname">马化腾<label class="zhiwei">项目总监</label></p>
+                <p class="dsname"><a href="#" class="dsname_lian">马化腾</a><label class="zhiwei">项目总监</label></p>
                 <p class="miaoshu">高级营销总监</p>
                 <p class="miaoshu">2015内地最佳CEO</p>
                 <p class="miaoshu">全球30位最佳CEO上榜</p>
@@ -267,7 +269,7 @@
                 <div class="img_pic">
                     <img src="{WL_URL_ARES}images/resume_tx.png" class="touxiang">
                 </div>
-                <p class="dsname">马化腾<label class="zhiwei">项目总监</label></p>
+                <p class="dsname"><a href="#" class="dsname_lian">马化腾</a><label class="zhiwei">项目总监</label></p>
                 <p class="miaoshu">高级营销总监</p>
                 <p class="miaoshu">2015内地最佳CEO</p>
                 <p class="miaoshu">全球30位最佳CEO上榜</p>
@@ -684,6 +686,44 @@
                 $(".xingzheng_item .city_item").removeClass("city_select");
             }
         })
+
+        $(".xinzi_color").click(function () {
+            var _this=$(this).find(".my_joblist");
+            var xiala=$(this).find(".ico_xiala");
+            if(_this.css("height")=="0px"){
+                _this.css("height","180px");
+                xiala.css("color","#0099cc");
+            }else{
+                _this.css("height","0px");
+                xiala.css("color","#bbbbbb");
+            }
+        })
+
+        //薪资待遇筛选
+        $(".my_joblist .option_select").on("click",function () {
+            var salery=$(this).html();
+            $(this).closest(".xinzi_color").find(".wenzi").html(salery);
+            $.ajax({
+                url:"",
+                post:"post",
+                data:{
+                    salery:salery,
+                    page:1
+                },
+                success:function () {
+
+                }
+            })
+
+        })
+
+        $(document).click(function(e){
+            var _con = $(".xinzi_color");   // 设置目标区域
+            if(!_con.is(e.target) && _con.has(e.target).length === 0){
+                $(".my_joblist").css("height","0px");
+                $(".ico_xiala").css("color","#bbbbbb");
+            };
+        });
 
 
         //初始首字母城市
