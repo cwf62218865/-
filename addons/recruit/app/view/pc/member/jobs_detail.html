@@ -66,35 +66,7 @@
                         <!--<div class="bdsharebuttonbox share"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>-->
                         <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
                         with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-                        <!--&lt;!&ndash;<div class="share">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<span class="sharebtn">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<svg class="icon">&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<use xlink:href="#icon-qq"></use>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</svg>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<span class="sharebtn">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<svg class="icon">&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<use xlink:href="#icon-weixin"></use>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</svg>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<span class="sharebtn">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<svg class="icon">&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<use xlink:href="#icon-weibo"></use>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</svg>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<span class="sharebtn">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<svg class="icon">&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<use xlink:href="#icon-pengyouquan"></use>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</svg>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<span class="sharebtn">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<svg class="icon">&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<use xlink:href="#icon-QQkongjian"></use>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</svg>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</span>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<em></em><i></i>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--</div>-->
+
 
                     <div style="margin-top: 20px">
                         <span class="jobs_salary">
@@ -152,9 +124,10 @@
 
 
                     <!--面试评价-->
-                    <div class="jobs_detail_title1">面试评价（3）</div>
+                    {if $comment_count}
+                    <div class="jobs_detail_title1">面试评价（{$comment_count}）</div>
                     {loop $comment_jobs $list}
-                    <div class="jobs_detail" style="margin-top: 36px">
+                    <div class="jobs_detail" style="margin-top: 36px" >
                         <div class="interviewter_head">
                             <div class="interviewter_header">
                                 {if $list['hide']}
@@ -196,11 +169,15 @@
                                 {$list['content']}
                             </div>
                             <div style="margin-top: 16px">
-                                <span class="good color09c hover09c" data-id="1">
+                                {if in_array($_SESSION['uid'],explode(",",$list['zan']))}
+                                    <span class="good color09c hover09c" data-id="{$list['id']}">
+                                {else}
+                                    <span class="good colorbbb hover09c" data-id="{$list['id']}">
+                                {/if}
                                     <svg class="icon">
                                         <use xlink:href="#icon-zan1"></use>
                                     </svg>
-                                    （351）
+                                    （<span class="good_num">{php echo count(array_filter(explode(",",$list['zan'])))}</span>）
                                 </span>
                             </div>
 
@@ -209,6 +186,7 @@
                         </div>
                     </div>
                     {/loop}
+                    {/if}
                     <div id="page">
 
                     </div>
@@ -269,12 +247,12 @@
 
                 <div class="recruit_result">
                     <span>
-                        <a href="#" class="results">5个</a>
+                        <a href="#" class="results">{$jobs_count}个</a>
                         <div class="color999">在招职位</div>
                     </span>
 
                     <span>
-                        <a href="#" class="results">5条</a>
+                        <a href="#" class="results">{$comment_count}条</a>
                         <div class="color999">面试评价</div>
                     </span>
 
@@ -402,6 +380,30 @@
 <script>
 $(function () {
 
+    $("body").on("click",".colorbbb",function () {
+        var _this = $(this);
+       $.ajax({
+           type:"post",
+           url:"{php echo app_url('member/index/comment_zan')}",
+           data:{
+               comment_id:$(this).attr("data-id")
+           },
+           success:function (data) {
+               var data = JSON.parse(data);
+               console.log(data);
+               if(data.status==1){
+                   var good_num = parseInt(_this.find(".good_num").html())+1;
+                   _this.find(".good_num").html(good_num);
+                   _this.removeClass("colorbbb").addClass("color09c");
+               }else if(data.status==2){
+                    hint("error",data.content);
+               }else if(data.status==3){
+                   $("#small_modalbox").show();
+               }
+           }
+       })
+    })
+
     //举报提交
     $.fromdata("#modalbox","{php echo app_url('member/index/tip_off')}","#save_company_nomsg",function(data){
         var data=JSON.parse(data);
@@ -469,6 +471,9 @@ $(function () {
             }
         })
     })
+    
+
+    
 })
 </script>
 </html>
