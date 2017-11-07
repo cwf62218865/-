@@ -87,130 +87,45 @@
             <div class="title_send">看过该职位的人还看了</div>
             <!--相似职位start------------------------------------------------------------------------------->
             <div class="lists list_content" style="display: block;">
-                <div class="list_item" data-id="1" >
+                {loop $guess_jobs $id $list}
+                <div class="list_item" data-id="{$id}" >
                     <div class="item_con">
 
                         <div class="basic_massage" style="width: 340px;margin-left: 0px;">
-                            <a class="name" style="width: 200px;">Java工程师</a>
-                            <span class="salery" style="float: right;">8-10k</span>
+                            <a class="name" style="width: 200px;" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
+                            <span class="salery" style="float: right;">
+                                 {if $list['wage_min']>0 && $list['wage_max']>0}
+                                    {$list['wage_min']}-{$list['wage_max']}K
+                                {else}
+                                    面议
+                                {/if}
+                            </span>
                         </div>
                         <div class="zhiwei_content fontsize14" style="float: left;">
-                            <label>大专</label>
-                            <label>2人</label>
-                            <label class="rightfloat">全职</label>
+                            <label>{$list['education']}</label>
+                            <label>{$list['number_range']}人</label>
+                            <label class="rightfloat">{$list['work_nature']}</label>
                         </div>
                         <div class="zhiwei_content fontsize14" style="float: left;">
-                            <label>工作经验:1年以上</label>
+                            <label>工作经验:{$list['experience']}</label>
                         </div>
                         <div class="zhiwei_content fontsize14" style="float: left;">
-                            <label>工作地点:重庆江北区</label>
+                            <label>工作地点:{$list['city']}{$list['city_area']}</label>
                         </div>
                         <div class="xian1"></div>
                         <div class="qiye_msg_logo">
                             <a href="#">
-                                <img src="{WL_URL_ARES}images/qiyelogo.png" class="qiye_logo">
+                                <img src="{$list['headimgurl']}" class="qiye_logo">
                             </a>
                             <div class="qiye_names">
-                                <p class="qiye_name">北京金三顺有限公司</p>
-                                <p class="refresh">昨天刷新</p>
+                                <p class="qiye_name">{$list['companyname']}</p>
+                                <p class="refresh">{php echo date('Y-m-d',$list['updatetime'])}</p>
                             </div>
                         </div>
                     </div>
                     <div class="status toudijl">投递简历</div>
                 </div>
-                <div class="list_item" data-id="1" >
-                    <div class="item_con">
-
-                        <div class="basic_massage" style="width: 340px;margin-left: 0px;">
-                            <a class="name" style="width: 200px;">Java工程师</a>
-                            <span class="salery" style="float: right;">8-10k</span>
-                        </div>
-                        <div class="zhiwei_content fontsize14" style="float: left;">
-                            <label>大专</label>
-                            <label>2人</label>
-                            <label class="rightfloat">全职</label>
-                        </div>
-                        <div class="zhiwei_content fontsize14" style="float: left;">
-                            <label>工作经验:1年以上</label>
-                        </div>
-                        <div class="zhiwei_content fontsize14" style="float: left;">
-                            <label>工作地点:重庆江北区</label>
-                        </div>
-                        <div class="xian1"></div>
-                        <div class="qiye_msg_logo">
-                            <a href="#">
-                                <img src="{WL_URL_ARES}images/qiyelogo.png" class="qiye_logo">
-                            </a>
-                            <div class="qiye_names">
-                                <p class="qiye_name">北京金三顺有限公司</p>
-                                <p class="refresh">昨天刷新</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="status toudijl">投递简历</div>
-                </div>
-                <div class="list_item" data-id="1" >
-                    <div class="item_con">
-
-                        <div class="basic_massage" style="width: 340px;margin-left: 0px;">
-                            <a class="name" style="width: 200px;">Java工程师</a>
-                            <span class="salery" style="float: right;">8-10k</span>
-                        </div>
-                        <div class="zhiwei_content fontsize14" style="float: left;">
-                            <label>大专</label>
-                            <label>2人</label>
-                            <label class="rightfloat">全职</label>
-                        </div>
-                        <div class="zhiwei_content fontsize14" style="float: left;">
-                            <label>工作经验:1年以上</label>
-                        </div>
-                        <div class="zhiwei_content fontsize14" style="float: left;">
-                            <label>工作地点:重庆江北区</label>
-                        </div>
-                        <div class="xian1"></div>
-                        <div class="qiye_msg_logo">
-                            <a href="#">
-                                <img src="{WL_URL_ARES}images/qiyelogo.png" class="qiye_logo">
-                            </a>
-                            <div class="qiye_names">
-                                <p class="qiye_name">北京金三顺有限公司</p>
-                                <p class="refresh">昨天刷新</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="status toudijl">投递简历</div>
-                </div>
-                <div class="list_item" data-id="1" >
-                    <div class="item_con">
-
-                        <div class="basic_massage" style="width: 340px;margin-left: 0px;">
-                            <a class="name" style="width: 200px;">Java工程师</a>
-                            <span class="salery" style="float: right;">8-10k</span>
-                        </div>
-                        <div class="zhiwei_content fontsize14" style="float: left;">
-                            <label>大专</label>
-                            <label>2人</label>
-                            <label class="rightfloat">全职</label>
-                        </div>
-                        <div class="zhiwei_content fontsize14" style="float: left;">
-                            <label>工作经验:1年以上</label>
-                        </div>
-                        <div class="zhiwei_content fontsize14" style="float: left;">
-                            <label>工作地点:重庆江北区</label>
-                        </div>
-                        <div class="xian1"></div>
-                        <div class="qiye_msg_logo">
-                            <a href="#">
-                                <img src="{WL_URL_ARES}images/qiyelogo.png" class="qiye_logo">
-                            </a>
-                            <div class="qiye_names">
-                                <p class="qiye_name">北京金三顺有限公司</p>
-                                <p class="refresh">昨天刷新</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="status toudijl">投递简历</div>
-                </div>
+                {/loop}
 
                 <div class="morejob">更多简历信息>></div>
             </div>
@@ -221,10 +136,12 @@
         <div class="part_one">
             <img src="{$company['headimgurl']}" class="qiye_pic">
             <p class="name_qiye">
-                {php echo $company['companyname']}
+                <a href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">
+                    {php echo $company['companyname']}
                 <svg class="icon rz_ico">
                     <use xlink:href="#icon-renzheng"></use>
                 </svg>
+                </a>
             </p>
             <p class="name_qiye">
                 <span class="name_qiye biaoqian_ico2">
@@ -241,16 +158,16 @@
             </div>
             <div class="tongji_qiye">
                 <div class="tj_one">
-                    <a class="mainclor">{$jobs_count}个</a>
+                    <a class="mainclor" href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">{$jobs_count}个</a>
                     <p class="styel">在招职位</p>
                 </div>
                 <div class="tj_one">
-                    <a class="mainclor">{$comment_count}条</a>
+                    <a class="mainclor" href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">{$comment_count}条</a>
                     <p class="styel">面试评价</p>
                 </div>
                 <div class="tj_one">
                     <p class="stye2">{php echo $last_login_time}</p>
-                    <p class="styel">面试评价</p>
+                    <p class="styel">企业最近登录</p>
                 </div>
             </div>
         </div>

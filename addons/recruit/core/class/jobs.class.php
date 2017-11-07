@@ -47,6 +47,9 @@ class jobs{
         if($_SESSION['city'] && $_SESSION['city']<>"全国"){
             $wheresql .= " and city like '%".$_SESSION['city']."%' ";
         }
+        if($data['data']['guess']){
+            $orderby = " order by rand() ";
+        }
         $limit = " limit ".$page.",".$pagenum;
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit);
         $job['count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs").$wheresql." order by open desc");
