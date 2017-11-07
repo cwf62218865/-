@@ -39,9 +39,9 @@ class member{
     //公司列表分页
     public function company_list($page=0,$pagenum=8){
         if($_SESSION['city'] && $_SESSION['city']<>"全国"){
-            $wheresql = " where companyname <> '' and city like '%".$_SESSION['city']."%' ";
+            $wheresql = " where companyname <> '' and headimgurl<>'' and city like '%".$_SESSION['city']."%' ";
         }else{
-            $wheresql = " where companyname <> '' ";
+            $wheresql = " where companyname <> '' and headimgurl<>'' ";
         }
         $limit = " limit ".$page*$pagenum.",".$pagenum;
         $company = pdo_fetchall("select * from ".tablename(WL."company_profile").$wheresql." order by id desc ".$limit);
@@ -50,6 +50,7 @@ class member{
             $company_profile[$key] = $list;
             $company_profile[$key]['last_login'] = $this->last_login($list['uid']);
             $company_profile[$key]['jobs_count'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$list['uid']);
+            $company_profile[$key]['comment_count'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where uid=".$list['uid']);
 
         }
         return $company_profile;

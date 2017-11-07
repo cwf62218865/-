@@ -9,8 +9,6 @@ if($op=="index"){
 
     $jobs = m("jobs")->getall_jobs_page($data,9);
     $jobs = $jobs['more'];
-    //var_dump($company);exit();
-//    $company = pdo_fetchall("select * from ".tablename(WL."company")." order by id desc");
     include wl_template("member/index");exit();
 }
 //登录
@@ -44,6 +42,10 @@ elseif($op=="jobs_detail"){
         $similar_jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$jobs['jobs_name']."%' and id<>".$jobs['id']);
         $data['jobs_id'] = $_GPC['jobs_id'];
         $comment_jobs = m("jobs")->comment_apply($data);
+
+        $data['data']['guess'] = 1;
+        $guess_jobs = m("jobs")->getall_jobs_page($data,4);
+        $guess_jobs = $guess_jobs['more'];
         if($jobs['open']){
             include wl_template("member/jobs_detail");exit();
         }else{
@@ -60,6 +62,9 @@ elseif ($op=="search_jobs"){
         $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where open=1 and display=1 and jobs_name like '%".$_GET['jobs_name']."%'");
     }
     $jobs = m("jobs")->getall_jobs_page($data);
+    $data['data']['guess'] = 1;
+    $guess_jobs = m("jobs")->getall_jobs_page($data,2);
+    $guess_jobs = $guess_jobs['more'];
     $jobs_count = $jobs['count'];
     $jobs = $jobs['more'];
     include wl_template("member/search_jobs");exit();

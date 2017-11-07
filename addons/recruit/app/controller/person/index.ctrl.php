@@ -115,10 +115,35 @@ elseif ($op=="msg_deal"){
         }
 
         call_back(1,$msg);
-    }elseif ($_POST['msg']=="面试邀请"){
-
     }elseif ($_POST['msg']=="面试评价"){
+        $jobs = m("resume")->jobs_apply($_SESSION['uid'],-1,2);
+        $msg = "";
+        foreach ($jobs as $list){
+            if($list['hr_reply_status']){
+                $createtime = date("Y-m-d h:i",$list['createtime']);
 
+                $msg .= " <div class=\"day_msgbox\">
+                        <div class=\"system_msg_title\">
+                            <svg class=\"icon\" aria-hidden=\"true\">
+                                <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#icon-pinglunhuifu\"></use>
+                            </svg>
+                            <span class=\"color999\">面试评价</span>
+                            <span class=\"colorbbb\">{$createtime}</span>
+                        </div>
+
+                        <div class=\"delivery_left\">
+                        <span class=\"delivery_logo\">
+                            <img src=\"/addons/recruit/app/resource/temp/2017-11-03/59fc31f650b71.jpg\">
+                        </span>
+                            <span><span style=\"color: #7b8fc9\">{$list['companyname']}</span>回复了您的面试评价</span>
+                        </div>
+
+                        <a href=\"#\" class=\"see_system_msg see_day_msg\">查看详情&gt;&gt;</a>
+                    </div>";
+            }
+        }
+
+        call_back(1,$msg);
     }elseif ($_POST['msg']=="问答提醒"){
 
     }elseif ($_POST['msg']=="评论回复"){
