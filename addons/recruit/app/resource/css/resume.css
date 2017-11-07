@@ -182,8 +182,8 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
 }
 .cwfmonths span{
     display: inline-block;
-    width: 30px;
-    height: 18px;
+    width: 45px;
+    height: 35px;
     line-height: 18px;
     padding: 10px;
     float: left;

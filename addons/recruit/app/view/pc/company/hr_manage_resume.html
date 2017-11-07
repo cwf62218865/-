@@ -27,7 +27,7 @@
                 <div class="list_item_btn" style="margin-left: 2px">工作评价</div>
             </div>
             <!--等待面试start------------------------------------------------------------------------------->
-            <div class="list_content sign_content" style="display: block;">
+            <div class="listitems list_content sign_content" style="display: block;">
                 <div class="time_selecter">
                     <div class="checkbox ico_rightstatas" style="display: inline-block;">
                         <label class="right_ico">
@@ -51,7 +51,7 @@
                         </label>
                     </div>
                     <div class="biezhu"> 明天</div>
-                    <div class="select_date_option">
+                    <div class="select_date_option select_option">
                         <div class="selectinput">
                             <input class="date_num cur" value="选择日期"  readonly="readonly" id="weekday"/>
                         <svg class="icon ico66">
@@ -69,7 +69,7 @@
                 <div class="list_item">
                     <div class="item_con">
                         <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">
-                            <img src="{php echo $list['headimgurl']}" style="width: 100px;"/>
+                            <img src="{php echo $list['headimgurl']}" style="width: 100px;height: 100px;"/>
                         </a>
                         <div class="basic_massage">
                             <div class="bm_hang1">
@@ -113,7 +113,7 @@
             </div>
             <!--等待面试end-------------------------------------------------------------------------->
             <!--职位搜索start---------------------------------------------------------------------------->
-            <div class="resume_content sign_content" style="display: none;background: none;">
+            <div class="listitems resume_content sign_content" style="display: none;background: none;">
                 <div class="job_selecter">
                     <div class="job_secon">
                         <div class="inputcon">
@@ -197,9 +197,9 @@
                 {loop $resume1 $list}
                 <div class="list_item" data-id="{php echo $list['id']}">
                     <div class="item_con">
-                        <div class="touxiang_pic">
-                            <img src="{php echo $list['headimgurl']}" style="width: 100px;"/>
-                        </div>
+                        <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">
+                            <img src="{php echo $list['headimgurl']}" style="width: 100px;height: 100px;"/>
+                        </a>
                         <div class="basic_massage">
                             <div class="bm_hang1">
                                 <span class="name nowrap">{php echo $list['fullname']}</span>
@@ -245,7 +245,8 @@
             </div>
             <!--职位搜索end---------------------------------------------------->
             <!--面试评价start---------------------------------------------------------------------------->
-            <div class="pingjia_content sign_content" style="display: none;">
+            <div class="listitems pingjia_content sign_content" style="display: none;">
+                {if $comment_jobs}
                 {loop $comment_jobs $list}
                 <div class="list_item" data-id="{$list['id']}">
                     <div class="item_con">
@@ -320,17 +321,20 @@
                     </div>
                 </div>
                 {/loop}
-                <div class="morejob">更多简历信息>></div>
+                {else}
+                <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有符合搜索条件的结果</div><div class="color999" style="margin-top: 30px">请重新修改搜索条件后再进行搜索</div></div></div>
+                {/if}
+                <!--<div class="morejob">更多简历信息>></div>-->
             </div>
             <!--面试评价end---------------------------------------------------->
             <!--工作评价start---------------------------------------------------------------------------->
-            <div class="gzpj_content sign_content" style="display: none;">
+            <div class="listitems gzpj_content sign_content" style="display: none;">
                 {loop $evaluate $list}
                 <div class="list_item gzpj">
                     <div class="item_con">
-                        <div class="touxiang_pic">
-                            <img src="{$list['headimgurl']}" style="width: 100px;"/>
-                        </div>
+                        <a class="touxiang_pic" href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">
+                            <img src="{$list['headimgurl']}" style="width: 100px;height: 100px;"/>
+                        </a>
                         <div class="basic_massage">
                             <div class="bm_hang1">
                                 <span class="name">{$list['fullname']}</span>

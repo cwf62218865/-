@@ -31,10 +31,10 @@ if(!$_SESSION['uid']){
     $company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."company_profile"));
     $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs"));
     if($_GPC['do']<>"member" && $_POST){
-        call_back(2,"请先登录账号");
+        call_back(3,"请先登录账号");
     }
 }else{
-
+    $identity = encrypt($_SESSION['uid'], 'E');
 	if($_SESSION['utype']==2){
 		$company_statistics = company_statistics();
 		$company_integrity = company_integrity();

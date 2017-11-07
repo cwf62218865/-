@@ -424,12 +424,17 @@ function upload_video($files){
 
 //临时文件转移术
 function file_transfer($temp_file){
-    $file = str_replace("/temp/","/file/",$temp_file);
+    if(strpos($temp_file,"/temp/")){
+        $file = str_replace("/temp/","/file/",$temp_file);
 
-    if(rename($_SERVER['DOCUMENT_ROOT'].$temp_file,$_SERVER['DOCUMENT_ROOT'].$file)) {
-        unlink($_SERVER['DOCUMENT_ROOT'] . $temp_file);
-        return $file;
+        if(rename($_SERVER['DOCUMENT_ROOT'].$temp_file,$_SERVER['DOCUMENT_ROOT'].$file)) {
+            unlink($_SERVER['DOCUMENT_ROOT'] . $temp_file);
+            return $file;
+        }
+    }else{
+        return $temp_file;
     }
+
 }
 
 
