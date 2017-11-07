@@ -6,6 +6,7 @@ $(document).ready(function(){
         direction: 'horizontal',
         slidesPerView: 1,
         roundLengths : true,
+        autoplay:3000,
         pagination: '.swiper-pagination',
         // 如果需要前进后退按钮
         nextButton: '.swiper-button-next',

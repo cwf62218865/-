@@ -88,6 +88,12 @@ class resume{
             if($list['status']==3){
                 $jobs[$key]['interview'] = pdo_fetch("select * from ".tablename(WL.'interview')." where jobs_id=".$list['jobs_id']." and resume_id=".$list['resume_id']);
             }
+            if($list['comment']==1){
+                $comment_jobs = pdo_fetch("select id from ".tablename(WL . "comment")." where hr_reply<>'' and jobs_id=".$list['jobs_id']." and puid=".$list['puid']);
+                if($comment_jobs){
+                    $jobs[$key]['hr_reply_status'] = 1;
+                }
+            }
             $company_profile = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$list['uid']);
             $jobs[$key]['tag'] = $company_profile['tag'];
             $jobs[$key]['headimgurl'] = $company_profile['headimgurl'];

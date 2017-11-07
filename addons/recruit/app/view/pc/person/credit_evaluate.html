@@ -195,22 +195,25 @@
             <div class="lists resume_content" style="display: none;background: none;">
 
                 <div class="contanier">
-
-                    <div class="list_item1" data-id="1">
+                    {loop $comment_jobs $id $list}
+                    {if $id%2==0}
+                    <div class="list_item1" data-id="{$id}">
                         <div class="item_con">
                             <div class="basic_massage maleft_3">
                                 <div class="bm_hang1" style="font-size: 20px;">
-                                    Java工程师
+                                    {$list['jobs_name']}
                                 </div>
                                 <div class="bm_hang3">
-                                    <span class="basic_xx">大风车股份有限公司</span>
+                                    <span class="basic_xx">{$list['companyname']}</span>
                                 </div>
                                 <div class="" style="margin-top: 15px;">
                                     <span  class="bold33">HR回复</span>
                                     <span class="jubaopl">举报该评论</span>
                                 </div>
                                 <div class="pingjia_con">
-                                    <span class="pingjia_neir">公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有</span>
+                                    <span class="pingjia_neir">
+                                        {$list['hr_reply']}
+                                    </span>
                                     <span class="xianshi_ico">
                                     显示全部
                                     <svg class="icon" style="">
@@ -223,120 +226,59 @@
                                         <span class="bold33">我的评价</span>
                                     </div>
                                     <div class="pingjia_con">
-                                        公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有…
+                                        {$list['content']}
                                     </div>
                                 </div>
                                 <div class="zhankai_btn zhankai">展开我的评价</div>
                             </div>
                         </div>
                     </div>
-                    <div class="list_item1" data-id="2">
-                        <div class="item_con">
-                            <div class="basic_massage maleft_3">
-                                <div class="bm_hang1" style="font-size: 20px;">
-                                    Java工程师
-                                </div>
-                                <div class="bm_hang3">
-                                    <span class="basic_xx">大风车股份有限公司</span>
-                                </div>
-                                <div class="" style="margin-top: 15px;">
-                                    <span  class="bold33">HR回复</span>
-                                    <span class="jubaopl">举报该评论</span>
-                                </div>
-                                <div class="pingjia_con">
-                                    <span class="pingjia_neir">公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有</span>
-                                    <span class="xianshi_ico">
-                                    显示全部
-                                    <svg class="icon" style="">
-                                        <use xlink:href="#icon-xiajiantou"></use>
-                                    </svg>
-                                </span>
-                                </div>
-                                <div class="my_evaluate" style="display: none;">
-                                    <div class="" style="margin-top: 15px;">
-                                        <span class="bold33">我的评价</span>
-                                    </div>
-                                    <div class="pingjia_con">
-                                        公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有…
-                                    </div>
-                                </div>
-                                <div class="zhankai_btn zhankai">展开我的评价</div>
-                            </div>
-                        </div>
-                    </div>
+                    {/if}
+                   {/loop}
 
                 </div>
 
                 <div class="contanier">
-
-                        <div class="list_item1" data-id="3">
-                            <div class="item_con">
-                                <div class="basic_massage maleft_3">
-                                    <div class="bm_hang1" style="font-size: 20px;">
-                                        Java工程师
-                                    </div>
-                                    <div class="bm_hang3">
-                                        <span class="basic_xx">大风车股份有限公司</span>
-                                    </div>
-                                    <div class="" style="margin-top: 15px;">
-                                        <span  class="bold33">HR回复</span>
-                                        <span class="jubaopl">举报该评论</span>
-                                    </div>
-                                    <div class="pingjia_con">
-                                        <span class="pingjia_neir">公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有</span>
-                                        <span class="xianshi_ico">
-                                            显示全部
-                                            <svg class="icon" style="">
-                                                <use xlink:href="#icon-xiajiantou"></use>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                    <div class="my_evaluate" style="display: none;">
-                                    <div class="" style="margin-top: 15px;">
-                                        <span class="bold33">我的评价</span>
-                                    </div>
-                                    <div class="pingjia_con">
-                                        公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有
-                                    </div>
-                                    </div>
-                                    <div class="zhankai_btn zhankai">展开我的评价</div>
+                    {loop $comment_jobs $id $list}
+                    {if $id%2==1}
+                    <div class="list_item1" data-id="{$id}">
+                        <div class="item_con">
+                            <div class="basic_massage maleft_3">
+                                <div class="bm_hang1" style="font-size: 20px;">
+                                    {$list['jobs_name']}
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list_item1" data-id="4">
-                            <div class="item_con">
-                                <div class="basic_massage maleft_3">
-                                    <div class="bm_hang1" style="font-size: 20px;">
-                                        Java工程师
-                                    </div>
-                                    <div class="bm_hang3">
-                                        <span class="basic_xx">大风车股份有限公司</span>
-                                    </div>
-                                    <div class="" style="margin-top: 15px;">
-                                        <span  class="bold33">HR回复</span>
-                                        <span class="jubaopl">举报该评论</span>
-                                    </div>
-                                    <div class="pingjia_con">
-                                        <span class="pingjia_neir">公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有</span>
-                                        <span class="xianshi_ico">
+                                <div class="bm_hang3">
+                                    <span class="basic_xx">{$list['companyname']}</span>
+                                </div>
+                                <div class="" style="margin-top: 15px;">
+                                    <span  class="bold33">HR回复</span>
+                                    <span class="jubaopl">举报该评论</span>
+                                </div>
+                                <div class="pingjia_con">
+                                    <span class="pingjia_neir">
+                                        {$list['hr_reply']}
+                                    </span>
+                                    <span class="xianshi_ico">
                                     显示全部
                                     <svg class="icon" style="">
                                         <use xlink:href="#icon-xiajiantou"></use>
                                     </svg>
                                 </span>
-                                    </div>
-                                    <div class="my_evaluate" style="display: none;">
-                                        <div class="" style="margin-top: 15px;">
-                                            <span class="bold33">我的评价</span>
-                                        </div>
-                                        <div class="pingjia_con">
-                                            公司环境高大上，面试效率非常高，填写了简历之后等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有等了两分钟后，HR就开始面谈，HR谈吐得当，问题很有深度HR谈吐得当，问题很有
-                                        </div>
-                                    </div>
-                                    <div class="zhankai_btn zhankai">展开我的评价</div>
                                 </div>
+                                <div class="my_evaluate" style="display: none;">
+                                    <div class="" style="margin-top: 15px;">
+                                        <span class="bold33">我的评价</span>
+                                    </div>
+                                    <div class="pingjia_con">
+                                        {$list['content']}
+                                    </div>
+                                </div>
+                                <div class="zhankai_btn zhankai">展开我的评价</div>
                             </div>
                         </div>
+                    </div>
+                    {/if}
+                    {/loop}
                 </div>
 
 
