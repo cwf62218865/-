@@ -211,6 +211,7 @@ class jobs{
             $wheresql .= " and hr_reply<>''";
         }
         $comment_jobs = pdo_fetchall("select * from " . tablename(WL . "comment") . $wheresql);
+
         $comment = "";
         foreach ($comment_jobs as $list) {
             $jobs = pdo_fetch("select id,jobs_name from " . tablename(WL . "jobs") . " where id=" . $list['jobs_id']);

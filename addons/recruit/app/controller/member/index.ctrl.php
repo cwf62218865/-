@@ -620,6 +620,25 @@ elseif ($op=="tip_off"){
 
 }
 
+//评论点赞
+elseif ($op=="comment_zan"){
+    if($_SESSION['uid']){
+        $comment_id = check_pasre($_POST['comment_id'],"参数错误");
+        $comment = pdo_fetch("select * from ".tablename(WL."comment")." where id=".$comment_id);
+        $zan = explode(",",$comment['zan']);
+        if(in_array($_SESSION['uid'],$zan)){
+            call_back(2,"已点赞");
+        }else{
+            array_push($zan,$_SESSION['uid']);
+            $zan = implode(",",$zan);
+            pdo_update(WL."comment",array('zan'=>$zan),array('id'=>$comment_id));
+            call_back(1,"点赞成功");
+        }
+    }else{
+        call_back(3,"未登录");
+    }
+}
+
 
 /*********手机端处理接口***********/
 //简历头像上传保存

@@ -380,8 +380,8 @@
                         <span>求职意向</span>
                     </div>
 
-                    <div class="font999" id="wanted_job" style=";margin-top: 58px;line-height: 2">
-                        {if $resume['hope_job']}
+                    <div class="font999" id="wanted_job" style="margin-top: 58px;line-height: 2;">
+
                         <span class="see_hope_job">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-zhiwei"></use>
@@ -390,9 +390,7 @@
                             <span class="basic_msg_contents1">{$list}</span>
                             {/loop}
                         </span>
-                        {/if}
 
-                        {if $resume['trade']}
                         <span class="see_hope_job">
                             <svg class="icon" aria-hidden="true" style="margin-left: 20px">
                                 <use xlink:href="#icon-hangye"></use>
@@ -401,35 +399,33 @@
                             <span class="basic_msg_contents1">{$list}</span>
                             {/loop}
                         </span>
-                        {/if}
 
                         <br/>
-                        {if $resume['salary']}
+
                         <span class="see_hope_job">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-xinzi"></use>
                             </svg>
                             <span class="basic_msg_contents2">{php echo $resume['salary']}</span>
                         </span>
-                        {/if}
 
-                        {if $resume['nature']}
+
+
                         <span class="see_hope_job">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-quanzhi"></use>
                             </svg>
                             <span class="basic_msg_contents2">{php echo $resume['nature']}</span>
                         </span>
-                        {/if}
 
-                        {if $resume['hope_place']}
+
                         <span class="see_hope_job">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-didian"></use>
                             </svg>
                             <span class="basic_msg_contents2">{php echo $resume['hope_place']}</span>
                         </span>
-                        {/if}
+
                     </div>
                 </div>
                 <!--<span class="addandeditbtn" id="edit_wanted_job">-->
@@ -457,9 +453,11 @@
                         <div class=" relative general-select " style="float: none;width: 480px">
                             <label class="general-input relative general-select" style="float: none;width: 460px">
                                 <div class="want_jobbtns" id="hope_jobs">
+                                    {if $resume['hope_job']}
                                     {loop explode(",",$resume['hope_job']) $list}
                                     <span>{$list}<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan" class="colorbbb"></use></svg></span>
                                     {/loop}
+                                    {/if}
                                 </div>
                                 <input type="text" readonly="" id="hope_job" data-error="请选择期望职位"  name="want_job" value="{php echo $resume['hope_job']}" style="width: 440px;opacity: 0;top: 0">
                                 <svg class="icon inputicon" aria-hidden="true">
@@ -502,9 +500,11 @@
                         <div class=" relative general-select " style="float: none;width: 480px">
                             <label class="general-input relative general-select" style="float: none;width: 460px">
                                 <div class="want_jobbtns" id="want_jobbtns">
+                                    {if $resume['trade']}
                                     {loop explode(",",$resume['trade']) $list}
                                     <span>{$list}<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan" class="colorbbb"></use></svg></span>
                                     {/loop}
+                                    {/if}
                                 </div>
                                 <input type="text" readonly="" id="want_job" data-error="请选择期望行业"  name="want_industry" value="{php echo $resume['trade']}" style="width: 440px;opacity: 0;top: 0">
                                 <svg class="icon inputicon" aria-hidden="true">
@@ -1419,7 +1419,14 @@
 
 
 <script>
-
+    $(function () {
+        var intention = "{$resume['hope_job']}";
+        if(intention){
+            $("#wanted_job").css("display","block");
+        }else{
+            $("#wanted_job").css("display","none");
+        }
+    })
     //打开邮箱
     $("#post_envelope").on("click",function(){
         $("#envelope_modal").show();
