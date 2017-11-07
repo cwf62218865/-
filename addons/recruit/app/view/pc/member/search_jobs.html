@@ -132,15 +132,11 @@
                             <label class="total_page">{php echo ceil($jobs_count/6)}</label>
                         </span>
                         <span class="yema">
-                            <svg class="icon ">
-                            <use xlink:href="#icon-zuojiantouxi"></use>
-                        </svg>
+                           <
                         </span>
 
                         <span class="yema slected">
-                            <svg class="icon  ">
-                            <use xlink:href="#icon-youjiantouxi"></use>
-                        </svg>
+                            >
                         </span>
                         {else}
                         <span class="magr50 hangver">
@@ -336,6 +332,13 @@
             option.page=1;
             layer(option);
         });
+
+        $(".input_search").focus(function () {
+            $(this).css("border","1px solid #0099cc");
+        })
+        $(".input_search").blur(function () {
+            $(this).css("border","1px solid #eeeeee");
+        })
 
         //热门职位
         $(".job_item").on("click",function () {

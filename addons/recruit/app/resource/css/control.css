@@ -10,15 +10,19 @@ input {
     border: none;
 }
 input:-moz-placeholder, textarea:-moz-placeholder {
-　　color:#bbb
+　　color:#666;
+    font-size: 16px;
+
 }
 
 input::-moz-placeholder, textarea::-moz-placeholder {
-　　color:#bbb
+　　color:#666;
+    font-size: 16px;
 }
 
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {
-　　color:#bbb
+　　color:#666;
+    font-size: 16px;
 }
 
 .icon {

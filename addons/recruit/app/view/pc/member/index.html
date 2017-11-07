@@ -49,6 +49,10 @@
         opacity: 1;
         background: rgba(0,0,0,0.3);
     }
+    .swiper-pagination-bullet:hover{
+        color: #0099cc;
+        background:rgba(255,255,255,0.8);
+    }
     .swiper-pagination-bullet-active {
         color:#333;
         background:rgba(255,255,255,0.8);
@@ -67,7 +71,9 @@
 
     <!--左上角banner-->
     <div class="index_left">
-        <img src="{WL_URL_ARES}images/index_leftbanner.png"/>
+        <a href="#">
+            <img src="{WL_URL_ARES}images/index_leftbanner.png"/>
+        </a>
     </div>
 
 
@@ -450,10 +456,14 @@
         pagination: '.swiper-pagination',
         paginationClickable: true,
         autoplay:3000,
+        autoplayDisableOnInteraction : false,
         paginationBulletRender: function (swiper, index, className) {
             return '<span class="' + className + '">' + big_bannercontent[index] + '</span>';
         }
     });
+    $(".swiper-pagination").on("mouseover",".swiper-pagination-bullet",function(){
+        $(this).click()
+    })
 
 
     //明星企业换一批

@@ -56,7 +56,12 @@
     margin-top: 24px;
     height: 18px;
     line-height: 18px;
+}
+.index_menu span{
     cursor: pointer;
+}
+.index_menu span:hover{
+    color: #09c;
 }
 .index_menu:first-child{
     margin-top: 36px;
@@ -123,8 +128,16 @@
     background-color: #fff;
     margin-left: 10px;
     margin-top: 10px;
-    overflow: hidden;
     float: left;
+    overflow: hidden;
+    position: relative;
+}
+.surper_company img{
+    width: 224px;
+    height: 120px;
+    position: absolute;
+    left: 0;
+    top:0;
 }
 .new_surper_company{
     display: inline-block;
@@ -298,16 +311,18 @@
     right: 50%;
     width: 50px;
     bottom: 140px;
-    margin-right: -700px;
+    margin-right: -660px;
 }
 .back_topbtn,.talk_tome{
     display: inline-block;
     width: 50px;
+    padding: 5px;
     text-align: center;
     font-size: 12px;
-    margin-top: 30px;
+    margin-top: 10px;
     color: #bbb;
     cursor: pointer;
+    background-color: #fff;
 }
 .back_topbtn:hover,.talk_tome:hover{
     color: #09c;
