@@ -254,12 +254,18 @@
                     </div>
                     <span class="hot_company_line"></span>
                     <div class="hot_company_msg">
-                        <a  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">12</a>
-                        <div>面试评价</div>
+                        <a  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">
+                            12
+                            <div>面试评价</div>
+                        </a>
+
                     </div>
                     <div class="hot_company_msg">
-                        <a  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{$list['jobs_count']}</a>
-                        <div>在招职位</div>
+                        <a  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">
+                            {$list['jobs_count']}
+                            <div>在招职位</div>
+                        </a>
+
                     </div>
                     <div class="hot_company_msg">
                         <span>{$list['last_login']}</span>

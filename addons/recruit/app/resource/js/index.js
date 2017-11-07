@@ -35,19 +35,17 @@
 
 $(document).on("scroll",function(){
     var top=$(document).scrollTop();
-    var height=$(window).height();
-    var height1=$(document).height();
-    console.log(top);
-    console.log(height);
-    console.log(height1);
+    var height=3501-$(window).height();
+
+
     if(top==0){
         $(".back_topbtn").hide();
     }else{
         $(".back_topbtn").show();
     }
-    if(top>2250){
+    if(height-top<310){
         $(".footer_banner").css("position","relative");
-        $(".back_top").css("bottom",(top-2110)+"px");
+        $(".back_top").css("bottom",(455-height+top)+"px");
 
     }else{
         $(".footer_banner").css("position","fixed");

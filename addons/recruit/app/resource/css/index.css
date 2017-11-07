@@ -211,10 +211,13 @@
     line-height: 16px;
     margin-top: 30px;
 }
+.hot_companys_name:hover{
+    color: #09c;
+}
 .hot_companys_introduce{
     font-size: 14px;
     color: #999;
-    width: 90%;
+    width: 65%;
     height: 14px;
     line-height: 14px;
     margin-top: 14px;
@@ -234,9 +237,16 @@
     margin-right: 15px;
     border-right: 1px solid #eee;
 }
+
 .hot_company_msg a{
     color: #09c;
     font-size: 14px;
+}
+.hot_company_msg a div{
+    color: #bbb;
+}
+.hot_company_msg a div:hover{
+    color: #0099cc;
 }
 .hot_company_msg:last-child{
     margin-right: 0;
@@ -245,6 +255,10 @@
 }
 .resume_jobs{
     margin-left: 20px;
+
+}
+.resume_jobs:hover{
+    color: #09c;
 }
 .resume_jobsbox{
     display: inline-block;
@@ -261,6 +275,13 @@
     border: 1px solid #eee;
     float: left;
     margin: 0 15px 15px 0;
+    color: #666;
+}
+.resume_position a{
+    color: #666;
+}
+.resume_position a:hover{
+    color: #0099cc;
 }
 .resume_position:nth-child(3),.resume_position:nth-child(6),.resume_position:nth-child(9){
     margin-right: 0;
