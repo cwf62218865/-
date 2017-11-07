@@ -26,6 +26,7 @@
                 <div class="list_item_btn" style="margin-left: 2px">收到的评价</div>
             </div>
             <!--待评价start------------------------------------------------------------------------------->
+            {if $agree_jobs}
             <div class="lists list_content" style="display: block;">
                 {loop $agree_jobs $list}
                 <div class="item_conpj" data-id="{$list['apply_id']}">
@@ -190,8 +191,12 @@
 
                 <div class="morejob">更多简历信息>></div>
             </div>
+            {else}
+            <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有符合搜索条件的结果</div><div class="color999" style="margin-top: 30px">请重新修改搜索条件后再进行搜索</div></div></div>
+            {/if}
             <!--待评价end-------------------------------------------------------------------------->
             <!--收到的评价start---------------------------------------------------------------------------->
+            {if $comment_jobs}
             <div class="lists resume_content" style="display: none;background: none;">
 
                 <div class="contanier">
@@ -284,6 +289,9 @@
 
                 <div class="morejob">更多简历信息>></div>
             </div>
+            {else}
+            <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有符合搜索条件的结果</div><div class="color999" style="margin-top: 30px">请重新修改搜索条件后再进行搜索</div></div></div>
+            {/if}
             <!--收到的评价end---------------------------------------------------->
 
         </div>
