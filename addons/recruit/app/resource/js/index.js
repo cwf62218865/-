@@ -35,6 +35,11 @@
 
 $(document).on("scroll",function(){
     var top=$(document).scrollTop();
+    var height=$(window).height();
+    var height1=$(document).height();
+    console.log(top);
+    console.log(height);
+    console.log(height1);
     if(top==0){
         $(".back_topbtn").hide();
     }else{
@@ -54,6 +59,16 @@ $(".back_topbtn").on("click",function(){
     $("html").animate({scrollTop:0},300)
 });
 
+$(".index_news").on("mouseover",function(){
+    $(this).find(".index_news_title").css("color","#09c");
+});
+$(".index_news").on("mouseleave",function(){
+    $(this).find(".index_news_title").css("color","#333");
+});
 
-
-
+$(".surper_company").on("mouseover",function(){
+    $(this).find("img").animate({"width":"244px","height":"132px","top":"-6px","left":"-10px"},200)
+});
+$(".surper_company").on("mouseleave",function(){
+    $(this).find("img").animate({"width":"224px","height":"120px","top":"0","left":"0"},200)
+});
