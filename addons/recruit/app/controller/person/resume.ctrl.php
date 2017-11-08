@@ -12,6 +12,7 @@ $resume = m("resume")->get_resume($_SESSION['uid']);
 
 if(trim($resume['work_experience'])){
     $work_experience = unserialize($resume['work_experience']);
+    $work_experience = array_reverse($work_experience);
 }else{
     $work_experience = array();
 }
@@ -339,9 +340,9 @@ elseif ($op=="personal_works_deal"){
 elseif ($op=="save_certificate"){
 
 
-    $data['certificate_img'] = check_pasre($_POST['data']['certificate_img'],"参数错误");
-    $data['certificate_time'] = check_pasre($_POST['data']['certificate_time'],"参数错误");
-    $data['certificate_content'] = check_pasre($_POST['data']['certificate_content'],"参数错误");
+    $data['certificate_img'] = $_POST['data']['certificate_img'];
+    $data['certificate_time'] = check_pasre($_POST['data']['certificate_time'],"请选择时间");
+    $data['certificate_content'] = check_pasre($_POST['data']['certificate_content'],"请输入你的获奖内容");
 
     if(is_numeric($_POST['data']['certificate_id'])===true){
         $id = $_POST['data']['certificate_id'];

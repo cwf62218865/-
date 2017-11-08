@@ -5,8 +5,8 @@ if($_SESSION['uid']){
     $resume = m("resume")->get_resume($_SESSION['uid']);
 }
 
+//二次元页面
 if($op=="index"){
-
     if(!$resume['fullname']){
         $url = app_url('resume/resume_reg/1');
 
@@ -22,6 +22,29 @@ if($op=="index"){
     include wl_template("resume/first_index");exit();
 }elseif($op=="home"){
     include wl_template("resume/first_index");exit();
+}
+
+/********************************************求职者主要页面*************************************/
+//已投递职位列表
+elseif ($op=="send_resume"){
+    if($_GPC['kind']=="interview"){
+        $show = 2;
+    }else{
+        $show = 1;
+    }
+    $apply_jobs = m("resume")->jobs_apply($_SESSION['uid']);
+    $interview_jobs = m("resume")->jobs_interview($_SESSION['uid']);
+    include wl_template("person/send_resume");exit();
+}
+
+//面试评价
+elseif ($op=="credit_evaluate"){
+    $agree_jobs = m("resume")->jobs_apply($_SESSION['uid'],-1,3);
+    $data['puid'] = $_SESSION['uid'];
+    $data['hr_reply'] = 1;
+    $comment_jobs = m("jobs")->comment_apply($data);
+
+    include wl_template("person/credit_evaluate");exit();
 }
 
 //个人消息中心
@@ -48,6 +71,12 @@ elseif ($op=="person_msg"){
     include wl_template("person/person_msg");exit();
 }
 
+//简历管理
+elseif ($op=="resume_center"){
+    include wl_template("person/person_collection");exit();
+}
+
+/****************************************ajax请求处理******************************************/
 //消息请求
 elseif ($op=="msg_deal"){
     if($_POST['msg']=="投递申请"){
@@ -151,38 +180,112 @@ elseif ($op=="msg_deal"){
     }
     var_dump($_POST);exit();
 }
-//已投递职位列表
-elseif ($op=="send_resume"){
-    if($_GPC['kind']=="interview"){
-        $show = 2;
-    }else{
-        $show = 1;
+
+//收藏职位列表
+elseif ($op=="collection_jobs_list"){
+    $collect_job = pdo_fetchall("select c.createtime,j.* from ".tablename(WL."collect_jobs")." as c,".tablename(WL."jobs")." as j where c.jobs_id=j.id and c.uid=".$_SESSION['uid']);
+    $collect_jobs = "";
+    foreach ($collect_job as $list){
+        $headimgurl = pdo_fetch("select headimgurl,tag from ".tablename(WL."company_profile")." where uid=".$list['uid']);
+        $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and jobs_id=".$list['id']);
+        if(empty($jobs_apply)){
+            $list['post_status'] = 1;
+        }
+        $list['headimgurl'] = $headimgurl['headimgurl'];
+        $list['tag'] = $headimgurl['tag'];
+        $collect_jobs[] = $list;
     }
-    $apply_jobs = m("resume")->jobs_apply($_SESSION['uid']);
-    $interview_jobs = m("resume")->jobs_interview($_SESSION['uid']);
-//    var_dump($apply_jobs);exit();
-    include wl_template("person/send_resume");exit();
+
+
+    $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
+    $differ_time = (time()-$order_jobs['updatetime'])/86400;
+    $order_jobs_list = m("jobs")->check_order_jobs($order_jobs['order_time'],$differ_time);
+    include wl_template("person/person_collection");exit();
 }
 
+//待评价保存
+elseif ($op=="save_evaluate"){
+
+    $pingfen = $_POST['pingfen'];
+    $data['evaluate_information'] = intval($pingfen[0]);
+    $data['evaluate_environment'] = intval($pingfen[1]);
+    $data['evaluate_interviewer'] = intval($pingfen[2]);
+    $data['tag'] = implode(",",$_POST['biaoqian']);
+    $data['content'] = check_pasre($_POST['detail'],"请输入面试经过");
+    $data['score'] = $_POST['pingjia'];
+    $data['hide'] = $_POST['niming'];
+    $apply_id=check_pasre($_POST['apply_id'],"参数错误");
+    $apply_jobs = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where id=".$apply_id);
+    $data['uid'] = $apply_jobs['uid'];
+    $data['puid'] = $apply_jobs['puid'];
+    $data['resume_id'] = $apply_jobs['resume_id'];
+    $data['jobs_id'] = $apply_jobs['jobs_id'];
+    $data['createtime'] = time();
+    $apply_jobs = pdo_fetch("select * from ".tablename(WL."comment")." where jobs_id=".$data['jobs_id']." and puid=".$data['puid']);
+    if($apply_jobs){
+        call_back(2,"您对该职位已评价,不要重复提交");
+    }else{
+        pdo_update(WL."jobs_apply",array("comment"=>1),array('id'=>$apply_id));
+        $r = insert_table($data,WL."comment");
+        if($r){
+            call_back(1,"提交成功");
+        }else{
+            call_back(2,"保存失败");
+        }
+    }
+
+}
+
+//投递简历
+elseif ($op=="post_resume"){
+//    var_dump($_POST);exit();
+    $data['jobs_id'] = check_pasre($_POST['data_id'],"参数错误");
+    $data['uid'] = check_pasre($_POST['uid'],"参数错误");
+    $data['resume_id'] = $resume['id'];
+    $data['puid'] = $resume['uid'];
+    $data['direction'] = 2;
+    $data['createtime'] = time();
+
+    $jobs_apply = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where jobs_id=".$data['jobs_id']." and resume_id=".$data['resume_id']);
+    if(empty($_SESSION['uid'])){
+        call_back(2,"请先登录账号");
+    }
+    if($jobs_apply){
+        call_back(2,"已存在");
+    }else{
+        $r = insert_table($data,WL."jobs_apply");
+        if($r){
+            call_back(1,"ok");
+        }else{
+            call_back(2,"no");
+        }
+    }
+
+//    var_dump($_POST);exit();
+}
+
+
+
+/*****************************************分页请求*************************************************/
 //投递管理投递记录分页
 elseif ($op=="send_resume_ajax"){
     if($_POST['page']){
         $apply_jobs = m("resume")->jobs_apply($_SESSION['uid'],$_POST['page']);
 
         foreach ($apply_jobs as $list){
-             $tag = "";
-             foreach (array_filter(explode(",",$list['tag'])) as $li){
-                 $tag .="<span class=\"fuli\">$li</span>";
-             }
+            $tag = "";
+            foreach (array_filter(explode(",",$list['tag'])) as $li){
+                $tag .="<span class=\"fuli\">$li</span>";
+            }
 
-             if($list['wage_min']>0 && $list['wage_max']>0){
-                 $salary = $list['wage_min']."-".$list['wage_max']."k";
-             }else{
-                 $salary = "面议";
-             }
+            if($list['wage_min']>0 && $list['wage_max']>0){
+                $salary = $list['wage_min']."-".$list['wage_max']."k";
+            }else{
+                $salary = "面议";
+            }
             $status = "";
             if ($list['status']==0){
-                 $status = "<div class=\"status1\">HR未查看/待沟通</div>";
+                $status = "<div class=\"status1\">HR未查看/待沟通</div>";
             }elseif ($list['status']==1){
                 $status = "<div class=\"status2\">HR已查看</div>";
             }elseif ($list['status']==-1){
@@ -212,7 +315,7 @@ elseif ($op=="send_resume_ajax"){
 
 
             if($list['status']<>3){
-             $pass = "pass";
+                $pass = "pass";
             }else{
                 $pass = "";
             }
@@ -302,100 +405,4 @@ elseif ($op=="invite_ajax"){
 
         call_back(1,$html);
     }
-}
-
-//收藏职位列表
-elseif ($op=="collection_jobs_list"){
-    $collect_job = pdo_fetchall("select c.createtime,j.* from ".tablename(WL."collect_jobs")." as c,".tablename(WL."jobs")." as j where c.jobs_id=j.id and c.uid=".$_SESSION['uid']);
-    $collect_jobs = "";
-    foreach ($collect_job as $list){
-        $headimgurl = pdo_fetch("select headimgurl,tag from ".tablename(WL."company_profile")." where uid=".$list['uid']);
-        $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and jobs_id=".$list['id']);
-        if(empty($jobs_apply)){
-            $list['post_status'] = 1;
-        }
-        $list['headimgurl'] = $headimgurl['headimgurl'];
-        $list['tag'] = $headimgurl['tag'];
-        $collect_jobs[] = $list;
-    }
-
-
-    $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
-    $differ_time = (time()-$order_jobs['updatetime'])/86400;
-    $order_jobs_list = m("jobs")->check_order_jobs($order_jobs['order_time'],$differ_time);
-    include wl_template("person/person_collection");exit();
-}
-
-//面试评价
-elseif ($op=="credit_evaluate"){
-    $agree_jobs = m("resume")->jobs_apply($_SESSION['uid'],-1,3);
-    $data['puid'] = $_SESSION['uid'];
-    $data['hr_reply'] = 1;
-    $comment_jobs = m("jobs")->comment_apply($data);
-
-    include wl_template("person/credit_evaluate");exit();
-}
-//简历管理
-elseif ($op=="resume_center"){
-    include wl_template("person/person_collection");exit();
-}
-//待评价保存
-elseif ($op=="save_evaluate"){
-
-    $pingfen = $_POST['pingfen'];
-    $data['evaluate_information'] = intval($pingfen[0]);
-    $data['evaluate_environment'] = intval($pingfen[1]);
-    $data['evaluate_interviewer'] = intval($pingfen[2]);
-    $data['tag'] = implode(",",$_POST['biaoqian']);
-    $data['content'] = check_pasre($_POST['detail'],"请输入面试经过");
-    $data['score'] = $_POST['pingjia'];
-    $data['hide'] = $_POST['niming'];
-    $apply_id=check_pasre($_POST['apply_id'],"参数错误");
-    $apply_jobs = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where id=".$apply_id);
-    $data['uid'] = $apply_jobs['uid'];
-    $data['puid'] = $apply_jobs['puid'];
-    $data['resume_id'] = $apply_jobs['resume_id'];
-    $data['jobs_id'] = $apply_jobs['jobs_id'];
-    $data['createtime'] = time();
-    $apply_jobs = pdo_fetch("select * from ".tablename(WL."comment")." where jobs_id=".$data['jobs_id']." and puid=".$data['puid']);
-    if($apply_jobs){
-        call_back(2,"您对该职位已评价,不要重复提交");
-    }else{
-        pdo_update(WL."jobs_apply",array("comment"=>1),array('id'=>$apply_id));
-        $r = insert_table($data,WL."comment");
-        if($r){
-            call_back(1,"提交成功");
-        }else{
-            call_back(2,"保存失败");
-        }
-    }
-
-}
-
-//投递简历
-elseif ($op=="post_resume"){
-//    var_dump($_POST);exit();
-    $data['jobs_id'] = check_pasre($_POST['data_id'],"参数错误");
-    $data['uid'] = check_pasre($_POST['uid'],"参数错误");
-    $data['resume_id'] = $resume['id'];
-    $data['puid'] = $resume['uid'];
-    $data['direction'] = 2;
-    $data['createtime'] = time();
-
-    $jobs_apply = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where jobs_id=".$data['jobs_id']." and resume_id=".$data['resume_id']);
-    if(empty($_SESSION['uid'])){
-        call_back(2,"请先登录账号");
-    }
-    if($jobs_apply){
-        call_back(2,"已存在");
-    }else{
-        $r = insert_table($data,WL."jobs_apply");
-        if($r){
-            call_back(1,"ok");
-        }else{
-            call_back(2,"no");
-        }
-    }
-
-//    var_dump($_POST);exit();
 }

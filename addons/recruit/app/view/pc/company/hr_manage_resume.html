@@ -28,6 +28,7 @@
             </div>
             <!--等待面试start------------------------------------------------------------------------------->
             <div class="listitems list_content sign_content" style="display: block;">
+                {if $resume}
                 <div class="time_selecter">
                     <div class="checkbox ico_rightstatas" style="display: inline-block;">
                         <label class="right_ico">
@@ -110,6 +111,9 @@
                 {/loop}
 
                 <div class="morejob">更多简历信息>></div>
+                {else}
+                <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有符合搜索条件的结果</div><div class="color999" style="margin-top: 30px">请重新修改搜索条件后再进行搜索</div></div></div>
+                {/if}
             </div>
             <!--等待面试end-------------------------------------------------------------------------->
             <!--职位搜索start---------------------------------------------------------------------------->

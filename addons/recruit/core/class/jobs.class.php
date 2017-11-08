@@ -25,7 +25,7 @@ class jobs{
         }
         $page = ($data['data']['page'] -1)*$pagenum;
         $wheresql = " where  display=1 ";
-        $orderby = " order by addtime desc,open desc";
+        $orderby = " order by id asc,open desc";
         if($data['data']['job_nature'] && $data['data']['job_nature']<>"不限"){
             $wheresql .=" and work_nature='".$data['data']['job_nature']."' ";
         }
@@ -38,9 +38,13 @@ class jobs{
         if($data['data']['job_education'] && $data['data']['job_education']<>"不限"){
             $wheresql .=" and education='".$data['data']['job_education']."' ";
         }
-        if($data['data']['job_order'] && $data['data']['job_order']=="最新"){
-            $orderby = " order by addtime,open desc";
+        if($data['data']['job_order'] && $data['data']['job_order']=="默认排序"){
+            $orderby = " order by id asc,open desc";
         }
+        if($data['data']['job_order'] && $data['data']['job_order']=="发布时间"){
+            $orderby = " order by addtime desc,open desc";
+        }
+
         if($data['data']['job_name']){
             $wheresql .=" and jobs_name like '%".$data['data']['job_name']."%' ";
         }
@@ -52,6 +56,7 @@ class jobs{
         }
         $limit = " limit ".$page.",".$pagenum;
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit);
+
         $job['count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs").$wheresql." order by open desc");
         $job['more'] = "";
         foreach ($jobs as $li){
@@ -66,10 +71,8 @@ class jobs{
             $li['headimgurl'] = $headimgurl['headimgurl'];
             $job['more'][] = $li;
         }
-//        foreach ($jobs as $list){
-//            $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$list['uid']);
-//            $list['com']
-//        }
+
+
         return $job;
     }
 

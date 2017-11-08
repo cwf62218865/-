@@ -43,12 +43,3 @@ elseif ($op=="subscribe_jobs_action"){
         pdo_update(WL."order_jobs",array('updatetime'=>time()),array('puid'=>$_SESSION['uid']));
     }
 }
-
-//订阅职位
-elseif ($op=="subscribe_jobs"){
-
-}
-
-elseif ($op=="subscribe_jobs_list"){
-
-}

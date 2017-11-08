@@ -551,9 +551,9 @@ elseif ($op=="search_jobs_ajax"){
                             </div>
                         </div>
                     </div>
-                    <div class=\"review_statas\" data-id='{$list[uid]}'>
-                        <div class=\"{$toudijianli}\" data-id='{$list[id]}'>{$list['post_status']}</div>
-                    </div>
+                    <a class=\"review_statas\" data-id='{$list[uid]}' href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."'>
+                        查看详情
+                    </a>
                 </div>";
         }
         call_back(1,$html,$jobs['count']);
