@@ -66,6 +66,7 @@ $(document).ready(function(){
             var listnum="0_"+data_id;
         }
         var areamsg=dsy.Items[listnum];
+        areas+="<span>不限</span>";
         for(var i=0;i<areamsg.length;i++){
             areas+="<span>"+areamsg[i]+"</span>"
         }

@@ -173,7 +173,7 @@
     background: #ffffff;height: 186px;border-bottom: 1px solid #f4f4f4;
 }
 .tongjis1{ width: 240px;
-    margin: 0 auto;padding-left: 35px;padding-right: 35px;
+    margin: 0 auto;
 }
 .items1,.items2{
     height: 50px;float: left;text-align: center;margin-top: 30px;
@@ -183,6 +183,9 @@
 }
 .items2{
     width: 120px;
+}
+.items2:nth-child(2n+1){
+    margin-left: 35px;
 }
 .items1 .number,.items2 .number{
     display: block;
@@ -317,6 +320,7 @@
 }
 .item_con .hang1{
     width: 340px;
+    height: 30px;
 }
 .hang1 .jobname{
     width: 180px;color: #333;font-size: 20px;float: left;
@@ -735,6 +739,7 @@
 .basic_massage{
     float: left;
     margin-left: 24px;
+    height: 36px;
 }
 .basic_massage .name{
     font-size: 20px;color: #333333;width: 65px;height: 26px;line-height: 26px;

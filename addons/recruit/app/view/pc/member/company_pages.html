@@ -238,7 +238,7 @@
                                 </div>
                                 <div class="xiangqing">
                                     <div class="xqhang">
-                                        <span class="">总体评价:</span>
+                                        <span class="ico_titlesta">总体评价:</span>
                                         <span class="stars_n">
                                         {$list['count_score']}
                                         </span>
@@ -247,9 +247,11 @@
                                         <span class="date_eva">{php echo date('Y-m-d',$list['createtime'])}</span>
                                     </div>
                                     <div class="xqhang" style="margin-top: 18px;">
+                                        {if $list['tag']}
                                         {loop explode(",",$list['tag']) $li}
                                         <span class="pingjiabq">{$li}</span>
                                         {/loop}
+                                        {/if}
                                     </div>
                                     <div class="xqhang" style="margin-top: 20px;">
                                         [面试过程]<span class="evaluate_con">

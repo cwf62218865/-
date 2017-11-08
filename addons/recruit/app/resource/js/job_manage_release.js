@@ -66,6 +66,30 @@ $("body").on("click",".job_template_msg .job_template_msgbtn",function(){
 
 });
 
+//选择模板(点击内容也起作用)
+$("body").on("click",".job_template_msg .job_template_msgscontent",function(){
+    var _this=$(this);
+    if(_this.css("background-color")=="rgb(168, 201, 234)"){
+        return;
+    }else{
+        _this.css({"background-color":"#a8c9ea","color":"#fff","border-color":"#a8c9ea"});
+        _this.next().find("use").attr("xlink:href","#icon-zhengque2");
+        _this.next().append("<span style='float: right;margin-left: 10px;font-size: 14px;line-height: 36px'>已添加至岗位职责</span>")
+        var content1=_this.html();
+        var content2=$("#job_duty_textarea").val();
+        var length=content2.split(".").length;
+
+        if(content2){
+            $("#job_duty_textarea").val(content2+"\r\n"+length+"."+content1);
+            $("#job_duty_input").val(content2+"\r\n"+length+"."+content1);
+        }else{
+            $("#job_duty_textarea").val(length+"."+content1);
+            $("#job_duty_input").val(length+"."+content1);
+        }
+    }
+
+});
+
 
 $("body").on("click",".do_job_template_msg .job_template_msgbtn",function(){
     var _this=$(this);
@@ -74,8 +98,31 @@ $("body").on("click",".do_job_template_msg .job_template_msgbtn",function(){
     }else{
         _this.prev().css({"background-color":"#a8c9ea","color":"#fff","border-color":"#a8c9ea"});
         _this.find("use").attr("xlink:href","#icon-zhengque2");
-        _this.append("<span style='float: right;margin-left: 10px;font-size: 14px;line-height: 36px'>已添加至岗位职责</span>")
+        _this.append("<span style='float: right;margin-left: 10px;font-size: 14px;line-height: 36px'>已添加至任职要求</span>")
         var content1=_this.prev().html();
+        var content2=$("#do_job_duty_textarea").val();
+        var length=content2.split(".").length;
+
+        if(content2){
+            $("#do_job_duty_textarea").val(content2+"\r\n"+length+"."+content1);
+            $("#do_job_duty_input").val(content2+"\r\n"+length+"."+content1);
+        }else{
+            $("#do_job_duty_textarea").val(length+"."+content1);
+            $("#do_job_duty_input").val(length+"."+content1);
+        }
+    }
+
+});
+
+$("body").on("click",".do_job_template_msg .job_template_msgscontent",function(){
+    var _this=$(this);
+    if(_this.css("background-color")=="rgb(168, 201, 234)"){
+        return;
+    }else{
+        _this.css({"background-color":"#a8c9ea","color":"#fff","border-color":"#a8c9ea"});
+        _this.next().find("use").attr("xlink:href","#icon-zhengque2");
+        _this.next().append("<span style='float: right;margin-left: 10px;font-size: 14px;line-height: 36px'>已添加至任职要求</span>")
+        var content1=_this.html();
         var content2=$("#do_job_duty_textarea").val();
         var length=content2.split(".").length;
 

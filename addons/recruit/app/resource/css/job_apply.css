@@ -493,6 +493,7 @@
     padding-left: 10px;
     padding-right: 10px;
     border: 1px solid #eeeeee;
+    color: #666666;
 }
 .zpzhuangtai{
     width: 920px;
@@ -658,6 +659,8 @@
     display: inline-block;
     width: 70px;
     text-align: right;
+    float: left;
+    margin-right: 30px;
 }
 .stars_n{
 margin-left: 30px;
@@ -667,7 +670,8 @@ margin-left: 30px;
     height: 22px;
 }
 .star{
-    color: #ffc549;
+    color: #ffc549;vertical-align: bottom;
+    float: left;
 }
 .starhui{
     color: #dfdfdf;
@@ -698,6 +702,9 @@ margin-left: 30px;
 }
 .evaluate_list{
     width: 100%;
+    float: left;
+}
+.ico_titlesta{
     float: left;
 }
 .evaluate_item{
@@ -768,6 +775,7 @@ margin-left: 30px;
     line-height: 24px;
     margin-right: 14px;
     border: 1px solid #eeeeee;
+    color: #666666;
 }
 .evaluate_con{
     color: #666666;
@@ -778,6 +786,12 @@ margin-left: 30px;
     margin-top: 16px;
     color: #bbbbbb;
     cursor: pointer;
+}
+.hangxq:hover{
+    color: #0099cc;
+}
+.hangxq:hover .zan1{
+    color: #0099cc;
 }
 .zan1{
     width: 16px;
@@ -824,9 +838,18 @@ margin-left: 30px;
     right: 0;
     width: 100px;
     color: #999999;
+    text-align: right;
 }
 .left_tx{
+    margin-right: 30px;
     float: left;
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+}
+.left_tx .icon {
+    font-size: 40px;
+    margin-top: 10px;
 }
 .btn_xiny{
     position: absolute;
@@ -860,6 +883,16 @@ margin-left: 30px;
     float: left;
     margin-left: 10px;
 }
+.pre_zan{
+    color: #bbbbbb !important;
+}
+.pre_zan:hover .zannum{
+    color: #0099cc;
+}
+.zan .zan1,.zan{
+    color: #0099cc !important;
+}
+
 .btnditu{
     float: left;
     margin-top: 20px;

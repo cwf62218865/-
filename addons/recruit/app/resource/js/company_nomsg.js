@@ -95,12 +95,14 @@ $("body").on("mousedown",".areaoptions .select-option",function(){
 //    }
 //
 //});
-$("body").on("click",".company_welfare span",function(){
+$(".company_welfare span").click(function(){
+    var _this=$(this);
     var company_welfares=$("#company_welfare").val().split(",");
     if(company_welfares.length>=5){
-
+        hint("error","最多可以添加5个标签");
+        return;
     }else{
-        var _this=$(this);
+
         if(_this.hasClass("welfare_choice")){
             return;
         }else{
@@ -138,7 +140,8 @@ $(".btn_sou").on("click",function(){
     var company_welfares=$("#company_welfare").val().split(",");
     console.log(company_welfares.length);
     if(company_welfares.length>=5){
-
+        hint("error","最多可以添加5个标签");
+        return;
     }else{
         var welfare=$("#welfare_key").val();
         if(welfare==""){
