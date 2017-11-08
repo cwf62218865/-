@@ -50,12 +50,13 @@ if($op=="1"){
         call_back(1,app_url("resume/resume_reg/3"));
     }
 }elseif ($op=="step3_save"){
-    $data['work_experience'] = serialize($_POST['data']);
-    $data['updatetime'] = time();
-    $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));
-    if($r){
-        call_back(1,app_url("resume/resume_reg/4"));
+    if(array_filter($_POST['data'][0])){
+        $data['work_experience'] = serialize($_POST['data']);
+        $data['updatetime'] = time();
+        $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));
     }
+
+    call_back(1,app_url("resume/resume_reg/4"));
 }elseif ($op=="step4_save"){
     $data['nation'] = check_pasre($_POST['family_name'],"请选择民族");
     $data['political_status'] = check_pasre($_POST['identity'],"请选择政治面貌");

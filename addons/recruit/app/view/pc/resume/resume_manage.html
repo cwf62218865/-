@@ -204,7 +204,7 @@
                         <span class="font999 resume_msg_name">出生年月</span>
                         <div class=" relative general-select " style="float: none">
                             <label class="general-input relative general-select" style="float: none">
-                                <input type="text" readonly="" data-error="请选择出生年月" name="birthday" value="{php echo $resume['birthday']}">
+                                <input type="text" readonly="" data-error="请选择出生年月" name="birthday" value="{php echo date('Y年m月',$resume['birthday'])}">
                                 <svg class="icon inputicon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
                                 </svg>

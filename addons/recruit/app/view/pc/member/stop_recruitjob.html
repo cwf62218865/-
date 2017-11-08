@@ -14,8 +14,10 @@
     <title>已下架职位</title>
 </head>
 <body bgcolor="#f4f4f4">
-{if $_SESSION['uid']}
+{if $_SESSION['utype']==1}
 {php include wl_template('common/top');}
+{elseif $_SESSION['utype']==2}
+{php include wl_template('common/company_top');}
 {else}
 {php include wl_template('common/header');}
 {/if}

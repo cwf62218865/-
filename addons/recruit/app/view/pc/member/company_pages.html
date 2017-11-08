@@ -60,8 +60,10 @@
     </style>
 </head>
 <body bgcolor="#f4f4f4">
-{if $_SESSION['uid']}
+{if $_SESSION['utype']==1}
 {php include wl_template('common/top');}
+{elseif $_SESSION['utype']==2}
+{php include wl_template('common/company_top');}
 {else}
 {php include wl_template('common/header');}
 {/if}
@@ -291,7 +293,11 @@
                     <div class="job_list" style="display: none;">
                         <div class="job_list_con">
                             {loop $jobs $list}
+<<<<<<< Updated upstream
+                            <a class="job_iteme" href="#">
+=======
                             <a class="job_iteme" href="#" style="position: relative;">
+>>>>>>> Stashed changes
                                 <p class="job_hang relative">
                                     <div class="job_names" href="#">{$list['jobs_name']}</div>
                                     <span class="refume_statas">{php echo date('Y-m-d',$list['updatetime'])}</span>
