@@ -49,6 +49,7 @@ if($op=="index"){
         call_back(1,"ok");
     }else{
 //        echo "resume_template/resume_preview".$resume['template_id'];exit();
+
         include wl_template("resume_template/resume_preview".$resume['template_id']);
     }
 }
