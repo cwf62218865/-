@@ -453,13 +453,15 @@
     z-index: 999
 }
 .want_jobbtns span{
-    display: inline-block;
+    /*display: inline-block;*/
     height: 18px;
     line-height: 18px;
     margin-right: 10px;
     padding: 5px 8px;
     background-color: #fff;
     cursor: pointer;
+    color: #666666;
+    font-weight: normal;
 }
 .wanted_tip{
     display: inline-block;

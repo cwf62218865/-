@@ -651,6 +651,13 @@
 //            })
 //        })
 
+        $(".input_search").focus(function () {
+            $(this).css("border","1px solid #0099cc");
+        })
+        $(".input_search").blur(function () {
+            $(this).css("border","1px solid #eeeeee");
+        })
+
         //城市选择和行政区弹出
         var area=new Array();
         area=dsy.Items[0];
