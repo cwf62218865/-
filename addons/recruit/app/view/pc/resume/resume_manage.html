@@ -623,7 +623,7 @@
 
                         <div class="resume_exp_content">
                             {if $work_experience}
-                            {loop $work_experience $id $list}
+                            {loop $work_experience $list}
                             <div class="resume_exps" data-id="{php echo $id}">
                                 <div class="relative">
                                     <span class="exp_title">{php echo $list['company_name']}</span>
@@ -1641,7 +1641,7 @@
     $.fromdata("#job_expbox","{php echo app_url('person/resume/save_work_exp')}","#save_job_exp_msg",function(data){
         var data = JSON.parse(data);
         if(data.status==1){
-
+            location = location;
         }else{
             hint("error",data.content);
         }
