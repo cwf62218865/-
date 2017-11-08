@@ -419,10 +419,12 @@
                         hint("success","投递成功");
                         setTimeout(function(){$(".promptbox").remove()},1000);
                         _this.html("已投递").addClass("toudijianli1").removeClass("toudijianli");
-                    }else{
-                        hint("success","投递成功");
+                    }else if(data.status==2){
+                        hint("success","投递失败");
                         setTimeout(function(){$(".promptbox").remove()},1000);
                         _this.html("已投递").addClass("toudijianli1").removeClass("toudijianli");
+                    }else if(data.status==3){
+                        $("#small_modalbox").show();
                     }
                 }
             })

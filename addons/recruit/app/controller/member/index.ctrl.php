@@ -325,30 +325,10 @@ elseif ($op=="send_code"){
     if($_GPC['style']=="tel"){
         if(check_phone($_GPC['tel'],2)){
             $phone =$_GPC['tel'];
+            send_codes($phone);
         }
-        if(!$_SESSION['last_sendtime'])
-        {
-            $_SESSION['phone_code']=mt_rand(1000,9999);
-            $_SESSION['last_sendtime']=time();
-            if(sendSms($phone,$_SESSION['phone_code'])){
-                call_back(1,"ok");
-            }
-        }
-        else
-        {
-            if ( (time() - $_SESSION['last_sendtime']) >50 )
-            {
-                $_SESSION['phone_code']=mt_rand(1000,9999);
-                $_SESSION['last_sendtime']=time();
-                if(sendSms($phone,$_SESSION['phone_code'])){
-                    call_back(1,"ok");
-                }
-            }else{
-                return false;
-            }
-        }
+
     }
-    exit();
 }
 elseif($op=="normal_send_code"){
     send_codes($_POST['mobie']);exit();

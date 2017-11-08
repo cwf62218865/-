@@ -46,28 +46,31 @@ function member_exists($username){
  */
 function send_codes($phone){
     wl_load()->model('sms');
-    if(!$_SESSION['last_sendtime'])
-    {
-        $_SESSION['phone_code']=mt_rand(1000,9999);
-        $_SESSION['last_sendtime']=time();
-        if(sendSms($phone,$_SESSION['phone_code'])){
-            call_back(1,"ok");
-        }
-    }
-    else
-    {
-
-        if ( (time() - $_SESSION['last_sendtime']) >50 )
+    unset($_SESSION['phone_code']);
+    if(check_phone($phone)){
+        if(!$_SESSION['last_sendtime'])
         {
-
             $_SESSION['phone_code']=mt_rand(1000,9999);
             $_SESSION['last_sendtime']=time();
             if(sendSms($phone,$_SESSION['phone_code'])){
                 call_back(1,"ok");
             }
-        }else{
-            return false;
         }
+        else
+        {
+
+            if ( (time() - $_SESSION['last_sendtime']) >50 )
+            {
+
+                $_SESSION['phone_code']=mt_rand(1000,9999);
+                $_SESSION['last_sendtime']=time();
+                if(sendSms($phone,$_SESSION['phone_code'])){
+                    call_back(1,"ok");
+                }
+            }else{
+                return false;
+            }
+        }
+        exit();
     }
-    exit();
 }
