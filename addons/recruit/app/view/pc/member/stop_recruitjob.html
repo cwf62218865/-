@@ -125,7 +125,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="status toudijl">投递简历</div>
+                    <a class="review_statas" data-id="{$list['uid']}" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" style="border-top: 1px solid #eeeeee">
+                        查看详情
+                    </a>
                 </div>
                 {/loop}
 
@@ -146,12 +148,7 @@
                 </a>
             </p>
             <p class="name_qiye">
-                <span class="name_qiye biaoqian_ico2">
-                    <svg class="icon renzheng">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-iconfontslogoqimingxing"></use>
-                    </svg>
-                明星雇主
-                </span>
+                <img src="{WL_URL_ARES}images/mingxing.png" class="mingxing"/>
             </p>
             <div class="gongsi_msg">
                 <p><label class="qiye_titls">公司信用</label><label class="qiye_ms">750分</label></p>
@@ -311,22 +308,27 @@
     })
 
     //投递简历
-    $("body").on("click",".toudijl",function () {
+    $("body").on("click",".toudijianli",function () {
+        var _this = $(this);
+        var data_id = $(this).attr('data-id');
+        var uid = $(this).parent().attr('data-id');
+
         $.ajax({
-            url:"",
+            url:"{php echo app_url('person/index/post_resume')}",
             type:"post",
             data:{
-                
+                data_id:data_id,
+                uid:uid
             },
             success:function () {
+
                 var data=JSON.parse(data);
-                if(data.status==1) {
-                    $(this).removeClass("toudijl");
-                    $(this).addClass("yitoudi");
-                    $(this).html("已投递")
-                    hint("success", "投递成功");
+                if(data.status==1){
+                    hint("success","投递成功");
+                    _this.html("已投递").addClass("toudijianli1").removeClass("toudijianli");
                 }else{
-                    hint("error",data.content);
+                    hint("success","投递成功");
+                    _this.html("已投递").addClass("toudijianli1").removeClass("toudijianli");
                 }
             }
         })

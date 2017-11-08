@@ -29,7 +29,7 @@
             <!--职位详情---------------------------------------------------------------------------->
                 <div class="width730" style="margin-left: 70px">
                     <div style="margin-top: 70px">
-                        <span class="font34 color333">{php echo $jobs['jobs_name']}</span>
+                        <span class="font34 color333" style="vertical-align: middle;">{php echo $jobs['jobs_name']}</span>
                         <a href="#" class="company_msgbtn">该企业信用详情</a>
 
 
@@ -56,7 +56,11 @@
                             </div>
                         </span>
                         {if $_SESSION['utype']!=2}
+                        {if $collect_status}
+                        <span class="collections active" data-id="{php echo $jobs['id']}">
+                        {else}
                         <span class="collections collection" data-id="{php echo $jobs['id']}">
+                        {/if}
                             <svg class="icon">
                                 <use xlink:href="#icon-shoucangguanli"></use>
                             </svg>
@@ -66,7 +70,7 @@
                     </div>
                     <!--<div class="relative" id="sharebox">-->
                         <!--<div class="bdsharebuttonbox share"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>-->
-                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
                         with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 
@@ -96,9 +100,11 @@
                     </div>
 
                     <div style="margin-top: 20px" data-id="{php echo $jobs['uid']}">
+                        {if $jobs['tag']}
                         {loop explode(',',$jobs['tag']) $list}
                         <span class="welfare_label">{$list}</span>
                         {/loop}
+                        {/if}
                         {if $_SESSION['utype']!=2}
                         <span class="{if $jobs_apply}delivery_resume1{else}delivery_resume{/if}" data-id="{php echo $jobs['id']}">{if $jobs_apply}已投递{else}投递简历{/if}</span>
                         {/if}
@@ -453,6 +459,7 @@ $(function () {
     })
 
     $(".collection").click(function () {
+        var _this=$(this);
         var data_id = $(this).attr("data-id");
         $.ajax({
             type:"post",
@@ -464,6 +471,7 @@ $(function () {
                 var data = JSON.parse(data);
                 if(data.status==1){
                     hint("success","收藏成功。");
+                    _this.addClass("active").removeClass("collection").unbind("click");
                     console.log(data.content);
                 }else if(data.status==3){
                     $("#small_modalbox").show();

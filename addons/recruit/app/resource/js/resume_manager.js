@@ -150,6 +150,7 @@ $("body").on("mousedown",".cwfcityoptions .select-option",function(){
         var listnum="0_"+data_id;
     }
     var areamsg=dsy.Items[listnum];
+    areas+="<span>不限</span>";
     for(var i=0;i<areamsg.length;i++){
         areas+="<span>"+areamsg[i]+"</span>"
     }
@@ -263,9 +264,11 @@ var jobsnewfile=jobsnewfile;//期望职位数据
 var hope_job_label="";
 var hopejobhtml="";//容器
 
+if($("#hope_job").val()){
+    hope_job_label=$("#hope_job").val().split(",");//已选择职位
+}
 
-hope_job_label=$("#hope_job").val().split(",");//已选择职位
-hopejobhtml="";
+
 for(var i=0 ; i<jobsnewfile["00"].length ; i++){
 
     hopejobhtml+='<div><span class="hopejob1" data-id="'+i+'">'+jobsnewfile["00"][i]+'</span></div>'

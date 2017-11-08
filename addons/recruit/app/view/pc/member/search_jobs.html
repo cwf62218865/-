@@ -202,9 +202,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="review_statas" data-id="{$list['uid']}">
-                        <div class="{if $list['post_status']=='已投递'}toudijianli1{else}toudijianli{/if}" data-id="{$list['id']}">{$list['post_status']}</div>
-                    </div>
+                    <a class="review_statas" data-id="{$list['uid']}" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" style="border-top: 1px solid #eeeeee">
+                        查看详情
+                    </a>
                 </div>
                 {/loop}
                 {else}

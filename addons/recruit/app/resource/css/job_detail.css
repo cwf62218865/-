@@ -10,6 +10,10 @@
 .company_logo img{
     max-width: 180px;
 }
+.active{
+    color: #fff !important;
+    background: #0099cc !important;
+}
 .company_recruit_msg{
     width: 100%;
     text-align: center;

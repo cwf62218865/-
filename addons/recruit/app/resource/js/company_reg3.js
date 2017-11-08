@@ -25,6 +25,7 @@ $(document).ready(function(){
     $("body").on("click",".zjbiaoqian_wrap .zjflbq",function(){
         $(".zjbiaoqian_wrap").find(".chec_tip1  .left_align").html("");
         if($(".bqselect").length>=5){
+            hint("error","只能添加5个标签")
             if($(this).hasClass("bqselect")){
                 $(this).removeClass("bqselect");
             }
@@ -45,6 +46,7 @@ $(document).ready(function(){
         if($.trim(Label)!=""){
             if($(".bqselect").length>=5){
                 $("#zjtianjiainput").val("");
+                hint("error","只能添加5个标签")
                 return;
             }else{
                 var labelspan="<span class='zjflbq bqselect zjwidth"+$.trim(Label).length+"' style='margin: 15px 12px 0 0'>"+Label+"</span>"
