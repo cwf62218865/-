@@ -50,6 +50,8 @@ if(!$_SESSION['uid']){
 		$resume_integrity = resume_integrity();
 		$add_order_num =  add_order_num();
 		$interview_num =  interview_num();
+		$comment_num =  comment_num();
+        $reply_num =  reply_num();
         $portrait = pdo_fetch("select headimgurl from ".tablename(WL.'resume')." where uid=".$_SESSION['uid']);
 
         if($_GPC['do']=="company"){

@@ -81,6 +81,18 @@ function interview_num(){
     return $interview_num;
 }
 
+//我的评价
+function comment_num(){
+    $comment_num = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where puid=".$_SESSION['uid']);
+    return $comment_num;
+}
+
+//收到的评价
+function reply_num(){
+    $comment_num = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where puid=".$_SESSION['uid']." and hr_reply<>''");
+    return $comment_num;
+}
+
 //公司信息完整度
 function company_integrity(){
 	$score = "";
