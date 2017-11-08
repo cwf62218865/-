@@ -25,7 +25,7 @@ $("body").on("click",".shouqi",function () {
 
 //省略号显示
 var pj=$(".pingjia_neir").html();
-if(pj.length>60){
+if(pj && pj.length>60){
     $(".pingjia_neir").html(pj.substring(0,60)+"......");
 }
 var htmls="收起<svg class='icon' aria-hidden='true'><use xlink:href='#icon-shangjiantou'></use></svg>";
