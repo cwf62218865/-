@@ -80,11 +80,11 @@
                         </div>
 
                         <div class="delivery_left">
-                        <span class="delivery_logo">
+                        <a class="delivery_logo" href="{php echo app_url('member/index/company_detail',array('jobs_id'=>$li['company_uid']))}">
                             <img src="{$li['headimgurl']}">
-                        </span>
-                            <span>{$li['jobs_name']}</span>
-                            <span style="margin-left: 20px">{$li['companyname']}</span><br>
+                        </a>
+                            <a  href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$li['id']))}">{$li['jobs_name']}</a>
+                            <a style="margin-left: 20px"  href="{php echo app_url('member/index/company_detail',array('jobs_id'=>$li['company_uid']))}">{$li['companyname']}</a><br>
                             <span style="display: inline-block;margin-top: 22px">
                                 最新状态：
                                 {if $li['status']==-1}
@@ -116,11 +116,11 @@
                         </div>
 
                         <div class="delivery_left">
-                        <span class="delivery_logo">
+                        <a class="delivery_logo" href="{php echo app_url('member/index/company_detail',array('company_id'=>$li['company_uid']))}">
                             <img src="{$li['headimgurl']}">
-                        </span>
-                            <span>{$li['jobs_name']}</span><br>
-                            <span style="display: inline-block;margin-top: 22px">{$li['companyname']}</span>
+                        </a>
+                            <a  href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$li['id']))}">{$li['jobs_name']}</a><br>
+                            <a style="display: inline-block;margin-top: 22px"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$li['uid']))}">{$li['companyname']}</a>
                         </div>
 
                         <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>

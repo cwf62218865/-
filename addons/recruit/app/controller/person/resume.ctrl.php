@@ -79,8 +79,8 @@ elseif ($op=="manage_resume_deal"){
     $data['fullname'] = check_pasre($_POST['data']['user_name'],"请输入姓名");
     $data['work_status'] = check_pasre($_POST['data']['job_status'],"请输入工作状态");
     $data['birthday'] = check_pasre($_POST['data']['birthday'],"请输入出生日期");
-//    $data['birthday'] = str_replace("年","-",str_replace("月","",$data['birthday']));
-//    echo $data['birthday'];exit();
+    $data['birthday'] = str_replace("年","-",str_replace("月","",$data['birthday']));
+    $data['birthday'] = strtotime($data['birthday']);
     $data['nation'] = check_pasre($_POST['data']['family_name'],"请输入民族");
     $data['origin_place'] = check_pasre($_POST['data']['placeoforigin'],"请输入籍贯");
     $data['political_status'] = check_pasre($_POST['data']['identity'],"请输入政治面貌");

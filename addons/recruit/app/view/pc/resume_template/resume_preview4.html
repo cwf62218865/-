@@ -45,7 +45,7 @@
                         <div class="namew">{php echo $resume['fullname']}</div>
                         <div class="bshang1">
                             <label class="basic_style1">{if $resume['sex']==1}男{else}女{/if}</label>
-                            <label class="basic_style">{php echo ceil(date('Y-m-d')-$resume['birthday'])}岁</label>
+                            <label class="basic_style">{php echo ceil((time()-$resume['birthday'])/31536000)}岁</label>
                             <label class="basic_style">{php echo $resume['political_status']}</label>
                             <label class="basic_style">{php echo $resume['education']}</label>
                             <label class="basic_style" style="padding-left: 0">{if $resume['work_time']}{php echo $resume['work_time']}年工作经验{/if}</label>
@@ -97,7 +97,7 @@
             <div class="right_con">
 
             <!--自我介绍-->
-
+                {if $resume['introduce']}
                 <div class="content540">
                     <div class="items_title">
                     <span class="itme_name">
@@ -114,10 +114,10 @@
 
                     </div>
                 </div>
-
+                {/if}
 
                 <!--求职意向-->
-
+                {if $resume['hope_job']}
                 <div class="content540 matop30">
                     <div class="items_title">
                     <span class="itme_name">
@@ -166,9 +166,9 @@
                     </div>
 
                 </div>
-
+                {/if}
                 <!--工作经历-->
-
+                {if $resume['work_experience']}
                 <div class="content540 matop30">
                     <div class="items_title itemmb">
                         <span class="itme_name">
@@ -193,11 +193,11 @@
                     </div>
                     {/loop}
                 </div>
-
+                {/if}
 
 
                 <!--教育经历-->
-
+                {if $edu_experience}
                 <div class="content540 matop30">
                     <div class="items_title itemmb">
                         <span class="itme_name">
@@ -222,10 +222,11 @@
                     </div>
                     {/loop}
                 </div>
-
+                {/if}
             </div>
 
             <!--个人作品-->
+            {if $personal_works}
             <div class="width670 matop60">
                 <div class="items_title itemmb">
                         <span class="itme_name">
@@ -245,9 +246,10 @@
                     {/loop}
                 </div>
             </div>
-
+            {/if}
 
             <!--荣誉证书-->
+            {if $honor}
             <div class="width670 matop30">
             <div class="items_title itemmb">
             <span class="itme_name">
@@ -270,9 +272,9 @@
                 {/loop}
 
             </div>
-
+            {/if}
             <!--30秒个人视频-->
-
+            {if $resume['video']}
             <div class="width670 matop60 resume_video">
                 <div class="items_title itemmb">
                         <span class="itme_name">
@@ -289,7 +291,7 @@
                     </div>
                 </div>
             </div>
-
+            {/if}
 
 
 

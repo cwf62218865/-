@@ -86,7 +86,7 @@
 
 
 <!--求职意向-->
-
+            {if $resume['hope_job']}
             <div class="basic_msg width670"  style="margin-top: 50px">
                 <div class="basic_msg_content">
                     <div class="resume_title" style="width: 670px;">
@@ -133,9 +133,9 @@
                     </div>
                 </div>
             </div>
-
+            {/if}
 <!--工作经历-->
-
+            {if $resume['work_experience']}
             <div class="basic_msg width670" style="margin-top: 50px">
                 <div class="basic_msg_content">
                     <div class="resume_title"  style="width: 670px;">
@@ -182,8 +182,9 @@
                     </div>
                 </div>
             </div>
-
+            {/if}
 <!--教育经历-->
+            {if $edu_experience}
             <div class="basic_msg width670" style="margin-top: 50px">
                 <div class="basic_msg_content">
                     <div class="resume_title"  style="width: 670px;">
@@ -210,8 +211,9 @@
                     </div>
                 </div>
             </div>
-
+            {/if}
 <!--个人作品-->
+            {if $personal_works}
             <div class="basic_msg width670" style="margin-top: 50px">
                 <div class="basic_msg_content">
                     <div class="resume_title"  style="width: 670px;">
@@ -234,10 +236,11 @@
                     </div>
                 </div>
             </div>
-
+            {/if}
 
 
             <!--荣誉证书-->
+            {if $honor}
             <div class="basic_msg width670" style="margin-top: 50px;">
                 <div class="basic_msg_content">
                     <div class="resume_title"  style="width: 670px;">
@@ -255,9 +258,10 @@
                     </div>
         </div>
     </div>
-
+            {/if}
 
             <!--30秒个人视频-->
+            {if $resume['person_video']}
             <div class="basic_msg width670 resume_video" style="margin-top: 50px;margin-bottom: 180px">
                 <div class="basic_msg_content">
                     <div class="resume_title" style="width: 100%;">
@@ -271,7 +275,7 @@
                     </div>
                 </div>
             </div>
-
+            {/if}
 </div>
 
 

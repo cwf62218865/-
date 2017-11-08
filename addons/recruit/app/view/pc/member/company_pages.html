@@ -99,7 +99,7 @@
                     <p  class="tongjititle">在招职位</p>
                 </div>
                 <a class="tjitem cur evaluate" href="#evaluate_list">
-                    <p class="tongjinum">8条</p>
+                    <p class="tongjinum">{$company_count['comment_count']}条</p>
                     <p  class="tongjititle">面试评价</p>
                 </a>
                 <div class="tjitem">
@@ -256,11 +256,16 @@
                                         {$list['content']}
                                     </span>
                                     </div>
-                                    <div class="hangxq">
+                                    {if in_array($_SESSION['uid'],explode(",",$list['zan']))}
+                                        <div class="hangxq zan" data-id="{$list['id']}">
+                                    {else}
+                                        <div class="hangxq pre_zan" data-id="{$list['id']}">
+                                    {/if}
+
                                         <svg class="icon zan1" aria-hidden="true">
                                             <use  xlink:href="#icon-zan1"></use>
                                         </svg>
-                                        <span class="zannum">(122)</span>
+                                        <span class="zannum">{php echo count(array_filter(explode(",",$list['zan'])))}</span>
                                     </div>
                                     {if $list['hr_reply']}
                                     <div class="evaluate_huifu">
@@ -293,13 +298,9 @@
                     <div class="job_list" style="display: none;">
                         <div class="job_list_con">
                             {loop $jobs $list}
-<<<<<<< Updated upstream
-                            <a class="job_iteme" href="#">
-=======
-                            <a class="job_iteme" href="#" style="position: relative;">
->>>>>>> Stashed changes
+                            <a class="job_iteme" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" style="position: relative;">
                                 <p class="job_hang relative">
-                                    <div class="job_names" href="#">{$list['jobs_name']}</div>
+                                    <div class="job_names" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</div>
                                     <span class="refume_statas">{php echo date('Y-m-d',$list['updatetime'])}</span>
                                 </p>
                                 <p class="miaosu">
@@ -540,6 +541,29 @@
         }
     })
 
+    $("body").on("click",".pre_zan",function () {
+        var _this = $(this);
+        $.ajax({
+            type:"post",
+            url:"{php echo app_url('member/index/comment_zan')}",
+            data:{
+                comment_id:$(this).attr("data-id")
+            },
+            success:function (data) {
+                var data = JSON.parse(data);
+                console.log(data);
+                if(data.status==1){
+                    var good_num = parseInt(_this.find(".zannum").html())+1;
+                    _this.find(".zannum").html(good_num);
+                    _this.removeClass("pre_zan").addClass("zan");
+                }else if(data.status==2){
+                    hint("error",data.content);
+                }else if(data.status==3){
+                    $("#small_modalbox").show();
+                }
+            }
+        })
+    })
 
 </script>
 </html>

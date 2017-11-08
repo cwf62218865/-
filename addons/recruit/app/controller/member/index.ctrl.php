@@ -34,6 +34,7 @@ elseif($op=="jobs_detail"){
         $jobs = pdo_fetch("select * from ".tablename(WL."jobs")." where id=".$_GPC['jobs_id']);
         $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$jobs['uid']);
         $comment_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where uid=".$jobs['uid']);
+        $current_comment_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where jobs_id=".$_GPC['jobs_id']." and uid=".$jobs['uid']);
         $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$jobs['uid']);
         $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where jobs_id=".$_GPC['jobs_id']." and puid=".$_SESSION['uid']);
         $report = pdo_fetch("select id from ".tablename(WL."report")." where jobs_id=".$_GPC['jobs_id']." and report_uid=".$_SESSION['uid']);
@@ -561,11 +562,11 @@ elseif ($op=="search_jobs_ajax"){
                         </div>
                         <div class=\"xian1\"></div>
                         <div class=\"companylogo\">
-                            <div class=\"logo\">
+                            <a class=\"logo\" href='".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."'>
                                 <img src=\"{$list['headimgurl']}\">
-                            </div>
+                            </a>
                             <div class=\"companyname\">
-                                <p class=\"name\">{$list['companyname']}</p>
+                                <a class=\"name\" href='".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."'>{$list['companyname']}</a>
                                 <p class=\"shuxin\">{$list['updatetime']}</p>
                             </div>
                         </div>

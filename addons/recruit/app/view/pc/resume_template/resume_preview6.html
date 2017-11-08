@@ -83,6 +83,7 @@
 <!--基本信息end-->
 
 <!--求职意向-->
+            {if $resume['hope_job']}
             <div class="content770">
                 <div class="items_title item_title6">
                         求职意向
@@ -127,9 +128,10 @@
                 </div>
                 {/if}
             </div>
-
+            {/if}
 
 <!--工作经历-->
+            {if $resume['work_experience']}
             <div class="content770">
                 <div class="items_title item_title6">
                     工作经历
@@ -153,9 +155,10 @@
                 </div>
                 {/loop}
             </div>
-
+            {/if}
 
 <!--教育经历-->
+            {if $edu_experience}
             <div class="content770">
                 <div class="items_title item_title6">
                     教育经历
@@ -174,11 +177,11 @@
                 </div>
                 {/loop}
             </div>
-
+            {/if}
 
 
 <!--个人作品-->
-
+            {if $personal_works}
             <div class="content770">
                 <div class="items_title item_title6">
                     个人作品
@@ -192,10 +195,11 @@
                     {/loop}
                 </div>
             </div>
-
+            {/if}
 
 
             <!--荣誉证书-->
+            {if $honor}
             <div class="content770">
                 <div class="items_title item_title6">
                     荣誉证书
@@ -212,10 +216,10 @@
                     {/loop}
                 </div>
             </div>
-
+            {/if}
 
             <!--30秒个人视频-->
-
+            {if $resume['video']}
             <div class="content770 resume_video">
                 <div class="items_title item_title6">
                     30秒个人视频
@@ -227,7 +231,7 @@
                 </div>
 
             </div>
-
+            {/if}
 
 
         </div>

@@ -83,6 +83,7 @@
 <!--基本信息end-->
 
 <!--求职意向-->
+            {if $resume['hope_job']}
             <div class="content770">
                 <div class="items_title">
                     <span class="itme_name">求职意向</span>
@@ -128,9 +129,9 @@
                 </div>
                 {/if}
             </div>
-
+            {/if}
 <!--自我介绍-->
-
+            {if $resume['introduce']}
             <div class="content770">
                 <div class="items_title">
                     <span class="itme_name">自我介绍</span>
@@ -142,7 +143,9 @@
 
                 </div>
             </div>
+            {/if}
 <!--工作经历-->
+            {if $resume['work_experience']}
             <div class="content770">
                 <div class="items_title itemmb">
                     <span class="itme_name">工作经历</span>
@@ -163,9 +166,10 @@
                 </div>
                 {/loop}
             </div>
-
+            {/if}
 
 <!--教育经历-->
+            {if $edu_experience}
             <div class="content770">
                 <div class="items_title itemmb">
                     <span class="itme_name">教育经历</span>
@@ -185,10 +189,10 @@
                 </div>
                 {/loop}
             </div>
-
+            {/if}
 
 <!--个人作品-->
-
+            {if $personal_works}
             <div class="content770">
                 <div class="items_title">
                     <span class="itme_name">个人作品</span>
@@ -205,11 +209,12 @@
                     {/loop}
                 </div>
             </div>
-
+            {/if}
 
 
 
             <!--荣誉证书-->
+            {if $honor]
             <div class="content770">
                 <div class="items_title">
                     <span class="itme_name">荣誉证书</span>
@@ -226,9 +231,9 @@
                     {/loop}
                 </div>
             </div>
-
+            {/if}
             <!--30秒个人视频-->
-
+            {if $resume['person_video']}
             <div class="content770 resume_video">
                 <div class="items_title">
                     <span class="itme_name" style="width: 160px;">30秒个人视频</span>
@@ -241,7 +246,7 @@
                 </div>
 
             </div>
-
+            {/if}
         </div>
     </div>
 

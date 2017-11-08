@@ -81,6 +81,7 @@
 
 
                 <!--求职意向-->
+                {if $resume['hope_job']}
                 <div class="content730">
                     <div class="items_title mabotem">
                         <span class="item_ico5">求职意向</span>
@@ -122,10 +123,11 @@
                         {/if}
                     </div>
                 </div>
-
+                {/if}
 
 
                 <!--工作经历-->
+                {if $resume['work_experience']}
                 <div class="content730">
                     <div class="items_title mabotem0">
                         <span class="item_ico5">工作经历</span>
@@ -150,9 +152,10 @@
                     </div>
                     {/loop}
                 </div>
-
+                {/if}
 
                 <!--教育经历-->
+                {if $edu_experience}
                 <div class="content730">
                     <div class="items_title mabotem0">
                         <span class="item_ico5">教育经历</span>
@@ -172,7 +175,7 @@
                     </div>
                     {/loop}
                 </div>
-
+                {/if}
 
 
 
@@ -187,6 +190,7 @@
             <div class="part_two5">
 
                 <!--个人作品-->
+                {if $personal_works}
                 <div class="content730 maleft70">
                     <div class="items_title mabotem30">
                         <span class="item_ico5">个人作品</span>
@@ -202,9 +206,10 @@
                     </div>
 
                 </div>
-
+                {/if}
 
                 <!--荣誉证书-->
+                {if $honor}
                 <div class="content730">
                     <div class="items_title mabotem">
                         <span class="item_ico5">荣誉证书</span>
@@ -222,9 +227,9 @@
                     </div>
 
                 </div>
-
+                {/if}
                 <!--30秒个人视频-->
-
+                {if $resume['video']}
                 <div class="content730 resume_video">
                     <div class="items_title mabotem30">
                         <span class="item_ico5 relative"><div style="position: absolute;width: 200px;">30秒个人视频</div></span>
@@ -236,7 +241,7 @@
                         </div>
                     </div>
                 </div>
-
+                {/if}
 
 
             </div>
