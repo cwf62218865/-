@@ -493,6 +493,7 @@ elseif ($op=="save_members_temp"){
             $kind = $_GPC['kind'];
             $data[$kind] = $file;
             $temp = pdo_fetch("select id from ".tablename(WL."members_temp")." where uid=".$id);
+
             if(empty($temp)){
                 $r = pdo_insert(WL."members_temp",$data);
                 $temp = pdo_fetch("select id from ".tablename(WL."members_temp")." where uid=".$id);

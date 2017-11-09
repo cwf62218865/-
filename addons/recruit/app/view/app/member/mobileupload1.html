@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/mobileuoload.css" rel="stylesheet">
     <title>手机照片上传</title>
 </head>
@@ -15,10 +17,14 @@
             {php echo $kind}
         </div>
 
-        <div class="imgbox camera"  style="border: 0;background-color: #fff;">
-            <svg class="icon icon1" aria-hidden="true" >
+        <div class="imgbox camera"  style="border: 0;background-color: #f8f9fb;">
+            <svg class="icon icon1" aria-hidden="true" style="width: auto">
                 <use xlink:href="#icon-shangchuan"></use>
             </svg>
+        </div>
+        <div class="success_upload" style="display: none"><svg class="icon" aria-hidden="true" >
+            <use xlink:href="#icon-zhengque2"></use>
+        </svg>上传成功
         </div>
         <form id="choosefile1" enctype="multipart/form-data">
             <input type='file' name='file' id='file' accept='image/*' style="display: none">
@@ -42,6 +48,7 @@
     $('.camera,.Album1').on('click',function(){
         var file=$("#file");
         file.click();
+
         file.on('change',function(e){
             var height=$(window).height();
 
@@ -51,7 +58,9 @@
             $('.imgbox').html(uploadsuccesspic);
             $(".camera1").css("display","block");
             $(".Album1").css("display","block");
-            $(".choose_file").css("display","none")
+            $(".choose_file").css("display","none");
+            $(".camera1").show();
+            $(".success_upload").hide();
             //uploadFile(this,'file');
             dealImage(src,{
                 width:200
@@ -61,34 +70,34 @@
         });
     });
 
-    //var uploadurl = "{if $kind=='简历头像上传'}{php echo app_url('member/index/headimgupload_deal')}{elseif $kind=='个人作品上传'}{php echo app_url('member/index/worksupload_deal')}{/if}";
-
-
     //上传图片
     $(".camera1").on("click",function(){
-        //uploadFile( $('#choosefile'),"choosefile",boxbum);
 
-//        var uploadFormData =new FormData($("#choosefile1")[0]);
 
         $.ajax({
             url:"{$url}",
             type:"post",
             data:{
                 file:imgsrc,
-                identity:"{$_GPC['identity']}"
+                identity:"{$_GPC['identity']}",
+                kind:"{$_GPC['kind']}"
             },
             success:function (data) {
                 var data=JSON.parse(data);
                 if(data.status==1){
-                    location = location;
+                    $(".success_upload").show().html("<svg class='icon' aria-hidden='true'>"+
+                            "<use xlink:href='#icon-zhengque2'></use></svg>上传成功")
+                    $(".camera1").hide();
+                }else{
+                    $(".success_upload").show().html("<svg class='icon' aria-hidden='true' style='color: #ea5941'>"+
+                    "<use xlink:href='#icon-cuowu'></use></svg>上传头像弹窗已关闭，上传失败")
                 }
                 $(".chec_tip1").eq(1).html("");
+            },
+            error:function(err){
+                $(".success_upload").hide();
             }
         });
-        $("#modalbox").animate({"opacity":0},300);
-        setTimeout(function(){
-            $("#modalbox").css("display","none");
-        },300)
     })
 
 
