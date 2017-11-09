@@ -38,7 +38,7 @@
     <div class="condition_select">
         <div class="condition_con">
             <div class="condition_item con_or">
-                <label class="title">已选择：</label>
+                <label class="title"></label>
                 <span class="select_con"></span>
                 <span class="search_in"></span>
             </div>
@@ -303,7 +303,7 @@
 <script src="{WL_URL_ARES}js/jquery.mousewheel.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/style_zj.js" rel="script"></script>
-<script src="{WL_URL_ARES}js/area.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/hotarea.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/zimu.js" rel="script"></script>
 
 <script>
@@ -360,6 +360,7 @@
 
         //工作地点
         $(".gzdd .city_item").on("click",function () {
+            $(".con_or .title").html("已选择:");
             option.job_address=$(this).html();
             option.job_address1="";
             option.page=1;
@@ -368,6 +369,8 @@
 
         //行政区
         $("body").on("click",".district_list .city_item",function () {
+
+            $(".con_or .title").html("已选择:");
             option.job_address1=$(this).html();
             option.page=1;
             layer(option);
@@ -375,6 +378,7 @@
 
         //学历要求
         $(".xueli .city_item").on("click",function () {
+            $(".con_or .title").html("已选择:");
             option.job_education=$(this).html();
             option.page=1;
             layer(option);
@@ -383,6 +387,7 @@
 
         //工作性质
         $(".gzxz .city_item").on("click",function () {
+            $(".con_or .title").html("已选择:");
             option.job_nature=$(this).html();
             option.page=1;
             layer(option);
@@ -527,11 +532,13 @@
         $("body").on("click",".district_list .city_item",function () {
             $(".district_list .city_item").removeClass("city_select");
             $(this).addClass("city_select");
-            $(".xingzheng_item").hide();
+//            $(".xingzheng_item").hide();
         })
 
         //多选项样式添加和发送请求
         $("body").on("click",".city_item",function () {
+
+            $(".con_or .title").html("已选择:");
             $(".select_con").html("");
             var list=$(".city_item");
             var arr_select=[];//把搜索的内容放在一个数组
@@ -553,6 +560,9 @@
             $("body").on("click",".deleteyx",function () {
                 var list=$(".city_item");
                 var _this=$(this).closest(".select_item");
+                if($(".select_item").length==0){
+                    $(".con_or .title").html("");
+                }
                 _this.remove();
                 var value=$(this).closest(".cont_item").find(".cont_list").html();
                 for(var i=0;i<arr_select.length;i++){
@@ -673,6 +683,7 @@
         }
 
         $(".gzdd .city_item").click(function () {
+            $(".con_or .title").html("已选择:");
             var ccity=$(this).html();
             if(ccity!="全国"){
             $(".xingzheng_item").show();
@@ -694,6 +705,7 @@
             }else{
                 $(".xingzheng_item").hide();
                 $(".xingzheng_item .city_item").removeClass("city_select");
+
             }
         })
 

@@ -99,17 +99,6 @@
         });
 
         $("body").on("click",".msg_zj .click",function(){
-            var time=60;
-            $(".msg_zj .code").html(time+"s后重新获取");
-            $(".msg_zj .click").removeClass("click");
-            var timer=setInterval(function(){
-                time--;
-                $(".msg_zj .code").html(time+"s后重新获取");
-                if(time==0){
-                    clearInterval(timer);
-                    $(".msg_zj .code").addClass("click").html("获取验证码");
-                }
-            },1000)
             var mobie=$("#mobie").val();
             $.ajax({
                 url:"{php echo app_url('member/person_register/send_code')}",
@@ -120,7 +109,17 @@
                 success:function(data){
                     var data = JSON.parse(data);
                     if(data.status==1){
-
+                        var time=60;
+                        $(".msg_zj .code").html(time+"s后重新获取");
+                        $(".msg_zj .click").removeClass("click");
+                        var timer=setInterval(function(){
+                            time--;
+                            $(".msg_zj .code").html(time+"s后重新获取");
+                            if(time==0){
+                                clearInterval(timer);
+                                $(".msg_zj .code").addClass("click").html("获取验证码");
+                            }
+                        },1000)
                     }else{
                        hint("error",data.content);
                     }
