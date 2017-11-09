@@ -57,3 +57,8 @@ html,body{
 .imgbox img{
     border: 5px solid #e5e5e5;
 }
+.success_upload .icon{
+    font-size: 20px;
+    float: left;
+    color:#339933 ;
+}

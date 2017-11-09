@@ -12,7 +12,7 @@ $resume = m("resume")->get_resume($_SESSION['uid']);
 
 if(trim($resume['work_experience'])){
     $work_experience = unserialize($resume['work_experience']);
-    $work_experience = array_reverse($work_experience);
+   // $work_experience = array_reverse($work_experience);
 }else{
     $work_experience = array();
 }
