@@ -74,7 +74,8 @@
             url:"{$url}",
             type:"post",
             data:{
-                file:imgsrc
+                file:imgsrc,
+                identity:"{$_GPC['identity']}"
             },
             success:function (data) {
                 var data=JSON.parse(data);

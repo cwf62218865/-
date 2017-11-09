@@ -483,7 +483,8 @@ elseif ($op=="save_members_temp"){
         $id = encrypt($_GPC['identity'], 'D');
         $member = m("member")->get_member($id);
         if($member){
-            $file = upload_img($_FILES);
+//            $file = upload_img($_FILES);
+            $file = base64_upload($_POST['file']);
             $data['uid'] = $id;
             $kind = $_GPC['kind'];
             $data[$kind] = $file;
