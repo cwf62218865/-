@@ -43,7 +43,7 @@ elseif ($op=="credit_evaluate"){
     $data['puid'] = $_SESSION['uid'];
     $data['hr_reply'] = 1;
     $comment_jobs = m("jobs")->comment_apply($data);
-
+    $comment_jobs = $comment_jobs['more'];
     include wl_template("person/credit_evaluate");exit();
 }
 

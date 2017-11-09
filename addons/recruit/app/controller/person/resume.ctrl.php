@@ -94,7 +94,7 @@ elseif ($op=="manage_resume_deal"){
     $data['updatetime'] = time();
     $r = pdo_update(WL."resume",$data,array('uid'=>$_SESSION['uid']));
     if($r){
-        call_back(1,"修改成功");
+        call_back(1,"修改成功",ceil((time()-$data['birthday'])/31536000));
     }else{
         call_back(2,"修改失败");
     }

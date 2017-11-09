@@ -25,13 +25,13 @@
                 <div class="list_item_btn" style="margin-left: 2px" id="subscribe">订阅的职位</div>
             </div>
             <!--收藏职位-------------------------------->
-            <div class="list_content">
+            <div class="lists_contanier list_content">
                 {if $collect_jobs}
                 {loop $collect_jobs $list}
                 <div class="list_item">
                     <div class="item_con">
                         <div class="hang1">
-                            <a class="jobname nowrap">{php echo $list['jobs_name']}</a>
+                            <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
                             <a class="salary">
                                 {if $list['wage_min']>0 && $list['wage_max']>0}
                                     {$list['wage_min']}-{$list['wage_max']}K
@@ -52,9 +52,9 @@
                         </div>
                         <div class="xian1"></div>
                         <div class="status">
-                            <div class="collection_logo"><img src="{php echo $list['headimgurl']}"></div>
+                            <a class="collection_logo" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}"><img src="{php echo $list['headimgurl']}"></a>
                             <div class="collection_companymsg">
-                                <span class="nowrap company_name">{php echo $list['companyname']}</span>
+                                <a class="nowrap company_name" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
                                 <span class="nowrap company_address">{php echo $list['city']}</span>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
             </div>
             <!--收藏职位end-------------------------------->
             <!--订阅职位-------------------------------->
-            <div class="resume_content">
+            <div class="lists_contanier resume_content">
                 <!--编辑订阅器-->
                 <div class="edit_dingyue" {if $order_jobs}flag="1"{else}flag="0"{/if}>
                     <label class="general-input current">
@@ -308,6 +308,12 @@
 <script src="{WL_URL_ARES}js/area.js" rel="script"></script>
 <script>
     $(function (){
+        var nav = "{$_GPC['nav']}"?"{$_GPC['nav']}":0;
+        $(".list_item_btn").removeClass("select");
+        $(".list_item_btn").eq(nav).addClass("select");
+        $(".lists_contanier").hide();
+        $(".lists_contanier").eq(nav).show();
+
         person_collection();
         //订阅保存
         $("#dy_preserve").click(function () {
@@ -376,7 +382,8 @@
                 success:function(data){
                     var data=JSON.parse(data);
                     if(data.status==1){
-                        location=location;
+                        window.location.href = "{php echo app_url('person/index/collection_jobs_list',array('nav'=>1))}";
+//                        location=location;
                         $(".edit_dingyue").hide();
                         $(".no_dingyue_list").hide();
                         $(".success_dingyue").show();
