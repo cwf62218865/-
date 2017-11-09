@@ -542,7 +542,7 @@ $("#addpersonworks").on("click",function(){
     $("#person_worksbox label").css("border-color","#f5f5f5");
     $(".formtip").remove();
 
-    $("#person_worksinput").val("");
+    $("#person_worksbox input").val("");
     $("#works_id").val("");
     $("#person_works").hide();
     $("#addpersonworks").hide();
