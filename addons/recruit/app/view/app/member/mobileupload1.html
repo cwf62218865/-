@@ -37,6 +37,7 @@
 
 <script>
 
+    var imgsrc="";
     //上传文件
     $('.camera,.Album1').on('click',function(){
         var file=$("#file");
@@ -52,6 +53,11 @@
             $(".Album1").css("display","block");
             $(".choose_file").css("display","none")
             //uploadFile(this,'file');
+            dealImage(src,{
+                width:200
+            },function(data){
+                imgsrc=data;
+            });
         });
     });
 
@@ -62,16 +68,14 @@
     $(".camera1").on("click",function(){
         //uploadFile( $('#choosefile'),"choosefile",boxbum);
 
-        var uploadFormData =new FormData($("#choosefile1")[0]);
+//        var uploadFormData =new FormData($("#choosefile1")[0]);
 
         $.ajax({
             url:"{$url}",
             type:"post",
-            processData: false,
-            cache: false,
-            contentType: false,
-            async: false,
-            data:uploadFormData,
+            data:{
+                file:imgsrc
+            },
             success:function (data) {
                 var data=JSON.parse(data);
                 if(data.status==1){
@@ -87,7 +91,39 @@
     })
 
 
-
+    function dealImage(path, obj, callback){
+        var img = new Image();
+        img.src = path;
+        img.onload = function(){
+            var that = this;
+            // 默认按比例压缩
+            var w = that.width,
+                    h = that.height,
+                    scale = w / h;
+            w = obj.width || w;
+            h = obj.height || (w / scale);
+            var quality = 0.7;  // 默认图片质量为0.7
+            //生成canvas
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            // 创建属性节点
+            var anw = document.createAttribute("width");
+            anw.nodeValue = w;
+            var anh = document.createAttribute("height");
+            anh.nodeValue = h;
+            canvas.setAttributeNode(anw);
+            canvas.setAttributeNode(anh);
+            ctx.drawImage(that, 0, 0, w, h);
+            // 图像质量
+            if(obj.quality && obj.quality <= 1 && obj.quality > 0){
+                quality = obj.quality;
+            }
+            // quality值越小，所绘制出的图像越模糊
+            var base64 = canvas.toDataURL('image/jpeg', quality );
+            // 回调函数返回base64的值
+            callback(base64);
+        }
+    }
 
 
 
