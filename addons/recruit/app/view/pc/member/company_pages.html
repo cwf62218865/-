@@ -565,7 +565,7 @@
         page:1,
         uid:"{$company['uid']}"
     };
-    $(".job_comment").html(pages(1,"{php echo ceil($company_count['comment_count']/1)}"));
+    $(".job_comment").html(pages(1,"{php echo ceil($company_count['comment_count']/6)}"));
     $(".company_findjob").html(pages(1,"{php echo ceil($jobs_num/6)}"));
     page1.callback_content = function () {
         $(".evaluate_content").html(page1.data.content);

@@ -200,7 +200,7 @@ class jobs{
      * 评论面试职位
      *
      */
-    public function comment_apply($data,$pagenum=1)
+    public function comment_apply($data,$pagenum=6)
     {
         $wheresql = " where 1=1 ";
         if ($data['uid']) {

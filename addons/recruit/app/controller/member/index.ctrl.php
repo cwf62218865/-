@@ -43,7 +43,7 @@ elseif($op=="jobs_detail"){
         $similar_jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$jobs['jobs_name']."%' and id<>".$jobs['id']);
         $data['jobs_id'] = $_GPC['jobs_id'];
         $comment_jobs = m("jobs")->comment_apply($data);
-
+        $comment_jobs = $comment_jobs['more'];
         $data['data']['guess'] = 1;
         $guess_jobs = m("jobs")->getall_jobs_page($data,4);
         $guess_jobs = $guess_jobs['more'];
@@ -722,7 +722,7 @@ elseif ($op=="company_detail_jobs_page"){
 //职位评论分页请求
 elseif ($op=="jobs_comment_page"){
     $comment_jobs = m("jobs")->comment_apply($_POST['data']);
-//    var_dump($comment_jobs);exit();
+
     $str = "";
     foreach ($comment_jobs['more'] as $list){
         if($list['hr_reply']){
@@ -791,6 +791,11 @@ elseif ($op=="jobs_comment_page"){
                             </div>";
     }
     call_back(1,$str,$comment_jobs['count']);
+}
+
+//职位详情页分页处理
+elseif ($op=="jobs_datail_comment_page"){
+
 }
 /**********未知接口*******/
 elseif ($op=="resume_worksupload"){
