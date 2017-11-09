@@ -76,11 +76,15 @@ elseif($op=="company_detail"){
 
     if($_GPC['company_id']) {
         $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$_GPC['company_id']);
-        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where open=1 and uid=".$company['uid']);
-        $jobs_num = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs")." where uid=".$company['uid']);
+//        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where open=1 and uid=".$company['uid']);
+        $data['data']['uid'] = $_GPC['company_id'];
+        $jobs = m("jobs")->getall_jobs_page();
+        $jobs = $jobs['more'];
+        $jobs_num = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs")." where open=1 and uid=".$company['uid']);
         $last_login_time = m("member")->last_login($company['uid']);
         $data['company_uid'] = $_GPC['company_id'];
         $comment_jobs = m("jobs")->comment_apply($data);
+        $comment_jobs = $comment_jobs['more'];
         $company_count = m("jobs")->comment_count($_GPC['company_id']);
 
         include wl_template("member/company_pages");
@@ -679,6 +683,114 @@ elseif ($op=="worksupload_deal"){
 }
 
 
+//公司职位分页请求
+elseif ($op=="company_detail_jobs_page"){
+
+    $jobs = m("jobs")->getall_jobs_page($_POST);
+    $str = "";
+    foreach ($jobs['more'] as $list){
+        if($list['wage_min']>0 && $list['wage_max']>0) {
+            $salary = $list['wage_min']."-".$list['wage_max'] . "K";
+        }else{
+            $salary = "面议";
+
+        }
+
+        $str .="<a class=\"job_iteme\" href=".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))." style=\"position: relative;\">
+                    <p class=\"job_hang relative\">
+                        <div class=\"job_names\" href=".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id'])).">{$list['jobs_name']}</div>
+                        <span class=\"refume_statas\">".date('Y-m-d',$list['updatetime'])."</span>
+                    </p>
+                    <p class=\"miaosu\">
+                        <span class=\"salery_num\">
+                            {$salary}
+                        </span>
+                        <span class=\"miaoshuitem\"><label class=\"itaemm\">{$list['education']}</label></span>
+                        <span class=\"miaoshuitem\"><label class=\"itaemm\">{$list['experience']}</label></span>
+                        <span class=\"miaoshuitem\"><label class=\"itaemm\">{$list['work_nature']}</label></span>
+                        <span class=\"miaoshuitem\"><label class=\"itaemm\">招聘{$list['number_range']}人</label></span>
+                        <span class=\"miaoshuitem\"><label class=\"itaemm\">{$list['city']}-{$list['city_area']}</label></span>
+                    </p>
+                </a>";
+
+    }
+
+    call_back(1,$str,$jobs['count']);
+}
+
+//职位评论分页请求
+elseif ($op=="jobs_comment_page"){
+    $comment_jobs = m("jobs")->comment_apply($_POST['data']);
+//    var_dump($comment_jobs);exit();
+    $str = "";
+    foreach ($comment_jobs['more'] as $list){
+        if($list['hr_reply']){
+            $hr_reply = "<div class=\"evaluate_huifu\">
+                                        <img class=\"hrtx touxiangpic\" src=\"{$list['logo']}\"/>
+                                        <div class=\"hrhf\">
+                                            <p class=\"hftitle\">HR回复：</p><span class=\"date_num\">".date("Y-m-d",$list['reply_time'])."</span>
+                                            <p class=\"hfcon\">{$list['hr_reply']}</p>
+                                        </div>
+                                    </div>";
+        }
+
+        if($list['hide']){
+            $hide = " <svg class=\"icon\">
+                                        <use xlink:href=\"#icon-xuesheng\"></use>
+                                    </svg>";
+        }else{
+            $hide =  "<img src=\"{$list['headimgurl']}\"  class=\"touxiangpic\">";
+        }
+        if($list['tag']){
+            $list['tag'] = explode(",",$list['tag']);
+            $tag = "";
+            foreach ($list['tag'] as $li){
+                $tag .="<span class=\"pingjiabq\">{$li}</span>";
+            }
+        }
+
+        if(in_array($_SESSION['uid'],explode(",",$list['zan']))){
+            $zan = "<div class=\"hangxq zan\" data-id=\"{$list['id']}\">";
+        }else{
+            $zan = "<div class=\"hangxq pre_zan\" data-id=\"{$list['id']}\">";
+        }
+
+
+        $str .="<div class=\"evaluate_item\">
+                                <div class=\"left_tx\">
+                                    {$hide}
+                                    <div class=\"eva_name nowrap\">{$list['fullname']}</div>
+                                </div>
+                                <div class=\"xiangqing\">
+                                    <div class=\"xqhang\">
+                                        <span class=\"ico_titlesta\">总体评价:</span>
+                                        <span class=\"stars_n\">
+                                        {$list['count_score']}
+                                        </span>
+                                        <span class=\"point_num\">{$list['score']}分</span>
+                                        <span class=\"jobname_eva\">面试职位：<a class=\"namedd\" href=\"#\">{$list['jobs_name']}</a></span>
+                                        <span class=\"date_eva\">".date('Y-m-d',$list['createtime'])."</span>
+                                    </div>
+                                    <div class=\"xqhang\" style=\"margin-top: 18px;\">
+                                        {$tag}
+                                    </div>
+                                    <div class=\"xqhang\" style=\"margin-top: 20px;\">
+                                        [面试过程]<span class=\"evaluate_con\">
+                                        {$list['content']}
+                                    </span>
+                                    </div>
+                                            {$zan}
+                                        <svg class=\"icon zan1\" aria-hidden=\"true\">
+                                            <use  xlink:href=\"#icon-zan1\"></use>
+                                        </svg>
+                                        <span class=\"zannum\">".count(array_filter(explode(",",$list['zan'])))."</span>
+                                        {$hr_reply}
+                                    </div>
+                                </div>
+                            </div>";
+    }
+    call_back(1,$str,$comment_jobs['count']);
+}
 /**********未知接口*******/
 elseif ($op=="resume_worksupload"){
     $kind = "个人作品上传";

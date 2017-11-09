@@ -6,9 +6,10 @@ class jobs{
         $jobs = pdo_fetch("select * from ".tablename(WL.'jobs')." where display=1 and id=".$id);
         return $jobs;
     }
-    
-    public function getall_jobs($uid){
-        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where display=1 and uid=".$uid." order by open desc,addtime desc");
+
+
+    public function getall_jobs($uid,$page){
+        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where open=1 and uid=".$uid." order by open desc,addtime desc");
         $arr = "";
         foreach ($jobs as $list){
             $list['resume_count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs_apply")." where jobs_id=".$list['id']);
@@ -24,7 +25,7 @@ class jobs{
             $data['data']['page']=1;
         }
         $page = ($data['data']['page'] -1)*$pagenum;
-        $wheresql = " where  display=1 ";
+        $wheresql = " where  display=1 and open=1";
         $orderby = " order by id asc,open desc";
         if($data['data']['job_nature'] && $data['data']['job_nature']<>"不限"){
             $wheresql .=" and work_nature='".$data['data']['job_nature']."' ";
@@ -54,9 +55,14 @@ class jobs{
         if($data['data']['guess']){
             $orderby = " order by rand() ";
         }
-        $limit = " limit ".$page.",".$pagenum;
-        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit);
+        if($data['data']['uid']){
+            $wheresql .=" and uid=".$data['data']['uid'];
+        }
 
+        $limit = " limit ".$page.",".$pagenum;
+//        echo "select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit;exit();
+        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit);
+//        var_dump($jobs);exit();
         $job['count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs").$wheresql." order by open desc");
         $job['more'] = "";
         foreach ($jobs as $li){
@@ -194,9 +200,9 @@ class jobs{
      * 评论面试职位
      *
      */
-    public function comment_apply($data)
+    public function comment_apply($data,$pagenum=1)
     {
-        $wheresql = "where 1=1 ";
+        $wheresql = " where 1=1 ";
         if ($data['uid']) {
             $wheresql .= " and hr_reply='' and uid=" . $data['uid'];
         }
@@ -213,9 +219,17 @@ class jobs{
         if ($data['hr_reply']) {
             $wheresql .= " and hr_reply<>''";
         }
-        $comment_jobs = pdo_fetchall("select * from " . tablename(WL . "comment") . $wheresql);
+        if(empty($data['page'])){
+            $data['page']=1;
+        }
+        $page = ($data['page'] -1)*$pagenum;
+        $limit = " limit ".$page.",".$pagenum;
+//        echo "select * from " . tablename(WL ."comment") . $wheresql.$limit;exit();
+        $comment_jobs = pdo_fetchall("select * from " . tablename(WL ."comment") . $wheresql.$limit);
 
-        $comment = "";
+        $comment['count'] = pdo_fetchcolumn("select * from " . tablename(WL ."comment") . $wheresql);
+//        echo $comment['count'];exit();
+        $comment['more'] = "";
         foreach ($comment_jobs as $list) {
             $jobs = pdo_fetch("select id,jobs_name from " . tablename(WL . "jobs") . " where id=" . $list['jobs_id']);
             $company = pdo_fetch("select headimgurl from " . tablename(WL . "company_profile") . " where uid=" . $list['uid']);
@@ -289,7 +303,7 @@ class jobs{
                                 </svg>";
             }
             $list['score'] = $count_score;
-            $comment[] = $list;
+            $comment['more'][] = $list;
         }
         return $comment;
     }

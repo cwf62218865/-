@@ -224,6 +224,7 @@
                             <span class="cur title_sr" data-id="2">时间排序</span>
                         </div>
                         <div class="evaluate_list" >
+                            <div class="evaluate_content">
                             {loop $comment_jobs $list}
                             <div class="evaluate_item">
                                 <div class="left_tx">
@@ -281,19 +282,12 @@
                                 </div>
                             </div>
                             {/loop}
-                            <div class="pages_btn compagefy" style="margin-top: 50px;float: left;">
-                                <span class="pre_page">上一页</span>
-                                <span class="page select">1</span>
-                                <span class="page">2</span>
-                                <span class="page">3</span>
-                                <span class="page">4</span>
-                                <span class="page">5</span>
-                                <span class="page">6</span>
-                                <span class="page">…</span>
-                                <span class="page">15</span>
-                                <span class="next_page">下一页</span>
+                            </div>
+                            <div class="pages_btnbox job_comment">
+
                             </div>
                         </div>
+
                     </div>
                     <!--公司介绍信息end---------------------------------------------->
                     <!--在招职位列表---------------------------------------------->
@@ -322,17 +316,8 @@
                             </a>
                             {/loop}
                         </div>
-                        <div class="pages_btn compagefy">
-                            <span class="pre_page">上一页</span>
-                            <span class="page select">1</span>
-                            <span class="page">2</span>
-                            <span class="page">3</span>
-                            <span class="page">4</span>
-                            <span class="page">5</span>
-                            <span class="page">6</span>
-                            <span class="page">…</span>
-                            <span class="page">15</span>
-                            <span class="next_page">下一页</span>
+                        <div  class="pages_btnbox company_findjob">
+
                         </div>
                     </div>
                     <!--在招职位列表end---------------------------------------------->
@@ -455,8 +440,11 @@
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/company_msg.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/job_detail.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/page.js" rel="script"></script>
 
 <script type="text/javascript">
+
+
     // 百度地图API功能
     var map = new BMap.Map("allmap");
     var point = new BMap.Point("{$company['retoate_x']}","{$company['retoate_y']}");
@@ -566,6 +554,27 @@
             }
         })
     })
+
+    var page1 = createPage("job_comment", "{php echo app_url('member/index/jobs_comment_page')}");
+    var page2 = createPage("company_findjob", "{php echo app_url('member/index/company_detail_jobs_page')}");
+    page1.option={
+        page:1,
+        company_uid:"{$company['uid']}"
+    };
+    page2.option={
+        page:1,
+        uid:"{$company['uid']}"
+    };
+    $(".job_comment").html(pages(1,"{php echo ceil($company_count['comment_count']/1)}"));
+    $(".company_findjob").html(pages(1,"{php echo ceil($jobs_num/6)}"));
+    page1.callback_content = function () {
+        $(".evaluate_content").html(page1.data.content);
+    }
+    page2.callback_content = function () {
+        $(".job_list_con").html(page2.data.content);
+    }
+
+
 
 </script>
 </html>
