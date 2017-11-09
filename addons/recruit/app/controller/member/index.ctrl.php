@@ -569,7 +569,7 @@ elseif ($op=="show_map"){
 
 //举报职位
 elseif ($op=="tip_off"){
-
+//    var_dump($_POST);exit();
     $wheresql = "";
     if($_POST['data']['jobs_id']){
         $data['jobs_id'] = check_pasre($_POST['data']['jobs_id'],"参数错误");
@@ -578,6 +578,10 @@ elseif ($op=="tip_off"){
     if($_POST['data']['company_uid']){
         $data['company_uid'] = check_pasre($_POST['data']['company_uid'],"参数错误");
         $wheresql = " company_uid=".$data['company_uid'];
+    }
+    if($_POST['data']['comment_id']){
+        $data['comment_id'] = check_pasre($_POST['data']['comment_id'],"参数错误");
+        $wheresql = " comment_id=".$data['comment_id'];
     }
     $data['hide'] = $_POST['data']['niming'];
     $data['company_scale'] = check_pasre($_POST['data']['company_scale'],"请填写举报原因");

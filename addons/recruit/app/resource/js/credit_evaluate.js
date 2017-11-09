@@ -56,11 +56,12 @@ $(".checkbox").on("click",function () {
 //初始化弹窗
 $("body").on("click",".jubaopl,.jubaoms",function () {
     $("#jubaobox").show();
+    $(".modalbox").attr("data-id",$(this).attr("data-id"));
     $("#jubaobox .options").html("");
     $(".detailcon").val("");
     $(".ico_niming .checkbox").html("");
-    var data_id = $(this).parent().attr("data-id");
-    $("#jubaobox").attr("data-id",data_id);
+    // var data_id = $(this).parent().attr("data-id");
+    // $("#jubaobox").attr("data-id",data_id);
 })
 
 //举报评论
@@ -90,6 +91,7 @@ $("body").on("click",".jubaoms",function () {
 })
 //举报评论提交
 $("body").on("click",".jubaopinglun",function () {
+    var data_id = $(".modalbox").attr("data-id");
     var select=$(".jubaoreason").val();
     var detailcon=$(".detailcon").val();
     var niming;//1为匿名，0为不匿名
@@ -99,15 +101,18 @@ $("body").on("click",".jubaopinglun",function () {
     }else{
         niming=0;
     }
-
+    var data = {
+        jobs_id:data_id,
+        company_scale:select,
+        report_content:detailcon,
+        niming:niming
+    }
 
     $.ajax({
-        url:"",
+        url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=tip_off",
         type:"post",
         data:{
-            select:select,
-            detailcon:detailcon,
-            niming:niming
+            data:data
         },
         success:function (data) {
             if(data.status==1){
@@ -137,7 +142,8 @@ $("body").on("click",".jubaogs",function () {
         company_scale:select,
         report_content:detailcon,
         niming:niming,
-        company_uid:$(this).parent().parent().parent().attr("data-id")
+        jobs_id:$(".modalbox").attr('data-id')
+        // company_uid:$(this).parent().parent().parent().attr("data-id")
     };
     $.ajax({
         url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=tip_off",
