@@ -289,6 +289,7 @@ class jobs{
                                 </svg>";
             }
             $list['score'] = $count_score;
+
             $comment[] = $list;
         }
         return $comment;

@@ -203,7 +203,7 @@
                 <div class="contanier">
                     {loop $comment_jobs $id $list}
                     {if $id%2==0}
-                    <div class="list_item1" data-id="{$id}">
+                    <div class="list_item1" data-id="{$list['id']}">
                         <div class="item_con">
                             <div class="basic_massage maleft_3">
                                 <div class="bm_hang1" style="font-size: 20px;">
@@ -248,7 +248,7 @@
                 <div class="contanier">
                     {loop $comment_jobs $id $list}
                     {if $id%2==1}
-                    <div class="list_item1" data-id="{$id}">
+                    <div class="list_item1" data-id="{$list['id']}">
                         <div class="item_con">
                             <div class="basic_massage maleft_3">
                                 <div class="bm_hang1" style="font-size: 20px;">
@@ -310,7 +310,7 @@
             <span class="modalclose">
                 <img src="{WL_URL_ARES}images/close.png"/>
             </span>
-            <p class="color666" style="margin-top: 34px;text-align: center">若发现评论存在敏感词句，欢迎举报</p>
+            <p class="color666 jubaotishi" style="margin-top: 34px;text-align: center">若发现评论存在敏感词句，欢迎举报</p>
 
             <div style="margin-left: 40px;margin-top: 34px">
                 <span class="color666" style="display: inline-block;vertical-align: top;margin-top: 15px;">举报原因</span>
