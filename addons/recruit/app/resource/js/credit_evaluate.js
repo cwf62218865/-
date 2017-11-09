@@ -70,6 +70,7 @@ $("body").on("click",".jubaopl",function () {
     $("#jubaobox").attr("data-id",data_id);
     var reason=["说话太随意","面试不正规"];
     $("#jubaobox .title_content").html("举报该评论");
+    $("#jubaobox .jubaotishi").html("若发现评论存在敏感词句，欢迎举报");
     $("#jubaobox .tijiao1").removeClass("jubaogs");
     $("#jubaobox .tijiao1").addClass("jubaopinglun");
     for(var i=0;i<reason.length;i++){
@@ -83,6 +84,7 @@ $("body").on("click",".jubaoms",function () {
     $("#jubaobox").attr("data-id",data_id);
     var reason=["培训机构","工资不真实"];
     $("#jubaobox .title_content").html("举报该公司");
+    $("#jubaobox .jubaotishi").html("若发现公司有问题，欢迎举报");
     $("#jubaobox .tijiao1").removeClass("jubaopinglun");
     $("#jubaobox .tijiao1").addClass("jubaogs");
     for(var i=0;i<reason.length;i++){
@@ -115,10 +117,13 @@ $("body").on("click",".jubaopinglun",function () {
             data:data
         },
         success:function (data) {
+            var data =  JSON.parse(data);
             if(data.status==1){
-                window.location.href="";
+                hint("success","提交成功");
+                $("#jubaobox").hide();
             }else{
-                console.log(data.content);
+               hint("error",data.content);
+                $("#jubaobox").hide();
             }
         }
     })
@@ -129,6 +134,7 @@ $("body").on("click",".jubaopinglun",function () {
 $("body").on("click",".jubaogs",function () {
     var select=$(".jubaoreason").val();
     var detailcon=$(".detailcon").val();
+    var data_id = $(".modalbox").attr("data-id");
 
     var niming;//1为匿名，0为不匿名
     var ico=$(this).closest("#jubaobox").find(".ico_niming .checkbox");
@@ -142,7 +148,7 @@ $("body").on("click",".jubaogs",function () {
         company_scale:select,
         report_content:detailcon,
         niming:niming,
-        jobs_id:$(".modalbox").attr('data-id')
+        jobs_id:data_id
         // company_uid:$(this).parent().parent().parent().attr("data-id")
     };
     $.ajax({
@@ -155,9 +161,10 @@ $("body").on("click",".jubaogs",function () {
             var data = JSON.parse(data);
             if(data.status==1){
                 hint("success","提交成功");
-                $(".modalbox").hide();
+                $("#jubaobox").hide();
             }else{
                 hint("error",data.content);
+                $("#jubaobox").hide();
             }
         }
     })
