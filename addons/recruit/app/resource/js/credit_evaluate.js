@@ -278,53 +278,69 @@ $("body").on("click",".shouqi",function () {
 })
 
 //评论星星
-var finalnum = 0;
-var tempnum =0;
-var lis1 = $(".xinxi .xingxing");
-var lis2 = $(".huanjing .xingxing");
-var lis3 = $(".hrmianshi .xingxing");
 
-//    $(".xingxing").on("mouseover",function () {
-//        $(this).parent().find("use").attr("xlink:href","#icon-pingfenbanfen");
-//        $(this).prevAll().find("use").attr("xlink:href","#icon-pingfen");
-//        $(this).find("use").attr("xlink:href","#icon-pingfen");
-//        showxingxing(tempnum);
-//    });
-//
-//    function showxingxing(num) {
-//
-//    }
-var arr=[lis1,lis2,lis3];
-//    num:传入点亮星星的个数
-//    finalnum:最终点亮星星的个数
-//    tempnum:一个中间值
-$.each(arr,function(i,value){
-    for(var i = 1; i <= value.length; i++) {
-        value.eq(i-1).index(i);
-        value.mouseover(function(){
-//                fnShow($(this).index());
-            tempnum = $(this).index();
-        })
-        value.mouseleave(function(){
-//                fnShow(0);
-        })
-        value.click(function(){
-            tempnum = $(this).index();
-            var num=fnShow($(this).index());
-            $(this).closest(".one_xing ").attr("value",num);
-
-        })
-    }
-    function fnShow(num) {
-        finalnum = num || tempnum;
-        for(var i = 0; i < value.length; i++) {
-            value.eq(i).html(i < finalnum ? '<use  xlink:href="#icon-pingfen"></use>' : '<use  xlink:href="#icon-pingfenbanfen"></use>');
+var num  = finalnum = 0;
+var tempnum =5;
+var lis = $(".one_xing .xingxing");
+    lis.click(function () {
+        var lists=$(this).closest(".one_xing");
+        finalnum=$(this).index();
+        for(var i=0;i<lists.find(".xingxing").length;i++){
+            // alert(finalnum)
+            lists.find(".xingxing").eq(i).html(i < finalnum ? '<use  xlink:href="#icon-pingfen"></use>' : '<use  xlink:href="#icon-pingfenbanfen"></use>');
+            lists.attr("value",finalnum);
         }
-        return finalnum;
-    }
+    });
 
-});
 
+
+//评论星星
+// var finalnum = 0;
+// var tempnum =0;
+// var lis1 = $(".xinxi .xingxing");
+// var lis2 = $(".huanjing .xingxing");
+// var lis3 = $(".hrmianshi .xingxing");
+//
+// //    $(".xingxing").on("mouseover",function () {
+// //        $(this).parent().find("use").attr("xlink:href","#icon-pingfenbanfen");
+// //        $(this).prevAll().find("use").attr("xlink:href","#icon-pingfen");
+// //        $(this).find("use").attr("xlink:href","#icon-pingfen");
+// //        showxingxing(tempnum);
+// //    });
+// //
+// //    function showxingxing(num) {
+// //
+// //    }
+// var arr=[lis1,lis2,lis3];
+// //    num:传入点亮星星的个数
+// //    finalnum:最终点亮星星的个数
+// //    tempnum:一个中间值
+// $.each(arr,function(i,value){
+//     for(var i = 1; i <= value.length; i++) {
+//         value.eq(i-1).index(i);
+//         value.mouseover(function(){
+// //                fnShow($(this).index());
+//             tempnum = $(this).index();
+//         })
+//         value.mouseleave(function(){
+// //                fnShow(0);
+//         })
+//         value.click(function(){
+//             tempnum = $(this).index();
+//             var num=fnShow($(this).index());
+//             $(this).closest(".one_xing ").attr("value",num);
+//
+//         })
+//     }
+//     function fnShow(num) {
+//         finalnum = num || tempnum;
+//         for(var i = 0; i < value.length; i++) {
+//             value.closest(".one_xing ").find(".icon").eq(i).html(i < finalnum ? '<use  xlink:href="#icon-pingfen"></use>' : '<use  xlink:href="#icon-pingfenbanfen"></use>');
+//         }
+//         return finalnum;
+//     }
+//
+// });
 
 //添加评论标签
 
