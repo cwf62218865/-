@@ -203,7 +203,12 @@ function person_collection(){
     });
     $("body").on("mousedown",".cwfarea span",function(){
         var _this=$(this);
-        _this.closest(".options").prev().find("input").val(_this.html());
+        var value=_this.closest(".options").prev().find("input").val();
+        if($(this).html()!="不限"){
+            _this.closest(".options").prev().find("input").val(value+" "+_this.html());
+        }else{
+            _this.closest(".options").prev().find("input").val(value);
+        }
         _this.closest(".options").css("height","0px");
     });
 
