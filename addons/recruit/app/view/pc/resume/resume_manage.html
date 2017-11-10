@@ -36,6 +36,10 @@
         .avatar-btns button {
             height: 35px;
         }
+        .videoname{
+            position: absolute;
+            bottom: 0;
+        }
     </style>
 </head>
 <body bgcolor="#f4f4f4">
@@ -1249,7 +1253,7 @@
 							            </span>
                                 </button>
                                 <button type="button" class="btn btn-danger fa fa-refresh" data-method="reset" title="重置图片">
-								            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214">
+								            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214"></span>
                                 </button>
                             </div>
                             <div class="col-md-3">
@@ -1477,6 +1481,8 @@
             var uploadurl = "{php echo app_url('person/resume/certificate_upload')}";
         }else if(id=="video"){
             var uploadurl = "{php echo app_url('person/resume/video_upload')}";
+//            $("#modalbox .one_btn .icon").remove();
+            $("#modalbox .one_btn").append('<img style="position: absolute;left: 20px;top: 20px;z-index:999" src="{WL_URL_ARES}images/loading-60.gif">')
         }
         $.ajax({
             url: uploadurl,
@@ -1525,12 +1531,13 @@
                         $(".person_video").attr("src",data.others);
                     }
 
+                    $("#modalbox").css("display","none");
+                    window.clearTimeout(timer1);
                 }
                 $(".chec_tip1").eq(1).html("");
             }
         });
-        $("#modalbox").css("display","none");
-        window.clearTimeout(timer1);
+
     })
 
     //上传视频弹框显示
@@ -2096,7 +2103,8 @@
             var uploadimg="<img style='width:100%' src='"+src+"' id='upload_pic'>";
             $(this).closest(".modal_con").find(".one_btn").html(uploadimg);
         }else if($(this).attr("accept")=="video/*"){
-            $("#choosefile1").parent().prev().find("use").attr("xlink:href","#icon-wangzhi");
+            var videoname=$("#choosefile").val().split("\\");
+            $("#choosefile1").parent().prev().html('<svg class="icon" style="width: 80px;height: 80px;left: 10px;top: 0;" aria-hidden="true"><use  xlink:href="#icon-shipinwenjian"></use></svg><div class="videoname">'+videoname[videoname.length-1]+'</div>');
 
         }
 

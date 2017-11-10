@@ -212,19 +212,19 @@ elseif ($op=="refuse_review"){
 //面试邀请
 elseif ($op=="send_review"){
 
-    $data['apply_id'] = check_pasre($_POST['data_id'],"参数错误1");
+    $data['apply_id'] = check_pasre($_POST['data_id'],"参数错误");
     pdo_update(WL."jobs_apply",array('status'=>'3'),array('id'=>$data['apply_id'],'uid'=>$_SESSION['uid']));
     $jobs_apply = pdo_fetch("select resume_id,jobs_id,puid,uid from ".tablename(WL.'jobs_apply')." where id=".$data['apply_id']);
     $data['resume_id'] =$jobs_apply['resume_id'];
     $data['jobs_id'] =$jobs_apply['jobs_id'];
     $data['puid'] =$jobs_apply['puid'];
     $data['uid'] =$jobs_apply['uid'];
-    $data['interview_time'] = check_pasre($_POST['reviewtime'],"参数错误2");
-    $data['linker'] = check_pasre($_POST['contacts_name'],"参数错误3");
-    $data['mobile'] = check_pasre($_POST['contacts_tel'],"参数错误4");
-    $data['city'] = check_pasre($_POST['city'],"参数错误5");
-    $data['city_area'] = check_pasre($_POST['city_area'],"参数错误6");
-    $data['address'] = check_pasre($_POST['detail_address'],"参数错误7");
+    $data['interview_time'] = check_pasre($_POST['reviewtime'],"参数错误");
+    $data['linker'] = check_pasre($_POST['contacts_name'],"参数错误");
+    $data['mobile'] = check_pasre($_POST['contacts_tel'],"参数错误");
+    $data['city'] = check_pasre($_POST['city'],"参数错误");
+    $data['city_area'] = check_pasre($_POST['city_area'],"参数错误");
+    $data['address'] = check_pasre($_POST['detail_address'],"参数错误");
 
     $interview = pdo_fetch("select id from ".tablename(WL.'interview')." where apply_id=".$data['apply_id']);
     if($interview){

@@ -241,7 +241,7 @@
     display: inline-block;
     width: 160px;
     padding: 8px;
-    height: 19px;
+    /*height: 19px;*/
     line-height: 19px;
     border: 1px solid #eee;
     background-color: #fff;

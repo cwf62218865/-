@@ -632,6 +632,21 @@ $(".modalbtn1").on("click",function(){
         })
     })
 
+    $(".baidu_icons").on("click",function() {
+
+        var baidu_url = $(this).attr("data-url");
+        $.ajax({
+            type:"post",
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=record_url",
+            success:function (data) {
+                var data = JSON.parse(data);
+                if(data.status==1){
+                    window.location.href = baidu_url;
+                }
+            }
+        })
+    })
+
 
 })
 

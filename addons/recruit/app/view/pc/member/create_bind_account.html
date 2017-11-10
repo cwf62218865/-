@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{WL_URL_PCS}css/header.css" rel="stylesheet">
-    <link href="{WL_URL_PCS}css/control.css" rel="stylesheet">
-    <link href="{WL_URL_PCS}css/resume.css" rel="stylesheet">
-    <link href="{WL_URL_PCS}css/reguser1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
     <title>创建账号</title>
 </head>
 <body>
@@ -33,7 +33,7 @@
             <label class="general-input wrap yanzhengma">
                 <input type="text" id="yanzhengma" placeholder="请输入验证码" maxlength="4">
             </label>
-                <span class="code right_align">获取验证码</span>
+                <span class="code right_align" id="reg_code">获取验证码</span>
             <div class="chec_tip"></div>
                 <label class="general-input wrap" style="margin-top: 20px">
                     <input type="password" id="password" placeholder="请输入6~15位密码" maxlength="15">
@@ -60,15 +60,30 @@
     </div>
 </div>
 </body>
-<script src="{WL_URL_PCS}js/jquery.js" rel="script"></script>
-<script src="{WL_URL_PCS}js/iconfont.js" rel="script"></script>
-<script src="{WL_URL_PCS}js/control.js" rel="script"></script>
-<script src="{WL_URL_PCS}js/login_reg_account.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/login_reg_account.js" rel="script"></script>
 <script>
     $(document).ready(function(){
 
         create_bind_account();
         var telphone_reg=/^1[3|5|7|8][0-9]\d{8}$/;
+
+        $(".general-input #tel_number").on("input",function(){
+            var _this=$(this);
+            var mobie=$("#tel_number").val();
+            if(telphone_reg.test(mobie)){
+                if($("#reg_code").html()=="获取验证码"){
+                    $(".code").addClass("click");
+                }else{
+                    $(".code").removeClass("click");
+                }
+            }else{
+                $(".code").removeClass("click");
+            }
+            _this.closest(".general-input").nextAll(".chec_tip").html("");
+        });
         //创建账号
         $("#find_password_tel").click(function(){
             var tel=$("#tel_number").val();
@@ -108,16 +123,21 @@
             }
 
             $.ajax({
-                url:"",
+                url:"{php echo app_url('member/person_register/register')}",
                 type:"post",
                 data:{
-                    tel:tel,
-                    yanzheng:yanzheng,
-                    psw:psw
+                    mobie:tel,
+                    identify_code:yanzheng,
+                    password:psw,
+                    baidu_openid:"{$openid}",
+                    qq_openid:"",
+                    weixin_openid:"",
+                    weibo_openid:""
                 },
                 success:function(data){
+                    var data = JSON.parse(data);
                     if(data.status==1){
-                        window.location.href="";
+                        window.location.href="{php echo app_url('member/person_register/feelings')}";
                     }else{
                         console.log(data.content);
                     }

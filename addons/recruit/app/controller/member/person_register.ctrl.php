@@ -5,6 +5,10 @@ wl_load()->model('verify');
 if($op=="index"){
     include wl_template("member/personal_reg");
 }elseif ($op=="register"){
+    $data['baidu_openid'] = $_GPC['baidu_openid'];
+    $data['qq_openid'] = $_GPC['qq_openid'];
+    $data['weibo_openid'] = $_GPC['weibo_openid'];
+    $data['weixin_openid'] = $_GPC['weixin_openid'];
     if(check_phone($_GPC['mobie'])){
         $data['mobile'] =$_GPC['mobie'];
     }
@@ -23,7 +27,6 @@ if($op=="index"){
     $data['createtime'] = time();
 
     $r = pdo_insert(WL."members",$data);
-//    $r = insert_table($data,WL."members");
     if($r){
         $_SESSION['uid'] = pdo_insertid();
         $_SESSION['utype'] = 1;
