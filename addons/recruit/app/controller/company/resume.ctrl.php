@@ -209,9 +209,8 @@ elseif ($op=="refuse_review"){
     }
 }
 
-//面试邀请
+//求职者投递面试邀请
 elseif ($op=="send_review"){
-
     $data['apply_id'] = check_pasre($_POST['data_id'],"参数错误");
     pdo_update(WL."jobs_apply",array('status'=>'3'),array('id'=>$data['apply_id'],'uid'=>$_SESSION['uid']));
     $jobs_apply = pdo_fetch("select resume_id,jobs_id,puid,uid from ".tablename(WL.'jobs_apply')." where id=".$data['apply_id']);
@@ -237,6 +236,40 @@ elseif ($op=="send_review"){
         }else{
             call_back(2,"no");
         }
+    }
+}
+
+//hr主动发起面试邀请
+elseif ($op=="hr_send_review"){
+    $data['direction'] =1;
+    $data['jobs_id'] = check_pasre($_POST['jobs_id'],"参数错误");
+    $data['resume_id'] = check_pasre($_POST['resume_id'],"参数错误");
+    $data['puid'] = check_pasre($_POST['puid'],"参数错误");
+    $data['uid'] = $_SESSION['uid'];
+    $jobs_apply = pdo_fetch("select id from ".tablename(WL.'jobs_apply')." where jobs_id=".$data['jobs_id']." and resume_id=".$data['resume_id']);
+    if($jobs_apply){
+        call_back(2,"已邀请面试");
+    }else{
+        $data['status'] = 3;
+        $data['createtime'] = time();
+        $r = pdo_insert(WL."jobs_apply",$data);
+        if($r){
+            $data1['apply_id'] = pdo_insertid();
+            $data1['uid'] = $data['uid'];
+            $data1['puid'] = $data['puid'];
+            $data1['resume_id'] = $data['resume_id'];
+            $data1['jobs_id'] = $data['jobs_id'];
+            $data1['interview_time'] = check_pasre($_POST['reviewtime'],"参数错误");
+            $data1['linker'] = check_pasre($_POST['contacts_name'],"参数错误");
+            $data1['mobile'] = check_pasre($_POST['contacts_tel'],"参数错误");
+            $data1['city'] = check_pasre($_POST['city'],"参数错误");
+            $data1['city_area'] = check_pasre($_POST['city_area'],"参数错误");
+            $data1['address'] = check_pasre($_POST['detail_address'],"参数错误");
+            $data['createtime'] = time();
+            pdo_insert(WL."interview",$data);
+            call_back(1,"邀请面试成功");
+        }
+
     }
 }
 
