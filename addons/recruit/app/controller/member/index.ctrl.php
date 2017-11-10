@@ -11,10 +11,19 @@ if($op=="index"){
     $jobs = $jobs['more'];
     include wl_template("member/index");exit();
 }
-//登录
-elseif ($op=="login"){
+//退出登录
+elseif ($op=="login_out"){
     unset($_SESSION['uid']);
     unset($_SESSION['utype']);
+    header("location:".app_url('member/index/login'));
+}
+//登录
+elseif ($op=="login"){
+   if($_SESSION['utype']==1){
+       header("location:".app_url('person/index/send_resume'));
+   }elseif ($_SESSION['utype']==2){
+       header("location:".app_url('company/resume/received_resume'));
+   }
     include_once( WL_CORE.'/common/libweibo-master/config.php' );
     include_once( WL_CORE.'/common/libweibo-master/saetv2.ex.class.php');
 
@@ -887,6 +896,46 @@ elseif ($op=="add"){
     }
 }
 
+
+
+/********************************************第三方登录接入请求*****************************************/
+elseif($op=="baidu_callback"){
+    $apiClient = $baidu->getBaiduApiClientService();
+    $profile = $apiClient->api('/rest/2.0/passport/users/getInfo',
+        array('fields' => 'userid,username,sex,birthday'));
+    $openid = $profile['userid'];
+    if($profile){
+       $account = pdo_fetch("select * from ".tablename(WL."members")." where baidu_openid=".$profile['userid']);
+       if($account){
+            $_SESSION['uid'] = $account['id'];
+            $_SESSION['utype'] = $account['utype'];
+           $resume = m("resume")->get_resume( $_SESSION['uid']);
+           if(!$resume['fullname']){
+               $url = app_url('person/index');
+           }elseif (!$resume['edu_experience']){
+               $url = app_url('person/index');
+           }elseif (!$resume['introduce']){
+               $url = app_url('person/index');
+           }else{
+               $url = $_SESSION['record_url'];
+
+               unset($_SESSION['record_url']);
+           }
+           header("location:".$url);exit();
+//           echo $url;exit();
+//           echo "<script>window.location.href='{$url}'</script>";exit();
+       }else{
+           include wl_template("member/create_bind_account");exit();
+       }
+    }
+}elseif ($op=="qq_callback"){
+
+}elseif ($op=="weixin_callback"){
+
+}elseif ($op=="record_url"){
+    $_SESSION['record_url'] = $_SERVER["HTTP_REFERER"];
+    call_back(1,"ok");
+}
 
 if(empty($_SESSION['mid'])){
     header("location:".app_url("member/index/index"));

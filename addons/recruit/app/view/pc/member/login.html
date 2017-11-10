@@ -49,7 +49,7 @@
                             <use xlink:href="#icon-weibo"></use>
                         </svg>
                     </a>
-                <span class="icons left">
+                <span class="icons left baidu_icons">
                     <svg class="icon" style="color: #ffffff">
                         <use xlink:href="#icon-baidu"></use>
                     </svg>
@@ -126,7 +126,18 @@
             }
         }
 
-
+        $(".baidu_icons").click(function() {
+            $.ajax({
+                type:"post",
+                url:"{php echo app_url('member/index/record_url')}",
+                success:function (data) {
+                    var data = JSON.parse(data);
+                    if(data.status==1){
+                        window.location.href = "{$baidu_loginUrl}";
+                    }
+                }
+            })
+        })
 
     })
 </script>

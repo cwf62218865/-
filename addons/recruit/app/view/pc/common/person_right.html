@@ -5,7 +5,7 @@
             <p class="font1_zj chengxian">通过申请</p>
         </div>
         <div class="items1">
-            <a class="number" href="{php echo app_url('person/index/send_resume')}">{php echo $person_statistics['interview_num']}</a>
+            <a class="number" href="{php echo app_url('person/index/send_resume',array('nav'=>1))}">{php echo $person_statistics['interview_num']}</a>
             <p class="font1_zj chengxian">面试邀请</p>
         </div>
         <div class="items1">
@@ -17,7 +17,7 @@
             <p class="font1_zj chengxian">收到评价</p>
         </div>
         <div class="items1">
-            <a class="number" href="{php echo app_url('person/index/collection_jobs_list')}">{if $add_order_num}{$add_order_num}{else}0{/if}</a>
+            <a class="number" href="{php echo app_url('person/index/collection_jobs_list',array('nav'=>1))}">{if $add_order_num}{$add_order_num}{else}0{/if}</a>
             <p class="font1_zj chengxian">新增订阅</p>
         </div>
         <div class="items1">
