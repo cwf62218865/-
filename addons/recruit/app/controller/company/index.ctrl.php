@@ -75,6 +75,8 @@ elseif($op=="manage_resume"){
     }
     $data['uid'] = $_SESSION['uid'];
     $comment_jobs = m("jobs")->comment_apply($data);
+
+    $comment_jobs = $comment_jobs['more'];
     include wl_template('company/hr_manage_resume');
 }
 //消息中心

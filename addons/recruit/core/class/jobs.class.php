@@ -231,9 +231,9 @@ class jobs{
         $limit = " limit ".$page.",".$pagenum;
 //        echo "select * from " . tablename(WL ."comment") . $wheresql.$limit;exit();
         $comment_jobs = pdo_fetchall("select * from " . tablename(WL ."comment") . $wheresql.$limit);
+//        var_dump($comment_jobs);exit();
+        $comment['count'] = pdo_fetchcolumn("select count(*) from " . tablename(WL ."comment") . $wheresql);
 
-        $comment['count'] = pdo_fetchcolumn("select * from " . tablename(WL ."comment") . $wheresql);
-//        echo $comment['count'];exit();
         $comment['more'] = "";
         foreach ($comment_jobs as $list) {
             $jobs = pdo_fetch("select id,jobs_name from " . tablename(WL . "jobs") . " where id=" . $list['jobs_id']);

@@ -618,9 +618,10 @@
         $("#invite_box").hide();
 
         $.ajax({
-            url:"",
+            url:"{php echo app_url('company/resume/send_review')}",
             type:"post",
             data:{
+                data_id:data_id,
                 jobs_name:jobs_name,
                 reviewtime:reviewtime,
                 contacts_name:contacts_name,
@@ -628,6 +629,7 @@
                 city:city,
                 city_area:city_area,
                 detail_address:detail_address
+
             },
             success:function(data){
                 if(data.status==1){
@@ -639,39 +641,7 @@
         })
     })
 
-    //简历筛选-时间
-//    $(".checkboxbox").click(function () {
-//        var i=$(this).index(".checkboxbox");//0表示今天，1表示明天
-////        $(".checkboxbox").find("use").attr("xlink:href","");
-//        var right=$(this).find("use").attr("xlink:href");
-//        alert(right)
-//        var list=$(".list_content .list_item");
-//        var date=new Date();
-//
-//        if(i==1){//明天就是今天+1
-//            var today=date.getDate()+1;
-//        }else{
-//            var today=date.getDate();
-//        }
-//        if(right!=""){
-//            //未选择状态
-////            $(".checkboxbox").find("use").attr("xlink:href","");
-//        }else{
-//            //选择状态
-//            list.each(function () {
-//                var mianshi_time=$(this).find(".interview_date").val().split("-");
-//                if(today==mianshi_time[1]){
-//                    $(this).show()
-//                }else{
-//                    $(this).hide();
-//                }
-//            })
-////            $(".checkboxbox").find("use").attr("xlink:href","");
-////            $(this).find("use").attr("xlink:href","#icon-zhengque1").nextAll().find("use").attr("xlink:href","");
-//            $(".checkboxbox").find("use").attr("xlink:href","");
-//        }
-//
-//    })
+
     var date=new Date();
     $(".checkboxbox").click(function () {
         var today=0,tomorrow=0,isweek=0;

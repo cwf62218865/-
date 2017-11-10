@@ -49,7 +49,8 @@ elseif ($op=="credit_evaluate"){
 
 //个人消息中心
 elseif ($op=="person_msg"){
-    $jobs = m("jobs")->getall_jobs_page("",5);
+    $data['data']['guess'] =1;
+    $jobs = m("jobs")->getall_jobs_page($data,5);
     $jobs = $jobs['more'];
     $msg = m("resume")->jobs_apply($_SESSION['uid'],-1,0);
     $new_msg = "";
