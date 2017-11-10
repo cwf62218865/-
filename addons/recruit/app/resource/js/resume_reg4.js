@@ -52,6 +52,8 @@ $(document).ready(function(){
 
     $("body").on("mousedown",".cwfcityoptions .select-option",function(){
         var _this=$(this);
+        var city=_this.find("span").html();
+        _this.closest(".cwfre3inputleft").find("#place").val(city);
         $(".cwfcityoptions .select-option").each(function(){
             var _that=$(this);
             _that.css({'background-color':'#fff','color':'#333'})
@@ -75,7 +77,14 @@ $(document).ready(function(){
 
     $("body").on("mousedown",".cwfarea span",function(){
         var _this=$(this);
-        _this.closest(".options").prev().find("input").val(_this.html());
+        var value=$("#place").val();
+        if(_this.html()!="不限"){
+            _this.closest(".options").prev().find("input").val(value+" "+_this.html());
+        }
+        else{
+            _this.closest(".options").prev().find("input").val(value);
+        }
+
         _this.closest(".options").css("height","0px");
     })
 
