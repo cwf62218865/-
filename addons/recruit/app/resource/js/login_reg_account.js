@@ -34,17 +34,32 @@ function create_bind_account(){
         }
     });
     $("body").on("click",".tel_con .click",function(){
-        var time=60;
-        $(".tel_con .code").html(time+"s后重新获取");
-        $(".tel_con .click").removeClass("click");
-        var timer=setInterval(function(){
-            time--;
-            $(".tel_con .code").html(time+"s后重新获取");
-            if(time==0){
-                clearInterval(timer);
-                $(".tel_con .code").addClass("click").html("获取验证码");
+        var mobie = $("#tel_number").val();
+        $.ajax({
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=normal_send_code",
+            type:"post",
+            data:{
+                mobie:mobie
+            },
+            success:function(data){
+                var data = JSON.parse(data);
+                if(data.status==1){
+                    var time=60;
+                    $(".tel_con .code").html(time+"s后重新获取");
+                    $(".tel_con .click").removeClass("click");
+                    var timer=setInterval(function(){
+                        time--;
+                        $(".tel_con .code").html(time+"s后重新获取");
+                        if(time==0){
+                            clearInterval(timer);
+                            $(".tel_con .code").addClass("click").html("获取验证码");
+                        }
+                    },1000)
+                }else{
+                    hint("error",data.content);
+                }
             }
-        },1000)
+        })
     });
 }
 
