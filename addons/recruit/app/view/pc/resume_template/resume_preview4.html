@@ -44,12 +44,13 @@
                     <div class="basic_jieshao">
                         <div class="namew">{php echo $resume['fullname']}</div>
                         <div class="bshang1">
-                            <label class="basic_style1">{if $resume['sex']==1}男{else}女{/if}</label>
+                            <div style="width: 230px;"><label class="basic_style1">{if $resume['sex']==1}男{else}女{/if}</label>
                             <label class="basic_style">{php echo ceil((time()-$resume['birthday'])/31536000)}岁</label>
                             <label class="basic_style">{php echo $resume['political_status']}</label>
                             <label class="basic_style">{php echo $resume['education']}</label>
+                            </div>
                             <label class="basic_style" style="padding-left: 0">{if $resume['work_time']}{php echo $resume['work_time']}年工作经验{/if}</label>
-                            <label class="basic_style">{php echo $resume['work_status']}</label>
+                            <label class="basic_style basic_bordernone">{php echo $resume['work_status']}</label>
                         </div>
                         <div class="basic_msg_h">
                             <div class="title_top_con">
