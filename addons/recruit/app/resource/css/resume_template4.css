@@ -38,7 +38,7 @@
     border-right: 1px solid #EEEEEE;
     line-height: 25px;
 }
-.basic_style:last-child{
+.basic_bordernone{
     border-right: none;
 }
 .basic_style1{

@@ -775,6 +775,24 @@
     color: #999999;
     margin-bottom: 26px;
 }
+.optionlist{
+    height: 149px;
+    width: 100%;
+
+    position: absolute;
+    z-index: 999;
+    background: #ffffff;
+    overflow-y: auto;
+}
+.option_select{
+    padding-left: 20px;
+    height: 36px;
+    border: 1px solid #dddddd;
+    border-top: none;
+}
+.option_select:first-child{
+    border-top: 1px solid #dddddd;
+}
 .beizhu_content{
     margin-left: 18px;
     width: 210px;

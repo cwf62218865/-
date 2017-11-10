@@ -425,6 +425,22 @@
             </span>
             <div class="invite_con">
                 <div class="in_hang">
+                    <span class="biaoti">面试职位</span>
+                    <label class="general-input relative select_jobs">
+                        <input type="text" readonly="" id="job_review" placeholder="选择面试职位" style="width: 90%;">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                        <div class="optionlist" style="height: 0px;">
+                            <div class="option_select">1</div>
+                            <div class="option_select">2</div>
+                            <div class="option_select">3</div>
+                            <div class="option_select">4</div>
+                        </div>
+                    </label>
+
+                </div>
+                <div class="in_hang">
                     <span class="biaoti">面试时间</span>
                     <label class="general-input relative review_input">
                         <input type="text" readonly="" id="review_time" placeholder="选择时间">
@@ -538,9 +554,30 @@
 
     });
 
+    $('.select_jobs').on("click",function(){
+        var _this=$(this);
+        if(_this.closest(".general-input").find(".optionlist").height()=="0"){
+            $(".optionlist").css("height","0px");
+            _this.closest(".general-input").find(".optionlist").css("height","149px");
+        }else {
+            _this.closest(".general-input").find(".optionlist").css("height","0px");
+        }
+
+        $(".option_select").on("click",function () {
+            var _this=$(this);
+            var jobs=_this.html();
+            _this.parent(".optionlist").css("height","0px");
+            _this.closest(".select_jobs").find("input").val(jobs);
+
+        })
+
+    });
+
+
 
     //面试邀请
     $("#send_review").click(function () {
+        var jobs_name=$("#job_review").val();
         var reviewtime=$("#review_time").val();
         var contacts_name=$("#contacts_name").val();
         var contacts_tel=$("#contacts_tel").val();
@@ -585,6 +622,7 @@
             type:"post",
             data:{
                 data_id:data_id,
+                jobs_name:jobs_name,
                 reviewtime:reviewtime,
                 contacts_name:contacts_name,
                 contacts_tel:contacts_tel,
