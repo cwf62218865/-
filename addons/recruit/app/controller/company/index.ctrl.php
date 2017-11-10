@@ -8,7 +8,7 @@ if($op=="index"){
 /****************************************hr主要页面************************************************/
 //已发布职位列表
 elseif ($op=="job_manage"){
-    $jobs = m('jobs')->getall_jobs($_SESSION['uid']);
+    $jobs = m('jobs')->getall_jobs($_SESSION['uid'],0);
     include wl_template('company/job_manage');
 }
 //发布职位页面
@@ -75,6 +75,8 @@ elseif($op=="manage_resume"){
     }
     $data['uid'] = $_SESSION['uid'];
     $comment_jobs = m("jobs")->comment_apply($data);
+
+    $comment_jobs = $comment_jobs['more'];
     include wl_template('company/hr_manage_resume');
 }
 //消息中心

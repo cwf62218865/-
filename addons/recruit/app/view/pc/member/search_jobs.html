@@ -22,7 +22,7 @@
     <div class="search_nav">
         <div>
         <input type="text" class="input_search" id="search_jobs" placeholder="请输入搜索的职位" value="{php echo $_GPC['jobs_name']}" style="font-size: 16px;">
-        <button class="btn_search cur" type="button">搜索</button>
+        <button class="btn_search cur" type="button" onclick="Searchjobs()">搜索</button>
         </div>
         <div class="search_items">
             <label class="title">热门搜索：</label>
@@ -335,6 +335,14 @@
             option.page=1;
             layer(option);
         });
+        document.onkeydown = function(e){
+            var ev = document.all ? window.event : e;
+            if(ev.keyCode==13) {
+                $(".btn_search").click();
+            }
+        }
+
+
 
         $("#job_name_sou").focus(function () {
             $(this).closest(".inputcon").css("border","1px solid #0099cc");

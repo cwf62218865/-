@@ -8,8 +8,13 @@ class jobs{
     }
 
 
-    public function getall_jobs($uid,$page){
-        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where open=1 and uid=".$uid." order by open desc,addtime desc");
+    public function getall_jobs($uid,$open=1){
+        if($open==1){
+            $wheresql = " where open=1 ";
+        }else{
+            $wheresql = " where 1=1 ";
+        }
+        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql." and uid=".$uid." order by open desc,addtime desc");
         $arr = "";
         foreach ($jobs as $list){
             $list['resume_count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs_apply")." where jobs_id=".$list['id']);
@@ -226,9 +231,9 @@ class jobs{
         $limit = " limit ".$page.",".$pagenum;
 //        echo "select * from " . tablename(WL ."comment") . $wheresql.$limit;exit();
         $comment_jobs = pdo_fetchall("select * from " . tablename(WL ."comment") . $wheresql.$limit);
+//        var_dump($comment_jobs);exit();
+        $comment['count'] = pdo_fetchcolumn("select count(*) from " . tablename(WL ."comment") . $wheresql);
 
-        $comment['count'] = pdo_fetchcolumn("select * from " . tablename(WL ."comment") . $wheresql);
-//        echo $comment['count'];exit();
         $comment['more'] = "";
         foreach ($comment_jobs as $list) {
             $jobs = pdo_fetch("select id,jobs_name from " . tablename(WL . "jobs") . " where id=" . $list['jobs_id']);
