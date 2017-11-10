@@ -565,8 +565,15 @@
         page:1,
         uid:"{$company['uid']}"
     };
-    $(".job_comment").html(pages(1,"{php echo ceil($company_count['comment_count']/6)}"));
-    $(".company_findjob").html(pages(1,"{php echo ceil($jobs_num/6)}"));
+    var job_comment_pagenum = "{php echo ceil($company_count['comment_count']/6)}";
+    if(job_comment_pagenum>1){
+        $(".job_comment").html(pages(1,job_comment_pagenum));
+    }
+    var company_findjob_pagenum = "{php echo ceil($jobs_num/6)}";
+    if(job_comment_pagenum>1){
+        $(".company_findjob").html(pages(1,company_findjob_pagenum));
+    }
+
     page1.callback_content = function () {
         $(".evaluate_content").html(page1.data.content);
     }

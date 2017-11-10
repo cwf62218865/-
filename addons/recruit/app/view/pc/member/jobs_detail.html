@@ -134,6 +134,7 @@
                     <!--面试评价-->
                     {if $current_comment_count}
                     <div class="jobs_detail_title1">面试评价（{$current_comment_count}）</div>
+                    <div class="jobs_detail_content">
                     {loop $comment_jobs $list}
                     <div class="jobs_detail" style="margin-top: 36px" >
                         <div class="interviewter_head">
@@ -194,8 +195,9 @@
                         </div>
                     </div>
                     {/loop}
+                    </div>
                     {/if}
-                    <div id="page">
+                    <div id="page" class="jobs_comment_page">
 
                     </div>
                     <!--<div class="pages_btn" style="float: none;margin-left: 0;text-align: center">-->
@@ -384,6 +386,7 @@
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/job_detail.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/page.js" rel="script"></script>
 
 <script>
 $(function () {
@@ -432,7 +435,7 @@ $(function () {
 //    })
 
 
-    $("#page").html(pages(1,7));
+
 
     $(".delivery_resume").click(function () {
         var data_id = $(this).attr('data-id');
@@ -481,9 +484,19 @@ $(function () {
             }
         })
     })
-    
 
-    
+    var page1 = createPage("jobs_comment_page", "{php echo app_url('member/index/jobs_datail_comment_page')}");
+    var pagenum = "{php echo ceil($current_comment_count/6)}";
+    if(pagenum>1){
+        $(".jobs_comment_page").html(pages(1,"{php echo ceil($current_comment_count/6)}"));
+    }
+    page1.option={
+        page:1,
+        jobs_id:"{$_GPC['jobs_id']}"
+    };
+    page1.callback_content = function () {
+        $(".jobs_detail_content").html(page1.data.content);
+    }
 })
 </script>
 </html>

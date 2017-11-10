@@ -796,6 +796,73 @@ elseif ($op=="jobs_comment_page"){
 //职位详情页分页处理
 elseif ($op=="jobs_datail_comment_page"){
 
+    $comment_jobs = m("jobs")->comment_apply($_POST['data'],6);
+    $str = "";
+    foreach ($comment_jobs['more'] as $list){
+        if($list['hide']){
+            $hide = " <svg class=\"icon\">
+                                    <use xlink:href=\"#icon-xuesheng\"></use>
+                                </svg>";
+        }else{
+            $hide = " <img src=\"{$list['headimgurl']}\">";
+        }
+
+        if($list['tag']){
+            $tag = "";
+            foreach (explode(",",$list['tag']) as $li){
+                $tag .= "<span class=\"welfare_label\">{$li}</span>";
+            }
+        }
+
+        if(in_array($_SESSION['uid'],explode(",",$list['zan']))){
+            $zan = "<span class=\"good color09c hover09c\" data-id=\"{$list['id']}\">";
+        }else{
+            $zan = "<span class=\"good colorbbb hover09c\" data-id=\"{$list['id']}\">";
+        }
+        $str .="<div class=\"jobs_detail\" style=\"margin-top: 36px\" >
+                        <div class=\"interviewter_head\">
+                            <div class=\"interviewter_header\">
+                                {$hide}
+                            </div>
+                            <div class=\"hover09c\" style=\"margin-top: 12px\">{$list['fullname']}</div>
+                        </div>
+
+                        <div class=\"interviewter_content\">
+                            <div class=\"comment_star\">
+                                <span class=\"color999\">信息真实：</span>
+                                {$list['information_star']}
+                            </div>
+
+                            <div class=\"comment_star\">
+                                <span class=\"color999\">公司环境：</span>
+                                {$list['environment_star']}
+                            </div>
+
+                            <div class=\"comment_star\">
+                                <span class=\"color999\">面试官：</span>
+                                {$list['interviewer_star']}
+                            </div>
+
+
+                            <div style=\"margin-top: 16px\">
+                                {$tag}
+                            </div>
+                            <div class=\"color666\" style=\"margin-top: 20px;line-height: 24px\">
+                                <span class=\"colorbbb\">[面试过程]</span>
+                                {$list['content']}
+                            </div>
+                            <div style=\"margin-top: 16px\">
+                                    {$zan}
+                                    <svg class=\"icon\">
+                                        <use xlink:href=\"#icon-zan1\"></use>
+                                    </svg>
+                                    （<span class=\"good_num\">".count(array_filter(explode(",",$list['zan'])))."</span>）
+                                </span>
+                            </div>
+                        </div>
+                    </div>";
+    }
+    call_back(1,$str,$comment_jobs['count']);
 }
 /**********未知接口*******/
 elseif ($op=="resume_worksupload"){
