@@ -41,6 +41,7 @@ if(!$_SESSION['uid']){
 	if($_SESSION['utype']==2){
 		$company_statistics = company_statistics();
 		$company_integrity = company_integrity();
+		$company_comment_total = company_comment_count();
 		$portrait = pdo_fetch("select headimgurl from ".tablename(WL.'company_profile')." where uid=".$_SESSION['uid']);
 		if($_GPC['do']=="person"){
 		    die("暂无权限访问");

@@ -119,6 +119,11 @@ function company_integrity(){
 	return intval($score/120*100);
 }
 
+//公司收到的评论总数
+function company_comment_count(){
+    $company_comment_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where hr_reply='' and uid=".$_SESSION['uid']);
+    return $company_comment_count;
+}
 function web_url($segment, $params = array()) {
 	global $_W,$_GPC;
 	session_start();
