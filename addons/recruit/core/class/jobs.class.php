@@ -8,8 +8,13 @@ class jobs{
     }
 
 
-    public function getall_jobs($uid,$page){
-        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where open=1 and uid=".$uid." order by open desc,addtime desc");
+    public function getall_jobs($uid,$open=1){
+        if($open==1){
+            $wheresql = " where open=1 ";
+        }else{
+            $wheresql = " where 1=1 ";
+        }
+        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql." and uid=".$uid." order by open desc,addtime desc");
         $arr = "";
         foreach ($jobs as $list){
             $list['resume_count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs_apply")." where jobs_id=".$list['id']);

@@ -794,7 +794,7 @@
                         <!--</div>-->
 
                         {loop $edu_experience $id $list}
-                        <div class="resume_exp_content">
+                        <div class="resume_exp_content" data-id="{php echo $id}">
 
                             <div class="relative">
                                 <span class="exp_title">{php echo $list['school_name']}</span>
@@ -812,9 +812,7 @@
                                 <span class="exp_jobright">{if $list['edu_finish_time']}{php echo $list['edu_finish_time']}届{/if}</span>
                             </div>
 
-                            <div class="exp_content">
-                                {php echo $list['edu_content']}
-                            </div>
+
 
                         </div>
                         {/loop}
@@ -906,7 +904,7 @@
 
                         <div class="person_works">
                             {loop $personal_works $id $list}
-                            <div class="person_work">
+                            <div class="person_work" data-id="{php echo $id}">
                                 <div class="img_box"><img src="{php echo $list['thumb']}"></div>
                                 <div class="person_workmsg relative">
                                     <span class="wrap" style="width: 70%">{php echo $list['person_workmsg']}</span>
@@ -925,14 +923,13 @@
 
 
                 </div>
-                {if count($personal_works)<2}
-                <span class="addandeditbtn" id="addpersonworks">
+
+                <span class="addandeditbtn" id="addpersonworks" {if count($personal_works)>=2}style="display:none"{/if}>
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-tianjia"></use>
                     </svg>
                     添加
                 </span>
-                {/if}
             </div>
 
 
@@ -1032,7 +1029,7 @@
                     <div class="resume_exp" id="certificate" style=";margin-bottom: 180px">
                         <div class="person_works">
                             {loop $honor $id $list}
-                            <div class="relative">
+                            <div class="relative" data-id="{$id}">
                                 <span class="certificate " style="display: inline-block;width: 570px;white-space: nowrap;text-overflow: ellipsis;">{$list['certificate_content']}</span>
                                 <span class="addandeditbtn" style="top: 0"  data-id="{$id}">
                                     <svg class="icon" aria-hidden="true">
@@ -1192,7 +1189,7 @@
             <span>电脑上传</span>
             <span>手机扫码上传</span>
         </div>
-        <!--<span class="public_bigbtn bg1aa modalbtn"> 立即上传</span>-->
+        <span class="public_bigbtn bg1aa modalbtn"> 立即上传</span>
     </div>
 </div>
 <!--弹框end-->
@@ -1503,6 +1500,8 @@
 
                         $(".person_worksbtn1").before(imgbox);
                         $("#modalbox").css("display","none");
+                        $("#person_worksbox .formtip").remove();
+
                         window.clearTimeout(timer1);
                         $("#person_worksinput").val($("#person_worksinput").val()+","+data.content);
 
@@ -1646,6 +1645,48 @@
     $.fromdata("#job_expbox","{php echo app_url('person/resume/save_work_exp')}","#save_job_exp_msg",function(data){
         var data = JSON.parse(data);
         if(data.status==1){
+            var exp_id=$("#job_expbox input[name=exp_id]").val();
+            var company_name=$("#job_expbox input[name=company_name]").val();
+            var job_name=$("#job_expbox input[name=job_name]").val();
+            var start_time=$("#job_expbox input[name=start_time]").val();
+            var end_time=$("#job_expbox input[name=end_time]").val();
+            var job_content=$("#job_expbox input[name=job_content]").val();
+            var leave_reason=$("#job_expbox input[name=leave_reason]").val();
+
+            if(exp_id){
+                var resumesbox=$(".resume_exps[data-id="+exp_id+"]");
+                resumesbox.find(".exp_title").html(company_name);
+                resumesbox.find(".exp_jobleft").eq(0).html(job_name);
+                resumesbox.find(".exp_jobright").html(start_time+"-"+end_time);
+                resumesbox.find(".exp_jobleft").eq(1).html("离职原因："+leave_reason);
+
+            }else{
+                var job_exphtml='<div class="resume_exps" data-id='+data.content+'>'+
+                        '<div class="relative">'+
+                        '<span class="exp_title">'+company_name+'</span>'+
+                        '<span class="addandeditbtn" data-id='+data.content+'>'+
+                        '<svg class="icon" aria-hidden="true">'+
+                        ' <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiugai"></use>'+
+                        '</svg>修改</span>'+
+                        ' </div>'+
+                        '<div class="exp_job">'+
+                        '<span class="exp_jobleft">'+job_name+'</span>'+
+                        '<span class="exp_jobright">'+start_time+' — '+end_time+'</span>'+
+                        '</div>'+
+
+                        '<div class="exp_content">'+job_content+'</div>'+
+
+                        '<div class="exp_job">'+
+                        '<span class="exp_jobleft">离职原因：'+leave_reason+'</span>'+
+                        '</div>'+
+                        '</div>'
+
+                $(".resume_exps").eq(0).before(job_exphtml);
+
+            }
+            $("#job_expbox").hide();
+            $("#job_exp").show();
+            $("#addjobexp").show();
 
         }else{
             hint("error",data.content);
@@ -1654,7 +1695,7 @@
     })
 
     //修改工作经历
-    $("#job_exp .addandeditbtn").on("click",function(){
+    $("#job_exp").on("click",".addandeditbtn",function(){
         $("#job_exp").hide();
         $("#job_expbox").show();
         $("#job_expbox label").css("border-color","#f5f5f5");
@@ -1685,7 +1726,6 @@
 
     //删除工作经历
     $("#job_expbox .delbtn").on("click",function(){
-
         var _this=$(this);
         var data_id=_this.attr("data-id");
         $.ajax({
@@ -1697,7 +1737,10 @@
             success: function (data) {
                 var data=JSON.parse(data);
                 if(data.status==1){
-                        location =location;
+                    $(".resume_exps[data-id="+data_id+"]").remove();
+                    $("#job_expbox").hide();
+                    $("#job_exp").show();
+                    $("#addjobexp").show();
 //                    window.location.href="";
 //                    $("#job_expbox").hide();
 //                    $(".resume_exps[data-id="+data_id+"]").remove();
@@ -1712,7 +1755,43 @@
     $.fromdata("#edutionbox","{php echo app_url('person/resume/save_edu_exp')}","#save_edu_exp_msg",function(data){
         var data = JSON.parse(data);
         if(data.status==1){
-            location = location;
+
+
+            var edu_id=$("#edutionbox input[name=edu_id]").val();
+            var school_name=$("#edutionbox input[name=school_name]").val();
+            var education=$("#edutionbox input[name=education]").val();
+            var edu_major=$("#edutionbox input[name=edu_major]").val();
+            var identity=$("#edutionbox input[name=identity]").val();
+
+            if(edu_id){
+                var editedu=$(".resume_exp_content[data-id="+edu_id+"]");
+                editedu.find(".exp_title").html(school_name);
+                editedu.find(".exp_jobleft").eq(0).html(edu_major);
+                editedu.find(".exp_jobleft").eq(1).html(education);
+                editedu.find(".exp_jobright").html(identity+"届");
+
+            }else{
+                var educontent='<div class="resume_exp_content" data-id='+data.content+'>'+
+                        '<div class="relative">'+
+                        '<span class="exp_title">'+school_name+'</span>'+
+                        '<span class="addandeditbtn" data-id='+edu_id+'>'+
+                        '<svg class="icon" aria-hidden="true">'+
+                        '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiugai"></use>'+
+                        '</svg>修改'+
+                        '</span>'+
+                        '</div>'+
+                        '<div class="exp_job">'+
+                        '<span class="exp_jobleft">'+education+'</span>'+
+                        '<span class="exp_jobleft" style="margin-left: 8px">'+edu_major+'</span>'+
+                        '<span class="exp_jobright">'+identity+'届</span>'+
+                        '</div></div>';
+                $("#edutionexp").append(educontent);
+            }
+            $("#edutionexp").show();
+            $("#addedutionexp").show();
+            $("#edutionbox").hide();
+
+
         }else{
             hint("error",data.content);
         }
@@ -1720,7 +1799,7 @@
 
 
     //修改教育经历
-    $("#edutionexp .addandeditbtn").on("click",function(){
+    $("#edutionexp").on("click"," .addandeditbtn",function(){
         $("#edutionexp").hide();
         $("#addedutionexp").show();
         $("#edutionbox").show();
@@ -1762,7 +1841,10 @@
             success: function (data) {
                 var data=JSON.parse(data);
                 if(data.status==1){
-                    location = location;
+                    $(".resume_exp_content[data-id="+data_id+"]").remove();
+                    $("#edutionexp").show();
+                    $("#addedutionexp").show();
+                    $("#edutionbox").hide();
                 }else{
                     hint("error",data.content);
                 }
@@ -1775,14 +1857,47 @@
     $.fromdata("#person_worksbox","{php echo app_url('person/resume/save_personal_works')}","#save_works_msg",function(data){
        var data = JSON.parse(data);
         if(data.status==1){
-            location = location;
+            var works_id=$("#works_id").val();
+            var person_worksinput=$("#person_worksinput").val();
+            var person_workmsg=$("#person_worksbox input[name=person_workmsg]").val();
+            if(works_id){
+                var editperson_work=$(".person_work[data-id="+works_id+"]");
+                editperson_work.find("img").attr("src",person_worksinput.split(",")[0]);
+                editperson_work.find(".wrap").html(person_workmsg);
+
+
+            }else{
+                var workshtml='<div class="person_work"  data-id='+data.content+'>'+
+                        '<div class="img_box"><img src='+person_worksinput.split(",")[0]+'></div>'+
+                        '<div class="person_workmsg relative">'+
+                        '<span class="wrap" style="width: 70%">'+person_workmsg+'</span>'+
+                        '<span class="addandeditbtn" style="top: 0" data-id='+data.content+'>'+
+                        '<svg class="icon" aria-hidden="true">'+
+                        '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiugai"></use>'+
+                        '</svg>修改'+
+                        '</span>'+
+                        '</div>'+
+                        '</div>';
+                $(".person_works").eq(0).append(workshtml);
+
+            }
+            if($(".person_work").length>=2){
+                $("#addpersonworks").hide();
+            }else{
+                $("#addpersonworks").show();
+            }
+            $("#person_works").show();
+
+
+            $("#person_worksbox").hide();
+
         }else{
             hint("error",data.content);
         }
     })
 
     //修改个人作品
-    $(".person_work .addandeditbtn").on("click",function(){
+    $("#person_works ").on("click",".addandeditbtn",function(){
         $("#upload_pic").remove();
 
         $("#person_works").hide();
@@ -1852,8 +1967,11 @@
             success: function (data) {
                 var data=JSON.parse(data);
                 if(data.status==1){
-                        location = location;
-//                    window.location.href="";
+                    $(".person_work[data-id="+data_id+"]").remove();
+                    $("#person_works").show();
+                    $("#addpersonworks").show();
+                    $("#person_worksbox").hide();
+//
                 }else{
                     hint("error",data.content);
                 }
@@ -1866,14 +1984,32 @@
     $.fromdata("#certificatebox","{php echo app_url('person/resume/save_certificate')}","#save_certificate_msg",function(data){
         var data = JSON.parse(data);
         if(data.status==1){
-            location = location;
+            var certificate_id=$("#certificate_id").val();
+            var certificate_content=$("#certificatebox input[name=certificate_content]").val();
+            if(certificate_id){
+                var editperson_work=$("#certificate .relative[data-id="+certificate_id+"]");
+                editperson_work.find(".certificate ").html(certificate_content);
+            }else{
+                var editpersonhtml='<div class="relative" data-id='+certificate_id+'>'+
+                        '<span class="certificate " style="display: inline-block;width: 570px;white-space: nowrap;text-overflow: ellipsis;">'+certificate_content+'</span>'+
+                        '<span class="addandeditbtn" style="top: 0" data-id='+data.content+'>'+
+                        '<svg class="icon" aria-hidden="true">'+
+                        '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiugai"></use>'+
+                        '</svg> 修改'+
+                        '</span>'+
+                        '</div>';
+                $("#certificate .person_works").append(editpersonhtml);
+
+            }
+            $("#certificate").show();
+            $("#certificatebox").hide();
         }else{
             hint("error",data.content);
         }
     })
 
     //修改荣誉证书
-    $("#certificate .addandeditbtn").on("click",function(){
+    $("#certificate").on("click",".addandeditbtn",function(){
 
         $("#certificate").hide();
         $("#addcertificatebtn").show();
@@ -1960,8 +2096,8 @@
             var uploadimg="<img style='width:100%' src='"+src+"' id='upload_pic'>";
             $(this).closest(".modal_con").find(".one_btn").html(uploadimg);
         }else if($(this).attr("accept")=="video/*"){
-            $("#choosefile1").prev().find("use").attr("xlink:href","#icon-wangzhi");
-            //console.log(videofile.name);
+            $("#choosefile1").parent().prev().find("use").attr("xlink:href","#icon-wangzhi");
+
         }
 
 

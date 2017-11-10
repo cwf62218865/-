@@ -8,7 +8,7 @@ if($op=="index"){
 /****************************************hr主要页面************************************************/
 //已发布职位列表
 elseif ($op=="job_manage"){
-    $jobs = m('jobs')->getall_jobs($_SESSION['uid']);
+    $jobs = m('jobs')->getall_jobs($_SESSION['uid'],0);
     include wl_template('company/job_manage');
 }
 //发布职位页面
