@@ -115,7 +115,11 @@ elseif ($op=="work_exp_delete"){
         unset($work_experience[$_GPC['data_id']]);
     }
     $work_experience = serialize($work_experience);
-    $r = pdo_update(WL."resume",array('work_experience'=>$work_experience),array('uid'=>$_SESSION['uid']));
+    $data1['work_experience'] = $work_experience;
+    $experience_info = m("resume")->extract_experience_info($data1);
+    $data1['experience'] =$experience_info['experience'];
+    $data1['updatetime'] = time();
+    $r = pdo_update(WL."resume",$data1,array('uid'=>$_SESSION['uid']));
     if($r){
         call_back(1,"ok");
     }else{
@@ -125,7 +129,6 @@ elseif ($op=="work_exp_delete"){
 
 //修改或者新增工作经验
 elseif ($op=="save_work_exp"){
-
     $data['company_name'] = check_pasre($_POST['data']['company_name'],"请输入公司名称");
     $data['job_name'] = check_pasre($_POST['data']['job_name'],"请输入职位名称");
     $data['job_starttime'] = check_pasre($_POST['data']['start_time'],"请输入开始时间");
@@ -140,7 +143,11 @@ elseif ($op=="save_work_exp"){
         array_push($work_experience,$data);
     }
     $work_experience = serialize($work_experience);
-    $r = pdo_update(WL."resume",array('work_experience'=>$work_experience),array('uid'=>$_SESSION['uid']));
+    $data1['work_experience'] = $work_experience;
+    $experience_info = m("resume")->extract_experience_info($data1);
+    $data1['experience'] =$experience_info['experience'];
+    $data1['updatetime'] = time();
+    $r = pdo_update(WL."resume",$data1,array('uid'=>$_SESSION['uid']));
     if($r){
         call_back(1,"ok");
     }else{
@@ -163,7 +170,13 @@ elseif ($op=="edu_exp_delete"){
         unset($edu_experience[$_GPC['data_id']]);
     }
     $edu_experience = serialize($edu_experience);
-    $r = pdo_update(WL."resume",array('edu_experience'=>$edu_experience),array('uid'=>$_SESSION['uid']));
+    $data1['edu_experience'] = $edu_experience;
+    $experience_info = m("resume")->extract_experience_info($data1);
+    $data1['major'] = $experience_info['major'];
+    $data1['education'] = $experience_info['education'];
+    $data1['school_name'] = $experience_info['school_name'];
+    $data1['updatetime'] = time();
+    $r = pdo_update(WL."resume",$data1,array('uid'=>$_SESSION['uid']));
     if($r){
         call_back(1,"ok");
     }else{
@@ -186,7 +199,13 @@ elseif ($op=="save_edu_exp"){
     }
 
     $edu_experience = serialize($edu_experience);
-    $r = pdo_update(WL."resume",array('edu_experience'=>$edu_experience),array('uid'=>$_SESSION['uid']));
+    $data1['edu_experience'] = $edu_experience;
+    $experience_info = m("resume")->extract_experience_info($data1);
+    $data1['major'] = $experience_info['major'];
+    $data1['education'] = $experience_info['education'];
+    $data1['school_name'] = $experience_info['school_name'];
+    $data1['updatetime'] = time();
+    $r = pdo_update(WL."resume",$data1,array('uid'=>$_SESSION['uid']));
     if($r){
         call_back(1,"ok");
     }else{

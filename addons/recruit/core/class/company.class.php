@@ -61,7 +61,7 @@ class company{
 
     /*
      * 收到的简历
-     * status 1表示收到的简历，2表示面试邀请的简历
+     * status 1表示收到的简历，2表示面试邀请的简历 3表示收到的简历
      */
     public function getall_resume($uid,$page=0,$status=1,$jobs_id=""){
         $wheresql = " where 1=1 and uid=".$uid;
@@ -70,6 +70,8 @@ class company{
             $wheresql .=" and direction=2 and status=3 ";
         }elseif ($status==2){
             $wheresql .=" and status=3 and direction=1 and offer=1 ";
+        }elseif ($status==3){
+            $wheresql .=" and direction=2 ";
         }
 
         if($jobs_id){
@@ -82,9 +84,9 @@ class company{
             $limit = " limit ".($page*6).",6";
         }
 
-//        echo "select id,resume_id,jobs_id,status from ".tablename(WL.'jobs_apply').$wheresql;exit();
+
         $resume_jobs = pdo_fetchall("select id,resume_id,jobs_id,uid,status from ".tablename(WL.'jobs_apply').$wheresql." order by createtime desc".$limit);
-//        $count = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL.'jobs_apply').$wheresql);
+
 
         $resumes = "";
         foreach ($resume_jobs as $list){
@@ -103,41 +105,7 @@ class company{
                 $interview_time = explode(" ",$interview['interview_time']);
                 $resume['interview_date'] = str_replace("月","-",str_replace("日","",$interview_time[0]));
             }
-            $edu_experience = unserialize($resume['edu_experience']);
-            $education = "";
-            $id = "";
-            $edu = array('专科以下','专科','本科','硕士','博士','博士以上');
-            $arr_edu = array_flip($edu);
-            foreach ($edu_experience as $key=>$list){
-                $value = $list['edu_district'];
-                if(empty($education)){
-                    $education = $arr_edu[$value];
-                    $id = $key;
-                }else{
-                    if($arr_edu[$value]>$education){
-                        $education = $arr_edu[$value];
-                        $id = $key;
-                    }
-                }
-            }
-            $resume['education'] = $edu[$education];
-            $resume['school_name'] = $edu_experience[$id]['school_name'];
-            $resume['edu_major'] = $edu_experience[$id]['edu_major'];
 
-            $work_experience = unserialize($resume['work_experience']);
-            $work_time = "";
-            foreach ($work_experience as $list){
-                $list['job_starttime'] = str_replace("月","",str_replace("年","-",$list['job_starttime']));
-                $time = strtotime($list['job_starttime']);
-                if(empty($work_time)){
-                    $work_time = $time;
-                }else{
-                    if($time<$work_time){
-                        $work_time = $time;
-                    }
-                }
-            }
-            $resume['work_time'] =  date('Y')-date('Y',$work_time);
             $resumes[] = $resume;
         }
         return $resumes;
@@ -162,41 +130,6 @@ class company{
             $resume['jobs_name'] = $job['jobs_name'];
             $resume['remark'] = $list['remark'];
             $resume['collect_id'] = $list['id'];
-            $edu_experience = unserialize($resume['edu_experience']);
-            $education = "";
-            $id = "";
-            $edu = array('专科以下','专科','本科','硕士','博士','博士以上');
-            $arr_edu = array_flip($edu);
-            foreach ($edu_experience as $key=>$list){
-                $value = $list['edu_district'];
-                if(empty($education)){
-                    $education = $arr_edu[$value];
-                    $id = $key;
-                }else{
-                    if($arr_edu[$value]>$education){
-                        $education = $arr_edu[$value];
-                        $id = $key;
-                    }
-                }
-            }
-            $resume['education'] = $edu[$education];
-            $resume['school_name'] = $edu_experience[$id]['school_name'];
-            $resume['edu_major'] = $edu_experience[$id]['edu_major'];
-
-            $work_experience = unserialize($resume['work_experience']);
-            $work_time = "";
-            foreach ($work_experience as $list){
-                $list['job_starttime'] = str_replace("月","",str_replace("年","-",$list['job_starttime']));
-                $time = strtotime($list['job_starttime']);
-                if(empty($work_time)){
-                    $work_time = $time;
-                }else{
-                    if($time<$work_time){
-                        $work_time = $time;
-                    }
-                }
-            }
-            $resume['work_time'] =  date('Y')-date('Y',$work_time);
             $resumes[] = $resume;
         }
         return $resumes;

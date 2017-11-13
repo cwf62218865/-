@@ -19,7 +19,7 @@ elseif ($op=="received_resume"){
     }else{
         $page = 0;
     }
-    $received_resume  = m("company")->getall_resume($_SESSION['uid'],$page,1,$jobs_id);
+    $received_resume  = m("company")->getall_resume($_SESSION['uid'],$page,3,$jobs_id);
 
     if($_POST['page']){
         call_back(1,$received_resume);

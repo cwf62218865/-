@@ -20,46 +20,6 @@ class resume{
             return $resume[$filed];
         }
 
-        if($resume){
-            $edu_experience = unserialize($resume['edu_experience']);
-            $education = "";
-            $id = "";
-            $edu = array('专科以下','专科','本科','硕士','博士','博士以上');
-            $arr_edu = array_flip($edu);
-            foreach ($edu_experience as $key=>$list){
-                $value = $list['edu_district'];
-                if(empty($education)){
-                    $education = $arr_edu[$value];
-                    $id = $key;
-                }else{
-                    if($arr_edu[$value]>$education){
-                        $education = $arr_edu[$value];
-                        $id = $key;
-                    }
-                }
-            }
-            $resume['education'] = $edu[$education];
-            $resume['arr_education'] = $edu_experience[$id];
-            $work_experience = unserialize($resume['work_experience']);
-
-            $work_time = "";
-            foreach ($work_experience as $list){
-//            $list['job_starttime'] = str_replace("月","",str_replace("年","-",$list['job_starttime']));
-//            $time = strtotime($list['job_starttime']);
-//            if(empty($work_time)){
-//                $work_time = $time;
-//            }else{
-//                if($time<$work_time){
-//                    $work_time = $time;
-//                }
-//            }
-                $work_time =$work_time+($list['job_endtime'] - $list['job_starttime']);
-            }
-            if($work_time){
-                $resume['work_time'] =ceil($work_time/31536000);
-            }
-        }
-//        $resume['work_time'] =  date('Y')-date('Y',$work_time);
         return $resume;
     }
 
@@ -83,7 +43,6 @@ class resume{
             $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where comment=0 and offer=1 and status=3 and puid=".$uid." order by createtime desc ".$limit);
         }
 
-//        var_dump($jobs_apply);exit();
         $jobs = "";
         foreach ($jobs_apply as $key=>$list){
             $jobs[$key] = pdo_fetch("select * from ".tablename(WL.'jobs')." where id=".$list['jobs_id']);
@@ -195,45 +154,6 @@ class resume{
         $resumes = pdo_fetchall("select * from ".tablename(WL.'resume').$wheresql);
         $arr = "";
         foreach ($resumes as $resume){
-            $edu_experience = unserialize($resume['edu_experience']);
-            $education = "";
-            $id = "";
-            $edu = array('专科以下','专科','本科','硕士','博士','博士以上');
-            $arr_edu = array_flip($edu);
-            foreach ($edu_experience as $key=>$list){
-                $value = $list['edu_district'];
-                if(empty($education)){
-                    $education = $arr_edu[$value];
-                    $id = $key;
-                }else{
-                    if($arr_edu[$value]>$education){
-                        $education = $arr_edu[$value];
-                        $id = $key;
-                    }
-                }
-            }
-            $resume['education'] = $edu[$education];
-            $resume['arr_education'] = $edu_experience[$id];
-            $work_experience = unserialize($resume['work_experience']);
-
-            $work_time = "";
-            foreach ($work_experience as $list){
-                $list['job_starttime'] = str_replace("月","",str_replace("年","-",$list['job_starttime']));
-                $time = strtotime($list['job_starttime']);
-                if(empty($work_time)){
-                    $work_time = $time;
-                }else{
-                    if($time<$work_time){
-                        $work_time = $time;
-                    }
-                }
-            }
-            if($work_time){
-                $resume['work_time'] =  date('Y')-date('Y',$work_time);
-            }else{
-                $resume['work_time'] =  "";
-            }
-
             $blacklist = explode(",",$resume['blacklist']);
             if($_SESSION['utype']==2){
                if($this->blacklist($blacklist)){
@@ -261,5 +181,62 @@ class resume{
     }
 
 
+    /*
+     * 教育经验及工作经验信息提取
+     */
+    public function extract_experience_info($resume){
+        $data = "";
+        if($resume['edu_experience']){
+            $edu_experience = unserialize($resume['edu_experience']);
+            $education = "";
+            $id = "";
+            $edu = array('专科以下','专科','本科','硕士','博士','博士以上');
+            $arr_edu = array_flip($edu);
+            foreach ($edu_experience as $key=>$list){
+                $value = $list['edu_district'];
+                if(empty($education)){
+                    $education = $arr_edu[$value];
+                    $id = $key;
+                }else{
+                    if($arr_edu[$value]>$education){
+                        $education = $arr_edu[$value];
+                        $id = $key;
+                    }
+                }
+            }
+            $data['education'] = $edu[$education];
+            $data['major'] = $edu_experience[$id]['edu_major'];
+            $data['school_name'] = $edu_experience[$id]['school_name'];
+        }
+
+        if($resume['work_experience']){
+            $work_experience = unserialize($resume['work_experience']);
+//            var_dump($work_experience);exit();
+            $work_time = "";
+            foreach ($work_experience as $list){
+            $list['job_starttime'] = str_replace("月","",str_replace("年","-",$list['job_starttime']));
+            $list['job_starttime'] = strtotime($list['job_starttime']);
+            $list['job_endtime'] = str_replace("月","",str_replace("年","-",$list['job_endtime']));
+            $list['job_endtime'] = strtotime($list['job_endtime']);
+//            if(empty($work_time)){
+//                $work_time = $time;
+//            }else{
+//                if($time<$work_time){
+//                    $work_time = $time;
+//                }
+//            }
+                $work_time =$work_time+($list['job_endtime'] - $list['job_starttime']);
+            }
+            if($work_time){
+                $data['experience'] =intval($work_time/31536000)?intval($work_time/31536000):1;
+                $data['experience'] =  $data['experience']."年以上工作经验";
+            }else{
+                $data['experience'] = "无工作经验";
+            }
+        }
+
+        return $data;
+
+    }
 
 }

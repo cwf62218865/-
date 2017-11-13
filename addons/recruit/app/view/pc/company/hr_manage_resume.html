@@ -85,10 +85,10 @@
                             </div>
                             <div class="bm_hang3">
                                 <span class="basic_xx">{php echo $list['school_name']}</span>
-                                <span class="basic_xx"  style="margin-left: 16px;">{php echo $list['edu_major']}</span>
+                                <span class="basic_xx"  style="margin-left: 16px;">{php echo $list['major']}</span>
                             </div>
                             <div class="bm_hang4">
-                                <span class="basic_xx">工作经验<span>{php echo $list['work_time']}年</span></span>
+                                <span class="basic_xx"><span>{php echo $list['experience']}</span></span>
                                 <span class="basic_xx" style="margin-left: 16px;">{php echo $list['telphone']}</span>
                             </div>
                         </div>
@@ -211,15 +211,15 @@
                                 <span class="view_i">查看</span>
                                 <span class="basic_xx">{if $list['sex']==1}男{else}女{/if}</span>
                                 <span class="basic_xx" style="margin-left: 5px;">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
-                                <span class="basic_xx" style="margin-left: 25px;">{php echo $resume['education']}</span>
+                                <span class="basic_xx" style="margin-left: 20px;">{php echo $list['education']}</span>
                             </div>
                             <div class="bm_hang3">
                                 <span class="basic_xx">{php echo $list['school_name']}</span>
-                                <span class="basic_xx"  style="margin-left: 16px;">{php echo $list['edu_major']}</span>
+                                <span class="basic_xx"  style="margin-left: 16px;">{php echo $list['major']}</span>
                             </div>
                             <div class="bm_hang4">
-                                <span class="basic_xx">{if $list['work_time']}工作经验{php echo $list['work_time']}年{else}无工作经验{/if}</span>
-                                <span class="basic_xx" style="margin-left: 16px;">{php echo $list['telphone']}</span>
+                                <span class="basic_xx expirencw">{php echo $list['experience']}</span>
+                                <span class="basic_xx" style="margin-left: 10px;">{php echo $list['telphone']}</span>
                             </div>
                         </div>
                         <div class="xian1"></div>
