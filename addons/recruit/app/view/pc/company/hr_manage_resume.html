@@ -72,7 +72,7 @@
                         <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;height: 100px;"/>
                         </a>
-                        <div class="basic_massage">
+                        <div class="basic_massage" style="height: auto;">
                             <div class="bm_hang1">
                                 <span class="name nowrap">{php echo $list['fullname']}</span>
                                 <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">查看</a>
@@ -199,7 +199,7 @@
                     </div>
                 </div>
                 {loop $resume1 $list}
-                <div class="list_item" data-id="{php echo $list['id']}">
+                <div class="list_item" data-id="{php echo $list['id']}"  data-uid="{$list['uid']}">
                     <div class="item_con">
                         <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;height: 100px;"/>
@@ -240,7 +240,7 @@
                         </div>
                     </div>
                     <div class="review_statas">
-                        <div class="tongyi yaoqing_interview"  data-id="{php echo $list['id']}">邀请面试</div>
+                        <div class="tongyi yaoqing_interview">邀请面试</div>
                         <div class="jujue shoucang shoucang_resume"  data-id="{php echo $list['id']}">收藏简历</div>
                     </div>
                 </div>
@@ -432,10 +432,9 @@
                             <use xlink:href="#icon-xiala" class="colorbbb"></use>
                         </svg>
                         <div class="optionlist" style="height: 0px;">
-                            <div class="option_select">1</div>
-                            <div class="option_select">2</div>
-                            <div class="option_select">3</div>
-                            <div class="option_select">4</div>
+                            {loop $jobs $list}
+                            <div class="option_selecter" data-id="{$list['id']}">{$list['jobs_name']}</div>
+                            {/loop}
                         </div>
                     </label>
 
@@ -566,8 +565,11 @@
         $(".option_select").on("click",function () {
             var _this=$(this);
             var jobs=_this.html();
+            var data_id=_this.attr("data-id");
             _this.parent(".optionlist").css("height","0px");
             _this.closest(".select_jobs").find("input").val(jobs);
+            _this.closest(".select_jobs").find("input").attr("data-id",data_id);
+
 
         })
 
@@ -577,7 +579,11 @@
 
     //面试邀请
     $("#send_review").click(function () {
+
         var jobs_name=$("#job_review").val();
+        var job_id=$("#job_review").attr("data-id");
+        var resume_id=$("#invite_box").attr("data-id");
+        var puid=$("#invite_box").attr("data-uid");
         var reviewtime=$("#review_time").val();
         var contacts_name=$("#contacts_name").val();
         var contacts_tel=$("#contacts_tel").val();
@@ -587,41 +593,43 @@
 
         var telphone_reg=/^1[3|5|7|8][0-9]\d{8}$/;
         if(reviewtime==""){
-            alert("请输入面试日期")
+            hint("error","请输入面试日期");
             return;
         }
         if(contacts_name==""){
-            alert("请输入联系人")
+            hint("error","请输入联系人");
             return;
         }
         if(contacts_tel==""){
-            alert("请输入联系电话")
+            hint("error","请输入联系电话");
             return;
         }
         if(!telphone_reg.test(contacts_tel)){
-            alert("请输入可联系的电话")
+            hint("error","请输入可联系的电话");
             return;
         }
         if(city==""){
-            alert("请输入城市")
+            hint("error","请输入城市");
             return;
         }
         if(city_area==""){
-            alert("请输入区县")
+            hint("error","请输入区县");
             return;
         }
         if(detail_address==""){
-            alert("请输入详细地址")
+            hint("error","请输入详细地址");
             return;
         }
 
-        $("#invite_box").hide();
+
 
         $.ajax({
-            url:"{php echo app_url('company/resume/send_review')}",
+            url:"{php echo app_url('company/resume/hr_send_review')}",
             type:"post",
             data:{
-                data_id:data_id,
+                jobs_id:job_id,
+                resume_id:resume_id,
+                puid:puid,
                 jobs_name:jobs_name,
                 reviewtime:reviewtime,
                 contacts_name:contacts_name,
@@ -632,10 +640,14 @@
 
             },
             success:function(data){
+                var data = JSON.parse(data);
                 if(data.status==1){
-                    window.location.href="";
+                    $("#invite_box").hide();
+                    hint("success","邀请成功");
+//                    window.location.href="";
                 }else{
                     console.log(data.content);
+                    hint("error",data.content);
                 }
             }
         })
