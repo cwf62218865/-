@@ -67,15 +67,21 @@ class company{
         $wheresql = " where 1=1 and uid=".$uid;
 
         if($status==1){
-            $wheresql .=" and status<>3";
+            $wheresql .=" and direction=2 and status=3 ";
         }elseif ($status==2){
-            $wheresql .=" and status=3 and offer=0 ";
+            $wheresql .=" and status=3 and direction=1 and offer=1 ";
         }
 
         if($jobs_id){
             $wheresql .=" and jobs_id=".$jobs_id;
         }
-        $limit = " limit ".($page*6).",6";
+
+        if($page==-1){
+            $limit = "";
+        }else{
+            $limit = " limit ".($page*6).",6";
+        }
+
 //        echo "select id,resume_id,jobs_id,status from ".tablename(WL.'jobs_apply').$wheresql;exit();
         $resume_jobs = pdo_fetchall("select id,resume_id,jobs_id,uid,status from ".tablename(WL.'jobs_apply').$wheresql." order by createtime desc".$limit);
 //        $count = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL.'jobs_apply').$wheresql);

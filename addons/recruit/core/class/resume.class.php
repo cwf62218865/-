@@ -11,8 +11,15 @@ class resume{
     /*
      * 获取一行简历
      */
-    public function get_resume($uid){
-        $resume = pdo_fetch("select * from ".tablename(WL.'resume')." where uid=".$uid);
+    public function get_resume($uid,$filed=""){
+        if(empty($filed)){
+            $filed = "*";
+            $resume = pdo_fetch("select ".$filed." from ".tablename(WL.'resume')." where uid=".$uid);
+        }else{
+            $resume = pdo_fetch("select ".$filed." from ".tablename(WL.'resume')." where uid=".$uid);
+            return $resume[$filed];
+        }
+
         if($resume){
             $edu_experience = unserialize($resume['edu_experience']);
             $education = "";
@@ -76,6 +83,7 @@ class resume{
             $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where comment=0 and offer=1 and status=3 and puid=".$uid." order by createtime desc ".$limit);
         }
 
+//        var_dump($jobs_apply);exit();
         $jobs = "";
         foreach ($jobs_apply as $key=>$list){
             $jobs[$key] = pdo_fetch("select * from ".tablename(WL.'jobs')." where id=".$list['jobs_id']);
@@ -116,7 +124,7 @@ class resume{
             $limit = " limit ".(($page-1)*6).",6";
         }
         if($status==1){
-            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and uid=".$uid." order by createtime desc ".$limit);
+            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and direction=1 and uid=".$uid." order by createtime desc ".$limit);
         }elseif ($status==2){
             $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=2 and uid=".$uid." order by createtime desc ".$limit);
         }else{
@@ -172,8 +180,19 @@ class resume{
     /*
      * 获取多行简历
      */
-    public function getall_resume($uid=""){
-        $resumes = pdo_fetchall("select * from ".tablename(WL.'resume'));
+    public function getall_resume($data=""){
+        $wheresql = " where 1=1 ";
+        if($data['keyword']){
+
+            $wheresql .=" and hope_job like '%".$data['keyword']."%' ";
+        }
+
+        if($data['didian']){
+            $wheresql .=" and hope_place like '%".$data['didian']."%' ";
+        }
+
+
+        $resumes = pdo_fetchall("select * from ".tablename(WL.'resume').$wheresql);
         $arr = "";
         foreach ($resumes as $resume){
             $edu_experience = unserialize($resume['edu_experience']);
@@ -209,7 +228,12 @@ class resume{
                     }
                 }
             }
-            $resume['work_time'] =  date('Y')-date('Y',$work_time);
+            if($work_time){
+                $resume['work_time'] =  date('Y')-date('Y',$work_time);
+            }else{
+                $resume['work_time'] =  "";
+            }
+
             $blacklist = explode(",",$resume['blacklist']);
             if($_SESSION['utype']==2){
                if($this->blacklist($blacklist)){
@@ -235,4 +259,7 @@ class resume{
             }
         }
     }
+
+
+
 }

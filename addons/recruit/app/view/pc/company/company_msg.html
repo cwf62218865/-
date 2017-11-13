@@ -66,7 +66,7 @@
 
                     <!--投递申请-->
                     {loop $list['content'] $li}
-                    {if $li['status']==3}
+                    {if $li['status']==3 && $li['direction']==1}
                     <div class="day_msgbox">
                         <div class="system_msg_title">
                             <svg class="icon" aria-hidden="true">
@@ -94,7 +94,7 @@
                             </span>
                         </div>
 
-                        <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
+                        <a href="{php echo app_url('company/index/manage_resume')}" class="see_system_msg see_day_msg" >查看详情>></a>
                     </div>
                     {/if}
                     {/loop}
@@ -122,7 +122,7 @@
                             </span>
                         </div>
 
-                        <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
+                        <a href="{php echo app_url('company/resume/received_resume')}" class="see_system_msg see_day_msg" >查看详情>></a>
                     </div>
                     {/if}
                     {/loop}

@@ -16,7 +16,11 @@ if($op=="collection_jobs"){
         call_back(2,"该职位已收藏");
     }else{
         $r = insert_table($data,WL."collect_jobs");
+
         if($r){
+            $collect_num = m('jobs')->get_jobs($data['jobs_id'],"collect_num");
+            $collect_num = $collect_num+1;
+            pdo_update(WL."jobs",array('collect_num'=>$collect_num,'updatetime'=>time()),array('id'=>$data['jobs_id']));
             call_back(1,"收藏成功");
         }else{
             call_back(2,"收藏失败");
@@ -30,10 +34,14 @@ elseif ($op=="remove_collection_jobs"){
     $data['uid'] = $_SESSION['uid'];
     $r = delete_table($data,WL."collect_jobs");
     if($r){
+        $collect_num = m('jobs')->get_jobs($data['jobs_id'],"collect_num");
+        $collect_num = $collect_num-1;
+        pdo_update(WL."jobs",array('collect_num'=>$collect_num,'updatetime'=>time()),array('id'=>$data['jobs_id']));
         call_back(1,"取消成功");
     }else{
         call_back(2,"取消失败");
     }
+
 }
 
 //职位订阅器执行处理
