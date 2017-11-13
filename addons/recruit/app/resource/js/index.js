@@ -10,11 +10,23 @@
         leftmenus+='<div class="index_menu">';
         leftmenus+='<span class="index_menu_title">'+index_menu[i].title+'</span>';
         for(var k=0 ; k<index_menu[i].name.length; k ++){
-            leftmenus+='<span>'+index_menu[i].name[k]+'</span>';
+            leftmenus+='<a href="#"> '+index_menu[i].name[k]+'</a>';
         }
         leftmenus+='<svg class="icon">'+
             '<use xlink:href="#icon-more"></use>'+
-            '</svg></div>';
+            '</svg>';
+
+        if(i>=9){
+            leftmenus+='<div class="index_menu_content" style="bottom:0;top:auto">'
+        }else{
+            leftmenus+='<div class="index_menu_content">'
+        }
+        leftmenus+='<div class="index_menu_content_title">'+index_menu[i].title+'</div>'+
+            '<div class="index_menu_contents">';
+        for(var m=0 ; m<index_menu[i].content.length; m ++){
+            leftmenus+='<a href="#"> '+index_menu[i].content[m]+'</a>';
+        }
+        leftmenus+='</div></div></div>';
     }
 
     $(".index_menus").html(leftmenus);
@@ -70,3 +82,11 @@ $(".surper_company").on("mouseover",function(){
 $(".surper_company").on("mouseleave",function(){
     $(this).find("img").animate({"width":"224px","height":"120px","top":"0","left":"0"},200)
 });
+
+$(".index_menu").on("mouseover",function(){
+    $(".index_menu .index_menu_content").hide();
+    $(this).find(".index_menu_content").show();
+});
+$(".index_menu").on("mouseleave",function(){
+    $(this).find(".index_menu_content").hide();
+})
