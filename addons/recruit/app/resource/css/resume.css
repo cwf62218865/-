@@ -190,6 +190,11 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
     cursor: pointer;
     white-space:nowrap
 }
+.wideth span{
+    width: 16px;
+    height: 28px;
+    text-align: center;
+}
 .cwfmonths span:hover{
     background-color: #1aa9d2;
     color: #fff;
