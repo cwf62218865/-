@@ -159,15 +159,16 @@
 .list_item{
     margin-top: 30px;float: left;
     width: 400px;height: auto;
+    margin-left: 25px;
     box-shadow:6px 5px 24px rgba(0,0,0,0.12);
 }
-.list_item:nth-child(odd){
-    margin-left: 25px ;
-}
+/*.list_item:nth-child(odd){*/
+    /*margin-left: 25px ;*/
+/*}*/
 
-.list_item:nth-child(even){
-    margin-left: 20px;
-}
+/*.list_item:nth-child(even){*/
+    /*margin-left: 20px;*/
+/*}*/
 
 .tongjis{
     background: #ffffff;height: 186px;border-bottom: 1px solid #f4f4f4;

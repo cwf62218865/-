@@ -169,9 +169,11 @@
 
 
                             <div style="margin-top: 16px">
+                                {if $list['tag']}
                                 {loop explode(",",$list['tag']) $li}
                                 <span class="welfare_label">{$li}</span>
                                {/loop}
+                                {/if}
                             </div>
                             <div class="color666" style="margin-top: 20px;line-height: 24px">
                                 <span class="colorbbb">[面试过程]</span>
@@ -186,7 +188,7 @@
                                     <svg class="icon">
                                         <use xlink:href="#icon-zan1"></use>
                                     </svg>
-                                    （<span class="good_num">{php echo count(array_filter(explode(",",$list['zan'])))}</span>）
+                                    <span class="good_num" style="vertical-align: top;">({php echo count(array_filter(explode(",",$list['zan'])))})</span>
                                 </span>
                             </div>
 
