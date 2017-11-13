@@ -19,7 +19,7 @@ elseif ($op=="received_resume"){
     }else{
         $page = 0;
     }
-    $received_resume  = m("company")->getall_resume($_SESSION['uid'],$page,1,$jobs_id);
+    $received_resume  = m("company")->getall_resume($_SESSION['uid'],$page,3,$jobs_id);
 
     if($_POST['page']){
         call_back(1,$received_resume);
@@ -209,9 +209,8 @@ elseif ($op=="refuse_review"){
     }
 }
 
-//面试邀请
+//求职者投递面试邀请
 elseif ($op=="send_review"){
-
     $data['apply_id'] = check_pasre($_POST['data_id'],"参数错误");
     pdo_update(WL."jobs_apply",array('status'=>'3'),array('id'=>$data['apply_id'],'uid'=>$_SESSION['uid']));
     $jobs_apply = pdo_fetch("select resume_id,jobs_id,puid,uid from ".tablename(WL.'jobs_apply')." where id=".$data['apply_id']);
@@ -237,6 +236,40 @@ elseif ($op=="send_review"){
         }else{
             call_back(2,"no");
         }
+    }
+}
+
+//hr主动发起面试邀请
+elseif ($op=="hr_send_review"){
+    $data['direction'] =1;
+    $data['jobs_id'] = check_pasre($_POST['jobs_id'],"参数错误");
+    $data['resume_id'] = check_pasre($_POST['resume_id'],"参数错误");
+    $data['puid'] = check_pasre($_POST['puid'],"参数错误");
+    $data['uid'] = $_SESSION['uid'];
+    $jobs_apply = pdo_fetch("select id from ".tablename(WL.'jobs_apply')." where jobs_id=".$data['jobs_id']." and resume_id=".$data['resume_id']);
+    if($jobs_apply){
+        call_back(2,"已邀请面试");
+    }else{
+        $data['status'] = 3;
+        $data['createtime'] = time();
+        $r = pdo_insert(WL."jobs_apply",$data);
+        if($r){
+            $data1['apply_id'] = pdo_insertid();
+            $data1['uid'] = $data['uid'];
+            $data1['puid'] = $data['puid'];
+            $data1['resume_id'] = $data['resume_id'];
+            $data1['jobs_id'] = $data['jobs_id'];
+            $data1['interview_time'] = check_pasre($_POST['reviewtime'],"参数错误");
+            $data1['linker'] = check_pasre($_POST['contacts_name'],"参数错误");
+            $data1['mobile'] = check_pasre($_POST['contacts_tel'],"参数错误");
+            $data1['city'] = check_pasre($_POST['city'],"参数错误");
+            $data1['city_area'] = check_pasre($_POST['city_area'],"参数错误");
+            $data1['address'] = check_pasre($_POST['detail_address'],"参数错误");
+            $data1['createtime'] = time();
+            pdo_insert(WL."interview",$data1);
+            call_back(1,"邀请面试成功");
+        }
+
     }
 }
 
@@ -291,6 +324,76 @@ elseif ($op=="remove_collect"){
 
 
 //搜索职位检索简历
-elseif ($op=="search_jobs"){
+elseif ($op=="search_keyword"){
+    $data['keyword'] = $_POST['keyword'];
+    $data['major'] = $_POST['major'];
+    $data['salary'] = $_POST['salary'];
+    $data['experience'] = $_POST['experience'];
+    $data['didian'] = $_POST['didian'];
 
+    $content = m("resume")->getall_resume($data);
+    $str = "";
+    foreach ($content as $list){
+        if($list['sex']==1){
+            $sex = "男";
+        }else{
+            $sex = "女";
+        }
+
+        if($list['work_time']){
+            $work_time = "工作经验". $list['work_time']."年";
+        }else{
+            $work_time = "无工作经验";
+        }
+
+        $hope_job = "";
+        foreach(explode(",",$list['hope_job']) as $li){
+            $hope_job .="<span class='job_hope nowrap'>{$li}</span>";
+        }
+        $str .= " <div class=\"list_item\" data-id=\"{$list['id']}\"  data-uid=\"{$list['uid']}\">
+                    <div class=\"item_con\">
+                        <a class=\"touxiang_pic\"  href='".app_url('resume/index',array('uid'=>$list['uid']))."'>
+                            <img src=\"{$list['headimgurl']}\" style=\"width: 100px;height: 100px;\"/>
+                        </a>
+                        <div class=\"basic_massage\">
+                            <div class=\"bm_hang1\">
+                                <span class=\"name nowrap\">{$list['fullname']}</span>
+                                <span class=\"view_i\">查看</span>
+                                <span class=\"basic_xx\">{$sex}</span>
+                                <span class=\"basic_xx\" style=\"margin-left: 5px;\">".ceil((time()-$list['birthday'])/31536000)."岁</span>
+                                <span class=\"basic_xx\" style=\"margin-left: 25px;\">{$resume['education']}</span>
+                            </div>
+                            <div class=\"bm_hang3\">
+                                <span class=\"basic_xx\">{$list['school_name']}</span>
+                                <span class=\"basic_xx\"  style=\"margin-left: 16px;\">{$list['edu_major']}</span>
+                            </div>
+                            <div class=\"bm_hang4\">
+                                <span class=\"basic_xx\">{$work_time}</span>
+                                <span class=\"basic_xx\" style=\"margin-left: 16px;\">{$list['telphone']}</span>
+                            </div>
+                        </div>
+                        <div class=\"xian1\"></div>
+                        <div class=\"status\">
+                            <p class=\"time\">
+                                <span>
+                                    期望职位：
+                                    {$hope_job}
+                                </span>
+                            </p>
+                            <p class=\"review_tel\">
+                                <span>期望薪资：<label>{$list['salary']}</label></span>
+                            </p>
+                            <p class=\"\" style=\"margin-bottom: 20px;\">
+                                <span>期望工作地点：<label>{$list['hope_place']}</label></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class=\"review_statas\">
+                        <div class=\"tongyi yaoqing_interview\">邀请面试</div>
+                        <div class=\"jujue shoucang shoucang_resume\"  data-id=\"{$list['id']}\">收藏简历</div>
+                    </div>
+                </div>";
+    }
+
+    call_back(1,$str);
 }

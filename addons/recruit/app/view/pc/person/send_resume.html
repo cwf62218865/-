@@ -148,9 +148,9 @@
                                 <svg class="icon icon_address" aria-hidden="true">
                                     <use xlink:href="#icon-didian"></use>
                                 </svg>
-                                <span>地址：{php echo $list['interview']['address']}</span>
+                                <span>地址：{php echo $list['interview']['city']." ".$list['interview']['city_area']." ".$list['interview']['address']}</span>
                             </p>
-                            <div class="btn_ditu"></div>
+                            <div class="btn_ditu"  data-id="{php echo $list['retoate_x'].','.$list['retoate_y']}"></div>
                         </div>
                     </div>
                     {if $list['offer']==0}
@@ -281,16 +281,17 @@
 <script>
     $(function () {
 
-        var show = "{php echo $show}"-1;
-        $(".list_item_btn").eq(show).addClass("select");
-        if(show==0){
-            $(".list_content").show();
-            $(".resume_content").hide();
-            $(".beizhus").show();
-        }else{
+        var nav = "{$_GPC['nav']}";
+        $(".list_item_btn").removeClass("select");
+        $(".list_item_btn").eq(nav).addClass("select");
+        if(nav){
             $(".list_content").hide();
             $(".resume_content").show();
             $(".beizhus").hide();
+        }else{
+            $(".list_content").show();
+            $(".resume_content").hide();
+            $(".beizhus").show();
         }
         var send_resume_page = 1;
         var invite_page = 1;
@@ -321,8 +322,8 @@
             console.log(reason);
             $("#refusebox").css("display","none");
             $.ajax({
-                url:"",
-                post:"post",
+                url:"{php echo app_url('person/jobs/apply_refuse')}",
+                type:"post",
                 data:{
                     reason:reason,
                     dataid:dataid
@@ -336,6 +337,8 @@
                                 $(this).parent().html("已拒绝面试");
                             }
                         })
+                    }else{
+                        hint("error",data.content);
                     }
                 }
             })

@@ -26,7 +26,7 @@
                 <div class="list_item_btn" style="margin-left: 2px">收到的评价</div>
             </div>
             <!--待评价start------------------------------------------------------------------------------->
-            <div class="lists list_content" style="display: block;">
+            <div class="lists list_content">
             {if $agree_jobs}
                 {loop $agree_jobs $list}
                 <div class="item_conpj" data-id="{$list['apply_id']}">
@@ -198,7 +198,7 @@
             <!--待评价end-------------------------------------------------------------------------->
             <!--收到的评价start---------------------------------------------------------------------------->
 
-            <div class="lists resume_content" style="display: none;background: none;">
+            <div class="lists resume_content" style="background: none;">
                 {if $comment_jobs}
                 <div class="contanier">
                     {loop $comment_jobs $id $list}
@@ -402,6 +402,14 @@
 <script src="{WL_URL_ARES}js/credit_evaluate.js" rel="script"></script>
 
 <script>
+    $(function () {
+        var nav = "{$_GPC['nav']}"?"{$_GPC['nav']}":0;
+        $(".list_item_btn").removeClass("select");
+        $(".list_item_btn").eq(nav).addClass("select");
+        $(".lists").hide();
+        $(".lists").eq(nav).show();
+
+    })
 
     $(document).click(function(e){
 //        var _con = $('.morebiaoqian');   // 设置目标区域

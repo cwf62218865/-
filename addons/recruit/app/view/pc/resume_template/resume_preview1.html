@@ -73,9 +73,9 @@
                         <span class="basic_msg_contents">{php echo $resume['city']}{php echo $resume['city_area']}{php echo $resume['address']}</span>
                     </div>
                     <div class="font666" style="margin-top: 16px">
-                        <span class="basic_msg_contents1">{php echo $resume['arr_education']['school_name']}</span>
-                        <span class="basic_msg_contents1">{php echo $resume['arr_education']['edu_major']}</span>
-                        <span class="basic_msg_contents1">{if $resume['work_time']}{php echo $resume['work_time']}年工作经验{/if}</span>
+                        <span class="basic_msg_contents1">{php echo $resume['school_name']}</span>
+                        <span class="basic_msg_contents1">{php echo $resume['major']}</span>
+                        <span class="basic_msg_contents1">{php echo $resume['experience']}</span>
                         <span class="basic_msg_contents1" style="border-right: none">{php echo $resume['origin_place']}（籍贯）</span>
                     </div>
                     <div class="personmsg">
@@ -160,18 +160,6 @@
                                 {php echo $list['job_content']}
                             </div>
 
-                            <div class="exp_job">
-
-                            </div>
-
-                            <div class="exp_job">
-                                <span class="exp_jobleft">{php echo $list['job_name']}</span>
-                                <span class="exp_jobright">{php echo $list['job_starttime']} — {php echo $list['job_endtime']}</span>
-                            </div>
-
-                            <div class="exp_content">
-                                {php echo $list['job_content']}
-                            </div>
 
                             <div class="exp_job">
 

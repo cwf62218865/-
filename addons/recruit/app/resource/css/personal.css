@@ -707,7 +707,11 @@
 .my_joblist{
     display: none;
     position: absolute;
-    width: 132px;height: 130px;padding-top: 30px;padding-bottom: 30px;text-align: center;overflow-y: auto;
+    width: 132px;max-height: 130px;
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;overflow-y: auto;
     box-shadow: 6px 5px 24px rgba(0,0,0,0.12);background: #ffffff;top: 45px;left: -20px;line-height: 42px;
 }
 .option_select:hover,
@@ -739,8 +743,9 @@
 .basic_massage{
     float: left;
     margin-left: 24px;
-    height: 36px;
+    height: auto;
 }
+
 .basic_massage .name{
     font-size: 20px;color: #333333;width: 65px;height: 26px;line-height: 26px;
     display: inline-block;overflow: hidden;
@@ -748,6 +753,7 @@
 .basic_massage .view_i{
     font-size: 12px;color: #999999;margin-right: 8px;cursor: pointer;vertical-align: super;
 }
+
 .hope_job{
     font-size: 16px;color: #7b8fc9;width: 110px;float: right;line-height: 26px;text-align: right;display: inline-block;overflow: hidden;text-overflow:ellipsis;-o-text-overflow:ellipsis; white-space:nowrap;
 }
@@ -770,6 +776,9 @@
     line-height: 16px;
     vertical-align: super;
 }
+.expirencw{
+    display: inline-block;width: 110px;overflow: hidden;vertical-align: top;
+}
 .shoucang_beizhu{
     margin-top: 18px;
     color: #999999;
@@ -784,13 +793,13 @@
     background: #ffffff;
     overflow-y: auto;
 }
-.option_select{
+.option_selecter{
     padding-left: 20px;
     height: 36px;
     border: 1px solid #dddddd;
     border-top: none;
 }
-.option_select:first-child{
+.option_selecter:first-child{
     border-top: 1px solid #dddddd;
 }
 .beizhu_content{

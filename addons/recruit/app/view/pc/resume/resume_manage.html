@@ -73,7 +73,7 @@
                         下载简历
                     </div>
                 </a>
-                <a href="{php echo app_url('resume/index',array('uid'=>$resume['uid']))}" class="menus" target="_blank">
+                <a href="{php echo app_url('resume/index',array('uid'=>$resume['uid']))}" class="menus">
                     <svg class="icon icon_item" aria-hidden="true">
                         <use xlink:href="#icon-dayinjianli"></use>
                     </svg>
@@ -148,9 +148,9 @@
 
 
                     <div class="font666" style="margin-top: 16px">
-                        <span class="basic_msg_contents1">{php echo $resume['arr_education']['school_name']}</span>
-                        <span class="basic_msg_contents1">{php echo $resume['arr_education']['edu_major']}</span>
-                        <span class="basic_msg_contents1">{if $resume['work_time']}{php echo $resume['work_time']}年工作经验{else}无工作经验{/if}</span>
+                        <span class="basic_msg_contents1">{php echo $resume['school_name']}</span>
+                        <span class="basic_msg_contents1">{php echo $resume['major']}</span>
+                        <span class="basic_msg_contents1">{php echo $resume['experience']}</span>
                         <span class="basic_msg_contents1" style="border-right: none">{php echo $resume['origin_place']}（籍贯）</span>
                     </div>
 

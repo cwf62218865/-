@@ -333,7 +333,7 @@
 
 
         <div class="resume_list" style="height: 934px">
-            {loop $jobs $list}
+            {loop $collect_jobs $list}
             <div class="resume_position">
                 <div style="margin: 40px 24px 24px 24px">
                     <div>
@@ -368,7 +368,7 @@
                         <svg class="icon" style="color: #d3d3d3;font-size: 16px">
                             <use xlink:href="#icon-shoucang"></use>
                         </svg>
-                        {$list['collect_count']}人关注了该职位
+                        {$list['collect_num']}人关注了该职位
                     </span>
                 </div>
             </div>

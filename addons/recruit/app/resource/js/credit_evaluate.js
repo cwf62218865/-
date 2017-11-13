@@ -284,6 +284,13 @@ $("body").on("click",".shouqi",function () {
     $(this).addClass("gengduo");
 })
 
+$(document).click(function(e){
+    var _con = $('.morebiaoqian,.biaoqians,.bqmorebtn');   // 设置目标区域
+    if(!_con.is(e.target) && _con.has(e.target).length === 0){
+        $(".shouqi").click();
+    };
+});
+
 //评论星星
 
 var num  = finalnum = 0;

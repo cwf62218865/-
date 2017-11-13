@@ -25,7 +25,7 @@ function m($name = '') {
 function  company_statistics(){
 	$data['jobs_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$_SESSION['uid']." and open=1");
 	$data['apply_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where uid=".$_SESSION['uid']." and direction=2");
-	$data['interview_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where uid=".$_SESSION['uid']." and status=3 and offer=0");
+	$data['interview_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where uid=".$_SESSION['uid']." and status=3 and offer=1");
 	return $data;
 }
 

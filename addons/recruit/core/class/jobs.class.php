@@ -2,9 +2,14 @@
 
 class jobs{
 
-    public function get_jobs($id){
-        $jobs = pdo_fetch("select * from ".tablename(WL.'jobs')." where display=1 and id=".$id);
-        return $jobs;
+    public function get_jobs($id,$field=""){
+        if($field){
+            $jobs = pdo_fetch("select ".$field." from ".tablename(WL.'jobs')." where id=".$id);
+            return $jobs[$field];
+        }else{
+            $jobs = pdo_fetch("select * from ".tablename(WL.'jobs')." where display=1 and id=".$id);
+            return $jobs;
+        }
     }
 
 
@@ -17,7 +22,7 @@ class jobs{
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql." and uid=".$uid." order by open desc,addtime desc");
         $arr = "";
         foreach ($jobs as $list){
-            $list['resume_count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs_apply")." where jobs_id=".$list['id']);
+            $list['resume_count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs_apply")." where direction=2 and jobs_id=".$list['id']);
             $arr[] = $list;
         }
 //     var_dump($arr);exit();
@@ -49,6 +54,10 @@ class jobs{
         }
         if($data['data']['job_order'] && $data['data']['job_order']=="发布时间"){
             $orderby = " order by addtime desc,open desc";
+        }
+
+        if($data['data']['job_order'] && $data['data']['job_order']=="关注度"){
+            $orderby = " order by collect_num desc,open desc";
         }
 
         if($data['data']['job_name']){
