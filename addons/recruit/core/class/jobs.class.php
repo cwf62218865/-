@@ -17,7 +17,7 @@ class jobs{
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql." and uid=".$uid." order by open desc,addtime desc");
         $arr = "";
         foreach ($jobs as $list){
-            $list['resume_count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs_apply")." where jobs_id=".$list['id']);
+            $list['resume_count'] = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs_apply")." where direction=2 and jobs_id=".$list['id']);
             $arr[] = $list;
         }
 //     var_dump($arr);exit();

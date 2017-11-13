@@ -72,7 +72,7 @@
                         <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;height: 100px;"/>
                         </a>
-                        <div class="basic_massage">
+                        <div class="basic_massage" style="height: auto;">
                             <div class="bm_hang1">
                                 <span class="name nowrap">{php echo $list['fullname']}</span>
                                 <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">查看</a>
@@ -433,7 +433,7 @@
                         </svg>
                         <div class="optionlist" style="height: 0px;">
                             {loop $jobs $list}
-                            <div class="option_select" data-id="{$list['id']}">{$list['jobs_name']}</div>
+                            <div class="option_selecter" data-id="{$list['id']}">{$list['jobs_name']}</div>
                             {/loop}
                         </div>
                     </label>

@@ -707,7 +707,11 @@
 .my_joblist{
     display: none;
     position: absolute;
-    width: 132px;height: 130px;padding-top: 30px;padding-bottom: 30px;text-align: center;overflow-y: auto;
+    width: 132px;max-height: 130px;
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;overflow-y: auto;
     box-shadow: 6px 5px 24px rgba(0,0,0,0.12);background: #ffffff;top: 45px;left: -20px;line-height: 42px;
 }
 .option_select:hover,
@@ -784,13 +788,13 @@
     background: #ffffff;
     overflow-y: auto;
 }
-.option_select{
+.option_selecter{
     padding-left: 20px;
     height: 36px;
     border: 1px solid #dddddd;
     border-top: none;
 }
-.option_select:first-child{
+.option_selecter:first-child{
     border-top: 1px solid #dddddd;
 }
 .beizhu_content{
