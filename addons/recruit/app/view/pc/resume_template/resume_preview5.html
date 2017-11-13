@@ -45,7 +45,7 @@
                             <label class="basic_style">{if $resume['sex']==1}男{else}女{/if}</label>
                             <label class="basic_style">{php echo ceil((time()-$resume['birthday'])/31536000)}岁</label>
                             <label class="basic_style">{php echo $resume['political_status']}</label>
-                            <label class="basic_style">{if $resume['work_time']}{php echo $resume['work_time']}年工作经验{/if}</label>
+                            <label class="basic_style">{php echo $resume['experience']}</label>
                             <label class="basic_style">{php echo $resume['work_status']}</label>
                             <label class="basic_style1"><span class="jiguan_con">{$resume['origin_place']}</span>（籍贯）</label>
                         </div>

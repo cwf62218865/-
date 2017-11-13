@@ -496,6 +496,9 @@
                     var data = JSON.parse(data);
                     if(data.status==1){
                         _this.parent().parent().hide();
+                        hint("success","取消收藏成功");
+                    }else{
+                        hint("error",data.content);
                     }
                 }
             })

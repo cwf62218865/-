@@ -42,8 +42,12 @@ if($op=="1"){
         call_back(1,app_url("resume/resume_reg/2"));
     }
 }elseif ($op=="step2_save"){
-
+//    var_dump($_POST);exit();
     $data['edu_experience'] = serialize($_POST['data']);
+    $experience_info = m("resume")->extract_experience_info($data);
+    $data['major'] = $experience_info['major'];
+    $data['education'] = $experience_info['education'];
+    $data['school_name'] = $experience_info['school_name'];
     $data['updatetime'] = time();
     $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));
     if($r){
@@ -52,6 +56,8 @@ if($op=="1"){
 }elseif ($op=="step3_save"){
     if(array_filter($_POST['data'][0])){
         $data['work_experience'] = serialize($_POST['data']);
+        $experience_info = m("resume")->extract_experience_info($data);
+        $data['experience'] =$experience_info['experience'];
         $data['updatetime'] = time();
         $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));
     }

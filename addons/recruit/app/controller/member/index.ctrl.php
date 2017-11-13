@@ -9,6 +9,10 @@ if($op=="index"){
 
     $jobs = m("jobs")->getall_jobs_page($data,9);
     $jobs = $jobs['more'];
+
+    $data['data']['job_order']="关注度";
+    $collect_jobs = m("jobs")->getall_jobs_page($data,9);
+    $collect_jobs = $collect_jobs['more'];
     include wl_template("member/index");exit();
 }
 //退出登录
@@ -87,7 +91,7 @@ elseif($op=="company_detail"){
         $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$_GPC['company_id']);
 //        $jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where open=1 and uid=".$company['uid']);
         $data['data']['uid'] = $_GPC['company_id'];
-        $jobs = m("jobs")->getall_jobs_page();
+        $jobs = m("jobs")->getall_jobs_page($data);
         $jobs = $jobs['more'];
         $jobs_num = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs")." where open=1 and uid=".$company['uid']);
         $last_login_time = m("member")->last_login($company['uid']);

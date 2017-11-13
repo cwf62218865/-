@@ -112,12 +112,26 @@
             <div class="index_menus">
                 <div class="index_menu">
                     <span class="index_menu_title">文学</span>
-                    <span>翻译</span>
-                    <span>广告</span>
-                    <span>公关/媒体</span>
+                    <a href="#">翻译</a>
+                    <a href="#">广告</a>
+                    <a href="#">公关/媒体</a>
                     <svg class="icon">
                         <use xlink:href="#icon-more"></use>
                     </svg>
+
+
+                    <div class="index_menu_content">
+                        <div class="index_menu_content_title">文学</div>
+                        <div class="index_menu_contents">
+                            <a href="#">力学</a>
+                            <a href="#">机械</a>
+                            <a href="#">仪器</a>
+                            <a href="#">材料</a>
+                            <a href="#">能源动力</a>
+                            <a href="#">电器</a>
+                            <a href="#">电子信息</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!--<div class="index_menus_urls">-->
@@ -319,7 +333,7 @@
 
 
         <div class="resume_list" style="height: 934px">
-            {loop $jobs $list}
+            {loop $collect_jobs $list}
             <div class="resume_position">
                 <div style="margin: 40px 24px 24px 24px">
                     <div>
@@ -354,7 +368,7 @@
                         <svg class="icon" style="color: #d3d3d3;font-size: 16px">
                             <use xlink:href="#icon-shoucang"></use>
                         </svg>
-                        {$list['collect_count']}人关注了该职位
+                        {$list['collect_num']}人关注了该职位
                     </span>
                 </div>
             </div>

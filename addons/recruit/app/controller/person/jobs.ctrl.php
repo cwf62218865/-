@@ -62,10 +62,15 @@ elseif ($op=="reomve_order_jobs"){
 //取消收藏职位
 elseif ($op=="remove_collect_jobs"){
     $data['id'] = check_pasre($_GPC['collect_jobs_id'],"参数错误");
-    $collect_jobs = pdo_fetch("select id from ".tablename(WL."collect_jobs")." where id=".$data['id']);
+    $collect_jobs = pdo_fetch("select id,puid from ".tablename(WL."collect_jobs")." where id=".$data['id']);
     if($collect_jobs){
         $data['uid'] = $_SESSION['uid'];
-        pdo_delete(WL."collect_jobs",$data);
+        $r = pdo_delete(WL."collect_jobs",$data);
+        if($r){
+            $collect_num = m('jobs')->get_jobs($collect_jobs['jobs_id'],"collect_num");
+            $collect_num = $collect_num-1;
+            pdo_update(WL."jobs",array('collect_num'=>$collect_num,'updatetime'=>time()),array('id'=>$collect_jobs['jobs_id']));
+        }
         call_back(1,"取消收藏成功");
     }
 }
@@ -81,4 +86,14 @@ elseif ($op=="apply_deal"){
         call_back(2,"no");
     }
 //    var_dump($_POST);exit();
+}elseif ($op=="apply_refuse"){
+    $data['refuse_reason'] = check_pasre($_POST['reason'],"请选择拒绝原因");
+    $data['id'] = check_pasre($_POST['dataid'],"参数错误");
+    $data['offer'] = 2;
+    $r = pdo_update(WL."jobs_apply",$data,array('id'=>$_POST['dataid']));
+    if($r){
+        call_back(1,"提交成功");
+    }else{
+        call_back(2,"服务器异常");
+    }
 }

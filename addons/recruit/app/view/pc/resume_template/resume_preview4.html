@@ -49,7 +49,7 @@
                             <label class="basic_style">{php echo $resume['political_status']}</label>
                             <label class="basic_style">{php echo $resume['education']}</label>
                             </div>
-                            <label class="basic_style" style="padding-left: 0">{if $resume['work_time']}{php echo $resume['work_time']}年工作经验{/if}</label>
+                            <label class="basic_style" style="padding-left: 0">{php echo $resume['experience']}</label>
                             <label class="basic_style basic_bordernone">{php echo $resume['work_status']}</label>
                         </div>
                         <div class="basic_msg_h">
@@ -62,9 +62,9 @@
                             <div>政治面貌：<span class="basic_name">{$resume['political_status']}</span></div>
                             <div>籍贯：<span class="basic_name">{$resume['origin_place']}</span></div>
                             <div>出生年月：<span class="basic_name">{php echo date("Y-m",$resume['birthday'])}</span></div>
-                            <div>毕业学校：<span class="basic_name">{php echo $resume['arr_education']['school_name']}</span></div>
+                            <div>毕业学校：<span class="basic_name">{php echo $resume['school_name']}</span></div>
                             <div>学历：<span class="basic_name">{php echo $resume['education']}</span></div>
-                            <div>专业：<span class="basic_name">{php echo $resume['arr_education']['edu_major']}</span></div>
+                            <div>专业：<span class="basic_name">{php echo $resume['major']}</span></div>
                         </div>
                         <div class="basic_msg_h">
                             <div class="title_top_con">

@@ -50,12 +50,12 @@
                             <label class="basic_style">{php echo ceil((time()-$resume['birthday'])/31536000)}岁</label>
                             <label class="basic_style">{php echo $resume['political_status']}</label>
                             <label class="basic_style">{php echo $resume['education']}</label>
-                            <label class="basic_style">{if $resume['work_time']}{php echo $resume['work_time']}年工作经验{/if}</label>
+                            <label class="basic_style">{php echo $resume['experience']}</label>
                             <label class="basic_style">{php echo $resume['work_status']}</label>
                         </div>
                         <div class="bshang1">
-                            <label class="basic_style2">毕业学校：<span class="college_name">{php echo $resume['arr_education']['school_name']}</span></label>
-                            <label class="basic_style2">所学专业：<span class="major_name">{php echo $resume['arr_education']['edu_major']}</span></label>
+                            <label class="basic_style2">毕业学校：<span class="college_name">{php echo $resume['school_name']}</span></label>
+                            <label class="basic_style2">所学专业：<span class="major_name">{php echo $resume['major']}</span></label>
                             <label class="basic_style2">籍贯：<span class="jiguan_name">{php echo $resume['origin_place']}</span></label>
                         </div>
                         <div class="mobilemsg">

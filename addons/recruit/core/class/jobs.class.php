@@ -2,9 +2,14 @@
 
 class jobs{
 
-    public function get_jobs($id){
-        $jobs = pdo_fetch("select * from ".tablename(WL.'jobs')." where display=1 and id=".$id);
-        return $jobs;
+    public function get_jobs($id,$field=""){
+        if($field){
+            $jobs = pdo_fetch("select ".$field." from ".tablename(WL.'jobs')." where id=".$id);
+            return $jobs[$field];
+        }else{
+            $jobs = pdo_fetch("select * from ".tablename(WL.'jobs')." where display=1 and id=".$id);
+            return $jobs;
+        }
     }
 
 
@@ -49,6 +54,10 @@ class jobs{
         }
         if($data['data']['job_order'] && $data['data']['job_order']=="发布时间"){
             $orderby = " order by addtime desc,open desc";
+        }
+
+        if($data['data']['job_order'] && $data['data']['job_order']=="关注度"){
+            $orderby = " order by collect_num desc,open desc";
         }
 
         if($data['data']['job_name']){
