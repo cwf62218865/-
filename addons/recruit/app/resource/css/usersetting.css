@@ -22,6 +22,9 @@
     color: #999999;
     border-left: 2px solid #fff;
 }
+.left_btn_con:hover{
+    color: #0099cc;
+}
 .selectit{
     border-left: 2px solid #0099cc;
     background: #fff;
