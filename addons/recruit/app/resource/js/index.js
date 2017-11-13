@@ -2,32 +2,69 @@
  * Created by Administrator on 2017/10/30 0030.
  */
 
-    var index_menu=index_menu;
+    var index_menu=jobsnewfile;
     var leftmenus="";
 
-    for(var i=0 ;i<index_menu.length; i++){
+    for(var i= 0 ; i <index_menu['00'].length;i++){
+            leftmenus+='<div class="index_menu">';
+            leftmenus+='<span class="index_menu_title">'+index_menu['00'][i]+'</span>';
+            if(i==0||i==1||i==2||i==7||i==8){
+                for(var k=0 ; k<2; k ++){
+                    leftmenus+='<a href="#"> '+index_menu['00_'+(i+1)][k]+'</a>';
+                }
+            }else if(i==3){
+                for(var k=0 ; k<1; k ++){
+                    leftmenus+='<a href="#"> '+index_menu['00_'+(i+1)][k]+'</a>';
+                }
+            }else{
+                for(var k=0 ; k<3; k ++){
+                    leftmenus+='<a href="#"> '+index_menu['00_'+(i+1)][k]+'</a>';
+                }
+            }
 
-        leftmenus+='<div class="index_menu">';
-        leftmenus+='<span class="index_menu_title">'+index_menu[i].title+'</span>';
-        for(var k=0 ; k<index_menu[i].name.length; k ++){
-            leftmenus+='<a href="#"> '+index_menu[i].name[k]+'</a>';
-        }
-        leftmenus+='<svg class="icon">'+
-            '<use xlink:href="#icon-more"></use>'+
-            '</svg>';
+            leftmenus+='<svg class="icon">'+
+                '<use xlink:href="#icon-more"></use>'+
+                '</svg>';
+            if(i>=9){
+                leftmenus+='<div class="index_menu_content" style="bottom:0;top:auto">'
+            }else{
+                leftmenus+='<div class="index_menu_content">'
+            }
 
-        if(i>=9){
-            leftmenus+='<div class="index_menu_content" style="bottom:0;top:auto">'
-        }else{
-            leftmenus+='<div class="index_menu_content">'
-        }
-        leftmenus+='<div class="index_menu_content_title">'+index_menu[i].title+'</div>'+
-            '<div class="index_menu_contents">';
-        for(var m=0 ; m<index_menu[i].content.length; m ++){
-            leftmenus+='<a href="#"> '+index_menu[i].content[m]+'</a>';
-        }
-        leftmenus+='</div></div></div>';
+            for(var l=0; l<index_menu['00_'+(i+1)].length; l ++){
+
+            leftmenus+='<div class="index_menu_content_title">'+index_menu['00_'+(i+1)][l]+'</div>'+
+                '<div class="index_menu_contents">';
+            for(var m=0 ; m<index_menu['00_'+(i+1)+'_'+(l+1)].length; m ++){
+                leftmenus+='<a href="#"> '+index_menu['00_'+(i+1)+'_'+(l+1)][m]+'</a>';
+            }
+            leftmenus+='</div>';
+            }
+            leftmenus+='</div></div>';
     }
+    //for(var i=0 ;i<index_menu.length; i++){
+    //
+    //    leftmenus+='<div class="index_menu">';
+    //    leftmenus+='<span class="index_menu_title">'+index_menu[i].title+'</span>';
+    //    for(var k=0 ; k<index_menu[i].name.length; k ++){
+    //        leftmenus+='<a href="#"> '+index_menu[i].name[k]+'</a>';
+    //    }
+    //    leftmenus+='<svg class="icon">'+
+    //        '<use xlink:href="#icon-more"></use>'+
+    //        '</svg>';
+    //
+    //    if(i>=9){
+    //        leftmenus+='<div class="index_menu_content" style="bottom:0;top:auto">'
+    //    }else{
+    //        leftmenus+='<div class="index_menu_content">'
+    //    }
+    //    leftmenus+='<div class="index_menu_content_title">'+index_menu[i].title+'</div>'+
+    //        '<div class="index_menu_contents">';
+    //    for(var m=0 ; m<index_menu[i].content.length; m ++){
+    //        leftmenus+='<a href="#"> '+index_menu[i].content[m]+'</a>';
+    //    }
+    //    leftmenus+='</div></div></div>';
+    //}
 
     $(".index_menus").html(leftmenus);
 
