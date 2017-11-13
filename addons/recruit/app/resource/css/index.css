@@ -95,14 +95,18 @@
     z-index: 99;
     background-color: #fafafa;
     display: none;
+    box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.1);
 }
 
 .index_menu_content_title{
     display: inline-block;
-    margin: 24px 0 20px 30px;
+    margin: 0 0 20px 30px;
     width: 480px;
     font-size: 18px;
     color: #333;
+}
+.index_menu_content .index_menu_content_title:first-child{
+    margin-top: 24px;
 }
 .index_menu_contents{
     margin: 0 30px 8px 26px;
@@ -114,7 +118,7 @@
     line-height: 14px;
     margin-left: 8px;
     margin-bottom: 16px;
-    border-right: 1px solid #666;
+    border-right: 1px solid #999;
 }
 .index_menu_contents a:last-child{
     border-right: none;
