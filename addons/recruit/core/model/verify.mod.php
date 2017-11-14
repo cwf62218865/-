@@ -36,7 +36,7 @@ function member_exists($username){
     if($member){
         return $member;
     }else{
-        call_back(2,"该用户不存在");
+        call_back(4,"该用户不存在");
     }
 }
 

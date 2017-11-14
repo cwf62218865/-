@@ -257,6 +257,8 @@ elseif ($op=="login_deal"){
         }else{
             call_back(2,"请输入正确的密码");
         }
+    }else{
+     call_back(4,"用户名不存在");
     }
 }
 
