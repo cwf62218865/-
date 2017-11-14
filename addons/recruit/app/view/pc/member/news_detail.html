@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/yingjieseng/addons/recruit/app/resource/css/header.css" rel="stylesheet">
+    <link href="/yingjieseng/addons/recruit/app/resource/css/control.css" rel="stylesheet">
+    <link href="/yingjieseng/addons/recruit/app/resource/css/personal.css" rel="stylesheet">
+    <link href="/yingjieseng/addons/recruit/app/resource/css/job_apply.css" rel="stylesheet">
+    <link href="/yingjieseng/addons/recruit/app/resource/css/news_detail.css" rel="stylesheet">
+    <title>新闻详情</title>
+</head>
+<body bgcolor="#f4f4f4">
+{if $_SESSION['utype']==1}
+{php include wl_template('common/top');}
+{elseif $_SESSION['utype']==2}
+{php include wl_template('common/company_top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
+<div class="width1200 p1content">
+
+
+
+    <div class="p1_left">
+        <div class="con_list" style="padding-bottom: 80px">
+
+    </div>
+</div>
+
+    <div class="p1_right">
+        <div class="part_one">
+            <div class="title-top">
+                <label class="top_con">热门文章</label>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+</body>
+<script src="yingjieseng/addons/recruit/app/resource/js/jquery.js" rel="script"></script>
+<script src="yingjieseng/addons/recruit/app/resource/js/iconfont.js" rel="script"></script>
+
+
+
+
+</html>
