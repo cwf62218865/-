@@ -88,9 +88,13 @@
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
                         </svg>
                     </label>
-                    <div class="options" style="height: 0px">
+                    <div class="options" style="height: 0px;left: 180px">
 
                     </div>
+                </div>
+                <div class="chec_tip1">
+                    <div class="left_align"></div>
+                    <div class="right_align" style="width: 162px;"></div>
                 </div>
                 <label class="general-input detail_zj" >
                     <input type="text" id="address" placeholder="详细地址（选填）" value="{php echo $resume['address']}">
@@ -194,6 +198,7 @@
                                     </button>
                                     <button type="button" class="btn btn-danger fa fa-refresh" data-method="reset" title="重置图片">
 								            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214">
+                                            </span>
                                     </button>
                                 </div>
                                 <div class="col-md-3">
@@ -352,31 +357,50 @@
             if($.trim(user_name)==""){
                 var input_box=$("#user_name").closest(".general-input");
                 input_box.css("border-color","#e23d46");
-                hint("error","请输入用户名");
+//                hint("error","请输入用户名");
+                $(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","请输入用户名"));
                 return false;
             }
 
             if($.trim(telphone)==""){
                 var input_box=$("#telphone").closest(".general-input");
                 input_box.css("border-color","#e23d46");
-                hint("error","请输入电话号码");
+//                hint("error","请输入电话号码");
+                $(".chec_tip1").eq(0).find(".right_align").html(tipmsg("error","请输入手机号"));
                 return false;
             }else if(!telphonetest.test(telphone)){
                 var input_box=$("#telphone").closest(".general-input");
                 input_box.css("border-color","#e23d46");
-                hint("error","输入号码有误");
+//                hint("error","输入号码有误");
+                $(".chec_tip1").eq(0).find(".right_align").html(tipmsg("error","输入手机号有误"));
                 return false;
             }
 
             if($.trim(email)==""){
                 var input_box=$("#email").closest(".general-input");
                 input_box.css("border-color","#e23d46");
-                hint("error","请输入邮箱");
+//                hint("error","请输入邮箱");
+                $(".chec_tip").eq(0).html(tipmsg("error","请输入邮箱"));
                 return false;
             }else if(!eamiltest.test(email)){
                 var input_box=$("#email").closest(".general-input");
                 input_box.css("border-color","#e23d46");
-                hint("error","输入邮箱有误");
+//                hint("error","输入邮箱有误");
+                $(".chec_tip").eq(0).html(tipmsg("error","输入邮箱有误"));
+                return false;
+            }
+
+            if(!city){
+                var input_box=$("#city").closest(".general-input");
+                input_box.css("border-color","#e23d46");
+                $(".chec_tip1").eq(1).find(".left_align").html(tipmsg("error","请选择居住城市"));
+                return false;
+            }
+
+            if(!city_area){
+                var input_box=$("#city_area").closest(".general-input");
+                input_box.css("border-color","#e23d46");
+                $(".chec_tip1").eq(1).find(".right_align").html(tipmsg("error","请选择区域"));
                 return false;
             }
 
@@ -431,5 +455,11 @@
         $(".resume_reg1headimgbox").html(html);
         $("#modalbox").css("display","none");
     }
+
+
+    $("#city").on("mousedown",function(){
+        $(".chec_tip1").eq(1).find(".left_align").html("");
+    })
+
 </script>
 </html>
