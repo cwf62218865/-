@@ -114,10 +114,10 @@ $(".index_news").on("mouseleave",function(){
 });
 
 $(".surper_company").on("mouseover",function(){
-    $(this).find("img").animate({"width":"244px","height":"132px","top":"-6px","left":"-10px"},200)
+    $(this).find("img").stop().animate({"width":"244px","height":"132px","top":"-6px","left":"-10px"},200)
 });
 $(".surper_company").on("mouseleave",function(){
-    $(this).find("img").animate({"width":"224px","height":"120px","top":"0","left":"0"},200)
+    $(this).find("img").stop().animate({"width":"224px","height":"120px","top":"0","left":"0"},200)
 });
 
 $(".index_menu").on("mouseover",function(){

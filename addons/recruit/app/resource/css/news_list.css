@@ -28,6 +28,9 @@
     font-size: 20px;
     line-height: 30px;
 }
+.news_list_box_title:hover{
+    color: #0099cc;
+}
 .news_list_box_msg{
     display: inline-block;
     line-height: 24px;
