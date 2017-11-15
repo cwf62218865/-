@@ -464,6 +464,19 @@
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/index.js" rel="script"></script>
 <script>
+    $(function () {
+        $.ajax({
+            type:"post",
+            url:"{php echo app_url('test/test/major_info')}",
+            data:jobsnewfile,
+            success:function (data) {
+                var data = JSON.parse(data);
+                console.log(data);
+            }
+        })
+    })
+
+
     var big_bannercontent=[
         "应届僧校园招聘",
         "应届僧校园招聘",

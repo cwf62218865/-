@@ -27,7 +27,7 @@ elseif ($op=="received_resume"){
     $job = pdo_fetchall("select * from ".tablename(WL."jobs")." where uid=".$_SESSION['uid']);
 
     $collect_resume  = m("company")->getall_collect($_SESSION['uid']);
-    
+
     include wl_template("company/receive_resume");
 }
 

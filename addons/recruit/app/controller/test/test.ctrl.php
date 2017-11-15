@@ -54,5 +54,19 @@ echo $url;exit();
     echo $url."&jobs_id=".$data['jobs_id'];exit();
 }elseif ($op=="company_msg"){
     include wl_template("company/company_msg");exit();
- }
+ }elseif ($op=="major_info"){
+//    echo serialize($_POST);exit();
+    $info = $_POST;
+    foreach ($info as $key=>$list){
+        if(is_array($list)){
+            foreach ($list as $li){
+                $data['sign_id'] = $key;
+                $data['major'] = $li;
+                $data['addtime'] = time();
+                pdo_insert(WL."major",$data);
+            }
+        }
+    }
+    var_dump($_POST);exit();
+}
 

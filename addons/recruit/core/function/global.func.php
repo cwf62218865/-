@@ -940,3 +940,19 @@ function oplog($user, $describe, $view_url, $data) {
 	$data = array('user' => $user, 'uniacid' => $_W['uniacid'], 'describe' => $describe, 'view_url' => $view_url, 'data' => $data, 'ip' => CLIENT_IP, 'createtime' => TIMESTAMP);
 	pdo_insert("weliam_shiftcar_oplog", $data);
 }
+
+
+//下载文件到本地
+function downfile($file){
+    $filename=realpath($file); //文件名
+    $date=date("Ymd-H:i:m");
+    Header( "Content-type:  application/octet-stream ");
+    Header( "Accept-Ranges:  bytes ");
+    Header( "Accept-Length: " .filesize($filename));
+    header( "Content-Disposition:  attachment;  filename= {$date}.pdf");
+    echo file_get_contents($filename);
+    readfile($filename);
+}
+
+
+
