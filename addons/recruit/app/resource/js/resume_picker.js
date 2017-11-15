@@ -59,8 +59,8 @@ $(function () {
         $("#invite_box").attr("data-uid",data_uid);
         $("#job_review").val("");
         $("#review_time").val("");
-        $("#contacts_name").val("");
-        $("#contacts_tel").val("");
+        // $("#contacts_name").val("");
+        // $("#contacts_tel").val("");
         $("#city").val("");
         $("#city_area").val("");
         $("#detail_address").val("");

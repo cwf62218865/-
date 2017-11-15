@@ -529,7 +529,7 @@
     var hot_companypage=1;
     $(".new_hot_company").on("click",function(){
         $.ajax({
-            url:"",
+            url:"{php echo app_url('member/index/companys_slide')}",
             type:"post",
             data:{
                 page:hot_companypage
