@@ -176,6 +176,11 @@
     font-size: 16px;
     cursor: pointer;
 }
+.addandeditbtn1{
+    color: #09c;
+    font-size: 16px;
+    cursor: pointer;
+}
 .basic_msg_content{
     width: 100%;
 }
@@ -841,6 +846,6 @@
     border: 1px solid #eee;
     color: #09c;
     text-align: center;
-    line-height: 118px;
+    line-height: 120px;
     cursor: pointer;
 }
