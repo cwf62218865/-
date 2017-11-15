@@ -884,10 +884,11 @@ elseif ($op=="jobs_datail_comment_page"){
 }
 //下载文件
 elseif ($op=="download"){
-
-    downfile($_GPC['filename'].".pdf");
+    downfile($_GPC['filename'].".pdf");echo "<script>history.go(-1);</script>";exit();
 }
+elseif ($op=="companys_slide"){
 
+}
 
 /**********未知接口*******/
 elseif ($op=="resume_worksupload"){

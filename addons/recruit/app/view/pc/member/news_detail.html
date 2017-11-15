@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/header.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/control.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/personal.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/job_apply.css" rel="stylesheet">
-    <link href="/yingjieseng/addons/recruit/app/resource/css/news_detail.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/news_list.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/news_detail.css" rel="stylesheet">
     <title>新闻详情</title>
 </head>
 <body bgcolor="#f4f4f4">
-{if $_SESSION['utype']==1}
+{if $_SESSION['uid']}
 {php include wl_template('common/top');}
-{elseif $_SESSION['utype']==2}
-{php include wl_template('common/company_top');}
 {else}
 {php include wl_template('common/header');}
 {/if}
@@ -23,18 +23,262 @@
 
 
 
-    <div class="p1_left">
+    <div class="p1_left" style="margin-top: 30px;">
         <div class="con_list" style="padding-bottom: 80px">
-
+            <div class="top_news">腾讯任宇昕：打出“AI in All”战略，明年投入百亿打造企鹅号生态</div>
+            <div class="fu_topnews">
+                <label class="fu_icos">
+                    <svg class="icon">
+                        <use xlink:href="#icon-shuqian1"></use>
+                    </svg>网站公告</label>
+                <label class="fu_icos">
+                    <svg class="icon">
+                        <use xlink:href="#icon-liulanliang"></use>
+                    </svg>1453</label>
+                <label class="fu_icos">2017-12-20</label>
+                <label class="fu_icos_right fbpinglun">
+                    <svg class="icon" style="margin-right: 10px;width: 18px;height: 18px;">
+                        <use xlink:href="#icon-xiugai"></use>
+                    </svg>评论(1342)
+                </label>
+            </div>
+            <div class="news_content">
+                <p>首先是连接智慧化。任宇昕认为，智慧连接一定意味着是一次连接的升级，意味着在不同的场景当中我们需要根据场景的特点来提供定制化的智慧解决方案。具体来说，腾讯不会再大举进入电商，而是通过去中心化的方式，把我们平台的能力能够开放出来，开放给广泛的品牌商、零售商以及商业地产等合作伙伴。另外，合作伙伴还会得到以及非常完备的工具箱。</p>
+                <p class="part_two">在采访中贾跃亭显得很诚恳，对不少细节信息以及外界关心的问题都做了解答，诸如从“下周回国”到迟迟不回国的原因，“乐视网IPO有没有造假”，“套现的钱都去哪了”等等。</p>
+                <img src="{WL_URL_ARES}images/gongsi.png" class="news_pic">
+                <p class="part_two">首先是连接智慧化。任宇昕认为，智慧连接一定意味着是一次连接的升级，意味着在不同的场景当中我们需要根据场景的特点来提供定制化的智慧解决方案。具体来说，腾讯不会再大举进入电商，而是通过去中心化的方式，把我们平台的能力能够开放出来，开放给广泛的品牌商、零售商以及商业地产等合作伙伴。另外，合作伙伴还会得到以及非常完备的工具箱。</p>
+                <p class="part_two">在采访中贾跃亭显得很诚恳，对不少细节信息以及外界关心的问题都做了解答，诸如从“下周回国”到迟迟不回国的原因，“乐视网IPO有没有造假”，“套现的钱都去哪了”等等。</p>
+            </div>
+            <div class="foot_btns">
+                <div class="con" style="width: 100%;margin-top: 20px;margin-bottom: 50px;">
+                    <a class="icons" href="http://localhost/addons/recruit/core/common/Connect2.1/example/oauth/index.php" target="_blank">
+                        <svg class="icon" style="color: #ffffff">
+                            <use xlink:href="#icon-qq"></use>
+                        </svg>
+                    </a>
+                    <a href="" class="icons left">
+                        <svg class="icon" style="color: #ffffff">
+                            <use  xlink:href="#icon-weixin"></use>
+                        </svg>
+                    </a>
+                    <a class="icons left" href="https://api.weibo.com/oauth2/authorize?client_id=494225968&amp;redirect_uri=http%3A%2F%2Flocalhost%2Faddons%2Frecruit%2Fcore%2Fcommon%2Flibweibo-master%2Fcallback.php&amp;response_type=code" target="_blank">
+                        <svg class="icon" style="color: #ffffff">
+                            <use  xlink:href="#icon-weibo"></use>
+                        </svg>
+                    </a>
+                    <span class="icons left baidu_icons">
+                        <svg class="icon" style="color: #ffffff">
+                            <use xlink:href="#icon-baidu"></use>
+                        </svg>
+                    </span>
+                    <label class="fu_icos_right fbpinglun">
+                        <svg class="icon" style="margin-right: 10px;width: 18px;height: 18px;">
+                            <use xlink:href="#icon-xiugai"></use>
+                        </svg>评论(1342)
+                    </label>
+                </div>
+                <div class="xiangguan">
+                    <label class="xg_title">相关文章</label>
+                </div>
+                <div class="xg_lists">
+                    <a class="xg_titles" href="#">光线“复活”了许多动画电影，但爆款何时再来？</a>
+                    <a class="xg_titles" href="#">携程幼儿园虐童事件最新进展：上海市妇联表示强烈谴责、严肃处理</a>
+                    <a class="xg_titles" href="#">爬虫泛滥：“爬”现金贷窃取数据，支付宝和微信也遭殃</a>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-    <div class="p1_right">
+    <div class="p1_right" style="margin-top: 30px;">
         <div class="part_one">
             <div class="title-top">
                 <label class="top_con">热门文章</label>
             </div>
+            <a href="" class="items_list">
+                <div class="news_logo">
+                    <img src="{WL_URL_ARES}images/gongsi.png" style="width: 100%;">
+                </div>
+                <div class="news_company_content">
+                    <!--需要限制字符长度-->
+                    <div class="news_company_title">36氪首发 | 租包将会成为主流消费行氪首…</div>
+                    <!--超出24小时显示日期-->
+                    <div class="news_list_box_classify" style="position: absolute;bottom: 0">
+                        11小时前
+                    </div>
+                </div>
+            </a>
+            <a href="" class="items_list">
+                <div class="news_logo">
+                    <img src="{WL_URL_ARES}images/gongsi.png" style="width: 100%;">
+                </div>
+                <div class="news_company_content">
+                    <div class="news_company_title">36氪首发 | 租包将会成为主流消费行氪首…</div>
+                    <div class="news_list_box_classify" style="position: absolute;bottom: 0">
+                        11小时前
+                    </div>
+                </div>
+            </a>
+            <a href="" class="items_list">
+                <div class="news_logo">
+                    <img src="{WL_URL_ARES}images/gongsi.png" style="width: 100%;">
+                </div>
+                <div class="news_company_content">
+                    <!--需要限制字符长度-->
+                    <div class="news_company_title">36氪首发 | 租包将会成为主流消费行氪首…</div>
+                    <!--超出24小时显示日期-->
+                    <div class="news_list_box_classify" style="position: absolute;bottom: 0">
+                        11小时前
+                    </div>
+                </div>
+            </a>
+            <a href="" class="items_list">
+                <div class="news_logo">
+                    <img src="{WL_URL_ARES}images/gongsi.png" style="width: 100%;">
+                </div>
+                <div class="news_company_content">
+                    <!--需要限制字符长度-->
+                    <div class="news_company_title">36氪首发 | 租包将会成为主流消费行氪首…</div>
+                    <!--超出24小时显示日期-->
+                    <div class="news_list_box_classify" style="position: absolute;bottom: 0">
+                        11小时前
+                    </div>
+                </div>
+            </a>
+            <a href="" class="items_list">
+                <div class="news_logo">
+                    <img src="{WL_URL_ARES}images/gongsi.png" style="width: 100%;">
+                </div>
+                <div class="news_company_content">
+                    <!--需要限制字符长度-->
+                    <div class="news_company_title">36氪首发 | 租包将会成为主流消费行氪首…</div>
+                    <!--超出24小时显示日期-->
+                    <div class="news_list_box_classify" style="position: absolute;bottom: 0">
+                        11小时前
+                    </div>
+                </div>
+            </a>
 
+            <div class="ads">
+                <div class="ads_con">
+                    <a class="ads2" href="">
+                        <span class="topnum1">Top2</span>
+                        <div class="title">
+                            <p class="title_con">IOS11更新了，给你100+个IOS11实用技巧</p>
+                        </div>
+                        <img src="{WL_URL_ARES}images/ads2.png" class="ads_pic">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pingpluqu1" style="display: none;">
+            <div class="close_kuang">
+                <img src="{WL_URL_ARES}images/close.png" class="close_ico">
+            </div>
+            <img src="{WL_URL_ARES}images/youhuashuo.png" class="youhuashuo">
+            <div class="touxiang">
+                <!--未登录状态-->
+                {if $_SESSION['utype']==""}
+                <img src="{WL_URL_ARES}images/notouxiang.png" style="width: 100%;"/>
+                <!--登录状态-->
+                {else}
+                <img src="{$portrait['headimgurl']}" style="width: 100%;"/>
+                {/if}
+            </div>
+
+            <div class="icos_btns">
+                <!--未登录状态-->
+                {if $_SESSION['utype']==""}
+                <label class="denglu">登录</label>
+                <a class="zhuce" href="{php echo app_url('member/index/register')}" style="color: #999999">注册</a>
+                <!--未登录状态end-->
+                <!--登录状态-->
+                {else}
+                <label class="user_name">{$user['mobile']}</label>
+                {/if}
+                <!--登录状态end-->
+            </div>
+
+            <div class="text_area_pl">
+                <textarea class="shuru_text" placeholder="请输入评论"></textarea>
+            </div>
+            <div class="fabupjbtn">发布评价</div>
+            <div class="pinglu_title">最新评论<label class="pl_total">(1234)</label>
+                <label class="huanyipi">
+                    <svg class="icon" style="">
+                        <use xlink:href="#icon-huanyipi"></use>
+                    </svg>
+                    换一批
+                </label>
+            </div>
+            <div class="pinglun_item">
+                <div class="touxiang_pl">
+                    <img src="{WL_URL_ARES}images/resume_tx1.png" style="width: 100%;">
+                </div>
+                <div class="pl_user">赵翔雷</div>
+                <div class="pinglunneir">全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进。
+                </div>
+                <div class="pl_status">
+                    <label class="time_pl">11小时前</label>
+                    <label class="ico_plbtn">
+                        <span class="jubao_btn">举报</span>
+                        <span class="huifu_btn">回复</span>
+                    </label>
+                </div>
+            </div>
+            <div class="pinglun_item">
+                <div class="touxiang_pl">
+                    <img src="{WL_URL_ARES}images/resume_tx1.png" style="width: 100%;">
+                </div>
+                <div class="pl_user">赵翔雷</div>
+                <div class="pinglunneir"><label class="beizhu_pl">[回复黄振宇]</label>全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进。</div>
+                <div class="pl_status">
+                    <label class="time_pl">11小时前</label>
+                    <label class="ico_plbtn">
+                        <span class="jubao_btn">举报</span>
+                        <span class="huifu_btn">回复</span>
+                    </label>
+                </div>
+            </div>
+            <div class="pinglun_item">
+                <div class="touxiang_pl">
+                    <img src="{WL_URL_ARES}images/resume_tx1.png" style="width: 100%;">
+                </div>
+                <div class="pl_user">赵翔雷</div>
+                <!--截取3行以内的内容，40字-->
+                <div class="pinglunneir">
+                    <label class="pinglunzi">全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进全党全国各族</label>
+                    <input type="hidden" class="pl_all" value="全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进。">
+                    <!--超出3行需要显示-->
+                    <label class="btn_zk">展开
+                        <svg class="icon" style="">
+                            <use xlink:href="#icon-xiajiantou"></use>
+                        </svg>
+                    </label>
+                </div>
+                <div class="pl_status">
+                    <label class="time_pl">11小时前</label>
+                    <label class="ico_plbtn">
+                        <span class="jubao_btn">举报</span>
+                        <span class="huifu_btn">回复</span>
+                    </label>
+                </div>
+            </div>
+            <div class="pinglun_item">
+                <div class="touxiang_pl">
+                    <img src="{WL_URL_ARES}images/resume_tx1.png" style="width: 100%;">
+                </div>
+                <div class="pl_user">赵翔雷</div>
+                <div class="pinglunneir">全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进。</div>
+                <div class="pl_status">
+                    <label class="time_pl">11小时前</label>
+                    <label class="ico_plbtn">
+                        <span class="jubao_btn">举报</span>
+                        <span class="huifu_btn">回复</span>
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -44,9 +288,16 @@
 
 
 </body>
-<script src="yingjieseng/addons/recruit/app/resource/js/jquery.js" rel="script"></script>
-<script src="yingjieseng/addons/recruit/app/resource/js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/news_detail.js" rel="script"></script>
+<script>
 
+
+
+
+</script>
 
 
 

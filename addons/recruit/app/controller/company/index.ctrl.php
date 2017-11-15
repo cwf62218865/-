@@ -32,7 +32,6 @@ elseif ($op=="step3"){
 elseif($op=="manage_resume"){
     $nav = isset($_GPC['nav'])?$_GPC['nav']:0;
     $resume  = m("company")->getall_resume($_SESSION['uid'],-1,2);
-//    var_dump($resume);exit();
     $resume1 =m("resume")->getall_resume();
 
     $arr = pdo_fetchall("select r.* from ".tablename(WL."jobs_apply")." as j,".tablename(WL."resume")." as r  where j.resume_id=r.id and j.offer=1 and j.status=3 and j.uid=".$_SESSION['uid']);

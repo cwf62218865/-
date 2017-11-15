@@ -34,9 +34,9 @@ class resume{
             $limit = " limit ".(($page-1)*6).",6";
         }
         if($status==1){
-            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=2 and puid=".$uid." order by createtime desc ".$limit);
+            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=2 and offer=1 and puid=".$uid." order by createtime desc ".$limit);
         }elseif($status==2){
-            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and puid=".$uid." order by createtime desc ".$limit);
+            $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=1 and status=3 and puid=".$uid." order by createtime desc ".$limit);
         }elseif ($status==0){
             $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where puid=".$uid." order by createtime desc ".$limit);
         }elseif ($status==3){
@@ -67,9 +67,16 @@ class resume{
             $jobs[$key]['retoate_x'] = $company_profile['retoate_x'];
             $jobs[$key]['retoate_y'] = $company_profile['retoate_y'];
             $jobs[$key]['city'] = $company_profile['city'];
+
+            if($status==3){
+                $interview = pdo_fetch("select time_stamp from ".tablename(WL."interview")." where apply_id=".$list['id']);
+                if(($interview['time_stamp']+60*60*24)<time()){
+                    $jobs[$key] = "";
+                }
+            }
         }
 
-        return $jobs;
+        return array_filter($jobs);
     }
 
     /*
@@ -113,7 +120,7 @@ class resume{
     public function jobs_interview($uid,$page=1){
         $limit = " limit ".(($page-1)*6).",6";
         $orderby = " order by createtime desc";
-        $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and puid=".$uid.$orderby.$limit);
+        $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=1 and status=3 and puid=".$uid.$orderby.$limit);
 
         $jobs = "";
         foreach ($jobs_apply as $key=>$list){

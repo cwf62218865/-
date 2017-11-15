@@ -24,15 +24,15 @@ function m($name = '') {
 //公司个人中心统计
 function  company_statistics(){
 	$data['jobs_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$_SESSION['uid']." and open=1");
-	$data['apply_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where uid=".$_SESSION['uid']." and direction=2");
+	$data['apply_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where uid=".$_SESSION['uid']." and direction=1 and offer=1");
 	$data['interview_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where uid=".$_SESSION['uid']." and status=3 and offer=1");
 	return $data;
 }
 
 //求职者个人中心统计
 function person_statistics(){
-	$data['apply_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and direction=2");
-	$data['interview_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and status=3");
+	$data['apply_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and direction=2 and status=3  and offer=1");
+	$data['interview_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and status=3 and direction=1");
 	return $data;
 }
 
@@ -77,7 +77,7 @@ function add_order_num(){
 
 //未处理面试邀请
 function interview_num(){
-    $interview_num = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and status=3 and offer=0");
+    $interview_num = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and status=3 and direction=1");
     return $interview_num;
 }
 
