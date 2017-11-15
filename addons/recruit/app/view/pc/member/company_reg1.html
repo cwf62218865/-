@@ -166,7 +166,8 @@
                             }
                         },1000)
                     }else{
-                        hint("error",data.content);
+                        $(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error",data.content))
+//                        hint("error",data.content);
                     }
                 }
             })
@@ -249,6 +250,8 @@
                     var data = JSON.parse(data);
                     if(data.status==1){
                         window.location.href="{php echo app_url('member/company_register/step2')}";
+                    }if(data.status==2) {
+                        $(".chec_tip").eq(1).html(tipmsg("error",data.content))
                     }else{
                         hint("error",data.content);
                     }

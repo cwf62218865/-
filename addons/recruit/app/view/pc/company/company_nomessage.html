@@ -35,6 +35,20 @@
             margin-left: 88px;
             margin-top: 20px;
         }
+        .logo_tip{
+            width: 120px;
+            display: block;
+            height: 0;
+            border: none;
+            float: none;
+            margin-left: 260px;
+            text-align: center;
+        }
+        .logo_tip .formtip{
+            margin-top: 10px;
+
+
+        }
 
     </style>
 
@@ -61,9 +75,14 @@
                            </svg>
                        </span>
                    </span>
+                   <label class="general-input relative logo_tip">
+                       <input type="hidden" name="company_logo" data-error="请上传头像" value="{php echo $company['headimgurl']}"  class="company_logo">
+                   </label>
                    <div class="fontbbb" style="margin-top: 16px">*Logo尺寸要求 200*200，图片大小在2M以内</div>
                    <!--<input type="file" id="company_logo"  accept="image/*"  style="display: none">-->
-                   <input type="hidden" name="company_logo" value="{php echo $company['headimgurl']}"  class="company_logo">
+
+
+
                    <button type="hidden" id="company_logo" class="btn btn-primary" data-toggle="modal" data-target="#avatar-modal" style="margin: 10px;visibility: hidden;" accept="image/*" value="">修改头像</button>
 
                </div>
@@ -616,6 +635,7 @@
     })
 //    上传logo
     $(".company_logo_upload span").on("click",function(){
+        $(".logo_tip .formtip").remove();
         $("#company_logo").click();
     });
 
