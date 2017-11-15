@@ -645,11 +645,11 @@
     margin: 0 auto;
 }
 .preview .con_list{
-    margin-top: 0px;
+    margin-top: 30px;
     margin-bottom: 100px;
 }
 .resume_btns{
-    display: block;
+    display: inline-block;
     width: 120px;
     height: 40px;
     color: #fff;
@@ -657,7 +657,7 @@
     border: 1px solid #555566;
     background: #555566;line-height: 40px;text-align: center;
     cursor: pointer;
-    margin-right: 40px;
+    margin-right: 30px;
 }
 .icon_resume{
     width: 24px;height: 24px;vertical-align: middle;
@@ -671,10 +671,11 @@
     width: 280px;
     line-height: 40px;
    color: #999999;font-size: 14px;
+    vertical-align: text-top;
 }
-.genghuanbeijing .wenzi{vertical-align: text-bottom;display: inline-block;float: left}
+.genghuanbeijing .wenzi{vertical-align: text-bottom;display: inline-block;}
 .genghuanbeijing .color{
-    width: 28px;height: 28px;border: 1px solid #eeeeee;display: inline-block;margin-top: 5px;margin-left: 20px;float: left;position: relative;
+    width: 28px;height: 28px;border: 1px solid #eeeeee;display: inline-block;margin-top: 5px;margin-left: 20px;position: relative;
     cursor: pointer;
 }
 .color1{

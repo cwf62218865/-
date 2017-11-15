@@ -14,5 +14,8 @@
     .resume_video{
         display: none;
     }
+    .preview .con_list{
+        margin-top: 0px;
+    }
 
 }

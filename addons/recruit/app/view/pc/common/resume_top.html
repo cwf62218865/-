@@ -1,41 +1,192 @@
 
-<div class="header" style="background: #ffffff">
-    <div class="width1200 align_center" style="padding-top: 14px;justify-content: space-between">
+<div class="header" style="background: #ffffff" data-id="1" data-uid="2">
+    <div class="width1200" style="padding-top: 20px;justify-content: space-between;text-align: center;">
         {if $_SESSION['uid']==$_GPC['uid']}
-        <div class="resume_btns" id="change_modal" style=" margin-left: 165px;">
+        <label class="resume_btns" id="change_modal">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-genghuanmoban"></use>
             </svg>
             更换模板
-        </div>
-        {/if}
-        <div class="resume_btns"  id="download_resume">
+        </label>
+
+        <label class="resume_btns"  id="download_resume">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-xiazaijianli"></use>
             </svg>
             下载简历
-        </div>
-        <div class="resume_btns" id="print_resume" onclick="javascript:window.print()">
+        </label>
+        <label class="resume_btns" id="print_resume" onclick="javascript:window.print()">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-dayinjianli"></use>
             </svg>
             打印简历
-        </div>
+        </label>
         <a class="resume_btns" id="exit_view" href="javascript:history.go(-1)">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-tuichuyulan"></use>
             </svg>
             退出预览
         </a>
-        <div class="genghuanbeijing">
+        <label class="genghuanbeijing">
             <span class="wenzi">更换背景</span>
             <span class="color color1"></span>
             <span class="color color2"></span>
             <span class="color color3"></span>
             <span class="color color4"></span>
+        </label>
+        {else}
+        <!--主动查看-->
+        <label class="resume_btns" id="invite">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-invite"></use>
+            </svg>
+            邀请面试
+        </label>
+        <!--查看应聘者投递简历-->
+
+        <!--<label class="resume_btns" id="invite">-->
+            <!--<svg class="icon icon_resume" aria-hidden="true">-->
+                <!--<use xlink:href="#icon-tongyimianshi"></use>-->
+            <!--</svg>-->
+            <!--同意面试-->
+        <!--</label>-->
+        <!--<label class="resume_btns" id="jujuemianshi">-->
+            <!--<svg class="icon icon_resume" aria-hidden="true">-->
+                <!--<use xlink:href="#icon-jujuemianshi"></use>-->
+            <!--</svg>-->
+            <!--拒绝面试-->
+        <!--</label>-->
+
+        <!--查看应聘者投递简历-->
+
+        <label class="resume_btns"  id="download_resume">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-xiazaijianli"></use>
+            </svg>
+            下载简历
+        </label>
+        <label class="resume_btns" id="print_resume" onclick="javascript:window.print()">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-dayinjianli"></use>
+            </svg>
+            打印简历
+        </label>
+        <label class="resume_btns" id="shoucangguanli">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-shoucangguanli"></use>
+            </svg>
+            收藏简历
+        </label>
+        <a class="resume_btns" id="exit_view" href="javascript:history.go(-1)">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-tuichuyulan"></use>
+            </svg>
+            退出预览
+        </a>
+
+        {/if}
+    </div>
+</div>
+
+<!--面试邀请弹框-->
+<div class="modalbox" id="invite_box" style="display: none">
+    <div class="modal" style="width: 620px;margin-left: -310px;">
+        <p class="title_content">面试邀请</p>
+        <span class="modalclose">
+                <img src="{WL_URL_ARES}images/close.png"/>
+            </span>
+        <div class="invite_con">
+            <div class="in_hang">
+                <span class="biaoti">面试职位</span>
+                <label class="general-input relative select_jobs">
+                    <input type="text" readonly="" id="job_review" placeholder="选择面试职位" style="width: 90%;">
+                    <svg class="icon inputicon" aria-hidden="true">
+                        <use xlink:href="#icon-xiala" class="colorbbb"></use>
+                    </svg>
+                    <div class="optionlist" style="height: 0px;">
+                        <div class="option_selecter" data-id="1">1</div>
+                        <div class="option_selecter" data-id="2">2</div>
+
+                        {loop $jobs $list}
+                        <div class="option_selecter" data-id="{$list['id']}">{$list['jobs_name']}</div>
+                        {/loop}
+                    </div>
+                </label>
+
+            </div>
+            <div class="in_hang">
+                <span class="biaoti">面试时间</span>
+                <label class="general-input relative review_input">
+                    <input type="text" readonly="" id="review_time" placeholder="选择时间">
+                    <svg class="icon inputicon" aria-hidden="true">
+                        <use xlink:href="#icon-xiala" class="colorbbb"></use>
+                    </svg>
+                </label>
+                <div class="review_time">
+                    <lable class="time_hour slect" data-id="1">明天10点</lable>
+                    <lable class="time_hour" data-id="2">明天14点</lable>
+                    <lable class="time_hour" data-id="3">后天10点</lable>
+                    <lable class="time_hour" data-id="4">后天14点</lable>
+                    <p class="select_date">选择日期</p>
+                </div>
+                <div class="review_date">
+                        <span class="items_dateweek">
+                        </span>
+                    <div class="hours_edit">
+                        <label class="hour_btn cur" id="minus">-</label>
+                        <label class="hour_num"><span class="number_hour">10</span>点</label>
+                        <label class="hour_btn cur" id="plus">+</label>
+                    </div>
+                    <div class="btns" style="margin-bottom: 22px;margin-top: 10px;">
+                        <button class="tijiao" style="margin-left: 160px" id="reviewtime">确认</button>
+                        <span class="quxiao1">取消</span>
+                    </div>
+                </div>
+            </div>
+            <div class="in_hang">
+                <span class="biaoti">联系人</span>
+                <label class="general-input" >
+                    <input type="text" id="contacts_name"  value="默认注册联系人">
+                </label>
+            </div>
+            <div class="in_hang">
+                <span class="biaoti">联系电话</span>
+                <label class="general-input" >
+                    <input type="text" id="contacts_tel" value="默认注册电话">
+                </label>
+            </div>
+            <div class="in_hang">
+                <span class="biaoti">面试地点</span>
+                <div class=" relative general-select left_align city1 ">
+                    <label class="general-input relative general-select review_city" style="border-color: rgb(245, 245, 245);">
+                        <input type="text" readonly="" id="city" placeholder="选择城市">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                    </label>
+                    <div class="options cityoption" style="height: 185px;overflow-y: auto;"></div>
+                </div>
+                <div class=" relative general-select district1" style="float: right;">
+                    <label class="general-input relative general-select review_district">
+                        <input type="text" readonly="" id="city_area" placeholder="区县">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                    </label>
+                    <div class="options districtoption" style="height: 185px;overflow-y: auto;"></div>
+                </div>
+                <label class="general-input" >
+                    <input type="text" id="detail_address" placeholder="详细地址">
+                </label>
+            </div>
+        </div>
+        <div class="btns" style="margin-bottom: 22px;margin-top: 10px;">
+            <button class="tijiao" id="send_review" style="margin-left: 210px">发送邀请</button>
+            <span class="quxiao">取消</span>
         </div>
     </div>
 </div>
+<!--面试邀请弹框end-->
 
 
 

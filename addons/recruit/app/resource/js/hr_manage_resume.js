@@ -229,3 +229,80 @@ $(".send_value").click(function () {
 
 
 })
+
+
+//面试邀请
+$("#send_review").click(function () {
+
+    var jobs_name=$("#job_review").val();
+    var job_id=$("#job_review").attr("data-id");
+    var resume_id=$("#invite_box").attr("data-id");
+    var puid=$("#invite_box").attr("data-uid");
+    var reviewtime=$("#review_time").val();
+    var contacts_name=$("#contacts_name").val();
+    var contacts_tel=$("#contacts_tel").val();
+    var city=$("#city").val();
+    var city_area=$("#city_area").val();
+    var detail_address=$("#detail_address").val();
+
+    var telphone_reg=/^1[3|5|7|8][0-9]\d{8}$/;
+    if(reviewtime==""){
+        hint("error","请输入面试日期");
+        return;
+    }
+    if(contacts_name==""){
+        hint("error","请输入联系人");
+        return;
+    }
+    if(contacts_tel==""){
+        hint("error","请输入联系电话");
+        return;
+    }
+    if(!telphone_reg.test(contacts_tel)){
+        hint("error","请输入可联系的电话");
+        return;
+    }
+    if(city==""){
+        hint("error","请输入城市");
+        return;
+    }
+    if(city_area==""){
+        hint("error","请输入区县");
+        return;
+    }
+    if(detail_address==""){
+        hint("error","请输入详细地址");
+        return;
+    }
+
+
+
+    $.ajax({
+        url:"{php echo app_url('company/resume/hr_send_review')}",
+        type:"post",
+        data:{
+            jobs_id:job_id,
+            resume_id:resume_id,
+            puid:puid,
+            jobs_name:jobs_name,
+            reviewtime:reviewtime,
+            contacts_name:contacts_name,
+            contacts_tel:contacts_tel,
+            city:city,
+            city_area:city_area,
+            detail_address:detail_address
+
+        },
+        success:function(data){
+            var data = JSON.parse(data);
+            if(data.status==1){
+                $("#invite_box").hide();
+                hint("success","邀请成功");
+//                    window.location.href="";
+            }else{
+                console.log(data.content);
+                hint("error",data.content);
+            }
+        }
+    })
+})
