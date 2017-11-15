@@ -882,6 +882,13 @@ elseif ($op=="jobs_datail_comment_page"){
     }
     call_back(1,$str,$comment_jobs['count']);
 }
+//下载文件
+elseif ($op=="download"){
+
+    downfile($_GPC['filename'].".pdf");
+}
+
+
 /**********未知接口*******/
 elseif ($op=="resume_worksupload"){
     $kind = "个人作品上传";
