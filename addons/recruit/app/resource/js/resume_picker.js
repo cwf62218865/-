@@ -52,11 +52,12 @@ $(function () {
         },300)
     });
     //邀请面试
-    $("body").on("click",".yaoqing_interview,.agree_review",function () {
+    $("body").on("click",".yaoqing_interview,.agree_review,#invite",function () {
         var data_id=$(this).closest(".list_item").attr("data-id");
         var data_uid=$(this).closest(".list_item").attr("data-uid");
         $("#invite_box").attr("data-id",data_id);
         $("#invite_box").attr("data-uid",data_uid);
+        $("#job_review").val("");
         $("#review_time").val("");
         // $("#contacts_name").val("");
         // $("#contacts_tel").val("");
@@ -73,6 +74,12 @@ $(function () {
         setTimeout(function(){
             $("#invite_box").css("display","none");
         },300)
+    });
+    $("body").on("click","#invite",function () {
+        var data_id=$(this).closest(".header").attr("data-id");
+        var data_uid=$(this).closest(".header").attr("data-uid");
+        $("#invite_box").attr("data-id",data_id);
+        $("#invite_box").attr("data-uid",data_uid);
     });
 
 

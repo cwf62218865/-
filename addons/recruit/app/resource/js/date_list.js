@@ -76,3 +76,38 @@ $(".review_input").on("mousedown",function () {
     })
 })
 
+
+$('body').on("mousedown",".general-select input",function(){
+    var _this=$(this);
+    year="";
+    if(_this.closest(".general-select").next().height()=="0"){
+        $(".options").css("height","0px");
+        _this.closest(".general-select").next().css("height","180px");
+    }else {
+        _this.closest(".general-select").next().css("height","0px");
+    }
+
+});
+
+$('.select_jobs').on("click",function(){
+    var _this=$(this);
+    if(_this.closest(".general-input").find(".optionlist").height()=="0"){
+        $(".optionlist").css("height","0px");
+        _this.closest(".general-input").find(".optionlist").css("height","149px");
+    }else {
+        _this.closest(".general-input").find(".optionlist").css("height","0px");
+    }
+
+    $(".option_selecter").on("click",function () {
+        var _this=$(this);
+        var jobs=_this.html();
+        var data_id=_this.attr("data-id");
+        _this.parent(".optionlist").css("height","0px");
+        _this.closest(".select_jobs").find("input").val(jobs);
+        _this.closest(".select_jobs").find("input").attr("data-id",data_id);
+
+
+    })
+
+});
+

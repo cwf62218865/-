@@ -18,7 +18,7 @@ jQuery.extend({
                 var warn=inputi.attr("data-warn");//警告提示信息
                 var rg=inputi.attr("data-rg");//正则
 
-                console.log(inputi.offset().top-$("html").scrollTop());
+                console.log(inputi.parent().offset().top);
 
 
 
@@ -27,7 +27,7 @@ jQuery.extend({
                     if(inputval==""){
                         var no_data="<div class='formtip'><img class='tip_ico' src='/addons/recruit/app/resource/images/ico_error.png'> <span class='tip_msg'>"+error+"</span></div>"
                         inputi.closest(".general-input").css("border-color","#e23d46").append(no_data);
-                        $("html").animate({scrollTop:(inputi.offset().top-$(document).scrollTop())+"px"},200);
+                        $("html").animate({scrollTop:(inputi.parent().offset().top-200)},200);
                         return false;
                     }else if(rg){
                         verification=new RegExp(rg);
@@ -42,7 +42,7 @@ jQuery.extend({
                                 var no_data=""
                             }
                             inputi.closest(".general-input").css("border-color","#e23d46").append(no_data);
-                            $("html").animate({scrollTop:(inputi.offset().top-$(document).scrollTop())+"px"},200);
+                            $("html").animate({scrollTop:(inputi.parent().offset().top-200)},200);
                             return false;
                         }
                     }else{

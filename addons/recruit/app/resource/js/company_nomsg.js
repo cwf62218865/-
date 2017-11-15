@@ -95,8 +95,11 @@ $("body").on("mousedown",".areaoptions .select-option",function(){
 //    }
 //
 //});
-$(".company_welfare span").click(function(){
+$(".company_welfare").on("click","span",function(){
     var _this=$(this);
+    if($(this).hasClass("welfare_choice")){
+        return;
+    };
     var company_welfares=$("#company_welfare").val().split(",");
     if(company_welfares.length>=5){
         hint("error","最多可以添加5个标签");
@@ -122,10 +125,7 @@ $("body").on("click",".company_welfare .welfare_choice .icon",function(){
     addwelfare();
 });
 
-//阻止冒泡
-$("body").on("click",".company_welfare   .icon",function(event){
-    event.stopPropagation();
-});
+
 
 $("body").on("click",".company_welfare .new_welfare .icon",function(){
 
@@ -134,6 +134,12 @@ $("body").on("click",".company_welfare .new_welfare .icon",function(){
     _this.remove();
     addwelfare();
 });
+
+//阻止冒泡
+$("body").on("click",".company_welfare   .icon",function(event){
+    event.stopPropagation();
+});
+
 
 //添加福利
 $(".btn_sou").on("click",function(){

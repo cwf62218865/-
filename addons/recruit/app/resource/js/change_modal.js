@@ -50,4 +50,12 @@ $(function () {
         window.history.go(-1);
     })
 
+    $("#invite").click(function () {
+        $("#invite_box").show();
+    })
+
+    $(".modalclose,.quxiao").click(function () {
+        $("#invite_box").hide();
+    })
+
 })

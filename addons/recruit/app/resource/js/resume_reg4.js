@@ -79,7 +79,7 @@ $(document).ready(function(){
         var _this=$(this);
         var value=$("#place").val();
         if(_this.html()!="不限"){
-            _this.closest(".options").prev().find("input").val(value+" "+_this.html());
+            _this.closest(".options").prev().find("input").val(_this.html());
         }
         else{
             _this.closest(".options").prev().find("input").val(value);
