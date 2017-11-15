@@ -835,3 +835,12 @@
 .third_jobname span:last-child{
     border:none ;
 }
+.no_expbox{
+    width: 670px;
+    height: 120px;
+    border: 1px solid #eee;
+    color: #09c;
+    text-align: center;
+    line-height: 118px;
+    cursor: pointer;
+}

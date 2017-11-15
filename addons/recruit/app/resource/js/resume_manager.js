@@ -515,7 +515,7 @@ $("#addedutionexp").on("click",function(){
 
 
 //修改求职意向
-$("#edit_wanted_job").on("click",function(){
+$("#edit_wanted_job,#edit_wanted_job1").on("click",function(){
     if($("#wanted_jobbox").css("display")=="none"){
         $("#wanted_jobbox").show();
         $("#wanted_job").hide();
