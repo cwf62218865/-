@@ -257,6 +257,8 @@ elseif ($op=="login_deal"){
         }else{
             call_back(2,"请输入正确的密码");
         }
+    }else{
+     call_back(4,"用户名不存在");
     }
 }
 
@@ -273,7 +275,7 @@ elseif ($op=="pwd_bytel"){
                 call_back(2,"验证码不正确");
             }
         }else{
-            call_back(2,"该手机号未注册");
+            call_back(4,"该手机号未注册");
         }
     }
 
@@ -283,7 +285,10 @@ elseif ($op=="pwd_bytel"){
 elseif ($op=="pwd_byemail"){
     $mobile = check_pasre($_POST['tel'],"请输入手机号");
     $email = check_pasre($_POST['yanzheng'],"请输入邮箱");
-
+    $members = pdo_fetch("select id,last_login_time from ".tablename(WL."members")." where mobile='".$mobile."'");
+    if(empty($members)){
+        call_back(4,"该手机号未注册");
+    }
     $member = pdo_fetch("select id,last_login_time from ".tablename(WL."members")." where mobile='".$mobile."' and email='".$email."'");
     if($member){
         $identity = encrypt($member['id'], 'E');

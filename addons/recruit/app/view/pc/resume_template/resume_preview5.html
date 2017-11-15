@@ -35,7 +35,7 @@
         <div class="con_list bgcolor" style="padding-bottom: 0;">
 
 <!--基本信息-->
-            <div class="basic_pr5">
+            <div class="basic_pr5" style="background-image: url('{WL_URL_ARES}images/bg_re.png');">
                 <div class="tx5">
                     <img class="picture_tx5" src="{php echo $resume['headimgurl']}"/>
                 </div>
@@ -229,7 +229,7 @@
                 </div>
                 {/if}
                 <!--30秒个人视频-->
-                {if $resume['video']}
+                {if $resume['person_video']}
                 <div class="content730 resume_video">
                     <div class="items_title mabotem30">
                         <span class="item_ico5 relative"><div style="position: absolute;width: 200px;">30秒个人视频</div></span>
@@ -237,7 +237,7 @@
                     </div>
                     <div class="resume_exp">
                         <div class="person_works relative">
-                            <video src="http://www.zhangxinxu.com/study/media/cat.mp4" width="500" height="300" controls autobuffer style="margin-left: 85px"></video>
+                            <video src="{php echo $resume['person_video']}" width="500" height="300" controls autobuffer style="margin-left: 85px"></video>
                         </div>
                     </div>
                 </div>

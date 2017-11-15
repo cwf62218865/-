@@ -219,14 +219,14 @@
             {/if}
 
             <!--30秒个人视频-->
-            {if $resume['video']}
+            {if $resume['person_video']}
             <div class="content770 resume_video">
                 <div class="items_title item_title6">
                     30秒个人视频
                 </div>
                 <div class="resume_exp">
                     <div class="person_works relative">
-                        <video src="http://www.zhangxinxu.com/study/media/cat.mp4" width="500" height="300" controls autobuffer style="margin-left: 85px"></video>
+                        <video src="{php echo $resume['person_video']}" width="500" height="300" controls autobuffer style="margin-left: 85px"></video>
                     </div>
                 </div>
 

@@ -69,4 +69,7 @@ echo $url;exit();
     }
     var_dump($_POST);exit();
 }
+}elseif ($op=="news"){
+    include wl_template("member/news");exit();
+ }
 

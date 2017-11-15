@@ -205,6 +205,12 @@
                     if(data.status==1){
 //                        console.log(data.content);
                         window.location.href="{php echo app_url('member/person_register/feelings')}";
+                    }else if(data.status==4) {
+                        mobie_input.next().html(tipmsg("error","该手机号码已被注册"));
+                        mobie_input.css("border-color","#e23d46");
+                    }else if(data.status==2) {
+                        code_input.nextAll(".chec_tip").eq(0).html(tipmsg("error","验证码有误"));
+                        code_input.css("border-color","#e23d46");
                     }else{
                         hint("error",data.content);
 

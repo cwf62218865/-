@@ -263,22 +263,29 @@
                 var edu_finish_time=$(".edu_finish_time").eq(i).val();
 
                 var school_input=$(".school_name").eq(i).closest(".general-input");
+                var edu_districtinput=$(".edu_district").eq(i).closest(".general-input");
                 var major_input=$(".edu_major").eq(i).closest(".general-input");
                 var finish_input=$(".edu_finish_time").eq(i).closest(".general-input");
                 var finish_border=$(".edu_finish_time").eq(i).closest(".year");
 
                 if(school_name==""){
                     school_input.css("border-color","#e23d46");
-//                    school_input.next().next().find(".left_align").html(tipmsg("error","请输入学校名称"));
-                    hint("error","请输入学校名称");
+                    school_input.next().next().find(".left_align").html(tipmsg("error","请输入学校名称"));
+//                    hint("error","请输入学校名称");
                     return false;
                 }else{
                     school_input.next().next().find(".left_align").html("");
                 }
+
+                if(!edu_district){
+                    edu_districtinput.css("border-color","#e23d46");
+                    edu_districtinput.parent().next().find(".right_align").html(tipmsg("error","请选择学历"));
+                    return false;
+                }
                 if(edu_major==""){
                     major_input.css("border-color","#e23d46");
-//                    major_input.next().next().find(".left_align").html(tipmsg("error","请输入所学专业"));
-                    hint("error","请输入所学专业");
+                    major_input.next().next().find(".left_align").html(tipmsg("error","请输入所学专业"));
+//                    hint("error","请输入所学专业");
                     return false;
                 }else{
                     major_input.next().next().find(".left_align").html("");
@@ -286,8 +293,8 @@
 
                 if(edu_finish_time==""){
                     finish_input.css("border-color","#e23d46");
-                    hint("error","请选择毕业时间");
-//                    finish_border.next().find(".right_align").html(tipmsg("error","请选择毕业时间"));
+//                    hint("error","请选择毕业时间");
+                    finish_border.next().find(".right_align").html(tipmsg("error","请选择毕业时间"));
                     return false;
                 }
 
@@ -315,6 +322,11 @@
                 }
             })
 
+        });
+
+        $("body").on("mousedown",".edu_district",function(){
+
+            $(this).closest(".education").next().find(".right_align").html("")
         })
     })
 </script>

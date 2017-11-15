@@ -14,7 +14,7 @@ function check_phone($mobile,$kind=1){
         if($kind==1){
             $mobile = pdo_fetch("select mobile from ".tablename(WL."members")." where mobile=".$mobile);
             if($mobile){
-                call_back(2,"该手机号已被注册");
+                call_back(4,"该手机号已被注册");
             }else{
                 return true;
             }
@@ -36,7 +36,7 @@ function member_exists($username){
     if($member){
         return $member;
     }else{
-        call_back(2,"该用户不存在");
+        call_back(4,"该用户不存在");
     }
 }
 
@@ -58,7 +58,6 @@ function send_codes($phone){
         }
         else
         {
-
             if ( (time() - $_SESSION['last_sendtime']) >50 )
             {
 
