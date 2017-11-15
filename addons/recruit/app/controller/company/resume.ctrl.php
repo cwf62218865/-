@@ -219,6 +219,10 @@ elseif ($op=="send_review"){
     $data['puid'] =$jobs_apply['puid'];
     $data['uid'] =$jobs_apply['uid'];
     $data['interview_time'] = check_pasre($_POST['reviewtime'],"参数错误");
+    $time_stamp = explode(" ",$data['interview_time']);
+    $time_stamp[0] = str_replace("月","-",str_replace("日","",$time_stamp[0]));
+    $time_stamp = date("Y")."-".$time_stamp[0]." ".$time_stamp[2];
+    $data['time_stamp'] = strtotime($time_stamp);
     $data['linker'] = check_pasre($_POST['contacts_name'],"参数错误");
     $data['mobile'] = check_pasre($_POST['contacts_tel'],"参数错误");
     $data['city'] = check_pasre($_POST['city'],"参数错误");

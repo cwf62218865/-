@@ -69,7 +69,7 @@ class company{
         if($status==1){
             $wheresql .=" and direction=2 and status=3 ";
         }elseif ($status==2){
-            $wheresql .=" and status=3 and direction=1 and offer=1 ";
+            $wheresql .=" and status=3 and offer=1 ";
         }elseif ($status==3){
             $wheresql .=" and direction=2 ";
         }

@@ -245,6 +245,7 @@ elseif ($op=="post_resume"){
     $data['resume_id'] = $resume['id'];
     $data['puid'] = $resume['uid'];
     $data['direction'] = 2;
+    $data['offer'] = 1;
     $data['createtime'] = time();
 
     $jobs_apply = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where jobs_id=".$data['jobs_id']." and resume_id=".$data['resume_id']);
