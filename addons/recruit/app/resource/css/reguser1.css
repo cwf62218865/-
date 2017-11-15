@@ -569,17 +569,17 @@ position: absolute;
     float: left;
 }
 .rout .routzj .rout_con{
-    width: 700px;
-    height: 450px;
+    width: 660px;
+    height: 420px;
     margin: 0 auto;
-    margin-top: 150px;
+    margin-top: 140px;
     background: url("../images/qinghuai.png") no-repeat;
 }
 .rout .routzj .icos{
     float: left;
     width: 240px;
     height: 36px;
-    margin-top: 375px;
+    margin-top: 355px;
     margin-left: 234px;
 }
 .rout .routzj .btn_start{

@@ -10,8 +10,8 @@
     <title>简历填写</title>
     <style>
         .cwfmonths span{
-            width: 17.5px;
-            text-align: center;
+            width: 25px;
+            height: 15px;
         }
     </style>
 </head>
@@ -179,23 +179,23 @@
             if($.trim(place)==""){
                 var input_box=$("#place").closest(".general-input");
                 input_box.css("border-color","#e23d46");
-                hint("error","请选择籍贯");
-//                $(".cwf_tip").eq(0).html(tipmsg("error","请选择籍贯"));
+//                hint("error","请选择籍贯");
+                $(".cwf_tip").eq(0).html(tipmsg("error","请选择籍贯"));
                 return false;
             }
             if($.trim(birthday)==""){
                 var input_box=$("#birthday").closest(".general-input");
                 input_box.css("border-color","#e23d46");
-                hint("error","请选择生日");
-//                $(".cwf_tip").eq(0).html(tipmsg("error","请选择生日"));
+//                hint("error","请选择生日");
+                $(".cwf_tip").eq(0).html(tipmsg("error","请选择生日"));
                 return false;
             }
 
             if($.trim(introduce)==""){
                 var input_box=$("#introduce").closest(".cwfreg4content");
                 input_box.css("border-color","#e23d46");
-                hint("error","请介绍下自己");
-//                $(".cwf_tip1").eq(0).html(tipmsg("error","请介绍下自己"));
+//                hint("error","请介绍下自己");
+                $(".cwf_tip1").eq(0).html(tipmsg("error","请介绍下自己"));
                 return false;
             }
 
