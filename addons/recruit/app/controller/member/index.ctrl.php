@@ -194,6 +194,8 @@ elseif ($op=="aboutus"){
     $nav = $_GPC['nav'];
 
     include wl_template("member/aboutus");exit();
+}elseif ($op=="news_detail"){
+    include wl_template("member/news_detail");exit();
 }
 
 //验证码

@@ -530,10 +530,26 @@ $(".modalbtn1").on("click",function(){
         $("#personal_msgs").hide();
     });
 
+    $(document).on("click",function(){
+        $(".optionlist").each(function(){
+            var _this=$(this);
+            if(_this.height()!="0"){
+                _this.css("height","0")
+            }
+        });
+    });
+
+
+
+
     //$("body").on("click",function(){
     //    alert(222);
     //    $(".salarys").css("height","0px")
     //})
+
+    $(".select_jobs").click(function(event){
+        event.stopPropagation();
+    });
 
     $(".general-select").click(function(event){
         event.stopPropagation();

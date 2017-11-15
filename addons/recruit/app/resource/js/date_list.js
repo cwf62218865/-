@@ -76,6 +76,21 @@ $(".review_input").on("mousedown",function () {
     })
 })
 
+$(document).click(function(e){
+    var _con = $('.review_time,.review_input');   // 设置目标区域
+    if(!_con.is(e.target) && _con.has(e.target).length === 0){
+        $(".review_time").hide();
+    };
+});
+
+// $(".review_input").click(function () {
+//     if($(this).next().css("display")=="block"){
+//         $(this).next().hide();
+//     }else{
+//         $(this).next().show();
+//     }
+// })
+
 
 $('body').on("mousedown",".general-select input",function(){
     var _this=$(this);
