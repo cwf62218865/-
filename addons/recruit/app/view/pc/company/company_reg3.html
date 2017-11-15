@@ -197,6 +197,7 @@ $(document).ready(function(){
         welfarespan.each(function(){
             welfare+=$(this).html()+",";
         });
+        welfare=welfare.substring(0,welfare.length-1);
 
 
         var property_input=$("#company_property").closest(".left_align");
@@ -208,45 +209,45 @@ $(document).ready(function(){
 
         if($.trim(company_property)==""){
             $("#company_property").closest(".general-input").css("border-color","#e23d46");
-//            property_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","请选择公司性质"));
-            hint("error","请选择公司性质");
-            return;
+            property_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","请选择公司性质"));
+//            hint("error","请选择公司性质");
+            return false;
         }
 
         if($.trim(company_scale)==""){
             $("#company_scale").closest(".general-input").css("border-color","#e23d46");
-//            scale_input.nextAll(".chec_tip1").eq(0).find(".right_align").html(tipmsg("error","请选择公司规模"))
-            hint("error","请选择公司规模");
-            return;
+            scale_input.nextAll(".chec_tip1").eq(0).find(".right_align").html(tipmsg("error","请选择公司规模"))
+//            hint("error","请选择公司规模");
+            return false;
         }
 
         if($.trim(company_industry)==""){
             $("#company_industry").closest(".general-input").css("border-color","#e23d46");
-//            industry_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","请选择所处行业"))
-            hint("error","请选择所处行业");
-            return;
+            industry_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","请选择所处行业"))
+//            hint("error","请选择所处行业");
+            return false;
         }
 
         if($.trim(company_city)==""){
             $("#company_city").closest(".general-input").css("border-color","#e23d46");
-//            city_input.nextAll(".chec_tip1").eq(0).find(".right_align").html(tipmsg("error","请选择所处地区"))
-            hint("error","请选择所处地区");
-            return;
+            city_input.nextAll(".chec_tip1").eq(0).find(".right_align").html(tipmsg("error","请选择所处地区"))
+//            hint("error","请选择所处地区");
+            return false;
         }
 
 
         if($.trim(slogan)==""){
             $("#slogan").closest(".general-input").css("border-color","#e23d46");
-//            slogan_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","slogan不能为空"))
-            hint("error","slogan不能为空");
-            return;
+            slogan_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","slogan不能为空"))
+//            hint("error","slogan不能为空");
+            return false;
         }
 
 
         if(welfare==""){
-//            $(".zjbiaoqian_wrap").find(".chec_tip1  .left_align").html(tipmsg("error","请至少选择一个福利标签"))
-            hint("error","请至少选择一个福利标签");
-            return;
+            $(".zjbiaoqian_wrap").find(".chec_tip1  .left_align").html(tipmsg("error","请至少选择一个福利标签"))
+//            hint("error","请至少选择一个福利标签");
+            return false;
         }
 
         $.ajax({

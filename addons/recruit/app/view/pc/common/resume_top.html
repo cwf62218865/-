@@ -1,7 +1,15 @@
 
 <div class="header" style="background: #ffffff">
     <div class="width1200 align_center" style="padding-top: 14px;justify-content: space-between">
-        <div class="resume_btns" style="margin-left: 156px;" id="download_resume">
+        {if $_SESSION['uid']==$_GPC['uid']}
+        <div class="resume_btns" id="change_modal" style=" margin-left: 165px;">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-genghuanmoban"></use>
+            </svg>
+            更换模板
+        </div>
+        {/if}
+        <div class="resume_btns"  id="download_resume">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-xiazaijianli"></use>
             </svg>
@@ -13,14 +21,6 @@
             </svg>
             打印简历
         </div>
-        {if $_SESSION['uid']==$_GPC['uid']}
-        <div class="resume_btns" id="change_modal">
-            <svg class="icon icon_resume" aria-hidden="true">
-                <use xlink:href="#icon-genghuanmoban"></use>
-            </svg>
-            更换模板
-        </div>
-        {/if}
         <a class="resume_btns" id="exit_view" href="javascript:history.go(-1)">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-tuichuyulan"></use>

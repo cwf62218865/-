@@ -55,4 +55,7 @@ echo $url;exit();
 }elseif ($op=="news"){
     include wl_template("member/news");exit();
  }
+ elseif ($op=="news_detail"){
+     include wl_template("member/news_detail");exit();
+  }
 
