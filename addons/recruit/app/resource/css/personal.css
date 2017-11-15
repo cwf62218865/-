@@ -652,10 +652,10 @@
     display: block;
     width: 120px;
     height: 40px;
-    color: #0099cc;
+    color: #fff;
     border-radius: 3px;
-    border: 1px solid #0099cc;
-    background: #ffffff;line-height: 40px;text-align: center;
+    border: 1px solid #555566;
+    background: #555566;line-height: 40px;text-align: center;
     cursor: pointer;
     margin-right: 40px;
 }
@@ -664,7 +664,7 @@
 }
 .resume_btns:hover{
     color: #ffffff;
-    background: #0099cc;
+    background: #ff6060;border: 1px solid #ff6060;
 }
 .genghuanbeijing{
     height: 40px;
