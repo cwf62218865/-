@@ -386,7 +386,7 @@
 
                     <div class="font999" id="wanted_job" style="margin-top: 58px;line-height: 2;">
 
-                        <div class="">
+                        <div class="wanted_job_content" {if $resume['hope_job']}style="display:block;"{else}style="display:none;"{/if}>
                         <span class="see_hope_job heightse">
                             <svg class="icon" aria-hidden="true">
                                 <use xlink:href="#icon-zhiwei"></use>
@@ -432,8 +432,8 @@
                         </span>
 
                         </div>
-                        <div class="no_expbox" id="edit_wanted_job1">
-                            <span class="addandeditbtn" style="position: relative">
+                        <div class="no_expbox" id="edit_wanted_job1" {if empty($resume['hope_job'])}style="display:block;"{else}style="display:none;"{/if}>
+                            <span class="addandeditbtn1">
                                 <svg class="icon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
                                 </svg>
@@ -454,18 +454,21 @@
                     <!--添加-->
                 <!--</span>-->
                 <span class="addandeditbtn" id="edit_wanted_job">
+                    {if $resume['hope_job']}
                     <div class="edit">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-xiugai"></use>
                     </svg>
                     修改
                     </div>
+                    {else}
                     <div class="add">
                      <svg class="icon" aria-hidden="true">
                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
                      </svg>
                      添加
                     </div>
+                    {/if}
                 </span>
             </div>
 
@@ -648,7 +651,7 @@
                         <!--<div class="left_line">-->
                         <!--</div>-->
 
-                        <div class="resume_exp_content">
+                        <div class="resume_exp_content" {if $work_experience}style="display:block;"{else}style="display:none;"{/if}>
                             {if $work_experience}
                             {loop $work_experience $id $list}
                             <div class="resume_exps" data-id="{php echo $id;}">
@@ -677,6 +680,15 @@
                             </div>
                             {/loop}
                             {/if}
+                        </div>
+
+                        <div class="no_expbox" id="job_exp1" {if empty($work_experience)}style="display:block;margin-top: 58px"{else}style="display:none;margin-top: 58px"{/if}>
+                            <span class="addandeditbtn1">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
+                                </svg>
+                                添加工作经历
+                            </span>
                         </div>
                     </div>
 
@@ -811,7 +823,7 @@
 
             <!--教育经历-->
             <div class="basic_msg width670" style="margin-top: 50px">
-                <div class="basic_msg_content">
+                <div class="basic_msg_content" {if $edu_experience}style="display:block;"{else}style="display:none;"{/if}>
                     <div class="resume_title">
                         <span>教育经历</span>
                     </div>
@@ -843,6 +855,14 @@
 
                         </div>
                         {/loop}
+                        <div class="no_expbox" id="edutionexp1" {if empty($edu_experience)}style="display:block;margin-top: 58px"{else}style="display:none;margin-top: 58px"{/if}>
+                            <span class="addandeditbtn1">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
+                                </svg>
+                                添加教育经历
+                            </span>
+                        </div>
                     </div>
 
 
@@ -929,7 +949,7 @@
 
                     <div class="resume_exp" id="person_works">
 
-                        <div class="person_works">
+                        <div class="person_works" {if $personal_works}style="display:block;"{else}style="display:none;"{/if}>
                             {loop $personal_works $id $list}
                             <div class="person_work" data-id="{php echo $id}">
                                 <div class="img_box"><img src="{php echo $list['thumb']}"></div>
@@ -945,7 +965,14 @@
                             </div>
                             {/loop}
                         </div>
-
+                        <div class="no_expbox" id="person_works1"   {if empty($personal_works)}style="display:block;margin-top: 58px"{else}style="display:none;margin-top: 58px"{/if}>
+                            <span class="addandeditbtn" style="position: relative">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
+                                </svg>
+                                添加个人作品
+                            </span>
+                        </div>
                     </div>
 
 
@@ -1025,6 +1052,15 @@
                                 <!--修改-->
                             <!--</span>-->
                             {/if}
+
+                            <div class="no_expbox" id="vedio_source"  {if empty($resume['person_video'])}style="margin-top: 58px;display:block;"{else}style="margin-top: 58px;display:none;"{/if}>
+                            <span class="addandeditbtn1">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
+                                </svg>
+                                添加个人视频
+                            </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1037,10 +1073,21 @@
 
 
                 <span class="addandeditbtn upload_video" id="upload_video">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-xiugai"></use>
-                    </svg>
-                    修改
+                     {if $resume['person_video']}
+                    <div class="edit">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-xiugai"></use>
+                        </svg>
+                        修改
+                    </div>
+                    {else}
+                    <div class="add">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
+                        </svg>
+                        添加
+                    </div>
+                    {/if}
                 </span>
 
             </div>
@@ -1054,7 +1101,7 @@
                         <span >荣誉证书</span>
                     </div>
                     <div class="resume_exp" id="certificate" style=";margin-bottom: 180px">
-                        <div class="person_works">
+                        <div class="person_works" {if $honor}style="display:block;"{else}style="display:none;"{/if}>
                             {loop $honor $id $list}
                             <div class="relative" data-id="{$id}">
                                 <span class="certificate " style="display: inline-block;width: 570px;white-space: nowrap;text-overflow: ellipsis;">{$list['certificate_content']}</span>
@@ -1066,6 +1113,14 @@
                                 </span>
                             </div>
                             {/loop}
+                            <div class="no_expbox" id="certificate1"{if empty($honor)}style="display:block;margin-top: 58px"{else}style="display:none;margin-top: 58px"{/if}>
+                            <span class="addandeditbtn1">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
+                                </svg>
+                                添加荣誉证书
+                            </span>
+                            </div>
                         </div>
                     </div>
 
@@ -1660,6 +1715,8 @@
             hope1htm5+='<span class="basic_msg_contents2">'+hope5+'</span>';
             $(".see_hope_job").eq(3).html(hope1htm5);
 
+            $("#edit_wanted_job1").remove();
+            $("#wanted_job .wanted_job_content").show();
         }else{
             hint("error",data.content);
         }
@@ -1713,7 +1770,7 @@
             $("#job_expbox").hide();
             $("#job_exp").show();
             $("#addjobexp").show();
-
+            $("#job_exp1").hide();
         }else{
             hint("error",data.content);
         }
@@ -1767,6 +1824,11 @@
                     $("#job_expbox").hide();
                     $("#job_exp").show();
                     $("#addjobexp").show();
+                    var resume_expslength=$(".resume_exp_content .resume_exps").length;
+                    if(resume_expslength==0){
+                        $("#job_exp1").show();
+                    }
+
 //                    window.location.href="";
 //                    $("#job_expbox").hide();
 //                    $(".resume_exps[data-id="+data_id+"]").remove();
@@ -1816,6 +1878,7 @@
             $("#edutionexp").show();
             $("#addedutionexp").show();
             $("#edutionbox").hide();
+            $("#edutionexp1").hide();
 
 
         }else{
@@ -1871,6 +1934,10 @@
                     $("#edutionexp").show();
                     $("#addedutionexp").show();
                     $("#edutionbox").hide();
+                    var resume_exp_contentlength=$("#edutionexp .resume_exp_content").length;
+                    if(resume_exp_contentlength==0){
+                        $("#edutionexp1").show();
+                    }
                 }else{
                     hint("error",data.content);
                 }
@@ -1916,6 +1983,7 @@
 
 
             $("#person_worksbox").hide();
+            $("#person_works1").hide();
 
         }else{
             hint("error",data.content);
@@ -1997,6 +2065,10 @@
                     $("#person_works").show();
                     $("#addpersonworks").show();
                     $("#person_worksbox").hide();
+                    var person_worklength=$("#person_works .person_work").length;
+                    if(person_worklength==0){
+                        $("#person_works1").show();
+                    }
 //
                 }else{
                     hint("error",data.content);
@@ -2028,7 +2100,10 @@
 
             }
             $("#certificate").show();
+            $("#addcertificatebtn").show();
             $("#certificatebox").hide();
+            $("#certificate1").hide();
+
         }else{
             hint("error",data.content);
         }
@@ -2091,9 +2166,14 @@
             success: function (data) {
                 var data=JSON.parse(data);
                 if(data.status==1){
-                    window.location.href="";
-//                    $("#job_expbox").hide();
-//                    $(".resume_exps[data-id="+data_id+"]").remove();
+//                    window.location.href="";
+                    $("#certificatebox").hide();
+                    $("#certificate").show();
+                    $("#certificate .relative[data-id="+data_id+"]").remove();
+                    var relativelength=$("#certificate .relative").length;
+                    if(relativelength==0){
+                        $("#certificate1").show();
+                    }
                 }else{
                     hint("error",data.content);
                 }
@@ -2132,7 +2212,7 @@
     });
 
 
-    $(".upload_video").click(function () {
+    $("#vedio_source,.upload_video").click(function () {
         $(".title_content").html("上传个人视频");
         $("#choosefile").attr("accept","video/*").val("");
         $(".one_btn").html('<svg class="icon" aria-hidden="true">'+

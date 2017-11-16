@@ -470,7 +470,7 @@ $("#hope_jobinput").on("mousedown",function(){
 
 //工作经历
 //添加工作经历
-$("#addjobexp").on("click",function(){
+$("#addjobexp,#job_exp1").on("click",function(){
     $("#job_expbox .delbtn").hide();
     $("#job_expbox input").val("");
 
@@ -497,7 +497,7 @@ $("#identity").val(year_date);
 $('#endstarttime_options').append(endstarttime_options);
 
 //添加教育经历
-$("#addedutionexp").on("click",function(){
+$("#addedutionexp,#edutionexp1").on("click",function(){
     $("#edutionbox .delbtn").hide();
     $("#edutionbox input").val("");
 
@@ -535,7 +535,7 @@ $("#job_content").on("input",function(){
 
 //个人作品
 //添加个人作品
-$("#addpersonworks").on("click",function(){
+$("#addpersonworks,#person_works1").on("click",function(){
     $("#person_worksbox .delbtn").hide();
     $(".person_worksbox .person_worksbtn").remove();
 
@@ -569,7 +569,7 @@ $("body").on("click",".person_worksdelbtn",function(){
 
 //荣誉证书
 //添加荣誉证书
-$("#addcertificatebtn").on("click",function(){
+$("#addcertificatebtn, #certificate1").on("click",function(){
     $("#certificatebox .delbtn").hide();
     $("#certificatebox input").val("");
 
@@ -583,7 +583,7 @@ $("#addcertificatebtn").on("click",function(){
         '                                </svg>');
     $("#certificate_id").val("");
     $("#certificate").hide();
-    $("#addcertificatebtn").hide();
+    //$("#addcertificatebtn").hide();
     $("#certificatebox").show();
 
 })

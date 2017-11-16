@@ -142,6 +142,7 @@ elseif ($op=="save_work_exp"){
     }else{
         array_push($work_experience,$data);
     }
+    $data_id = count($work_experience)-1;
     $work_experience = serialize($work_experience);
     $data1['work_experience'] = $work_experience;
     $experience_info = m("resume")->extract_experience_info($data1);
@@ -149,7 +150,7 @@ elseif ($op=="save_work_exp"){
     $data1['updatetime'] = time();
     $r = pdo_update(WL."resume",$data1,array('uid'=>$_SESSION['uid']));
     if($r){
-        call_back(1,"ok");
+        call_back(1,$data_id);
     }else{
         call_back(2,"no");
     }
@@ -197,7 +198,7 @@ elseif ($op=="save_edu_exp"){
     }else{
         array_push($edu_experience,$data);
     }
-
+    $data_id = count($edu_experience)-1;
     $edu_experience = serialize($edu_experience);
     $data1['edu_experience'] = $edu_experience;
     $experience_info = m("resume")->extract_experience_info($data1);
@@ -207,7 +208,7 @@ elseif ($op=="save_edu_exp"){
     $data1['updatetime'] = time();
     $r = pdo_update(WL."resume",$data1,array('uid'=>$_SESSION['uid']));
     if($r){
-        call_back(1,"ok");
+        call_back(1,$data_id);
     }else{
         call_back(2,"no");
     }
@@ -297,11 +298,11 @@ elseif ($op=="save_personal_works"){
 
         array_push($personal_works,$data);
     }
-
+    $data_id = count($personal_works)-1;
     $personal_works = serialize($personal_works);
     $r = pdo_update(WL."resume",array('personal_works'=>$personal_works,'updatetime'=>time()),array('uid'=>$_SESSION['uid']));
     if($r){
-        call_back(1,"添加成功");
+        call_back(1,$data_id);
     }else{
         call_back(2,"添加失败");
     }
@@ -369,10 +370,11 @@ elseif ($op=="save_certificate"){
     }else{
         array_push($honor,$data);
     }
+    $data_id = count($honor)-1;
     $honor = serialize($honor);
     $r = pdo_update(WL."resume",array('honor'=>$honor),array('uid'=>$_SESSION['uid']));
     if($r){
-        call_back(1,"ok");
+        call_back(1,$data_id);
     }else{
         call_back(2,"no");
     }

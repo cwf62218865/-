@@ -82,6 +82,4 @@ $(function () {
         $("#invite_box").attr("data-uid",data_uid);
     });
 
-
-
 })
