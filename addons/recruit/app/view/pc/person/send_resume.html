@@ -42,7 +42,7 @@
                 {if $apply_jobs}
                 {loop $apply_jobs $list}
                 {if $list['direction']==2}
-                <div class="list_item {if $list['status']<>3}pass{/if}" data-id="1">
+                <div class="list_item {if $list['status']<>3}pass{/if}" >
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
@@ -73,7 +73,6 @@
                             {elseif $list['status']==-1}
                             <div class="status1"><label class="jujuems">已拒绝面试<span class="shachuzw">删除该职位</span></label></div>
                             {else}
-<<<<<<< HEAD
                             <p class="time">
                                 <svg class="icon icon_time" aria-hidden="true">
                                     <use xlink:href="#icon-shijian"></use>
@@ -93,27 +92,6 @@
                                 <span>地址：{php echo $list['interview']['address']}</span>
                             </p>
                             <div class="btn_ditu" data-id="{php echo $list['retoate_x'].','.$list['retoate_y']}" data-city="{$list['city']}"></div>
-=======
-                                <p class="time">
-                                    <svg class="icon icon_time" aria-hidden="true">
-                                        <use xlink:href="#icon-shijian"></use>
-                                    </svg>
-                                    <span>时间：{php echo $list['interview']['interview_time']}</span>
-                                </p>
-                                <p class="review_tel">
-                                    <svg class="icon icon_tel" aria-hidden="true">
-                                        <use xlink:href="#icon-lianxiren"></use>
-                                    </svg>
-                                    <span>联系人：{php echo $list['interview']['linker']}</span>
-                                </p>
-                                <p class="review_address">
-                                    <svg class="icon icon_address" aria-hidden="true">
-                                        <use xlink:href="#icon-didian"></use>
-                                    </svg>
-                                    <span>地址：{php echo $list['interview']['city']." ".$list['interview']['city_area']." ".$list['interview']['address']}</span>
-                                </p>
-                                <div class="btn_ditu" data-id="{php echo $list['retoate_x'].','.$list['retoate_y']}" data-city="{$list['city']}"></div>
->>>>>>> 0c654cba7ae6e1169604502fb6d37812e3a43b16
                             {/if}
                         </div>
                     </div>
@@ -129,13 +107,8 @@
             <div class="resume_content">
                 {if $interview_jobs}
                 {loop $interview_jobs $list}
-<<<<<<< HEAD
                 {if $list['status']==3}
                 <div class="list_item">
-=======
-                    {if $list['status']==3}
-                        <div class="list_item" data-id="1">
->>>>>>> 0c654cba7ae6e1169604502fb6d37812e3a43b16
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['jobs_id']))}">{php echo $list['jobs_name']}</a>
@@ -218,7 +191,7 @@
     </div>
     <!--地图弹框end-->
     <!--拒绝理由弹框-->
-    <div class="modalbox" id="refusebox" style="display: none;">
+    <div class="modalbox" id="refusebox" style="display: none">
         <div class="modal refusebox">
             <p class="title_content">拒绝理由</p>
             <span class="modalclose">
@@ -304,11 +277,9 @@
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/login_reg_account.js"></script>
-<script src="{WL_URL_ARES}js/job_delete.js"></script>
 
 <script>
     $(function () {
-
 
         var nav = "{$_GPC['nav']}";
         $(".list_item_btn").removeClass("select");
@@ -440,11 +411,6 @@
             })
         })
 
-        //删除职位
-        Deletejob(".shachuzw");
-
     })
-
-
 </script>
 </html>
