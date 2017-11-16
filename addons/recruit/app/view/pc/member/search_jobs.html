@@ -59,7 +59,7 @@
                 <span class="city_item">武汉</span>
                 <span class="city_item">天津</span>
                 <span class="city_item">大连</span>
-                <span class="city_item">长春</span>
+                <!--<span class="city_item">长春</span>-->
                 <label class="more_city cur">
                     <div class="gengduo">更多
                         <svg class="icon">
@@ -183,10 +183,10 @@
                                 {/if}
                             </label>
                         </div>
-                        <div class="hang2">
-                            <label class="experience nowrap">{$list['experience']}</label>
-                            <span class="major nowrap">{$list['education']}</span>
-                            <span class="xingzhi">{$list['number_range']}人/{$list['work_nature']}</span>
+                        <div class="hang2" style="width: 100%;">
+                            <span class="major nowrap" style="width: 65px;">{$list['education']}</span>
+                            <label class="experience nowrap">{$list['number_range']}人</label>
+                            <span class="xingzhi">{$list['work_nature']}</span>
                         </div>
                         <div class="hang3">
                             <p>工作经验：<label class="job_jingyan">{$list['experience']}</label></p>
@@ -230,9 +230,9 @@
                 <a class="logo1" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">
                     <img src="{$list['headimgurl']}" class="logopic">
                 </a>
-                <div class="company_name">
-                    <a class="job_n" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
-                    <p class="job_s">
+                <div class="company_name" style="height: 66px;">
+                    <a class="job_n nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
+                    <p class="job_s nowrap" style="display: block;">
                         {if $list['wage_min']>0 && $list['wage_max']>0}
                             {$list['wage_min']}-{$list['wage_max']}K
                         {else}
@@ -411,6 +411,7 @@
         //排序方式
         $(".select_item1").on("click",function () {
             option.job_order=$(this).html();
+            option.page=1;
             layer(option);
         });
 

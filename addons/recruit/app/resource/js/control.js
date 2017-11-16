@@ -615,18 +615,19 @@ $(".modalbtn1").on("click",function(){
         $("#small_modalbox").hide();
     });
 
-
-    $("#small_login").on("click",function(){
+    function  login(){
         var user_name=$("#small_user_name").val();
         var password=$("#small_password").val();
 
         if(!user_name){
-            hint("error","请输入用户名");
+            $("#small_modalbox .chec_tip").eq(0).html(tipmsg("error","请输入用户名"));
+            $("#small_user_name").closest(".general-input").css("border-color","#e23d46");
             return false;
         }
 
         if(!password){
-            hint("error","请输入密码");
+            $("#small_modalbox .chec_tip").eq(1).html(tipmsg("error","请输入密码"));
+            $("#small_password").closest(".general-input").css("border-color","#e23d46");
             return false;
         }
 
@@ -641,12 +642,31 @@ $(".modalbtn1").on("click",function(){
                 var data=JSON.parse(data);
                 if(data.status==1){
                     location=location
+                }else if(data.status==4){
+                    $("#small_modalbox .chec_tip").eq(0).html(tipmsg("error","账户不存在"));
+                    $("#small_user_name").closest(".general-input").css("border-color","#e23d46");
+
+                }else if(data.status==2){
+                    $("#small_modalbox .chec_tip").eq(1).html(tipmsg("error","账户和密码不匹配"));
+                    $("#small_password").closest(".general-input").css("border-color","#e23d46");
+
                 }else{
                     hint("error",data.content);
                 }
             }
         })
-    })
+    }
+
+    $("#small_login").on("click",function(){
+        login()
+    });
+    document.onkeydown = function(e){
+        var ev = document.all ? window.event : e;
+        if(ev.keyCode==13) {
+            login()
+        }
+    }
+
 
     $(".baidu_icons").on("click",function() {
 
