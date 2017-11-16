@@ -59,7 +59,7 @@
                 <span class="city_item">武汉</span>
                 <span class="city_item">天津</span>
                 <span class="city_item">大连</span>
-                <span class="city_item">长春</span>
+                <!--<span class="city_item">长春</span>-->
                 <label class="more_city cur">
                     <div class="gengduo">更多
                         <svg class="icon">
@@ -411,6 +411,7 @@
         //排序方式
         $(".select_item1").on("click",function () {
             option.job_order=$(this).html();
+            option.page=1;
             layer(option);
         });
 
