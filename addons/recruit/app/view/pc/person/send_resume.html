@@ -89,7 +89,7 @@
                                     <svg class="icon icon_address" aria-hidden="true">
                                         <use xlink:href="#icon-didian"></use>
                                     </svg>
-                                    <span>地址：{php echo $list['interview']['address']}</span>
+                                    <span>地址：{php echo $list['interview']['city']." ".$list['interview']['city_area']." ".$list['interview']['address']}</span>
                                 </p>
                                 <div class="btn_ditu" data-id="{php echo $list['retoate_x'].','.$list['retoate_y']}" data-city="{$list['city']}"></div>
                             {/if}
