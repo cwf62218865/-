@@ -25,17 +25,17 @@
                 <div class="list_item_btn" id="send_list">投递记录</div>
                 <div class="list_item_btn" style="margin-left: 2px" id="review">面试邀请</div>
                 <div class="beizhus">
-                <div class="checkbox ico_rightstatas"  style="margin-left: 120px;display: inline-block">
-                    <label>
-                        <input type="checkbox" name="like" value="">
-                        <div class="checkboxbox">
-                            <svg class="icon iconfont color1aa ico_right">
-                                <use xlink:href=""></use>
-                            </svg>
-                        </div>
-                    </label>
-                </div>
-                <div class="biezhu"> 只看通过申请的记录</div>
+                    <div class="checkbox ico_rightstatas"  style="margin-left: 120px;display: inline-block">
+                        <label>
+                            <input type="checkbox" name="like" value="">
+                            <div class="checkboxbox">
+                                <svg class="icon iconfont color1aa ico_right">
+                                    <use xlink:href=""></use>
+                                </svg>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="biezhu"> 只看通过申请的记录</div>
                 </div>
             </div>
             <div class="list_content">
@@ -73,25 +73,25 @@
                             {elseif $list['status']==-1}
                             <div class="status1"><label class="jujuems">已拒绝面试<span class="shachuzw">删除该职位</span></label></div>
                             {else}
-                                <p class="time">
-                                    <svg class="icon icon_time" aria-hidden="true">
-                                        <use xlink:href="#icon-shijian"></use>
-                                    </svg>
-                                    <span>时间：{php echo $list['interview']['interview_time']}</span>
-                                </p>
-                                <p class="review_tel">
-                                    <svg class="icon icon_tel" aria-hidden="true">
-                                        <use xlink:href="#icon-lianxiren"></use>
-                                    </svg>
-                                    <span>联系人：{php echo $list['interview']['linker']}</span>
-                                </p>
-                                <p class="review_address">
-                                    <svg class="icon icon_address" aria-hidden="true">
-                                        <use xlink:href="#icon-didian"></use>
-                                    </svg>
-                                    <span>地址：{php echo $list['interview']['address']}</span>
-                                </p>
-                                <div class="btn_ditu" data-id="{php echo $list['retoate_x'].','.$list['retoate_y']}" data-city="{$list['city']}"></div>
+                            <p class="time">
+                                <svg class="icon icon_time" aria-hidden="true">
+                                    <use xlink:href="#icon-shijian"></use>
+                                </svg>
+                                <span>时间：{php echo $list['interview']['interview_time']}</span>
+                            </p>
+                            <p class="review_tel">
+                                <svg class="icon icon_tel" aria-hidden="true">
+                                    <use xlink:href="#icon-lianxiren"></use>
+                                </svg>
+                                <span>联系人：{php echo $list['interview']['linker']}</span>
+                            </p>
+                            <p class="review_address">
+                                <svg class="icon icon_address" aria-hidden="true">
+                                    <use xlink:href="#icon-didian"></use>
+                                </svg>
+                                <span>地址：{php echo $list['interview']['address']}</span>
+                            </p>
+                            <div class="btn_ditu" data-id="{php echo $list['retoate_x'].','.$list['retoate_y']}" data-city="{$list['city']}"></div>
                             {/if}
                         </div>
                     </div>
@@ -107,16 +107,16 @@
             <div class="resume_content">
                 {if $interview_jobs}
                 {loop $interview_jobs $list}
-                    {if $list['status']==3}
-                        <div class="list_item">
+                {if $list['status']==3}
+                <div class="list_item">
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['jobs_id']))}">{php echo $list['jobs_name']}</a>
                             <a class="salary">
                                 {if $list['wage_min']>0 && $list['wage_max']>0}
-                                    {php echo $list['wage_min']}-{php echo $list['wage_max']}k
+                                {php echo $list['wage_min']}-{php echo $list['wage_max']}k
                                 {else}
-                                    面议
+                                面议
                                 {/if}
                             </a>
                         </div>
@@ -166,10 +166,10 @@
                     <div class="review_statas jujue_statas">已拒绝面试</div>
                     {/if}
                 </div>
-                    {/if}
+                {/if}
                 {/loop}
                 {else}
-                    <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有面试邀请记录</div><div class="color999" style="margin-top: 30px">请进行简历投递或完善简历信息</div></div></div>
+                <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有面试邀请记录</div><div class="color999" style="margin-top: 30px">请进行简历投递或完善简历信息</div></div></div>
                 {/if}
                 <!--<div class="morejob invite_more">发现更多好职位>></div>-->
             </div>
@@ -281,6 +281,7 @@
 <script>
     $(function () {
 
+
         var nav = "{$_GPC['nav']}";
         $(".list_item_btn").removeClass("select");
         $(".list_item_btn").eq(nav).addClass("select");
@@ -311,7 +312,7 @@
         })
 
         $(".tijiao").click(function(){
-           var div=$("input[name='like']:checkbox");
+            var div=$("input[name='like']:checkbox");
             var reason="";
             div.each(function() {
                 if ($(this).attr('checked')) {

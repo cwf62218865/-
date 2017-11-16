@@ -290,7 +290,7 @@
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
                             </svg>
                         </label>
-                        <div class="options cityoption" style="height: 185px;"></div>
+                        <div class="options cityoption" style="height: 185px;overflow-y: auto"></div>
                     </div>
                     <div class=" relative general-select district1" style="float: right;">
                         <label class="general-input relative general-select review_district">
@@ -299,7 +299,7 @@
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
                             </svg>
                         </label>
-                        <div class="options districtoption" style="height: 185px;"></div>
+                        <div class="options districtoption" style="height: 185px;overflow-y: auto"></div>
                     </div>
                     <label class="general-input" >
                         <input type="text" id="detail_address" placeholder="详细地址">
@@ -345,6 +345,14 @@
     })
 
 
+    $("#city,#city_area").on("click",function () {
+        var options=$(this).parent().next();
+        if(options.css("height")=="0px"){
+            options.css("height","185px")
+        }else{
+            options.css("height","0px");
+        }
+    })
 
     $("body").on("click",".option_select",function () {
        var jobs_name = $(this).html();

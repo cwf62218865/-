@@ -138,12 +138,12 @@
            <div class="company_width730">
                 <div style="">
                     <div class="select_title" style="margin-bottom: 40px;margin-top: 0;">
-                        <span class="cur title_se sleft">公司介绍</span>
-                        <span class="cur title_se">在招职位<label class="num_jobing">({$jobs_num})</label></span>
+                        <span class="cur title_se {if empty($_GPC['nav'])}sleft{/if}">公司介绍</span>
+                        <span class="cur title_se {if $_GPC['nav']}sleft{/if}">在招职位<label class="num_jobing">({$jobs_num})</label></span>
                     </div>
 
                     <!--公司介绍信息---------------------------------------------->
-                    <div  id="introduces_msg">
+                    <div  id="introduces_msg"  {if empty($_GPC['nav'])}style="display:block;"{else}style="display:none;"{/if}>
                         <div class="introduces">
                             {if mb_strlen($company['introduce'],'utf-8')<300}
                             {php echo $company['introduce']}
@@ -179,6 +179,7 @@
                             </div>
                         </div>
                         <!--面试评价-->
+                    {if ceil($company_count['count'])}
                         <div class="evaluate" style="margin-top: 60px">
                             <div id="evaluate_list"></div>
                             <div class="company_title relative">
@@ -223,6 +224,7 @@
                             <span class="cur title_sr selsrt" data-id="1">推荐度排序</span>
                             <span class="cur title_sr" data-id="2">时间排序</span>
                         </div>
+                    {/if}
                         <div class="evaluate_list" >
                             <div class="evaluate_content">
                             {loop $comment_jobs $list}
@@ -289,9 +291,10 @@
                         </div>
 
                     </div>
+
                     <!--公司介绍信息end---------------------------------------------->
                     <!--在招职位列表---------------------------------------------->
-                    <div class="job_list" style="display: none;">
+                    <div class="job_list" {if $_GPC['nav']}style="display:block;"{else}style="display:none;"{/if}>
                         <div class="job_list_con">
                             {loop $jobs $list}
                             <a class="job_iteme" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" style="position: relative;">
@@ -443,7 +446,6 @@
 <script src="{WL_URL_ARES}js/page.js" rel="script"></script>
 
 <script type="text/javascript">
-
 
     // 百度地图API功能
     var map = new BMap.Map("allmap");

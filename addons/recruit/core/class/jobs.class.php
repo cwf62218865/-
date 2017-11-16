@@ -341,7 +341,8 @@ class jobs{
         $data['information_count'] = ceil($information_count/$count);
         $data['environment_count'] = ceil($environment_count/$count);
         $data['interviewer_count'] = ceil($interviewer_count/$count);
-        $data['count'] = ceil(($data['information_count']+$data['environment_count']+$data['interviewer_count'])/3);
+        $data['count'] = ($data['information_count']+$data['environment_count']+$data['interviewer_count'])/3;
+        $data['count'] = sprintf("%.1f", $data['count']);
         $data['information_star'] = "";
         for($i=0;$i<$data['information_count'];$i++){
             $data['information_star'] .=

@@ -282,7 +282,8 @@
                     resumeuid:uid
                 },
                 success:function (data) {
-                    window.location.href = "http://ios.huiliewang.com/app/"+data+".pdf";
+//                    window.location.href = "http://ios.huiliewang.com/app/"+data+".pdf";
+                    window.location.href = "{php echo app_url('member/index/download')}filename="+data;
                 }
             })
         })

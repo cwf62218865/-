@@ -45,7 +45,7 @@ elseif($op=="jobs_detail"){
 
     if($_GPC['jobs_id']){
         $jobs = pdo_fetch("select * from ".tablename(WL."jobs")." where id=".$_GPC['jobs_id']);
-        $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$jobs['uid']);
+        $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where open=1 and uid=".$jobs['uid']);
         $comment_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where uid=".$jobs['uid']);
         $current_comment_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where jobs_id=".$_GPC['jobs_id']." and uid=".$jobs['uid']);
         $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$jobs['uid']);
@@ -443,6 +443,10 @@ elseif ($op=="save_books"){
 
 elseif ($op=="img_upload"){
     $data = upload_img($_FILES);
+    call_back(1,$data);
+}
+elseif ($op=="headimgurl_upload"){
+    $data = base64_upload($_POST['file']);
     call_back(1,$data);
 }
 //ajax请求上传结果,刷新页面
