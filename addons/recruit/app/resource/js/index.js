@@ -102,9 +102,7 @@ $(document).on("scroll",function(){
     }
 });
 
-$(".back_topbtn").on("click",function(){
-    $("html").animate({scrollTop:0},300)
-});
+
 
 $(".index_news").on("mouseover",function(){
     $(this).find(".index_news_title").css("color","#09c");
