@@ -50,14 +50,14 @@
                         <input type="text" placeholder="联系人手机号码" id="mobie" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="15">
                     </label>
                     <label class="general-input name1 right_align" >
-                        <input type="text" placeholder="联系人姓名" id="res_name">
+                        <input type="text" placeholder="联系人姓名" id="res_name" maxlength="10">
                     </label>
                     <div class="chec_tip1">
                         <div class="left_align"></div>
                         <div class="right_align" style="width: 132px;"></div>
                     </div>
                     <label class="general-input chema left_align">
-                        <input type="text" placeholder="请输入验证码" id="identify_code" onkeyup="value=value.replace(/[^\d]/g,'')">
+                        <input type="text" placeholder="请输入验证码" maxlength="4" id="identify_code" onkeyup="value=value.replace(/[^\d]/g,'')">
                     </label>
                     <span class="code right_align" id="reg_code">获取验证码</span>
                     <div class="chec_tip"></div>
@@ -67,30 +67,30 @@
                     <div class="chec_tip"></div>
                     <span class="public_bigbtn bg1aa wrap" id="reg_one">下一步：认证信息</span>
 
-                <div class="zhucexieyi">注册即代表你已同意<a href="" class="color">「秒猎用户协议」</a></div>
+                <div class="zhucexieyi">注册即代表你已同意<a href="" class="color">「应届僧用户协议」</a></div>
             </div>
             <div class="foot_btns">
                 <div class="con">
-                <a class="icons">
-                    <svg class="icon" aria-hidden="true" style="color: #ffffff">
-                        <use xlink:href="#icon-qq"></use>
-                    </svg>
-                </a>
-                <a class="icons left">
-                    <svg class="icon" aria-hidden="true" style="color: #ffffff">
-                        <use xlink:href="#icon-weixin"></use>
-                    </svg>
-                </a>
-                <a class="icons left">
-                    <svg class="icon" aria-hidden="true" style="color: #ffffff">
-                        <use xlink:href="#icon-weibo"></use>
-                    </svg>
-                </a>
-                <a class="icons left">
-                    <svg class="icon" aria-hidden="true" style="color: #ffffff">
-                        <use xlink:href="#icon-baidu"></use>
-                    </svg>
-                </a>
+                <!--<a class="icons">-->
+                    <!--<svg class="icon" aria-hidden="true" style="color: #ffffff">-->
+                        <!--<use xlink:href="#icon-qq"></use>-->
+                    <!--</svg>-->
+                <!--</a>-->
+                <!--<a class="icons left">-->
+                    <!--<svg class="icon" aria-hidden="true" style="color: #ffffff">-->
+                        <!--<use xlink:href="#icon-weixin"></use>-->
+                    <!--</svg>-->
+                <!--</a>-->
+                <!--<a class="icons left">-->
+                    <!--<svg class="icon" aria-hidden="true" style="color: #ffffff">-->
+                        <!--<use xlink:href="#icon-weibo"></use>-->
+                    <!--</svg>-->
+                <!--</a>-->
+                <!--<a class="icons left">-->
+                    <!--<svg class="icon" aria-hidden="true" style="color: #ffffff">-->
+                        <!--<use xlink:href="#icon-baidu"></use>-->
+                    <!--</svg>-->
+                <!--</a>-->
                     <div class="register font_zj1">
                         已有账号：<a href="{php echo app_url('member/index/login')}"><span class="color">立即登录</span>
                         <svg class="icon" aria-hidden="true" style="color: #ffffff;">

@@ -825,3 +825,24 @@ position: absolute;
     background-color: #f5f5f5;
     margin-top: 10px;
 }
+.school_tip{
+    width: 280px;
+    height: auto;
+    position: absolute;
+    z-index: 10
+}
+.school_tip_option{
+    width: 278px;
+    line-height: 36px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-top: none;
+    cursor: pointer;
+}
+.school_tip_option:hover{
+    background-color: #0099cc;
+    color: #fff;
+}
+.school_tip_option span{
+    margin-left: 20px;
+}

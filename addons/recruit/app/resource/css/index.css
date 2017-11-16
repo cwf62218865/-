@@ -366,31 +366,7 @@
     margin-right: 20px;
     margin-bottom: 20px;
 }
-.back_top{
-    display: inline-block;
-    position: fixed;
-    right: 50%;
-    width: 50px;
-    bottom: 140px;
-    margin-right: -660px;
-}
-.back_topbtn,.talk_tome{
-    display: inline-block;
-    width: 50px;
-    padding: 5px;
-    text-align: center;
-    font-size: 12px;
-    margin-top: 10px;
-    color: #bbb;
-    cursor: pointer;
-    background-color: #fff;
-}
-.back_topbtn:hover,.talk_tome:hover{
-    color: #09c;
-}
-.back_top span .icon{
-    font-size: 40px;
-}
+
 
 .indexmodal{
     display: none;

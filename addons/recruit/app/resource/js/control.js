@@ -683,6 +683,19 @@ $(".modalbtn1").on("click",function(){
         })
     })
 
+    $(".back_topbtn").on("click",function(){
+        $("html").animate({scrollTop:0},300)
+    });
+
+    $(document).on("scroll",function(){
+        var top=$(document).scrollTop();
+
+        if(top>0){
+            $(".back_topbtn").show();
+        }else{
+            $(".back_topbtn").hide();
+        }
+    });
 
 })
 
