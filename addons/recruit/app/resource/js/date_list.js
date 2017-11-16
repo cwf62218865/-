@@ -83,13 +83,7 @@ $(document).click(function(e){
     };
 });
 
-// $(".review_input").click(function () {
-//     if($(this).next().css("display")=="block"){
-//         $(this).next().hide();
-//     }else{
-//         $(this).next().show();
-//     }
-// })
+
 
 
 $('body').on("mousedown",".general-select input",function(){
