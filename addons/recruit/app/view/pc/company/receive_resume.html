@@ -63,13 +63,13 @@
                 {if $list['status']<1}
                 <div class="list_item {if $list['status']==-1}refuse{/if}" data-id="{php echo $list['apply_id']}" >
                     <div class="item_con">
-                        <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}" target="_blank">
+                        <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}" target="_blank">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;"/>
                         </a>
                         <div class="basic_massage">
                             <div class="bm_hang1">
                                 <span class="name">{php echo $list['fullname']}</span>
-                                <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}" target="_blank">查看</a>
+                                <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}" target="_blank">查看</a>
                                 <span class="hope_job">{php echo $list['jobs_name']}</span>
                             </div>
                             <div class="bm_hang2">

@@ -35,6 +35,22 @@
             <span class="color color4"></span>
         </label>
         {else}
+
+        <!--查看应聘者投递简历-->
+        {if $_GPC['apply_id']}
+        <label class="resume_btns" id="invite">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-tongyimianshi"></use>
+            </svg>
+            同意面试
+        </label>
+        <label class="resume_btns" id="jujuemianshi">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-jujuemianshi"></use>
+            </svg>
+            拒绝面试
+        </label>
+        {else}
         <!--主动查看-->
         <label class="resume_btns" id="invite">
             <svg class="icon icon_resume" aria-hidden="true">
@@ -42,21 +58,7 @@
             </svg>
             邀请面试
         </label>
-        <!--查看应聘者投递简历-->
-
-        <!--<label class="resume_btns" id="invite">-->
-            <!--<svg class="icon icon_resume" aria-hidden="true">-->
-                <!--<use xlink:href="#icon-tongyimianshi"></use>-->
-            <!--</svg>-->
-            <!--同意面试-->
-        <!--</label>-->
-        <!--<label class="resume_btns" id="jujuemianshi">-->
-            <!--<svg class="icon icon_resume" aria-hidden="true">-->
-                <!--<use xlink:href="#icon-jujuemianshi"></use>-->
-            <!--</svg>-->
-            <!--拒绝面试-->
-        <!--</label>-->
-
+        {/if}
         <!--查看应聘者投递简历-->
 
         <label class="resume_btns"  id="download_resume">
@@ -104,8 +106,6 @@
                         <use xlink:href="#icon-xiala" class="colorbbb"></use>
                     </svg>
                     <div class="optionlist" style="height: 0px;">
-                        <div class="option_selecter" data-id="1">1</div>
-                        <div class="option_selecter" data-id="2">2</div>
 
                         {loop $jobs $list}
                         <div class="option_selecter" data-id="{$list['id']}">{$list['jobs_name']}</div>

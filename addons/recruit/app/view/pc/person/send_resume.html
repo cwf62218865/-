@@ -42,7 +42,7 @@
                 {if $apply_jobs}
                 {loop $apply_jobs $list}
                 {if $list['direction']==2}
-                <div class="list_item {if $list['status']<>3}pass{/if}" >
+                <div class="list_item {if $list['status']<>3}pass{/if}" data-id="1">
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
@@ -108,7 +108,7 @@
                 {if $interview_jobs}
                 {loop $interview_jobs $list}
                     {if $list['status']==3}
-                        <div class="list_item">
+                        <div class="list_item" data-id="1">
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['jobs_id']))}">{php echo $list['jobs_name']}</a>
@@ -191,7 +191,7 @@
     </div>
     <!--地图弹框end-->
     <!--拒绝理由弹框-->
-    <div class="modalbox" id="refusebox" style="display: none">
+    <div class="modalbox" id="refusebox" style="display: none;">
         <div class="modal refusebox">
             <p class="title_content">拒绝理由</p>
             <span class="modalclose">
@@ -277,6 +277,7 @@
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/login_reg_account.js"></script>
+<script src="{WL_URL_ARES}js/job_delete.js"></script>
 
 <script>
     $(function () {
@@ -411,6 +412,11 @@
             })
         })
 
+        //删除职位
+        Deletejob(".shachuzw");
+
     })
+
+
 </script>
 </html>
