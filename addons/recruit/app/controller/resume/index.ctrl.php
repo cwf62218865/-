@@ -51,6 +51,7 @@ if($op=="index"){
     elseif($_SESSION['utype']==2){
 //        echo "resume_template/resume_preview".$resume['template_id'];exit();
         $jobs = pdo_fetchall("select id,jobs_name from ".tablename(WL."jobs")." where uid=".$_SESSION['uid']);
+        $collect_resume = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where uid=".$_SESSION['uid']." and puid=".$_GPC['uid']);
         include wl_template("resume_template/resume_preview".$resume['template_id']);
     }else{
         include wl_template("resume_template/resume_preview".$resume['template_id']);

@@ -15,9 +15,9 @@ class jobs{
 
     public function getall_jobs($uid,$open=1){
         if($open==1){
-            $wheresql = " where open=1 ";
+            $wheresql = " where open=1 and display=1 ";
         }else{
-            $wheresql = " where 1=1 ";
+            $wheresql = " where display=1 ";
         }
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql." and uid=".$uid." order by open desc,addtime desc");
         $arr = "";

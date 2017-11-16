@@ -182,4 +182,25 @@ $(function () {
             })
         })
     }
+
+
+    $("#shoucangguanli").click(function () {
+        $.ajax({
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=company&ac=resume&op=collect_resume",
+            type:"post",
+            data:{
+                resume_id:$(this).attr("data-id"),
+                resume_uid:$(this).attr("data-uid")
+            },
+            success:function (data) {
+                var data = JSON.parse(data);
+                if(data.status==1){
+                    $("#beizhubox").hide();
+                    hint("success","收藏成功");
+                }else{
+                    hint("error",data.content);
+                }
+            }
+        })
+    })
 })

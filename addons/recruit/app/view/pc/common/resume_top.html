@@ -73,12 +73,22 @@
             </svg>
             打印简历
         </label>
-        <label class="resume_btns" id="shoucangguanli">
+        {if $collect_resume}
+        <label class="resume_btns" id="yishoucang" data-id="{$resume['id']}" data-uid="{$resume['uid']}">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-shoucangguanli"></use>
+            </svg>
+            已收藏
+        </label>
+
+        {else}
+        <label class="resume_btns" id="shoucangguanli" data-id="{$resume['id']}" data-uid="{$resume['uid']}">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-shoucangguanli"></use>
             </svg>
             收藏简历
         </label>
+        {/if}
         <a class="resume_btns" id="exit_view" href="javascript:history.go(-1)">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-tuichuyulan"></use>
