@@ -242,7 +242,7 @@
                     </div>
                     <div class="review_statas">
                         <div class="tongyi yaoqing_interview">邀请面试</div>
-                        <div class="jujue shoucang shoucang_resume"  data-id="{php echo $list['id']}">收藏简历</div>
+                        <div class="jujue shoucang shoucang_resume"  data-id="{php echo $list['id']}" data-uid="{php echo $list['uid']}">收藏简历</div>
                     </div>
                 </div>
                 {/loop}
@@ -412,7 +412,7 @@
             </span>
             <textarea class="scbz_input" placeholder="自定义备注，15字以内。"></textarea>
             <div class="btns" style="margin-bottom: 22px">
-                <button class="tijiao1"  id="shoucang">确定</button>
+                <button class="tijiao1 collect_resume"  id="shoucang">确定</button>
                 <span class="quxiao">取消</span>
             </div>
         </div>
@@ -473,7 +473,7 @@
                 <div class="in_hang">
                     <span class="biaoti">联系人</span>
                     <label class="general-input" >
-                        <input type="text" id="contacts_name"  value="默认注册联系人">
+                        <input type="text" id="contacts_name"  value="{$user['']}">
                     </label>
                 </div>
                 <div class="in_hang">
@@ -654,29 +654,30 @@
 //            alert("请填写备注！")
 //            return;
 //        }
-        $("#beizhubox").hide();
-        var lists=$(".resume_content .list_item");
-        lists.each(function () {
-            if($(this).attr("data-id")==data_flag){
-                $(this).find(".shoucang").html("已收藏");
-                $(this).find(".shoucang").removeClass("shoucang_resume");
-                $(this).find(".shoucang").addClass("colorbb");
-            }
-        })
+
 
         $.ajax({
-            url:"{php echo app_url('company/resume/collect')}",
+            url:"{php echo app_url('company/resume/collect_resume')}",
             type:"post",
             data:{
-//                beizhu:beizhu,
-//                data_id:data_flag,
-//                methods:methods
+                resume_id:$(this).attr("data-id"),
+                resume_uid:$(this).attr("data-uid")
             },
             success:function (data) {
+                var data = JSON .parse(data);
                 if(data.status==1){
-                    window.location.href="";
+                    $("#beizhubox").hide();
+                    hint("success","收藏成功");
+                    var lists=$(".resume_content .list_item");
+                    lists.each(function () {
+                        if($(this).attr("data-id")==data_flag){
+                            $(this).find(".shoucang").html("已收藏");
+                            $(this).find(".shoucang").removeClass("shoucang_resume");
+                            $(this).find(".shoucang").addClass("colorbb");
+                        }
+                    })
                 }else{
-                    console.log(data.content);
+                    hint("error",data.content);
                 }
             }
         })
@@ -710,6 +711,82 @@
                 if(data.status==1){
                     $(".resume_list").html(data.content);
                 }else{
+                    hint("error",data.content);
+                }
+            }
+        })
+    })
+
+
+    $("#send_review").click(function () {
+
+        var jobs_name=$("#job_review").val();
+        var job_id=$("#job_review").attr("data-id");
+        var resume_id=$("#invite_box").attr("data-id");
+        var puid=$("#invite_box").attr("data-uid");
+        var reviewtime=$("#review_time").val();
+        var contacts_name=$("#contacts_name").val();
+        var contacts_tel=$("#contacts_tel").val();
+        var city=$("#city").val();
+        var city_area=$("#city_area").val();
+        var detail_address=$("#detail_address").val();
+
+        var telphone_reg=/^1[3|5|7|8][0-9]\d{8}$/;
+        if(reviewtime==""){
+            hint("error","请输入面试日期");
+            return;
+        }
+        if(contacts_name==""){
+            hint("error","请输入联系人");
+            return;
+        }
+        if(contacts_tel==""){
+            hint("error","请输入联系电话");
+            return;
+        }
+        if(!telphone_reg.test(contacts_tel)){
+            hint("error","请输入可联系的电话");
+            return;
+        }
+        if(city==""){
+            hint("error","请输入城市");
+            return;
+        }
+        if(city_area==""){
+            hint("error","请输入区县");
+            return;
+        }
+        if(detail_address==""){
+            hint("error","请输入详细地址");
+            return;
+        }
+
+
+
+        $.ajax({
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=company&ac=resume&op=hr_send_review",
+            type:"post",
+            data:{
+                jobs_id:job_id,
+                resume_id:resume_id,
+                puid:puid,
+                jobs_name:jobs_name,
+                reviewtime:reviewtime,
+                contacts_name:contacts_name,
+                contacts_tel:contacts_tel,
+                city:city,
+                city_area:city_area,
+                detail_address:detail_address
+
+            },
+            success:function(data){
+                var data = JSON.parse(data);
+                if(data.status==1){
+                    $("#invite_box").hide();
+                    hint("success","邀请成功");
+//                    window.location.href="";
+                }else{
+                    console.log(data.content);
                     hint("error",data.content);
                 }
             }

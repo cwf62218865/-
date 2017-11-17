@@ -29,12 +29,12 @@
                     <use xlink:href="#icon-xiala"></use>
                 </svg>
             </span>
-            <a href="{php echo app_url('person/index/send_resume')}">求职者入口</a>
+            <!--<a href="{php echo app_url('person/index/send_resume')}">求职者入口</a>-->
 
 
             <div class="personal_msgs" id="personal_msgs">
-                <a href="{php echo app_url('person/index/send_resume')}">我的实习僧</a>
-                <a href="{php echo app_url('person/index/person_msg')}">我的消息</a>
+                <!--<a href="{php echo app_url('person/index/send_resume')}">我的实习僧</a>-->
+                <a href="{php echo app_url('person/index/person_msg')}">消息中心</a>
                 <a href="{php echo app_url('person/index/send_resume')}">投递记录</a>
                 <a href="{php echo app_url('person/index/send_resume',array('kind'=>'interview'))}">面试邀请{if $interview_num}<span class="rednum">{$interview_num}</span>{/if}</a>
                 <a href="{php echo app_url('member/index/usersetting')}">账号设置</a>
@@ -75,3 +75,19 @@
     </div>
 </div>
 
+{if empty($back_top)}
+<div class="back_top">
+    <span class="back_topbtn" style="display: none">
+        <svg class="icon">
+            <use xlink:href="#icon-fanhuidingbu"></use>
+        </svg>
+        返回顶部
+    </span>
+    <a href="#" class="talk_tome">
+        <svg class="icon" style="font-size: 36px">
+            <use xlink:href="#icon-fankui"></use>
+        </svg>
+        留言反馈
+    </a>
+</div>
+{/if}

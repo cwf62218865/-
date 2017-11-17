@@ -23,6 +23,7 @@ elseif ($op=="login_out"){
 }
 //登录
 elseif ($op=="login"){
+    $back_top = 1;
    if($_SESSION['utype']==1){
        header("location:".app_url('person/index/send_resume'));
    }elseif ($_SESSION['utype']==2){
@@ -45,7 +46,7 @@ elseif($op=="jobs_detail"){
 
     if($_GPC['jobs_id']){
         $jobs = pdo_fetch("select * from ".tablename(WL."jobs")." where id=".$_GPC['jobs_id']);
-        $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$jobs['uid']);
+        $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where open=1 and uid=".$jobs['uid']);
         $comment_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where uid=".$jobs['uid']);
         $current_comment_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where jobs_id=".$_GPC['jobs_id']." and uid=".$jobs['uid']);
         $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$jobs['uid']);
@@ -93,7 +94,7 @@ elseif($op=="company_detail"){
         $data['data']['uid'] = $_GPC['company_id'];
         $jobs = m("jobs")->getall_jobs_page($data);
         $jobs = $jobs['more'];
-        $jobs_num = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs")." where open=1 and uid=".$company['uid']);
+        $jobs_num = pdo_fetchcolumn("select COUNT(*) from ".tablename(WL."jobs")." where open=1 and display=1 and uid=".$company['uid']);
         $last_login_time = m("member")->last_login($company['uid']);
         $data['company_uid'] = $_GPC['company_id'];
         $comment_jobs = m("jobs")->comment_apply($data);
@@ -195,7 +196,15 @@ elseif ($op=="aboutus"){
 
     include wl_template("member/aboutus");exit();
 }elseif ($op=="news_detail"){
-    include wl_template("member/news_detail");exit();
+    if($_GPC['id']){
+        $news = pdo_fetch("select * from ".tablename("article_news")." where id=".$_GPC['id']);
+        $news['click'] +=1;
+        pdo_update("article_news",array('click'=>$news['click']),array('id'=>$_GPC['id']));
+        include wl_template("member/news_detail");exit();
+    }else{
+        die();
+    }
+
 }
 
 //验证码
@@ -445,6 +454,10 @@ elseif ($op=="img_upload"){
     $data = upload_img($_FILES);
     call_back(1,$data);
 }
+elseif ($op=="headimgurl_upload"){
+    $data = base64_upload($_POST['file']);
+    call_back(1,$data);
+}
 //ajax请求上传结果,刷新页面
 elseif ($op=="upload_refresh"){
     $uid = $_SESSION['uid'];
@@ -636,13 +649,14 @@ elseif ($op=="comment_zan"){
     if($_SESSION['uid']){
         $comment_id = check_pasre($_POST['comment_id'],"参数错误");
         $comment = pdo_fetch("select * from ".tablename(WL."comment")." where id=".$comment_id);
-        $zan = explode(",",$comment['zan']);
+        $zan = array_filter(explode(",",$comment['zan']));
         if(in_array($_SESSION['uid'],$zan)){
             call_back(2,"已点赞");
         }else{
             array_push($zan,$_SESSION['uid']);
             $zan = implode(",",$zan);
-            pdo_update(WL."comment",array('zan'=>$zan),array('id'=>$comment_id));
+            $zan_num = count($zan);
+            pdo_update(WL."comment",array('zan'=>$zan,'zan_num'=>$zan_num),array('id'=>$comment_id));
             call_back(1,"点赞成功");
         }
     }else{

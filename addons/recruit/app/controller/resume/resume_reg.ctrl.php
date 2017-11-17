@@ -4,7 +4,7 @@ wl_load()->model('api');
 if($_SESSION['uid']){
     $resume = m("resume")->get_resume($_SESSION['uid']);
 }
-
+$back_top = 1;
 if($op=="1"){
     $identity = encrypt($_SESSION['uid'], 'E');
     $member = m("member")->get_member($_SESSION['uid']);
@@ -25,7 +25,7 @@ if($op=="1"){
     $data['fullname'] = check_pasre($_POST['user_name'],"请输入姓名");
     $data['telphone'] = check_pasre($_POST['telphone'],"请输入手机号");
     $data['email'] = check_pasre($_POST['email'],"请输入邮箱");
-    $data['city'] = check_pasre($_POST['city'],"请输入城市 ");
+    $data['city'] = $_POST['city'];
     $data['city_area'] = $_POST['city_area'];
     $data['address'] = $_POST['address'];
     $resume = m("resume")->get_resume($_SESSION['uid']);
@@ -59,6 +59,10 @@ if($op=="1"){
         $experience_info = m("resume")->extract_experience_info($data);
         $data['experience'] =$experience_info['experience'];
         $data['updatetime'] = time();
+        $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));
+    }else{
+            $data['work_experience'] = "";
+            $data['updatetime'] = time();
         $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));
     }
 

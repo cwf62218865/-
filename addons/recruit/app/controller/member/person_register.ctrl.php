@@ -1,7 +1,7 @@
 <?php
 defined('IN_IA') or exit('Access Denied');
 wl_load()->model('verify');
-
+$back_top = 1;
 if($op=="index"){
     include wl_template("member/personal_reg");
 }elseif ($op=="register"){

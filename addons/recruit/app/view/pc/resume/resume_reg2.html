@@ -27,8 +27,11 @@
 
                 <div class="zjaddexp" id="eduexp" style="display: none">
 
-                    <label class="general-input left_align school">
+                    <label class="relative general-input left_align school">
                         <input type="text" placeholder="学校名称" class="school_name" value="">
+                        <div class="school_tip">
+
+                        </div>
                     </label>
                     <div class=" relative general-select right_align education">
                         <label class="general-input relative general-select">
@@ -38,20 +41,24 @@
                             </svg>
                         </label>
                         <div class="options" style="height: 0px;">
-                            <div class="select-option"><span>博士以上</span></div>
+                            <!--<div class="select-option"><span>博士以上</span></div>-->
                             <div class="select-option"><span>博士</span></div>
                             <div class="select-option"><span>硕士</span> </div>
                             <div class="select-option"><span>本科</span> </div>
                             <div class="select-option"><span>专科</span> </div>
-                            <div class="select-option"><span>专科以下</span> </div>
+                            <div class="select-option"><span>高中</span> </div>
+                            <div class="select-option"><span>初中</span> </div>
                         </div>
                     </div>
                     <div class="chec_tip1">
                         <div class="left_align"></div>
                         <div class="right_align" style="width: 160px;"></div>
                     </div>
-                    <label class="general-input industry">
+                    <label class="relative general-input industry">
                         <input type="text" placeholder="所学专业" class="edu_major" value="">
+                        <div class="school_tip">
+
+                        </div>
                     </label>
                     <div class=" relative general-select right_align year">
                         <label class="general-input relative general-select" >
@@ -61,10 +68,7 @@
                             </svg>
                         </label>
                         <div class="options" style="height: 0px;">
-                            <div class="select-option"><span>计算机科学与技术</span></div>
-                            <div class="select-option"><span>软件工程</span> </div>
-                            <div class="select-option"><span>电子商务</span> </div>
-                            <div class="select-option"><span>土木工程</span> </div>
+
                         </div>
                     </div>
                     <div class="chec_tip1">
@@ -73,9 +77,12 @@
                     </div>
                 </div>
                 {if empty($edu_experience[0])}
-                <div class="zjaddexp"  >
-                    <label class="general-input left_align school">
+                <div class="zjaddexp">
+                    <label class="relative general-input left_align school">
                         <input type="text" placeholder="学校名称" class="school_name" value="">
+                        <div class="school_tip">
+
+                        </div>
                     </label>
                     <div class=" relative general-select right_align education">
                         <label class="general-input relative general-select">
@@ -85,20 +92,24 @@
                             </svg>
                         </label>
                         <div class="options" style="height: 0px;">
-                            <div class="select-option"><span>博士以上</span></div>
+                            <!--<div class="select-option"><span>博士以上</span></div>-->
                             <div class="select-option"><span>博士</span></div>
                             <div class="select-option"><span>硕士</span> </div>
                             <div class="select-option"><span>本科</span> </div>
                             <div class="select-option"><span>专科</span> </div>
-                            <div class="select-option"><span>专科以下</span> </div>
+                            <div class="select-option"><span>高中</span> </div>
+                            <div class="select-option"><span>初中</span> </div>
                         </div>
                     </div>
                     <div class="chec_tip1">
                         <div class="left_align"></div>
                         <div class="right_align" style="width: 160px;"></div>
                     </div>
-                    <label class="general-input industry">
+                    <label class="relative general-input industry">
                         <input type="text" placeholder="所学专业" class="edu_major" value="">
+                        <div class="school_tip">
+
+                        </div>
                     </label>
                     <div class=" relative general-select right_align year">
                         <label class="general-input relative general-select" >
@@ -108,10 +119,7 @@
                             </svg>
                         </label>
                         <div class="options" style="height: 0px;">
-                            <div class="select-option"><span>计算机科学与技术</span></div>
-                            <div class="select-option"><span>软件工程</span> </div>
-                            <div class="select-option"><span>电子商务</span> </div>
-                            <div class="select-option"><span>土木工程</span> </div>
+
                         </div>
                     </div>
                     <div class="chec_tip1">
@@ -125,8 +133,11 @@
                     {if $id}
                         <span class='cwfdashed460'></span>
                     {/if}
-                    <label class="general-input left_align school">
+                    <label class="relative general-input left_align school">
                         <input type="text" placeholder="学校名称" class="school_name" value="{php echo $list['school_name']}">
+                        <div class="school_tip">
+
+                        </div>
                     </label>
                     <div class=" relative general-select right_align education">
                         <label class="general-input relative general-select">
@@ -136,20 +147,24 @@
                             </svg>
                         </label>
                         <div class="options" style="height: 0px;">
-                            <div class="select-option"><span>博士以上</span></div>
+                            <!--<div class="select-option"><span>博士以上</span></div>-->
                             <div class="select-option"><span>博士</span></div>
                             <div class="select-option"><span>硕士</span> </div>
                             <div class="select-option"><span>本科</span> </div>
                             <div class="select-option"><span>专科</span> </div>
-                            <div class="select-option"><span>专科以下</span> </div>
+                            <div class="select-option"><span>高中</span> </div>
+                            <div class="select-option"><span>初中</span> </div>
                         </div>
                     </div>
                     <div class="chec_tip1">
                         <div class="left_align"></div>
                         <div class="right_align" style="width: 160px;"></div>
                     </div>
-                <label class="general-input industry">
+                <label class="relative general-input industry">
                     <input type="text" placeholder="所学专业" class="edu_major" value="{php echo $list['edu_major']}">
+                    <div class="school_tip">
+
+                    </div>
                 </label>
                     <div class=" relative general-select right_align year">
                         <label class="general-input relative general-select" >
@@ -159,10 +174,7 @@
                             </svg>
                         </label>
                         <div class="options" style="height: 0px;">
-                            <div class="select-option"><span>计算机科学与技术</span></div>
-                            <div class="select-option"><span>软件工程</span> </div>
-                            <div class="select-option"><span>电子商务</span> </div>
-                            <div class="select-option"><span>土木工程</span> </div>
+
                         </div>
                     </div>
                     <div class="chec_tip1">
@@ -171,12 +183,19 @@
                     </div>
                 </div>
                 {/loop}
+
+                {if empty($edu_experience[1])}
                 <div class="cwfreg3content"   id="addexp">
                     <span class="cwfaddexp">添加更多经历</span>
                 </div>
+                {else}
+                <div class="cwfreg3content" id="addexp">
+                    <span class="cwfaddexp" style="width: 218px;">添加更多经历</span>
+                    <span class="cwfdelexp">删除</span></div>
+                {/if}
             </div>
             <div class="next_step">
-                <div class="prev left_align font_2" style="cursor: pointer">上一步</div>
+                <div class="prev left_align font_2" ><span style="cursor: pointer">上一步</span></div>
                 <div class="next_btn left_align font_2" id="edu_submit_next_step">下一步，工作经历</div>
             </div>
         </div>
@@ -187,70 +206,17 @@
 
 </body>
 <script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/newfile.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/resume_reg2.js" rel="script"></script>
+
 <script>
     $(document).ready(function(){
-        $(".prev").on("click",function () {
+        $(".prev span").on("click",function () {
             window.location.href = "{php echo app_url('resume/resume_reg/1')}";
-        })
-        var date=new Date();
-        var year=date.getFullYear();
-        var end=year-15;
-        var html="";
-        for(var i=year;i>=end;i--){
-            html+="<div class='select-option'><span>"+i+"</span></div>";
-        }
-        $(".year .options").html(html);
-
-
-        //设置下拉选择框
-        $("body").on("mousedown",".general-select input",function(){
-            var _this=$(this);
-            if(_this.closest(".general-select").next().height()=="0"){
-                $(".options").css("height","0px");
-                _this.closest(".general-select").next().css("height","185px");
-            }else {
-                _this.closest(".general-select").next().css("height","0px");
-            }
-        });
-        $("body").on("mousedown",".select-option",function(){
-                var _this=$(this);
-                var optionhtml=_this.find("span").eq(0).html();
-                _this.closest(".options").prev().find("input").val(optionhtml);
-                _this.closest(".options").css("height","0");
         });
 
-        $(".cwfaddexp").on('click',function(){
-            var addexp=$("#eduexp").html();
-            var addexpcontent="<div class='zjaddexp'><span class='cwfdashed460'></span>"+addexp+"</div>";
-            $("#addexp").before(addexpcontent);
-            $(".msgreg2_zj .cwfaddexp").css("width","218px");
-            if($("#addexp .cwfdelexp").length==0){
-                $("#addexp").append("<span class='cwfdelexp'>删除</span>")
-            };
-        });
-
-        //删除操作
-        $('body').on("click",".cwfdelexp",function(){
-            var exps=$(".zjaddexp");
-            if(exps.length>2){
-                exps.eq(exps.length-1).remove();
-            }else if(exps.length==2){
-                exps.eq(exps.length-1).remove();
-                $(".msgreg2_zj .cwfaddexp").css("width","100%");
-                $(".cwfdelexp").remove();
-            }
-        })
-
-
-        $(".edu_finish_time").on("click",function(){
-            $(this).closest(".year").next().find(".right_align").html("");
-        })
-
-        $("body").on("click",".edu_finish_time",function(){
-            $(this).closest(".year").next().find(".right_align").html("");
-        })
 
         $("#edu_submit_next_step").click(function(){
             var explength=$(".zjaddexp").length;
@@ -268,7 +234,7 @@
                 var finish_input=$(".edu_finish_time").eq(i).closest(".general-input");
                 var finish_border=$(".edu_finish_time").eq(i).closest(".year");
 
-                if(school_name==""){
+                if($.trim(school_name)==""){
                     school_input.css("border-color","#e23d46");
                     school_input.next().next().find(".left_align").html(tipmsg("error","请输入学校名称"));
 //                    hint("error","请输入学校名称");
@@ -277,19 +243,19 @@
                     school_input.next().next().find(".left_align").html("");
                 }
 
-                if(!edu_district){
+                if($.trim(edu_district)==""){
                     edu_districtinput.css("border-color","#e23d46");
                     edu_districtinput.parent().next().find(".right_align").html(tipmsg("error","请选择学历"));
                     return false;
                 }
-                if(edu_major==""){
-                    major_input.css("border-color","#e23d46");
-                    major_input.next().next().find(".left_align").html(tipmsg("error","请输入所学专业"));
-//                    hint("error","请输入所学专业");
-                    return false;
-                }else{
-                    major_input.next().next().find(".left_align").html("");
-                }
+//                if(edu_major==""){
+//                    major_input.css("border-color","#e23d46");
+//                    major_input.next().next().find(".left_align").html(tipmsg("error","请输入所学专业"));
+////                    hint("error","请输入所学专业");
+//                    return false;
+//                }else{
+//                    major_input.next().next().find(".left_align").html("");
+//                }
 
                 if(edu_finish_time==""){
                     finish_input.css("border-color","#e23d46");
@@ -317,17 +283,17 @@
                     if(data.status==1){
                         window.location.href=data.content;
                     }else{
-                        console.log(data.content);
+                        hint("error",data.content);
                     }
                 }
             })
 
         });
 
-        $("body").on("mousedown",".edu_district",function(){
 
-            $(this).closest(".education").next().find(".right_align").html("")
-        })
+
+
+
     })
 </script>
 </html>

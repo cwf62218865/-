@@ -161,7 +161,7 @@ $("body").on("mousedown",".cwfarea span",function(){
     var _this=$(this);
     var value=_this.closest(".options").prev().find("input").val();
     if(!$(this).hasClass("all")){
-        _this.closest(".options").prev().find("input").val(value+" "+_this.html());
+        _this.closest(".options").prev().find("input").val(value+_this.html());
     }else{
         _this.closest(".options").prev().find("input").val(value);
     }
@@ -308,10 +308,10 @@ $(".hope_jobbox2").html(hope_jobbox2html1);
 //第一级菜单鼠标移入事件
 $(".hope_jobbox1").on("mouseover",".hopejob1",function(){
     hope_job_label=$("#hope_job").val().split(",");//已选择职位
-    $(".hope_jobbox1 .hopejob1").each(function(){
-        $(this).removeClass("check1");
+    $(".hope_jobbox1 div").each(function(){
+        $(this).removeClass("check_jobbg");
     });
-    $(this).addClass("check1");
+    $(this).parent().addClass("check_jobbg");
     var data_id=$(this).attr("data-id");
     var hope_jobbox2html="";
     for(var i=1 ; i<=jobsnewfile["00_"+(parseInt(data_id)+1)].length ; i++){
@@ -399,13 +399,59 @@ $(".add_hope_job").on("click",function(){
         }
     }
 });
+//职位输入提示
+var jobsnewfile=jobsnewfile;
+var jobs=[];
+var job_tips=[]
+for (var i in jobsnewfile){
+    for( var k in jobsnewfile[i]){
+        jobs.push(jobsnewfile[i][k])
+    }
+};
+$("#hope_jobinput").on("input",function(){
+    job_tips=[];
+    var content= $.trim($(this).val());
+    if(content==""){
+        $(".hopejob_tips").html("");
+        return false;
+    }
+    for(var i in jobs){
+        var _this=jobs[i];
+        var bool=_this.indexOf(content);
+        if(job_tips.length>=5){
+            break;
+        }else{
+            if(bool>=0){
+                job_tips.push(_this);
+            }
+        }
+    }
 
-$("#save_hope_job").on("click",function(){
-    $(".hope_jobbox").height("0")
+    var job_tipscontent="";
+    for(var k in job_tips){
+        job_tipscontent+='<div class="hopejob_option">'+job_tips [k]+'</div>'
+    }
+    $(this).next().html(job_tipscontent);
 });
-$("#cancel_hope_job").on("click",function(){
-    $(".hope_jobbox").height("0");
+
+$(".hope_jobbox").on("click",function(){
+    $(".hopejob_tips").html("");
+});
+$("body").on("mousedown",".hopejob_option",function(){
+
+    var content=$(this).html();
+    $(this).closest(".hopejob_tips").prev().val(content);
+    $(".hopejob_tips").html("");
+});
+$("#hope_jobinput").on("input",function(){
+
 })
+//$("#save_hope_job").on("click",function(){
+//    $(".hope_jobbox").height("0")
+//});
+//$("#cancel_hope_job").on("click",function(){
+//    $(".hope_jobbox").height("0");
+//})
 
 
 

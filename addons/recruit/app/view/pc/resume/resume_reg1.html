@@ -267,7 +267,7 @@
 
 
             $.ajax({
-                url: "{php echo app_url('person/resume/headimg_upload')}",
+                url: "{php echo app_url('member/index/headimgurl_upload')}",
                 data: {
                     file:src
                 },
@@ -277,7 +277,7 @@
                     var data = JSON.parse(data);
                     if(data.status == 1) {
                         console.log(data.others);
-                        $('.resume_reg1headimgbox').html("<img src='"+data.others+"' />");
+                        $('.resume_reg1headimgbox').html("<img src='"+data.content+"' />");
 //                        $('.resume_manage_headerimg img').attr('src',data.others);
                         window.clearTimeout(timer1);
                     }
@@ -304,7 +304,7 @@
         var timer1 = "";
         $(".modalbtn").on("click",function(){
             var uploadFormData =new FormData($("#choosefile1")[0]);
-            var uploadurl = "{php echo app_url('person/resume/headimg_upload')}";
+            var uploadurl = "{php echo app_url('member/index/headimgurl_upload')}";
             $.ajax({
                 url: uploadurl,
                 type:"post",
@@ -316,7 +316,7 @@
                 success:function (data) {
                     var data=JSON.parse(data);
                     if(data.status==1){
-                        var html = '<img src="'+data.others+'">';
+                        var html = '<img src="'+data.content+'">';
                         $(".resume_reg1headimgbox").html(html);
                         $("#modalbox").css("display","none");
                         window.clearTimeout(timer1);
@@ -349,16 +349,16 @@
             var address=$("#address").val();//地址
 
 
-            if(!headimgurl){
-                hint("error","请上传头像");
-                return false;
-            }
+//            if(!headimgurl){
+//                hint("error","请上传头像");
+//                return false;
+//            }
 
             if($.trim(user_name)==""){
                 var input_box=$("#user_name").closest(".general-input");
                 input_box.css("border-color","#e23d46");
 //                hint("error","请输入用户名");
-                $(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","请输入用户名"));
+                $(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","请输入姓名"));
                 return false;
             }
 
@@ -380,29 +380,29 @@
                 var input_box=$("#email").closest(".general-input");
                 input_box.css("border-color","#e23d46");
 //                hint("error","请输入邮箱");
-                $(".chec_tip").eq(0).html(tipmsg("error","请输入邮箱"));
+                input_box.next().html(tipmsg("error","请输入邮箱"));
                 return false;
             }else if(!eamiltest.test(email)){
                 var input_box=$("#email").closest(".general-input");
                 input_box.css("border-color","#e23d46");
 //                hint("error","输入邮箱有误");
-                $(".chec_tip").eq(0).html(tipmsg("error","输入邮箱有误"));
+                input_box.next().html(tipmsg("error","输入邮箱有误"));
                 return false;
             }
 
-            if(!city){
-                var input_box=$("#city").closest(".general-input");
-                input_box.css("border-color","#e23d46");
-                $(".chec_tip1").eq(1).find(".left_align").html(tipmsg("error","请选择居住城市"));
-                return false;
-            }
-
-            if(!city_area){
-                var input_box=$("#city_area").closest(".general-input");
-                input_box.css("border-color","#e23d46");
-                $(".chec_tip1").eq(1).find(".right_align").html(tipmsg("error","请选择区域"));
-                return false;
-            }
+//            if(!city){
+//                var input_box=$("#city").closest(".general-input");
+//                input_box.css("border-color","#e23d46");
+//                $(".chec_tip1").eq(1).find(".left_align").html(tipmsg("error","请选择居住城市"));
+//                return false;
+//            }
+//
+//            if(!city_area){
+//                var input_box=$("#city_area").closest(".general-input");
+//                input_box.css("border-color","#e23d46");
+//                $(".chec_tip1").eq(1).find(".right_align").html(tipmsg("error","请选择区域"));
+//                return false;
+//            }
 
             $.ajax({
                 url:"{php echo app_url('resume/resume_reg/step1_save')}",

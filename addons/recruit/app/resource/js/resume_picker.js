@@ -28,6 +28,8 @@ $(function () {
         setTimeout(function(){
             $("#beizhubox").css("display","block");
         },300)
+        $(".collect_resume").attr("data-id", $(this).attr("data-id"));
+        $(".collect_resume").attr("data-uid", $(this).attr("data-uid"));
     })
     $("body").on("click",".edit_ico",function () {
         var item=$(this).closest(".list_item");
@@ -81,5 +83,6 @@ $(function () {
         $("#invite_box").attr("data-id",data_id);
         $("#invite_box").attr("data-uid",data_uid);
     });
+
 
 })
