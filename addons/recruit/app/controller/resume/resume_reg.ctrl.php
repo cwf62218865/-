@@ -60,6 +60,10 @@ if($op=="1"){
         $data['experience'] =$experience_info['experience'];
         $data['updatetime'] = time();
         $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));
+    }else{
+            $data['work_experience'] = "";
+            $data['updatetime'] = time();
+        $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));
     }
 
     call_back(1,app_url("resume/resume_reg/4"));
