@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/9/11 0011.
  */
-$(document).ready(function(){
+
 
     $("body").on("focus",".general-input input",function(){
         var _this=$(this);
@@ -12,6 +12,21 @@ $(document).ready(function(){
         var _this=$(this);
         $(this).closest(".general-input").css("border-color","#f5f5f5");
     });
+
+    $("body").on("focus",".leave_reason",function(){
+        $(this).next().css("height","auto")
+    })
+
+
+    $("body").on("blur",".leave_reason",function(){
+        $(this).next().css("height","0")
+    })
+
+    $("body").on("mousedown",".reason_option",function(){
+        var content=$(this).html();
+
+        $(this).parent().prev().val(content);
+    })
 
 
     $(".cwfaddexp").on('click',function(){
@@ -95,4 +110,51 @@ $(document).ready(function(){
         date_options+="<div class='select-option' style='width:80px;'><span>"+(year_date-i)+"</span></div>"
     };
     $('.cwftimeoptions').append(date_options);
-})
+
+
+    //职位输入提示
+    var jobsnewfile=jobsnewfile;
+    var jobs=[];
+    var job_tips=[]
+    for (var i in jobsnewfile){
+        for( var k in jobsnewfile[i]){
+            jobs.push(jobsnewfile[i][k])
+        }
+    };
+$("body").on("input",".job_name",function(){
+    job_tips=[];
+    var content= $.trim($(this).val());
+    if(content==""){
+        $(".job_tip").html("");
+        return false;
+    }
+    for(var i in jobs){
+        var _this=jobs[i];
+        var bool=_this.indexOf(content);
+        if(job_tips.length>=5){
+            break;
+        }else{
+            if(bool>=0){
+                job_tips.push(_this);
+            }
+        }
+    }
+
+    var job_tipscontent="";
+    for(var k in job_tips){
+        job_tipscontent+='<div class="job_tip_option"><span>'+job_tips [k]+'</span></div>'
+    }
+    $(this).next().html(job_tipscontent);
+});
+
+$("body").on("click",function(){
+    $(".job_tip").html("");
+});
+$("body").on("click",".job_tip_option",function(){
+    var content=$(this).find("span").eq(0).html();
+    $(this).closest(".job_tip").prev().val(content);
+    $(".job_tip").html("");
+});
+
+
+

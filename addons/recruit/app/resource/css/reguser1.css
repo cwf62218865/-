@@ -846,3 +846,43 @@ position: absolute;
 .school_tip_option span{
     margin-left: 20px;
 }
+.job_tip{
+    width: 160px;
+    height: auto;
+    position: absolute;
+    z-index: 100
+}
+.job_tip_option{
+    width: 158px;
+    line-height: 36px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-top: none;
+    cursor: pointer;
+}
+.job_tip_option:hover{
+    background-color: #0099cc;
+    color: #fff;
+}
+.job_tip_option span{
+    margin-left: 20px;
+}
+.reason_options{
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    height: 0;
+    overflow: hidden;
+}
+.reason_option{
+    line-height: 36px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    padding-left: 20px;
+    border-top: none;
+    cursor: pointer;
+}
+.reason_option:hover{
+    background-color: #0099cc;
+    color: #fff;
+}

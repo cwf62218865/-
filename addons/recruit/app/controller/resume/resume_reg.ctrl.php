@@ -58,12 +58,13 @@ if($op=="1"){
         $data['work_experience'] = serialize($_POST['data']);
         $experience_info = m("resume")->extract_experience_info($data);
         $data['experience'] =$experience_info['experience'];
-    }else{
-        $work_experience = array();
-        $data['work_experience'] = serialize($work_experience);
-    }
         $data['updatetime'] = time();
         $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));
+    }else{
+            $data['work_experience'] = "";
+            $data['updatetime'] = time();
+        $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));
+    }
 
     call_back(1,app_url("resume/resume_reg/4"));
 }elseif ($op=="step4_save"){

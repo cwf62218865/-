@@ -29,14 +29,8 @@
 
                     <label class="relative general-input left_align school">
                         <input type="text" placeholder="学校名称" class="school_name" value="">
-                        <div class="options" style="height: 0px;">
-                            <div class="select-option"><span>博士以上</span></div>
-                            <div class="select-option"><span>博士</span></div>
-                            <div class="select-option"><span>硕士</span> </div>
-                            <div class="select-option"><span>本科</span> </div>
-                            <div class="select-option"><span>专科</span> </div>
-                            <div class="select-option"><span>高中</span> </div>
-                            <div class="select-option"><span>初中</span> </div>
+                        <div class="school_tip">
+
                         </div>
                     </label>
                     <div class=" relative general-select right_align education">
@@ -47,7 +41,7 @@
                             </svg>
                         </label>
                         <div class="options" style="height: 0px;">
-                            <div class="select-option"><span>博士以上</span></div>
+                            <!--<div class="select-option"><span>博士以上</span></div>-->
                             <div class="select-option"><span>博士</span></div>
                             <div class="select-option"><span>硕士</span> </div>
                             <div class="select-option"><span>本科</span> </div>
@@ -62,6 +56,9 @@
                     </div>
                     <label class="relative general-input industry">
                         <input type="text" placeholder="所学专业" class="edu_major" value="">
+                        <div class="school_tip">
+
+                        </div>
                     </label>
                     <div class=" relative general-select right_align year">
                         <label class="general-input relative general-select" >
@@ -95,7 +92,7 @@
                             </svg>
                         </label>
                         <div class="options" style="height: 0px;">
-                            <div class="select-option"><span>博士以上</span></div>
+                            <!--<div class="select-option"><span>博士以上</span></div>-->
                             <div class="select-option"><span>博士</span></div>
                             <div class="select-option"><span>硕士</span> </div>
                             <div class="select-option"><span>本科</span> </div>
@@ -110,6 +107,9 @@
                     </div>
                     <label class="relative general-input industry">
                         <input type="text" placeholder="所学专业" class="edu_major" value="">
+                        <div class="school_tip">
+
+                        </div>
                     </label>
                     <div class=" relative general-select right_align year">
                         <label class="general-input relative general-select" >
@@ -135,6 +135,9 @@
                     {/if}
                     <label class="relative general-input left_align school">
                         <input type="text" placeholder="学校名称" class="school_name" value="{php echo $list['school_name']}">
+                        <div class="school_tip">
+
+                        </div>
                     </label>
                     <div class=" relative general-select right_align education">
                         <label class="general-input relative general-select">
@@ -144,7 +147,7 @@
                             </svg>
                         </label>
                         <div class="options" style="height: 0px;">
-                            <div class="select-option"><span>博士以上</span></div>
+                            <!--<div class="select-option"><span>博士以上</span></div>-->
                             <div class="select-option"><span>博士</span></div>
                             <div class="select-option"><span>硕士</span> </div>
                             <div class="select-option"><span>本科</span> </div>
@@ -159,6 +162,9 @@
                     </div>
                 <label class="relative general-input industry">
                     <input type="text" placeholder="所学专业" class="edu_major" value="{php echo $list['edu_major']}">
+                    <div class="school_tip">
+
+                    </div>
                 </label>
                     <div class=" relative general-select right_align year">
                         <label class="general-input relative general-select" >
@@ -177,9 +183,16 @@
                     </div>
                 </div>
                 {/loop}
+
+                {if empty($edu_experience[1])}
                 <div class="cwfreg3content"   id="addexp">
                     <span class="cwfaddexp">添加更多经历</span>
                 </div>
+                {else}
+                <div class="cwfreg3content" id="addexp">
+                    <span class="cwfaddexp" style="width: 218px;">添加更多经历</span>
+                    <span class="cwfdelexp">删除</span></div>
+                {/if}
             </div>
             <div class="next_step">
                 <div class="prev left_align font_2" ><span style="cursor: pointer">上一步</span></div>
