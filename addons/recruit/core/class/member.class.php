@@ -49,7 +49,7 @@ class member{
         foreach ($company as $key=>$list){
             $company_profile[$key] = $list;
             $company_profile[$key]['last_login'] = $this->last_login($list['uid']);
-            $company_profile[$key]['jobs_count'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$list['uid']);
+            $company_profile[$key]['jobs_count'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where open=1 and display=1 and uid=".$list['uid']);
             $company_profile[$key]['comment_count'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where uid=".$list['uid']);
 
         }

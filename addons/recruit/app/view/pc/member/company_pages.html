@@ -557,32 +557,60 @@
         })
     })
 
-    var page1 = createPage("job_comment", "{php echo app_url('member/index/jobs_comment_page')}");
-    var page2 = createPage("company_findjob", "{php echo app_url('member/index/company_detail_jobs_page')}");
-    page1.option={
-        page:1,
-        company_uid:"{$company['uid']}"
-    };
-    page2.option={
-        page:1,
-        uid:"{$company['uid']}"
-    };
-    var job_comment_pagenum = "{php echo ceil($company_count['comment_count']/6)}";
-    if(job_comment_pagenum>1){
-        $(".job_comment").html(pages(1,job_comment_pagenum));
-    }
-    var company_findjob_pagenum = "{php echo ceil($jobs_num/6)}";
-    if(job_comment_pagenum>1){
-        $(".company_findjob").html(pages(1,company_findjob_pagenum));
-    }
 
-    page1.callback_content = function () {
-        $(".evaluate_content").html(page1.data.content);
-    }
-    page2.callback_content = function () {
-        $(".job_list_con").html(page2.data.content);
-    }
 
+
+    $(function () {
+        var job_comment_pagenum = "{php echo ceil($company_count['comment_count']/6)}";
+        if(parseInt(job_comment_pagenum)>1){
+            $(".job_comment").html(pages(1,job_comment_pagenum));
+        }
+        var company_findjob_pagenum = "{php echo ceil($jobs_num/6)}";
+        if(parseInt(company_findjob_pagenum)>1){
+            $(".company_findjob").html(pages(1,company_findjob_pagenum));
+        }
+        var page1 = createPage("job_comment", "{php echo app_url('member/index/jobs_comment_page')}");
+        var page2 = createPage("company_findjob", "{php echo app_url('member/index/company_detail_jobs_page')}");
+        page1.option={
+            page:1,
+            company_uid:"{$company['uid']}",
+            orderby:"zan_num"
+        };
+        page2.option={
+            page:1,
+            uid:"{$company['uid']}"
+        };
+
+
+        page1.callback_content = function () {
+            $(".evaluate_content").html(page1.data.content);
+        }
+        page2.callback_content = function () {
+            $(".job_list_con").html(page2.data.content);
+        }
+
+        //评论推荐排序
+        $(".title_sr").click(function () {
+            if($(this).html()=="推荐度排序"){
+                page1.option.orderby = "zan_num";
+            }else{
+                page1.option.orderby = "createtime";
+            }
+            $.ajax({
+                type:"post",
+                url:"{php echo app_url('member/index/jobs_comment_page')}",
+                data:{
+                    data:page1.option
+                },
+                success:function (data) {
+                    var data = JSON.parse(data);
+                    if(data.status==1){
+                        $(".evaluate_content").html(data.content);
+                    }
+                }
+            })
+        })
+    })
 
 
 </script>

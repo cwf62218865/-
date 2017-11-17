@@ -242,7 +242,7 @@
                     </div>
                     <div class="review_statas">
                         <div class="tongyi yaoqing_interview">邀请面试</div>
-                        <div class="jujue shoucang shoucang_resume"  data-id="{php echo $list['id']}">收藏简历</div>
+                        <div class="jujue shoucang shoucang_resume"  data-id="{php echo $list['id']}" data-uid="{php echo $list['uid']}">收藏简历</div>
                     </div>
                 </div>
                 {/loop}
@@ -412,7 +412,7 @@
             </span>
             <textarea class="scbz_input" placeholder="自定义备注，15字以内。"></textarea>
             <div class="btns" style="margin-bottom: 22px">
-                <button class="tijiao1"  id="shoucang">确定</button>
+                <button class="tijiao1 collect_resume"  id="shoucang">确定</button>
                 <span class="quxiao">取消</span>
             </div>
         </div>
@@ -654,29 +654,30 @@
 //            alert("请填写备注！")
 //            return;
 //        }
-        $("#beizhubox").hide();
-        var lists=$(".resume_content .list_item");
-        lists.each(function () {
-            if($(this).attr("data-id")==data_flag){
-                $(this).find(".shoucang").html("已收藏");
-                $(this).find(".shoucang").removeClass("shoucang_resume");
-                $(this).find(".shoucang").addClass("colorbb");
-            }
-        })
+
 
         $.ajax({
-            url:"{php echo app_url('company/resume/collect')}",
+            url:"{php echo app_url('company/resume/collect_resume')}",
             type:"post",
             data:{
-//                beizhu:beizhu,
-//                data_id:data_flag,
-//                methods:methods
+                resume_id:$(this).attr("data-id"),
+                resume_uid:$(this).attr("data-uid")
             },
             success:function (data) {
+                var data = JSON .parse(data);
                 if(data.status==1){
-                    window.location.href="";
+                    $("#beizhubox").hide();
+                    hint("success","收藏成功");
+                    var lists=$(".resume_content .list_item");
+                    lists.each(function () {
+                        if($(this).attr("data-id")==data_flag){
+                            $(this).find(".shoucang").html("已收藏");
+                            $(this).find(".shoucang").removeClass("shoucang_resume");
+                            $(this).find(".shoucang").addClass("colorbb");
+                        }
+                    })
                 }else{
-                    console.log(data.content);
+                    hint("error",data.content);
                 }
             }
         })

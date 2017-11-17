@@ -12,8 +12,8 @@ if($op=="index"){
 }
 //我收到的简历
 elseif ($op=="received_resume"){
+    $company = m("company")->get_profile($_SESSION['uid']);
     $jobs_id = isset($_GPC['jobs_id'])?$_GPC['jobs_id']:"";
-//    $page = $_POST['page']?$_POST['page']:0;
     if($_POST['page']){
         $page = $_POST['page']-1;
     }else{

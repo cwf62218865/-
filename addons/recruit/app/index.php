@@ -31,7 +31,7 @@ if(!$_SESSION['uid']){
 		$op = "index";
 	}
     $company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."company_profile"));
-    $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs"));
+    $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where display=1 and open=1 ");
     if($_GPC['do']<>"member" && $_POST){
         call_back(3,"请先登录账号");
     }

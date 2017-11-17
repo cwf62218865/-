@@ -4,7 +4,7 @@ defined('IN_IA') or exit('Access Denied');
 wl_load()->model('verify');
 $upload_path = WL_URL_APPS."file/";
 $company = m("company")->get_profile($_SESSION['uid']);
-
+$back_top = 1;
 //企业注册页面
 if($op=="index"){
     include wl_template('member/company_reg1');

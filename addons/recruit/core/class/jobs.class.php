@@ -236,10 +236,15 @@ class jobs{
         if(empty($data['page'])){
             $data['page']=1;
         }
+        if($data['orderby']=="createtime"){
+            $orderby = " order by createtime desc";
+        }else{
+            $orderby = " order by zan_num desc";
+        }
         $page = ($data['page'] -1)*$pagenum;
         $limit = " limit ".$page.",".$pagenum;
 //        echo "select * from " . tablename(WL ."comment") . $wheresql.$limit;exit();
-        $comment_jobs = pdo_fetchall("select * from " . tablename(WL ."comment") . $wheresql.$limit);
+        $comment_jobs = pdo_fetchall("select * from " . tablename(WL ."comment") . $wheresql.$orderby.$limit);
 //        var_dump($comment_jobs);exit();
         $comment['count'] = pdo_fetchcolumn("select count(*) from " . tablename(WL ."comment") . $wheresql);
 

@@ -70,7 +70,7 @@
                             <div class="bm_hang1">
                                 <span class="name">{php echo $list['fullname']}</span>
                                 <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}" target="_blank">查看</a>
-                                <span class="hope_job">{php echo $list['jobs_name']}</span>
+                                <a  class="hope_job" href="{php echo app_url('company/index/job_manage')}">{php echo $list['jobs_name']}</a>
                             </div>
                             <div class="bm_hang2">
                                 <span class="basic_xx">{if $list['sex']==2}女生{else}男生{/if}</span>
@@ -149,7 +149,7 @@
                             <div class="bm_hang1">
                                 <span class="name">{php echo $list['fullname']}</span>
                                 <span class="view_i">查看</span>
-                                <span class="hope_job">{php echo $list['jobs_name']}</span>
+                                <a href="{php echo app_url('company/index/job_manage')}" class="hope_job">{php echo $list['jobs_name']}</a>
                             </div>
                             <div class="bm_hang2">
                                 <span class="basic_xx">{if $list['sex']==2}女生{else}男生{/if}</span>
@@ -285,7 +285,7 @@
                     <span class="biaoti">面试地点</span>
                     <div class=" relative general-select left_align city1 ">
                         <label class="general-input relative general-select review_city" style="border-color: rgb(245, 245, 245);">
-                            <input type="text" readonly="" id="city" placeholder="选择城市">
+                            <input type="text" readonly="" id="city" placeholder="选择城市" value="{$company['city']}">
                             <svg class="icon inputicon" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
                             </svg>
@@ -294,7 +294,7 @@
                     </div>
                     <div class=" relative general-select district1" style="float: right;">
                         <label class="general-input relative general-select review_district">
-                            <input type="text" readonly="" id="city_area" placeholder="区县">
+                            <input type="text" readonly="" id="city_area" placeholder="区县"  value="{$company['city_area']}">
                             <svg class="icon inputicon" aria-hidden="true">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
                             </svg>
@@ -302,7 +302,7 @@
                         <div class="options districtoption" style="height: 185px;overflow-y: auto"></div>
                     </div>
                     <label class="general-input" >
-                        <input type="text" id="detail_address" placeholder="详细地址">
+                        <input type="text" id="detail_address" placeholder="详细地址" value="{$company['address']}">
                     </label>
                 </div>
             </div>
@@ -318,13 +318,6 @@
 
 
 </body>
-<!--<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>-->
-<!--<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>-->
-<!--<script src="{WL_URL_ARES}js/control.js" rel="script"></script>-->
-<!--<script src="{WL_URL_ARES}js/login_reg_account.js"></script>-->
-<!--<script src="{WL_URL_ARES}js/area.js" rel="script"></script>-->
-<!--<script src="{WL_URL_ARES}js/resume_reg1.js" rel="script"></script>-->
-
 
 <script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
