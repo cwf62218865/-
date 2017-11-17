@@ -165,18 +165,18 @@
             </div>
 <!--公司简介end-->
 <!--招聘职位-->
-            <div class="super_content" style="margin-top: 40px;display: none;">
-                <div class="job_lists_super">
-                    <label class="job_list_item selectit">运营支持员(个贷业务)</label>
-                    <label class="job_list_item">Java开发工程师</label>
-                    <label class="job_list_item">测试工程师</label>
-                    <label class="job_list_item">大数据科学家</label>
-                    <label class="job_list_item">IOS/andriod客户端开发工程师</label>
-                    <label class="job_list_item">数据产品经理</label>
-                    <label class="job_list_item">法务专员</label>
-                    <label class="job_list_item">计算机视觉算法工程师</label>
+            <div class="super_content" style="display: none;">
+                <div class="job_lists_super" style="margin-top: 40px;">
+                    <a class="job_list_item selectit" href="#job1">运营支持员(个贷业务)</a>
+                    <a class="job_list_item"  href="#job2">Java开发工程师</a>
+                    <a class="job_list_item"  href="#job3">测试工程师</a>
+                    <a class="job_list_item"  href="#job4">大数据科学家</a>
+                    <a class="job_list_item"  href="#job5">IOS/andriod客户端开发工程师</a>
+                    <a class="job_list_item"  href="#job6">数据产品经理</a>
+                    <a class="job_list_item"  href="#job7">法务专员</a>
+                    <a class="job_list_item"  href="#job8">计算机视觉算法工程师</a>
                 </div>
-                <div class="job_details" style="background:linear-gradient(-45deg, transparent 20px, #fff 0);margin-top: 20px;">
+                <div class="job_details" id="job1" style="background:linear-gradient(-45deg, transparent 20px, #fff 0);margin-top: 20px;">
                     <svg class="icon huixingzhen" aria-hidden="true" style="">
                         <use  xlink:href="#icon-niukou"></use>
                     </svg>
@@ -217,7 +217,7 @@
                     </div>
                     <div class="zhejiao"></div>
                 </div>
-                <div class="job_details" style="background:linear-gradient(-45deg, transparent 20px, #fff 0);">
+                <div class="job_details"  id="job2" style="background:linear-gradient(-45deg, transparent 20px, #fff 0);">
                     <svg class="icon huixingzhen" aria-hidden="true" style="">
                         <use  xlink:href="#icon-niukou"></use>
                     </svg>
@@ -258,7 +258,7 @@
                     </div>
                     <div class="zhejiao"></div>
                 </div>
-                <div class="job_details" style="background:linear-gradient(-45deg, transparent 20px, #fff 0);">
+                <div class="job_details"  id="job3" style="background:linear-gradient(-45deg, transparent 20px, #fff 0);">
                     <svg class="icon huixingzhen" aria-hidden="true" style="">
                         <use  xlink:href="#icon-niukou"></use>
                     </svg>
@@ -315,7 +315,7 @@
                 <div class="xzlicontent">
                     <div class="xzitem">
                         <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
-                        <div class="college_name">武汉大学</div>
+                        <div class="college_name">武汉大学(文理科技学院)</div>
                         <div class="xiangxixinxi">
                         <div class="dizhi_shi">武汉市</div>
                         <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
@@ -522,7 +522,7 @@
         </span>
         <p class="tips_tishi">请确认您的手机号码，以免漏掉宣讲会的重要信息</p>
         <label class="general-input dingyuemobile">
-            <input type="text" id="contacts_name" autocomplete="off" maxlength="11">
+            <input id="contacts_name" autocomplete="off" maxlength="11" type="text">
         </label>
 
 
@@ -530,6 +530,66 @@
     </div>
 </div>
 <!--弹框end-->
+
+<!--发送邮箱-->
+<div class="modalbox" id="envelope_modal" style="display: none;">
+    <div class="envelope_modal">
+        <div class="envelope">
+            <div class="envelope_content">
+
+
+                <div class="envelope_content_msg">
+                    <div style="text-align: center;">自荐信</div>
+                    <textarea  class="envelope_content_textarea" id="envelope_content_msg"  placeholder="你想对hr说什么"> 尊敬的HR：
+　　您好！
+　　{php echo $resume['introduce']}
+
+    我是一名{php echo $resume['arr_education']['school_name']}{php echo $resume['arr_education']['edu_finish_time']}届的{php echo $resume['arr_education']['edu_district']}毕业生。所学专业：{php echo $resume['arr_education']['edu_major']}。
+　　{if $work_experience}
+大学期间实习经历：
+    {loop $work_experience $list}
+　　{php echo $list['job_starttime']}-{php echo $list['job_endtime']}{php echo $list['job_content']}
+
+　　{/loop}
+    {/if}
+
+    怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。</textarea>
+                </div>
+
+                <input type="hidden" name="envelope_content" id="envelope_content">
+
+            </div>
+        </div>
+
+        <div class="envelope_enclosure" style="bottom: 0;">
+            <div style="display: inline-block">
+                <span class="font20666">附件:</span>
+
+                <svg class="icon pdficon" aria-hidden="true">
+                    <use xlink:href="#icon-file-pdf"></use>
+                </svg>
+                <a href="{php echo '/app/'.$_SESSION['uid'].'.pdf'}" class="envelope_resume" target="_blank">{php echo $resume['fullname']}的个人简历</a>
+            </div>
+
+            <div style="float: right;text-align: center;line-height: 24px;color: #666">
+                <span>{php echo $resume['fullname']}</span>
+                <div>{php echo date('Y年m月d日')}</div>
+            </div>
+            <span class="public_bigbtn bg1aa modalbtn shengqing">立即申请</span>
+        </div>
+
+        <span class="close_envelopebtn">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-shan"></use>
+            </svg>
+        </span>
+
+
+    </div>
+</div>
+
+<!--发送邮箱-->
 
 
 
@@ -559,10 +619,18 @@
             $("#dingyuebox").hide();
         })
 
+        //高校宣讲会订阅
+        var telphone_reg=/^1[3|5|7|8][0-9]\d{8}$/;
         $(".dingyuesure").click(function () {
             var mobile=$("#contacts_name").val();
-            alert(mobile)
-            hint("success","请到个人中心>订阅宣讲查看订阅信息");
+            if(mobile==""){
+                hint("error","请填写手机号码","错误提示！");
+                return;
+            }else if(!(telphone_reg.test(mobile))){
+                hint("error","请输入正确的手机号码","错误提示！");
+                return;
+            }
+            hint("success","请到个人中心>订阅宣讲查看订阅信息","订阅成功！");
             $.ajax({
                 url:"",
                 type:"post",
@@ -573,9 +641,9 @@
                     if(data){
                         var data=JSON.parse(data);
                         if(data.status==1){
-                            hint("success","请到个人中心>订阅宣讲查看订阅信息");
+                            hint("success","请到个人中心>订阅宣讲查看订阅信息","订阅成功！");
                         }else{
-                            hint("error",data.content);
+                            hint("error",data.content,"错误提示！");
                         }
                     }
                 }
