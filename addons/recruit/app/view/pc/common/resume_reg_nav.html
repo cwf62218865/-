@@ -1,6 +1,6 @@
 <div class="resume_step">
     <div class="resume_stepbox">
-            <a href="" class="resume_step_circular">
+            <a href="{php echo app_url('resume/resume_reg/1')}" class="resume_step_circular">
                 <div class="resume_step_circular1 resume_step_ready">
                     {if $resume['fullname']}
                         <svg class="icon icon_right" aria-hidden="true" style="color: #fff">
@@ -14,7 +14,7 @@
         <p>基本信息</p>
     </div>
     <div class="resume_stepbox">
-            <a href="" class="resume_step_circular">
+            <a href="{php echo app_url('resume/resume_reg/2')}" class="resume_step_circular">
                 <div class="resume_step_circular1 {if $resume['fullname']}resume_step_ready{else}resume_step_no{/if}">
                     {if $resume['edu_experience']}
                         <svg class="icon icon_right" aria-hidden="true" style="color: #fff">
@@ -28,7 +28,7 @@
         <p>教育经历</p>
     </div>
     <div class="resume_stepbox">
-            <a href="" class="resume_step_circular">
+            <a href="{php echo app_url('resume/resume_reg/3')}" class="resume_step_circular">
                 <div class="resume_step_circular1 {if $resume['edu_experience']}resume_step_ready{else}resume_step_no{/if}">
                     {if $resume['work_experience']}
                     <svg class="icon icon_right" aria-hidden="true" style="color: #fff">
@@ -42,7 +42,7 @@
         <p>工作经历</p>
     </div>
     <div class="resume_stepbox">
-            <a href="" class="resume_step_circular">
+            <a href="{php echo app_url('resume/resume_reg/4')}" class="resume_step_circular">
                 <div class="resume_step_circular1 {if $resume['work_experience']}resume_step_ready{else}resume_step_no{/if}">
                     {if $resume['introduce']}
                     <svg class="icon icon_right" aria-hidden="true" style="color: #fff">

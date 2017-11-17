@@ -15,9 +15,9 @@ class jobs{
 
     public function getall_jobs($uid,$open=1){
         if($open==1){
-            $wheresql = " where open=1 ";
+            $wheresql = " where open=1 and display=1 ";
         }else{
-            $wheresql = " where 1=1 ";
+            $wheresql = " where display=1 ";
         }
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql." and uid=".$uid." order by open desc,addtime desc");
         $arr = "";
@@ -236,10 +236,15 @@ class jobs{
         if(empty($data['page'])){
             $data['page']=1;
         }
+        if($data['orderby']=="createtime"){
+            $orderby = " order by createtime desc";
+        }else{
+            $orderby = " order by zan_num desc";
+        }
         $page = ($data['page'] -1)*$pagenum;
         $limit = " limit ".$page.",".$pagenum;
 //        echo "select * from " . tablename(WL ."comment") . $wheresql.$limit;exit();
-        $comment_jobs = pdo_fetchall("select * from " . tablename(WL ."comment") . $wheresql.$limit);
+        $comment_jobs = pdo_fetchall("select * from " . tablename(WL ."comment") . $wheresql.$orderby.$limit);
 //        var_dump($comment_jobs);exit();
         $comment['count'] = pdo_fetchcolumn("select count(*) from " . tablename(WL ."comment") . $wheresql);
 
@@ -341,7 +346,8 @@ class jobs{
         $data['information_count'] = ceil($information_count/$count);
         $data['environment_count'] = ceil($environment_count/$count);
         $data['interviewer_count'] = ceil($interviewer_count/$count);
-        $data['count'] = ceil(($data['information_count']+$data['environment_count']+$data['interviewer_count'])/3);
+        $data['count'] = ($data['information_count']+$data['environment_count']+$data['interviewer_count'])/3;
+        $data['count'] = sprintf("%.1f", $data['count']);
         $data['information_star'] = "";
         for($i=0;$i<$data['information_count'];$i++){
             $data['information_star'] .=

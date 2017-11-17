@@ -24,7 +24,7 @@ function m($name = '') {
 //公司个人中心统计
 function  company_statistics(){
 	$data['jobs_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$_SESSION['uid']." and open=1");
-	$data['apply_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where uid=".$_SESSION['uid']." and direction=1 and offer=1");
+	$data['apply_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where uid=".$_SESSION['uid']." and direction=1 and offer=1 and status=0");
 	$data['interview_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where uid=".$_SESSION['uid']." and status=3 and offer=1");
 	return $data;
 }

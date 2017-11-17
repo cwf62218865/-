@@ -12,8 +12,8 @@ if($op=="index"){
 }
 //我收到的简历
 elseif ($op=="received_resume"){
+    $company = m("company")->get_profile($_SESSION['uid']);
     $jobs_id = isset($_GPC['jobs_id'])?$_GPC['jobs_id']:"";
-//    $page = $_POST['page']?$_POST['page']:0;
     if($_POST['page']){
         $page = $_POST['page']-1;
     }else{
@@ -309,8 +309,25 @@ elseif ($op=="collect"){
             }
         }
     }
+}
 
-
+//前面为盗版，此为正版收藏
+elseif ($op=="collect_resume"){
+    $data['puid'] = check_pasre($_POST['resume_uid'],"参数错误");
+    $data['resume_id'] = check_pasre($_POST['resume_id'],"参数错误");
+    $data['uid'] =$_SESSION['uid'];
+    $collect_resume = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where uid=".$_SESSION['uid']." and resume_id=".$data['resume_id']);
+    if($collect_resume){
+        call_back(2,"该简历已收藏");
+    }else{
+        $data['createtime'] = time();
+        $r = insert_table($data,WL."collect_resume");
+        if($r){
+            call_back(1,"ok");
+        }else{
+            call_back(2,"收藏失败");
+        }
+    }
 }
 
 //取消收藏

@@ -4,7 +4,7 @@ wl_load()->model('api');
 if($_SESSION['uid']){
     $resume = m("resume")->get_resume($_SESSION['uid']);
 }
-
+$back_top = 1;
 if($op=="1"){
     $identity = encrypt($_SESSION['uid'], 'E');
     $member = m("member")->get_member($_SESSION['uid']);

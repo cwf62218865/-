@@ -25,7 +25,7 @@
 
     <div class="p1_left" style="margin-top: 30px;">
         <div class="con_list" style="padding-bottom: 80px">
-            <div class="top_news">腾讯任宇昕：打出“AI in All”战略，明年投入百亿打造企鹅号生态</div>
+            <div class="top_news">{$news['title']}</div>
             <div class="fu_topnews">
                 <label class="fu_icos">
                     <svg class="icon">
@@ -34,8 +34,8 @@
                 <label class="fu_icos">
                     <svg class="icon">
                         <use xlink:href="#icon-liulanliang"></use>
-                    </svg>1453</label>
-                <label class="fu_icos">2017-12-20</label>
+                    </svg>{$news['click']}</label>
+                <label class="fu_icos">{php echo date('Y-m-d',$news['createtime'])}</label>
                 <label class="fu_icos_right fbpinglun">
                     <svg class="icon" style="margin-right: 10px;width: 18px;height: 18px;">
                         <use xlink:href="#icon-xiugai"></use>
@@ -43,11 +43,7 @@
                 </label>
             </div>
             <div class="news_content">
-                <p>首先是连接智慧化。任宇昕认为，智慧连接一定意味着是一次连接的升级，意味着在不同的场景当中我们需要根据场景的特点来提供定制化的智慧解决方案。具体来说，腾讯不会再大举进入电商，而是通过去中心化的方式，把我们平台的能力能够开放出来，开放给广泛的品牌商、零售商以及商业地产等合作伙伴。另外，合作伙伴还会得到以及非常完备的工具箱。</p>
-                <p class="part_two">在采访中贾跃亭显得很诚恳，对不少细节信息以及外界关心的问题都做了解答，诸如从“下周回国”到迟迟不回国的原因，“乐视网IPO有没有造假”，“套现的钱都去哪了”等等。</p>
-                <img src="{WL_URL_ARES}images/gongsi.png" class="news_pic">
-                <p class="part_two">首先是连接智慧化。任宇昕认为，智慧连接一定意味着是一次连接的升级，意味着在不同的场景当中我们需要根据场景的特点来提供定制化的智慧解决方案。具体来说，腾讯不会再大举进入电商，而是通过去中心化的方式，把我们平台的能力能够开放出来，开放给广泛的品牌商、零售商以及商业地产等合作伙伴。另外，合作伙伴还会得到以及非常完备的工具箱。</p>
-                <p class="part_two">在采访中贾跃亭显得很诚恳，对不少细节信息以及外界关心的问题都做了解答，诸如从“下周回国”到迟迟不回国的原因，“乐视网IPO有没有造假”，“套现的钱都去哪了”等等。</p>
+             {$news['content']}
             </div>
             <div class="foot_btns">
                 <div class="con" style="width: 100%;margin-top: 20px;margin-bottom: 50px;">

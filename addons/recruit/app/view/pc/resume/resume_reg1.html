@@ -267,7 +267,7 @@
 
 
             $.ajax({
-                url: "{php echo app_url('person/resume/headimg_upload')}",
+                url: "{php echo app_url('member/index/headimgurl_upload')}",
                 data: {
                     file:src
                 },
@@ -277,7 +277,7 @@
                     var data = JSON.parse(data);
                     if(data.status == 1) {
                         console.log(data.others);
-                        $('.resume_reg1headimgbox').html("<img src='"+data.others+"' />");
+                        $('.resume_reg1headimgbox').html("<img src='"+data.content+"' />");
 //                        $('.resume_manage_headerimg img').attr('src',data.others);
                         window.clearTimeout(timer1);
                     }
@@ -304,7 +304,7 @@
         var timer1 = "";
         $(".modalbtn").on("click",function(){
             var uploadFormData =new FormData($("#choosefile1")[0]);
-            var uploadurl = "{php echo app_url('person/resume/headimg_upload')}";
+            var uploadurl = "{php echo app_url('member/index/headimgurl_upload')}";
             $.ajax({
                 url: uploadurl,
                 type:"post",
@@ -316,7 +316,7 @@
                 success:function (data) {
                     var data=JSON.parse(data);
                     if(data.status==1){
-                        var html = '<img src="'+data.others+'">';
+                        var html = '<img src="'+data.content+'">';
                         $(".resume_reg1headimgbox").html(html);
                         $("#modalbox").css("display","none");
                         window.clearTimeout(timer1);

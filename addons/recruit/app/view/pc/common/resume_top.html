@@ -38,13 +38,13 @@
 
         <!--查看应聘者投递简历-->
         {if $_GPC['apply_id']}
-        <label class="resume_btns" id="invite">
+        <label class="resume_btns invite_interview" id="invite">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-tongyimianshi"></use>
             </svg>
             同意面试
         </label>
-        <label class="resume_btns" id="jujuemianshi">
+        <label class="resume_btns" id="jujuemianshi"   data-id="{$_GPC['apply_id']}">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-jujuemianshi"></use>
             </svg>
@@ -73,12 +73,22 @@
             </svg>
             打印简历
         </label>
-        <label class="resume_btns" id="shoucangguanli">
+        {if $collect_resume}
+        <label class="resume_btns" id="yishoucang" data-id="{$resume['id']}" data-uid="{$resume['uid']}">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-shoucangguanli"></use>
+            </svg>
+            已收藏
+        </label>
+
+        {else}
+        <label class="resume_btns" id="shoucangguanli" data-id="{$resume['id']}" data-uid="{$resume['uid']}">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-shoucangguanli"></use>
             </svg>
             收藏简历
         </label>
+        {/if}
         <a class="resume_btns" id="exit_view" href="javascript:history.go(-1)">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-tuichuyulan"></use>
@@ -91,13 +101,14 @@
 </div>
 
 <!--面试邀请弹框-->
-<div class="modalbox" id="invite_box" style="display: none">
+<div class="modalbox" id="invite_box" style="display: none" data-id="{$_GPC['apply_id']}">
     <div class="modal" style="width: 620px;margin-left: -310px;">
         <p class="title_content">面试邀请</p>
         <span class="modalclose">
                 <img src="{WL_URL_ARES}images/close.png"/>
             </span>
         <div class="invite_con">
+            {if empty($_GPC['apply_id'])}
             <div class="in_hang">
                 <span class="biaoti">面试职位</span>
                 <label class="general-input relative select_jobs">
@@ -106,14 +117,13 @@
                         <use xlink:href="#icon-xiala" class="colorbbb"></use>
                     </svg>
                     <div class="optionlist" style="height: 0px;">
-
                         {loop $jobs $list}
                         <div class="option_selecter" data-id="{$list['id']}">{$list['jobs_name']}</div>
                         {/loop}
                     </div>
                 </label>
-
             </div>
+            {/if}
             <div class="in_hang">
                 <span class="biaoti">面试时间</span>
                 <label class="general-input relative review_input">
@@ -146,13 +156,13 @@
             <div class="in_hang">
                 <span class="biaoti">联系人</span>
                 <label class="general-input" >
-                    <input type="text" id="contacts_name"  value="默认注册联系人">
+                    <input type="text" id="contacts_name"  value="{$user['fullname']}">
                 </label>
             </div>
             <div class="in_hang">
                 <span class="biaoti">联系电话</span>
                 <label class="general-input" >
-                    <input type="text" id="contacts_tel" value="默认注册电话">
+                    <input type="text" id="contacts_tel" value="{$user['mobile']}">
                 </label>
             </div>
             <div class="in_hang">
@@ -175,13 +185,13 @@
                     </label>
                     <div class="options districtoption" style="height: 185px;overflow-y: auto;"></div>
                 </div>
-                <label class="general-input" >
+                <label class="general-input">
                     <input type="text" id="detail_address" placeholder="详细地址">
                 </label>
             </div>
         </div>
         <div class="btns" style="margin-bottom: 22px;margin-top: 10px;">
-            <button class="tijiao" id="send_review" style="margin-left: 210px">发送邀请</button>
+            <button class="tijiao1" id="send_review" style="margin-left: 210px"  data-id="{$_GPC['apply_id']}">发送邀请</button>
             <span class="quxiao">取消</span>
         </div>
     </div>
