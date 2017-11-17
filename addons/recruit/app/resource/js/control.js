@@ -51,20 +51,20 @@ function stop_action(title,content,cancel,confirm,callback){
 
 
 //提示信息弹窗
-function hint(state,msg){
+function hint(state,msg,title){
     var promptbox="<div class='promptbox'><div class='padding25'>";
     if(state==""||state=="success"){
         promptbox+="<svg class='icon font24 ' style='float:left;color: #36cfb3' aria-hidden='true'><use xlink:href='#icon-zhengque2'></use></svg>"
-        promptbox+="<span class='prompttitle'>成功！</span>"
+        promptbox+="<span class='prompttitle'>"+title||"成功！"+"</span>"
     }else if(state=="error"){
         promptbox+="<svg class='icon font24 ' style='float:left;color: #ea5941' aria-hidden='true'><use xlink:href='#icon-cuowu'></use></svg>"
-        promptbox+="<span class='prompttitle'>错误！</span>"
+        promptbox+="<span class='prompttitle'>"+title||"错误！"+"</span>"
     }else if(state=="warning"){
         promptbox+="<svg class='icon font24 ' style='float:left;color: #f7ba2a' aria-hidden='true'><use xlink:href='#icon-jinggao'></use></svg>"
-        promptbox+="<span class='prompttitle'>警告！</span>"
+        promptbox+="<span class='prompttitle'>"+title||"警告！"+"</span>"
     }else if(state=="ordinary"){
         promptbox+="<svg class='icon font24 ' style='float:left;color: #289fd1' aria-hidden='true'><use xlink:href='#icon-tishi'></use></svg>"
-        promptbox+="<span class='prompttitle'>一般提醒！</span>"
+        promptbox+="<span class='prompttitle'>"+title||"一般提醒！"+"</span>"
     };
     promptbox+="<div class='promptmsg'>"+msg+"</div>";
     promptbox+="</div></div>";
