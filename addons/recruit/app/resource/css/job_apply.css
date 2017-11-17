@@ -143,6 +143,8 @@
     right: 0;
     top: 30px;
     box-shadow: 6px 5px 24px rgba(0,0,0,0.12);
+    background: #ffffff;
+    padding-bottom: 20px;
 }
 .seleest{
     color: #0099cc;
@@ -430,6 +432,7 @@
 .companyn{
     width: 180px ;
     color: #999999;
+    font-size: 14px;
 }
 .job_n{
     color: #333333;
@@ -476,7 +479,7 @@
 }
 .company_logo{
     margin-top: 30px;
-    margin-left: 50px;
+    margin-left: 65px;
     margin-bottom: 30px;
     float: left;
 }

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/swiper-3.4.2.min.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/company_msg.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/job_detail.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/super_company.css" rel="stylesheet">
+    <title>名企招聘</title>
+    <style>
+        .swiper-container{
+            width: 680px;
+            height: 360px;
+        }
+        .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{
+            margin: 0 10px;
+        }
+        .swiper-pagination-bullet{
+            background-color: #eee;
+            opacity: 1;
+
+        }
+        .swiper-pagination-bullet-active{
+            background-color: #09c;
+        }
+        .swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+            background-image: url("{WL_URL_ARES}images/left.png");
+        }
+        .swiper-button-next, .swiper-container-rtl .swiper-button-prev{
+            background-image: url("{WL_URL_ARES}images/next.png");
+        }
+        .swiper-button-next, .swiper-button-prev{
+            width: 30px;
+            height: 60px;
+            background-size: 30px 60px;
+            margin-top: -30px;
+        }
+        .abnormal .formtip{
+            position: absolute;
+            margin-top: 0;
+        }
+        .relative input{
+            position: absolute;
+        }
+        #l-map{
+            width: 582px;
+            height: 320px;
+            margin-left: 88px;
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+<body bgcolor="#f4f4f4">
+
+{if $_SESSION['uid']}
+{php include wl_template('common/company_top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
+<div class="super_banner"></div>
+<div class="width1200 p1content">
+    <div class="p1_left" style="background: #ffffff;margin-top: 10px;">
+        <div class="con_list super_con">
+            <div class="top_lists">
+                <label class="top_item selets">关于我们</label>
+                <label class="top_item">招聘职位</label>
+                <label class="top_item">宣讲进程</label>
+                <label class="top_item">培训计划</label>
+            </div>
+<!--公司简介-->
+            <div class="super_content">
+                <div class="jobs_detail_title">公司简介</div>
+                <div class="gongsijianjie">
+                    <img src="/addons/recruit/app/resource/images/gongsi.png"  class="gongsi_pic"/>
+                    环球网（www.huanqiu.com）由人民日报社、国务院新闻办批准，人民网和环球时报社共同投资设立，于2007年11月正式上线，是中央级重点新闻网站、国新办获准的可供网站转载新闻的新闻单位。环球网及时准确、角度独特的国际资讯和深度分析，被国内外媒体广泛转载，是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户环球网（www.huanqiu.com）由人民日报社、国务院新闻办批准，人民网和环球时报社共同投资设立，于2007年11月正式上线，是中央级重点新闻网站、国新办获准的可供网站转载新闻的新闻单位。环球网及时准确、角度独特的国际资讯和深度分析，被国内外媒体广泛转载，是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户。是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户。
+                </div>
+                <div class="jobs_detail_title" style="margin-top: 60px;">企业文化</div>
+                <div style="margin-top: 60px">
+                    <div style="margin-top: 40px" id="company_img">
+                        <div class="swiper-container swiper-container-horizontal">
+                            <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                                <div class="swiper-slide swiper-slide-active" style="width: 680px;">
+                                    <div class="company_img"><img src="/addons/recruit/app/resource/images/gongsi.png"></div>
+                                </div>
+                                <div class="swiper-slide swiper-slide-next" style="width: 680px;">
+                                    <div class="company_img"><img src="/addons/recruit/app/resource/images/gongsi.png"></div>
+                                </div>
+                                <div class="swiper-slide" style="width: 680px;">
+                                    <div class="company_img"><img src="/addons/recruit/app/resource/images/gongsi.png"></div>
+                                </div>
+
+                            </div>
+                            <div class="swiper-pagination swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div>
+                            <!-- 如果需要导航按钮 -->
+                            <div class="swiper-button-prev swiper-button-disabled"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="qiyewenhua" style="margin-top: 40px;">
+                    <img src="/addons/recruit/app/resource/images/super_ico1.png" class="super_ico"/>
+                    <div class="content_list">
+                        <p class="content_list_title">核心理念:</p>
+                        <p class="content_list_con">全城材料报价”的查询，业主在下单购买前，可致电土巴兔了解市场价格。我们承诺全城材料报价”的查询，业主在下单购买前，可致电土巴兔了解市场价格。我们承诺差价双倍赔偿全城材料报价”全城材料报价”的查询，业主在下单购买前，可致电土巴兔了解市场价格。我们承诺全城材料报价”的查询，业主在下单购买前，可致电土巴兔了解市场价格。我们承诺全城材料报价”的查询，业主在下单购买前，可致电土巴兔了解市场价格。我们承诺</p>
+                    </div>
+                </div>
+                <div class="qiyewenhua">
+                    <img src="/addons/recruit/app/resource/images/super_ico2.png" class="super_ico"/>
+                    <div class="content_list">
+                        <p class="content_list_title">企业愿景:</p>
+                        <p class="content_list_con">全城材料报价”的查询，业主在下单购买前。</p>
+                    </div>
+                </div>
+                <div class="qiyewenhua">
+                    <img src="/addons/recruit/app/resource/images/super_ico3.png" class="super_ico"/>
+                    <div class="content_list">
+                        <p class="content_list_title">用人理念:</p>
+                        <p class="content_list_con">全城材料报价”的查询，业主在下单购买前。</p>
+                    </div>
+                </div>
+                <div class="qiyewenhua">
+                    <img src="/addons/recruit/app/resource/images/super_ico4.png" class="super_ico"/>
+                    <div class="content_list">
+                        <p class="content_list_title">企业使命:</p>
+                        <p class="content_list_con">全城材料报价”的查询，业主在下单购买前。</p>
+                    </div>
+                </div>
+                <div class="qiyewenhua">
+                    <img src="/addons/recruit/app/resource/images/super_ico5.png" class="super_ico"/>
+                    <div class="content_list">
+                        <p class="content_list_title">经营理念:</p>
+                        <p class="content_list_con">全城材料报价”的查询，业主在下单购买前。</p>
+                    </div>
+                </div>
+                <div class="qiyewenhua">
+                    <img src="/addons/recruit/app/resource/images/super_ico6.png" class="super_ico"/>
+                    <div class="content_list">
+                        <p class="content_list_title">文化理念:</p>
+                        <p class="content_list_con">全城材料报价”的查询，业主在下单购买前。</p>
+                    </div>
+                </div>
+
+                <div class="gongsijianjie" style="margin-top: 60px;">
+                    <img src="/addons/recruit/app/resource/images/gongsi.png"  class="gongsi_pic1"/>
+                    <div class="title_huan">发展战略</div>
+                    环球网（www.huanqiu.com）由人民日报社、国务院新闻办批准，人民网和环球时报社共同投资设立，于2007年11月正式上线，是中央级重点新闻网站、国新办获准的可供网站转载新闻的新闻单位。环球网及时准确、角度独特的国际资讯和深度分析，被国内外媒体广泛转载，是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户环球网（www.huanqiu.com）由人民日报社、国务院新闻办批准，人民网和环球时报社共同投资设立，于2007年11月正式上线，是中央级重点新闻网站、国新办获准的可供网站转载新闻的新闻单位。环球网及时准确、角度独特的国际资讯和深度分析，被国内外媒体广泛转载，是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户。是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户。
+                </div>
+
+                <div class="gongsijianjie" style="margin-top: 60px;">
+                    <img src="/addons/recruit/app/resource/images/gongsi.png"  class="gongsi_pic"/>
+                    <div class="title_huan">未来十年（添加内容）</div>
+                    环球网（www.huanqiu.com）由人民日报社、国务院新闻办批准，人民网和环球时报社共同投资设立，于2007年11月正式上线，是中央级重点新闻网站、国新办获准的可供网站转载新闻的新闻单位。环球网及时准确、角度独特的国际资讯和深度分析，被国内外媒体广泛转载，是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户环球网（www.huanqiu.com）由人民日报社、国务院新闻办批准，人民网和环球时报社共同投资设立，于2007年11月正式上线，是中央级重点新闻网站、国新办获准的可供网站转载新闻的新闻单位。环球网及时准确、角度独特的国际资讯和深度分析，被国内外媒体广泛转载，是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户。是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户。
+                </div>
+
+            </div>
+<!--公司简介end-->
+<!--招聘职位-->
+            <div class="super_content" style="margin-top: 40px;display: none;">
+                <div class="job_lists_super">
+                    <label class="job_list_item selectit">运营支持员(个贷业务)</label>
+                    <label class="job_list_item">Java开发工程师</label>
+                    <label class="job_list_item">测试工程师</label>
+                    <label class="job_list_item">大数据科学家</label>
+                    <label class="job_list_item">IOS/andriod客户端开发工程师</label>
+                    <label class="job_list_item">数据产品经理</label>
+                    <label class="job_list_item">法务专员</label>
+                    <label class="job_list_item">计算机视觉算法工程师</label>
+                </div>
+                <div class="job_details" style="background:linear-gradient(-45deg, transparent 20px, #fff 0);margin-top: 20px;">
+                    <svg class="icon huixingzhen" aria-hidden="true" style="">
+                        <use  xlink:href="#icon-niukou"></use>
+                    </svg>
+
+                    <div class="job_titles">
+                        <label class="job_name_super">运营支持员(个贷业务)</label>
+                        <label class="job_address_super">工作地：北京/重庆/武汉</label>
+                    </div>
+                    <div class="job_superc">
+                        <p class="gangwei">岗位职责</p>
+                        <ol class="zhize_super">
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                        </ol>
+                    </div>
+                    <div class="job_superc">
+                        <p class="gangwei">岗位要求</p>
+                        <ol class="zhize_super">
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                        </ol>
+                    </div>
+                    <div class="job_superc">
+                        <p class="gangwei">专业要求</p>
+                        <p class="zhize_super">
+                           承接各类个贷业务的面签面审等全流程作业
+                        </p>
+                    </div>
+                    <div class="job_superc didianrukou">
+                        <label class="bntl">申请入口</label>
+                        <label class="didianbtn selectdd">上海</label>
+                        <label class="didianbtn">北京</label>
+                        <label class="didianbtn">广州</label>
+                    </div>
+                    <div class="zhejiao"></div>
+                </div>
+                <div class="job_details" style="background:linear-gradient(-45deg, transparent 20px, #fff 0);">
+                    <svg class="icon huixingzhen" aria-hidden="true" style="">
+                        <use  xlink:href="#icon-niukou"></use>
+                    </svg>
+
+                    <div class="job_titles">
+                        <label class="job_name_super">运营支持员(个贷业务)</label>
+                        <label class="job_address_super">工作地：北京/重庆/武汉</label>
+                    </div>
+                    <div class="job_superc">
+                        <p class="gangwei">岗位职责</p>
+                        <ol class="zhize_super">
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                        </ol>
+                    </div>
+                    <div class="job_superc">
+                        <p class="gangwei">岗位要求</p>
+                        <ol class="zhize_super">
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                        </ol>
+                    </div>
+                    <div class="job_superc">
+                        <p class="gangwei">专业要求</p>
+                        <p class="zhize_super">
+                            承接各类个贷业务的面签面审等全流程作业
+                        </p>
+                    </div>
+                    <div class="job_superc didianrukou">
+                        <label class="bntl">申请入口</label>
+                        <label class="didianbtn selectdd">上海</label>
+                        <label class="didianbtn">北京</label>
+                        <label class="didianbtn">广州</label>
+                    </div>
+                    <div class="zhejiao"></div>
+                </div>
+                <div class="job_details" style="background:linear-gradient(-45deg, transparent 20px, #fff 0);">
+                    <svg class="icon huixingzhen" aria-hidden="true" style="">
+                        <use  xlink:href="#icon-niukou"></use>
+                    </svg>
+
+                    <div class="job_titles">
+                        <label class="job_name_super">运营支持员(个贷业务)</label>
+                        <label class="job_address_super">工作地：北京/重庆/武汉</label>
+                    </div>
+                    <div class="job_superc">
+                        <p class="gangwei">岗位职责</p>
+                        <ol class="zhize_super">
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                        </ol>
+                    </div>
+                    <div class="job_superc">
+                        <p class="gangwei">岗位要求</p>
+                        <ol class="zhize_super">
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                        </ol>
+                    </div>
+                    <div class="job_superc">
+                        <p class="gangwei">专业要求</p>
+                        <p class="zhize_super">
+                            承接各类个贷业务的面签面审等全流程作业
+                        </p>
+                    </div>
+                    <div class="job_superc didianrukou">
+                        <label class="bntl">申请入口</label>
+                        <label class="didianbtn selectdd">上海</label>
+                        <label class="didianbtn">北京</label>
+                        <label class="didianbtn">广州</label>
+                    </div>
+                    <div class="zhejiao"></div>
+                </div>
+            </div>
+<!--招聘职位end-->
+<!--宣讲进程-->
+            <div class="super_content" style="display: none;">
+                <div class="title_xz">
+                    <div class="line_xz"></div>
+                    <div class="xz_title">校招流程</div>
+                </div>
+                <img class="xichufu" src="/addons/recruit/app/resource/images/xzlc.png">
+                <div class="title_xz">
+                    <div class="line_xz"></div>
+                    <div class="xz_title">校招行程</div>
+                </div>
+                <div class="xzlicontent">
+                    <div class="xzitem">
+                        <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
+                        <div class="college_name">武汉大学</div>
+                        <div class="xiangxixinxi">
+                        <div class="dizhi_shi">武汉市</div>
+                        <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
+                        <div class="detail_dizhi" style="margin-top: 5px;">学生就业服务中心就业服务中心卓越厅</div>
+                        </div>
+                        <div class="dingyuebtn">订阅
+                            <div class="dy_tip">订阅后，我们将以短信的形式提前一天告知您宣讲会的相关事宜</div>
+                        </div>
+                    </div>
+                    <div class="xzitem">
+                        <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
+                        <div class="college_name">武汉大学</div>
+                        <div class="xiangxixinxi">
+                            <div class="dizhi_shi">武汉市</div>
+                            <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
+                            <div class="detail_dizhi" style="margin-top: 5px;">学生就业服务中心</div>
+                        </div>
+                        <div class="dingyuebtn">订阅
+                            <div class="dy_tip">订阅后，我们将以短信的形式提前一天告知您宣讲会的相关事宜</div>
+                        </div>
+                    </div>
+                    <div class="xzitem">
+                        <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
+                        <div class="college_name">武汉大学</div>
+                        <div class="xiangxixinxi">
+                            <div class="dizhi_shi">武汉市</div>
+                            <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
+                            <div class="detail_dizhi" style="margin-top: 5px;">学生就业服务中心就业服务中心卓越厅</div>
+                        </div>
+                        <div class="dingyuebtn">订阅
+                            <div class="dy_tip">订阅后，我们将以短信的形式提前一天告知您宣讲会的相关事宜</div>
+                        </div>
+                    </div>
+                    <div class="xzitem">
+                        <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
+                        <div class="college_name">武汉大学</div>
+                        <div class="xiangxixinxi">
+                            <div class="dizhi_shi">武汉市</div>
+                            <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
+                            <div class="detail_dizhi" style="margin-top: 5px;">学生就业服务中心就业服务中心卓越厅</div>
+                        </div>
+                        <div class="dingyuebtn">订阅
+                            <div class="dy_tip">订阅后，我们将以短信的形式提前一天告知您宣讲会的相关事宜</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--宣讲进程end-->
+<!--培训计划-->
+            <div class="super_content" style="display: none;">
+                <img class="xichufu" src="/addons/recruit/app/resource/images/xinchoufl.png">
+            </div>
+<!--培训计划end-->
+        </div>
+    </div>
+    <div class="p1_right" style="margin-top: 10px">
+
+
+        <div class="part_one">
+
+            <div class="company_logo" style="float: none">
+                <a href="#">
+                    <img src="/addons/recruit/app/resource/images/qiyelogo.png">
+                </a>
+            </div>
+
+            <div class="company_recruit_msg">
+                <a class="font18 color333 hover09c" style="margin-top: 20px" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;company_id=655">
+                    大风车科技有限公司
+                </a>
+
+
+                <div class="company_recruit"style="margin-top: 40px">
+                    <span class="colorbbb">所属行业</span>
+                    <span class="company_recruit_result">IT互联网</span>
+                </div>
+
+                <div class="company_recruit">
+                    <span class="colorbbb">公司规模</span>
+                    <span class="company_recruit_result">20-50人</span>
+                </div>
+
+
+                <div class="recruit_result">
+                    <span>
+                        <a href="#" class="results">12个</a>
+                        <div class="color999">在招职位</div>
+                    </span>
+
+                    <span>
+                        <a href="#" class="results">3条</a>
+                        <div class="color999">宣讲会</div>
+                    </span>
+
+                </div>
+                <div class="foot_btns">
+                    <div class="con" style="width: 100%;margin-top: 0px;margin-bottom: 0px;">
+                        <label class="fenxiang_title">分享:</label>
+                        <a class="icons" href="http://localhost/addons/recruit/core/common/Connect2.1/example/oauth/index.php" target="_blank">
+                            <svg class="icon" style="color: #ffffff">
+                                <use  xlink:href="#icon-qq"></use>
+                            </svg>
+                        </a>
+                        <a href="" class="icons left">
+                            <svg class="icon" style="color: #ffffff">
+                                <use  xlink:href="#icon-weixin"></use>
+                            </svg>
+                        </a>
+                        <a class="icons left" href="https://api.weibo.com/oauth2/authorize?client_id=494225968&amp;redirect_uri=http%3A%2F%2Flocalhost%2Faddons%2Frecruit%2Fcore%2Fcommon%2Flibweibo-master%2Fcallback.php&amp;response_type=code" target="_blank">
+                            <svg class="icon" style="color: #ffffff">
+                                <use  xlink:href="#icon-weibo"></use>
+                            </svg>
+                        </a>
+                        <span class="icons left baidu_icons">
+                        <svg class="icon" style="color: #ffffff">
+                            <use xlink:href="#icon-baidu"></use>
+                        </svg>
+                    </span>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="part_one">
+            <div class="title-top">
+                <label class="top_con">猜你喜欢</label>
+            </div>
+            <div class="items_list">
+                <a class="logo1" href="#">
+                    <img src="/addons/recruit/app/resource/images/qiyelogo.png" class="logopic">
+                </a>
+                <div class="company_name" style="height: 66px;">
+                    <a class="job_n nowrap" href="#">Java工程师</a>
+                    <p class="job_s nowrap" style="display: block;">
+                        5-8K
+                    </p>
+                    <p class="companyn nowrap">北京秒猎科技有限公司</p>
+                </div>
+            </div>
+            <div class="items_list">
+                <a class="logo1" href="#">
+                    <img src="/addons/recruit/app/resource/images/qiyelogo.png" class="logopic">
+                </a>
+                <div class="company_name" style="height: 66px;">
+                    <a class="job_n nowrap" href="#">Java工程师</a>
+                    <p class="job_s nowrap" style="display: block;">
+                        5-8K
+                    </p>
+                    <p class="companyn nowrap">北京秒猎科技有限公司</p>
+                </div>
+            </div>
+            <div class="items_list">
+                <a class="logo1" href="#">
+                    <img src="/addons/recruit/app/resource/images/qiyelogo.png" class="logopic">
+                </a>
+                <div class="company_name" style="height: 66px;">
+                    <a class="job_n nowrap" href="#">Java工程师</a>
+                    <p class="job_s nowrap" style="display: block;">
+                        5-8K
+                    </p>
+                    <p class="companyn nowrap">北京秒猎科技有限公司</p>
+                </div>
+            </div>
+            <div class="items_list">
+                <a class="logo1" href="#">
+                    <img src="/addons/recruit/app/resource/images/qiyelogo.png" class="logopic">
+                </a>
+                <div class="company_name" style="height: 66px;">
+                    <a class="job_n nowrap" href="#">Java工程师</a>
+                    <p class="job_s nowrap" style="display: block;">
+                        5-8K
+                    </p>
+                    <p class="companyn nowrap">北京秒猎科技有限公司</p>
+                </div>
+            </div>
+            <div class="items_list">
+                <a class="logo1" href="#">
+                    <img src="/addons/recruit/app/resource/images/qiyelogo.png" class="logopic">
+                </a>
+                <div class="company_name" style="height: 66px;">
+                    <a class="job_n nowrap" href="#">Java工程师</a>
+                    <p class="job_s nowrap" style="display: block;">
+                        5-8K
+                    </p>
+                    <p class="companyn nowrap">北京秒猎科技有限公司</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--弹框-->
+<div class="modalbox loginn_zj" id="dingyuebox" style="display: none;">
+    <div class="modal" style="width: 496px;margin-left: -248px;height: auto;">
+        <p class="title_content">订阅宣讲会</p>
+        <span class="modalclose">
+            <img src="{WL_URL_ARES}images/close.png"/>
+        </span>
+        <p class="tips_tishi">请确认您的手机号码，以免漏掉宣讲会的重要信息</p>
+        <label class="general-input dingyuemobile">
+            <input type="text" id="contacts_name" autocomplete="off" maxlength="11">
+        </label>
+
+
+        <span class="public_bigbtn bg1aa modalbtn dingyuesure">确认订阅</span>
+    </div>
+</div>
+<!--弹框end-->
+
+
+
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/swiper.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/company_msg.js" rel="script"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $(".top_item").click(function () {
+            $(".top_item").removeClass("selets");
+            $(this).addClass("selets");
+            var i=$(this).index();
+            $(".super_content").hide();
+            $(".super_content").eq(i).show();
+        })
+
+        $(".dingyuebtn").click(function () {
+            $("#dingyuebox").show();
+        })
+        $(".modalclose").click(function () {
+            $("#dingyuebox").hide();
+        })
+
+        $(".dingyuesure").click(function () {
+            var mobile=$("#contacts_name").val();
+            alert(mobile)
+            hint("success","请到个人中心>订阅宣讲查看订阅信息");
+            $.ajax({
+                url:"",
+                type:"post",
+                data:{
+                    mobile:mobile
+                },
+                success:function(data){
+                    if(data){
+                        var data=JSON.parse(data);
+                        if(data.status==1){
+                            hint("success","请到个人中心>订阅宣讲查看订阅信息");
+                        }else{
+                            hint("error",data.content);
+                        }
+                    }
+                }
+            })
+        })
+    })
+
+</script>
+</html>
