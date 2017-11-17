@@ -779,7 +779,8 @@
 .hope_jobbox1 div{
     color: #666;
     line-height: 34px;
-    margin-left: 20px;
+    padding-left: 20px;
+    margin-right: 20px;
     cursor: pointer;
 }
 .hope_jobbox1 .check{
@@ -788,7 +789,12 @@
 .hope_jobbox1 .check1,.hope_jobbox2 .check1{
     color: #0099cc;
 }
-
+.hope_jobbox1 .check_jobbg{
+    background-color: #09c;
+}
+.hope_jobbox1 .check_jobbg .hopejob1{
+    color: #fff;
+}
 .hope_jobbox1 div:first-child{
     margin-top: 24px;
 }
@@ -812,8 +818,8 @@
 }
 .hope_jobbox2{
     padding: 30px 40px 0 30px;
-    height: 280px;
-    border-bottom: 1px solid #eee;
+    height: 370px;
+    /*border-bottom: 1px solid #eee;*/
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -837,6 +843,9 @@
     cursor: pointer;
     margin-bottom: 30px;
 }
+.third_jobname span:hover{
+    color: #0099cc;
+}
 .third_jobname span:last-child{
     border:none ;
 }
@@ -848,4 +857,23 @@
     text-align: center;
     line-height: 120px;
     cursor: pointer;
+}
+.hopejob_tips{
+    position: absolute;
+    top: 39px;
+    width: 100%;
+    z-index: 100;
+}
+.hopejob_option{
+    line-height: 36px;
+    background-color: #fff;
+    border: 1px solid #EEEEEE;
+    border-top: none;
+    padding-left: 20px;
+    cursor: pointer;
+    font-weight: 500;
+}
+.hopejob_option:hover{
+    background-color: #0099cc;
+    color: #fff;
 }
