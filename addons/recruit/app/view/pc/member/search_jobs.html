@@ -808,6 +808,7 @@
 
         //更多城市点击效果
         $("body").on("click",".city_team .city_item",function () {
+            $(".city_team .city_item").removeClass("city_select");
             var selecity=$(this).html();
             if(!$(".gzdd .city_item").hasClass("morecity")){
                 $(".gzdd .all_item").after('<span class="city_item city_select morecity">'+selecity+'</span>')
