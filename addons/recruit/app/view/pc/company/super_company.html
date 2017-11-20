@@ -532,14 +532,15 @@
 <!--弹框end-->
 
 <!--发送邮箱-->
-<div class="modalbox" id="envelope_modal" style="display: none;">
-    <div class="envelope_modal">
+<div class="modalbox" id="email_modal" style="display: none;">
+    <div class="envelope_modal" style="height: 570px;">
         <div class="envelope">
-            <div class="envelope_content">
+            <div style="text-align: center;margin-top: 30px;font-size: 18px;color: #333333">自荐信</div>
+            <div class="envelope_content" style="margin-top: 0px;">
 
 
                 <div class="envelope_content_msg">
-                    <div style="text-align: center;">自荐信</div>
+
                     <textarea  class="envelope_content_textarea" id="envelope_content_msg"  placeholder="你想对hr说什么"> 尊敬的HR：
 　　您好！
 　　{php echo $resume['introduce']}
@@ -549,11 +550,22 @@
 大学期间实习经历：
     {loop $work_experience $list}
 　　{php echo $list['job_starttime']}-{php echo $list['job_endtime']}{php echo $list['job_content']}
-
 　　{/loop}
     {/if}
 
     怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
 恭祝商祺。</textarea>
                 </div>
 
@@ -573,10 +585,10 @@
             </div>
 
             <div style="float: right;text-align: center;line-height: 24px;color: #666">
-                <span>{php echo $resume['fullname']}</span>
+                <span>{php echo $resume['fullname']}张三</span>
                 <div>{php echo date('Y年m月d日')}</div>
             </div>
-            <span class="public_bigbtn bg1aa modalbtn shengqing">立即申请</span>
+            <div class="public_bigbtn bg1aa modalbtn shengqing">立即申请</div>
         </div>
 
         <span class="close_envelopebtn">
@@ -615,8 +627,8 @@
         $(".dingyuebtn").click(function () {
             $("#dingyuebox").show();
         })
-        $(".modalclose").click(function () {
-            $("#dingyuebox").hide();
+        $(".modalclose,.close_envelopebtn").click(function () {
+            $(this).closest(".modalbox").hide();
         })
 
         //高校宣讲会订阅
@@ -642,6 +654,37 @@
                         var data=JSON.parse(data);
                         if(data.status==1){
                             hint("success","请到个人中心>订阅宣讲查看订阅信息","订阅成功！");
+                            $("#dingyuebox").hide();
+                        }else{
+                            hint("error",data.content,"错误提示！");
+                        }
+                    }
+                }
+            })
+        })
+        
+        
+        //发送邮件
+        $(".didianbtn").click(function () {
+            $(this).closest(".didianrukou").find(".didianbtn").removeClass("selectdd");
+            $(this).addClass("selectdd");
+            $("#email_modal").show();
+        })
+        
+        $(".shengqing").click(function () {
+
+            $.ajax({
+                url:"",
+                type:"post",
+                data:{
+                    mobile:mobile
+                },
+                success:function(data){
+                    if(data){
+                        var data=JSON.parse(data);
+                        if(data.status==1){
+                            hint("success","请耐心等待申请回复","申请成功！");
+                            $("#email_modal").hide();
                         }else{
                             hint("error",data.content,"错误提示！");
                         }
