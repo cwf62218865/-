@@ -78,8 +78,13 @@ $(document).ready(function(){
     $("body").on("mousedown",".cwfarea span",function(){
         var _this=$(this);
         var value=$("#place").val();
-
+        if(_this.html()=="不限"){
+            _this.closest(".options").prev().find("input").val(value);
+        }else{
             _this.closest(".options").prev().find("input").val(value+_this.html());
+        }
+
+
 
 
         _this.closest(".options").css("height","0px");
