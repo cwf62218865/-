@@ -14,7 +14,7 @@ $("textarea").on("focus",function(){
 })
 
 var salarychoice= $.salarychoice({
-    data:["面议","1k","2k","3k","4k","5k","6k","7k","8k"],
+    data:["面议","1k","2k","3k","4k","5k","6k","7k","8k","9k","10k","10K+"],
     input:"#salarychoice",
     width:"218px"
 })
