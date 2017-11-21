@@ -219,7 +219,7 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     bottom: 0;
     z-index: 100;
     background: url("../images/footer_banner.png") no-repeat center;
-    background-color: #44cbf8;
+    background-color: #31b4df;
     margin-top: 50px;
 }
 .zuianquan{

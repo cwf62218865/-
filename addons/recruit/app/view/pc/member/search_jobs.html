@@ -106,28 +106,45 @@
             <div class="list_top">
                 <div class="con_top1">
 
-
-                    <div class="job_send xinzi_color" style="display: block;float: left;width: 80px;">
-                        <span class="wenzi">薪资待遇</span>
+                    <label class="pailie" style="float: left">薪资待遇：</label>
+                    <div class="job_send xinzi_color" style="display: block;float: left;width: 80px;margin-right: 0">
+                        <span class="wenzi">下限</span>
                         <svg class="icon ico_xiala" style="margin-top: 22px;color: #bbbbbb;margin-left: 10px">
                             <use xlink:href="#icon-xiala"></use>
                         </svg>
-                        <div class="my_joblist" style="display: block;height: 0px;padding: 0;">
-                            <p class="option_select" data-id="1">待遇不限</p>
-                            <p class="option_select" data-id="1">2k-4k</p>
-                            <p class="option_select" data-id="2">4k-6k</p>
-                            <p class="option_select" data-id="3">6k-8k</p>
-                            <p class="option_select" data-id="4">8k-15k</p>
-                            <p class="option_select" data-id="5">15k以上</p>
+                        <div class="my_joblist" id="lower" style="display: block;height: 0px;padding: 0;width: 80px">
+                            <p class="option_select" data-id="0">不限</p>
+                            <p class="option_select" data-id="1">2k</p>
+                            <p class="option_select" data-id="2">4k</p>
+                            <p class="option_select" data-id="3">6k</p>
+                            <p class="option_select" data-id="4">8k</p>
+                            <p class="option_select" data-id="5">10k</p>
+                            <p class="option_select" data-id="6">15k</p>
+                        </div>
+                        —
+                    </div>
+
+                    <div class="job_send xinzi_color" style="display: block;float: left;width: 80px;margin-right: 20px">
+                        <span class="wenzi">上限</span>
+                        <svg class="icon ico_xiala" style="margin-top: 22px;color: #bbbbbb;margin-left: 10px">
+                            <use xlink:href="#icon-xiala"></use>
+                        </svg>
+                        <div class="my_joblist" id="upper" style="display: block;height: 0px;padding: 0;width: 80px">
+                            <p class="option_select" data-id="0">不限</p>
+                            <p class="option_select" data-id="1">2k</p>
+                            <p class="option_select" data-id="2">4k</p>
+                            <p class="option_select" data-id="3">6k</p>
+                            <p class="option_select" data-id="4">8k</p>
+                            <p class="option_select" data-id="5">10k</p>
+                            <p class="option_select" data-id="6">15k</p>
                         </div>
                     </div>
 
 
-
                     <label class="pailie">排列方式：</label>
                     <span class="select_item1 city_select">默认排序</span>
-                    <span class="select_item1 magl20">发布时间</span>
-                    <span class="select_item1 magl20">关注度</span>
+                    <span class="select_item1 ">发布时间</span>
+                    <span class="select_item1 ">关注度</span>
                     <label class="yemabtn">
                         {if $jobs}
                         <span class="magr50 hangver">
@@ -323,6 +340,8 @@
             job_nature:"",
             job_money:"",
             job_order:"",
+            lower:"",
+            upper:"",
             page:1
         };//搜索职位的相关数据
         if("{$_GPC['jobs_name']}"){
@@ -402,11 +421,16 @@
         });
 
         //薪资待遇
-//        $(".xueli .job_item").on("click",function () {
-//            option.job_money=$(this).html();
-//            option.page=1;
-//            layer(option);
-//        });
+        $("#lower .option_select").on("click",function () {
+            option.lower=$(this).html();
+            option.page=1;
+            layer(option);
+        });
+        $("#upper .option_select").on("click",function () {
+            option.upper=$(this).html();
+            option.page=1;
+            layer(option);
+        });
 
         //排序方式
         $(".select_item1").on("click",function () {
