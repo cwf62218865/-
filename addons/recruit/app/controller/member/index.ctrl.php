@@ -963,6 +963,39 @@ elseif($op=="baidu_callback"){
            include wl_template("member/create_bind_account");exit();
        }
     }
+}elseif($op=="weibo_callback"){
+    include_once(WL_CORE.'/common/libweibo-master/saetv2.ex.class.php');
+    include_once(WL_CORE.'/common/libweibo-master/config.php');
+    $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+    if (isset($_REQUEST['code'])) {
+        $keys = array();
+        $keys['code'] = $_REQUEST['code'];
+        $keys['redirect_uri'] = WB_CALLBACK_URL;
+        try {
+            $token = $o->getAccessToken( 'code', $keys ) ;
+        } catch (OAuthException $e) {
+
+        }
+    }
+
+    if ($token) {
+        $weibo_openid = $token['access_token'];
+        $account = pdo_fetch("select * from ".tablename(WL."members")." where weibo_openid=".$token['access_token']);
+        if($account){
+            $_SESSION['uid'] = $account['id'];
+            $_SESSION['utype'] = $account['utype'];
+            $resume = m("resume")->get_resume( $_SESSION['uid']);
+            if(!$resume['fullname'] || !$resume['edu_experience'] || !$resume['introduce']){
+                $url = app_url('person/index');
+            }else{
+                $url = $_SESSION['record_url'];
+                unset($_SESSION['record_url']);
+            }
+            header("location:".$url);exit();
+        }else{
+            include wl_template("member/create_bind_account");exit();
+        }
+    }
 }elseif ($op=="qq_callback"){
 
 }elseif ($op=="weixin_callback"){

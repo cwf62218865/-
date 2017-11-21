@@ -161,6 +161,23 @@ class resume{
             $wheresql .=" and hope_place like '%".$data['didian']."%' ";
         }
 
+        if($data['experience']){
+            if($data['experience']=="无经验"){
+                $wheresql .=" and experience=0 ";
+            }elseif ($data['experience']=="1年以下"){
+                $wheresql .=" and experience=1 ";
+            }elseif ($data['experience']=="1-3年"){
+                $wheresql .=" and experience>=1 and experience<=3";
+            }elseif ($data['experience']=="3-5年"){
+                $wheresql .=" and experience>=3 and experience<=5";
+            }elseif ($data['experience']=="5年以上"){
+                $wheresql .=" and experience>=5";
+            }
+        }
+
+        if($data['major']){
+            $wheresql .=" and major=".$data['major'];
+        }
 
         $resumes = pdo_fetchall("select * from ".tablename(WL.'resume').$wheresql);
         $arr = "";
