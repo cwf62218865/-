@@ -19,6 +19,11 @@ class resume{
             $resume = pdo_fetch("select ".$filed." from ".tablename(WL.'resume')." where uid=".$uid);
             return $resume[$filed];
         }
+        if($resume['experience']){
+            $resume['experience'] = $resume['experience']."年以上工作经验";
+        }else{
+            $resume['experience'] = "无工作经验";
+        }
 
         return $resume;
     }
@@ -149,7 +154,6 @@ class resume{
     public function getall_resume($data=""){
         $wheresql = " where 1=1 ";
         if($data['keyword']){
-
             $wheresql .=" and hope_job like '%".$data['keyword']."%' ";
         }
 
@@ -162,6 +166,11 @@ class resume{
         $arr = "";
         foreach ($resumes as $resume){
             $blacklist = explode(",",$resume['blacklist']);
+            if($resume['experience']){
+                $resume['experience'] = $resume['experience']."年以上工作经验";
+            }else{
+                $resume['experience'] = "无工作经验";
+            }
             if($_SESSION['utype']==2){
                if($this->blacklist($blacklist)){
                    $arr[] = "";
@@ -236,9 +245,9 @@ class resume{
             }
             if($work_time){
                 $data['experience'] =intval($work_time/31536000)?intval($work_time/31536000):1;
-                $data['experience'] =  $data['experience']."年以上工作经验";
+                $data['experience'] =  $data['experience'];
             }else{
-                $data['experience'] = "无工作经验";
+                $data['experience'] = 0;
             }
         }
 

@@ -346,11 +346,22 @@ elseif ($op=="remove_collect"){
 
 //搜索职位检索简历
 elseif ($op=="search_keyword"){
+
     $data['keyword'] = $_POST['keyword'];
-    $data['major'] = $_POST['major'];
-    $data['salary'] = $_POST['salary'];
-    $data['experience'] = $_POST['experience'];
-    $data['didian'] = $_POST['didian'];
+    if($_POST['major'] && $_POST['major']!="专业不限"){
+        $data['major'] = $_POST['major'];
+    }
+
+    if($_POST['salary'] && $_POST['salary']!="工资面谈"){
+        $data['salary'] = $_POST['salary'];
+    }
+    if($_POST['didian'] && $_POST['didian']!="地点不限"){
+        $data['didian'] = $_POST['didian'];
+    }
+
+    if($_POST['experience'] && $_POST['experience']!="经验不限"){
+        $data['experience'] = $_POST['experience'];
+    }
 
     $content = m("resume")->getall_resume($data);
     $str = "";

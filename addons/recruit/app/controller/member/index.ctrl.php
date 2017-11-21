@@ -84,7 +84,9 @@ elseif ($op=="search_jobs"){
     $jobs = $jobs['more'];
     include wl_template("member/search_jobs");exit();
 }
-
+elseif ($op=="super_company"){
+    include wl_template("company/super_company");exit();
+}
 //公司详情页
 elseif($op=="company_detail"){
 
