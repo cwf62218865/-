@@ -51,6 +51,8 @@ $(function () {
             $(this).closest(".select_option").find(".ico66").css("color","#bbbbbb");
             $(this).parent().prev().find(".date_num").val($(this).html());
             $(".datalist").hide();
+
+            Searchjobs();
         })
     })
 
@@ -142,7 +144,11 @@ $("body").on("click",".major_list",function () {
     $("#major_select").val($(this).html());
     $(".professional_list").hide();
     $(this).closest(".select_option").find(".ico66").css("color","#bbbbbb");
+
+    Searchjobs();
 })
+
+
 
 //回复面试评价
 $(".checkbox input[type=checkbox]").on("click",function(){
