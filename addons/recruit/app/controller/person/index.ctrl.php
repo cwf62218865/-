@@ -27,6 +27,7 @@ if($op=="index"){
 /********************************************求职者主要页面*************************************/
 //已投递职位列表
 elseif ($op=="send_resume"){
+
     if($_GPC['kind']=="interview"){
         $show = 2;
     }else{
@@ -34,6 +35,7 @@ elseif ($op=="send_resume"){
     }
     $apply_jobs = m("resume")->jobs_apply($_SESSION['uid']);
     $interview_jobs = m("resume")->jobs_interview($_SESSION['uid']);
+
     include wl_template("person/send_resume");exit();
 }
 
@@ -184,24 +186,20 @@ elseif ($op=="msg_deal"){
 
 //收藏职位列表
 elseif ($op=="collection_jobs_list"){
-    $collect_job = pdo_fetchall("select c.createtime,j.* from ".tablename(WL."collect_jobs")." as c,".tablename(WL."jobs")." as j where c.jobs_id=j.id and c.uid=".$_SESSION['uid']);
-    $collect_jobs = "";
-    foreach ($collect_job as $list){
-        $headimgurl = pdo_fetch("select headimgurl,tag from ".tablename(WL."company_profile")." where uid=".$list['uid']);
-        $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and jobs_id=".$list['id']);
-        if(empty($jobs_apply)){
-            $list['post_status'] = 1;
-        }
-        $list['headimgurl'] = $headimgurl['headimgurl'];
-        $list['tag'] = $headimgurl['tag'];
-        $collect_jobs[] = $list;
-    }
-
-
+    $collect_jobs = m("person")->collect_jobs();
+    $collect_jobs_count = $collect_jobs['count'];
+    $collect_jobs = $collect_jobs['list'];
     $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
     $differ_time = (time()-$order_jobs['updatetime'])/86400;
     $order_jobs_list = m("jobs")->check_order_jobs($order_jobs['order_time'],$differ_time);
     include wl_template("person/person_collection");exit();
+}
+
+elseif ($op=="collection_jobs_ajax"){
+    $collect_jobs = m("person")->collect_jobs();
+    $collect_jobs = $collect_jobs['list'];
+    $count = count($collect_jobs);
+   call_back(1,$collect_jobs,$count);
 }
 
 //待评价保存

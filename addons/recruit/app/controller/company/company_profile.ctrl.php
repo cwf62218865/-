@@ -38,7 +38,6 @@ elseif ($op=="change_company_atlas"){
 
 //修改公司基本信息
 elseif ($op=="save_base"){
-//    var_dump($_POST);exit();
     $data['nature'] = check_pasre($_POST['data']['company_nature'],"1");
     $data['headimgurl'] = check_pasre($_POST['data']['company_logo'],"1");
     $data['number'] = check_pasre($_POST['data']['company_scale'],"2");
@@ -130,6 +129,7 @@ elseif ($op=="save_company_profile"){
     foreach (explode(",",$atlas) as $list){
         $data['atlas'][] = file_transfer($list);
     }
+    $data['atlas'] = array_filter($data['atlas']);
     $data['atlas'] = implode(",",$data['atlas']);
     $coordinate = explode(",",$_POST['data']['coordinate']);
     $data['retoate_x'] = $coordinate[0];

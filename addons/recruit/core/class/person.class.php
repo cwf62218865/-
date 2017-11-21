@@ -53,8 +53,23 @@ class person{
     /*
      * 收藏职位
      */
-    public function collect_jobs($uid,$jobs_id){
-        $jobs = m("jobs")->get_jobs($jobs_id);
+    public function collect_jobs($page=0,$pagenum=6){
+        $limit = " limit ".$page*$pagenum.",".$pagenum;
+        $collect_job = pdo_fetchall("select c.createtime,j.* from ".tablename(WL."collect_jobs")." as c,".tablename(WL."jobs")." as j where c.jobs_id=j.id and c.uid=".$_SESSION['uid'].$limit);
+        $collect_jobs['count'] = pdo_fetchall("select count(*) from ".tablename(WL."collect_jobs")." where uid=".$_SESSION['uid'].$limit);
+        $collect_jobs['list'] = "";
+        foreach ($collect_job as $list){
+            $headimgurl = pdo_fetch("select headimgurl,tag from ".tablename(WL."company_profile")." where uid=".$list['uid']);
+            $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where puid=".$_SESSION['uid']." and jobs_id=".$list['id']);
+            if(empty($jobs_apply)){
+                $list['post_status'] = 1;
+            }
+            $list['headimgurl'] = $headimgurl['headimgurl'];
+            $list['tag'] = $headimgurl['tag'];
+            $collect_jobs['list'][] = $list;
+        }
+
+        return $collect_jobs;
         
     }
 
