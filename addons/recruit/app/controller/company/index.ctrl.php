@@ -19,6 +19,7 @@ elseif ($op=="job_manage_release"){
     }
 
     $company = m('company')->get_profile($_SESSION['uid']);
+
     if(!$company['atlas'] ||!$company['introduce']){
         include wl_template("company/company_nomessage");exit();
     }

@@ -2,6 +2,7 @@ $(function () {
     //所有按钮的点击效果
     $(".gzdd .city_item").click(function () {
         $(".gzdd .city_item").removeClass("city_select");
+        $(".district_list .city_item").removeClass("city_select");
         $(this).addClass("city_select");
     })
     $(".xueli .city_item").click(function () {
@@ -32,10 +33,6 @@ $(function () {
         $(".city_o").removeClass("seleest");
         $(this).addClass("seleest");
     })
-    $(".xingzheng_item .city_item").click(function () {
-        $(".xingzheng_item .city_item").removeClass("city_select");
-        $(this).addClass("city_select");
-    })
     $("body").on("click",".cont_item",function () {
         $(".cont_item").removeClass("sllect");
         $(this).addClass("sllect");
@@ -44,7 +41,7 @@ $(function () {
         $(".city_lister .city_item").removeClass("city_select");
         $(".gzdd .city_item").removeClass("city_select");
         $(".district_list .city_item").removeClass("city_select");
-        $(this).addClass("city_select");
+        // $(this).addClass("city_select");
     })
     //已选择的删除
     $("body").on("click",".deleteyx",function () {

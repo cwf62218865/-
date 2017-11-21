@@ -43,7 +43,12 @@ class member{
         }else{
             $wheresql = " where companyname <> '' and headimgurl<>'' ";
         }
+        $company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."company_profile").$wheresql);
+        if($page*$pagenum>count($company_count)){
+            $page = 0;
+        }
         $limit = " limit ".$page*$pagenum.",".$pagenum;
+
         $company = pdo_fetchall("select * from ".tablename(WL."company_profile").$wheresql." order by id desc ".$limit);
         $company_profile = "";
         foreach ($company as $key=>$list){

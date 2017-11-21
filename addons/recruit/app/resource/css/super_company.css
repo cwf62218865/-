@@ -180,15 +180,11 @@
 
 .zhejiao {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 30px;height: 30px;
-    border-top-left-radius: 5px;
-    border-right: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-left: 15px solid #e6f3f8;
-    border-top: 15px solid #e6f3f8;
-    box-sizing: border-box; /* 去除这一条可制作指向右下角的箭头（90 * 90px） */
+    z-index: 999;
+    bottom: -12px;
+    right: -14px;
+    width: 40px;
+    height: 40px;
 }
 .title_xz{
     margin-top: 50px;

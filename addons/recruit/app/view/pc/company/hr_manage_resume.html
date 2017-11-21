@@ -534,6 +534,37 @@
 <script src="{WL_URL_ARES}js/date_list.js" rel="script"></script>
 
 <script>
+
+    //人才搜索操作
+    function  Searchjobs() {
+        //发送工作经验和地区的请求
+        var keyword = $(".input_job").val();
+        var major = $("#major_select").val();
+        var salary = $("#salarychoice").val();
+        var experience = $("#apperience_select").val();
+        var didian = $("#didian_select").val();
+
+        console.log("关键字："+keyword+"专业："+major+"工资："+salary+"工作经验："+experience+"工作地点："+didian);
+        $.ajax({
+            type:"post",
+            url:"{php echo app_url('company/resume/search_keyword')}",
+            data:{
+                keyword:keyword,
+                major:major,
+                salary:salary,
+                experience:experience,
+                didian:didian
+            },
+            success:function (data) {
+                var data = JSON.parse(data);
+                if(data.status==1){
+                    $(".resume_list").html(data.content);
+                }else{
+                    hint("error",data.content);
+                }
+            }
+        })
+    }
     $(function () {
         send_resume();
         var nav = "{$nav}";
@@ -689,32 +720,7 @@
 
     //人才搜索
     $(".btn_sou").click(function () {
-        var keyword = $(".input_job").val();
-        var major = $("#major_select").val();
-        var salary = $("#salarychoice").val();
-        var experience = $("#apperience_select").val();
-        var didian = $("#didian_select").val();
-
-
-        $.ajax({
-            type:"post",
-            url:"{php echo app_url('company/resume/search_keyword')}",
-            data:{
-                keyword:keyword,
-                major:major,
-                salary:salary,
-                experience:experience,
-                didian:didian
-            },
-            success:function (data) {
-                var data = JSON.parse(data);
-                if(data.status==1){
-                    $(".resume_list").html(data.content);
-                }else{
-                    hint("error",data.content);
-                }
-            }
-        })
+        Searchjobs();
     })
 
 
