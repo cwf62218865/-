@@ -945,12 +945,9 @@ function oplog($user, $describe, $view_url, $data) {
 //下载文件到本地
 function downfile($file){
     $filename=realpath($file); //文件名
-    $date=date("Ymd-H:i:m");
-    Header( "Content-type:  application/octet-stream ");
-    Header( "Accept-Ranges:  bytes ");
-    Header( "Accept-Length: " .filesize($filename));
-    header( "Content-Disposition:  attachment;  filename= {$date}.pdf");
-    echo file_get_contents($filename);
+
+    header("Content-Type: application/force-download");
+    header("Content-Disposition: attachment; filename=".basename($filename));
     readfile($filename);
 }
 

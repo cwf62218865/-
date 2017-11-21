@@ -1533,7 +1533,9 @@
     $.fromdata("#envelope_modal","{php echo app_url('person/resume/send_email')}",".post_envelopebtn",function(data){
         var data = JSON.parse(data);
         if(data.status==1){
-            location = location;
+            hint("success","发送成功");
+            $("#envelope_modal").css("display","none");
+//            location = location;
         }
     })
 
@@ -1541,8 +1543,6 @@
 
 </script>
 <script>
-
-
     //上传图片
     $(".modalbtn").on("click",function(){
         var uploadFormData =new FormData($("#choosefile1")[0]);

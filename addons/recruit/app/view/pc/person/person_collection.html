@@ -70,6 +70,10 @@
                     </div>
                 </div>
                 {/loop}
+
+                    {if $collect_jobs_count>6}
+                <div class="morejob">更多简历信息&gt;&gt;</div>
+                    {/if}
                 {else}
                 <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有收藏的职位</div><div class="color999" style="margin-top: 30px">请前往职位列表浏览更多职位信息</div></div></div>
                 {/if}
@@ -503,6 +507,8 @@
                 }
             })
         })
+
+
     })
 </script>
 </html>
