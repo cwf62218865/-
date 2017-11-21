@@ -260,8 +260,6 @@ elseif ($op=="post_resume"){
             call_back(2,"no");
         }
     }
-
-//    var_dump($_POST);exit();
 }
 
 
