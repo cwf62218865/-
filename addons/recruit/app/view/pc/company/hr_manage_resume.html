@@ -85,11 +85,11 @@
                             </div>
                             <div class="bm_hang3">
                                 <span class="basic_xx">{php echo $list['school_name']}</span>
-                                <span class="basic_xx"  style="margin-left: 16px;">{php echo $list['major']}</span>
+                                <span class="basic_xx"  style="float: right;">{php echo $list['major']}</span>
                             </div>
                             <div class="bm_hang4">
                                 <span class="basic_xx"><span>{php echo $list['experience']}</span></span>
-                                <span class="basic_xx" style="margin-left: 16px;">{php echo $list['telphone']}</span>
+                                <span class="basic_xx" style="float: right;">{php echo $list['telphone']}</span>
                             </div>
                         </div>
                         <div class="xian1"></div>
@@ -348,7 +348,7 @@
                             </div>
                             <div class="bm_hang2">
                                 <span class="basic_xx">{if $list['sex']==1}男{else}女{/if}</span>
-                                <span class="basic_xx" style="margin-left: 10px;">{php echo ceil(date('Y-m-d')-$list['birthday'])}岁</span>
+                                <span class="basic_xx" style="margin-left: 10px;">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
                             </div>
                             <div class="bm_hang3">
                                 <span class="basic_xx">{php echo $list['school_name']}</span>

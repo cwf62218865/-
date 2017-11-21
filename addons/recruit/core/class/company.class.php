@@ -126,6 +126,11 @@ class company{
         $resumes = "";
         foreach ($resume_jobs as $list){
             $resume = pdo_fetch("select * from ".tablename(WL.'resume')." where id=".$list['resume_id']);
+            if($resume['experience']){
+                $resume['experience'] = $resume['experience']."年以上工作经验";
+            }else{
+                $resume['experience'] = "无工作经验";
+            }
             $job = pdo_fetch("select jobs_name from ".tablename(WL.'jobs')." where id=".$list['jobs_id']);
             $resume['jobs_name'] = $job['jobs_name'];
             $resume['remark'] = $list['remark'];

@@ -148,6 +148,8 @@ $(function () {
     //上传图片弹框
     $(".tianjia").click(function () {
         $("#modalbox").show();
+        code_url("books_img");
+        upload_timer();
     })
     //上传图片
     //选择文件

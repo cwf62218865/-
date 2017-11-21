@@ -19,6 +19,11 @@ class resume{
             $resume = pdo_fetch("select ".$filed." from ".tablename(WL.'resume')." where uid=".$uid);
             return $resume[$filed];
         }
+        if($resume['experience']){
+            $resume['experience'] = $resume['experience']."年以上工作经验";
+        }else{
+            $resume['experience'] = "无工作经验";
+        }
 
         return $resume;
     }
@@ -149,7 +154,6 @@ class resume{
     public function getall_resume($data=""){
         $wheresql = " where 1=1 ";
         if($data['keyword']){
-
             $wheresql .=" and hope_job like '%".$data['keyword']."%' ";
         }
 
@@ -157,11 +161,33 @@ class resume{
             $wheresql .=" and hope_place like '%".$data['didian']."%' ";
         }
 
+        if($data['experience']){
+            if($data['experience']=="无经验"){
+                $wheresql .=" and experience=0 ";
+            }elseif ($data['experience']=="1年以下"){
+                $wheresql .=" and experience=1 ";
+            }elseif ($data['experience']=="1-3年"){
+                $wheresql .=" and experience>=1 and experience<=3";
+            }elseif ($data['experience']=="3-5年"){
+                $wheresql .=" and experience>=3 and experience<=5";
+            }elseif ($data['experience']=="5年以上"){
+                $wheresql .=" and experience>=5";
+            }
+        }
+
+        if($data['major']){
+            $wheresql .=" and major=".$data['major'];
+        }
 
         $resumes = pdo_fetchall("select * from ".tablename(WL.'resume').$wheresql);
         $arr = "";
         foreach ($resumes as $resume){
             $blacklist = explode(",",$resume['blacklist']);
+            if($resume['experience']){
+                $resume['experience'] = $resume['experience']."年以上工作经验";
+            }else{
+                $resume['experience'] = "无工作经验";
+            }
             if($_SESSION['utype']==2){
                if($this->blacklist($blacklist)){
                    $arr[] = "";
@@ -236,9 +262,9 @@ class resume{
             }
             if($work_time){
                 $data['experience'] =intval($work_time/31536000)?intval($work_time/31536000):1;
-                $data['experience'] =  $data['experience']."年以上工作经验";
+                $data['experience'] =  $data['experience'];
             }else{
-                $data['experience'] = "无工作经验";
+                $data['experience'] = 0;
             }
         }
 
