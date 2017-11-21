@@ -19,12 +19,14 @@ class resume{
             $resume = pdo_fetch("select ".$filed." from ".tablename(WL.'resume')." where uid=".$uid);
             return $resume[$filed];
         }
-        if($resume['experience']){
-            $resume['experience'] = $resume['experience']."年以上工作经验";
-        }else{
-            $resume['experience'] = "无工作经验";
-        }
 
+        if($resume){
+            if($resume['experience']){
+                $resume['experience'] = $resume['experience']."年以上工作经验";
+            }else{
+                $resume['experience'] = "无工作经验";
+            }
+        }
         return $resume;
     }
 
