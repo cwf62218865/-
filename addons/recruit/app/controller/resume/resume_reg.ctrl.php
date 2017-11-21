@@ -29,6 +29,7 @@ if($op=="1"){
     $data['city_area'] = $_POST['city_area'];
     $data['address'] = $_POST['address'];
     $resume = m("resume")->get_resume($_SESSION['uid']);
+
     if($resume){
         $data['updatetime'] = time();
         $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));

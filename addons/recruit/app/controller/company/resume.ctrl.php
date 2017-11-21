@@ -346,11 +346,22 @@ elseif ($op=="remove_collect"){
 
 //搜索职位检索简历
 elseif ($op=="search_keyword"){
+
     $data['keyword'] = $_POST['keyword'];
-    $data['major'] = $_POST['major'];
-    $data['salary'] = $_POST['salary'];
-    $data['experience'] = $_POST['experience'];
-    $data['didian'] = $_POST['didian'];
+    if($_POST['major'] && $_POST['major']!="专业不限"){
+        $data['major'] = $_POST['major'];
+    }
+
+    if($_POST['salary'] && $_POST['salary']!="工资面谈"){
+        $data['salary'] = $_POST['salary'];
+    }
+    if($_POST['didian'] && $_POST['didian']!="地点不限"){
+        $data['didian'] = $_POST['didian'];
+    }
+
+    if($_POST['experience'] && $_POST['experience']!="经验不限"){
+        $data['experience'] = $_POST['experience'];
+    }
 
     $content = m("resume")->getall_resume($data);
     $str = "";
@@ -361,11 +372,6 @@ elseif ($op=="search_keyword"){
             $sex = "女";
         }
 
-        if($list['work_time']){
-            $work_time = "工作经验". $list['work_time']."年";
-        }else{
-            $work_time = "无工作经验";
-        }
 
         $hope_job = "";
         foreach(explode(",",$list['hope_job']) as $li){
@@ -376,20 +382,21 @@ elseif ($op=="search_keyword"){
                         <a class=\"touxiang_pic\"  href='".app_url('resume/index',array('uid'=>$list['uid']))."'>
                             <img src=\"{$list['headimgurl']}\" style=\"width: 100px;height: 100px;\"/>
                         </a>
+                       
                         <div class=\"basic_massage\">
                             <div class=\"bm_hang1\">
                                 <span class=\"name nowrap\">{$list['fullname']}</span>
                                 <span class=\"view_i\">查看</span>
                                 <span class=\"basic_xx\">{$sex}</span>
                                 <span class=\"basic_xx\" style=\"margin-left: 5px;\">".ceil((time()-$list['birthday'])/31536000)."岁</span>
-                                <span class=\"basic_xx\" style=\"margin-left: 25px;\">{$resume['education']}</span>
+                                <span class=\"basic_xx\" style=\"margin-left: 25px;\">{$list['education']}</span>
                             </div>
                             <div class=\"bm_hang3\">
                                 <span class=\"basic_xx\">{$list['school_name']}</span>
-                                <span class=\"basic_xx\"  style=\"margin-left: 16px;\">{$list['edu_major']}</span>
+                                <span class=\"basic_xx\"  style=\"margin-left: 16px;\">{$list['major']}</span>
                             </div>
                             <div class=\"bm_hang4\">
-                                <span class=\"basic_xx\">{$work_time}</span>
+                                <span class=\"basic_xx expirencw\">{$list['experience']}</span>
                                 <span class=\"basic_xx\" style=\"margin-left: 16px;\">{$list['telphone']}</span>
                             </div>
                         </div>

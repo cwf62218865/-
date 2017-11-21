@@ -682,7 +682,7 @@ $(".modalbtn1").on("click",function(){
     }
 
 
-    $(".baidu_icons").on("click",function() {
+    $(".baidu_icons,.weibo_icons").on("click",function() {
 
         var baidu_url = $(this).attr("data-url");
         $.ajax({

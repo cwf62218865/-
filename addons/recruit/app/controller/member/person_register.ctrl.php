@@ -6,6 +6,10 @@ if($op=="index"){
     include wl_template("member/personal_reg");
 }elseif ($op=="register"){
 
+    $data['baidu_openid'] = $_POST['baidu_openid'];
+    $data['qq_openid'] = $_POST['qq_openid'];
+    $data['weixin_openid'] = $_POST['weixin_openid'];
+    $data['weibo_openid'] = $_POST['weibo_openid'];
     if(check_phone($_GPC['mobie'])){
         $data['mobile'] =$_GPC['mobie'];
     }
