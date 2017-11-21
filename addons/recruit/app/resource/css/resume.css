@@ -317,3 +317,14 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
     width: 470px;
     margin-left: 60px;
 }
+.rember_pwd{
+    float: left;
+    line-height: 14px;
+    height: 14px;
+    margin-top: 15px;
+}
+.rember_pwd input{
+    margin-top: 1px;
+    margin-right: 3px;
+    float: left;
+}

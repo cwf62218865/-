@@ -4,11 +4,10 @@
         <div style="height: 52px;line-height: 52px"><span class="city">{if $_SESSION['city']}{$_SESSION['city']}{else}全国{/if}</span><span class="changecity">[切换]</span></div>
         <div class="menu">
             <a href="{php echo app_url('member/index')}" {if !$_GPC['op']}class="menuactive"{/if}>首页</a>
-            <a  href="{php echo app_url('member/index/search_jobs')}" {if $_GPC['op']=="search_jobs"}class="menuactive"{/if}>找工作</a>
-            <a  href="#">实习/兼职</a>
-            <a  href="#">求职保镖</a>
-            <a  href="#">职场信用</a>
-            <a  href="#">就业大数据</a>
+            <a  href="{php echo app_url('member/index/search_jobs')}" {if $_GPC['op']=="search_jobs"}class="menuactive"{/if}>找人才</a>
+            <a  href="#">名企招聘</a>
+            <a  href="#">现场招聘会</a>
+            <a  href="#">活动</a>
         </div>
         <div class="login relative">
             <span class="relative personal_msgbtn">
@@ -21,7 +20,7 @@
                     </svg>
                     {/if}
                 </div>
-                <span class="login_username color666">{$user['mobile']}</span>
+                <span class="login_username color666">{if $user['username']}{$user['username']}{else}{$user['mobile']}{/if}</span>
 
                 <svg class="icon" style="margin-left:10px">
                     <use xlink:href="#icon-xiala"></use>
@@ -31,7 +30,10 @@
 
 
             <div class="personal_msgs" id="personal_msgs">
-                <a href="{php echo app_url('company/index/company_msg')}">我的消息</a>
+                <a href="{php echo app_url('company/index/company_msg')}">消息中心</a>
+                <a href="{php echo app_url('company/index/company_msg')}">申请通知</a>
+                <a href="{php echo app_url('company/index/company_msg')}">邀请反馈</a>
+                <a href="{php echo app_url('company/index/company_msg')}">账号设置</a>
                 <a href="{php echo app_url('member/index/login_out')}">退出</a>
             </div>
 

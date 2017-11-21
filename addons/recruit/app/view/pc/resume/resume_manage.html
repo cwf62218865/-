@@ -194,9 +194,9 @@
                                 </svg>
                             </label>
                             <div class="options noscend" style="width: 220px;top:48px">
-                                <div class="select-option"><span>找工作中</span></div>
-                                <div class="select-option"><span>在职</span> </div>
-                                <div class="select-option"><span>离职中</span> </div>
+                                <div class="select-option"><span>不在职，正在找工作</span></div>
+                                <div class="select-option"><span>在职，考虑机会</span> </div>
+                                <div class="select-option"><span>不考虑换工作</span> </div>
                             </div>
                         </div>
                     </div>
@@ -500,8 +500,11 @@
                                     <div style="padding: 19px;border: 1px solid #eee">
                                         <span class="font999 resume_msg_name" style="margin-left: 10px;width: auto;height: 40px;line-height: 40px;float: none">添加期望职位</span>
                                         <span class="add_hope_job public_bigbtn">添加</span>
-                                        <label class="general-input" style="height: 38px;line-height: 38px;width:250px ;float: right">
+                                        <label class="relative general-input" style="height: 40px;line-height: 40px;width:250px ;float: right">
                                             <input type="text" id="hope_jobinput" maxlength="6" placeholder="输入6字以内职位名" style="height: 38px;line-height: 38px">
+                                            <div class="hopejob_tips">
+                                                <!--<div class="hopejob_option">adas</div>-->
+                                            </div>
                                         </label>
                                     </div>
 
@@ -510,12 +513,12 @@
                                     </div>
 
                                     <!--保存-->
-                                    <div>
-                                        <div style="display: inline-block;margin: 20px 0;float: right;margin-right: 40px">
-                                            <span class="savebtn public_bigbtn bg1aa" id="save_hope_job" style="padding: 0 30px 0 30px">保存</span>
-                                            <span class="cancelbtn1" id="cancel_hope_job">取消</span>
-                                        </div>
-                                    </div>
+                                    <!--<div>-->
+                                        <!--<div style="display: inline-block;margin: 20px 0;float: right;margin-right: 40px">-->
+                                            <!--<span class="savebtn public_bigbtn bg1aa" id="save_hope_job" style="padding: 0 30px 0 30px">保存</span>-->
+                                            <!--<span class="cancelbtn1" id="cancel_hope_job">取消</span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
 
                                 </div>
                             </div>
@@ -793,8 +796,8 @@
 
                     <div class=" person_changes_left" style="margin-top: 20px">
                         <span class="font999 resume_msg_name" style="float: left">工作内容</span>
-                        <div class="cwfreg4content" style="display: inline-block;margin-left: 20px;height: 64px;border: 1px solid #f5f5f5;width: 589px;background-color: #f5f5f5">
-                            <textarea style="width: 546px"  class="cwftextarea" id="job_content"  placeholder="你在这个岗位的职责"></textarea>
+                        <div class="cwfreg4content" style="display: inline-block;margin-left: 20px;height: 84px;border: 1px solid #f5f5f5;width: 589px;background-color: #f5f5f5">
+                            <textarea style="width: 546px"  class="cwftextarea" id="job_content"  placeholder="分点描述条理更清晰，更方便HR阅读"></textarea>
                         </div>
 
                         <div  class="cwftextareatip" style="height: auto;margin-top: 10px;padding-bottom: 13px">
@@ -966,7 +969,7 @@
                             {/loop}
                         </div>
                         <div class="no_expbox" id="person_works1"   {if empty($personal_works)}style="display:block;margin-top: 58px"{else}style="display:none;margin-top: 58px"{/if}>
-                            <span class="addandeditbtn" style="position: relative">
+                            <span class="addandeditbtn1" style="position: relative">
                                 <svg class="icon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
                                 </svg>
@@ -1101,7 +1104,7 @@
                         <span >荣誉证书</span>
                     </div>
                     <div class="resume_exp" id="certificate" style=";margin-bottom: 180px">
-                        <div class="person_works" {if $honor}style="display:block;"{else}style="display:none;"{/if}>
+                        <div class="person_works" >
                             {loop $honor $id $list}
                             <div class="relative" data-id="{$id}">
                                 <span class="certificate " style="display: inline-block;width: 570px;white-space: nowrap;text-overflow: ellipsis;">{$list['certificate_content']}</span>
@@ -1423,6 +1426,9 @@
 <script src="{WL_URL_ARES}js/upload_refresh.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/resume_manager.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/src/qiniu.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/src/plupload/moxie.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/src/plupload/plupload.dev.js" rel="script"></script>
 
 
 <script src="{WL_URL_ARES}js/head/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
@@ -1499,14 +1505,7 @@
         });
     }
 
-    $(function () {
-        var intention = "{$resume['hope_job']}";
-        if(intention){
-            $("#wanted_job").css("display","block");
-        }else{
-            $("#wanted_job").css("display","none");
-        }
-    })
+
     //打开邮箱
     $("#post_envelope").on("click",function(){
         $("#envelope_modal").show();
@@ -1741,6 +1740,7 @@
                 resumesbox.find(".exp_title").html(company_name);
                 resumesbox.find(".exp_jobleft").eq(0).html(job_name);
                 resumesbox.find(".exp_jobright").html(start_time+"-"+end_time);
+                resumesbox.find(".exp_content").html(job_content);
                 resumesbox.find(".exp_jobleft").eq(1).html("离职原因："+leave_reason);
 
             }else{
@@ -1971,7 +1971,8 @@
                         '</span>'+
                         '</div>'+
                         '</div>';
-                $(".person_works").eq(0).append(workshtml);
+
+                $(".person_works").eq(0).show().append(workshtml);
 
             }
             if($(".person_work").length>=2){
@@ -2212,7 +2213,7 @@
     });
 
 
-    $("#vedio_source,.upload_video").click(function () {
+    $(".upload_video").click(function () {
         $(".title_content").html("上传个人视频");
         $("#choosefile").attr("accept","video/*").val("");
         $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
@@ -2224,6 +2225,9 @@
         upload_timer();
     });
 
+    $("#vedio_source").on("click",function(){
+        $(".upload_video").click()
+    })
     function callback_content(data) {
         if(data.others==1){
 //            $("#avatar-modal").show();
@@ -2259,6 +2263,90 @@
         }
         $("#modalbox").css("display","none");
     }
+
+
+
+    var uploader = Qiniu.uploader({
+        runtimes: 'html5,flash,html4',      // 上传模式，依次退化
+        browse_button: 'pickfiles',         // 上传选择的点选按钮，必需
+        // 在初始化时，uptoken，uptoken_url，uptoken_func三个参数中必须有一个被设置
+        // 切如果提供了多个，其优先级为uptoken > uptoken_url > uptoken_func
+        // 其中uptoken是直接提供上传凭证，uptoken_url是提供了获取上传凭证的地址，如果需要定制获取uptoken的过程则可以设置uptoken_func
+        // uptoken : '<Your upload token>', // uptoken是上传凭证，由其他程序生成
+        // uptoken_url: '/uptoken',         // Ajax请求uptoken的Url，强烈建议设置（服务端提供）
+        // uptoken_func: function(){    // 在需要获取uptoken时，该方法会被调用
+        //    // do something
+        //    return uptoken;
+        // },
+        get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的uptoken
+        // downtoken_url: '/downtoken',
+        // Ajax请求downToken的Url，私有空间时使用，JS-SDK将向该地址POST文件的key和domain，服务端返回的JSON必须包含url字段，url值为该文件的下载地址
+        // unique_names: true,              // 默认false，key为文件名。若开启该选项，JS-SDK会为每个文件自动生成key（文件名）
+        // save_key: true,                  // 默认false。若在服务端生成uptoken的上传策略中指定了sava_key，则开启，SDK在前端将不对key进行任何处理
+        domain: 'http://qiniu-plupload.qiniudn.com/',     // bucket域名，下载资源时用到，必需
+        container: 'container',             // 上传区域DOM ID，默认是browser_button的父元素
+        max_file_size: '100mb',             // 最大文件体积限制
+        flash_swf_url: 'path/of/plupload/Moxie.swf',  //引入flash，相对路径
+        max_retries: 3,                     // 上传失败最大重试次数
+        dragdrop: true,                     // 开启可拖曳上传
+        drop_element: 'container',          // 拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+        chunk_size: '4mb',                  // 分块上传时，每块的体积
+        auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        //x_vars : {
+        //    查看自定义变量
+        //    'time' : function(up,file) {
+        //        var time = (new Date()).getTime();
+        // do something with 'time'
+        //        return time;
+        //    },
+        //    'size' : function(up,file) {
+        //        var size = file.size;
+        // do something with 'size'
+        //        return size;
+        //    }
+        //},
+        init: {
+            'FilesAdded': function(up, files) {
+                plupload.each(files, function(file) {
+                    // 文件添加进队列后，处理相关的事情
+                });
+            },
+            'BeforeUpload': function(up, file) {
+                // 每个文件上传前，处理相关的事情
+            },
+            'UploadProgress': function(up, file) {
+                // 每个文件上传时，处理相关的事情
+            },
+            'FileUploaded': function(up, file, info) {
+                // 每个文件上传成功后，处理相关的事情
+                // 其中info.response是文件上传成功后，服务端返回的json，形式如：
+                // {
+                //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+                //    "key": "gogopher.jpg"
+                //  }
+                // 查看简单反馈
+                // var domain = up.getOption('domain');
+                // var res = parseJSON(info.response);
+                // var sourceLink = domain +"/"+ res.key; 获取上传成功后的文件的Url
+            },
+            'Error': function(up, err, errTip) {
+                //上传出错时，处理相关的事情
+            },
+            'UploadComplete': function() {
+                //队列文件处理完毕后，处理相关的事情
+            },
+            'Key': function(up, file) {
+                // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+                // 该配置必须要在unique_names: false，save_key: false时才生效
+                var key = "";
+                // do something with key here
+                return key
+            }
+        }
+    });
+    // domain为七牛空间对应的域名，选择某个空间后，可通过 空间设置->基本设置->域名设置 查看获取
+    // uploader为一个plupload对象，继承了所有plupload的方法
+
 
 </script>
 </html>

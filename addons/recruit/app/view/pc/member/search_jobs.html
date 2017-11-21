@@ -45,21 +45,20 @@
             <div class="condition_item gzdd">
                 <label class="title one_st">工作地点：</label>
                 <span class="city_item city_select all_item">全国</span>
-                <span class="city_item">重庆</span>
                 <span class="city_item">北京</span>
                 <span class="city_item">上海</span>
                 <span class="city_item">广州</span>
                 <span class="city_item">深圳</span>
-                <span class="city_item">南京</span>
+                <span class="city_item">重庆</span>
                 <span class="city_item">杭州</span>
-                <span class="city_item">厦门</span>
-                <span class="city_item">西安</span>
-                <span class="city_item">成都</span>
-                <span class="city_item">长沙</span>
-                <span class="city_item">武汉</span>
                 <span class="city_item">天津</span>
+                <span class="city_item">武汉</span>
+                <span class="city_item">成都</span>
+                <span class="city_item">南京</span>
+                <span class="city_item">长沙</span>
+                <span class="city_item">青岛</span>
+                <span class="city_item">郑州</span>
                 <span class="city_item">大连</span>
-                <!--<span class="city_item">长春</span>-->
                 <label class="more_city cur">
                     <div class="gengduo">更多
                         <svg class="icon">
@@ -303,8 +302,9 @@
 <script src="{WL_URL_ARES}js/jquery.mousewheel.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/style_zj.js" rel="script"></script>
-<script src="{WL_URL_ARES}js/hotarea.js" rel="script"></script>
-<script src="{WL_URL_ARES}js/zimu.js" rel="script"></script>
+<!--<script src="{WL_URL_ARES}js/hotarea.js" rel="script"></script>-->
+<script src="{WL_URL_ARES}js/newfile.js" rel="script"></script>
+<!--<script src="{WL_URL_ARES}js/zimu.js" rel="script"></script>-->
 
 <script>
     $(function () {
@@ -496,7 +496,7 @@
                 },
                 success:function (data) {
                     var data = JSON.parse(data);
-                    console.log(data.others);
+//                    console.log(data.others);
                     if(data.status==1){
                         if(!data.content){
                             no_data(".resume_content","暂时没有符合搜索条件的结果","请重新修改搜索条件后再进行搜索");
@@ -546,7 +546,6 @@
 
         //多选项样式添加和发送请求
         $("body").on("click",".city_item",function () {
-
             $(".con_or .title").html("已选择:");
             $(".select_con").html("");
             var list=$(".city_item");
@@ -683,34 +682,43 @@
         })
 
         //城市选择和行政区弹出
-        var area=new Array();
-        area=dsy.Items[0];
         var city=[];
-//        console.log(area);
-        for(var i=0;i<area.length;i++){
-            city.push(dsy.Items['0_'+i]);
+        var area=[];
+        var zimuarea=[];
+        for(var i=0;i<searcity.length;i++){
+            city.push(searcity[i].content);
         }
 
-        $(".gzdd .city_item").click(function () {
+        for(var i=0;i<city.length;i++){
+            for(var j=0;j<city[i].length;j++){
+               area.push(city[i][j]);
+            }
+        }
+
+        for(var i=0;i<searcity.length;i++){
+            for(var j=0;j<searcity[i].content.length;j++){
+                zimuarea.push({ word: searcity[i].word, title: searcity[i].content[j].title, area: searcity[i].content[j].area })
+            }
+        }
+
+
+
+        $("body").on("click",".gzdd .city_item",function () {
             $(".con_or .title").html("已选择:");
-            var ccity=$(this).html();
+            $(".gzdd .city_item").removeClass("city_select");
+            $(this).addClass("city_select");
+            var ccity=$.trim($(this).html());
             if(ccity!="全国"){
             $(".xingzheng_item").show();
-                if(ccity.charAt(ccity.length-1)!="市"){
-                    ccity=ccity+"市";
-                }
                 $(".district_list").html("");
                 $(".district_list").append("<span class='city_item all_item'>不限</span>")
-                for(var i=0;i<city.length;i++){
-                    for(var j=0;j<city[i].length;j++){
-                        if(ccity==city[i][j]){
-                            for(var list=0;list<dsy.Items['0_'+i+'_'+j].length;list++){
-                                $(".district_list").append("<span class='city_item'>"+dsy.Items['0_'+i+'_'+j][list]+"</span>");
-                            }
+                for(var i=0;i<area.length;i++){
+                    if(ccity==$.trim(area[i].title)){
+                        for(var list=0;list<area[i].area.length;list++){
+                            $(".district_list").append("<span class='city_item'>"+area[i].area[list]+"</span>");
                         }
                     }
                 }
-
             }else{
                 $(".xingzheng_item").hide();
                 $(".xingzheng_item .city_item").removeClass("city_select");
@@ -764,17 +772,15 @@
         for(var i=0;i<first.length;i++){
             con+="<div class='zimu_one'>";
             con+="<label class='letter'>"+first[i]+"</label><div class='city_team'>";
-            for(var a=0;a<city.length;a++){
-                for(var b=0;b<city[a].length;b++){
-                    var fir=checkCh(city[a][b]).substring(0,1);
-                    if(fir==first[i]){
-                        con+="<span class='city_item'>"+city[a][b]+"</span>";
+                for(var j=0;j<zimuarea.length;j++){
+                    if(first[i]==$.trim(zimuarea[j].word)){
+                            con+="<span class='city_item'>"+zimuarea[j].title+"</span>";
                     }
                 }
-            }
             con+="</div></div>";
+            con+="</div>";
         }
-        con+="</div>";
+
         $(".city_lister").html(con);
 
         //按照字母显示城市
@@ -786,19 +792,41 @@
             for(var i=0;i<zimu_arr.length;i++){
                 content+="<div class='zimu_one'>";
                 content+="<label class='letter'>"+zimu_arr[i]+"</label><div class='city_team'>";
-                for(var a=0;a<city.length;a++){
-                    for(var b=0;b<city[a].length;b++){
-                        var fir=checkCh(city[a][b]).substring(0,1);
-                        if(fir==zimu_arr[i]){
-                            content+="<span class='city_item'>"+city[a][b]+"</span>";
-                        }
+                for(var j=0;j<zimuarea.length;j++){
+                    if(zimu_arr[i]==$.trim(zimuarea[j].word)){
+                        content+="<span class='city_item'>"+zimuarea[j].title+"</span>";
                     }
                 }
                 content+="</div></div>";
+                content+="</div>";
             }
             content+="</div>";
             $(".city_lister").html(content);
 
+        })
+
+
+        //更多城市点击效果
+        $("body").on("click",".city_team .city_item",function () {
+            $(".city_team .city_item").removeClass("city_select");
+            var selecity=$(this).html();
+            if(!$(".gzdd .city_item").hasClass("morecity")){
+                $(".gzdd .all_item").after('<span class="city_item city_select morecity">'+selecity+'</span>')
+            }else{
+                $(".gzdd .morecity").html(selecity);
+                $(".gzdd .morecity").addClass("city_select");
+            }
+
+            $(".xingzheng_item").show();
+            $(".district_list").html("");
+            $(".district_list").append("<span class='city_item all_item'>不限</span>")
+            for(var i=0;i<area.length;i++){
+                if($.trim(selecity)==$.trim(area[i].title)){
+                    for(var list=0;list<area[i].area.length;list++){
+                        $(".district_list").append("<span class='city_item'>"+area[i].area[list]+"</span>");
+                    }
+                }
+            }
         })
 
 
