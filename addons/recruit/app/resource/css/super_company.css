@@ -287,10 +287,22 @@
     left: 30px;
     cursor: pointer;
 }
+.dingyuebtn1{
+    width: 240px;
+    height: 46px;
+    background: #fff;
+    color: #eecc04;
+    line-height: 46px;
+    text-align: center;
+    border-radius: 3px;
+    position: absolute;
+    bottom: 24px;
+    left: 30px;
+}
+
 .dy_tip{
     display: none;
     position: absolute;
-    background: #ffffff;
     width: 230px;
     height: 48px;
     border: 1px solid #eeeeee;
