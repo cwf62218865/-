@@ -271,13 +271,13 @@ $(function () {
                             if(secons==0){
                                 clearInterval(timer);
                                 //修改密码成功之后跳转链接
-                                window.location.href="";
+                                window.location.href="/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=pwd_login_out&";
                             }
 
                             $(".denglu").click(function () {
                                 clearInterval(timer);
                                 //前往登录的链接
-                                window.location.href="";
+                                window.location.href="/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=pwd_login_out&";
                             })
                         },1000);
                     }else{

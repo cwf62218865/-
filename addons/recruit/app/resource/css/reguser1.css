@@ -609,7 +609,8 @@ position: absolute;
     display: block;
     height: 100px;
     width: 100px;
-    opacity: 0; filter:Alpha(opacity=0)
+    opacity: 0; filter:Alpha(opacity=0);
+    cursor: pointer;
 }
 .school input,.industry input{
     width: 242px;

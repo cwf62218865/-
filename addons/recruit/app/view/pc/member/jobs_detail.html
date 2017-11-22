@@ -30,14 +30,13 @@
                 <div class="width730" style="margin-left: 70px">
                     <div style="margin-top: 70px">
                         <span class="font34 color333" style="vertical-align: middle;">{php echo $jobs['jobs_name']}</span>
-                        <a href="#" class="company_msgbtn">该企业信用详情</a>
 
 
                         <span class="{if $report}collections1{else}collections{/if}">
-                            <svg class="icon">
+
+                            {if $report}已举报{else}<svg class="icon">
                                 <use xlink:href="#icon-tishi"></use>
-                            </svg>
-                            {if $report}已举报{else}举报{/if}
+                            </svg>举报{/if}
                         </span>
 
 
@@ -239,7 +238,10 @@
                         <use xlink:href="#icon-renzheng"></use>
                     </svg>
                 </a>
-                <div style="margin-top: 14px"><img src="{WL_URL_ARES}images/mingxing.png"></div>
+                <div style="margin-top: 14px">
+                    <a href="#" class="company_msgbtn">该企业信用详情</a>
+                    <img src="{WL_URL_ARES}images/mingxing.png">
+                </div>
 
                 <div class="company_recruit">
                     <span class="colorbbb">公司信用</span>

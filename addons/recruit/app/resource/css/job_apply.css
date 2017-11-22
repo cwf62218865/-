@@ -427,7 +427,9 @@
 .company_name{
     float: left;
     line-height: 22px;
-    width: 180px;
+    width: 180px;overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .companyn{
     width: 180px ;
@@ -872,7 +874,10 @@ margin-left: 30px;
     margin-left: 50px;
 }
 .list_itema{
-    line-height: 40px;
+    height: 40px;
+}
+.titlsclink:hover{
+    color: #0099cc;
 }
 .comicoa{
     width: 20px;
@@ -882,6 +887,11 @@ margin-left: 30px;
 .titlsc{
     margin-left: 30px;
     color: #666666;
+    display: inline-block;
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .qiyeditu{
     width: 290px;
