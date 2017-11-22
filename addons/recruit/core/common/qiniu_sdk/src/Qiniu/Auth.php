@@ -10,6 +10,7 @@ final class Auth
 
     public function __construct($accessKey, $secretKey)
     {
+
         $this->accessKey = "MihaWhRlo8hQcsKQOPQVkKvxsKMku9_kodNhuszW";
         $this->secretKey = "lFXFQG4rlQnHy5NIb3TNIl43mELISHv8VTbtvH5G";
     }

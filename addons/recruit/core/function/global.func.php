@@ -950,10 +950,6 @@ function downfile($file){
     header("Content-Disposition: attachment; filename=".basename($filename));
     readfile($filename);
 
-
-    header("Content-Type: application/force-download");
-    header("Content-Disposition: attachment; filename=".basename($filename));
-    readfile($filename);
 }
 
 
