@@ -272,6 +272,9 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     padding-right: 24px;
     border-right: 1px solid #eee;
 }
+.about_me a:hover{
+    color: #333;
+}
 .about_me a:last-child{
     border-right: none;
 }

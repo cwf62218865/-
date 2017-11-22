@@ -24,6 +24,7 @@
             var map = new BMap.Map("allmap");
             var point = new BMap.Point("{php echo $retoate_x}","{php echo $retoate_y}");
             map.centerAndZoom(point, 16);
+            map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
             map.addOverlay(new BMap.Marker(point));
         });
 </script>

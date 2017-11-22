@@ -313,7 +313,7 @@
                     <div class="xz_title">校招行程</div>
                 </div>
                 <div class="xzlicontent">
-                    <div class="xzitem">
+                    <div class="xzitem" data-id="0">
                         <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
                         <div class="college_name">武汉大学(文理科技学院)</div>
                         <div class="xiangxixinxi">
@@ -321,11 +321,12 @@
                         <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
                         <div class="detail_dizhi" style="margin-top: 5px;">学生就业服务中心就业服务中心卓越厅</div>
                         </div>
-                        <div class="dingyuebtn">订阅
+                        <div class="dingyuebtn">
+                            <span>订阅</span>
                             <div class="dy_tip">订阅后，我们将以短信的形式提前一天告知您宣讲会的相关事宜</div>
                         </div>
                     </div>
-                    <div class="xzitem">
+                    <div class="xzitem"  data-id="1">
                         <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
                         <div class="college_name">武汉大学</div>
                         <div class="xiangxixinxi">
@@ -333,11 +334,12 @@
                             <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
                             <div class="detail_dizhi" style="margin-top: 5px;">学生就业服务中心</div>
                         </div>
-                        <div class="dingyuebtn">订阅
+                        <div class="dingyuebtn">
+                            <span>订阅</span>
                             <div class="dy_tip">订阅后，我们将以短信的形式提前一天告知您宣讲会的相关事宜</div>
                         </div>
                     </div>
-                    <div class="xzitem">
+                    <div class="xzitem"  data-id="2">
                         <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
                         <div class="college_name">武汉大学</div>
                         <div class="xiangxixinxi">
@@ -345,11 +347,12 @@
                             <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
                             <div class="detail_dizhi" style="margin-top: 5px;">学生就业服务中心就业服务中心卓越厅</div>
                         </div>
-                        <div class="dingyuebtn">订阅
+                        <div class="dingyuebtn">
+                            <span>订阅</span>
                             <div class="dy_tip">订阅后，我们将以短信的形式提前一天告知您宣讲会的相关事宜</div>
                         </div>
                     </div>
-                    <div class="xzitem">
+                    <div class="xzitem"  data-id="3">
                         <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
                         <div class="college_name">武汉大学</div>
                         <div class="xiangxixinxi">
@@ -357,7 +360,8 @@
                             <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
                             <div class="detail_dizhi" style="margin-top: 5px;">学生就业服务中心就业服务中心卓越厅</div>
                         </div>
-                        <div class="dingyuebtn">订阅
+                        <div class="dingyuebtn">
+                            <span>订阅</span>
                             <div class="dy_tip">订阅后，我们将以短信的形式提前一天告知您宣讲会的相关事宜</div>
                         </div>
                     </div>
@@ -522,7 +526,7 @@
         </span>
         <p class="tips_tishi">请确认您的手机号码，以免漏掉宣讲会的重要信息</p>
         <label class="general-input dingyuemobile">
-            <input id="contacts_name" autocomplete="off" maxlength="11" type="text">
+            <input id="contacts_name" autocomplete="off" value="{$user['mobile']}" maxlength="11" type="text">
         </label>
 
 
@@ -612,10 +616,22 @@
 <script src="{WL_URL_ARES}js/swiper.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
-<script src="{WL_URL_ARES}js/company_msg.js" rel="script"></script>
+
 <script type="text/javascript">
 
     $(function () {
+        var mySwiper = new Swiper ('.swiper-container', {
+            direction: 'horizontal',
+            slidesPerView: 1,
+            roundLengths : true,
+            autoplay:3000,
+            pagination: '.swiper-pagination',
+            // 如果需要前进后退按钮
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev'
+        });
+
+
         $(".top_item").click(function () {
             $(".top_item").removeClass("selets");
             $(this).addClass("selets");
@@ -624,8 +640,10 @@
             $(".super_content").eq(i).show();
         })
 
+        var dingyueid="";
         $(".dingyuebtn").click(function () {
             $("#dingyuebox").show();
+            dingyueid=$(this).closest(".xzitem").attr("data-id");
         })
         $(".modalclose,.close_envelopebtn").click(function () {
             $(this).closest(".modalbox").hide();
@@ -647,14 +665,18 @@
                 url:"",
                 type:"post",
                 data:{
-                    mobile:mobile
+                    mobile:mobile,
+                    dingyueid:dingyueid
                 },
                 success:function(data){
                     if(data){
                         var data=JSON.parse(data);
                         if(data.status==1){
-                            hint("success","请到个人中心>订阅宣讲查看订阅信息","订阅成功！");
                             $("#dingyuebox").hide();
+                            hint("success","请到个人中心>订阅宣讲查看订阅信息","订阅成功！");
+                            $(".xzitem[data-id="+dingyueid+"]").find(".dingyuebtn span").html("已订阅");
+                            $(".xzitem[data-id="+dingyueid+"]").find(".dingyuebtn .dy_tip").remove();
+                            $(".xzitem[data-id="+dingyueid+"]").find(".dingyuebtn").removeClass("dingyuebtn").addClass("dingyuebtn1").unbind("click");
                         }else{
                             hint("error",data.content,"错误提示！");
                         }
