@@ -23,11 +23,14 @@ $(document).ready(function(){
 
 
     $("body").on("click",".zjbiaoqian_wrap .zjflbq",function(){
+
         $(".zjbiaoqian_wrap").find(".chec_tip1  .left_align").html("");
         if($(".bqselect").length>=5){
-            hint("error","只能添加5个标签")
             if($(this).hasClass("bqselect")){
                 $(this).removeClass("bqselect");
+            }else{
+                hint("error","只能添加5个标签")
+                return false;
             }
         }else{
             if($(this).hasClass("bqselect")){

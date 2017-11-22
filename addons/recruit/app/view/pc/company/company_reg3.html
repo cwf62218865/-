@@ -135,7 +135,7 @@
                     <div class="right_align" style="width: 160px;"></div>
                 </div>
                 <label class="general-input" style="width: 360px;">
-                    <input type="text" style="width: 320px" id="slogan" placeholder="请输入公司slogan(25字以内)" maxlength="25" value="{php echo $company['slogan']}">
+                    <input type="text" style="width: 320px" id="slogan" placeholder="请输入30字以内公司slogan(选填)" maxlength="30" value="{php echo $company['slogan']}">
                 </label>
                 <div class="chec_tip1">
                     <div class="left_align"></div>
@@ -252,12 +252,12 @@ $(document).ready(function(){
         }
 
 
-        if($.trim(slogan)==""){
-            $("#slogan").closest(".general-input").css("border-color","#e23d46");
-            slogan_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","slogan不能为空"))
-//            hint("error","slogan不能为空");
-            return false;
-        }
+//        if($.trim(slogan)==""){
+//            $("#slogan").closest(".general-input").css("border-color","#e23d46");
+//            slogan_input.nextAll(".chec_tip1").eq(0).find(".left_align").html(tipmsg("error","slogan不能为空"))
+////            hint("error","slogan不能为空");
+//            return false;
+//        }
 
 
         if(welfare==""){

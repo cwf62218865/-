@@ -200,16 +200,16 @@ position: absolute;
 .foot_btns .register .color, .color{
     color: #0099cc;
 }
-.foot_btns .con .icons:nth-child(2):hover{
+.foot_btns .con .icons:nth-child(1):hover{
     background: #22a4ff;
 }
-.foot_btns .con .icons:nth-child(3):hover{
+.foot_btns .con .icons:nth-child(2):hover{
     background: #04b00f;
 }
-.foot_btns .con .icons:nth-child(4):hover{
+.foot_btns .con .icons:nth-child(3):hover{
     background: #ff424f;
 }
-.foot_btns .con .icons:nth-child(5):hover{
+.foot_btns .con .icons:nth-child(4):hover{
     background: #306fb7;
 }
 .foot_btns .con .icons .icon {
@@ -464,7 +464,7 @@ position: absolute;
 }
 .step2_btns  .pro1{
     width: 120px;
-    height: 34px;
+    height: 14px;
     float: left;
     margin-top: 20px;
     text-align: center;

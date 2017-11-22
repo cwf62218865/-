@@ -2343,15 +2343,15 @@
 
 
 
-$(document).ready(function(){
+
     var uploader = Qiniu.uploader({
         runtimes: 'html5,flash,html4',      // 上传模式，依次退化
         browse_button: 'pickfiles',         // 上传选择的点选按钮，必需
         // 在初始化时，uptoken，uptoken_url，uptoken_func三个参数中必须有一个被设置
         // 切如果提供了多个，其优先级为uptoken > uptoken_url > uptoken_func
         // 其中uptoken是直接提供上传凭证，uptoken_url是提供了获取上传凭证的地址，如果需要定制获取uptoken的过程则可以设置uptoken_func
-        // uptoken : '<Your upload token>', // uptoken是上传凭证，由其他程序生成
-        // uptoken_url: '/uptoken',         // Ajax请求uptoken的Url，强烈建议设置（服务端提供）
+         uptoken : '{$upToken}', // uptoken是上传凭证，由其他程序生成
+//         uptoken_url: '/uptoken',         // Ajax请求uptoken的Url，强烈建议设置（服务端提供）
         // uptoken_func: function(){    // 在需要获取uptoken时，该方法会被调用
         //    // do something
         //    return uptoken;
@@ -2364,7 +2364,7 @@ $(document).ready(function(){
         domain: 'http://qiniu-plupload.qiniudn.com/',     // bucket域名，下载资源时用到，必需
         container: 'container',             // 上传区域DOM ID，默认是browser_button的父元素
         max_file_size: '100mb',             // 最大文件体积限制
-        flash_swf_url: 'path/of/plupload/Moxie.swf',  //引入flash，相对路径
+        flash_swf_url: '{WL_URL_ARES}js/Moxie.swf',  //引入flash，相对路径
         max_retries: 3,                     // 上传失败最大重试次数
         dragdrop: true,                     // 开启可拖曳上传
         drop_element: 'container',          // 拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
@@ -2424,6 +2424,6 @@ $(document).ready(function(){
     });
     // domain为七牛空间对应的域名，选择某个空间后，可通过 空间设置->基本设置->域名设置 查看获取
     // uploader为一个plupload对象，继承了所有plupload的方法
-})
+
 </script>
 </html>

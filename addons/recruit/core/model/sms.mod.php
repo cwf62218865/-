@@ -8,10 +8,10 @@ include_once WL_CORE.'common/api_sdk/Dysmsapi/Request/V20170525/QuerySendDetails
 function sendSms($phone,$code) {
     
     //此处需要替换成自己的AK信息
-//    $accessKeyId = "LTAICZ7goroUPoYh";
-//    $accessKeySecret = "qXfaSjVazvj0WSn5nQS92LU5M2uzGZ";
-    $accessKeyId = "LTAIo0DH0xQ2bkvY";
-    $accessKeySecret = "Gt2l7PKr8T0uFTFrWgZAm3mFzAWQPN";
+    $accessKeyId = "LTAICZ7goroUPoYh";
+    $accessKeySecret = "qXfaSjVazvj0WSn5nQS92LU5M2uzGZ";
+//    $accessKeyId = "LTAIo0DH0xQ2bkvY";
+//    $accessKeySecret = "Gt2l7PKr8T0uFTFrWgZAm3mFzAWQPN";
     //短信API产品名
     $product = "Dysmsapi";
     //短信API产品域名
@@ -28,9 +28,9 @@ function sendSms($phone,$code) {
     //必填-短信接收号码
     $request->setPhoneNumbers($phone);
     //必填-短信签名
-    $request->setSignName("包崇林");
+    $request->setSignName("应届僧");
     //必填-短信模板Code
-    $request->setTemplateCode("SMS_95815030");
+    $request->setTemplateCode("SMS_112465455");
     //选填-假如模板中存在变量需要替换则为必填(JSON格式)
     $request->setTemplateParam("{\"code\":\"$code\",\"product\":\"\"}");
     //选填-发送短信流水号

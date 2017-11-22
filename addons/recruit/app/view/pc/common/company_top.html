@@ -1,15 +1,18 @@
 <div class="header">
-    <div class="width1200 align_center" style="padding-top: 14px;justify-content: space-between">
-        <img src="{WL_URL_ARES}images/logo.png"/>
-        <div style="height: 52px;line-height: 52px"><span class="city">{if $_SESSION['city']}{$_SESSION['city']}{else}全国{/if}</span><span class="changecity">[切换]</span></div>
-        <div class="menu">
+    <div class="width1200" style="padding-top: 13px">
+
+        <a href="{php echo app_url('member/index')}">
+            <img style="margin-top: 6px;float: left" src="{WL_URL_ARES}images/logo.png"/>
+        </a>
+        <div style="display: inline-block;height: 52px;line-height: 52px"><span class="city">{if $_SESSION['city']}{$_SESSION['city']}{else}全国{/if}</span><span class="changecity">[切换]</span></div>
+        <div class="menu" style="display: inline-block;">
             <a href="{php echo app_url('member/index')}" {if !$_GPC['op']}class="menuactive"{/if}>首页</a>
             <a  href="{php echo app_url('member/index/search_jobs')}" {if $_GPC['op']=="search_jobs"}class="menuactive"{/if}>找人才</a>
             <a  href="#">名企招聘</a>
             <a  href="#">现场招聘会</a>
             <a  href="#">活动</a>
         </div>
-        <div class="login relative">
+        <div class="login relative" style="display: inline-block;float: right">
             <span class="relative personal_msgbtn">
                 <div class="login_header">
                     {if $portrait['headimgurl']}
@@ -30,6 +33,7 @@
 
 
             <div class="personal_msgs" id="personal_msgs">
+                <a href="{php echo app_url('company/index/company_msg')}">企业中心</a>
                 <a href="{php echo app_url('company/index/company_msg')}">消息中心</a>
                 <a href="{php echo app_url('company/index/company_msg')}">申请通知</a>
                 <a href="{php echo app_url('company/index/company_msg')}">邀请反馈</a>

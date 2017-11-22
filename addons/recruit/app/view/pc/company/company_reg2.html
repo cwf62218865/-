@@ -105,7 +105,7 @@
                     <p class="pro1" style="margin-left: 20px;">法人身份证(正面)</p>
                     <p class="pro1" style="text-align: right;">法人身份证(反面)</p>
                 </div>
-                <div class="chec_tip"></div>
+                <div class="chec_tip" id="licensetip"></div>
                     <span class="public_bigbtn bg1aa wrap" id="uploadcompany_pic">最后一步：补全资料</span>
             </div>
 
@@ -159,7 +159,7 @@
 
         $(".btn1").click(function () {
             boxbum=1;
-            $(".chec_tip").eq(1).html("");
+            $("#licensetip").html("");
             $(".title_content").html("上传营业执照");
             code_url("license");
             $("#modalbox").css("display","block");
@@ -167,7 +167,7 @@
         });
        $(".btn2").click(function () {
            boxbum=2;
-           $(".chec_tip").eq(1).html("");
+           $("#licensetip").html("");
            $(".title_content").html("上传身份证正面照");
            code_url("id1");
            $("#modalbox").css("display","block");
@@ -176,7 +176,7 @@
        });
        $(".btn3").click(function () {
            boxbum=3;
-           $(".chec_tip").eq(1).html("");
+           $("#licensetip").html("");
            $(".title_content").html("上传身份证反面照");
            code_url("id2");
            $("#modalbox").css("display","block");
@@ -218,7 +218,7 @@
                    } else if (boxbum == 3) {
                        $(".idcard2").find(".rzpic").attr("src", data.content).parent().css("display","block");
                    }
-                   $(".chec_tip1").eq(1).html("");
+                   $("#licensetip").html("");
                }
            });
            $("#modalbox").css("display","none");
@@ -242,7 +242,7 @@
            }
            if(!license||!identity_card1||!identity_card2){
 //               hint("error","请上传营业执照和身份证正反面照片")
-               $(".chec_tip").eq(1).html(tipmsg("error","请上传营业执照和身份证正反面照片"));
+               $("#licensetip").html(tipmsg("error","请上传营业执照和身份证正反面照片"));
                return false;
            }
 
