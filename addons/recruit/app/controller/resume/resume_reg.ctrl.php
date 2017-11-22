@@ -29,6 +29,7 @@ if($op=="1"){
     $data['city_area'] = $_POST['city_area'];
     $data['address'] = $_POST['address'];
     $resume = m("resume")->get_resume($_SESSION['uid']);
+
     if($resume){
         $data['updatetime'] = time();
         $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));
@@ -74,7 +75,7 @@ if($op=="1"){
 
     $data['birthday'] = check_pasre($_POST['birthday'],"请选择出生年月");
     $data['birthday'] = strtotime(str_replace(".","-",$data['birthday']));
-    $data['introduce'] = check_pasre($_POST['introduce'],"请介绍下自己");
+    $data['introduce'] =$_POST['introduce'];
     $data['updatetime'] = time();
     $r = pdo_update(WL."resume",$data,array("uid"=>$_SESSION['uid']));
     if($r){
