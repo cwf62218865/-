@@ -321,10 +321,27 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
     float: left;
     line-height: 14px;
     height: 14px;
+    color: #999;
     margin-top: 15px;
 }
 .rember_pwd input{
     margin-top: 1px;
     margin-right: 3px;
     float: left;
+    display: none;
+}
+.remberpwdbtn{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 8px;
+    float: left;
+}
+.remberpwdbtn .icon{
+    width: 10px;
+    height:10px;
+    color: #0099cc;
 }

@@ -215,6 +215,10 @@ $("body").on("focus",".general-input input",function(){
     }
 });
 
+$(".modalclose").click(function () {
+    $(this).closest(".modalbox").hide();
+})
+
 //设置普通输入框的聚焦样式
 $(".general-input input").on("focus",function(){
     var _this=$(this);

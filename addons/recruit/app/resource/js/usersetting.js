@@ -271,14 +271,13 @@ $(function () {
                             if(secons==0){
                                 clearInterval(timer);
                                 //修改密码成功之后跳转链接
-                                location=location;
+                                window.location.href="";
                             }
 
                             $(".denglu").click(function () {
                                 clearInterval(timer);
-//                前往登录的链接
+                                //前往登录的链接
                                 window.location.href="";
-                                location=location;
                             })
                         },1000);
                     }else{
