@@ -9,6 +9,9 @@
 /*
  * 发布职位数据
  */
+
+use Qiniu\Auth;
+use Qiniu\Storage\UploadManager;
 if($op=="jobs") {
     $data['jobs_name'] = "web前端";
     $data['city'] = "北京";
@@ -60,6 +63,34 @@ echo $url;exit();
   }
 
   elseif ($op=="super_company"){
-       include wl_template("company/super_company");exit();
-    }
+    include wl_template("company/super_company");exit();
+}
 
+
+elseif ($op=="test"){
+    require WL_CORE."common/qiniu_sdk/autoload.php";
+    $bucket = "yingjieseng";
+    $auth = new Auth();
+
+    $upToken = $auth->uploadToken($bucket);
+    include wl_template("member/test");exit();
+}elseif ($op=="test1"){
+    var_dump($_REQUEST);exit();
+}
+elseif ($op=="upload_test"){
+    require WL_CORE."common/qiniu_sdk/autoload.php";
+    $bucket = "yingjieseng";
+    $auth = new Auth();
+    $uploadMgr = new UploadManager();
+    $token = $auth->uploadToken($bucket);
+    $name=$_FILES['file']['name'];
+    $filePath=$_FILES['file']['tmp_name'];
+    $type=$_FILES['file']['type'];
+    list($ret, $err) = $uploadMgr->putFile($token, $name, $filePath,null,$type,false);
+    echo "\n====> putFile result: \n";
+    if ($err !== null) {
+        var_dump($err);
+    } else {
+        var_dump($ret);
+    }
+}
