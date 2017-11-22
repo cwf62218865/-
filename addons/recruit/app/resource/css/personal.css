@@ -53,8 +53,14 @@
 }
 .con_top .items{
     cursor: pointer;
-    width: 299px;height: 60px;font-size: 16px;float: left;text-align: center;position: relative;
-    border-right:1px solid #eeeeee ;margin-top: 40px;
+    width: 299px;
+    height: 60px;
+    font-size: 16px;
+    float: left;
+    text-align: center;
+    position: relative;
+    border-right:1px solid #eeeeee ;
+    margin-top: 40px;
 }
 
 .con_top .items:nth-child(4){
@@ -75,7 +81,7 @@
     text-align: left;
 }
 .items .span{
-   color: #333;
+   color: #999999;
     font-size: 20px;
 }
 .item_beizhu{
@@ -113,6 +119,9 @@
 }
 .items:hover .itemm4{
     background: #fc9a00;
+}
+.items:hover .span{
+    color: #333333;
 }
 .con_list{
     float: left;

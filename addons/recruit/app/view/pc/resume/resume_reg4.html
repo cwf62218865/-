@@ -13,53 +13,7 @@
             width: 25px;
             height: 15px;
         }
-        .modal .title_content {
-            font-size: 16px;
-            color: #333333;
-            font-weight: 600;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .textalign {
-            text-align: center;
-        }
-        .bdresure {
-            width: 330px;
-            font-size: 16px;
-            margin-left: 50px;
-            margin-top: 50px;
-            line-height: 24px;
-        }
-        .tiaozhuanbz {
-            margin-top: 20px;
-            color: #9f9f9f;
-            font-size: 14px;
-        }
-        .surebtns {
-            float: left;
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-        .denglu {
-            width: 130px;
-        }
 
-        .surebtn {
-            background: #0099cc;
-            color: #fff;
-            width: 100px;
-            border-radius: 3px;
-        }
-
-        .surebtn {
-            display: inline-block;
-            float: left;
-            height: 36px;
-            text-align: center;
-            line-height: 36px;
-            margin-right: 30px;
-            cursor: pointer;
-        }
     </style>
 </head>
 
@@ -287,15 +241,14 @@
                                 secons--;
                                 if(secons==0){
                                     clearInterval(timer);
-                                    //修改密码成功之后跳转链接
-                                    location=location;
+                                    //前往完善简历的链接
+                                    window.location.href="";
                                 }
 
                                 $(".denglu").click(function () {
                                     clearInterval(timer);
-                        //                前往登录的链接
+                                    // 前往完善简历的链接
                                     window.location.href="";
-                                    location=location;
                                 })
                             },1000);
                     }else{
@@ -305,9 +258,7 @@
             })
 
         })
-        $(".modalclose").click(function () {
-            $(this).closest(".modalbox").hide();
-        })
+
     })
 </script>
 </html>

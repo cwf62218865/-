@@ -165,7 +165,7 @@
                 </div>
 
 
-                    <span class="public_bigbtn bg1aa wrap" id="upload_laststep">马上发布简历</span>
+                    <span class="public_bigbtn bg1aa wrap" id="upload_laststep">创建完成</span>
             </div>
 
         </div>
@@ -173,6 +173,24 @@
 
 
 </div>
+
+<!--创建成功弹框-->
+<div class="modalbox creatsucessbox"  style="display: none;">
+    <div class="modal" style="width: 430px;margin-left: -215px;height: auto">
+        <p class="title_content">创建成功</p>
+        <span class="modalclose">
+            <img src="{WL_URL_ARES}images/close.png"/>
+        </span>
+        <div class="bdresure textalign" style="width: 340px;">
+            创建成功，请前往公司主页完善公司信息！
+            <p class="tiaozhuanbz"><label class="seconds">5</label>s后跳转至完善信息页面</p>
+        </div>
+        <div class="surebtns" style="margin-left: 150px;margin-bottom: 30px;margin-top: 20px;">
+            <a class="surebtn denglu" href="">前往完善</a>
+        </div>
+    </div>
+</div>
+<!--创建成功弹框end-->
 
 
 </body>
@@ -265,7 +283,25 @@ $(document).ready(function(){
                 if(data){
                     var data=JSON.parse(data);
                     if(data.status==1){
-                        window.location.href=data.content;
+//                        window.location.href=data.content;
+                        //创建成功弹框，后期放在ajax请求成功内部
+                        $(".creatsucessbox").show();
+                        var secons=4;
+                        var timer=setInterval(function () {
+                            $(".seconds").html(secons);
+                            secons--;
+                            if(secons==0){
+                                clearInterval(timer);
+                                //前往公司信息完善的链接
+                                window.location.href="";
+                            }
+
+                            $(".denglu").click(function () {
+                                clearInterval(timer);
+                                // 前往公司信息完善的链接
+                                window.location.href="";
+                            })
+                        },1000);
                     }
                 }
 
