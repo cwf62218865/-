@@ -161,7 +161,12 @@
     width: 100%;
 }
 .review_address{
-    margin-bottom: 30px;
+    height: 56px;
+    line-height: 26px;
+}
+.review_address span{
+    display: inline-block;
+    width: 250px;
 }
 .resume_content{
     display: none;
@@ -362,7 +367,9 @@
 }
 .status{
     position: relative;
-    width: 340px;height: auto;margin-top: 20px;float: left;font-size: 14px;color: #666666;line-height: 26px;
+    width: 340px;
+    height: 128px;
+    margin-top: 20px;float: left;font-size: 14px;color: #666666;line-height: 26px;
 }
 .icon_time,.icon_tel,.icon_address{
     width: 14px;
@@ -370,12 +377,17 @@
     fill: currentColor;
     overflow: hidden;
 }
+.icon_address{
+    float: left;
+    margin-top: 6px;
+    margin-right: 4px;
+}
 .btn_ditu{
     position: absolute;right: 0;bottom: 28px;width: 69px;height: 25px;background-image: url("../images/ditu_ico.png");cursor: pointer;
 }
 .status1,.status2{
     width: 340px;height: 84px;line-height: 84px;text-align: center;font-size: 18px;
-    background-image: url("../images/fanye.png");margin-bottom: 24px;
+    background-image: url("../images/fanye.png");margin-top: 12px;
 }
 .status1{
     color: #666666;float: left;
@@ -811,19 +823,24 @@
     margin-bottom: 26px;
 }
 .optionlist{
-    height: 149px;
+    max-height: 149px;
     width: 100%;
-
     position: absolute;
     z-index: 999;
-    background: #ffffff;
     overflow-y: auto;
 }
 .option_selecter{
     padding-left: 20px;
     height: 36px;
+    line-height: 36px;
+    background-color: #fff;
+    cursor: pointer;
     border: 1px solid #dddddd;
     border-top: none;
+}
+.option_selecter:hover{
+    background-color: #0099cc;
+    color: #fff;
 }
 .option_selecter:first-child{
     border-top: 1px solid #dddddd;
@@ -837,7 +854,7 @@
     width: 20px;height: 20px;float: right;color: #0099cc;
 }
 .job_hope{
-    margin-right: 16px;
+    /*margin-right: 16px;*/
     max-width: 70px;
     overflow: hidden;
     vertical-align: bottom;

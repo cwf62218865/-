@@ -272,13 +272,13 @@
                 <div class="in_hang">
                     <span class="biaoti">联系人</span>
                     <label class="general-input" >
-                        <input type="text" id="contacts_name"  value="{$user['fullname']}">
+                        <input type="text" id="contacts_name" maxlength="10" style="width: 420px" value="{$user['fullname']}">
                     </label>
                 </div>
                 <div class="in_hang">
                     <span class="biaoti">联系电话</span>
                     <label class="general-input" >
-                        <input type="text" id="contacts_tel" value="{$user['mobile']}">
+                        <input type="text" id="contacts_tel" style="width: 420px" maxlength="11" value="{$user['mobile']}">
                     </label>
                 </div>
                 <div class="in_hang">
@@ -302,7 +302,7 @@
                         <div class="options districtoption" style="height: 185px;overflow-y: auto"></div>
                     </div>
                     <label class="general-input" >
-                        <input type="text" id="detail_address" placeholder="详细地址" value="{$company['address']}">
+                        <input type="text" id="detail_address" style="width: 420px" maxlength="20" placeholder="详细地址" value="{$company['address']}">
                     </label>
                 </div>
             </div>

@@ -80,8 +80,8 @@
                             </div>
                             <div class="bm_hang2">
                                 <span class="basic_xx">{if $list['sex']==2}女生{else}男生{/if}</span>
-                                <span class="basic_xx" style="margin-left: 10px;">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
-                                <span class="basic_xx" style="margin-left: 26px;">{php echo $list['education']}</span>
+                                <span class="basic_xx">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
+                                <span class="basic_xx" style="margin-left: 16px;">{php echo $list['education']}</span>
                             </div>
                             <div class="bm_hang3">
                                 <span class="basic_xx">{php echo $list['school_name']}</span>
@@ -210,12 +210,12 @@
                                 <span class="name nowrap">{php echo $list['fullname']}</span>
                                 <span class="view_i">查看</span>
                                 <span class="basic_xx">{if $list['sex']==1}男{else}女{/if}</span>
-                                <span class="basic_xx" style="margin-left: 5px;">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
+                                <span class="basic_xx" >{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
                                 <span class="basic_xx" style="margin-left: 20px;">{php echo $list['education']}</span>
                             </div>
                             <div class="bm_hang3">
                                 <span class="basic_xx">{php echo $list['school_name']}</span>
-                                <span class="basic_xx"  style="margin-left: 16px;">{php echo $list['major']}</span>
+                                <span class="basic_xx"  >{php echo $list['major']}</span>
                             </div>
                             <div class="bm_hang4">
                                 <span class="basic_xx expirencw">{php echo $list['experience']}</span>
@@ -433,7 +433,7 @@
                         <svg class="icon inputicon" aria-hidden="true">
                             <use xlink:href="#icon-xiala" class="colorbbb"></use>
                         </svg>
-                        <div class="optionlist" style="height: 0px;">
+                        <div class="optionlist" style="height: 0px">
                             {loop $jobs $list}
                             <div class="option_selecter" data-id="{$list['id']}">{$list['jobs_name']}</div>
                             {/loop}
@@ -503,7 +503,7 @@
                         <div class="options districtoption" style="height: 185px;overflow-y: auto;"></div>
                     </div>
                     <label class="general-input" >
-                        <input type="text" id="detail_address" placeholder="详细地址">
+                        <input type="text" id="detail_address" maxlength="20" placeholder="详细地址" style="width: 420px">
                     </label>
                 </div>
             </div>
