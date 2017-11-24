@@ -2310,7 +2310,7 @@
     $(".honor_certificate").click(function () {
         $(".title_content").html("个人荣誉");
         $("#choosefile").attr("accept","image/*").val("");
-        $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
+        $("#modalbox .one_btn").html('<svg class="icon" aria-hidden="true">'+
                 '<use xlink:href="#icon-shangchuan"></use>'+
                 '</svg>');
         code_url("honor");
@@ -2406,12 +2406,12 @@
         dragdrop: true, //开启可拖曳上传
         drop_element: 'uploadvideobox', //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
         chunk_size: '4mb', //分块上传时，每片的体积
-        auto_start: true, //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        auto_start: false, //选择文件后自动上传，若关闭需要自己绑定事件触发上传
         init: {
             'FilesAdded': function(up, files) {
                 plupload.each(files, function(file) {
 // 文件添加进队列后,处理相关的事情
-//                    console.log(file.name);
+                    console.log(file.name);
                 });
             },
             'BeforeUpload': function(up, file) {
@@ -2452,7 +2452,7 @@
     });
     // domain 为七牛空间（bucket)对应的域名，选择某个空间后可以看到
     // uploader 为一个plupload对象，继承了所有plupload的方法，参考http://plupload.com/docs
-    $("#uploadvideobtn").on("click",function() {
+    $(".modalbtn1").on("click",function() {
         uploader.start();
     });
 

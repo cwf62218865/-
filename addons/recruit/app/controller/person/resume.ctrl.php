@@ -5,7 +5,7 @@
  * Date: 2017/9/21 0021
  * Time: 10:18
  */
-
+use Qiniu\Auth;
 defined('IN_IA') or exit('Access Denied');
 $member = m('member')->get_member($_SESSION['uid']);
 $resume = m("resume")->get_resume($_SESSION['uid']);
@@ -64,6 +64,11 @@ if($op=="send_resume"){
 //简历管理页面
 elseif ($op=="manage_resume"){
     $identity = encrypt($_SESSION['uid'], 'E');
+    require WL_CORE."common/qiniu_sdk/autoload.php";
+            $bucket = "yingjieseng";
+            $auth = new Auth();
+
+            $upToken = $auth->uploadToken($bucket);
     include wl_template('resume/resume_manage');
 }
 

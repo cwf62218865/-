@@ -527,15 +527,15 @@ $(document).ready(function(){
     //正整数       ^[1-9]\\d*$
     //邮箱         ^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$
 
-$(".modalbtn1").on("click",function(){
-    var title="标题内容"
-    var option=[
-        {title:"你的姓名：",name:"name",Verification:"",placeholder:"输入你的姓名"},
-        {title:"你的年龄：",name:"age",Verification:"^[1-9]\\d*$",placeholder:"输入你的年龄"},
-        {title:"你的性别：",name:"sex",Verification:"",placeholder:"",select:"true",option:["男","女"]},
-    ];
-    modal(title,option,"立即申请","/test.php");
-})
+//$(".modalbtn1").on("click",function(){
+//    var title="标题内容"
+//    var option=[
+//        {title:"你的姓名：",name:"name",Verification:"",placeholder:"输入你的姓名"},
+//        {title:"你的年龄：",name:"age",Verification:"^[1-9]\\d*$",placeholder:"输入你的年龄"},
+//        {title:"你的性别：",name:"sex",Verification:"",placeholder:"",select:"true",option:["男","女"]},
+//    ];
+//    modal(title,option,"立即申请","/test.php");
+//})
 
 //点击任意位置隐藏下拉
     $(document).on("click",function(){

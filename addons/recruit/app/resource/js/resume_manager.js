@@ -15,7 +15,7 @@ $(".img_con").click(function () {
     $(".title_content").html("上传头像");
     $("#modalbox").show();
     $("#choosefile").attr("accept","image/*").val("");
-    $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
+    $("#modalbox .one_btn").html('<svg class="icon" aria-hidden="true">'+
         '<use xlink:href="#icon-shangchuan"></use>'+
         '</svg>');
     $(".oneone_btn").html("<button type='button' id='choosefile' class='btn btn-primary' data-toggle='modal' data-target='#avatar-modal' style='margin: 10px;' accept='image/*' value=''>修改头像</button>")
@@ -24,14 +24,14 @@ $(".img_con").click(function () {
     upload_timer();
 });
 $("body").on("click",".person_worksbtn1",function () {
-    $(".oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="image/*"></form>');
+    $("#modalbox .oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="image/*"></form>');
 })
-$("body").on("click",".upload_video",function () {
-    $(".oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="video/*"></form>');
-})
+//$("body").on("click",".upload_video",function () {
+//    $(".oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="video/*"></form>');
+//})
 
 $("#certificateaddbtn").on("click",function () {
-    $(".oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="image/*"></form>');
+    $("#modalbox .oneone_btn").html('<form id="choosefile1" enctype="multipart/form-data"><input type="file" name="file" id="choosefile" accept="image/*"></form>');
 })
 
 $(".modalclose").on("click",function(){
@@ -43,7 +43,7 @@ $(".modalclose").on("click",function(){
 $("#person_worksaddbtn").click(function () {
 
     $("#upload_pic").remove();
-    $(".one_btn").html('<svg class="icon" aria-hidden="true">\n' +
+    $("#modalbox .one_btn").html('<svg class="icon" aria-hidden="true">\n' +
         '                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shangchuan"></use>\n' +
         '                </svg>');
     $("#modalbox").show();
