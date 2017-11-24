@@ -55,10 +55,18 @@ $(function () {
     });
     //邀请面试
     $("body").on("click",".yaoqing_interview,.agree_review,#invite",function () {
+        if($(this).hasClass("agree_review")){
+            $(".jobs_select").hide();
+            $("#send_review").addClass("tongyimianshi").removeClass("yaoqingmianshi");
+        }else{
+            $(".jobs_select").show();
+            $("#send_review").addClass("yaoqingmianshi").removeClass("tongyimianshi");
+        }
         var data_id=$(this).closest(".list_item").attr("data-id");
         var data_uid=$(this).closest(".list_item").attr("data-uid");
         $("#invite_box").attr("data-id",data_id);
         $("#invite_box").attr("data-uid",data_uid);
+
         $("#job_review").val("");
         $("#review_time").val("");
         // $("#contacts_name").val("");

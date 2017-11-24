@@ -137,7 +137,7 @@
             <div class="resume_content">
                 {if $collect_resume}
                 {loop $collect_resume $list}
-                <div class="list_item" data-id="{php echo $list['collect_id']}">
+                <div class="list_item" data-id="{php echo $list['collect_id']}"  data-uid="{$list['uid']}">
                     <div class="item_con">
                         <div class="touxiang_pic">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;"/>
@@ -235,6 +235,20 @@
                 <img src="{WL_URL_ARES}images/close.png"/>
             </span>
             <div class="invite_con">
+                <div class="in_hang jobs_select">
+                    <span class="biaoti">面试职位</span>
+                    <label class="general-input relative select_jobs">
+                        <input type="text" readonly="" id="job_review" placeholder="选择面试职位" style="width: 90%;">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                        <div class="optionlist" style="height: 0px">
+                            {loop $job $list}
+                            <div class="option_selecter" data-id="{$list['id']}">{$list['jobs_name']}</div>
+                            {/loop}
+                        </div>
+                    </label>
+                </div>
                 <div class="in_hang">
                     <span class="biaoti">面试时间</span>
                     <label class="general-input relative review_input">
@@ -384,15 +398,19 @@
     //面试邀请
     $("body").on("click","#send_review",function () {
         var _this=$(this);
+        var jobs_name=$("#job_review").val();
+        var job_id=$("#job_review").attr("data-id");
+        var resume_id=$("#invite_box").attr("data-id");
+        var puid=$("#invite_box").attr("data-uid");
         var reviewtime=$("#review_time").val();
         var contacts_name=$("#contacts_name").val();
         var contacts_tel=$("#contacts_tel").val();
         var city=$("#city").val();
         var city_area=$("#city_area").val();
         var detail_address=$("#detail_address").val();
-        var data_id=$(this).closest("#invite_box").attr("data-id");
 
         var telphone_reg=/^1[3|5|7|8][0-9]\d{8}$/;
+
         if(reviewtime==""){
             hint("error","请输入面试日期");
             return;
@@ -426,31 +444,55 @@
             return;
         }
 
-
-        $.ajax({
-            url:"{php echo app_url('company/resume/send_review')}",
-            type:"post",
-            data:{
-                data_id:data_id,
+        if($(this).hasClass("tongyimianshi")){
+            var data={
+                resume_id:resume_id,
                 reviewtime:reviewtime,
                 contacts_name:contacts_name,
                 contacts_tel:contacts_tel,
                 city:city,
                 city_area:city_area,
                 detail_address:detail_address
-            },
+            }
+        }else if($(this).hasClass("yaoqingmianshi")){
+            if(jobs_name==""){
+                hint("error","请选择面试岗位");
+                return;
+            }
+            var data={
+                jobs_id:job_id,
+                resume_id:resume_id,
+                puid:puid,
+                jobs_name:jobs_name,
+                reviewtime:reviewtime,
+                contacts_name:contacts_name,
+                contacts_tel:contacts_tel,
+                city:city,
+                city_area:city_area,
+                detail_address:detail_address
+            }
+        }
+        $.ajax({
+            url:"{php echo app_url('company/resume/hr_send_review')}",
+            type:"post",
+            data:data,
             success:function(data){
                 var data = JSON.parse(data);
-                if(data.status==1){
+                if(data.status=="1"){
                     $("#invite_box").hide();
-                    $(".list_content .list_item").each(function () {
+                    $(".resume_content .list_item").each(function () {
                         var item_data_id=$(this).attr("data-id");
-                        if(item_data_id==data_id){
+                        var data_idd=$("#invite_box").attr("data-id");
+                        if(item_data_id==data_idd){
                             var status=$(this).find(".tongyi1");
+                            var yaoqing_interview=$(this).find(".yaoqing_interview");
                             status.html("等待面试");
+                            yaoqing_interview.html("等待面试");
                             status.next().remove();
-                            status.removeClass("agree_review");
+                            status.removeClass("agree_review").unbind("click");
+                            yaoqing_interview.removeClass("yaoqing_interview").unbind("click");
                             status.addClass("statussc");
+                            yaoqing_interview.addClass("statussc");
                         }
                     });
 

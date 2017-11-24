@@ -372,7 +372,7 @@
 .status{
     position: relative;
     width: 340px;
-    height: 128px;
+    height: auto;
     margin-top: 20px;float: left;font-size: 14px;color: #666666;line-height: 26px;
 }
 .icon_time,.icon_tel,.icon_address{

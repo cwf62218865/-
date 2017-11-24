@@ -207,8 +207,8 @@
                         </a>
                         <div class="basic_massage">
                             <div class="bm_hang1">
-                                <span class="name nowrap">{php echo $list['fullname']}</span>
-                                <span class="view_i">查看</span>
+                                <a class="name nowrap"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">{php echo $list['fullname']}</a>
+                                <a class="view_i"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">查看</a>
                                 <span class="basic_xx">{if $list['sex']==1}男{else}女{/if}</span>
                                 <span class="basic_xx" >{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
                                 <span class="basic_xx" style="margin-left: 20px;">{php echo $list['education']}</span>
@@ -439,7 +439,6 @@
                             {/loop}
                         </div>
                     </label>
-
                 </div>
                 <div class="in_hang">
                     <span class="biaoti">面试时间</span>
@@ -685,7 +684,6 @@
 //            alert("请填写备注！")
 //            return;
 //        }
-
 
         $.ajax({
             url:"{php echo app_url('company/resume/collect_resume')}",
