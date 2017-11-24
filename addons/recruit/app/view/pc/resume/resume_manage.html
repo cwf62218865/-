@@ -46,6 +46,14 @@
         .back_topbtn, .talk_tome{
             width: 60px;
         }
+        .modalbtn1 {
+            width: 370px;
+            padding: 0;
+            text-align: center;
+            margin-left: 30px;
+            margin-bottom: 40px;
+            margin-top: 27px;
+        }
     </style>
 </head>
 <body bgcolor="#f4f4f4">
@@ -161,7 +169,7 @@
                     </div>
 
                     <div class="personmsg">
-                       {php echo $resume['introduce']}
+                        {php echo $resume['introduce']}
                     </div>
 
 
@@ -382,7 +390,7 @@
                 </div>
             </div>
 
-<!--求职意向-->
+            <!--求职意向-->
 
             <div class="basic_msg width670"  style="margin-top: 50px">
                 <div class="basic_msg_content">
@@ -437,272 +445,272 @@
                             <span class="basic_msg_contents2">{php echo $resume['hope_place']}</span>
                         </span>
 
-                        </div>
-                        <div class="no_expbox" id="edit_wanted_job1" {if empty($resume['hope_job'])}style="display:block;"{else}style="display:none;"{/if}>
+                    </div>
+                    <div class="no_expbox" id="edit_wanted_job1" {if empty($resume['hope_job'])}style="display:block;"{else}style="display:none;"{/if}>
                             <span class="addandeditbtn1">
                                 <svg class="icon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
                                 </svg>
                                 添加求职意向
                             </span>
-                        </div>
-
-
-                    </div>
-
-
-
                 </div>
-                <!--<span class="addandeditbtn" id="edit_wanted_job">-->
-                    <!--<svg class="icon" aria-hidden="true">-->
-                        <!--<use xlink:href="#icon-tianjia"></use>-->
-                    <!--</svg>-->
-                    <!--添加-->
-                <!--</span>-->
+
+
+            </div>
+
+
+
+        </div>
+        <!--<span class="addandeditbtn" id="edit_wanted_job">-->
+        <!--<svg class="icon" aria-hidden="true">-->
+        <!--<use xlink:href="#icon-tianjia"></use>-->
+        <!--</svg>-->
+        <!--添加-->
+        <!--</span>-->
                 <span class="addandeditbtn" id="edit_wanted_job">
                     {if $resume['hope_job']}
                     <div class="edit">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-xiugai"></use>
-                    </svg>
-                    修改
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-xiugai"></use>
+                        </svg>
+                        修改
                     </div>
                     {else}
                     <div class="add">
-                     <svg class="icon" aria-hidden="true">
-                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
-                     </svg>
-                     添加
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
+                        </svg>
+                        添加
                     </div>
                     {/if}
                 </span>
+    </div>
+
+
+    <div  id="wanted_jobbox" class="width670 basic_msg" style="display: none;margin-top: 58px">
+
+        <div class="person_changes" style="margin-top: 0px">
+
+            <div class=" person_changes_left">
+                <span class="font999 resume_msg_name">期望职位</span>
+
+                <div class=" relative general-select " style="float: none;width: 480px">
+                    <label class="general-input relative general-select" style="float: none;width: 460px">
+                        <div class="want_jobbtns" id="hope_jobs">
+                            {if $resume['hope_job']}
+                            {loop explode(",",$resume['hope_job']) $list}
+                            <span>{$list}<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan" class="colorbbb"></use></svg></span>
+                            {/loop}
+                            {/if}
+                        </div>
+                        <input type="text" readonly="" id="hope_job" data-error="请选择期望职位"  name="want_job" value="{php echo $resume['hope_job']}" style="width: 440px;opacity: 0;top: 0">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                    </label>
+                    <div class="options hope_jobbox" style="height: 0px;top: 48px">
+                        <div class="hope_jobbox1"></div>
+                        <div class="hope_jobboxright">
+                            <div style="padding: 19px;border: 1px solid #eee">
+                                <span class="font999 resume_msg_name" style="margin-left: 10px;width: auto;height: 40px;line-height: 40px;float: none">添加期望职位</span>
+                                <span class="add_hope_job public_bigbtn">添加</span>
+                                <label class="relative general-input" style="height: 40px;line-height: 40px;width:250px ;float: right">
+                                    <input type="text" id="hope_jobinput" maxlength="6" placeholder="输入6字以内职位名" style="height: 38px;line-height: 38px">
+                                    <div class="hopejob_tips">
+                                        <!--<div class="hopejob_option">adas</div>-->
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="hope_jobbox2">
+
+                            </div>
+
+                            <!--保存-->
+                            <!--<div>-->
+                            <!--<div style="display: inline-block;margin: 20px 0;float: right;margin-right: 40px">-->
+                            <!--<span class="savebtn public_bigbtn bg1aa" id="save_hope_job" style="padding: 0 30px 0 30px">保存</span>-->
+                            <!--<span class="cancelbtn1" id="cancel_hope_job">取消</span>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                        </div>
+                    </div>
+
+                </div>
+                <span class="wanted_tip">最多选3项</span>
+            </div>
+
+            <div class=" person_changes_left" style="margin-top: 20px">
+                <span class="font999 resume_msg_name">期望行业</span>
+
+                <div class=" relative general-select " style="float: none;width: 480px">
+                    <label class="general-input relative general-select" style="float: none;width: 460px">
+                        <div class="want_jobbtns" id="want_jobbtns">
+                            {if $resume['trade']}
+                            {loop explode(",",$resume['trade']) $list}
+                            <span>{$list}<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan" class="colorbbb"></use></svg></span>
+                            {/loop}
+                            {/if}
+                        </div>
+                        <input type="text" readonly="" id="want_job" data-error="请选择期望行业"  name="want_industry" value="{php echo $resume['trade']}" style="width: 440px;opacity: 0;top: 0">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                    </label>
+                    <div class="options hangye" style="height: 0px;top: 48px">
+                        <div class="hangye_con">
+                            <div class="select-option {if strpos($resume['trade'],'IT互联网')!==false}select{/if}"><span>IT互联网</span></div>
+                            <div class="select-option {if strpos($resume['trade'],'物流运输')!==false}select{/if}"><span>物流运输</span></div>
+                            <div class="select-option {if strpos($resume['trade'],'制造加工')!==false}select{/if}"><span>制造加工</span> </div>
+                            <div class="select-option {if strpos($resume['trade'],'房地产')!==false}select{/if}"><span>房地产</span> </div>
+                            <div class="select-option {if strpos($resume['trade'],'教育培训')!==false}select{/if}"><span>教育培训</span> </div>
+                            <div class="select-option {if strpos($resume['trade'],'医疗医药')!==false}select{/if}"><span>医疗医药</span> </div>
+                            <div class="select-option {if strpos($resume['trade'],'能源化工')!==false}select{/if}"><span>能源化工</span></div>
+                            <div class="select-option {if strpos($resume['trade'],'餐饮百货')!==false}select{/if}"><span>餐饮百货</span></div>
+                            <div class="select-option {if strpos($resume['trade'],'通信')!==false}select{/if}"><span>通信</span> </div>
+                            <div class="select-option {if strpos($resume['trade'],'广告媒体')!==false}select{/if}"><span>广告媒体</span> </div>
+                            <div class="select-option {if strpos($resume['trade'],'旅游')!==false}select{/if}"><span>旅游</span> </div>
+                            <div class="select-option {if strpos($resume['trade'],'农林牧渔')!==false}select{/if}"><span>农林牧渔</span> </div>
+                            <div class="select-option {if strpos($resume['trade'],'人力资源')!==false}select{/if}"><span>人力资源</span> </div>
+                            <div class="select-option {if strpos($resume['trade'],'金融投资证券')!==false}select{/if}" style="width:90px "><span>金融投资证券</span> </div>
+                            <div class="select-option {if strpos($resume['trade'],'其他')!==false}select{/if}"><span>其他</span> </div>
+                        </div>
+                    </div>
+                </div>
+                <span class="wanted_tip">最多选3项</span>
             </div>
 
 
-            <div  id="wanted_jobbox" class="width670 basic_msg" style="display: none;margin-top: 58px">
-
-                <div class="person_changes" style="margin-top: 0px">
-
-                    <div class=" person_changes_left">
-                        <span class="font999 resume_msg_name">期望职位</span>
-
-                        <div class=" relative general-select " style="float: none;width: 480px">
-                            <label class="general-input relative general-select" style="float: none;width: 460px">
-                                <div class="want_jobbtns" id="hope_jobs">
-                                    {if $resume['hope_job']}
-                                    {loop explode(",",$resume['hope_job']) $list}
-                                    <span>{$list}<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan" class="colorbbb"></use></svg></span>
-                                    {/loop}
-                                    {/if}
-                                </div>
-                                <input type="text" readonly="" id="hope_job" data-error="请选择期望职位"  name="want_job" value="{php echo $resume['hope_job']}" style="width: 440px;opacity: 0;top: 0">
-                                <svg class="icon inputicon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                </svg>
-                            </label>
-                            <div class="options hope_jobbox" style="height: 0px;top: 48px">
-                                <div class="hope_jobbox1"></div>
-                                <div class="hope_jobboxright">
-                                    <div style="padding: 19px;border: 1px solid #eee">
-                                        <span class="font999 resume_msg_name" style="margin-left: 10px;width: auto;height: 40px;line-height: 40px;float: none">添加期望职位</span>
-                                        <span class="add_hope_job public_bigbtn">添加</span>
-                                        <label class="relative general-input" style="height: 40px;line-height: 40px;width:250px ;float: right">
-                                            <input type="text" id="hope_jobinput" maxlength="6" placeholder="输入6字以内职位名" style="height: 38px;line-height: 38px">
-                                            <div class="hopejob_tips">
-                                                <!--<div class="hopejob_option">adas</div>-->
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="hope_jobbox2">
-
-                                    </div>
-
-                                    <!--保存-->
-                                    <!--<div>-->
-                                        <!--<div style="display: inline-block;margin: 20px 0;float: right;margin-right: 40px">-->
-                                            <!--<span class="savebtn public_bigbtn bg1aa" id="save_hope_job" style="padding: 0 30px 0 30px">保存</span>-->
-                                            <!--<span class="cancelbtn1" id="cancel_hope_job">取消</span>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <span class="wanted_tip">最多选3项</span>
-                    </div>
-
-                    <div class=" person_changes_left" style="margin-top: 20px">
-                        <span class="font999 resume_msg_name">期望行业</span>
-
-                        <div class=" relative general-select " style="float: none;width: 480px">
-                            <label class="general-input relative general-select" style="float: none;width: 460px">
-                                <div class="want_jobbtns" id="want_jobbtns">
-                                    {if $resume['trade']}
-                                    {loop explode(",",$resume['trade']) $list}
-                                    <span>{$list}<svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shan" class="colorbbb"></use></svg></span>
-                                    {/loop}
-                                    {/if}
-                                </div>
-                                <input type="text" readonly="" id="want_job" data-error="请选择期望行业"  name="want_industry" value="{php echo $resume['trade']}" style="width: 440px;opacity: 0;top: 0">
-                                <svg class="icon inputicon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                </svg>
-                            </label>
-                            <div class="options hangye" style="height: 0px;top: 48px">
-                                <div class="hangye_con">
-                                    <div class="select-option {if strpos($resume['trade'],'IT互联网')!==false}select{/if}"><span>IT互联网</span></div>
-                                    <div class="select-option {if strpos($resume['trade'],'物流运输')!==false}select{/if}"><span>物流运输</span></div>
-                                    <div class="select-option {if strpos($resume['trade'],'制造加工')!==false}select{/if}"><span>制造加工</span> </div>
-                                    <div class="select-option {if strpos($resume['trade'],'房地产')!==false}select{/if}"><span>房地产</span> </div>
-                                    <div class="select-option {if strpos($resume['trade'],'教育培训')!==false}select{/if}"><span>教育培训</span> </div>
-                                    <div class="select-option {if strpos($resume['trade'],'医疗医药')!==false}select{/if}"><span>医疗医药</span> </div>
-                                    <div class="select-option {if strpos($resume['trade'],'能源化工')!==false}select{/if}"><span>能源化工</span></div>
-                                    <div class="select-option {if strpos($resume['trade'],'餐饮百货')!==false}select{/if}"><span>餐饮百货</span></div>
-                                    <div class="select-option {if strpos($resume['trade'],'通信')!==false}select{/if}"><span>通信</span> </div>
-                                    <div class="select-option {if strpos($resume['trade'],'广告媒体')!==false}select{/if}"><span>广告媒体</span> </div>
-                                    <div class="select-option {if strpos($resume['trade'],'旅游')!==false}select{/if}"><span>旅游</span> </div>
-                                    <div class="select-option {if strpos($resume['trade'],'农林牧渔')!==false}select{/if}"><span>农林牧渔</span> </div>
-                                    <div class="select-option {if strpos($resume['trade'],'人力资源')!==false}select{/if}"><span>人力资源</span> </div>
-                                    <div class="select-option {if strpos($resume['trade'],'金融投资证券')!==false}select{/if}" style="width:90px "><span>金融投资证券</span> </div>
-                                    <div class="select-option {if strpos($resume['trade'],'其他')!==false}select{/if}"><span>其他</span> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="wanted_tip">最多选3项</span>
-                    </div>
-
-
-                    <div class=" person_changes_left" style="margin-top: 20px">
-                        <span class="font999 resume_msg_name">期望薪资</span>
-                        <div class=" relative general-select " style="float: none">
-                            <label class="general-input relative general-select" style="float: none">
-                                <input type="text" readonly  data-error="请选择期望薪资" style="width: 200px" name="salary" value="{php echo $resume['salary']}">
-                                <svg class="icon inputicon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                </svg>
-                            </label>
-                            <div class="options noscend" style="width: 220px;top:48px">
-                                <div class='select-option'><span>2k-4k</span></div>
-                                <div class='select-option'><span>4k-6k</span></div>
-                                <div class='select-option'><span>6k-8k</span></div>
-                                <div class='select-option'><span>8k-15k</span></div>
-                                <div class='select-option'><span>15k以上</span></div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class=" person_changes_left" style="margin-top: 20px">
-                        <span class="font999 resume_msg_name">期望地点</span>
-                        <div class=" relative general-select " style="float: none">
-                            <label class="general-input relative general-select" style="float: none">
-                                <input type="text" readonly="" data-error="请选择期望地点" placeholder="期望地点" name="city" value="{php echo $resume['hope_place']}">
-                                <svg class="icon inputicon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                </svg>
-                            </label>
-                            <div class="options scend" style="width: 242px;top:48px">
-                                <div class="cwfcityoptions">
-
-                                </div>
-                                <div class="cwfarea">
-                                    <span>请先选择城市</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                <div class="person_changes_left" style="margin-top: 20px">
-                    <span class="font999 resume_msg_name">工作性质</span>
-                    <div class=" relative general-select " style="float: none">
-                        <label class="general-input  general-select" style="float: none">
-                            <input type="text" readonly  data-error="请选择工作性质" name="identity" value="{php echo $resume['nature']}">
-                            <svg class="icon inputicon" aria-hidden="true">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                            </svg>
-                        </label>
-                        <div class="options noscend" style="width: 220px;top:48px">
-                            <div class='select-option'><span>全职</span></div>
-                            <div class='select-option'><span>兼职</span></div>
-                        </div>
+            <div class=" person_changes_left" style="margin-top: 20px">
+                <span class="font999 resume_msg_name">期望薪资</span>
+                <div class=" relative general-select " style="float: none">
+                    <label class="general-input relative general-select" style="float: none">
+                        <input type="text" readonly  data-error="请选择期望薪资" style="width: 200px" name="salary" value="{php echo $resume['salary']}">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                    </label>
+                    <div class="options noscend" style="width: 220px;top:48px">
+                        <div class='select-option'><span>2k-4k</span></div>
+                        <div class='select-option'><span>4k-6k</span></div>
+                        <div class='select-option'><span>6k-8k</span></div>
+                        <div class='select-option'><span>8k-15k</span></div>
+                        <div class='select-option'><span>15k以上</span></div>
                     </div>
                 </div>
+            </div>
 
 
 
-                </div>
+            <div class=" person_changes_left" style="margin-top: 20px">
+                <span class="font999 resume_msg_name">期望地点</span>
+                <div class=" relative general-select " style="float: none">
+                    <label class="general-input relative general-select" style="float: none">
+                        <input type="text" readonly="" data-error="请选择期望地点" placeholder="期望地点" name="city" value="{php echo $resume['hope_place']}">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                    </label>
+                    <div class="options scend" style="width: 242px;top:48px">
+                        <div class="cwfcityoptions">
 
-                <div class="person_changes">
-                    <div class=" person_changes_left">
-                        <span class="font999 resume_msg_name" style="float: left;height: 1px"></span>
-                        <div style="display: inline-block;margin-left: 20px">
-                            <span class="savebtn public_bigbtn bg1aa" id="save_wanted_jobbox_msg" style="padding: 0 30px 0 30px">保存</span>
-                            <span class="cancelbtn">取消</span>
+                        </div>
+                        <div class="cwfarea">
+                            <span>请先选择城市</span>
                         </div>
                     </div>
                 </div>
             </div>
 
 
-<!--工作经历-->
-
-            <div class="basic_msg width670" style="margin-top: 50px">
-                <div class="basic_msg_content">
-                    <div class="resume_title">
-                        <span>工作经历</span>
+            <div class="person_changes_left" style="margin-top: 20px">
+                <span class="font999 resume_msg_name">工作性质</span>
+                <div class=" relative general-select " style="float: none">
+                    <label class="general-input  general-select" style="float: none">
+                        <input type="text" readonly  data-error="请选择工作性质" name="identity" value="{php echo $resume['nature']}">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                    </label>
+                    <div class="options noscend" style="width: 220px;top:48px">
+                        <div class='select-option'><span>全职</span></div>
+                        <div class='select-option'><span>兼职</span></div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="resume_exp" id="job_exp">
-                        <!--<div class="left_line">-->
-                        <!--</div>-->
 
-                        <div class="resume_exp_content" {if $work_experience}style="display:block;"{else}style="display:none;"{/if}>
-                            {if $work_experience}
-                            {loop $work_experience $id $list}
-                            <div class="resume_exps" data-id="{php echo $id;}">
-                                <div class="relative">
-                                    <span class="exp_title">{php echo $list['company_name']}</span>
+
+        </div>
+
+        <div class="person_changes">
+            <div class=" person_changes_left">
+                <span class="font999 resume_msg_name" style="float: left;height: 1px"></span>
+                <div style="display: inline-block;margin-left: 20px">
+                    <span class="savebtn public_bigbtn bg1aa" id="save_wanted_jobbox_msg" style="padding: 0 30px 0 30px">保存</span>
+                    <span class="cancelbtn">取消</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--工作经历-->
+
+    <div class="basic_msg width670" style="margin-top: 50px">
+        <div class="basic_msg_content">
+            <div class="resume_title">
+                <span>工作经历</span>
+            </div>
+
+            <div class="resume_exp" id="job_exp">
+                <!--<div class="left_line">-->
+                <!--</div>-->
+
+                <div class="resume_exp_content" {if $work_experience}style="display:block;"{else}style="display:none;"{/if}>
+                {if $work_experience}
+                {loop $work_experience $id $list}
+                <div class="resume_exps" data-id="{php echo $id;}">
+                    <div class="relative">
+                        <span class="exp_title">{php echo $list['company_name']}</span>
                                 <span class="addandeditbtn" data-id="{php echo $id}">
                                     <svg class="icon" aria-hidden="true">
                                         <use xlink:href="#icon-xiugai"></use>
                                     </svg>
                                     修改
                                 </span>
-                                </div>
+                    </div>
 
-                                <div class="exp_job">
-                                    <span class="exp_jobleft">{php echo $list['job_name']}</span>
-                                    <span class="exp_jobright">{php echo $list['job_starttime']} — {php echo $list['job_endtime']}</span>
-                                </div>
+                    <div class="exp_job">
+                        <span class="exp_jobleft">{php echo $list['job_name']}</span>
+                        <span class="exp_jobright">{php echo $list['job_starttime']} — {php echo $list['job_endtime']}</span>
+                    </div>
 
-                                <div class="exp_content">
-                                    {php echo $list['job_content']}
-                                </div>
+                    <div class="exp_content">
+                        {php echo $list['job_content']}
+                    </div>
 
-                                <div class="exp_job">
-                                    <span class="exp_jobleft">离职原因：{php echo $list['leave_reason']}</span>
-                                </div>
-                            </div>
-                            {/loop}
-                            {/if}
-                        </div>
+                    <div class="exp_job">
+                        <span class="exp_jobleft">离职原因：{php echo $list['leave_reason']}</span>
+                    </div>
+                </div>
+                {/loop}
+                {/if}
+            </div>
 
-                        <div class="no_expbox" id="job_exp1" {if empty($work_experience)}style="display:block;margin-top: 58px"{else}style="display:none;margin-top: 58px"{/if}>
+            <div class="no_expbox" id="job_exp1" {if empty($work_experience)}style="display:block;margin-top: 58px"{else}style="display:none;margin-top: 58px"{/if}>
                             <span class="addandeditbtn1">
                                 <svg class="icon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
                                 </svg>
                                 添加工作经历
                             </span>
-                        </div>
-                    </div>
+        </div>
+    </div>
 
 
-                </div>
+</div>
                 <span class="addandeditbtn" id="addjobexp">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-tianjia"></use>
@@ -710,299 +718,299 @@
                     添加
                 </span>
 
-            </div>
+</div>
 
 
-            <div  id="job_expbox" class="width670 basic_msg" style="display: none;margin-top: 58px">
+<div  id="job_expbox" class="width670 basic_msg" style="display: none;margin-top: 58px">
 
-                <div class="person_changes" style="margin-top: 0px">
+    <div class="person_changes" style="margin-top: 0px">
 
-                    <input type="hidden" name="exp_id" id="exp_id">
-                    <div class=" person_changes_left">
-                        <span class="font999 resume_msg_name">公司名称</span>
-                        <label class="general-input relative" style="width: 460px;">
-                            <input type="text" placeholder="公司名称" data-error="请输入公司名称" style="width: 420px;" name="company_name">
-                        </label>
-                    </div>
-                    <div class=" person_changes_left"  style="margin-top: 20px">
-                        <span class="font999 resume_msg_name">职位名称</span>
-                        <label class="general-input relative" style="width: 220px;">
-                            <input type="text" placeholder="职位名称" data-error="请输入职位名称" style="width: 180px;" name="job_name">
-                        </label>
-                    </div>
+        <input type="hidden" name="exp_id" id="exp_id">
+        <div class=" person_changes_left">
+            <span class="font999 resume_msg_name">公司名称</span>
+            <label class="general-input relative" style="width: 460px;">
+                <input type="text" placeholder="公司名称" data-error="请输入公司名称" style="width: 420px;" name="company_name">
+            </label>
+        </div>
+        <div class=" person_changes_left"  style="margin-top: 20px">
+            <span class="font999 resume_msg_name">职位名称</span>
+            <label class="general-input relative" style="width: 220px;">
+                <input type="text" placeholder="职位名称" data-error="请输入职位名称" style="width: 180px;" name="job_name">
+            </label>
+        </div>
 
 
 
-                    <div class=" person_changes_left" style="display: inline-block;width: 100%;margin-top: 20px">
-                        <span class="font999 resume_msg_name">起止时间</span>
-                        <div class=" relative general-select " >
-                            <label class="general-input relative general-select" style="float: none;width: 220px;">
-                                <input type="text" readonly="" data-error="请选择开始时间" placeholder="请选择开始时间" style="width: 200px" name="start_time" value="">
-                                <svg class="icon inputicon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                </svg>
-                            </label>
-                            <div class="options scend" style="width: 242px;top:48px">
-                                <div class="cwftimeoptions">
-
-                                </div>
-                                <div class="cwfmonths">
-                                    <span>1月</span>
-                                    <span>2月</span>
-                                    <span>3月</span>
-                                    <span>4月</span>
-                                    <span>5月</span>
-                                    <span>6月</span>
-                                    <span>7月</span>
-                                    <span>8月</span>
-                                    <span>9月</span>
-                                    <span>10月</span>
-                                    <span>11月</span>
-                                    <span>12月</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class=" relative general-select " style="float: none">
-                            <label class="general-input relative general-select" style="float: none;width: 220px;margin-left: 15px">
-                                <input type="text" readonly="" data-error="请选择结束时间" placeholder="请选择结束时间" style="width: 200px" name="end_time" value="">
-                                <svg class="icon inputicon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                </svg>
-                            </label>
-                            <div class="options scend" style="width: 242px;top:48px;left: 15px">
-                                <div class="cwftimeoptions">
-
-                                </div>
-                                <div class="cwfmonths">
-                                    <span>1月</span>
-                                    <span>2月</span>
-                                    <span>3月</span>
-                                    <span>4月</span>
-                                    <span>5月</span>
-                                    <span>6月</span>
-                                    <span>7月</span>
-                                    <span>8月</span>
-                                    <span>9月</span>
-                                    <span>10月</span>
-                                    <span>11月</span>
-                                    <span>12月</span>
-                                </div>
-                            </div>
-                        </div>
+        <div class=" person_changes_left" style="display: inline-block;width: 100%;margin-top: 20px">
+            <span class="font999 resume_msg_name">起止时间</span>
+            <div class=" relative general-select " >
+                <label class="general-input relative general-select" style="float: none;width: 220px;">
+                    <input type="text" readonly="" data-error="请选择开始时间" placeholder="请选择开始时间" style="width: 200px" name="start_time" value="">
+                    <svg class="icon inputicon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                    </svg>
+                </label>
+                <div class="options scend" style="width: 242px;top:48px">
+                    <div class="cwftimeoptions">
 
                     </div>
-
-                    <div class=" person_changes_left" style="margin-top: 20px">
-                        <span class="font999 resume_msg_name">离职原因</span>
-                        <label class="general-input relative" style="width: 460px;">
-                            <input type="text" placeholder="请输入15字以内的离职原因" data-error="请输入离职原因" style="width: 420px;" name="leave_reason" maxlength="15">
-                        </label>
-                    </div>
-
-                    <div class=" person_changes_left" style="margin-top: 20px">
-                        <span class="font999 resume_msg_name" style="float: left">工作内容</span>
-                        <div class="cwfreg4content" style="display: inline-block;margin-left: 20px;height: 84px;border: 1px solid #f5f5f5;width: 589px;background-color: #f5f5f5">
-                            <textarea style="width: 546px"  class="cwftextarea" id="job_content"  placeholder="分点描述条理更清晰，更方便HR阅读"></textarea>
-                        </div>
-
-                        <div  class="cwftextareatip" style="height: auto;margin-top: 10px;">
-                            <label class="general-input relative" style="width: 260px;;margin-left: 80px;height: 0;border: none">
-                                <input type="hidden" name="job_content" id="job_contentinput" data-error="请输入你的工作内容">
-                            </label>
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-                <div class="person_changes">
-                    <div class=" person_changes_left">
-                        <span class="font999 resume_msg_name" style="float: left;height: 1px"></span>
-                        <div style="display: inline-block;margin-left: 20px">
-                            <span class="savebtn public_bigbtn bg1aa" id="save_job_exp_msg" style="padding: 0 30px 0 30px">保存</span>
-                            <span class="cancelbtn">取消</span>
-                            <span class="delbtn">删除本条</span>
-                        </div>
+                    <div class="cwfmonths">
+                        <span>1月</span>
+                        <span>2月</span>
+                        <span>3月</span>
+                        <span>4月</span>
+                        <span>5月</span>
+                        <span>6月</span>
+                        <span>7月</span>
+                        <span>8月</span>
+                        <span>9月</span>
+                        <span>10月</span>
+                        <span>11月</span>
+                        <span>12月</span>
                     </div>
                 </div>
             </div>
 
+            <div class=" relative general-select " style="float: none">
+                <label class="general-input relative general-select" style="float: none;width: 220px;margin-left: 15px">
+                    <input type="text" readonly="" data-error="请选择结束时间" placeholder="请选择结束时间" style="width: 200px" name="end_time" value="">
+                    <svg class="icon inputicon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                    </svg>
+                </label>
+                <div class="options scend" style="width: 242px;top:48px;left: 15px">
+                    <div class="cwftimeoptions">
 
-            <!--教育经历-->
-            <div class="basic_msg width670" style="margin-top: 50px">
-                <div class="basic_msg_content" {if $edu_experience}style="display:block;"{else}style="display:none;"{/if}>
-                    <div class="resume_title">
-                        <span>教育经历</span>
                     </div>
+                    <div class="cwfmonths">
+                        <span>1月</span>
+                        <span>2月</span>
+                        <span>3月</span>
+                        <span>4月</span>
+                        <span>5月</span>
+                        <span>6月</span>
+                        <span>7月</span>
+                        <span>8月</span>
+                        <span>9月</span>
+                        <span>10月</span>
+                        <span>11月</span>
+                        <span>12月</span>
+                    </div>
+                </div>
+            </div>
 
-                    <div class="resume_exp" id="edutionexp">
-                        <!--<div class="left_line">-->
-                        <!--</div>-->
+        </div>
 
-                        {loop $edu_experience $id $list}
-                        <div class="resume_exp_content" data-id="{php echo $id}">
+        <div class=" person_changes_left" style="margin-top: 20px">
+            <span class="font999 resume_msg_name">离职原因</span>
+            <label class="general-input relative" style="width: 460px;">
+                <input type="text" placeholder="请输入15字以内的离职原因" data-error="请输入离职原因" style="width: 420px;" name="leave_reason" maxlength="15">
+            </label>
+        </div>
 
-                            <div class="relative">
-                                <span class="exp_title">{php echo $list['school_name']}</span>
+        <div class=" person_changes_left" style="margin-top: 20px">
+            <span class="font999 resume_msg_name" style="float: left">工作内容</span>
+            <div class="cwfreg4content" style="display: inline-block;margin-left: 20px;height: 84px;border: 1px solid #f5f5f5;width: 589px;background-color: #f5f5f5">
+                <textarea style="width: 546px"  class="cwftextarea" id="job_content"  placeholder="分点描述条理更清晰，更方便HR阅读"></textarea>
+            </div>
+
+            <div  class="cwftextareatip" style="height: auto;margin-top: 10px;">
+                <label class="general-input relative" style="width: 260px;;margin-left: 80px;height: 0;border: none">
+                    <input type="hidden" name="job_content" id="job_contentinput" data-error="请输入你的工作内容">
+                </label>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="person_changes">
+        <div class=" person_changes_left">
+            <span class="font999 resume_msg_name" style="float: left;height: 1px"></span>
+            <div style="display: inline-block;margin-left: 20px">
+                <span class="savebtn public_bigbtn bg1aa" id="save_job_exp_msg" style="padding: 0 30px 0 30px">保存</span>
+                <span class="cancelbtn">取消</span>
+                <span class="delbtn">删除本条</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--教育经历-->
+<div class="basic_msg width670" style="margin-top: 50px">
+    <div class="basic_msg_content" {if $edu_experience}style="display:block;"{else}style="display:none;"{/if}>
+    <div class="resume_title">
+        <span>教育经历</span>
+    </div>
+
+    <div class="resume_exp" id="edutionexp">
+        <!--<div class="left_line">-->
+        <!--</div>-->
+
+        {loop $edu_experience $id $list}
+        <div class="resume_exp_content" data-id="{php echo $id}">
+
+            <div class="relative">
+                <span class="exp_title">{php echo $list['school_name']}</span>
                                 <span class="addandeditbtn" data-id="{php echo $id}">
                                     <svg class="icon" aria-hidden="true">
                                         <use xlink:href="#icon-xiugai"></use>
                                     </svg>
                                     修改
                                 </span>
-                            </div>
+            </div>
 
-                            <div class="exp_job">
-                                <span class="exp_jobleft">{php echo $list['edu_major']}</span>
-                                <span class="exp_jobleft" style="margin-left: 8px">{php echo $list['edu_district']}</span>
-                                <span class="exp_jobright">{if $list['edu_finish_time']}{php echo $list['edu_finish_time']}届{/if}</span>
-                                {if $list['edu_finish_time']}<p class="edu_content">{php echo $list['edu_detail']}</p>{/if}
-                            </div>
+            <div class="exp_job">
+                <span class="exp_jobleft">{php echo $list['edu_major']}</span>
+                <span class="exp_jobleft" style="margin-left: 8px">{php echo $list['edu_district']}</span>
+                <span class="exp_jobright">{if $list['edu_finish_time']}{php echo $list['edu_finish_time']}届{/if}</span>
+                {if $list['edu_finish_time']}<p class="edu_content">{php echo $list['edu_detail']}</p>{/if}
+            </div>
 
 
 
-                        </div>
-                        {/loop}
-                        <div class="no_expbox" id="edutionexp1" {if empty($edu_experience)}style="display:block;margin-top: 58px"{else}style="display:none;margin-top: 58px"{/if}>
+        </div>
+        {/loop}
+        <div class="no_expbox" id="edutionexp1" {if empty($edu_experience)}style="display:block;margin-top: 58px"{else}style="display:none;margin-top: 58px"{/if}>
                             <span class="addandeditbtn1">
                                 <svg class="icon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
                                 </svg>
                                 添加教育经历
                             </span>
-                        </div>
-                    </div>
+    </div>
+</div>
 
 
-                </div>
+</div>
                 <span class="addandeditbtn" id="addedutionexp">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-tianjia"></use>
                     </svg>
                     添加
                 </span>
-            </div>
+</div>
 
-            <div  id="edutionbox" class="width670 basic_msg" style="display: none;margin-top: 58px">
+<div  id="edutionbox" class="width670 basic_msg" style="display: none;margin-top: 58px">
 
-                <div class="person_changes" style="margin-top: 0px">
+    <div class="person_changes" style="margin-top: 0px">
 
-                    <input type="hidden" name="edu_id" id="edu_id">
-                    <div class=" person_changes_left" style="display: inline-block;width: 100%;">
-                        <span class="font999 resume_msg_name">学校名称</span>
-                        <label class="general-input relative" style="width: 430px;">
-                            <input type="text" placeholder="学校名称" data-error="请输入学校名称" style="width: 390px;" name="school_name">
-                        </label>
-                        <div class=" relative general-select " style="float: right">
-                            <label class="general-input relative general-select" style="float: none;width: 138px">
-                                <input type="text" readonly  data-error="请选择学历" placeholder="学历" style="width: 118px" name="education" value="本科">
-                                <svg class="icon inputicon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                </svg>
-                            </label>
-                            <div class="options noscend autooptions" style="width: 140px;height: 0">
-                                <div class="select-option" style="width: 138px"><span>博士以上</span></div>
-                                <div class="select-option" style="width: 138px"><span>博士</span></div>
-                                <div class="select-option" style="width: 138px"><span>硕士</span> </div>
-                                <div class="select-option" style="width: 138px"><span>本科</span> </div>
-                                <div class="select-option" style="width: 138px"><span>专科</span> </div>
-                                <div class="select-option" style="width: 138px"><span>专科以下</span> </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class=" person_changes_left" style="margin-top: 20px">
-                        <span class="font999 resume_msg_name">所学专业</span>
-                        <label class="general-input relative" style="width: 430px;">
-                            <input type="text" placeholder="所学专业" data-error="请输入所学专业" style="width: 390px;" name="edu_major">
-                        </label>
-                        <div class=" relative general-select " style="float: right">
-                            <label class="general-input relative general-select" style="float: none;width: 138px">
-                                <input type="text" readonly   style="width: 118px" data-error="请选择毕业时间" placeholder="毕业时间"  name="identity" id="identity" value="">
-                                <svg class="icon inputicon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                </svg>
-                            </label>
-                            <div class="options noscend autooptions" id="endstarttime_options" style="width: 140px;height: 0">
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class=" person_changes_left" style="margin-top: 20px">
-                        <span class="font999 resume_msg_name" style="float: left">在校经历</span>
-                        <div class="cwfreg4content" style="display: inline-block;margin-left: 20px;height: 84px;border: 1px solid #f5f5f5;width: 589px;background-color: #f5f5f5">
-                            <textarea style="width: 546px"  class="cwftextarea edu_area" name="edu_detail" id="edu_detail"  placeholder="分点描述条理更清晰，更方便HR阅读"></textarea>
-                        </div>
-
-                        <div  class="cwftextareatip" style="height: auto;margin-top: 10px;">
-                            <label class="general-input relative" style="width: 260px;;margin-left: 80px;height: 0;border: none">
-                                <input type="hidden" name="edu_detail" id="edu_detailinput">
-                            </label>
-                        </div>
-
-                    </div>
-
-
-
-                </div>
-
-                <div class="person_changes">
-                    <div class=" person_changes_left">
-                        <span class="font999 resume_msg_name" style="float: left;height: 1px"></span>
-                        <div style="display: inline-block;margin-left: 20px">
-                            <span class="savebtn public_bigbtn bg1aa" id="save_edu_exp_msg" style="padding: 0 30px 0 30px">保存</span>
-                            <span class="cancelbtn">取消</span>
-                            <span class="delbtn">删除本条</span>
-                        </div>
-                    </div>
+        <input type="hidden" name="edu_id" id="edu_id">
+        <div class=" person_changes_left" style="display: inline-block;width: 100%;">
+            <span class="font999 resume_msg_name">学校名称</span>
+            <label class="general-input relative" style="width: 430px;">
+                <input type="text" placeholder="学校名称" data-error="请输入学校名称" style="width: 390px;" name="school_name">
+            </label>
+            <div class=" relative general-select " style="float: right">
+                <label class="general-input relative general-select" style="float: none;width: 138px">
+                    <input type="text" readonly  data-error="请选择学历" placeholder="学历" style="width: 118px" name="education" value="本科">
+                    <svg class="icon inputicon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                    </svg>
+                </label>
+                <div class="options noscend autooptions" style="width: 140px;height: 0">
+                    <div class="select-option" style="width: 138px"><span>博士以上</span></div>
+                    <div class="select-option" style="width: 138px"><span>博士</span></div>
+                    <div class="select-option" style="width: 138px"><span>硕士</span> </div>
+                    <div class="select-option" style="width: 138px"><span>本科</span> </div>
+                    <div class="select-option" style="width: 138px"><span>专科</span> </div>
+                    <div class="select-option" style="width: 138px"><span>专科以下</span> </div>
                 </div>
             </div>
+        </div>
+
+
+        <div class=" person_changes_left" style="margin-top: 20px">
+            <span class="font999 resume_msg_name">所学专业</span>
+            <label class="general-input relative" style="width: 430px;">
+                <input type="text" placeholder="所学专业" data-error="请输入所学专业" style="width: 390px;" name="edu_major">
+            </label>
+            <div class=" relative general-select " style="float: right">
+                <label class="general-input relative general-select" style="float: none;width: 138px">
+                    <input type="text" readonly   style="width: 118px" data-error="请选择毕业时间" placeholder="毕业时间"  name="identity" id="identity" value="">
+                    <svg class="icon inputicon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                    </svg>
+                </label>
+                <div class="options noscend autooptions" id="endstarttime_options" style="width: 140px;height: 0">
+
+                </div>
+            </div>
+        </div>
+
+        <div class=" person_changes_left" style="margin-top: 20px">
+            <span class="font999 resume_msg_name" style="float: left">在校经历</span>
+            <div class="cwfreg4content" style="display: inline-block;margin-left: 20px;height: 84px;border: 1px solid #f5f5f5;width: 589px;background-color: #f5f5f5">
+                <textarea style="width: 546px"  class="cwftextarea edu_area" name="edu_detail" id="edu_detail"  placeholder="分点描述条理更清晰，更方便HR阅读"></textarea>
+            </div>
+
+            <div  class="cwftextareatip" style="height: auto;margin-top: 10px;">
+                <label class="general-input relative" style="width: 260px;;margin-left: 80px;height: 0;border: none">
+                    <input type="hidden" name="edu_detail" id="edu_detailinput">
+                </label>
+            </div>
+
+        </div>
 
 
 
-            <!--个人作品-->
-            <div class="basic_msg width670" style="margin-top: 50px">
-                <div class="basic_msg_content">
-                    <div class="resume_title">
-                        <span>个人作品</span>
-                        <!--<div id="gallery1"></div>-->
-                    </div>
+    </div>
 
-                    <div class="resume_exp" id="person_works">
+    <div class="person_changes">
+        <div class=" person_changes_left">
+            <span class="font999 resume_msg_name" style="float: left;height: 1px"></span>
+            <div style="display: inline-block;margin-left: 20px">
+                <span class="savebtn public_bigbtn bg1aa" id="save_edu_exp_msg" style="padding: 0 30px 0 30px">保存</span>
+                <span class="cancelbtn">取消</span>
+                <span class="delbtn">删除本条</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-                        <div class="person_works" {if $personal_works}style="display:block;"{else}style="display:none;"{/if}>
-                            {loop $personal_works $id $list}
-                            <div class="person_work" data-id="{php echo $id}">
-                                <input type="hidden" class="person_works_imgs{php echo $id}" value="{$list['person_works']}">
-                                <div class="img_box" id="gallery{php echo $id}"><img src="{php echo $list['thumb']}"></div>
-                                <div class="person_workmsg relative">
-                                    <span class="wrap" style="width: 70%">{php echo $list['person_workmsg']}</span>
+
+
+<!--个人作品-->
+<div class="basic_msg width670" style="margin-top: 50px">
+    <div class="basic_msg_content">
+        <div class="resume_title">
+            <span>个人作品</span>
+            <!--<div id="gallery1"></div>-->
+        </div>
+
+        <div class="resume_exp" id="person_works">
+
+            <div class="person_works" {if $personal_works}style="display:block;"{else}style="display:none;"{/if}>
+            {loop $personal_works $id $list}
+            <div class="person_work" data-id="{php echo $id}">
+                <input type="hidden" class="person_works_imgs{php echo $id}" value="{$list['person_works']}">
+                <div class="img_box" id="gallery{php echo $id}"><img src="{php echo $list['thumb']}"></div>
+                <div class="person_workmsg relative">
+                    <span class="wrap" style="width: 70%">{php echo $list['person_workmsg']}</span>
                                     <span class="addandeditbtn" style="top: 0" data-id="{php echo $id}">
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-xiugai"></use>
                                         </svg>
                                         修改
                                     </span>
-                                </div>
-                            </div>
-                            {/loop}
-                        </div>
-                        <div class="no_expbox" id="person_works1"   {if empty($personal_works)}style="display:block;margin-top: 58px"{else}style="display:none;margin-top: 58px"{/if}>
+                </div>
+            </div>
+            {/loop}
+        </div>
+        <div class="no_expbox" id="person_works1"   {if empty($personal_works)}style="display:block;margin-top: 58px"{else}style="display:none;margin-top: 58px"{/if}>
                             <span class="addandeditbtn1" style="position: relative">
                                 <svg class="icon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
                                 </svg>
                                 添加个人作品
                             </span>
-                        </div>
-                    </div>
+    </div>
+</div>
 
 
-                </div>
+</div>
 
                 <span class="addandeditbtn" id="addpersonworks" {if count($personal_works)>=2}style="display:none"{/if}>
                     <svg class="icon" aria-hidden="true">
@@ -1010,92 +1018,92 @@
                     </svg>
                     添加
                 </span>
-            </div>
+</div>
 
 
 
-            <div  id="person_worksbox" class="width670 basic_msg" style="display: none;margin-top: 58px">
+<div  id="person_worksbox" class="width670 basic_msg" style="display: none;margin-top: 58px">
 
-                <div class="person_changes" style="margin-top: 0px">
+    <div class="person_changes" style="margin-top: 0px">
 
-                    <input type="hidden" name="works_url" id="works_id">
+        <input type="hidden" name="works_url" id="works_id">
 
-                    <div class="person_worksbox">
-
-
+        <div class="person_worksbox">
 
 
-                        <div class="person_worksbtn1">
+
+
+            <div class="person_worksbtn1">
                             <span id="person_worksaddbtn">
                                 <svg class="icon" aria-hidden="true">
                                     <use xlink:href="#icon-shangchuan"></use>
                                 </svg>
                             </span>
-                        </div>
-
-                    </div>
-
-                    <label class="general-input relative abnormal" style="width: 460px;height: 0;border: none;margin-left: 78px">
-                        <input type="hidden"  data-error="请上传作品" style="width: 420px;" value="" id="person_worksinput" name="person_works">
-                    </label>
-
-                    <div class=" person_changes_left" style="display: inline-block;width: 100%;">
-                        <span class="font999 resume_msg_name">描述作品</span>
-                        <label class="general-input relative" style="width: 460px;">
-                            <input type="text" placeholder="作品描述" data-error="请输入作品描述" style="width: 420px;" name="person_workmsg">
-                        </label>
-                    </div>
-
-                </div>
-
-                <div class="person_changes">
-                    <div class=" person_changes_left">
-                        <span class="font999 resume_msg_name" style="float: left;height: 1px"></span>
-                        <div style="display: inline-block;margin-left: 20px">
-                            <span class="savebtn public_bigbtn bg1aa" id="save_works_msg" style="padding: 0 30px 0 30px">保存</span>
-                            <span class="cancelbtn">取消</span>
-                            <span class="delbtn">删除本条</span>
-                        </div>
-                    </div>
-                </div>
             </div>
 
+        </div>
 
-            <!--30秒个人视频-->
-            <div class="basic_msg width670" style="margin-top: 50px">
-                <div class="basic_msg_content">
-                    <div class="resume_title">
-                        <span style="width: 150px;margin-left: 260px">30秒个人视频</span>
-                    </div>
-                    <div class="resume_exp">
-                        <div class="person_works relative vedio_source">
-                            {if $resume['person_video']}
-                            <video src="{php echo $resume['person_video']}" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>
-                            <!--<span class="addandeditbtn" style="top: 0" data-id="2">-->
-                                <!--<svg class="icon" aria-hidden="true">-->
-                                    <!--<use xlink:href="#icon-xiugai"></use>-->
-                                <!--</svg>-->
-                                <!--修改-->
-                            <!--</span>-->
-                            {/if}
+        <label class="general-input relative abnormal" style="width: 460px;height: 0;border: none;margin-left: 78px">
+            <input type="hidden"  data-error="请上传作品" style="width: 420px;" value="" id="person_worksinput" name="person_works">
+        </label>
 
-                            <div class="no_expbox" id="vedio_source"  {if empty($resume['person_video'])}style="margin-top: 58px;display:block;"{else}style="margin-top: 58px;display:none;"{/if}>
+        <div class=" person_changes_left" style="display: inline-block;width: 100%;">
+            <span class="font999 resume_msg_name">描述作品</span>
+            <label class="general-input relative" style="width: 460px;">
+                <input type="text" placeholder="作品描述" data-error="请输入作品描述" style="width: 420px;" name="person_workmsg">
+            </label>
+        </div>
+
+    </div>
+
+    <div class="person_changes">
+        <div class=" person_changes_left">
+            <span class="font999 resume_msg_name" style="float: left;height: 1px"></span>
+            <div style="display: inline-block;margin-left: 20px">
+                <span class="savebtn public_bigbtn bg1aa" id="save_works_msg" style="padding: 0 30px 0 30px">保存</span>
+                <span class="cancelbtn">取消</span>
+                <span class="delbtn">删除本条</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--30秒个人视频-->
+<div class="basic_msg width670" style="margin-top: 50px">
+    <div class="basic_msg_content">
+        <div class="resume_title">
+            <span style="width: 150px;margin-left: 260px">30秒个人视频</span>
+        </div>
+        <div class="resume_exp">
+            <div class="person_works relative vedio_source">
+                {if $resume['person_video']}
+                <video src="{php echo $resume['person_video']}" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>
+                <!--<span class="addandeditbtn" style="top: 0" data-id="2">-->
+                <!--<svg class="icon" aria-hidden="true">-->
+                <!--<use xlink:href="#icon-xiugai"></use>-->
+                <!--</svg>-->
+                <!--修改-->
+                <!--</span>-->
+                {/if}
+
+                <div class="no_expbox" id="vedio_source"  {if empty($resume['person_video'])}style="margin-top: 58px;display:block;"{else}style="margin-top: 58px;display:none;"{/if}>
                             <span class="addandeditbtn1">
                                 <svg class="icon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
                                 </svg>
                                 添加个人视频
                             </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--<span class="addandeditbtn">-->
-                    <!--<svg class="icon" aria-hidden="true">-->
-                        <!--<use xlink:href="#icon-tianjia"></use>-->
-                    <!--</svg>-->
-                    <!--添加-->
-                <!--</span>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--<span class="addandeditbtn">-->
+<!--<svg class="icon" aria-hidden="true">-->
+<!--<use xlink:href="#icon-tianjia"></use>-->
+<!--</svg>-->
+<!--添加-->
+<!--</span>-->
 
 
                 <span class="addandeditbtn upload_video" id="upload_video">
@@ -1117,147 +1125,147 @@
                     {/if}
                 </span>
 
-            </div>
+</div>
 
 
 
-            <!--荣誉证书-->
-            <div class="basic_msg width670" style="margin-top: 50px">
-                <div class="basic_msg_content">
-                    <div class="resume_title">
-                        <span >荣誉证书</span>
-                    </div>
-                    <div class="resume_exp" id="certificate" style=";margin-bottom: 180px">
-                        <div class="person_works" >
-                            {loop $honor $id $list}
-                            <div class="relative" data-id="{$id}">
-                                <div class="honor_pic{$id}"></div>
-                                <input type="hidden" class="honor_picmsg{$id}" value="{$list['certificate_img']}">
-                                <span class="certificate " style="display: inline-block;width: 570px;white-space: nowrap;text-overflow: ellipsis;">{$list['certificate_content']}</span>
+<!--荣誉证书-->
+<div class="basic_msg width670" style="margin-top: 50px">
+    <div class="basic_msg_content">
+        <div class="resume_title">
+            <span >荣誉证书</span>
+        </div>
+        <div class="resume_exp" id="certificate" style=";margin-bottom: 180px">
+            <div class="person_works" >
+                {loop $honor $id $list}
+                <div class="relative" data-id="{$id}">
+                    <div class="honor_pic{$id}"></div>
+                    <input type="hidden" id="honor_picmsg{$id}" value="{$list['certificate_img']}">
+                    <span class="certificate " style="display: inline-block;width: 570px;white-space: nowrap;text-overflow: ellipsis;">{$list['certificate_content']}</span>
                                 <span class="addandeditbtn" style="top: 0"  data-id="{$id}">
                                     <svg class="icon" aria-hidden="true">
                                         <use xlink:href="#icon-xiugai"></use>
                                     </svg>
                                     修改
                                 </span>
-                            </div>
-                            {/loop}
-                            <div class="no_expbox" id="certificate1" {if empty($honor)}style="display:block;margin-top: 58px;"{else}style="display:none;margin-top: 58px"{/if}>
+                </div>
+                {/loop}
+                <div class="no_expbox" id="certificate1" {if empty($honor)}style="display:block;margin-top: 58px;"{else}style="display:none;margin-top: 58px"{/if}>
                             <span class="addandeditbtn1">
                                 <svg class="icon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
                                 </svg>
                                 添加荣誉证书
                             </span>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+        </div>
+    </div>
 
 
-                </div>
+</div>
                 <span class="addandeditbtn" id="addcertificatebtn">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-tianjia"></use>
                     </svg>
                     添加
                 </span>
+</div>
+
+
+<div  id="certificatebox" class="width670 basic_msg" style="display: none;margin-top: 58px;margin-bottom: 180px">
+
+    <div class="person_changes" style="margin-top: 0px">
+
+        <input type="hidden" name="certificate_id" id="certificate_id">
+        <input type="hidden" name="certificate_img" id="certificate_img">
+
+        <div class=" person_changes_left" style="display: inline-block;width: 100%;margin-top: 20px;height: 52px">
+            <span class="font999 resume_msg_name">时间</span>
+            <div class=" relative general-select " >
+                <label class="general-input relative general-select" style="float: none;width: 220px;">
+                    <input type="text" readonly="" data-error="请选择时间" placeholder="请选择时间" style="width: 200px" name="certificate_time" value="">
+                    <svg class="icon inputicon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                    </svg>
+                </label>
+                <div class="options scend" style="width: 248px;top:48px">
+                    <div class="cwftimeoptions">
+
+                    </div>
+                    <div class="cwfmonths">
+                        <span>1月</span>
+                        <span>2月</span>
+                        <span>3月</span>
+                        <span>4月</span>
+                        <span>5月</span>
+                        <span>6月</span>
+                        <span>7月</span>
+                        <span>8月</span>
+                        <span>9月</span>
+                        <span>10月</span>
+                        <span>11月</span>
+                        <span>12月</span>
+                    </div>
+                </div>
             </div>
 
-
-            <div  id="certificatebox" class="width670 basic_msg" style="display: none;margin-top: 58px;margin-bottom: 180px">
-
-                <div class="person_changes" style="margin-top: 0px">
-
-                    <input type="hidden" name="certificate_id" id="certificate_id">
-                    <input type="hidden" name="certificate_img" id="certificate_img">
-
-                    <div class=" person_changes_left" style="display: inline-block;width: 100%;margin-top: 20px;height: 52px">
-                        <span class="font999 resume_msg_name">时间</span>
-                        <div class=" relative general-select " >
-                            <label class="general-input relative general-select" style="float: none;width: 220px;">
-                                <input type="text" readonly="" data-error="请选择时间" placeholder="请选择时间" style="width: 200px" name="certificate_time" value="">
-                                <svg class="icon inputicon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                </svg>
-                            </label>
-                            <div class="options scend" style="width: 248px;top:48px">
-                                <div class="cwftimeoptions">
-
-                                </div>
-                                <div class="cwfmonths">
-                                    <span>1月</span>
-                                    <span>2月</span>
-                                    <span>3月</span>
-                                    <span>4月</span>
-                                    <span>5月</span>
-                                    <span>6月</span>
-                                    <span>7月</span>
-                                    <span>8月</span>
-                                    <span>9月</span>
-                                    <span>10月</span>
-                                    <span>11月</span>
-                                    <span>12月</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="honor_certificate" style="float: right;width: 120px;height: auto;cursor: pointer;overflow: hidden;font-size: 16px;color: #666;margin-left: 26px;position: relative;">
+            <div class="honor_certificate" style="float: right;width: 120px;height: auto;cursor: pointer;overflow: hidden;font-size: 16px;color: #666;margin-left: 26px;position: relative;">
                             <span id="certificateaddbtn">
                                 <svg class="icon" aria-hidden="true">
                                     <use xlink:href="#icon-shangchuan"></use>
                                 </svg>
                             </span>
-                            <div style="color: #999;text-align: center;line-height: 24px">上传荣誉照片（可不传）</div>
-                        </div>
-
-
-                    </div>
-
-
-
-                    <div class=" person_changes_left" style="margin-top: 20px">
-                        <span class="font999 resume_msg_name" style="float: left">获奖内容</span>
-                        <div class="cwfreg4content" style="display: inline-block;margin-left: 20px;height: 64px;border: 1px solid #f5f5f5;width: 359px;background-color: #f5f5f5">
-                            <textarea style="width: 316px"  class="cwftextarea" id="certificate_content" maxlength="60"  placeholder="请输入你的获奖内容"></textarea>
-                        </div>
-
-                        <div  class="cwftextareatip" style="height: auto;margin-top: 10px">
-                            <label class="general-input relative" style="width: 260px;;margin-left: 80px;height: 0;border: none">
-                                <input type="hidden" name="certificate_content" id="certificate_contentinput" data-error="请输入你的获奖内容">
-                            </label>
-                        </div>
-
-                    </div>
-
-
-                    <!--<div class=" person_changes_left" style="display: inline-block;width: 100%">-->
-                        <!--<span class="font999 resume_msg_name"></span>-->
-                        <!--<div class=" relative general-select font999" style="margin-left: 20px">-->
-                            <!--80%的Java工程师都获得了SCAJ资格证书-->
-                            <!--<a href="#" class="go_studetent">前往学习</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-
-
-                </div>
-
-                <div class="person_changes">
-                    <div class=" person_changes_left">
-                        <span class="font999 resume_msg_name" style="float: left;height: 1px"></span>
-                        <div style="display: inline-block;margin-left: 20px">
-                            <span class="savebtn public_bigbtn bg1aa" id="save_certificate_msg" style="padding: 0 30px 0 30px">保存</span>
-                            <span class="cancelbtn">取消</span>
-                            <span class="delbtn">删除本条</span>
-                        </div>
-                    </div>
-                </div>
+                <div style="color: #999;text-align: center;line-height: 24px">上传荣誉照片（可不传）</div>
             </div>
 
 
         </div>
+
+
+
+        <div class=" person_changes_left" style="margin-top: 20px">
+            <span class="font999 resume_msg_name" style="float: left">获奖内容</span>
+            <div class="cwfreg4content" style="display: inline-block;margin-left: 20px;height: 64px;border: 1px solid #f5f5f5;width: 359px;background-color: #f5f5f5">
+                <textarea style="width: 316px"  class="cwftextarea" id="certificate_content" maxlength="60"  placeholder="请输入你的获奖内容"></textarea>
+            </div>
+
+            <div  class="cwftextareatip" style="height: auto;margin-top: 10px">
+                <label class="general-input relative" style="width: 260px;;margin-left: 80px;height: 0;border: none">
+                    <input type="hidden" name="certificate_content" id="certificate_contentinput" data-error="请输入你的获奖内容">
+                </label>
+            </div>
+
+        </div>
+
+
+        <!--<div class=" person_changes_left" style="display: inline-block;width: 100%">-->
+        <!--<span class="font999 resume_msg_name"></span>-->
+        <!--<div class=" relative general-select font999" style="margin-left: 20px">-->
+        <!--80%的Java工程师都获得了SCAJ资格证书-->
+        <!--<a href="#" class="go_studetent">前往学习</a>-->
+        <!--</div>-->
+        <!--</div>-->
+
+
+
     </div>
-    {php include wl_template('common/person_right');}
+
+    <div class="person_changes">
+        <div class=" person_changes_left">
+            <span class="font999 resume_msg_name" style="float: left;height: 1px"></span>
+            <div style="display: inline-block;margin-left: 20px">
+                <span class="savebtn public_bigbtn bg1aa" id="save_certificate_msg" style="padding: 0 30px 0 30px">保存</span>
+                <span class="cancelbtn">取消</span>
+                <span class="delbtn">删除本条</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+</div>
+{php include wl_template('common/person_right');}
 </div>
 
 <!--上传头像弹框-->
@@ -1271,7 +1279,7 @@
             <div class="one_btn">
 
                 <div class="uploadimgbox">
-                    <svg class="icon" aria-hidden="true" >
+                    <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-shangchuan"></use>
                     </svg>
                 </div>
@@ -1284,7 +1292,7 @@
             </div>
             <div class="oneone_btn" style="position: absolute;left: 5px;top: 5px;width: 90px;height: 90px;"></div>
             <!--<form id="choosefile1" enctype="multipart/form-data">-->
-                <!--<input type="file" name='file' id="choosefile" accept="image/*" />-->
+            <!--<input type="file" name='file' id="choosefile" accept="image/*" />-->
             <!--</form>-->
 
 
@@ -1301,6 +1309,47 @@
 </div>
 <!--弹框end-->
 
+
+<!--上传上传个人视频-->
+<div class="modalbox loginn_zj" id="modalbox2" style="display: none;">
+    <div class="modal">
+        <p class="title_content">上传个人视频</p>
+            <span class="modalclose">
+                <img src="{WL_URL_ARES}images/close.png"/>
+            </span>
+        <div class="modal_con">
+            <div class="one_btn">
+
+                <div class="uploadimgbox" id="uploadvideobox">
+                    <svg class="icon" aria-hidden="true" id="uploadvideobtn">
+                        <use xlink:href="#icon-shangchuan"></use>
+                    </svg>
+                </div>
+
+                <div class="upload" style="display: none">
+                    <img src="{WL_URL_ARES}images/timg22.png" class="rzpic"/>
+                    <div class="meng"><span>重新上传</span></div>
+                </div>
+
+            </div>
+            <div class="oneone_btn" style="position: absolute;left: 5px;top: 5px;width: 90px;height: 90px;"></div>
+            <!--<form id="videofile1" enctype="multipart/form-data">-->
+            <!--<input type="file" name='file' id="videofile" accept="video/*" style="display: none"/>-->
+            <!--</form>-->
+
+
+            <div class="erweima"  data-id="{$identity}">
+                <!--<img src="{WL_URL_ARES}images/erweima.png" class="pic"/>-->
+            </div>
+        </div>
+        <div class="title">
+            <span>电脑上传</span>
+            <span>手机扫码上传</span>
+        </div>
+        <span class="public_bigbtn bg1aa modalbtn1"> 立即上传</span>
+    </div>
+</div>
+<!--弹框end-->
 
 <!--上传图片的弹框截屏样式-->
 <div class="modal1 fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
@@ -1356,7 +1405,7 @@
 							            </span>
                                 </button>
                                 <button type="button" class="btn btn-danger fa fa-refresh" data-method="reset" title="重置图片">
-								            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214"></span>
+                                    <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214"></span>
                                 </button>
                             </div>
                             <div class="col-md-3">
@@ -1452,9 +1501,9 @@
 <script src="{WL_URL_ARES}js/upload_refresh.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/resume_manager.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
-<script src="{WL_URL_ARES}js/src/qiniu.js" rel="script"></script>
-<script src="{WL_URL_ARES}js/src/plupload/moxie.js" rel="script"></script>
-<script src="{WL_URL_ARES}js/src/plupload/plupload.dev.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/moxie.js"></script>
+<script src="{WL_URL_ARES}js/plupload.dev.js"></script>
+<script src="{WL_URL_ARES}js/qiniu.min.js"></script>
 <script type="text/javascript" src="{WL_URL_ARES}js/picsrc/images-grid.js"></script>
 <script type="text/javascript">
 
@@ -1646,22 +1695,22 @@
 
     //上传视频弹框显示
 
-//    window.setInterval(
-//        function(){
-//            $.ajax({
-//                url:"{php echo app_url('person/resume/headimgupload_deal')}",
-//                type:"post",
-//                success:function(data){
-//                    if(data){
-//                        var data = JSON.parse(data);
-//                        if(data.status==1){
-//                            location = location;
-//                        }
-//                    }
-//                }
-//            })
-//        },5000
-//    );
+    //    window.setInterval(
+    //        function(){
+    //            $.ajax({
+    //                url:"{php echo app_url('person/resume/headimgupload_deal')}",
+    //                type:"post",
+    //                success:function(data){
+    //                    if(data){
+    //                        var data = JSON.parse(data);
+    //                        if(data.status==1){
+    //                            location = location;
+    //                        }
+    //                    }
+    //                }
+    //            })
+    //        },5000
+    //    );
 
 
     $(".left_line").each(function(){
@@ -1711,8 +1760,8 @@
             //期望行业
             var hope2=$("#want_job").val().split(",");
             var hope1htm2='<svg class="icon" aria-hidden="true" style="margin-left: 20px">'+
-                '<use  xlink:href="#icon-hangye"></use>'+
-            '</svg>';
+                    '<use  xlink:href="#icon-hangye"></use>'+
+                    '</svg>';
             for(var i in hope2){
                 hope1htm2+='<span class="basic_msg_contents1">'+hope2[i]+'</span>'
             }
@@ -1833,7 +1882,7 @@
                 $("#job_expbox input[name=end_time]").val(data.job_endtime);
                 $("#job_expbox input[name=leave_reason]").val(data.leave_reason);
                 $("#job_content").val(data.job_content);
-               $("#job_expbox input[name=job_content]").val(data.job_content);
+                $("#job_expbox input[name=job_content]").val(data.job_content);
             }
         })
     });
@@ -1874,6 +1923,8 @@
     $.fromdata("#edutionbox","{php echo app_url('person/resume/save_edu_exp')}","#save_edu_exp_msg",function(data){
         var data = JSON.parse(data);
         if(data.status==1){
+
+
             var edu_id=$("#edutionbox input[name=edu_id]").val();
             var school_name=$("#edutionbox input[name=school_name]").val();
             var education=$("#edutionbox input[name=education]").val();
@@ -1888,6 +1939,7 @@
                 editedu.find(".exp_jobleft").eq(1).html(education);
                 editedu.find(".exp_jobright").html(identity+"届");
                 editedu.find(".edu_content").html(edu_detail);
+
             }else{
                 var educontent='<div class="resume_exp_content" data-id='+data.content+'>'+
                         '<div class="relative">'+
@@ -1980,17 +2032,17 @@
 
 
     //个人作品初始化图片加载
-    var piccontent0=$(".person_works_imgs0").val().split(",");
-    var piccontent1=$(".person_works_imgs1").val().split(",");
-    $('#gallery0').imagesGrid({
-        images:piccontent0
-    });
-    $('#gallery1').imagesGrid({
-        images:piccontent1
-    });
+    var piccontent=$(".person_works .person_work");
+    piccontent.each(function(){
+        var data_id=$(this).attr("data-id");
+        $('#gallery'+data_id).imagesGrid({
+            images:$(".person_works_imgs"+data_id).val().split(",")
+        });
+    })
+
     //个人作品
     $.fromdata("#person_worksbox","{php echo app_url('person/resume/save_personal_works')}","#save_works_msg",function(data){
-       var data = JSON.parse(data);
+        var data = JSON.parse(data);
         if(data.status==1){
             var works_id=$("#works_id").val();
             var person_worksinput=$("#person_worksinput").val();
@@ -2066,7 +2118,7 @@
             },
             success:function(data){
                 var data=JSON.parse(data);
-               // console.log(data);return;
+                // console.log(data);return;
 //                $("#person_worksbox input[name=works_url]").val(data.person_works);
                 $("#person_worksbox input[name=person_workmsg]").val(data.person_workmsg);
                 var imagebox="";
@@ -2076,7 +2128,7 @@
                 $(".person_worksbtn").remove();
                 $.each(works_url,function(){
                     imagebox+="<div class='person_worksbtn'>"+
-                                "<img src='"+this+"'>"+
+                            "<img src='"+this+"'>"+
                             "<span class='person_worksdelbtn'>"+
                             "<svg class='icon' aria-hidden='true'>"+
                             "<use xlink:href='#icon-shanchu'></use>"+
@@ -2136,7 +2188,7 @@
     list.each(function () {
         var data_id=$(this).attr("data-id");
         $('.honor_pic'+data_id).imagesGrid({
-            images:[$(".honor_picmsg"+data_id).val()]
+            images:[$("#honor_picmsg"+data_id).val()]
         });
     });
 
@@ -2149,17 +2201,18 @@
             var certificate_id=$("#certificate_id").val();
             var certificate_content=$("#certificatebox input[name=certificate_content]").val();
             var imgsrc=$("#certificateaddbtn img").attr("src");
+            console.log(imgsrc);
             if(certificate_id){
                 var editperson_work=$("#certificate .relative[data-id="+certificate_id+"]");
                 editperson_work.find(".certificate ").html(certificate_content);
 
                 $('.honor_pic'+certificate_id).imagesGrid({
-                    images:[$(".honor_picmsg"+certificate_id).val()]
+                    images:[imgsrc]
                 });
             }else{
-                var editpersonhtml='<div class="relative" data-id='+certificate_id+'>'+
-                        ' <div class="honor_pic'+certificate_id+'"></div>' +
-                        '<input type="hidden" class="honor_picmsg'+certificate_id+'" value="'+imgsrc+'">'+
+                var editpersonhtml='<div class="relative" data-id='+data.content+'>'+
+                        ' <div class="honor_pic'+data.content+'"></div>' +
+                        '<input type="hidden" id="honor_picmsg'+data.content+'" value="'+imgsrc+'">'+
                         '<span class="certificate " style="display: inline-block;width: 570px;white-space: nowrap;text-overflow: ellipsis;">'+certificate_content+'</span>'+
                         '<span class="addandeditbtn" style="top: 0" data-id='+data.content+'>'+
                         '<svg class="icon" aria-hidden="true">'+
@@ -2169,7 +2222,7 @@
                         '</div>';
                 $("#certificate .person_works").append(editpersonhtml);
                 $('.honor_pic'+certificate_id).imagesGrid({
-                    images:[$(".honor_picmsg"+certificate_id).val()]
+                    images:[imgsrc]
                 });
             }
             $("#certificate").show();
@@ -2285,21 +2338,21 @@
     });
 
 
-    $(".upload_video").click(function () {
-        $(".title_content").html("上传个人视频");
-        $("#choosefile").attr("accept","video/*").val("");
-        $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
-                '<use xlink:href="#icon-shangchuan"></use>'+
-                '</svg>');
+    $(".upload_video,#vedio_source").click(function () {
+//        $(".title_content").html("上传个人视频");
+//        $("#choosefile").attr("accept","video/*").val("");
+//        $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
+//                '<use xlink:href="#icon-shangchuan"></use>'+
+//                '</svg>');
         code_url("video");
 
-        $("#modalbox").css("display","block");
+        $("#modalbox2").show();
         upload_timer();
     });
 
-    $("#vedio_source").on("click",function(){
-        $(".upload_video").click()
-    })
+    //    $("#vedio_source").on("click",function(){
+    //        $(".upload_video").click()
+    //    })
     function callback_content(data) {
         if(data.others==1){
 //            $("#avatar-modal").show();
@@ -2308,11 +2361,11 @@
 //            upload_timer();
         }else if(data.others==2){
             var imgbox='<div class="person_worksbtn">'+
-                '<img src="'+data.content+'">'+
-                '<span class="person_worksdelbtn">'+
-                '<svg class="icon" aria-hidden="true">'+
-                '<use xlink:href="#icon-shanchu"></use>'+
-                '</svg></span></div>'
+                    '<img src="'+data.content+'">'+
+                    '<span class="person_worksdelbtn">'+
+                    '<svg class="icon" aria-hidden="true">'+
+                    '<use xlink:href="#icon-shanchu"></use>'+
+                    '</svg></span></div>'
 
             $(".person_worksbtn1").before(imgbox);
             window.clearTimeout(timer1);
@@ -2336,91 +2389,76 @@
         $("#modalbox").css("display","none");
     }
 
-
-
-
-
-
     var uploader = Qiniu.uploader({
-        runtimes: 'html5,flash,html4',      // 上传模式，依次退化
-        browse_button: 'pickfiles',         // 上传选择的点选按钮，必需
-        // 在初始化时，uptoken，uptoken_url，uptoken_func三个参数中必须有一个被设置
-        // 切如果提供了多个，其优先级为uptoken > uptoken_url > uptoken_func
-        // 其中uptoken是直接提供上传凭证，uptoken_url是提供了获取上传凭证的地址，如果需要定制获取uptoken的过程则可以设置uptoken_func
-         uptoken : '{$upToken}', // uptoken是上传凭证，由其他程序生成
-//         uptoken_url: '/uptoken',         // Ajax请求uptoken的Url，强烈建议设置（服务端提供）
-        // uptoken_func: function(){    // 在需要获取uptoken时，该方法会被调用
-        //    // do something
-        //    return uptoken;
-        // },
-        get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的uptoken
-        // downtoken_url: '/downtoken',
-        // Ajax请求downToken的Url，私有空间时使用，JS-SDK将向该地址POST文件的key和domain，服务端返回的JSON必须包含url字段，url值为该文件的下载地址
-        // unique_names: true,              // 默认false，key为文件名。若开启该选项，JS-SDK会为每个文件自动生成key（文件名）
-        // save_key: true,                  // 默认false。若在服务端生成uptoken的上传策略中指定了sava_key，则开启，SDK在前端将不对key进行任何处理
-        domain: 'http://qiniu-plupload.qiniudn.com/',     // bucket域名，下载资源时用到，必需
-        container: 'container',             // 上传区域DOM ID，默认是browser_button的父元素
-        max_file_size: '100mb',             // 最大文件体积限制
-        flash_swf_url: '{WL_URL_ARES}js/Moxie.swf',  //引入flash，相对路径
-        max_retries: 3,                     // 上传失败最大重试次数
-        dragdrop: true,                     // 开启可拖曳上传
-        drop_element: 'container',          // 拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
-        chunk_size: '4mb',                  // 分块上传时，每块的体积
-        auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传
-        //x_vars : {
-        //    查看自定义变量
-        //    'time' : function(up,file) {
-        //        var time = (new Date()).getTime();
-        // do something with 'time'
-        //        return time;
-        //    },
-        //    'size' : function(up,file) {
-        //        var size = file.size;
-        // do something with 'size'
-        //        return size;
-        //    }
-        //},
+        runtimes: 'html5,flash,html4', //上传模式,依次退化
+        browse_button: 'uploadvideobtn', //上传选择的点选按钮，**必需**
+//        uptoken: 'myToken',
+//uptoken_url: '/token', //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+        uptoken: '{$upToken}', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+        unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+// save_key: true, // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
+        domain: 'yingjieseng', //bucket 域名，下载资源时用到，**必需**
+        get_new_uptoken: false, //设置上传文件的时候是否每次都重新获取新的token
+        container: 'uploadvideobox', //上传区域DOM ID，默认是browser_button的父元素，
+        max_file_size: '100mb', //最大文件体积限制
+        flash_swf_url: 'Moxie.swf', //引入flash,相对路径
+        max_retries: 3, //上传失败最大重试次数
+        dragdrop: true, //开启可拖曳上传
+        drop_element: 'uploadvideobox', //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+        chunk_size: '4mb', //分块上传时，每片的体积
+        auto_start: true, //选择文件后自动上传，若关闭需要自己绑定事件触发上传
         init: {
             'FilesAdded': function(up, files) {
                 plupload.each(files, function(file) {
-                    // 文件添加进队列后，处理相关的事情
+// 文件添加进队列后,处理相关的事情
+//                    console.log(file.name);
                 });
             },
             'BeforeUpload': function(up, file) {
-                // 每个文件上传前，处理相关的事情
+// 每个文件上传前,处理相关的事情
             },
             'UploadProgress': function(up, file) {
-                // 每个文件上传时，处理相关的事情
+//                console.log(up);
+                console.log(file.percent);
+// 每个文件上传时,处理相关的事情
             },
             'FileUploaded': function(up, file, info) {
-                // 每个文件上传成功后，处理相关的事情
-                // 其中info.response是文件上传成功后，服务端返回的json，形式如：
-                // {
-                //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
-                //    "key": "gogopher.jpg"
-                //  }
-                // 查看简单反馈
-                // var domain = up.getOption('domain');
-                // var res = parseJSON(info.response);
-                // var sourceLink = domain +"/"+ res.key; 获取上传成功后的文件的Url
+                console.log(info);
+// 每个文件上传成功后,处理相关的事情
+// 其中 info 是文件上传成功后，服务端返回的json，形式如
+// {
+// "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+// "key": "gogopher.jpg"
+// }
+// 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
+// var domain = up.getOption('domain');
+// var res = parseJSON(info);
+// var sourceLink = domain + res.key; 获取上传成功后的文件的Url
             },
             'Error': function(up, err, errTip) {
-                //上传出错时，处理相关的事情
+//上传出错时,处理相关的事情
             },
             'UploadComplete': function() {
-                //队列文件处理完毕后，处理相关的事情
+//队列文件处理完毕后,处理相关的事情
             },
             'Key': function(up, file) {
-                // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
-                // 该配置必须要在unique_names: false，save_key: false时才生效
+// 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+// 该配置必须要在 unique_names: false , save_key: false 时才生效
                 var key = "";
-                // do something with key here
+// do something with key here
                 return key
             }
         }
     });
-    // domain为七牛空间对应的域名，选择某个空间后，可通过 空间设置->基本设置->域名设置 查看获取
-    // uploader为一个plupload对象，继承了所有plupload的方法
+    // domain 为七牛空间（bucket)对应的域名，选择某个空间后可以看到
+    // uploader 为一个plupload对象，继承了所有plupload的方法，参考http://plupload.com/docs
+    $("#uploadvideobtn").on("click",function() {
+        uploader.start();
+    });
+
+    //    $("#videoupload").on("click",function(){
+    //        $("#videofile").click();
+    //    })
 
 </script>
 </html>
