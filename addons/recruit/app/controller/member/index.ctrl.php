@@ -21,8 +21,16 @@ elseif ($op=="login_out"){
     unset($_SESSION['utype']);
     header("location:".app_url('member/index/login'));
 }
+
+//修改密码后退出登录
+elseif($op=="pwd_login_out"){
+    unset($_SESSION['uid']);
+    unset($_SESSION['utype']);
+    header("location:".app_url('member/index/login'));exit();
+}
 //登录
 elseif ($op=="login"){
+
     $back_top = 1;
    if($_SESSION['utype']==1){
        header("location:".app_url('person/index/send_resume'));

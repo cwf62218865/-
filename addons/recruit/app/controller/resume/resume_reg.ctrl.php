@@ -69,6 +69,7 @@ if($op=="1"){
 
     call_back(1,app_url("resume/resume_reg/4"));
 }elseif ($op=="step4_save"){
+
     $data['nation'] = check_pasre($_POST['family_name'],"请选择民族");
     $data['political_status'] = check_pasre($_POST['identity'],"请选择政治面貌");
     $data['origin_place'] = check_pasre($_POST['place'],"请选择籍贯");

@@ -9,11 +9,7 @@
     <link href="{WL_URL_ARES}js/head/bootstrap.css" rel="stylesheet">
     <link href="{WL_URL_ARES}js/head/cropper.min.css" rel="stylesheet">
     <link href="{WL_URL_ARES}js/head/sitelogo.css" rel="stylesheet">
-    <script src="{WL_URL_ARES}js/head/bootstrap.min.js"></script>
-    <script src="{WL_URL_ARES}js/head/cropper.js"></script>
-    <script src="{WL_URL_ARES}js/head/sitelogo.js"></script>
-    <script src="{WL_URL_ARES}js/head/excanvas.js"></script>
-    <script src="{WL_URL_ARES}js/head/html5.js"></script>
+    <link rel="stylesheet" href="{WL_URL_ARES}js/picsrc/images-grid.css">
 
     <!--字体图标样式-->
     <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
@@ -25,6 +21,13 @@
     <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
+
+    <script src="{WL_URL_ARES}js/head/bootstrap.min.js"></script>
+    <script src="{WL_URL_ARES}js/head/cropper.js"></script>
+    <script src="{WL_URL_ARES}js/head/sitelogo.js"></script>
+    <script src="{WL_URL_ARES}js/head/excanvas.js"></script>
+    <script src="{WL_URL_ARES}js/head/html5.js"></script>
+    <script src="{WL_URL_ARES}js/head/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
     <!--<script src="http://html5media.googlecode.com/svn/trunk/src/html5media.min.js"></script>-->
     <title>简历管理</title>
     <style>
@@ -793,7 +796,7 @@
                     <div class=" person_changes_left" style="margin-top: 20px">
                         <span class="font999 resume_msg_name">离职原因</span>
                         <label class="general-input relative" style="width: 460px;">
-                            <input type="text" placeholder="请输入离职原因" data-error="请输入离职原因" style="width: 420px;" name="leave_reason">
+                            <input type="text" placeholder="请输入15字以内的离职原因" data-error="请输入离职原因" style="width: 420px;" name="leave_reason" maxlength="15">
                         </label>
                     </div>
 
@@ -803,7 +806,7 @@
                             <textarea style="width: 546px"  class="cwftextarea" id="job_content"  placeholder="分点描述条理更清晰，更方便HR阅读"></textarea>
                         </div>
 
-                        <div  class="cwftextareatip" style="height: auto;margin-top: 10px;padding-bottom: 13px">
+                        <div  class="cwftextareatip" style="height: auto;margin-top: 10px;">
                             <label class="general-input relative" style="width: 260px;;margin-left: 80px;height: 0;border: none">
                                 <input type="hidden" name="job_content" id="job_contentinput" data-error="请输入你的工作内容">
                             </label>
@@ -855,6 +858,7 @@
                                 <span class="exp_jobleft">{php echo $list['edu_major']}</span>
                                 <span class="exp_jobleft" style="margin-left: 8px">{php echo $list['edu_district']}</span>
                                 <span class="exp_jobright">{if $list['edu_finish_time']}{php echo $list['edu_finish_time']}届{/if}</span>
+                                {if $list['edu_finish_time']}<p class="edu_content">{php echo $list['edu_detail']}</p>{/if}
                             </div>
 
 
@@ -928,6 +932,20 @@
                         </div>
                     </div>
 
+                    <div class=" person_changes_left" style="margin-top: 20px">
+                        <span class="font999 resume_msg_name" style="float: left">在校经历</span>
+                        <div class="cwfreg4content" style="display: inline-block;margin-left: 20px;height: 84px;border: 1px solid #f5f5f5;width: 589px;background-color: #f5f5f5">
+                            <textarea style="width: 546px"  class="cwftextarea edu_area" name="edu_detail" id="edu_detail"  placeholder="分点描述条理更清晰，更方便HR阅读"></textarea>
+                        </div>
+
+                        <div  class="cwftextareatip" style="height: auto;margin-top: 10px;">
+                            <label class="general-input relative" style="width: 260px;;margin-left: 80px;height: 0;border: none">
+                                <input type="hidden" name="edu_detail" id="edu_detailinput">
+                            </label>
+                        </div>
+
+                    </div>
+
 
 
                 </div>
@@ -951,6 +969,7 @@
                 <div class="basic_msg_content">
                     <div class="resume_title">
                         <span>个人作品</span>
+                        <!--<div id="gallery1"></div>-->
                     </div>
 
                     <div class="resume_exp" id="person_works">
@@ -958,7 +977,8 @@
                         <div class="person_works" {if $personal_works}style="display:block;"{else}style="display:none;"{/if}>
                             {loop $personal_works $id $list}
                             <div class="person_work" data-id="{php echo $id}">
-                                <div class="img_box"><img src="{php echo $list['thumb']}"></div>
+                                <input type="hidden" class="person_works_imgs{php echo $id}" value="{$list['person_works']}">
+                                <div class="img_box" id="gallery{php echo $id}"><img src="{php echo $list['thumb']}"></div>
                                 <div class="person_workmsg relative">
                                     <span class="wrap" style="width: 70%">{php echo $list['person_workmsg']}</span>
                                     <span class="addandeditbtn" style="top: 0" data-id="{php echo $id}">
@@ -1084,14 +1104,15 @@
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-xiugai"></use>
                         </svg>
-                        修改
+                        <span class="editit">修改</span>
                     </div>
                     {else}
                     <div class="add">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
                         </svg>
-                        添加
+                        <span class="editit">添加</span>
+
                     </div>
                     {/if}
                 </span>
@@ -1110,6 +1131,8 @@
                         <div class="person_works" >
                             {loop $honor $id $list}
                             <div class="relative" data-id="{$id}">
+                                <div class="honor_pic{$id}"></div>
+                                <input type="hidden" class="honor_picmsg{$id}" value="{$list['certificate_img']}">
                                 <span class="certificate " style="display: inline-block;width: 570px;white-space: nowrap;text-overflow: ellipsis;">{$list['certificate_content']}</span>
                                 <span class="addandeditbtn" style="top: 0"  data-id="{$id}">
                                     <svg class="icon" aria-hidden="true">
@@ -1432,10 +1455,13 @@
 <script src="{WL_URL_ARES}js/src/qiniu.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/src/plupload/moxie.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/src/plupload/plupload.dev.js" rel="script"></script>
-
-
-<script src="{WL_URL_ARES}js/head/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="{WL_URL_ARES}js/picsrc/images-grid.js"></script>
 <script type="text/javascript">
+
+    $(".edu_area").on("input",function(){
+        var content=$(this).val();
+        $("#edu_detailinput").val(content);
+    });
 
     $("body").on("click",".btn-primary",function () {
         $(".loginn_zj").hide();
@@ -1545,6 +1571,7 @@
 
 </script>
 <script>
+
     //上传图片
     $(".modalbtn").on("click",function(){
         var uploadFormData =new FormData($("#choosefile1")[0]);
@@ -1605,6 +1632,7 @@
                     }else if(id=="video"){
                         $(".vedio_source").html('<video src="" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>');
                         $(".person_video").attr("src",data.others);
+                        $("#upload_video .editit").html("修改");
                     }
 
                     $("#modalbox").css("display","none");
@@ -1853,6 +1881,7 @@
             var education=$("#edutionbox input[name=education]").val();
             var edu_major=$("#edutionbox input[name=edu_major]").val();
             var identity=$("#edutionbox input[name=identity]").val();
+            var edu_detail=$("#edutionbox input[name=edu_detail]").val();
 
             if(edu_id){
                 var editedu=$(".resume_exp_content[data-id="+edu_id+"]");
@@ -1860,6 +1889,7 @@
                 editedu.find(".exp_jobleft").eq(0).html(edu_major);
                 editedu.find(".exp_jobleft").eq(1).html(education);
                 editedu.find(".exp_jobright").html(identity+"届");
+                editedu.find(".edu_content").html(edu_detail);
 
             }else{
                 var educontent='<div class="resume_exp_content" data-id='+data.content+'>'+
@@ -1874,7 +1904,7 @@
                         '<div class="exp_job">'+
                         '<span class="exp_jobleft">'+education+'</span>'+
                         '<span class="exp_jobleft" style="margin-left: 8px">'+edu_major+'</span>'+
-                        '<span class="exp_jobright">'+identity+'届</span>'+
+                        '<span class="exp_jobright">'+identity+'届</span><p class="edu_content">'+edu_detail+'</p>'+
                         '</div></div>';
                 $("#edutionexp").append(educontent);
             }
@@ -1915,6 +1945,8 @@
                 $("#edutionbox input[name=education]").val(data.edu_district);
                 $("#edutionbox input[name=edu_major]").val(data.edu_major);
                 $("#edutionbox input[name=identity]").val(data.edu_finish_time);
+                $("#edutionbox input[name=edu_detail]").val(data.edu_detail);
+                $("#edu_detail").val(data.edu_detail);
             }
         })
     });
@@ -1949,6 +1981,16 @@
     })
 
 
+
+    //个人作品初始化图片加载
+    var piccontent0=$(".person_works_imgs0").val().split(",");
+    var piccontent1=$(".person_works_imgs1").val().split(",");
+    $('#gallery0').imagesGrid({
+        images:piccontent0
+    });
+    $('#gallery1').imagesGrid({
+        images:piccontent1
+    });
     //个人作品
     $.fromdata("#person_worksbox","{php echo app_url('person/resume/save_personal_works')}","#save_works_msg",function(data){
        var data = JSON.parse(data);
@@ -1960,11 +2002,15 @@
                 var editperson_work=$(".person_work[data-id="+works_id+"]");
                 editperson_work.find("img").attr("src",person_worksinput.split(",")[0]);
                 editperson_work.find(".wrap").html(person_workmsg);
+                var workpic=[];
+                workpic=person_worksinput.split(",");
 
-
+                $('#gallery'+works_id).imagesGrid({
+                    images:workpic
+                });
             }else{
                 var workshtml='<div class="person_work"  data-id='+data.content+'>'+
-                        '<div class="img_box"><img src='+person_worksinput.split(",")[0]+'></div>'+
+                        '<div class="img_box"  id="gallery'+data.content+'"><img src='+person_worksinput.split(",")[0]+'></div>'+
                         '<div class="person_workmsg relative">'+
                         '<span class="wrap" style="width: 70%">'+person_workmsg+'</span>'+
                         '<span class="addandeditbtn" style="top: 0" data-id='+data.content+'>'+
@@ -1976,7 +2022,11 @@
                         '</div>';
 
                 $(".person_works").eq(0).show().append(workshtml);
-
+                var workpic=[];
+                workpic=person_worksinput.split(",");
+                $('#gallery'+data.content).imagesGrid({
+                    images:workpic
+                });
             }
             if($(".person_work").length>=2){
                 $("#addpersonworks").hide();
@@ -1993,6 +2043,8 @@
             hint("error",data.content);
         }
     })
+
+
 
     //修改个人作品
     $("#person_works ").on("click",".addandeditbtn",function(){
@@ -2082,17 +2134,35 @@
     })
 
 
+    //荣誉证书初始化加载图片
+    var list=$(".person_works .relative");
+    list.each(function () {
+        var data_id=$(this).attr("data-id");
+        $('.honor_pic'+data_id).imagesGrid({
+            images:[$(".honor_picmsg"+data_id).val()]
+        });
+    });
+
+
+
     //荣誉证书
     $.fromdata("#certificatebox","{php echo app_url('person/resume/save_certificate')}","#save_certificate_msg",function(data){
         var data = JSON.parse(data);
         if(data.status==1){
             var certificate_id=$("#certificate_id").val();
             var certificate_content=$("#certificatebox input[name=certificate_content]").val();
+            var imgsrc=$("#certificateaddbtn img").attr("src");
             if(certificate_id){
                 var editperson_work=$("#certificate .relative[data-id="+certificate_id+"]");
                 editperson_work.find(".certificate ").html(certificate_content);
+
+                $('.honor_pic'+certificate_id).imagesGrid({
+                    images:[$(".honor_picmsg"+certificate_id).val()]
+                });
             }else{
                 var editpersonhtml='<div class="relative" data-id='+certificate_id+'>'+
+                        ' <div class="honor_pic'+certificate_id+'"></div>' +
+                        '<input type="hidden" class="honor_picmsg'+certificate_id+'" value="'+imgsrc+'">'+
                         '<span class="certificate " style="display: inline-block;width: 570px;white-space: nowrap;text-overflow: ellipsis;">'+certificate_content+'</span>'+
                         '<span class="addandeditbtn" style="top: 0" data-id='+data.content+'>'+
                         '<svg class="icon" aria-hidden="true">'+
@@ -2101,7 +2171,9 @@
                         '</span>'+
                         '</div>';
                 $("#certificate .person_works").append(editpersonhtml);
-
+                $('.honor_pic'+certificate_id).imagesGrid({
+                    images:[$(".honor_picmsg"+certificate_id).val()]
+                });
             }
             $("#certificate").show();
             $("#addcertificatebtn").show();

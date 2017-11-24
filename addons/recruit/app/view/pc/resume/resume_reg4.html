@@ -159,9 +159,7 @@
 <div class="modalbox creatsucessbox"  style="display: none;">
     <div class="modal" style="width: 430px;margin-left: -215px;height: auto">
         <p class="title_content">创建成功</p>
-        <span class="modalclose">
-            <img src="{WL_URL_ARES}images/close.png"/>
-        </span>
+
         <div class="bdresure textalign" style="width: 340px;">
             创建成功，请前往简历管理中心完善简历信息！
             <p class="tiaozhuanbz"><label class="seconds">5</label>s后跳转至简历管理中心</p>
@@ -242,13 +240,13 @@
                                 if(secons==0){
                                     clearInterval(timer);
                                     //前往完善简历的链接
-                                    window.location.href="";
+                                    window.location.href="/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&";
                                 }
 
                                 $(".denglu").click(function () {
                                     clearInterval(timer);
                                     // 前往完善简历的链接
-                                    window.location.href="";
+                                    window.location.href="/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&";
                                 })
                             },1000);
                     }else{

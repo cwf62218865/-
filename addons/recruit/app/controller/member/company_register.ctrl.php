@@ -182,6 +182,7 @@ elseif ($op=="step3_save"){
     $data['city'] =check_pasre($_POST['company_city'],"请选择所处地区");
     $data['slogan'] =check_pasre($_POST['slogan'],"slogan不能为空");
     $data['tag'] =check_pasre($_POST['welfare'],"请至少选择一个福利标签");
+    $data['updatetime'] = time();
     $r = pdo_update(WL."company_profile",$data,array('uid'=>$_SESSION['uid']));
     if($r){
         call_back(1,app_url("company/index/job_manage"));
