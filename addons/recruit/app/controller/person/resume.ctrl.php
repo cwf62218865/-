@@ -423,17 +423,17 @@ elseif ($op=="download_resume"){
 }
 
 elseif ($op=="video_upload"){
-    $temp_video = upload_video($_FILES);
-    $video = str_replace("/temp/","/file/",$temp_video);
-
-    if(rename($_SERVER['DOCUMENT_ROOT'].$temp_video,$_SERVER['DOCUMENT_ROOT'].$video)){
-        unlink($_SERVER['DOCUMENT_ROOT'] . $resume['personal_video']);
-        $r = pdo_update(WL . "resume", array('person_video' => $video, 'updatetime' => time()), array('uid' => $_SESSION['uid']));
-        if($r){
-            call_back(1,"修改成功",$video);
-        }else{
-            call_back(2,"修改失败");
-        }
+    if($_POST['videourl']){
+         $data['person_video'] = "http://ozt3jbf0x.bkt.clouddn.com/".$_POST['videourl'];
+         $data['updatetime'] = time();
+         $r = pdo_update(WL . "resume", $data, array('uid' => $_SESSION['uid']));
+         if($r){
+             call_back(1,$data['person_video']);
+         }else{
+             call_back(2,"修改失败");
+         }
+    }else{
+        call_back(2,"上传失败");
     }
 }
 

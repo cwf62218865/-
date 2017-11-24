@@ -883,3 +883,8 @@
     background-color: #0099cc;
     color: #fff;
 }
+.videopregressnubs{
+    position: absolute;
+    left: -10px;
+    top: 0;
+}

@@ -1077,6 +1077,7 @@
         </div>
         <div class="resume_exp">
             <div class="person_works relative vedio_source">
+                <div>
                 {if $resume['person_video']}
                 <video src="{php echo $resume['person_video']}" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>
                 <!--<span class="addandeditbtn" style="top: 0" data-id="2">-->
@@ -1086,7 +1087,7 @@
                 <!--修改-->
                 <!--</span>-->
                 {/if}
-
+                </div>
                 <div class="no_expbox" id="vedio_source"  {if empty($resume['person_video'])}style="margin-top: 58px;display:block;"{else}style="margin-top: 58px;display:none;"{/if}>
                             <span class="addandeditbtn1">
                                 <svg class="icon" aria-hidden="true">
@@ -1312,7 +1313,7 @@
 
 <!--上传上传个人视频-->
 <div class="modalbox loginn_zj" id="modalbox2" style="display: none;">
-    <div class="modal">
+    <div class="modal" style="height: auto">
         <p class="title_content">上传个人视频</p>
             <span class="modalclose">
                 <img src="{WL_URL_ARES}images/close.png"/>
@@ -1327,12 +1328,11 @@
                 </div>
 
                 <div class="upload" style="display: none">
-                    <img src="{WL_URL_ARES}images/timg22.png" class="rzpic"/>
                     <div class="meng"><span>重新上传</span></div>
                 </div>
 
             </div>
-            <div class="oneone_btn" style="position: absolute;left: 5px;top: 5px;width: 90px;height: 90px;"></div>
+            <!--<div class="oneone_btn" style="position: absolute;left: 5px;top: 5px;width: 90px;height: 90px;"></div>-->
             <!--<form id="videofile1" enctype="multipart/form-data">-->
             <!--<input type="file" name='file' id="videofile" accept="video/*" style="display: none"/>-->
             <!--</form>-->
@@ -1345,6 +1345,12 @@
         <div class="title">
             <span>电脑上传</span>
             <span>手机扫码上传</span>
+        </div>
+        <div class="title relative" id="videopregress" style="margin-top: 0;display: none">
+            <div class="jindutiao">
+                <div class="videopregressnubs">0%</div>
+                <div class="jindu_con" style="width: 0"></div>
+            </div>
         </div>
         <span class="public_bigbtn bg1aa modalbtn1"> 立即上传</span>
     </div>
@@ -2180,7 +2186,7 @@
                 }
             }
         })
-    })
+    });
 
 
     //荣誉证书初始化加载图片
@@ -2342,14 +2348,12 @@
 
 
     $(".upload_video,#vedio_source").click(function () {
-//        $(".title_content").html("上传个人视频");
-//        $("#choosefile").attr("accept","video/*").val("");
-//        $(".one_btn").html('<svg class="icon" aria-hidden="true">'+
-//                '<use xlink:href="#icon-shangchuan"></use>'+
-//                '</svg>');
         code_url("video");
-
+        $("#uploadvideobtn").css({"width":"138px","height":"138px","left":"-19px","top":"-19px"}).html('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shangchuan"></use>')
+        $("#modalbox2 .title span").eq(0).html("电脑上传");
+        $("#videopregress").hide();
         $("#modalbox2").show();
+
         upload_timer();
     });
 
@@ -2410,23 +2414,68 @@
         drop_element: 'uploadvideobox', //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
         chunk_size: '4mb', //分块上传时，每片的体积
         auto_start: false, //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        filters : {
+            max_file_size : '100mb',
+            prevent_duplicates: true,
+            // Specify what files to browse for
+            mime_types: [
+//                {title : "flv files", extensions : "flv"}, // 限定flv后缀上传格式上传
+                {title : "Video files", extensions : "flv,mpg,mpeg,avi,wmv,mov,asf,rm,rmvb,mkv,m4v,mp4"}, // 限定flv,mpg,mpeg,avi,wmv,mov,asf,rm,rmvb,mkv,m4v,mp4后缀格式上传
+//                {title : "Image files", extensions : "jpg,gif,png"}, // 限定jpg,gif,png后缀上传
+//                {title : "Zip files", extensions : "zip"} // 限定zip后缀上传
+            ]
+        },
         init: {
             'FilesAdded': function(up, files) {
                 plupload.each(files, function(file) {
 // 文件添加进队列后,处理相关的事情
+                    $("#modalbox2 .modalbtn1").html("立即上传");
                     console.log(file.name);
+                    $("#uploadvideobtn use").attr("xlink:href","#icon-shipinwenjian");
+                    $("#uploadvideobtn").css({"width":"100px","height":"100px","left":"0","top":"0","color":"#bbb"})
+                    $("#modalbox2 .title span").eq(0).html(file.name);
                 });
             },
             'BeforeUpload': function(up, file) {
 // 每个文件上传前,处理相关的事情
             },
             'UploadProgress': function(up, file) {
-//                console.log(up);
+                $("#modalbox2 .modalbtn1").html("上传中");
+                $("#videopregress").show();
+                $("#videopregress .videopregressnubs").html(file.percent).css("left",file.percent*2.7-10+"px");
+                $("#videopregress .jindu_con").stop().animate({"width":file.percent+"%"},100);
                 console.log(file.percent);
+
 // 每个文件上传时,处理相关的事情
             },
             'FileUploaded': function(up, file, info) {
-                console.log(info);
+                var domain = up.getOption('domain');
+                var res = JSON.parse(info.response);
+                var sourceLink =res.key;
+                console.log(sourceLink);
+
+                $.ajax({
+                    url:"{php echo app_url('person/resume/video_upload')}",
+                    type:"post",
+                    data:{
+
+                        videourl:sourceLink
+                    },
+                    success:function(data){
+                        var data=JSON.parse(data);
+                        if(data.status==1){
+                            $("#modalbox2 .modalbtn1").html("上传成功");
+                            $("#vedio_source").hide();
+                            $("#vedio_source").prev().html('<video src="'+data.content+'" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>');
+                            setTimeout(function(){
+                                $("#modalbox2").hide()
+                            },1200);
+                        }else{
+                            hint("error",data.content);
+                        }
+                    }
+
+                });
 // 每个文件上传成功后,处理相关的事情
 // 其中 info 是文件上传成功后，服务端返回的json，形式如
 // {
@@ -2434,12 +2483,11 @@
 // "key": "gogopher.jpg"
 // }
 // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
-// var domain = up.getOption('domain');
-// var res = parseJSON(info);
-// var sourceLink = domain + res.key; 获取上传成功后的文件的Url
+
             },
             'Error': function(up, err, errTip) {
 //上传出错时,处理相关的事情
+                hint("error",err);
             },
             'UploadComplete': function() {
 //队列文件处理完毕后,处理相关的事情
@@ -2458,6 +2506,9 @@
     $(".modalbtn1").on("click",function() {
         uploader.start();
     });
+    $("#modalbox2 .modalclose").on("click",function(){
+        uploader.stop();
+    })
 
     //    $("#videoupload").on("click",function(){
     //        $("#videofile").click();
