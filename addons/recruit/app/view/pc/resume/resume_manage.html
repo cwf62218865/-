@@ -2197,11 +2197,10 @@
     //荣誉证书
     $.fromdata("#certificatebox","{php echo app_url('person/resume/save_certificate')}","#save_certificate_msg",function(data){
         var data = JSON.parse(data);
+        var imgsrc=$(this).closest("#certificatebox").find("#certificateaddbtn img").attr("src");
         if(data.status==1){
             var certificate_id=$("#certificate_id").val();
             var certificate_content=$("#certificatebox input[name=certificate_content]").val();
-            var imgsrc=$("#certificateaddbtn img").attr("src");
-            console.log(imgsrc);
             if(certificate_id){
                 var editperson_work=$("#certificate .relative[data-id="+certificate_id+"]");
                 editperson_work.find(".certificate ").html(certificate_content);
@@ -2221,7 +2220,7 @@
                         '</span>'+
                         '</div>';
                 $("#certificate .person_works").append(editpersonhtml);
-                $('.honor_pic'+certificate_id).imagesGrid({
+                $('.honor_pic'+data.content).imagesGrid({
                     images:[imgsrc]
                 });
             }
@@ -2274,6 +2273,10 @@
 //                        "</div>";
 //
 //                $("#certificatebox .person_worksbtn1").html(imagebox);
+
+                $('.honor_pic'+data_id).imagesGrid({
+                    images:[data.certificate_img]
+                });
             }
         })
     });

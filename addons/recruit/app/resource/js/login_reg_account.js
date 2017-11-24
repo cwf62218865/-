@@ -168,6 +168,8 @@ function send_resume(){
         $(".resume_content").hide();
         $(".beizhus").show();
         $(".job_send").show();
+        $(".list_top .checkbox").show();
+        $(".list_top .biezhu").show();
     });
     $("#review").click(function(){
         $(".resume_content").show();
@@ -175,6 +177,8 @@ function send_resume(){
         $(".list_content").hide();
         $(".beizhus").hide();
         $(".job_send").hide();
+        $(".list_top .checkbox").hide();
+        $(".list_top .biezhu").hide();
     })
 }
 

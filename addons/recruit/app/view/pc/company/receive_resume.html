@@ -39,7 +39,7 @@
                         <svg class="icon ico_xiala" style="margin-top: 22px;color: #bbbbbb;margin-left: 10px">
                             <use xlink:href="#icon-xiala"></use>
                         </svg>
-                    <div class="my_joblist">
+                    <div class="my_joblist" style="width: 204px;padding-left: 22px;padding-top: 10px;padding-bottom: 10px;text-align: left">
                         <p class="option_select"  data-id="0">全部职位</p>
                         {loop $job $list}
                         <p class="option_select" data-id="{$list['id']}">{php echo $list['jobs_name']}</p>
@@ -68,39 +68,36 @@
                         </a>
                         <div class="basic_massage">
                             <div class="bm_hang1">
-                                <span class="name">{php echo $list['fullname']}</span>
-                                <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}" target="_blank">查看</a>
-                                <a  class="hope_job" href="{php echo app_url('company/index/job_manage')}">{php echo $list['jobs_name']}</a>
+                                <a class="name" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">{php echo $list['fullname']}</a>
+                                <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">查看</a>
+
+                                <label style="float: right;width: 60px;display: inline-block;height: 26px;line-height: 26px;">
+                                    <span class="basic_xx" style="line-height: 26px;">{if $list['sex']==2}女{else}男{/if}</span>
+                                    <span class="basic_xx" style="margin-left: 10px;line-height: 26px;">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
+                                </label>
                             </div>
                             <div class="bm_hang2">
-                                <span class="basic_xx">{if $list['sex']==2}女生{else}男生{/if}</span>
-                                <span class="basic_xx" style="margin-left: 10px;">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
-                                <span class="basic_xx" style="margin-left: 26px;">{php echo $list['education']}</span>
+                               应聘岗位：
                             </div>
                             <div class="bm_hang3">
-                                <span class="basic_xx">{php echo $list['school_name']}</span>
-                                <span class="basic_xx"  style="margin-left: 16px;">{php echo $list['major']}</span>
-                            </div>
-                            <div class="bm_hang4">
-                                <span class="basic_xx expirencw">{php echo $list['experience']}</span>
-                                <span class="basic_xx" style="margin-left: 10px;">{php echo $list['telphone']}</span>
+                                <a  class="hope_job" href="{php echo app_url('company/index/job_manage')}" style="text-align: left;width: 100%;">{php echo $list['jobs_name']}</a>
                             </div>
                         </div>
                         <div class="xian1"></div>
-                        <div class="status">
+                        <div class="status" style="height: auto;">
                             <p class="time">
                                 <div style="height: 26px">
-                                    <span style=";display:inline-block;float: left;line-height: 26px">期望职位：</span>
-                                    {loop explode(",",$list['hope_job']) $li}
-                                    <span class="job_hope nowrap">{$li}</span>
-                                    {/loop}
+                                    <span style=";display:inline-block;float: left;line-height: 26px">学历：</span>
+
+                                    <span class="job_hope nowrap">{php echo $list['education']}</span>
+
                                 </div>
                             </p>
                             <p class="review_tel">
-                                <span>期望薪资：<label>{$list['salary']}</label></span>
+                                <span>毕业学校：<label>{php echo $list['school_name']}    {php echo $list['major']}</label></span>
                             </p>
-                            <p class="review_address">
-                                <span>期望工作地点：<label>{$list['hope_place']}</label></span>
+                            <p class="review_address" style="height: 45px;">
+                                <span>{php echo $list['experience']}<label style="margin-left: 15px;">{php echo $list['telphone']}</label></span>
                             </p>
                         </div>
                     </div>
@@ -147,22 +144,20 @@
                         </div>
                         <div class="basic_massage">
                             <div class="bm_hang1">
-                                <span class="name">{php echo $list['fullname']}</span>
-                                <span class="view_i">查看</span>
-                                <a href="{php echo app_url('company/index/job_manage')}" class="hope_job">{php echo $list['jobs_name']}</a>
+                                <a class="name" class="name" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">{php echo $list['fullname']}</a>
+                                <a class="view_i" class="name" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">查看</a>
+                                <label style="float: right;width: 60px;display: inline-block;height: 26px;line-height: 26px;">
+                                    <span class="basic_xx" style="line-height: 26px;">{if $list['sex']==2}女{else}男{/if}</span>
+                                    <span class="basic_xx" style="margin-left: 10px;line-height: 26px;">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
+                                </label>
                             </div>
                             <div class="bm_hang2">
-                                <span class="basic_xx">{if $list['sex']==2}女生{else}男生{/if}</span>
-                                <span class="basic_xx" style="margin-left: 10px;">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
+                                <span class="basic_xx">{php echo $list['experience']}</span>
                                 <span class="basic_xx" style="margin-left: 26px;">{php echo $list['education']}</span>
                             </div>
                             <div class="bm_hang3">
                                 <span class="basic_xx">{php echo $list['school_name']}</span>
                                 <span class="basic_xx"  style="margin-left: 16px;">{php echo $list['major']}</span>
-                            </div>
-                            <div class="bm_hang4">
-                                <span class="basic_xx expirencw">{php echo $list['experience']}</span>
-                                <span class="basic_xx" style="margin-left: 10px;">{php echo $list['telphone']}</span>
                             </div>
                         </div>
                         <div class="xian1"></div>
