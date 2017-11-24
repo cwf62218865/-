@@ -25,9 +25,7 @@ elseif ($op=="received_resume"){
         call_back(1,$received_resume);
     }
     $job = pdo_fetchall("select * from ".tablename(WL."jobs")." where uid=".$_SESSION['uid']);
-
     $collect_resume  = m("company")->getall_collect($_SESSION['uid']);
-
     include wl_template("company/receive_resume");
 }
 
@@ -184,16 +182,16 @@ elseif ($op=="check_resume_deal"){
             $data['puid'] = $jobs_apply['puid'];
             $r = insert_table($data,WL."interview");
             if ($r){
-                call_back(1,"ok");
+                call_back(1,"提交成功");
             }else{
-                call_back(2,"no1");
+                call_back(2,"提交失败");
             }
         }
     }
     if($r){
-        call_back(1,"ok");
+        call_back(1,"提交成功");
     }else{
-        call_back(2,"no2");
+        call_back(2,"提交失败");
     }
 }
 
@@ -202,9 +200,9 @@ elseif ($op=="refuse_review"){
     if($_POST['apply_id']){
         $r = pdo_update(WL."jobs_apply",array('status'=>'-1'),array('id'=>$_POST['apply_id'],'uid'=>$_SESSION['uid']));
         if($r){
-            call_back(1,"ok");
+            call_back(1,"提交成功");
         }else{
-            call_back(2,"no");
+            call_back(2,"提交失败");
         }
     }
 }
@@ -236,9 +234,9 @@ elseif ($op=="send_review"){
         $data['createtime'] = time();
         $r = insert_table($data,WL."interview");
         if($r){
-            call_back(1,"ok");
+            call_back(1,"提交成功");
         }else{
-            call_back(2,"no");
+            call_back(2,"提交失败");
         }
     }
 }

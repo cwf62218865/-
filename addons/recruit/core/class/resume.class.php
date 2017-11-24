@@ -76,13 +76,13 @@ class resume{
             $jobs[$key]['city'] = $company_profile['city'];
 
             if($status==3){
+
                 $interview = pdo_fetch("select time_stamp from ".tablename(WL."interview")." where apply_id=".$list['id']);
-                if(($interview['time_stamp']+60*60*24)<time()){
+                if($interview['time_stamp']>time()){
                     $jobs[$key] = "";
                 }
             }
         }
-
         return array_filter($jobs);
     }
 
