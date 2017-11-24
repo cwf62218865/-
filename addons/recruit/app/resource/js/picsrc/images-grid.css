@@ -38,13 +38,13 @@
 .imgs-grid .imgs-grid-image .image-wrap {
   position: relative;
   display: inline-block;
+  width: 320px;
+  height: 260px;
   overflow: hidden;
   vertical-align: middle;
 }
 .imgs-grid .imgs-grid-image .image-wrap img {
   position: relative;
-  width: 320px;
-  height: 260px;
   margin: 0;
 }
 .imgs-grid .imgs-grid-image .view-all {

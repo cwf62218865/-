@@ -2093,7 +2093,7 @@
 
             $("#person_worksbox").hide();
             $("#person_works1").hide();
-
+            changeimgsize();
         }else{
             hint("error",data.content);
         }
@@ -2514,5 +2514,16 @@
     //        $("#videofile").click();
     //    })
 
+    function changeimgsize(){
+        $(".image-wrap img").each(function(){
+            var _this=$(this);
+            if(_this.width()>_this.height()){
+                _this.height("100%");
+            }else{
+                _this.width("100%");
+            }
+        })
+    };
+    changeimgsize()
 </script>
 </html>
