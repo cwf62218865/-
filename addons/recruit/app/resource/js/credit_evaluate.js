@@ -367,7 +367,7 @@ $("body").on("click",".onebq",function () {
         _this.find(".biaoqianxuanze").append('<span class="one_se">' +bq +'<svg class="icon shnchuico" style=""><use  xlink:href="#icon-shan"></use></svg></span>')
         $(this).attr("flag",1);}
     if(len==5){
-        alert("最多只能添加5个标签！")
+        hint("error","最多只能添加5个标签！")
     }
 })
 $("body").on("click",".btntj",function () {
@@ -379,7 +379,7 @@ $("body").on("click",".btntj",function () {
         var zbq= _this.find(".bqzidingyi").val("");
     }
     if(len==5){
-        alert("最多只能添加5个标签！")
+        hint("error","最多只能添加5个标签！")
         var zbq=$(".bqzidingyi").val("");
     }
 })

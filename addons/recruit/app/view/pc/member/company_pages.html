@@ -12,7 +12,7 @@
     <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/company_msg.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
-    <script src="http://api.map.baidu.com/api?v=2.0&ak=YrLaqu3cNGX66NynxPIWR9sS7n5ASDd1"></script>
+
 
     <title>企业主页</title>
     <style>
@@ -449,15 +449,7 @@
 
 <script type="text/javascript">
 
-    // 百度地图API功能
-    var map = new BMap.Map("allmap");
-    var point = new BMap.Point("{$company['retoate_x']}","{$company['retoate_y']}");
-    //    map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
-    //    map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
-    //    map.centerAndZoom(point,12);
-    map.centerAndZoom(point, 16);
-    map.addOverlay(new BMap.Marker(point));
-    var myGeo = new BMap.Geocoder();
+
 
     $(".btnditu").on("click",function () {
         $("#modalbox1").show();

@@ -11,6 +11,8 @@ $action = $_GPC['ac'];
 $op = $_GPC['op']?$_GPC['op']:"index";
 
 include_once(WL_CORE.'/common/baidu-sdk/demos/website/baiduapi.inc.php');
+require_once(WL_CORE."/common/Connect2.1/API/qqConnectAPI.php");
+
 $baidu_loginUrl = $baidu->getLoginUrl('', 'popup')."&url=".$_SERVER['QUERY_STRING'];
 
 //用户登录判断
