@@ -6,7 +6,7 @@
             </svg>
         </a>
         <a class="title_items" href="{php echo app_url('person/index/send_resume')}">
-            <p class="span">投递管理</p>
+            <p class="span" {if $op=="send_resume"}style="color: #333333;"{/if}>投递管理</p>
             <p class="item_beizhu">投递记录、面试邀请</p>
         </a>
     </div>
@@ -17,7 +17,7 @@
             </svg>
         </a>
         <a class="title_items" href="{php echo app_url('person/resume/manage_resume')}">
-            <p class="span">简历管理</p>
+            <p class="span" {if $op=="manage_resume"}style="color: #333333;"{/if}>简历管理</p>
             <p class="item_beizhu">编辑、修改简历信息</p>
         </a>
     </div>
@@ -28,7 +28,7 @@
             </svg>
         </a>
         <a class="title_items" href="{php echo app_url('person/index/collection_jobs_list')}">
-            <p class="span">收藏订阅</p>
+            <p class="span" {if $op=="collection_jobs_list"}style="color: #333333;"{/if}>收藏订阅</p>
             <p class="item_beizhu">收藏、订阅的职位</p>
         </a>
     </div>
@@ -39,7 +39,7 @@
             </svg>
         </a>
         <a class="title_items" href="{php echo app_url('person/index/credit_evaluate')}">
-            <p class="span">职场信用</p>
+            <p class="span" {if $op=="credit_evaluate"}style="color: #333333;"{/if}>职场信用</p>
             <p class="item_beizhu">面试评价、举报反馈</p>
         </a>
     </div>

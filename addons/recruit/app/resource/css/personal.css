@@ -442,6 +442,9 @@
     width: 100%;
     float: left;
     font-size: 16px;}
+.bordertop{
+    border-top: 1px solid #eeeeee;
+}
 .tongyi_statas,.tongyi,.tongyi1,.tongyi2{
     color: #0099cc;
 }

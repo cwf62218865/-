@@ -580,10 +580,10 @@ elseif ($op=="search_jobs_ajax"){
                             <a class=\"jobname nowrap\" href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."'>{$list['jobs_name']}</a>
                             <label class=\"salary\">{$list['salary']}</label>
                         </div>
-                        <div class=\"hang2\">
-                            <label class=\"experience nowrap\">{$list['experience']}</label>
-                            <span class=\"major nowrap\">{$list['education']}</span>
-                            <span class=\"xingzhi\">{$list['number_range']}人/{$list['work_nature']}</span>
+                        <div class=\"hang2\"  style=\"width: 100%;\">
+                            <span class=\"major nowrap\"  style=\"width: 65px;\">{$list['education']}</span>
+                            <lable class=\"experience nowrap\">{$list['number_range']}人</lable>
+                            <span class=\"xingzhi\">{$list['work_nature']}</span>
                         </div>
                         <div class=\"hang3\">
                             <p>工作经验：<label class=\"job_jingyan\">{$list['experience']}</label></p>

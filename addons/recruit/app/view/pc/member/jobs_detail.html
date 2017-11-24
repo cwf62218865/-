@@ -99,8 +99,8 @@
                     </div>
 
                     <div style="margin-top: 20px" data-id="{php echo $jobs['uid']}">
-                        {if $jobs['tag']}
-                        {loop explode(',',$jobs['tag']) $list}
+                        {if $company['tag']}
+                        {loop explode(',',$company['tag']) $list}
                         <span class="welfare_label">{$list}</span>
                         {/loop}
                         {/if}
@@ -232,7 +232,7 @@
             </div>
 
             <div class="company_recruit_msg">
-                <a class="font18 color333 hover09c" style="margin-top: 20px" href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">
+                <a class="font18 color333 hover09c nowrap" style="margin-top: 20px;width: 280px;margin-left: 15px;" href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">
                     {php echo $company['companyname']}
                     <svg class="icon" style="font-size: 22px;color: #09c">
                         <use xlink:href="#icon-renzheng"></use>

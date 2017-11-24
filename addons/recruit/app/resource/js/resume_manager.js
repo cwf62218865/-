@@ -551,6 +551,7 @@ $("#addedutionexp,#edutionexp1").on("click",function(){
     $(".formtip").remove();
 
     $("#edu_id").val("");
+    $("#edu_detail").val("");
     $("#edutionexp").hide();
     $("#addedutionexp").hide();
     $("#edutionbox").show();

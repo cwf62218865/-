@@ -241,7 +241,7 @@
                                 </div>
                                 <div class="xiangqing">
                                     <div class="xqhang">
-                                        <span class="ico_titlesta">总体评价:</span>
+                                        <span class="ico_titlesta" style="margin-right: 14px;">总体评价:</span>
                                         <span class="stars_n">
                                         {$list['count_score']}
                                         </span>
@@ -270,11 +270,11 @@
                                         <svg class="icon zan1" aria-hidden="true">
                                             <use  xlink:href="#icon-zan1"></use>
                                         </svg>
-                                        <span class="zannum">{php echo count(array_filter(explode(",",$list['zan'])))}</span>
+                                        <span class="zannum">({php echo count(array_filter(explode(",",$list['zan'])))})</span>
                                     </div>
                                     {if $list['hr_reply']}
                                     <div class="evaluate_huifu">
-                                        <img class="hrtx touxiangpic" src="{$list['logo']}"/>
+                                        <img class="hrtx" src="{$list['logo']}"/>
                                         <div class="hrhf">
                                             <p class="hftitle">HR回复：</p><span class="date_num">{php echo date("Y-m-d",$list['reply_time'])}</span>
                                             <p class="hfcon">{$list['hr_reply']}</p>

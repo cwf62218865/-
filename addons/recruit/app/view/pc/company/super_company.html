@@ -57,6 +57,19 @@
             margin-top: 20px;
         }
 
+        .company_recruit_msg .foot_btns .con .icons:nth-child(2):hover{
+            background: #22a4ff;
+        }
+        .company_recruit_msg .foot_btns .con .icons:nth-child(3):hover{
+            background: #04b00f;
+        }
+        .company_recruit_msg .foot_btns .con .icons:nth-child(4):hover{
+            background: #ff424f;
+        }
+        .company_recruit_msg .foot_btns .con .icons:nth-child(5):hover{
+            background: #306fb7;
+        }
+
     </style>
 
 </head>
@@ -102,7 +115,7 @@
                             </div>
                             <div class="swiper-pagination swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div>
                             <!-- 如果需要导航按钮 -->
-                            <div class="swiper-button-prev swiper-button-disabled"></div>
+                            <div class="swiper-button-prev"></div>
                             <div class="swiper-button-next"></div>
                         </div>
                     </div>
@@ -699,7 +712,7 @@
                 url:"",
                 type:"post",
                 data:{
-                    mobile:mobile
+
                 },
                 success:function(data){
                     if(data){

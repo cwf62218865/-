@@ -82,7 +82,7 @@
             <!--订阅职位-------------------------------->
             <div class="lists_contanier resume_content">
                 <!--编辑订阅器-->
-                <div class="edit_dingyue" {if $order_jobs}flag="1"{else}flag="0"{/if}>
+                <div class="edit_dingyue" {if $order_jobs}flag="1"{else}flag="0"{/if} >
                     <label class="general-input current">
                         <input type="text" id="job_name" style="" placeholder="请输入职位名称" value="{php echo $order_jobs['jobs_name']}">
                     </label>
@@ -132,14 +132,14 @@
                         <div class="options options1" style="height: 0px;">
                             <div class="select-option1" flag="0"><span>IT互联网</span></div>
                             <div class="select-option1" flag="0"><span>物流运输</span></div>
-                            <div class="select-option1" flag="0"><span>制造加工</span> </div>
-                            <div class="select-option1" flag="0"><span>房地产</span> </div>
-                            <div class="select-option1" flag="0"><span>教育培训</span> </div>
-                            <div class="select-option1" flag="0"><span>医疗医药</span> </div>
-                            <div class="select-option1" flag="0"><span>能源化工</span> </div>
-                            <div class="select-option1" flag="0"><span>餐饮百货</span> </div>
-                            <div class="select-option1" flag="0"><span>人力资源</span> </div>
-                            <div class="select-option1" flag="0"><span>金融投资证券</span> </div>
+                            <div class="select-option1" flag="0"><span>制造加工</span></div>
+                            <div class="select-option1" flag="0"><span>房地产</span></div>
+                            <div class="select-option1" flag="0"><span>教育培训</span></div>
+                            <div class="select-option1" flag="0"><span>医疗医药</span></div>
+                            <div class="select-option1" flag="0"><span>能源化工</span></div>
+                            <div class="select-option1" flag="0"><span>餐饮百货</span></div>
+                            <div class="select-option1" flag="0"><span>人力资源</span></div>
+                            <div class="select-option1" flag="0"><span>金融投资证券</span></div>
                             <div class="select-option1" flag="0"><span>其他</span> </div>
                             <div class="btns_d">
                                 <div class="public_bigbtn bg1aa currntbtn" id="hy_preserve">保存</div><span class="color_main cur margin_l" id="hy_quxiao">取消</span>
@@ -269,7 +269,7 @@
                 </div>
                 {/loop}
                     {else}
-                    <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有符合订阅条件的职位</div><div class="color999" style="margin-top: 30px">请重新修改订阅条件</div></div></div>
+                    <!--<div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有符合订阅条件的职位</div><div class="color999" style="margin-top: 30px">请重新修改订阅条件</div></div></div>-->
                     {/if}
 
                     {if count($order_jobs_list)>6}

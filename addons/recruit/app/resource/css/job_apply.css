@@ -101,7 +101,7 @@
     line-height: 40px;
     text-align: center;
     border: 1px solid #ffffff;
-    z-index: 9999;
+    z-index: 999;
     right: 0;
 }
 .more_city:hover .gengduo{
@@ -230,6 +230,10 @@
     margin-top: 20px;
     margin: 0 auto;
 }
+.navstlye{
+    width: 805px;
+    margin-left: 40px;
+}
 .xiala{
     margin-left: 15px;
     color:#bbbbbb ;
@@ -238,6 +242,42 @@
     color: #666666;
     margin-right: 80px;
     cursor: pointer;
+}
+.salary_setting{
+    position: absolute;width: 200px;height: 90px;background: #ffffff;border: 1px solid #eeeeee;left: 79px;
+    display: none;top: -1px;
+}
+.sszjs{
+    display: block;float: left;width: 80px;height:24px;margin-left: 0;background: #eeeeee;margin-top: 19px;margin-right: 70px;
+}
+.salery_input{
+    width:50px;margin-left: 10px; float: left;height: 24px;background: #eeeeee;
+    text-align: center;
+}
+.linkxx{
+    float: left;margin-left: 6px;margin-right: 6px;
+}
+.setinput{
+    outline: none;
+}
+.btnset{
+    width: 130px;float: right;margin-right: 15px;    margin-top: -5px;
+}
+.quxiaobtns,.quedingbtns{
+    width: 58px;height: 22px;float: left;line-height: 22px;text-align: center;
+    cursor: pointer;
+}
+.quxiaobtns{
+    border: 1px solid #eeeeee;
+}
+.quedingbtns{
+    float: right;
+    background: #a8c9ea;
+    border: 1px solid #a8c9ea;
+    color: #ffffff;
+}
+.danwei{
+    height: 24px;line-height: 24px;display: inline-block;float: left;color: #bbbbbb;
 }
 .pailie{
     color: #999999;
@@ -428,6 +468,11 @@
     float: left;
     line-height: 22px;
     width: 180px;overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.nowrap{
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }

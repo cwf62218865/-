@@ -6,7 +6,7 @@
             </svg>
         </a>
         <a class="title_items" href="{php echo app_url('company/resume/received_resume')}">
-            <p class="span">简历管理</p>
+            <p class="span" {if $op=="received_resume"}style="color: #333333;"{/if}>简历管理</p>
             <p class="item_beizhu">管理收到、收藏的简历</p>
         </a>
 
@@ -19,7 +19,7 @@
             </svg>
         </a>
         <a class="title_items" href="{php echo app_url('company/index/job_manage')}">
-            <p class="span">职位管理</p>
+            <p class="span" {if $op=="job_manage"}style="color: #333333;"{/if}>职位管理</p>
             <p class="item_beizhu">编辑职位、新增职位</p>
         </a>
     </div>
@@ -30,7 +30,7 @@
             </svg>
         </a>
         <a class="title_items" href="{php echo app_url('company/index/manage_resume')}">
-            <p class="span">HR工作</p>
+            <p class="span" {if $op=="manage_resume"}style="color: #333333;"{/if}>HR工作</p>
             <p class="item_beizhu">面试日程、职位搜索</p>
         </a>
     </div>
@@ -41,7 +41,7 @@
             </svg>
         </a>
         <a class="title_items" href="{php echo app_url('company/company_profile')}">
-            <p class="span">公司信息</p>
+            <p class="span" {if $action=="company_profile"}style="color: #333333;"{/if}>公司信息</p>
             <p class="item_beizhu">编辑、修改公司信息</p>
         </a>
     </div>

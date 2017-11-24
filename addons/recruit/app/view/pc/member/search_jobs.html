@@ -104,45 +104,63 @@
     <div class="p1_left" style="margin-top: 10px">
         <div class="con_list">
             <div class="list_top">
-                <div class="con_top1">
-
+                <div class="con_top1 navstlye" style="position: relative;">
                     <label class="pailie" style="float: left">薪资待遇：</label>
-                    <div class="job_send xinzi_color" style="display: block;float: left;width: 80px;margin-right: 0">
-                        <span class="wenzi">下限</span>
-                        <svg class="icon ico_xiala" style="margin-top: 22px;color: #bbbbbb;margin-left: 10px">
-                            <use xlink:href="#icon-xiala"></use>
-                        </svg>
-                        <div class="my_joblist" id="lower" style="display: block;height: 0px;padding: 0;width: 80px">
-                            <p class="option_select" data-id="0">不限</p>
-                            <p class="option_select" data-id="1">2k</p>
-                            <p class="option_select" data-id="2">4k</p>
-                            <p class="option_select" data-id="3">6k</p>
-                            <p class="option_select" data-id="4">8k</p>
-                            <p class="option_select" data-id="5">10k</p>
-                            <p class="option_select" data-id="6">15k</p>
-                        </div>
-                        -
+                    <div class="job_send xinzi_color sszjs" style="margin-right: 0px;">
+                        <input type="text" readonly class="salery_input lower">
+                        <label class="danwei">k</label>
+                        <!--<span class="wenzi">下限</span>-->
+                        <!--<svg class="icon ico_xiala" style="margin-top: 22px;color: #bbbbbb;margin-left: 10px">-->
+                            <!--<use xlink:href="#icon-xiala"></use>-->
+                        <!--</svg>-->
+                        <!--<div class="my_joblist" id="lower" style="display: block;height: 0px;padding: 0;width: 80px">-->
+                            <!--<p class="option_select" data-id="0">不限</p>-->
+                            <!--<p class="option_select" data-id="1">2k</p>-->
+                            <!--<p class="option_select" data-id="2">4k</p>-->
+                            <!--<p class="option_select" data-id="3">6k</p>-->
+                            <!--<p class="option_select" data-id="4">8k</p>-->
+                            <!--<p class="option_select" data-id="5">10k</p>-->
+                            <!--<p class="option_select" data-id="6">15k</p>-->
+                        <!--</div>-->
                     </div>
-
-                    <div class="job_send xinzi_color" style="display: block;float: left;width: 80px;margin-right: 20px">
-                        <span class="wenzi">上限</span>
-                        <svg class="icon ico_xiala" style="margin-top: 22px;color: #bbbbbb;margin-left: 10px">
-                            <use xlink:href="#icon-xiala"></use>
-                        </svg>
-                        <div class="my_joblist" id="upper" style="display: block;height: 0px;padding: 0;width: 80px">
-                            <p class="option_select" data-id="0">不限</p>
-                            <p class="option_select" data-id="1">2k</p>
-                            <p class="option_select" data-id="2">4k</p>
-                            <p class="option_select" data-id="3">6k</p>
-                            <p class="option_select" data-id="4">8k</p>
-                            <p class="option_select" data-id="5">10k</p>
-                            <p class="option_select" data-id="6">15k</p>
+                    <div class="linkxx"> -</div>
+                    <div class="job_send xinzi_color sszjs">
+                        <input type="text" readonly class="salery_input upper">
+                        <label class="danwei">k</label>
+                        <!--<span class="wenzi">上限</span>-->
+                        <!--<svg class="icon ico_xiala" style="margin-top: 22px;color: #bbbbbb;margin-left: 10px">-->
+                            <!--<use xlink:href="#icon-xiala"></use>-->
+                        <!--</svg>-->
+                        <!--<div class="my_joblist" id="upper" style="display: block;height: 0px;padding: 0;width: 80px">-->
+                            <!--<p class="option_select" data-id="0">不限</p>-->
+                            <!--<p class="option_select" data-id="1">2k</p>-->
+                            <!--<p class="option_select" data-id="2">4k</p>-->
+                            <!--<p class="option_select" data-id="3">6k</p>-->
+                            <!--<p class="option_select" data-id="4">8k</p>-->
+                            <!--<p class="option_select" data-id="5">10k</p>-->
+                            <!--<p class="option_select" data-id="6">15k</p>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="salary_setting">
+                        <div class="job_send xinzi_color sszjs" style="margin-right: 0px;margin-left: 10px;">
+                            <input type="text"  class="salery_input setinput"  id="lower" onkeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" maxlength="4">
+                            <label class="danwei">k</label>
                         </div>
+                        <div class="linkxx"> -</div>
+                        <div class="job_send xinzi_color sszjs"  style="margin-right: 0px;">
+                            <input type="text"  class="salery_input setinput" id="upper" onkeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" maxlength="4">
+                            <label class="danwei">k</label>
+                        </div>
+                        <div class="btnset">
+                            <div class="quxiaobtns">取消</div>
+                            <div class="quedingbtns">确定</div>
+                        </div>
+
                     </div>
 
 
                     <label class="pailie">排列方式：</label>
-                    <span class="select_item1 city_select">默认排序</span>
+                    <span class="select_item1 city_select">默认</span>
                     <span class="select_item1 ">发布时间</span>
                     <span class="select_item1 ">关注度</span>
                     <label class="yemabtn">
@@ -219,7 +237,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="review_statas" data-id="{$list['uid']}" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" style="border-top: 1px solid #eeeeee">
+                    <a class="review_statas bordertop" data-id="{$list['uid']}" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" style="border-top: 1px solid #eeeeee">
                         查看详情
                     </a>
                 </div>
@@ -325,6 +343,46 @@
 
 <script>
     $(function () {
+        
+        $(".salery_input").click(function () {
+            $(".salary_setting").show();
+        });
+        $(".quxiaobtns").click(function () {
+            $(".salary_setting").hide();
+        })
+        $(".quedingbtns").click(function () {
+            var lower=$("#lower").val();
+            var upper=$("#upper").val();
+            if(lower>=1 && upper>=1){
+                if(lower.indexOf(0)==0){
+                    lower=lower.substr(1);
+                }
+                if(upper.indexOf(0)==0){
+                    upper=upper.substr(1);
+                }
+                $(".lower").val(lower);
+                $(".upper").val(upper);
+                //发送ajax请求
+                option.upper=upper;
+                option.lower=lower;
+                option.page=1;
+                layer(option);
+            }else{
+                $(".lower").val("");
+                $(".upper").val("");
+            }
+            $(".salary_setting").hide();
+        })
+
+        $(document).click(function(e){
+            var _con = $('.salary_setting,.sszjs');   // 设置目标区域
+            if(!_con.is(e.target) && _con.has(e.target).length === 0){
+                $(".salary_setting").hide();
+            };
+        });
+        
+        
+        
         var salarychoice= $.salarychoice({
             data:["面议","1k","2k","3k","4k","5k","6k","7k","8k"],
             input:"#money",
@@ -421,16 +479,16 @@
         });
 
         //薪资待遇
-        $("#lower .option_select").on("click",function () {
-            option.lower=$(this).html();
-            option.page=1;
-            layer(option);
-        });
-        $("#upper .option_select").on("click",function () {
-            option.upper=$(this).html();
-            option.page=1;
-            layer(option);
-        });
+//        $("#lower .option_select").on("click",function () {
+//            option.lower=$(this).html();
+//            option.page=1;
+//            layer(option);
+//        });
+//        $("#upper .option_select").on("click",function () {
+//            option.upper=$(this).html();
+//            option.page=1;
+//            layer(option);
+//        });
 
         //排序方式
         $(".select_item1").on("click",function () {

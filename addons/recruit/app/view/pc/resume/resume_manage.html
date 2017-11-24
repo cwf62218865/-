@@ -1874,8 +1874,6 @@
     $.fromdata("#edutionbox","{php echo app_url('person/resume/save_edu_exp')}","#save_edu_exp_msg",function(data){
         var data = JSON.parse(data);
         if(data.status==1){
-
-
             var edu_id=$("#edutionbox input[name=edu_id]").val();
             var school_name=$("#edutionbox input[name=school_name]").val();
             var education=$("#edutionbox input[name=education]").val();
@@ -1890,7 +1888,6 @@
                 editedu.find(".exp_jobleft").eq(1).html(education);
                 editedu.find(".exp_jobright").html(identity+"届");
                 editedu.find(".edu_content").html(edu_detail);
-
             }else{
                 var educontent='<div class="resume_exp_content" data-id='+data.content+'>'+
                         '<div class="relative">'+

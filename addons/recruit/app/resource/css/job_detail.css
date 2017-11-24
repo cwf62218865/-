@@ -42,7 +42,7 @@
 }
 .recruit_result span{
     display: inline-block;
-    width: 120px;
+    width: 90px;
 }
 .recruit_result span:nth-child(3){
     width: 120px;
