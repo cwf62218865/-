@@ -2411,10 +2411,22 @@
         drop_element: 'uploadvideobox', //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
         chunk_size: '4mb', //分块上传时，每片的体积
         auto_start: false, //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        filters : {
+            max_file_size : '100mb',
+            prevent_duplicates: true,
+            // Specify what files to browse for
+            mime_types: [
+//                {title : "flv files", extensions : "flv"}, // 限定flv后缀上传格式上传
+                {title : "Video files", extensions : "flv,mpg,mpeg,avi,wmv,mov,asf,rm,rmvb,mkv,m4v,mp4"}, // 限定flv,mpg,mpeg,avi,wmv,mov,asf,rm,rmvb,mkv,m4v,mp4后缀格式上传
+//                {title : "Image files", extensions : "jpg,gif,png"}, // 限定jpg,gif,png后缀上传
+//                {title : "Zip files", extensions : "zip"} // 限定zip后缀上传
+            ]
+        },
         init: {
             'FilesAdded': function(up, files) {
                 plupload.each(files, function(file) {
 // 文件添加进队列后,处理相关的事情
+                    $("#modalbox2 .modalbtn1").html("立即上传");
                     console.log(file.name);
                     $("#uploadvideobtn use").attr("xlink:href","#icon-shipinwenjian");
                     $("#uploadvideobtn").css({"width":"100px","height":"100px","left":"0","top":"0","color":"#bbb"})
@@ -2425,6 +2437,7 @@
 // 每个文件上传前,处理相关的事情
             },
             'UploadProgress': function(up, file) {
+                $("#modalbox2 .modalbtn1").html("上传中");
                 $("#videopregress").show();
                 $("#videopregress .videopregressnubs").html(file.percent).css("left",file.percent*2.7-10+"px");
                 $("#videopregress .jindu_con").stop().animate({"width":file.percent+"%"},100);
@@ -2448,9 +2461,12 @@
                     success:function(data){
                         var data=JSON.parse(data);
                         if(data.status==1){
-                            $("#modalbox2").hide();
+                            $("#modalbox2 .modalbtn1").html("上传成功");
                             $("#vedio_source").hide();
                             $("#vedio_source").prev().html('<video src="'+data.content+'" width="500" height="300" controls autobuffer style="margin-left: 85px" class="person_video"></video>');
+                            setTimeout(function(){
+                                $("#modalbox2").hide()
+                            },1200);
                         }else{
                             hint("error",data.content);
                         }
@@ -2487,6 +2503,9 @@
     $(".modalbtn1").on("click",function() {
         uploader.start();
     });
+    $("#modalbox2 .modalclose").on("click",function(){
+        uploader.stop();
+    })
 
     //    $("#videoupload").on("click",function(){
     //        $("#videofile").click();
