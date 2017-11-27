@@ -342,6 +342,9 @@
 <!--<script src="{WL_URL_ARES}js/zimu.js" rel="script"></script>-->
 
 <script>
+    function  Additems() {
+        
+    }
     $(function () {
         
         $(".salery_input").click(function () {
@@ -787,7 +790,6 @@
         }
 
 
-
         $("body").on("click",".gzdd .city_item",function () {
             $(".con_or .title").html("已选择:");
             $(".gzdd .city_item").removeClass("city_select");
@@ -807,7 +809,6 @@
             }else{
                 $(".xingzheng_item").hide();
                 $(".xingzheng_item .city_item").removeClass("city_select");
-
             }
         })
 
@@ -895,22 +896,33 @@
             $(".city_team .city_item").removeClass("city_select");
             var selecity=$(this).html();
             var lists=$(".gzdd .city_item");
-            var flag=0;
-            lists.each(function () {
-                if($(this).html()==$.trim(selecity)){
-                    $(this).addClass("city_select");
-                    $(this).attr("data-flag","1");
-                }
-            })
 
-            if(!$(".gzdd .city_item").hasClass("morecity") && !$(".gzdd .city_item").attr("data-flag")){
-                $(".gzdd .all_item").after('<span class="city_item city_select morecity">'+selecity+'</span>')
-            }else if($(".gzdd .city_item").hasClass("morecity") && !$(".gzdd .city_item").attr("data-flag")){
+
+            if(!$(".gzdd .city_item").hasClass("morecity")){
+                $(".gzdd .all_item").after('<span class="city_item city_select morecity">'+selecity+'</span>');
+                lists.each(function () {
+                    if($.trim(selecity)==$(this).html()){
+                        $(this).addClass("city_select");
+                        $(".gzdd .morecity").remove();
+                        $(".gzdd .city_select").click();
+                    }
+                })
+                $(".gzdd .morecity").click();
+            }else if($(".gzdd .city_item").hasClass("morecity")){
                 $(".gzdd .morecity").html(selecity);
                 $(".gzdd .morecity").addClass("city_select");
-            }else{
-                $(".gzdd .city_select").html(selecity);
+                $(".gzdd .city_select").click();
+                lists.each(function () {
+                    if($.trim(selecity)==$(this).html()){
+                        $(this).addClass("city_select");
+                        $(".gzdd .morecity").remove();
+                        $(".gzdd .city_select").click();
+                    }
+                })
             }
+
+
+
 
             $(".xingzheng_item").show();
             $(".district_list").html("");
