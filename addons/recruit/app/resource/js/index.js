@@ -5,20 +5,21 @@
     var index_menu=jobsnewfile;
     var leftmenus="";
 
+    var basicurl="/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=search_jobs&jobs_name=";
     for(var i= 0 ; i <index_menu['00'].length;i++){
             leftmenus+='<div class="index_menu">';
             leftmenus+='<span class="index_menu_title">'+index_menu['00'][i]+'</span>';
             if(i==0||i==1||i==2||i==7||i==8){
                 for(var k=0 ; k<2; k ++){
-                    leftmenus+='<a href="#"> '+index_menu['00_'+(i+1)][k]+'</a>';
+                    leftmenus+='<a href="'+basicurl+index_menu['00_'+(i+1)][k]+'"> '+index_menu['00_'+(i+1)][k]+'</a>';
                 }
             }else if(i==3){
                 for(var k=0 ; k<1; k ++){
-                    leftmenus+='<a href="#"> '+index_menu['00_'+(i+1)][k]+'</a>';
+                    leftmenus+='<a href="'+basicurl+index_menu['00_'+(i+1)][k]+'"> '+index_menu['00_'+(i+1)][k]+'</a>';
                 }
             }else{
                 for(var k=0 ; k<3; k ++){
-                    leftmenus+='<a href="#"> '+index_menu['00_'+(i+1)][k]+'</a>';
+                    leftmenus+='<a href="'+basicurl+index_menu['00_'+(i+1)][k]+'"> '+index_menu['00_'+(i+1)][k]+'</a>';
                 }
             }
 
@@ -36,7 +37,7 @@
             leftmenus+='<div class="index_menu_content_title">'+index_menu['00_'+(i+1)][l]+'</div>'+
                 '<div class="index_menu_contents">';
             for(var m=0 ; m<index_menu['00_'+(i+1)+'_'+(l+1)].length; m ++){
-                leftmenus+='<a href="#"> '+index_menu['00_'+(i+1)+'_'+(l+1)][m]+'</a>';
+                leftmenus+='<a href="'+basicurl+index_menu['00_'+(i+1)+'_'+(l+1)][m]+'"> '+index_menu['00_'+(i+1)+'_'+(l+1)][m]+'</a>';
             }
             leftmenus+='</div>';
             }

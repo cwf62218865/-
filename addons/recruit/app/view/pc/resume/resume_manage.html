@@ -1140,7 +1140,7 @@
             <div class="person_works" >
                 {loop $honor $id $list}
                 <div class="relative" data-id="{$id}">
-                    <div class="honor_pic{$id}"></div>
+                    <div id="honor_pic{$id}"></div>
                     <input type="hidden" id="honor_picmsg{$id}" value="{$list['certificate_img']}">
                     <span class="certificate " style="display: inline-block;width: 570px;white-space: nowrap;text-overflow: ellipsis;">{$list['certificate_content']}</span>
                                 <span class="addandeditbtn" style="top: 0"  data-id="{$id}">
@@ -2193,7 +2193,7 @@
     var list=$(".person_works .relative");
     list.each(function () {
         var data_id=$(this).attr("data-id");
-        $('.honor_pic'+data_id).imagesGrid({
+        $('#honor_pic'+data_id).imagesGrid({
             images:[$("#honor_picmsg"+data_id).val()]
         });
     });
@@ -2203,7 +2203,7 @@
     //荣誉证书
     $.fromdata("#certificatebox","{php echo app_url('person/resume/save_certificate')}","#save_certificate_msg",function(data){
         var data = JSON.parse(data);
-        var imgsrc=$(this).closest("#certificatebox").find("#certificateaddbtn img").attr("src");
+        var imgsrc=$("#certificateaddbtn img").attr("src");
         if(data.status==1){
             var certificate_id=$("#certificate_id").val();
             var certificate_content=$("#certificatebox input[name=certificate_content]").val();
@@ -2211,12 +2211,12 @@
                 var editperson_work=$("#certificate .relative[data-id="+certificate_id+"]");
                 editperson_work.find(".certificate ").html(certificate_content);
 
-                $('.honor_pic'+certificate_id).imagesGrid({
+                $('#honor_pic'+certificate_id).imagesGrid({
                     images:[imgsrc]
                 });
             }else{
                 var editpersonhtml='<div class="relative" data-id='+data.content+'>'+
-                        ' <div class="honor_pic'+data.content+'"></div>' +
+                        ' <div id="honor_pic'+data.content+'"></div>' +
                         '<input type="hidden" id="honor_picmsg'+data.content+'" value="'+imgsrc+'">'+
                         '<span class="certificate " style="display: inline-block;width: 570px;white-space: nowrap;text-overflow: ellipsis;">'+certificate_content+'</span>'+
                         '<span class="addandeditbtn" style="top: 0" data-id='+data.content+'>'+
@@ -2226,7 +2226,7 @@
                         '</span>'+
                         '</div>';
                 $("#certificate .person_works").append(editpersonhtml);
-                $('.honor_pic'+data.content).imagesGrid({
+                $('#honor_pic'+data.content).imagesGrid({
                     images:[imgsrc]
                 });
             }
