@@ -105,7 +105,7 @@
                         {if $list['status']==-1}
                             <div class="jujuestatus">已拒绝面试</div>
                         {else}
-                            <div class="tongyi1 agree_review" data-id="{php echo $list['apply_id']}">同意面试</div>
+                            <div class="tongyi1 agree_review" data-id="{php echo $list['jobs_id']}"  data-puid="{php echo $list['puid']}">同意面试</div>
                             <div class="jujue1 refuse_review" data-id="{php echo $list['apply_id']}">拒绝面试</div>
                             {if $list['collect_resume']}
                             <div class="jujue1 shoucangbtn statussc" data-id="{php echo $list['apply_id']}">已收藏</div>
@@ -444,36 +444,26 @@
             return;
         }
 
-        if($(this).hasClass("tongyimianshi")){
-            var data={
-                resume_id:resume_id,
-                reviewtime:reviewtime,
-                contacts_name:contacts_name,
-                contacts_tel:contacts_tel,
-                city:city,
-                city_area:city_area,
-                detail_address:detail_address
-            }
-        }else if($(this).hasClass("yaoqingmianshi")){
-            if(jobs_name==""){
-                hint("error","请选择面试岗位");
-                return;
-            }
-            var data={
-                jobs_id:job_id,
-                resume_id:resume_id,
-                puid:puid,
-                jobs_name:jobs_name,
-                reviewtime:reviewtime,
-                contacts_name:contacts_name,
-                contacts_tel:contacts_tel,
-                city:city,
-                city_area:city_area,
-                detail_address:detail_address
-            }
+        if(job_id==""){
+            hint("error","请选择面试岗位");
+            return;
         }
+        var data={
+            jobs_id:job_id,
+            resume_id:resume_id,
+            puid:puid,
+            jobs_name:jobs_name,
+            reviewtime:reviewtime,
+            contacts_name:contacts_name,
+            contacts_tel:contacts_tel,
+            city:city,
+            city_area:city_area,
+            detail_address:detail_address
+        }
+        var posturl="{php echo app_url('company/resume/hr_send_review')}";
+
         $.ajax({
-            url:"{php echo app_url('company/resume/hr_send_review')}",
+            url:posturl,
             type:"post",
             data:data,
             success:function(data){
@@ -493,6 +483,19 @@
                             yaoqing_interview.removeClass("yaoqing_interview").unbind("click");
                             status.addClass("statussc");
                             yaoqing_interview.addClass("statussc");
+                        }
+                    });
+                    $(".list_content .list_item").each(function () {
+                        var item_data_id1=$(this).attr("data-id");
+                        var data_idd1=$("#invite_box").attr("data-id");
+                        if(item_data_id1==data_idd1){
+                            var status=$(this).find(".tongyi1");
+                            status.html("等待面试");
+                            status.next().remove();
+                            var di=$(this).find(".review_statas div");
+                            di.css("width","49%");
+                            status.removeClass("agree_review").unbind("click");
+                            status.addClass("statussc");
                         }
                     });
 
@@ -697,6 +700,11 @@
         if(jobs_name==""){
             $(".resume_content .list_item").show();
         }
+    })
+    
+    $(".agree_review").click(function () {
+        $("#job_review").attr("data-id",$(this).attr('data-id'));
+        $("#invite_box").attr("data-uid",$(this).attr('data-puid'));
     })
 </script>
 
