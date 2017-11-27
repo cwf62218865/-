@@ -51,9 +51,15 @@
                             <use xlink:href="#icon-qq"></use>
                         </svg>
                     </div>
-                    <p class="bdbiaoti">绑定QQ</p>
-                    <p class="bdbiaoti wraps" style="margin-top: 15px;">昵称：<label style="color: #7b8fc9;">heiheibheibheibheibbi</label></p>
+                    <p class="bdbiaoti">QQ</p>
+                    <!--<p class="bdbiaoti wraps" style="margin-top: 15px;">昵称：<label style="color: #7b8fc9;">heiheibheibheibheibbi</label></p>-->
+                    {if $user['qq_openid']}
+                    <p class="bdbiaoti wraps" style="margin-top: 15px;">QQ为绑定</p>
                     <div class="btn_bangding exitbind">解绑</div>
+                    {else}
+                    <p class="bdbiaoti wraps" style="margin-top: 15px;">QQ未绑定</p>
+                    <div class="btn_bangding bindbtn">绑定</div>
+                    {/if}
                 </div>
                 <div class="items_1" data_id="2">
                     <div class="pic_ico bgcolor2">
@@ -61,9 +67,15 @@
                             <use xlink:href="#icon-weixin"></use>
                         </svg>
                     </div>
-                    <p class="bdbiaoti">绑定微信</p>
+                    <p class="bdbiaoti">微信</p>
+
+                    {if $user['weixin_openid']}
                     <p class="bdbiaoti wraps" style="margin-top: 15px;">微信为绑定</p>
+                    <div class="btn_bangding exitbind">解绑</div>
+                    {else}
+                    <p class="bdbiaoti wraps" style="margin-top: 15px;">微信未绑定</p>
                     <div class="btn_bangding bindbtn">绑定</div>
+                    {/if}
                 </div>
                 <div class="items_1" data_id="3">
                     <div class="pic_ico bgcolor3">
@@ -71,19 +83,30 @@
                             <use xlink:href="#icon-weibo"></use>
                         </svg>
                     </div>
-                    <p class="bdbiaoti">绑定新浪微博</p>
+                    <p class="bdbiaoti">新浪微博</p>
+                    {if $user['weibo_openid']}
+                    <p class="bdbiaoti wraps" style="margin-top: 15px;">新浪微博为绑定</p>
+                    <div class="btn_bangding exitbind">解绑</div>
+                    {else}
                     <p class="bdbiaoti wraps" style="margin-top: 15px;">新浪微博未绑定</p>
                     <div class="btn_bangding bindbtn">绑定</div>
+                    {/if}
                 </div>
+
                 <div class="items_1" data_id="4">
                     <div class="pic_ico bgcolor4">
                         <svg class="icon bindico" aria-hidden="true">
                             <use xlink:href="#icon-baidu"></use>
                         </svg>
                     </div>
-                    <p class="bdbiaoti">绑定百度账号</p>
-                    <p class="bdbiaoti wraps" style="margin-top: 15px;">昵称：<label style="color: #7b8fc9;">heiheibheibheibheibbi</label></p>
+                    <p class="bdbiaoti">百度账号</p>
+                    {if $user['baidu_openid']}
+                    <p class="bdbiaoti wraps" style="margin-top: 15px;">百度账号为绑定</p>
                     <div class="btn_bangding exitbind">解绑</div>
+                    {else}
+                    <p class="bdbiaoti wraps" style="margin-top: 15px;">百度账号未绑定</p>
+                    <div class="btn_bangding bindbtn">绑定</div>
+                    {/if}
                 </div>
             </div>
         </div>

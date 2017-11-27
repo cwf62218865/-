@@ -28,6 +28,8 @@ class member{
             $last_login_time = "3天前";
         }elseif($last_login_time>7){
             $last_login_time = "一周前";
+        }elseif($last_login_time>30){
+            $last_login_time = "一个月前";
         }else{
             $last_login_time = "今天";
         }
@@ -44,7 +46,8 @@ class member{
             $wheresql = " where companyname <> '' and headimgurl<>'' ";
         }
         $company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."company_profile").$wheresql);
-        if($page*$pagenum>count($company_count)){
+
+        if($page*$pagenum>$company_count){
             $page = 0;
         }
         $limit = " limit ".$page*$pagenum.",".$pagenum;

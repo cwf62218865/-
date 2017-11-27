@@ -1,2 +1,2 @@
 <?php die('forbidden'); ?>
-{"appid":"101442814","appkey":"cc953a9c69d9e4ac9420580d71e83430","callback":"http://www.yingjieseng.com/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=qq_callback&","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test","scope":null}
+{"appid":"101442814","appkey":"cc953a9c69d9e4ac9420580d71e83430","callback":"http://www.yingjieseng.com/addons/recruit/core/common/Connect2.1/example/oauth/callback.php","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test","scope":null}

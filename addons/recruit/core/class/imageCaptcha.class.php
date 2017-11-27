@@ -1,21 +1,12 @@
 <?php
- /*
- * huiliewang 验证码
- * ============================================================================
- * 版权所有: 慧猎网，并保留所有权利。
- * 网站地址: http://www.huiliewang.com；
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
- * 使用；不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
-*/
+
 header('Expires: Thu, 01 Jan 1970 00:00:00 GMT');
 // HTTP/1.1
 header('Cache-Control: private, no-store, no-cache, must-revalidate');
 header('Cache-Control: post-check=0, pre-check=0, max-age=0', false);
 // HTTP/1.0
 header('Pragma: no-cache');
-session_start();
+
 error_reporting(E_ERROR);
 class imageCaptcha
 {

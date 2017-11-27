@@ -3,11 +3,6 @@ defined('IN_IA') or exit('Access Denied');
 $ops = array('display','detail','ajax','addmember','editmember','person','teacher','company');
 $op = in_array($op, $ops) ? $op : 'display';
 wl_load()->model('mc');
-
-
-
-
-
 if ($op == 'display') {
 	$where = " WHERE 1  ";
 	$params = array();
@@ -40,14 +35,6 @@ if ($op == 'display') {
 	$sqlData = pdo_sql_select_all_from(WL.'members') . $where . ' ORDER BY `id` DESC ';
 
 	$list = pdo_pagination($sqlTotal, $sqlData, $params, '', $total, $page, $size);
-//	foreach ($list as $key => $value) {
-//		$list[$key]['fanid'] = pdo_getcolumn('mc_mapping_fans', array('openid' => $value['openid']), 'fanid');
-//		if($value['ncnumber']){
-//			$qrid = pdo_getcolumn('weliam_shiftcar_qrcode', array('cardsn' => $value['ncnumber']), 'qrid');
-//			$ticket = pdo_getcolumn('qrcode', array('id' => $qrid), 'ticket');
-//			$list[$key]['showurl'] = 'https:mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' . urlencode($ticket);
-//		}
-//	}
 	$pager = pagination($total, $page, $size);
 }
 

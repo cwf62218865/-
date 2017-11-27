@@ -93,4 +93,12 @@ elseif ($op=="upload_test"){
     } else {
         var_dump($ret);
     }
+}elseif($op=="q"){
+    a($a);
+    echo $a;exit();
+}
+
+
+function a(&$a=1){
+    $a = 8;
 }
