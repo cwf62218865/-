@@ -349,16 +349,22 @@
         });
         $(".quxiaobtns").click(function () {
             $(".salary_setting").hide();
-        })
+        });
         $(".quedingbtns").click(function () {
             var lower=$("#lower").val();
             var upper=$("#upper").val();
-            if(lower>=1 && upper>=1){
+            if(lower>=1 || upper>=1){
                 if(lower.indexOf(0)==0){
                     lower=lower.substr(1);
                 }
                 if(upper.indexOf(0)==0){
                     upper=upper.substr(1);
+                }
+                var zhong=0;
+                if(lower>upper){
+                    zhong=lower;
+                    lower=upper;
+                    upper=zhong;
                 }
                 $(".lower").val(lower);
                 $(".upper").val(upper);
@@ -372,7 +378,7 @@
                 $(".upper").val("");
             }
             $(".salary_setting").hide();
-        })
+        });
 
         $(document).click(function(e){
             var _con = $('.salary_setting,.sszjs');   // 设置目标区域
@@ -591,7 +597,6 @@
                         }
                         $("#current_page").html(option.page);
                         $(".list_item").remove();
-
                         $(".resume_content").html(data.content);
                         var page_num = Math.ceil(data.others/6);
                         $(".total_page").html(page_num);
@@ -606,7 +611,6 @@
                             }else{
                                 $(".yemabtn .yema").eq(1).addClass("slected");
                             }
-
                         }else if(option.page==page_num){
                             $(".yemabtn .yema").eq(0).addClass("slected");
                             $(".yemabtn .yema").eq(1).removeClass("slected");
@@ -615,7 +619,6 @@
                             $(".yemabtn .yema").eq(1).addClass("slected");
                         }
                     }
-
                 }
             })
         }
@@ -884,7 +887,6 @@
             }
             content+="</div>";
             $(".city_lister").html(content);
-
         })
 
 
@@ -892,11 +894,22 @@
         $("body").on("click",".city_team .city_item",function () {
             $(".city_team .city_item").removeClass("city_select");
             var selecity=$(this).html();
-            if(!$(".gzdd .city_item").hasClass("morecity")){
+            var lists=$(".gzdd .city_item");
+            var flag=0;
+            lists.each(function () {
+                if($(this).html()==$.trim(selecity)){
+                    $(this).addClass("city_select");
+                    $(this).attr("data-flag","1");
+                }
+            })
+
+            if(!$(".gzdd .city_item").hasClass("morecity") && !$(".gzdd .city_item").attr("data-flag")){
                 $(".gzdd .all_item").after('<span class="city_item city_select morecity">'+selecity+'</span>')
-            }else{
+            }else if($(".gzdd .city_item").hasClass("morecity") && !$(".gzdd .city_item").attr("data-flag")){
                 $(".gzdd .morecity").html(selecity);
                 $(".gzdd .morecity").addClass("city_select");
+            }else{
+                $(".gzdd .city_select").html(selecity);
             }
 
             $(".xingzheng_item").show();
@@ -910,8 +923,6 @@
                 }
             }
         })
-
-
     })
 
 

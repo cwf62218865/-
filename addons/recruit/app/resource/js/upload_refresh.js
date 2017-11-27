@@ -36,6 +36,6 @@ function code_url(id) {
     $("#"+id).qrcode({
         width: 100, //宽度
         height:100, //高度
-        text: "www.jingjieseng.com/code.php?identity="+identity+"&kind="+id //任意内容
+        text: "http://www.yingjieseng.com/code.php?identity="+identity+"&kind="+id //任意内容
     });
 }
