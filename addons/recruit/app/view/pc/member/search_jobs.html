@@ -887,7 +887,6 @@
             }
             content+="</div>";
             $(".city_lister").html(content);
-
         })
 
 
@@ -895,11 +894,22 @@
         $("body").on("click",".city_team .city_item",function () {
             $(".city_team .city_item").removeClass("city_select");
             var selecity=$(this).html();
-            if(!$(".gzdd .city_item").hasClass("morecity")){
+            var lists=$(".gzdd .city_item");
+            var flag=0;
+            lists.each(function () {
+                if($(this).html()==$.trim(selecity)){
+                    $(this).addClass("city_select");
+                    $(this).attr("data-flag","1");
+                }
+            })
+
+            if(!$(".gzdd .city_item").hasClass("morecity") && !$(".gzdd .city_item").attr("data-flag")){
                 $(".gzdd .all_item").after('<span class="city_item city_select morecity">'+selecity+'</span>')
-            }else{
+            }else if($(".gzdd .city_item").hasClass("morecity") && !$(".gzdd .city_item").attr("data-flag")){
                 $(".gzdd .morecity").html(selecity);
                 $(".gzdd .morecity").addClass("city_select");
+            }else{
+                $(".gzdd .city_select").html(selecity);
             }
 
             $(".xingzheng_item").show();
@@ -913,8 +923,6 @@
                 }
             }
         })
-
-
     })
 
 
