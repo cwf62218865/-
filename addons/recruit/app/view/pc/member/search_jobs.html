@@ -597,7 +597,6 @@
                         }
                         $("#current_page").html(option.page);
                         $(".list_item").remove();
-
                         $(".resume_content").html(data.content);
                         var page_num = Math.ceil(data.others/6);
                         $(".total_page").html(page_num);
@@ -612,7 +611,6 @@
                             }else{
                                 $(".yemabtn .yema").eq(1).addClass("slected");
                             }
-
                         }else if(option.page==page_num){
                             $(".yemabtn .yema").eq(0).addClass("slected");
                             $(".yemabtn .yema").eq(1).removeClass("slected");
@@ -621,7 +619,6 @@
                             $(".yemabtn .yema").eq(1).addClass("slected");
                         }
                     }
-
                 }
             })
         }
