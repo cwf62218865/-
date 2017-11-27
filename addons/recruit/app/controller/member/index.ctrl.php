@@ -600,7 +600,7 @@ elseif ($op=="search_jobs_ajax"){
                             </div>
                         </div>
                     </div>
-                    <a class=\"review_statas\" data-id='{$list[uid]}' href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."'>
+                    <a class=\"review_statas\" data-id='{$list[uid]}' href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."' style=\"border-top:1px solid #eeeeee;\">
                         查看详情
                     </a>
                 </div>";
