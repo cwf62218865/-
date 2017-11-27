@@ -159,10 +159,10 @@ elseif ($op=="mobile_upload"){
     if($_GPC['kind']=="headimgurl"){
         $kind = "简历头像上传";
         $url = app_url("member/index/save_members_temp",array('kind'=>'headimgurl'));
-    }elseif($_GPC['kind']=="id1"){
+    }elseif($_GPC['kind']=="idcard1"){
         $kind = "法人身份证(正面)";
         $url = app_url("member/index/save_members_temp",array('kind'=>'idcard1'));
-    }elseif($_GPC['kind']=="id2"){
+    }elseif($_GPC['kind']=="idcard2"){
         $kind = "法人身份证(反面)";
         $url = app_url("member/index/save_members_temp",array('kind'=>'idcard2'));
     }elseif($_GPC['kind']=="license"){
@@ -181,6 +181,7 @@ elseif ($op=="mobile_upload"){
         $kind = "公司图集上传";
         $url = app_url("member/index/save_members_temp",array('kind'=>'atlas'));
     }
+
     include wl_template("member/mobileupload1");exit();
 
 }
@@ -535,6 +536,7 @@ elseif ($op=="save_members_temp"){
             $data['uid'] = $id;
             $kind = $_GPC['kind'];
             $data[$kind] = $file;
+
             $temp = pdo_fetch("select id from ".tablename(WL."members_temp")." where uid=".$id);
 
             if(empty($temp)){

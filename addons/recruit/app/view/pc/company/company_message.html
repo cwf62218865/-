@@ -609,8 +609,8 @@
                 <form id="choosefile1" enctype="multipart/form-data">
                     <input type="file" name='file' id="choosefile"   accept='image/*'/>
                 </form>
-                <div class="erweima">
-                    <!--<img src="{WL_URL_ARES}images/erweima.png" class="pic"/>-->
+                <div class="erweima" data-id="{$identity}">
+                    <img src="{WL_URL_ARES}images/erweima.png" class="pic"/>
                 </div>
             </div>
             <div class="title">
@@ -789,6 +789,9 @@
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/company_msg.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/company_nomsg.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.qrcode.min.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/upload_refresh.js" rel="script"></script>
+
 <script type="text/javascript">
     // 百度地图API功能
     var map = new BMap.Map("allmap");
@@ -1034,11 +1037,49 @@
                     }else{
                         $(".person_worksbtn1").show();
                     }
+
+                    window.clearTimeout(timer1);
                 }
                 $(".chec_tip1").eq(1).html("");
             }
         });
         $("#modalbox").css("display","none");
+    })
+
+
+    $("#person_worksaddbtn").click(function () {
+        code_url("atlas");
+        upload_timer();
+    })
+
+    function callback_content(data) {
+        $("#modalbox").css("display","none");
+        var html = "<div class=\"person_worksbtn\">\n" +
+            "                               <img src='"+data.content+"'>\n" +
+            "                                    <span class=\"person_worksdelbtn\">\n" +
+            "                                        <svg class=\"icon\" aria-hidden=\"true\">\n" +
+            "                                            <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#icon-shanchu\"></use>\n" +
+            "                                        </svg>\n" +
+            "                                    </span>\n" +
+            "                           </div>";
+
+        $(".person_worksbtn1").before(html);
+        var person_worksinput = $("#person_worksinput").val();
+        if(person_worksinput){
+            person_worksinput = person_worksinput +","+data.content;
+        }else{
+            person_worksinput = data.content;
+        }
+        $("#person_worksinput").val(person_worksinput);
+        if($(".person_worksbox img").length>=6){
+            $(".person_worksbtn1").hide();
+        }else{
+            $(".person_worksbtn1").show();
+        }
+    }
+
+    $(".modalclose").click(function () {
+        window.clearTimeout(timer1);
     })
 </script>
 </html>

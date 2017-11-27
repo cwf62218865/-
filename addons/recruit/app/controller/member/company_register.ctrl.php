@@ -180,7 +180,7 @@ elseif ($op=="step3_save"){
     $data['number'] =check_pasre($_POST['company_scale'],"请选择公司规模");
     $data['industry'] =check_pasre($_POST['company_industry'],"请选择所处行业");
     $data['city'] =check_pasre($_POST['company_city'],"请选择所处地区");
-    $data['slogan'] =check_pasre($_POST['slogan'],"slogan不能为空");
+    $data['slogan'] =$_POST['slogan'];
     $data['tag'] =check_pasre($_POST['welfare'],"请至少选择一个福利标签");
     $data['updatetime'] = time();
     $r = pdo_update(WL."company_profile",$data,array('uid'=>$_SESSION['uid']));
