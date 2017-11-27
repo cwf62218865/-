@@ -20,7 +20,6 @@ elseif ($op=="received_resume"){
         $page = 0;
     }
     $received_resume  = m("company")->getall_resume($_SESSION['uid'],$page,3,$jobs_id);
-
     if($_POST['page']){
         call_back(1,$received_resume);
     }
@@ -244,9 +243,9 @@ elseif ($op=="send_review"){
 //hr主动发起面试邀请
 elseif ($op=="hr_send_review"){
     $data['direction'] =1;
-    $data['jobs_id'] = check_pasre($_POST['jobs_id'],"1");
-    $data['resume_id'] = check_pasre($_POST['resume_id'],"2");
-    $data['puid'] = check_pasre($_POST['puid'],"3");
+    $data['jobs_id'] = check_pasre($_POST['jobs_id'],"参数错误");
+    $data['resume_id'] = check_pasre($_POST['resume_id'],"参数错误");
+    $data['puid'] = check_pasre($_POST['puid'],"参数错误");
     $data['uid'] = $_SESSION['uid'];
     $jobs_apply = pdo_fetch("select id from ".tablename(WL.'jobs_apply')." where jobs_id=".$data['jobs_id']." and resume_id=".$data['resume_id']);
     if($jobs_apply){
@@ -261,12 +260,12 @@ elseif ($op=="hr_send_review"){
             $data1['puid'] = $data['puid'];
             $data1['resume_id'] = $data['resume_id'];
             $data1['jobs_id'] = $data['jobs_id'];
-            $data1['interview_time'] = check_pasre($_POST['reviewtime'],"4");
-            $data1['linker'] = check_pasre($_POST['contacts_name'],"5");
-            $data1['mobile'] = check_pasre($_POST['contacts_tel'],"6");
-            $data1['city'] = check_pasre($_POST['city'],"7");
-            $data1['city_area'] = check_pasre($_POST['city_area'],"8");
-            $data1['address'] = check_pasre($_POST['detail_address'],"9");
+            $data1['interview_time'] = check_pasre($_POST['reviewtime'],"参数错误");
+            $data1['linker'] = check_pasre($_POST['contacts_name'],"参数错误");
+            $data1['mobile'] = check_pasre($_POST['contacts_tel'],"参数错误");
+            $data1['city'] = check_pasre($_POST['city'],"参数错误");
+            $data1['city_area'] = check_pasre($_POST['city_area'],"参数错误");
+            $data1['address'] = check_pasre($_POST['detail_address'],"参数错误");
             $data1['createtime'] = time();
             pdo_insert(WL."interview",$data1);
             call_back(1,"邀请面试成功");
