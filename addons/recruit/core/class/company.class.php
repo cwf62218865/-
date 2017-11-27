@@ -85,7 +85,7 @@ class company{
         }
 
 
-        $resume_jobs = pdo_fetchall("select id,resume_id,jobs_id,uid,status from ".tablename(WL.'jobs_apply').$wheresql." order by createtime desc".$limit);
+        $resume_jobs = pdo_fetchall("select id,resume_id,jobs_id,uid,puid,status from ".tablename(WL.'jobs_apply').$wheresql." order by createtime desc".$limit);
 
 
         $resumes = "";
@@ -102,7 +102,9 @@ class company{
             $resume['collect_resume'] = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where jobs_id=".$list['jobs_id']." and resume_id=".$list['resume_id']);
 
             $resume['jobs_name'] = $job['jobs_name'];
+            $resume['jobs_id'] = $list['jobs_id'];
             $resume['apply_id'] = $list['id'];
+            $resume['puid'] = $list['puid'];
             $resume['status'] = $list['status'];
             if($list['status']==3){
                 $interview = pdo_fetch("select * from ".tablename(WL.'interview')." where apply_id=".$list['id']);
