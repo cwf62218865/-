@@ -249,7 +249,7 @@ elseif ($op=="login_deal"){
     if($member){
         $password = pwd_hash($_GPC['password'],$member['salt']);
         if($password==$member['password']){
-            if($data){
+            if($data['baidu_openid'] || $data['qq_openid'] || $data['weixin_openid'] || $data['weibo_openid']){
                 if($member['utype']!=1){
                     call_back(2,"暂不支持企业用户绑定");
                 }
