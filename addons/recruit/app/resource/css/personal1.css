@@ -296,7 +296,7 @@
 .resume_exp_content .relative{
     margin-top: 40px;
 }
-.resume_exp_content .relative:after{
+.resume_exps .relative:after{
     content: "";
     position: absolute;
     left: -26px;

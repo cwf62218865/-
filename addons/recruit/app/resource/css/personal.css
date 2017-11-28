@@ -399,6 +399,12 @@
 .status2{
     color: #0099cc;
 }
+.m_b_20{
+    margin-bottom: 20px;
+}
+.hei22{
+    height: 22px;
+}
 .jujuems{
     width: 224px;
     height: 40px;
@@ -746,8 +752,12 @@
 .job_send .wenzi{
     float: left;
     width: 30px;
+    text-align: center;
     overflow: hidden;
     white-space: nowrap;
+}
+.job_send .width80{
+    width: 80px;
 }
 .my_joblist{
     display: none;
