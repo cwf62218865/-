@@ -21,6 +21,26 @@ function m($name = '') {
 	return $_modules[$name];
 }
 
+function m1($name = '') {
+	static $_modules = array();
+	if (isset($_modules[$name])) {
+		return $_modules[$name];
+	}
+	$model = WL_CORE."class/" . strtolower($name) . '.class.php';
+	if (!is_file($model)) {
+		die(' Class ' . $name . ' Not Found!');
+	}
+	require $model;
+	$class_name = 'Weliam_' . ucfirst($name);//调用该类
+	if(class_exists($class_name)){
+		$_modules[$name] = new $class_name();
+	}else{
+		$_modules[$name] = new $name();
+	}
+
+	return $_modules[$name];
+}
+
 //公司个人中心统计
 function  company_statistics(){
 	$data['jobs_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where uid=".$_SESSION['uid']." and open=1");

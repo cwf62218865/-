@@ -840,7 +840,7 @@
 
 <!--教育经历-->
 <div class="basic_msg width670" style="margin-top: 50px">
-    <div class="basic_msg_content" {if $edu_experience}style="display:block;"{else}style="display:none;"{/if}>
+    <div class="basic_msg_content">
     <div class="resume_title">
         <span>教育经历</span>
     </div>
@@ -1089,12 +1089,12 @@
                 {/if}
                 </div>
                 <div class="no_expbox" id="vedio_source"  {if empty($resume['person_video'])}style="margin-top: 58px;display:block;"{else}style="margin-top: 58px;display:none;"{/if}>
-                            <span class="addandeditbtn1">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
-                                </svg>
-                                添加个人视频
-                            </span>
+                    <span class="addandeditbtn1">
+                        <svg class="icon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tianjia"></use>
+                        </svg>
+                        添加个人视频
+                    </span>
             </div>
         </div>
     </div>
@@ -1105,7 +1105,6 @@
 <!--</svg>-->
 <!--添加-->
 <!--</span>-->
-
 
                 <span class="addandeditbtn upload_video" id="upload_video">
                      {if $resume['person_video']}
@@ -1435,11 +1434,11 @@
 
         <div class="envelope">
             <div class="envelope_content">
-                <span class="font666 resume_msg_name" style="font-size: 14px;width: auto">发送到邮箱:</span>
-                <label class="general-input relative" style="width: 274px">
-                    <input type="text"  name="email" style="width: 240px;position: absolute;z-index: 99"  placeholder="请输入对方的邮箱" data-error="请输入邮箱">
+                <span class="font666 resume_msg_name" style="font-size: 14px;width: auto">发送求职信至HR邮箱:</span>
+                <label class="general-input relative" style="width: 210px">
+                    <input type="text"  name="email" style="width: 170px;position: absolute;z-index: 99"  placeholder="请输入用人单位招聘邮箱" data-error="请输入邮箱">
                 </label>
-                <span class="public_bigbtn bg1aa post_envelopebtn" style="float: right;margin-right: 30px">
+                <span class="public_bigbtn bg1aa post_envelopebtn" style="float: right;margin-right: 30px;height: 44px;line-height: 44px;">
                     点击发送
                 </span>
 
@@ -1448,16 +1447,14 @@
 　　您好！
 　　{php echo $resume['introduce']}
 
-    我是一名{php echo $resume['arr_education']['school_name']}{php echo $resume['arr_education']['edu_finish_time']}届的{php echo $resume['arr_education']['edu_district']}毕业生。所学专业：{php echo $resume['arr_education']['edu_major']}。
+    我是一名{php echo $resume['school_name']}{php echo $resume['edu_finish_time']}届的{php echo $resume['edu_district']}毕业生。所学专业：{php echo $resume['major']}。
 　　{if $work_experience}
 大学期间实习经历：
-    {loop $work_experience $list}
-　　{php echo $list['job_starttime']}-{php echo $list['job_endtime']}{php echo $list['job_content']}
-
+    {loop $work_experience $list}{php echo $list['job_starttime']}-{php echo $list['job_endtime']}，职位：{php echo $list['job_name']}，工作内容：{php echo $list['job_content']}。
 　　{/loop}
     {/if}
 
-    怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+    我怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
 恭祝商祺。</textarea>
                 </div>
 
