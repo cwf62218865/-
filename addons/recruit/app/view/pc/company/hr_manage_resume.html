@@ -335,6 +335,7 @@
             <!--面试评价end---------------------------------------------------->
             <!--工作评价start---------------------------------------------------------------------------->
             <div class="listitems gzpj_content sign_content" style="display: none;">
+                {if $evaluate}
                 {loop $evaluate $list}
                 <div class="list_item gzpj">
                     <div class="item_con">
@@ -396,6 +397,9 @@
                     </div>
                 </div>
                 {/loop}
+                {else}
+                <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有符合工作评价</div><div class="color999" style="margin-top: 30px"></div></div></div>
+                {/if}
             </div>
             <!--工作评价end---------------------------------------------------->
         </div>
