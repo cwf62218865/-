@@ -105,13 +105,17 @@
                         {if $list['status']==-1}
                             <div class="jujuestatus">已拒绝面试</div>
                         {elseif $list['status']==3}
-                            <div class="tongyi1 agree_review" data-id="{php echo $list['jobs_id']}"  data-puid="{php echo $list['puid']}" style="width: 49%">等待面试</div>
-                            <div class="jujue1 shoucangbtn shoucang_resume" data-id="{php echo $list['apply_id']}"  style="width: 49%">收藏简历</div>
+                            <div class="tongyi1" data-id="{php echo $list['jobs_id']}"  data-puid="{php echo $list['puid']}" style="width: 49%">等待面试</div>
+                            {if $list['collect_resume']}
+                            <div class="jujue1 shoucangbtn" data-id="{php echo $list['apply_id']}"  style="width: 50%">已收藏</div>
+                            {else}
+                            <div class="jujue1 shoucangbtn shoucang_resume" data-id="{php echo $list['apply_id']}"  style="width: 50%">收藏简历</div>
+                            {/if}
                         {else}
                             <div class="tongyi1 agree_review" data-id="{php echo $list['apply_id']}">同意面试</div>
                             <div class="jujue1 refuse_review" data-id="{php echo $list['apply_id']}">拒绝面试</div>
                             {if $list['collect_resume']}
-                            <div class="jujue1 shoucangbtn statussc" data-id="{php echo $list['apply_id']}">已收藏</div>
+                            <div class="jujue1 shoucangbtn" data-id="{php echo $list['apply_id']}">已收藏</div>
                             {else}
                             <div class="jujue1 shoucangbtn shoucang_resume" data-id="{php echo $list['apply_id']}">收藏简历</div>
                             {/if}
