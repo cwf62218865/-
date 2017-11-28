@@ -43,11 +43,12 @@
                     <div class="biezhu"> 只看通过申请的记录</div>
                 </div>
             </div>
+            <!--投递记录start---------------------------------------------------------------------------->
             <div class="list_content">
                 {if $apply_jobs}
                 {loop $apply_jobs $list}
                 {if $list['direction']==2}
-                <div class="list_item {if $list['status']<>3}pass{/if}" >
+                <div class="list_item {if $list['status']<>3}pass{/if}" data-id="{php echo $list['id']}">
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
@@ -108,12 +109,13 @@
                 <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有投递记录信息</div><div class="color999" style="margin-top: 30px">您可以尝试浏览更多职位进行简历投递</div></div></div>
                 {/if}
             </div>
+            <!--投递记录end---------------------------------------------------------------------------->
             <!--面试邀请start---------------------------------------------------------------------------->
             <div class="resume_content">
                 {if $interview_jobs}
                 {loop $interview_jobs $list}
                 {if $list['status']==3}
-                <div class="list_item">
+                <div class="list_item"  data-id="{php echo $list['id']}">
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['jobs_id']))}">{php echo $list['jobs_name']}</a>
@@ -273,6 +275,24 @@
         </div>
     </div>
     <!--拒绝理由弹框end-->
+
+    <!--确认删除弹框-->
+    <div class="modalbox" id="remove_action" style="display: none;">
+        <div class="stopbox">
+            <span class="close_modalbox" id="close_modalbox">
+                <svg class="icon" aria-hidden="true">
+                    <use  xlink:href="#icon-shan"></use>
+                </svg>
+            </span>
+            <div class="stopbox_title">删除职位</div>
+            <div class="stopbox_content">删除职位后将不再显示，确定要删除吗？</div>
+            <div class="stopbox_btn">
+                <span id="cancel_btns">再考虑下</span>
+                <span id="confirm_btns">确定删除</span>
+            </div>
+        </div>
+    </div>
+    <!--确认删除弹框end-->
 </div>
 
 
@@ -285,6 +305,41 @@
 
 <script>
     $(function () {
+
+        $("body").on("click",".shachuzw",function () {
+            var data_id=$(this).closest(".list_item").attr("data-id");
+            $("#remove_action").show();
+            $("#remove_action").attr("data-id",data_id);
+        })
+
+        $(".close_modalbox,#cancel_btns").click(function () {
+            $(this).closest(".modalbox").hide();
+        })
+        //职位删除
+        $("#confirm_btns").click(function () {
+            var data_id=$(this).closest("#remove_action").attr("data-id");
+            $.ajax({
+                url:"",
+                type:"post",
+                data:{
+                    dataid:data_id
+                },
+                success:function(data){
+                    var data=JSON.parse(data);
+                    if(data.status==1){
+                        hint("success","删除成功","成功提示");
+                        $("#remove_action").hide();
+                        $(".list_content .list_item").each(function () {
+                            if(data_id==$(this).attr("data-id")){
+                                $(this).remove();
+                            }
+                        })
+                    }else{
+                        hint("error",data.content);
+                    }
+                }
+            })
+        })
 
         var nav = "{$_GPC['nav']}";
         $(".list_item_btn").removeClass("select");

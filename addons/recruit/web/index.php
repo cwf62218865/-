@@ -6,11 +6,11 @@ load()->func('communication');
 
 $controller = $_GPC['do'];
 $action = $_GPC['ac'];
-$op = $_GPC['op'];
+$op = $_GPC['op']?$_GPC['op']:"index";
 
 if(empty($controller) || empty($action)) {
-	$_GPC['do'] = $controller = 'dashboard';
-	$_GPC['ac'] = $action = 'index';
+	$_GPC['do'] = $controller = 'test';
+//	$_GPC['ac'] = $action = 'index';
 }
 
 $auth = wl_syssetting_read('auth');
