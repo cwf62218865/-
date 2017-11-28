@@ -9,6 +9,18 @@
     <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
     <title>职位搜索</title>
+    <style>
+        .review_statas{
+            /*border-top:1px solid #eee ;*/
+            font-size: 12px;
+        }
+        .review_statas:hover{
+            color: #09c;
+        }
+        #pages_btnbox{
+            margin-bottom: 80px;
+        }
+    </style>
 </head>
 <body bgcolor="#f4f4f4">
 {if $_SESSION['utype']==1}
@@ -165,7 +177,7 @@
                     <span class="select_item1 ">关注度</span>
                     <label class="yemabtn">
                         {if $jobs}
-                        <span class="magr50 hangver">
+                        <span class="magr50 hangver" style="margin-right: 30px">
                             <label class="current_page" id="current_page">1</label>
                             /
                             <label class="total_page">{php echo ceil($jobs_count/6)}</label>
@@ -624,6 +636,7 @@
 
         //多选项样式添加和发送请求
         $("body").on("click",".city_item",function () {
+            $(".condition_con").css("margin-top","30px");
             $(".con_or .title").html("已选择:");
             $(".select_con").html("");
             var list=$(".city_item");
@@ -648,6 +661,7 @@
                 var _this=$(this).closest(".select_item");
                 if($(".select_item").length==0){
                     $(".con_or .title").html("");
+                    $(".condition_con").css("margin-top","0");
                 }
                 _this.remove();
                 var value=$(this).closest(".cont_item").find(".cont_list").html();

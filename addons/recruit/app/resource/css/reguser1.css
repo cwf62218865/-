@@ -135,6 +135,8 @@ position: absolute;
     line-height: 16px;
     text-align: center;
     float: left;
+    font-weight: 600;
+    color: #6d6d6d;
 }
 .login_zj .title_zj{
     width: 100%;
@@ -142,6 +144,15 @@ position: absolute;
     line-height: 96px;
     text-align: center;
     float: left;
+    font-weight: 600;
+    color: #6d6d6d;
+}
+.findpwd_title{
+    font-size: 16px;
+    text-align: center;
+    margin: 40px 0;
+    font-weight: 600;
+    color: #6d6d6d;
 }
 .login_zj .public_bigbtn{
     padding: 0;

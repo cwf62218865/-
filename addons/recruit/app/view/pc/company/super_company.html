@@ -70,13 +70,16 @@
             background: #306fb7;
         }
 
+        .recruit_result span{
+            width: 120px;
+        }
     </style>
 
 </head>
 <body bgcolor="#f4f4f4">
 
 {if $_SESSION['uid']}
-{php include wl_template('common/company_top');}
+{php include wl_template('common/top');}
 {else}
 {php include wl_template('common/header');}
 {/if}
