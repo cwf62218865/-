@@ -1,0 +1,58 @@
+{php include wl_template('common/header');}
+<div class="container-fluid" style="margin-top: 36px;margin-bottom: 88px;min-height: 700px;max-width: 1400px;">
+    <ul class="nav nav-tabs">
+        <li><a href="">会员列表</a></li>
+        <li><a href="">求职者</a></li>
+        <li><a href="">企业</a></li>
+        <li><a href="">导师</a></li>
+        <li><a href="">新增会员</a></li>
+    </ul>
+
+
+    <div class="panel panel-default">
+        <div class="table-responsive">
+            <table class="table table-hover table-box">
+                <thead class="navbar-inner">
+                <tr>
+                    <th style="width:10px;"></th>
+                    <th style="width:60px;">会员id</th>
+                    <th style="width:120px;">手机号</th>
+                    <th style="width:150px;">类型</th>
+                    <th style="width:100px;">状态</th>
+                    <th style="width:100px;">注册时间</th>
+                    <th style="width:100px;">用户名</th>
+                    <th style="width:60px;">邮箱</th>
+                    <th style="width:190px;" class="text-center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td><input type="checkbox" name="member[]" value="{$li['id']}"></td>
+                    <td>1</td>
+                    <td>电话</td>
+                    <td><span class="label label-success">求职者</span></td>
+                    <td>待绑定</td>
+                    <td>时间</td>
+                    <td>姓名</td>
+                    <td>邮箱</td>
+                    <td class="text-center" style="overflow:visible;">
+                        <a href="{php echo web_url('member/member/editmember',array('id'=>$li['id']))}" class="btn btn-success btn-sm sms">修改信息</a>
+                        <a href="" class="btn btn-default btn-sm">查看详情</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <div class="form-group col-sm-12">
+                <button class="btn btn-sm btn-info" id='quanxuan' type='button'>全选/反选</button>
+                <button class="btn btn-sm btn-success" id='do_delete' type="submit">批量删除</button>
+            </div>
+        </div>
+    </div>
+
+    {$pager}
+</div>
+
+{php include wl_template('common/footer');}
