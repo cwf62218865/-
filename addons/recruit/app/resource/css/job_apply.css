@@ -45,7 +45,7 @@
 }
 .condition_con{
     width:1080px;
-    margin-top:30px;
+    /*margin-top:30px;*/
     margin-left: 50px;
 }
 .condition_item{
@@ -319,8 +319,8 @@
     color: #0099cc;
 }
 .slected{
-    background: #0099cc;
-    color: #ffffff;
+    /*background: #0099cc;*/
+    color: #838ea2;
 }
 .toudijianli{
     float: left;

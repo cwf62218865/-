@@ -1,11 +1,11 @@
+
 {php include wl_template('common/header');}
 <ul class="nav nav-tabs">
 	<li {if $op=='display'}class="active"{/if}><a href="{php echo web_url('member/member/display')}">会员列表</a></li>
-	<li {if $op=='person'}class="active"{/if}><a href="{php echo web_url('member/member/person')}">求职者</a></li>
-	<li {if $op=='company'}class="active"{/if}><a href="{php echo web_url('member/member/company')}">企业</a></li>
-	<li {if $op=='teacher'}class="active"{/if}><a href="{php echo web_url('member/member/teacher')}">导师</a></li>
 	<li {if $op=='detail'}class="active"{/if}><a href="{php echo web_url('member/member/addmember')}">新增会员</a></li>
 </ul>
+
+
 {if $op=='display'}
 <div class="panel panel-default">
 	<div class="panel-heading">筛选</div>
@@ -38,6 +38,7 @@
 		</form>
 	</div>
 </div>
+
 <div class="panel panel-default">
 	<div class="table-responsive">
 		<table class="table table-hover table-box">
@@ -47,10 +48,7 @@
 					<th style="width:60px;">会员id</th>
 					<th style="width:120px;">手机号</th>
 					<th style="width:150px;">类型</th>
-					<th style="width:100px;">状态</th>
 					<th style="width:100px;">注册时间</th>
-					<th style="width:100px;">用户名</th>
-					<th style="width:60px;">邮箱</th>
 					<th style="width:190px;" class="text-center">操作</th>
 				</tr>
 			</thead>
@@ -61,12 +59,13 @@
 					<td> {$li['id']}</td>
 					<td>{$li['mobile']}</td>
 					<td>{if $li['utype']==1}<span class="label label-success">求职者</span>{elseif $li['utype']==2}<span class="label label-primary">企业</span>{else}<span class="label label-inverse">导师</span>{/if}</td>
-					<td>待绑定</td>
 					<td>{php echo date('Y-m-d',$li['createtime'])}</td>
-					<td>{if $li['username']}{php echo $li['username']}{/if}</td>
-					<td>{php echo $li['email']}</td>
 					<td class="text-center" style="overflow:visible;">
-						<a href="{php echo web_url('member/member/editmember',array('id'=>$li['id']))}" class="btn btn-success btn-sm sms">修改信息</a>
+						{if $li['utype']==1}
+						<a href="{php echo web_url('company/detail',array('id'=>$li['id']))}" class="btn btn-success btn-sm sms">完善信息</a>
+						{elseif $li['utype']==2}
+						<a href="{php echo web_url('member/member/editmember',array('id'=>$li['id']))}" class="btn btn-success btn-sm sms">完善信息</a>
+						{/if}
 						<a href="" class="btn btn-default btn-sm">查看详情</a>
 					</td>
 				</tr>

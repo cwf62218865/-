@@ -121,7 +121,8 @@
                             }
                         },1000)
                     }else{
-                       hint("error",data.content);
+//                       $(".chec_tip").eq(0).html(tipmsg("error","该手机号已被注册，可尝试找回密码"))
+                        mobie_input.next().html(tipmsg("error","该手机号已被注册，可尝试找回密码"));
                     }
                 }
             })
