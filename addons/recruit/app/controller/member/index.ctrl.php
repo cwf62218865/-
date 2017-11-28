@@ -6,7 +6,7 @@ wl_load()->model('verify');
 //首页
 if($op=="index"){
     $company  = m("member")->company_list();
-
+    $data['data']['job_order']="发布时间";
     $jobs = m("jobs")->getall_jobs_page($data,9);
     $jobs = $jobs['more'];
 
@@ -239,13 +239,27 @@ elseif ($op=="switch_city"){
 }
 //登录处理
 elseif ($op=="login_deal"){
-
+    $data['baidu_openid'] = $_GPC['baidu_openid'];
+    $data['qq_openid'] = $_GPC['qq_openid'];
+    $data['weixin_openid'] = $_GPC['weixin_openid'];
+    $data['weibo_openid'] = $_GPC['weibo_openid'];
     $username = check_pasre($_GPC['user_name'],"请输入您的手机号/用户名");
     $member = member_exists($username);
 
     if($member){
         $password = pwd_hash($_GPC['password'],$member['salt']);
         if($password==$member['password']){
+            if($data){
+                if($member['utype']!=1){
+                    call_back(2,"暂不支持企业用户绑定");
+                }
+                $r = pdo_update(WL."members",$data,array('id'=>$member['id']));
+                if($r){
+                    call_back(1,"绑定成功");
+                }else{
+                    call_back(2,"绑定失败");
+                }
+            }
             $_SESSION['uid'] = $member['id'];
             $_SESSION['utype'] = $member['utype'];
             if($member['utype']==1){
@@ -602,7 +616,7 @@ elseif ($op=="search_jobs_ajax"){
                             </div>
                         </div>
                     </div>
-                    <a class=\"review_statas\" data-id='{$list[uid]}' href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."' style=\"border-top:1px solid #eeeeee;\">
+                    <a class=\"review_statas\" data-id='{$list[uid]}' href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."'>
                         查看详情
                     </a>
                 </div>";
@@ -915,7 +929,45 @@ elseif ($op=="download"){
     downfile($_GPC['filename'].".pdf");echo "<script>history.go(-1);</script>";exit();
 }
 elseif ($op=="companys_slide"){
+    $page = $_POST['page']?$_POST['page']:0;
+    $company  = m("member")->company_list($page);
+    $str = "";
+    foreach ($company as $list){
+        $str .="<div class=\"hot_companys\">
+                    <a class=\"hot_companys_logo\" href=\"".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."\">
+                        <img src=\"{$list['headimgurl']}\">
+                    </a>
+                    <a class=\"nowrap hot_companys_name\" href=\"".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."\">
+                        {$list['companyname']}
+                    </a>
+                    <div class=\"nowrap hot_companys_introduce\">
+                        {$list['introduce']}
+                    </div>
+                    <div class=\"nowrap hot_companys_introduce\">
+                        {$list['industry']}/{$list['nature']}
+                    </div>
+                    <span class=\"hot_company_line\"></span>
+                    <div class=\"hot_company_msg\">
+                        <a  href=\"".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."\">
+                            {$list['comment_count']}
+                            <div>面试评价</div>
+                        </a>
 
+                    </div>
+                    <div class=\"hot_company_msg\">
+                        <a  href=\"".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."\">
+                            {$list['jobs_count']}
+                            <div>在招职位</div>
+                        </a>
+
+                    </div>
+                    <div class=\"hot_company_msg\" style=\"font-size: 14px\">
+                        <span>{$list['last_login']}</span>
+                        <div>企业最近登录</div>
+                    </div>
+                </div>";
+    }
+    call_back(1,$str);
 }
 
 /**********未知接口*******/
@@ -1008,12 +1060,34 @@ elseif($op=="baidu_callback"){
     }
 }elseif ($op=="qq_callback"){
 
+    if($_GPC['qq_openid']){
+        $qq_openid = $_GPC['qq_openid'];
+        $account = pdo_fetch("select * from ".tablename(WL."members")." where utype=1 and qq_openid='".$qq_openid."'");
+        if($account){
+            $_SESSION['uid'] = $account['id'];
+            $_SESSION['utype'] = $account['utype'];
+            $resume = m("resume")->get_resume($_SESSION['uid']);
+            if(!$resume['fullname'] || !$resume['edu_experience'] || !$resume['introduce']){
+                $url = app_url('person/index');
+            }else{
+                $url = $_SESSION['record_url'];
+                if(empty($url)){
+                    $url = app_url("member/index/login");
+                }
+                unset($_SESSION['record_url']);
+            }
+            header("location:".$url);exit();
+        }else{
+            include wl_template("member/create_bind_account");exit();
+        }
+    }
 }elseif ($op=="weixin_callback"){
 
 }elseif ($op=="record_url"){
     $_SESSION['record_url'] = $_SERVER["HTTP_REFERER"];
     call_back(1,"ok");
 }
+
 
 if(empty($_SESSION['mid'])){
     header("location:".app_url("member/index/index"));

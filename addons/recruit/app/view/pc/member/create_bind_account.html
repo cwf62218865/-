@@ -175,17 +175,23 @@
                 psw_input1.next().html("");
             }
             $.ajax({
-                url:"",
+                url:"{php echo app_url('member/index/login_deal')}",
                 type:"post",
                 data:{
-                    telnum:telnum,
-                    psw1:psw1
+                    user_name:telnum,
+                    password:psw1,
+                    baidu_openid:"{$openid}",
+                    qq_openid:"{$qq_openid}",
+                    weixin_openid:"{$weixin_openid}",
+                    weibo_openid:"{$weibo_openid}"
                 },
                 success:function(data){
+                    var data = JSON.parse(data);
                     if(data.status==1){
-                        window.location.href="";
+                        hint("success","绑定成功");
+                        window.location.href="{php echo app_url('member/index/login')}";
                     }else{
-                        console.log(data.content);
+                        hint("error",data.content);
                     }
                 }
             });

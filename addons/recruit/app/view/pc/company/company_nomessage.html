@@ -578,64 +578,37 @@
 <script>
     <!--手机扫描上传图片-->
     editwelfare();
-    var timer1;
-    var identity = "{$identity}";
-    //二维码生成
-    function code_url(id,url) {
-        $(id).qrcode({
-            width: 100, //宽度
-            height:100, //高度
-            text: url //任意内容
-        });
+    function callback_content(data) {
+        $("#modalbox").css("display","none");
+        var html =
+            "<div class=\"person_worksbtn\">\n" +
+            "                                   <img src="+data.content+">\n" +
+            "                                   <span class=\"person_worksdelbtn\">\n" +
+            "                                        <svg class=\"icon\" aria-hidden=\"true\">\n" +
+            "                                            <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#icon-shanchu\"></use>\n" +
+            "                                        </svg>\n" +
+            "                                    </span>\n" +
+            "                               </div>";
+
+
+        $(".person_worksbtn1").before(html);
+        $("#person_worksinput").val($("#person_worksinput").val()+","+data.content);
+        $("#modalbox").css("display","none");
+        if($(".person_worksbox img").length>=6){
+            $(".person_worksbtn1").hide();
+        }else{
+            $(".person_worksbtn1").show();
+        }
+        window.clearTimeout(timer1);
     }
 
-    function upload_refresh() {
-        $.ajax({
-            url:"{php echo app_url('member/index/upload_refresh')}",
-            type:"post",
-            async:true,
-            success:function(data){
-                var data = JSON.parse(data);
-                if(data.status==1){
-                    var html =
-                        "<div class=\"person_worksbtn\">\n" +
-                        "                                   <img src="+data.content+">\n" +
-                        "                                   <span class=\"person_worksdelbtn\">\n" +
-                        "                                        <svg class=\"icon\" aria-hidden=\"true\">\n" +
-                        "                                            <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#icon-shanchu\"></use>\n" +
-                        "                                        </svg>\n" +
-                        "                                    </span>\n" +
-                        "                               </div>";
-
-
-                    $(".person_worksbtn1").before(html);
-                    $("#person_worksinput").val($("#person_worksinput").val()+","+data.content);
-                    $("#modalbox").css("display","none");
-                    timer1="";
-                }else{
-                    timer1=setTimeout(function(){
-                        upload_refresh()
-                    },4000);
-                }
-                if($(".person_worksbox img").length>=6){
-                    $(".person_worksbtn1").hide();
-                }else{
-                    $(".person_worksbtn1").show();
-                }
-
-            }
-        })
-    }
-
-
-
+    $(".modalclose").click(function () {
+        window.clearTimeout(timer1);
+    })
     $("#person_worksaddbtn").on("click",function(){
         $(".erweima").attr("id","atlas").children().remove();
-        code_url("#atlas","/code.php?identity="+identity+"&kind=atlas");
-        window.clearTimeout(timer1);
-        timer1=setTimeout(function(){
-            upload_refresh()
-        },4000);
+        code_url("atlas");
+        upload_timer();
     })
 //    上传logo
     $(".company_logo_upload span").on("click",function(){
