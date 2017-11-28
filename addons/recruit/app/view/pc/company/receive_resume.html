@@ -63,7 +63,7 @@
 
                 <div class="list_item {if $list['status']==-1}refuse{/if}" data-id="{php echo $list['apply_id']}" >
                     <div class="item_con">
-                        <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}" target="_blank">
+                        <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;"/>
                         </a>
                         <div class="basic_massage">
@@ -146,9 +146,9 @@
                 {loop $collect_resume $list}
                 <div class="list_item" data-id="{php echo $list['collect_id']}"  data-uid="{$list['uid']}">
                     <div class="item_con">
-                        <div class="touxiang_pic">
+                        <a class="touxiang_pic" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;"/>
-                        </div>
+                        </a>
                         <div class="basic_massage">
                             <div class="bm_hang1">
                                 <a class="name" class="name" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">{php echo $list['fullname']}</a>
