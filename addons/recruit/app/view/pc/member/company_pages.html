@@ -449,6 +449,12 @@
 
 <script type="text/javascript">
 
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point("{php echo $company['retoate_x']}","{php echo $company['retoate_y']}");
+    map.centerAndZoom(point,16);
+    map.addOverlay(new BMap.Marker(point));
+
 
 
     $(".btnditu").on("click",function () {
