@@ -346,7 +346,8 @@
         
     }
     $(function () {
-        
+
+        //工资待遇
         $(".salery_input").click(function () {
             $(".salary_setting").show();
         });
@@ -487,17 +488,6 @@
             layer(option);
         });
 
-        //薪资待遇
-//        $("#lower .option_select").on("click",function () {
-//            option.lower=$(this).html();
-//            option.page=1;
-//            layer(option);
-//        });
-//        $("#upper .option_select").on("click",function () {
-//            option.upper=$(this).html();
-//            option.page=1;
-//            layer(option);
-//        });
 
         //排序方式
         $(".select_item1").on("click",function () {
@@ -672,19 +662,6 @@
                     }
 
                 }
-//                console.log("shan...."+arr_select);
-                //删除需要请求
-//                $.ajax({
-//                    url:"",
-//                    post:"post",
-//                    data:{
-//                        arr_select:arr_select,
-//                        page:1
-//                    },
-//                    success:function () {
-//
-//                    }
-//                })
 
                 for(var key in option){
                    if(option[key]== value){
@@ -695,72 +672,9 @@
             })
 
 
-            console.log("jia...."+arr_select);
-            //添加搜索项的内容请求
-            $.ajax({
-                url:"",
-                post:"post",
-                data:{
-                    arr_select:arr_select,
-                    page:1
-                },
-                success:function () {
+            console.log(arr_select);
 
-                }
-            })
         })
-        
-        //点击热门搜索列表发送请求
-//        $("body").on("click",".job_item",function () {
-//            var hot=$(this).html();
-//            var list=$(".select_item");
-//            var arr_select=[];
-//            list.each(function () {
-//                arr_select.push($(this).find(".cont_list").html());
-//            });
-//            arr_select.push(hot);
-//
-//            console.log("sou....."+arr_select);
-//
-//            $(".input_search").val(hot);
-//            $(".search_in").html(hot);
-//            $.ajax({
-//                url:"",
-//                post:"post",
-//                data:{
-//                    hot:hot,
-//                    page:1
-//                },
-//                success:function () {
-//
-//                }
-//            })
-//        })
-
-        //点击搜索按钮发送请求
-//        $(".btn_search").click(function () {
-//            var serch=$(".input_search").val();
-//            $(".search_in").html(serch);
-//            var list=$(".select_item");
-//            var arr_select=[];
-//            list.each(function () {
-//                arr_select.push($(this).find(".cont_list").html());
-//            });
-//            arr_select.push(serch);
-//
-//            console.log("sou1....."+arr_select);
-//            $.ajax({
-//                url:"",
-//                post:"post",
-//                data:{
-//                    arr_select:arr_select,
-//                    page:1
-//                },
-//                success:function () {
-//
-//                }
-//            })
-//        })
 
         $(".input_search").focus(function () {
             $(this).css("border","1px solid #0099cc");
@@ -824,23 +738,6 @@
             }
         })
 
-        //薪资待遇筛选
-        $(".my_joblist .option_select").on("click",function () {
-            var salery=$(this).html();
-            $(this).closest(".xinzi_color").find(".wenzi").html(salery);
-            $.ajax({
-                url:"",
-                post:"post",
-                data:{
-                    salery:salery,
-                    page:1
-                },
-                success:function () {
-
-                }
-            })
-
-        })
 
         $(document).click(function(e){
             var _con = $(".xinzi_color");   // 设置目标区域
@@ -895,6 +792,7 @@
         $("body").on("click",".city_team .city_item",function () {
             $(".city_team .city_item").removeClass("city_select");
             var selecity=$(this).html();
+            selecity=$.trim(selecity);
             var lists=$(".gzdd .city_item");
 
 
@@ -913,13 +811,19 @@
                 $(".gzdd .morecity").addClass("city_select");
                 $(".gzdd .city_select").click();
                 lists.each(function () {
-                    if($.trim(selecity)==$(this).html()){
+                    if($.trim(selecity)==$(this).html() && !$(this).hasClass("morecity")){
                         $(this).addClass("city_select");
                         $(".gzdd .morecity").remove();
                         $(".gzdd .city_select").click();
                     }
                 })
             }
+//            $(".gzdd .city_select").click();
+            option.job_address=selecity;
+            option.job_address1="";
+            option.page=1;
+            layer(option);
+
 
 
 
