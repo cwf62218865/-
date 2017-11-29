@@ -25,7 +25,7 @@
 
             <div class="tel_con">
                 <p class="bind_line1">请创建一个新的帐号，并绑定你现在登录的微博</p>
-                <p  class="bind_line2">绑定后，使用QQ或者秒猎帐号均可以登录到你现有的帐号</p>
+                <p  class="bind_line2">绑定后，使用QQ或者应届僧帐号均可以登录到你现有的帐号</p>
             <label class="general-input wrap" >
                 <input type="text" id="tel_number" placeholder="请输入手机号码" maxlength="15">
             </label>
@@ -189,7 +189,9 @@
                     var data = JSON.parse(data);
                     if(data.status==1){
                         hint("success","绑定成功");
-                        window.location.href="{php echo app_url('member/index/login')}";
+                        window.setTimeout(function(){
+                            window.location.href="{php echo app_url('member/index/login')}";
+                        },1200)
                     }else{
                         hint("error",data.content);
                     }

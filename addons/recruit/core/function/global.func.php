@@ -965,9 +965,14 @@ function oplog($user, $describe, $view_url, $data) {
 //下载文件到本地
 function downfile($file){
     $filename=realpath($file); //文件名
-
+    $uid = str_replace(".pdf","",$file);
+    $resume = m("resume")->get_resume($uid,"fullname");
+    if($resume){
+        $fullname = $resume['fullname']."的应届僧简历.pdf";
+    }
+//    echo basename($filename);exit();
     header("Content-Type: application/force-download");
-    header("Content-Disposition: attachment; filename=".basename($filename));
+    header("Content-Disposition: attachment; filename=".$fullname);
     readfile($filename);
 
 }
