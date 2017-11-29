@@ -147,7 +147,7 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     overflow: hidden;
     background-color:#e7eef0 ;
     text-align: center;
-    line-height: 30px;
+    line-height: 0;
     font-size: 18px;
     float: left;
     margin-top: 9px;
