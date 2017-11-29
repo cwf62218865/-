@@ -447,7 +447,9 @@
     line-height: 50px;
     width: 100%;
     float: left;
-    font-size: 16px;}
+    font-size: 16px;
+    border-top: 1px solid #eeeeee;
+}
 .bordertop{
     border-top: 1px solid #eeeeee;
 }

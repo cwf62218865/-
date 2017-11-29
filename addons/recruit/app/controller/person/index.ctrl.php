@@ -183,7 +183,20 @@ elseif ($op=="msg_deal"){
     }
     var_dump($_POST);exit();
 }
+elseif($op=="delete_apply"){
+    if($_POST['dataid']){
+        $apply_id = $_POST['dataid'];
+        $r = pdo_delete(WL."jobs_apply",array('id'=>$apply_id,'puid'=>$_SESSION['uid']));
+        if($r){
+            call_back(1,"删除成功");
+        }else{
+            call_back(2,"删除失败");
+        }
+    }else{
+            call_back(2,"参数错误");
+    }
 
+}
 //收藏职位列表
 elseif ($op=="collection_jobs_list"){
     $collect_jobs = m("person")->collect_jobs();

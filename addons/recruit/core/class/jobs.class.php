@@ -216,6 +216,7 @@ class jobs{
      */
     public function comment_apply($data,$pagenum=6)
     {
+
         $wheresql = " where 1=1 ";
         if ($data['uid']) {
             $wheresql .= " and hr_reply='' and uid=" . $data['uid'];

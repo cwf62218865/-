@@ -691,11 +691,14 @@
 .point{
     color: #e23d46;
     font-size: 34px;
+    height: 60px;
+    line-height: 80px;
 }
 .miaoshus{
     font-size: 16px;
     color: #666666;
-    margin-top: 10px;
+    height: 60px;
+    line-height: 40px;
 }
 .xingxing_list{
     width: 480px;

@@ -17,7 +17,7 @@ class resume{
             $resume = pdo_fetch("select ".$filed." from ".tablename(WL.'resume')." where uid=".$uid);
         }else{
             $resume = pdo_fetch("select ".$filed." from ".tablename(WL.'resume')." where uid=".$uid);
-            return $resume[$filed];
+            return $resume;
         }
 
         if($resume){
