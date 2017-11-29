@@ -834,10 +834,10 @@
     width: 216px;margin-top: 20px;
 }
 .bm_hang3{
-    width: 216px;margin-top: 12px;
+    width: 216px;margin-top: 12px;height: 22px;
 }
 .bm_hang4{
-    width: 216px;margin-top: 12px;
+    width: 216px;margin-top: 12px;height: 22px;
 }
 .basic_xx{
     color: #666666;
@@ -1300,5 +1300,19 @@
 }
 .review_statas .statussc{
     color: #bbbbbb;
+}
+.xuelidd{
+    float: right;
+    height: 26px;
+    line-height: 32px;
+}
+.floatl{
+    float: left;
+}
+.norwappp{
+    display: block;
+    float: left;
+    width: 160px;
+    overflow: hidden;
 }
 

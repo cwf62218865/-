@@ -262,17 +262,17 @@
 
                 <div class="recruit_result">
                     <span>
-                        <a href="#" class="results">{$jobs_count}个</a>
+                        <a href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid'],'zaizhao'=>1))}" class="results">{$jobs_count}个</a>
                         <div class="color999">在招职位</div>
                     </span>
 
                     <span>
-                        <a href="#" class="results">{$comment_count}条</a>
+                        <a href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid'],'pingjia'=>1))}" class="results">{$comment_count}条</a>
                         <div class="color999">面试评价</div>
                     </span>
 
                     <span>
-                        <a href="#" class="results " style="color: #999">{php echo $last_login_time}</a>
+                        <span  class="results " style="color: #999">{php echo $last_login_time}</span>
                         <div class="color999">企业最近登录</div>
                     </span>
                 </div>

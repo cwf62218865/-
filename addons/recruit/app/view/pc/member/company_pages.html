@@ -141,7 +141,7 @@
                 <div style="">
                     <div class="select_title" style="margin-bottom: 40px;margin-top: 0;">
                         <span class="cur title_se {if empty($_GPC['nav'])}sleft{/if}">公司介绍</span>
-                        <span class="cur title_se {if $_GPC['nav']}sleft{/if}">在招职位<label class="num_jobing">({$jobs_num})</label></span>
+                        <span class="zaizhao cur title_se {if $_GPC['nav']}sleft{/if}">在招职位<label class="num_jobing">({$jobs_num})</label></span>
                     </div>
 
                     <!--公司介绍信息---------------------------------------------->
@@ -459,6 +459,7 @@
 
 
 
+
     $(".btnditu").on("click",function () {
         $("#modalbox1").show();
         var points=$(this).attr("data-id").split(",");
@@ -614,6 +615,14 @@
         })
     })
 
+    {if $_GET['zaizhao']}
+    $("#jobs_list").click();
+    {/if}
+    {if $_GET['pingjia']}
+        var url=$(".evaluate").attr("href");
+        var test = window.location.href;
+        window.location.href=test+url;
+    {/if}
 
 </script>
 </html>

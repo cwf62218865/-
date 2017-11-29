@@ -159,26 +159,26 @@
                                 </label>
                             </div>
                             <div class="bm_hang2">
-                                <span class="basic_xx">{php echo $list['experience']}</span>
-                                <span class="basic_xx" style="margin-left: 26px;">{php echo $list['education']}</span>
+                                <span class="basic_xx">{php echo $list['education']}</span>
+                                <span class="basic_xx"style="margin-left: 26px;">{php echo $list['school_name']}</span>
                             </div>
                             <div class="bm_hang3 nowrap">
-                                <span class="basic_xx">{php echo $list['school_name']}</span>
-                                <span class="basic_xx"  style="margin-left: 16px;">{php echo $list['major']}</span>
+                                <span class="basic_xx">{php echo $list['major']}</span>
                             </div>
                         </div>
                         <div class="xian1"></div>
                         <div class="status">
                             <p class="time">
                             <div style="height: 26px">
+                                <span style="display:inline-block;float: left;line-height: 26px">工作经验：</span>
+                                <span class="job_hope">{php echo $list['experience']}</span>
+                            </div>
+                            </p>
+                            <p class="review_tel">
                                 <span style="display:inline-block;float: left;line-height: 26px">期望职位：</span>
                                 {loop explode(",",$list['hope_job']) $li}
                                 <span class="job_hope nowrap">{$li}</span>
                                 {/loop}
-                            </div>
-                            </p>
-                            <p class="review_tel">
-                                <span>期望薪资：<label>{php echo $list['salary']}</label></span>
                             </p>
                             <p class="">
                                 <span>期望工作地点：<label>{php echo $list['hope_place']}</label></span>

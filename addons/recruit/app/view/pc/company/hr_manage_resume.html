@@ -78,23 +78,23 @@
                                 <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">查看</a>
                                 <span class="hope_job">{php echo $list['jobs_name']}</span>
                             </div>
-                            <div class="bm_hang2">
+                            <div class="bm_hang2"  style="height: 22px;">
                                 <span class="basic_xx">{if $list['sex']==2}女生{else}男生{/if}</span>
                                 <span class="basic_xx">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
                                 <span class="basic_xx" style="margin-left: 16px;">{php echo $list['education']}</span>
                             </div>
-                            <div class="bm_hang3">
+                            <div class="bm_hang3"  style="height: 22px;">
                                 <span class="basic_xx">{php echo $list['school_name']}</span>
                                 <span class="basic_xx"  style="float: right;">{php echo $list['major']}</span>
                             </div>
-                            <div class="bm_hang4">
+                            <div class="bm_hang4"  style="height: 22px;">
                                 <span class="basic_xx"><span>{php echo $list['experience']}</span></span>
                                 <span class="basic_xx" style="float: right;">{php echo $list['telphone']}</span>
                             </div>
                         </div>
                         <div class="xian1"></div>
                         <div class="status">
-                            <div class="status1">
+                            <div class="status1" style="margin-bottom: 20px;margin-top: 0">
                                 <div class="status_con">
                                     <p><span class="resume_name">{php echo $list['linker']}</span><span class="resume_tel">{php echo $list['link_phone']}</span></p>
                                     <p>面试时间：<span class="mianshi_time">{php echo $list['interview_time']}</span></p>
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                     <input type="hidden" class="interview_date" value="{$list['interview_date']}" />
-                    <a class="review_statas" href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}" target="_blank">
+                    <a class="review_statas" href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}" target="_blank" style="border-top: none;">
                         <div class="tongyi2" data-id="1">打印简历</div>
                     </a>
                 </div>
@@ -160,16 +160,16 @@
                         </div>
                         <!--专业end-->
                         <!--工资-->
-                        <div class="select_option" style="margin-left: 10px;">
-                            <div class=" relative general-select selectinput" style="">
-                                <label class="general-input relative " style="float: none">
-                                    <input type="text" class="date_num" readonly="" id="salarychoice"  name="salary" value="工资面谈">
-                                    <svg class="icon inputicon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                    </svg>
-                                </label>
-                            </div>
-                        </div>
+                        <!--<div class="select_option" style="margin-left: 10px;">-->
+                            <!--<div class=" relative general-select selectinput" style="">-->
+                                <!--<label class="general-input relative " style="float: none">-->
+                                    <!--<input type="text" class="date_num" readonly="" id="salarychoice"  name="salary" value="工资面谈">-->
+                                    <!--<svg class="icon inputicon" aria-hidden="true">-->
+                                        <!--<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>-->
+                                    <!--</svg>-->
+                                <!--</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <!--工资end-->
                         <!--经验-->
                         <div class="select_option" style="margin-left: 10px;">
@@ -207,23 +207,29 @@
                         </a>
                         <div class="basic_massage">
                             <div class="bm_hang1">
-                                <a class="name nowrap"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">{php echo $list['fullname']}</a>
-                                <a class="view_i"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">查看</a>
-                                <span class="basic_xx">{if $list['sex']==1}男{else}女{/if}</span>
-                                <span class="basic_xx" >{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
-                                <span class="basic_xx" style="margin-left: 20px;">{php echo $list['education']}</span>
+                                <a class="name linkhover" class="name" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">{php echo $list['fullname']}</a>
+                                <a class="view_i" class="name" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">查看</a>
+                                <label style="float: right;width: 60px;display: inline-block;height: 26px;line-height: 26px;">
+                                    <span class="basic_xx" style="line-height: 26px;">{if $list['sex']==2}女{else}男{/if}</span>
+                                    <span class="basic_xx" style="margin-left: 10px;line-height: 26px;">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
+                                </label>
                             </div>
-                            <div class="bm_hang3">
-                                <span class="basic_xx">{php echo $list['school_name']}</span>
-                                <span class="basic_xx"  >{php echo $list['major']}</span>
+                            <div class="bm_hang2">
+                                <span class="basic_xx floatl">{php echo $list['education']}</span>
+                                <span class="basic_xx floatl norwappp"style="margin-left: 26px;">{php echo $list['school_name']}</span>
                             </div>
-                            <div class="bm_hang4">
-                                <span class="basic_xx expirencw">{php echo $list['experience']}</span>
-                                <span class="basic_xx" style="margin-left: 10px;">{php echo $list['telphone']}</span>
+                            <div class="bm_hang3 nowrap">
+                                <span class="basic_xx">{php echo $list['major']}</span>
                             </div>
                         </div>
                         <div class="xian1"></div>
                         <div class="status">
+                            <p class="time">
+                            <div style="height: 26px">
+                                <span style="display:inline-block;float: left;line-height: 26px">工作经验：</span>
+                                <span class="job_hope">{php echo $list['experience']}</span>
+                            </div>
+                            </p>
                             <p class="time">
                                 <span>
                                     期望职位：
@@ -232,15 +238,12 @@
                                     {/loop}
                                 </span>
                             </p>
-                            <p class="review_tel">
-                                <span>期望薪资：<label>{$list['salary']}</label></span>
-                            </p>
                             <p class="" style="margin-bottom: 20px;">
                                 <span>期望工作地点：<label>{$list['hope_place']}</label></span>
                             </p>
                         </div>
                     </div>
-                    <div class="review_statas">
+                    <div class="review_statas" style="border-top: none">
                         <div class="tongyi yaoqing_interview">邀请面试</div>
                         <div class="jujue shoucang shoucang_resume"  data-id="{php echo $list['id']}" data-uid="{php echo $list['uid']}">收藏简历</div>
                     </div>

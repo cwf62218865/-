@@ -47,7 +47,7 @@
                 <div class="list_item">
                     <div class="item_con">
                         <div class="hang1">
-                            <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" target="_blank">{php echo $list['jobs_name']}</a>
+                            <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" target="_blank">{php echo $list['jobs_name']}</a>
                             <a class="salary">{if $list['wage_min']>0 && $list['wage_max']>0}{php echo $list['wage_min']}-{php echo $list['wage_max']}K{else}面议{/if}</a>
                         </div>
                         <div class="hang2">
@@ -266,6 +266,8 @@
                             if(data1.status==1){
                                 $(".modalbox").hide();
                                 var stopbox=_this.closest(".list_item");
+                                stopbox.find(".jobname").removeClass("linkhover");
+                                stopbox.find(".jobname").attr("href","javascript:void(0);");
                                 stopbox.find(".jobname").css("color","#999").append("<span class='font999'>（已停止招聘）</span>");
                                 stopbox.find(".salary").css("color","#999");
                                 stopbox.find(".received_resumemsg_num").css("color","#999");
@@ -290,7 +292,7 @@
 
     function deletejob(obj){
         var _this=$(obj);
-        var stop=stop_action("删除职位","删除职位后。。。，确定要删除吗？","再考虑下","确定删除",function(data){
+        var stop=stop_action("删除职位","删除职位后将无法继续进行职位编辑和招聘，确定要删除吗？","再考虑下","确定删除",function(data){
             if(data){
                 var data_id=_this.attr("data-id");
                 $.ajax({
