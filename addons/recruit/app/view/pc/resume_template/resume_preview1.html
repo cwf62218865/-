@@ -28,7 +28,7 @@
 {if $_GPC['show']<>1}
 {php include wl_template('common/resume_top');}
 {/if}
-<div class="width1200 p1content preview">
+<div class="width1200 p1content preview" style="width: 870px">
     <div class="p1_left">
 
         <div class="con_list">
@@ -248,7 +248,6 @@
     </div>
             {/if}
 
-            {if $_GPC['show']<>1}
             <!--30秒个人视频-->
             {if $resume['person_video']}
             <div class="basic_msg width670 resume_video" style="margin-top: 50px;margin-bottom: 180px">
@@ -265,9 +264,9 @@
                 </div>
             </div>
             {/if}
-            {/if}
 </div>
     </div>
+    <div style="clear:both"></div>
 </div>
 
 

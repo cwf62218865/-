@@ -11,43 +11,119 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_basic">
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">企业用户名</label>
+                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">公司名称</label>
                             <div class="col-xs-12 col-sm-8">
-                                <input type="text" name="name" class="form-control" value="" />
+                                <input type="text" name="companyname" class="form-control" value="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">LOGO</label>
+                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">营业执照</label>
                             <div class="col-sm-8">
-                                {php echo tpl_form_field_image('logo', $settings['logo']);}
+                                {php echo tpl_form_field_image('license', $settings['license']);}
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">版权</label>
+                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">法人身份证正面</label>
+                            <div class="col-sm-8">
+                                {php echo tpl_form_field_image('idcard1', $settings['idcard1']);}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">法人身份证反面</label>
+                            <div class="col-sm-8">
+                                {php echo tpl_form_field_image('idcard2', $settings['idcard2']);}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">公司性质</label>
                             <div class="col-xs-12 col-sm-8">
-                                <input type="text" name="copyright" class="form-control" value="{$settings['copyright']}" />
+                                <select name="nature" class="form-control">
+                                    <option value="国营企业">国营企业</option>
+                                    <option value="民营企业">民营企业</option>
+                                    <option value="私有企业">私有企业</option>
+                                    <option value="创业型">创业型</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">打卡封面图</label>
-                            <div class="col-sm-10">
-                                {php echo tpl_form_field_image('cover', $list['cover']);}
+                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">公司规模</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <select name="type" class="form-control">
+                                    <option value="20人以下">20人以下</option>
+                                    <option value="20-50人">20-50人</option>
+                                    <option value="50-200人">50-200人</option>
+                                    <option value="500-1000人">500-1000人</option>
+                                    <option value="1000人以上">1000人以上</option>
+                                </select>
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">所处行业</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <select name="industry" class="form-control">
+                                    <option value="IT互联网">IT互联网</option>
+                                    <option value="物流运输">物流运输</option>
+                                    <option value="制造加工">制造加工</option>
+                                    <option value="房地产">房地产</option>
+                                    <option value="教育培训">教育培训</option>
+                                    <option value="医疗医药">医疗医药</option>
+                                    <option value="能源化工">能源化工</option>
+                                    <option value="餐饮百货">餐饮百货</option>
+                                    <option value="通讯">通讯</option>
+                                    <option value="广告媒体">广告媒体</option>
+                                    <option value="旅游">旅游</option>
+                                    <option value="农林牧渔">农林牧渔</option>
+                                    <option value="人力资源">人力资源</option>
+                                    <option value="金融投资证券">金融投资证券</option>
+                                    <option value="其他">其他</option>
+                                </select>
                             </div>
+                        </div>
 
-                        </div>
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">首页背景</label>
-                            <div class="col-sm-8 col-xs-12">
-                                {php echo tpl_form_field_image('indexbg', $settings['indexbg']);}
-                                <span class="help-block">为空则为默认背景图</span>
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">省市区</label>
+                            <div class="col-sm-7 col-xs-12">
+                                {php echo tpl_form_field_district('city', array('province' => $list['province']));}
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">车牌简称</label>
-                            <div class="col-sm-8 col-xs-12">
-                                <input type="text" name="abbre" class="form-control" value="{$settings['abbre']}" />
-                                <span class="help-block">简称和英文请用英文逗号间隔，参考：京,A</span>
+                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">福利标签</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input type="checkbox" name="tag" value="五险">五险
+                                <input type="checkbox" name="tag" value="住房公积金">住房公积金
+                                <input type="checkbox" name="tag" value="带薪年假">带薪年假
+                                <input type="checkbox" name="tag" value="绩效奖金">绩效奖金
+                                <input type="checkbox" name="tag" value="内部培训">内部培训
+                                <input type="checkbox" name="tag" value="年终奖">年终奖
+                                <input type="checkbox" name="tag" value="晋升平台">晋升平台
+                                <input type="checkbox" name="tag" value="有偿加班">有偿加班
+                                <input type="checkbox" name="tag" value="股权奖励">股权奖励
+                                <input type="checkbox" name="tag" value="交通补贴">交通补贴
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">坐标</label>
+                            <div class="col-sm-9">
+                                {php echo tpl_form_field_coordinate('baidumap', $list)}
+                                <span class="help-block">请在地图中选择正确的坐标位置</span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-xs-12 col-sm-3 col-md-2 col-lg-2 control-label">公司介绍</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <textarea type="text" name="introduce" class="form-control" value="" ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-12 col-sm-3 col-md-2 control-label">公司图集</label>
+                            <div class="col-sm-7 col-xs-12">
+                                {php echo tpl_form_field_multi_image('photolist', $piclist);}
                             </div>
                         </div>
                     </div>
