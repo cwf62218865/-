@@ -138,9 +138,10 @@ elseif ($op=="save_work_exp"){
     $data['job_name'] = check_pasre($_POST['data']['job_name'],"请输入职位名称");
     $data['job_starttime'] = check_pasre($_POST['data']['start_time'],"请输入开始时间");
     $data['job_endtime'] = check_pasre($_POST['data']['end_time'],"请输入结束时间");
-    $data['leave_reason'] = check_pasre($_POST['data']['leave_reason'],"请输入离职原因");
-    $data['job_content'] = check_pasre($_POST['data']['job_content'],"请输入工作内容");
-
+//    $data['leave_reason'] = check_pasre($_POST['data']['leave_reason'],"请输入离职原因");
+    $data['leave_reason'] = $_POST['data']['leave_reason'];
+ //   $data['job_content'] = check_pasre($_POST['data']['job_content'],"请输入工作内容");
+    $data['job_content'] = $_POST['data']['job_content'];
     if(is_numeric($_POST['data']['exp_id'])===true){
         $id = $_POST['data']['exp_id'];
         $work_experience[$id] = $data;

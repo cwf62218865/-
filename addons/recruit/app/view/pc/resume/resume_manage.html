@@ -692,7 +692,9 @@
                     </div>
 
                     <div class="exp_job">
-                        <span class="exp_jobleft">离职原因：{php echo $list['leave_reason']}</span>
+
+                        <span class="exp_jobleft">{if $list['leave_reason']}离职原因：{php echo $list['leave_reason']}{/if}</span>
+
                     </div>
                 </div>
                 {/loop}
@@ -804,7 +806,7 @@
         <div class=" person_changes_left" style="margin-top: 20px">
             <span class="font999 resume_msg_name">离职原因</span>
             <label class="general-input relative" style="width: 460px;">
-                <input type="text" placeholder="请输入15字以内的离职原因" data-error="请输入离职原因" style="width: 420px;" name="leave_reason" maxlength="15">
+                <input type="text" placeholder="请输入15字以内的离职原因" style="width: 420px;" name="leave_reason" maxlength="15">
             </label>
         </div>
 
@@ -816,7 +818,7 @@
 
             <div  class="cwftextareatip" style="height: auto;margin-top: 10px;">
                 <label class="general-input relative" style="width: 260px;;margin-left: 80px;height: 0;border: none">
-                    <input type="hidden" name="job_content" id="job_contentinput" data-error="请输入你的工作内容">
+                    <input type="hidden" name="job_content" id="job_contentinput">
                 </label>
             </div>
 
@@ -1833,7 +1835,11 @@
                 resumesbox.find(".exp_jobleft").eq(0).html(job_name);
                 resumesbox.find(".exp_jobright").html(start_time+"-"+end_time);
                 resumesbox.find(".exp_content").html(job_content);
-                resumesbox.find(".exp_jobleft").eq(1).html("离职原因："+leave_reason);
+                if(leave_reason){
+                    resumesbox.find(".exp_jobleft").eq(1).html("离职原因："+leave_reason);
+                }else{
+                    resumesbox.find(".exp_jobleft").eq(1).html("");
+                }
             }else{
                 var job_exphtml='<div class="resume_exps" data-id='+data.content+'>'+
                         '<div class="relative">'+
@@ -1848,12 +1854,16 @@
                         '<span class="exp_jobright">'+start_time+' — '+end_time+'</span>'+
                         '</div>'+
                         '<div class="exp_content">'+job_content+'</div>'+
-                        '<div class="exp_job">'+
-                        '<span class="exp_jobleft">离职原因：'+leave_reason+'</span>'+
-                        '</div>'+
-                        '</div>'
+                        '<div class="exp_job">';
+                        if(leave_reason) {
+                            job_exphtml += '<span class="exp_jobleft">离职原因：' + leave_reason + '</span>';
+                        }else{
+                            job_exphtml += '<span class="exp_jobleft"></span>';
+                        }
+                    job_exphtml+='</div></div>';
 //                $(".resume_exps").eq(0).before(job_exphtml);
-                $(".resume_exp_content").append(job_exphtml);
+                $("#job_exp .resume_exp_content").append(job_exphtml);
+                $("#job_exp .resume_exp_content").show();
             }
             $("#job_expbox").hide();
             $("#job_exp").show();

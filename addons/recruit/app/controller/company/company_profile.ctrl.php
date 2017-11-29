@@ -119,7 +119,7 @@ elseif ($op=="save_company_profile"){
     $data['number'] = check_pasre($_POST['data']['company_scale'],"请填写公司规模");
     $data['industry'] = check_pasre($_POST['data']['company_industry'],"请填写所处行业");
     $data['city'] = check_pasre($_POST['data']['area'],"请填写所在地区");
-    $data['slogan'] = check_pasre($_POST['data']['slogan'],"请填写公司slogan");
+    $data['slogan'] = $_POST['data']['slogan'];
     $data['introduce'] = check_pasre($_POST['data']['companymsg_introduce'],"请填写公司介绍");
     $data['city'] = check_pasre($_POST['data']['city'],"请选择城市");
     $data['address'] = $_POST['data']['address'];
