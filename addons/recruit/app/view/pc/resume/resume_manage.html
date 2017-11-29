@@ -1582,6 +1582,7 @@
                 console.log(data);
                 if(data.status == '1') {
                     $('.resume_manage_headerimg img').attr('src',src );
+                    $('.login_header img').attr('src',src );
                     window.clearTimeout(timer1);
                 }
             }
@@ -1626,6 +1627,15 @@
 </script>
 <script>
 
+    function changehearimg(){
+        var img=$(".resume_manage_headerimg img").eq(0);
+        if(img.width()>img.height()){
+            img.height("100%");
+        }else{
+            img.width("100%");
+        }
+    }
+    changehearimg();
     //上传图片
     $(".modalbtn").on("click",function(){
         var uploadFormData =new FormData($("#choosefile1")[0]);
