@@ -39,7 +39,6 @@ $(function () {
             var flag=$(this).closest(".modalbox").attr("data_id");
             var lists=$(".items_1");
 
-
             //绑定成功的效果显示，应该放在ajax请求成功内部
             lists.each(function () {
                 var item_flag=$(this).attr("data_id");
@@ -73,13 +72,7 @@ $(function () {
         //标记绑定的项目类别
         var item=$(this).closest(".items_1").attr("data_id");
         var _this=$(this).closest(".items_1").find(".btn_bangding");
-
-
-        // 绑定成功的效果，写在ajax请求成功内部
-        _this.removeClass("bindbtn");
-        _this.addClass("exitbind");
-        _this.html("解绑");
-
+        var _nich=$(this).prev(".bdbiaoti");
 
         $.ajax({
             url:"",
@@ -91,7 +84,11 @@ $(function () {
                 if(data){
                     var data=JSON.parse(data);
                     if(data.status==1){
-                        window.location.href="";
+                        // 绑定成功的效果，写在ajax请求成功内部
+                        _this.removeClass("bindbtn");
+                        _this.addClass("exitbind");
+                        _this.html("解绑");
+                        _nich.html('昵称：<label class="color74">heiheibheibheibheibbi</label>');
                     }
                 }
             }
