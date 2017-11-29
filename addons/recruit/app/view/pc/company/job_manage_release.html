@@ -24,23 +24,23 @@
 
         <div class="con_list">
             <div class="list_top">
-                <div class="job_send job_manage_send">
-                    <span class="wenzi">发布的职位</span>
-                    <svg class="icon ico_xiala" style="padding-top: 22px;color: #bbbbbb;padding-left: 10px">
-                        <use xlink:href="#icon-xiala"></use>
-                    </svg>
-                    <div class="my_joblist">
-                        {loop $jobs $list}
-                        <p class="option_select">{$list['jobs_name']}</p>
-                        {/loop}
-                    </div>
-                </div>
+                <!--<div class="job_send job_manage_send">-->
+                    <!--<span class="wenzi">发布的职位</span>-->
+                    <!--<svg class="icon ico_xiala" style="padding-top: 22px;color: #bbbbbb;padding-left: 10px">-->
+                        <!--<use xlink:href="#icon-xiala"></use>-->
+                    <!--</svg>-->
+                    <!--<div class="my_joblist">-->
+                        <!--{loop $jobs $list}-->
+                        <!--<p class="option_select">{$list['jobs_name']}</p>-->
+                        <!--{/loop}-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <div style="text-align: center">
                     <a class="release_new_jobbtn" href="{php echo app_url('company/index/job_manage')}">取消发布</a>
                 </div>
             </div>
-            <!--收到的简历start------------------------------------------------------------------------------->
+            <!--发布的职位start------------------------------------------------------------------------------->
             <div class="list_content">
 
                 <div class="release_job_content" id="release_jobbox">
@@ -289,7 +289,7 @@
                 </div>
 
             </div>
-            <!--收到的简历end-------------------------------------------------------------------------->
+            <!--发布的职位end-------------------------------------------------------------------------->
         </div>
     </div>
     {php include wl_template('common/company_right');}

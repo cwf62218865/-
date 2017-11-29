@@ -38,15 +38,15 @@ function stop_action(title,content,cancel,confirm,callback){
     $("#confirm_btns").on("click",function(){
         callback(true);
     });
-    $("body").on("click","#confirm_btns",function(){
-        callback(true);
-    });
+    // $("body").on("click","#confirm_btns",function(){
+    //     callback(true);
+    // });
     $("#close_modalbox,#cancel_btns").on("click",function(){
         $("#stop_action").remove();
     });
-    $("body").on("click","#close_modalbox,#cancel_btns",function(){
-        $("#stop_action").remove();
-    })
+    // $("body").on("click","#close_modalbox,#cancel_btns",function(){
+    //     $("#stop_action").remove();
+    // })
 }
 
 

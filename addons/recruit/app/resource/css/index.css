@@ -324,6 +324,12 @@
 .resume_position a:hover{
     color: #0099cc;
 }
+.linkhover,.resume_position .linkhover{
+    color: #0099cc;
+}
+.linkhover:hover,.resume_position .linkhover:hover{
+    color: #057aa0;
+}
 .resume_position:nth-child(3),.resume_position:nth-child(6),.resume_position:nth-child(9){
     margin-right: 0;
 }

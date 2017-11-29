@@ -31,13 +31,14 @@
                     <div style="margin-top: 70px">
                         <span class="font34 color333" style="vertical-align: middle;">{php echo $jobs['jobs_name']}</span>
 
-
+                        {if $_SESSION['utype']!=2}
                         <span class="{if $report}collections1{else}collections{/if}">
 
                             {if $report}已举报{else}<svg class="icon">
                                 <use xlink:href="#icon-tishi"></use>
                             </svg>举报{/if}
                         </span>
+                        {/if}
 
 
 
@@ -225,14 +226,14 @@
 
         <div class="part_one">
 
-            <div class="company_logo" style="float: none">
+            <div class="company_logo" style="float: none;margin-bottom: 20px;">
                 <a href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">
                     <img src="{php echo $company['headimgurl']}" >
                 </a>
             </div>
 
             <div class="company_recruit_msg">
-                <a class="font18 color333 hover09c nowrap" style="margin-top: 20px;width: 280px;margin-left: 15px;" href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">
+                <a class="font18 color333 hover09c nowrap" style="width: 280px;margin-left: 15px;" href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">
                     {php echo $company['companyname']}
                     <svg class="icon" style="font-size: 22px;color: #09c">
                         <use xlink:href="#icon-renzheng"></use>
@@ -279,7 +280,7 @@
 
         </div>
 
-
+        {if $_SESSION['utype']!=2}
         <div class="part_one">
             <div class="title-top">
                 <label class="top_con">相似职位</label>
@@ -297,6 +298,7 @@
             </div>
             {/loop}
         </div>
+
         <div class="part_one">
             <div class="title-top">
                 <label class="top_con">职业导师推荐</label>
@@ -329,6 +331,7 @@
                 <p class="miaoshu">全球30位最佳CEO上榜</p>
             </div>
         </div>
+        {/if}
 
     </div>
 

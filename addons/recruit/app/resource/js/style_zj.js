@@ -25,7 +25,7 @@ $(function () {
         $(".pages_btn .page").removeClass("select");
         $(this).addClass("select");
     })
-    $(".zimu_zu").click(function () {
+    $(".zimu_zu").mouseover(function () {
         $(".zimu_zu").removeClass("selest");
         $(this).addClass("selest");
     })

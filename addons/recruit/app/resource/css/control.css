@@ -383,6 +383,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     font-size: 16px;
     color: #333;
     margin-top: 50px;
+    line-height: 26px;
 }
 .stopbox_btn{
     display: inline-block;
@@ -613,4 +614,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 .hover09c:hover{
     color: #09c;
+}
+.pages_btnbox{
+    clear: both;
+    text-align: center;
+    padding-top: 30px;
+}
+.m_t_30{
+    margin-top: 30px;
 }

@@ -67,7 +67,7 @@
 {else}
 {php include wl_template('common/header');}
 {/if}
-<div class="width1200 p1content">
+<div class="width1200 p1content m_t_30">
 
     <!--公司基本信息-->
     <div id="basic_msg">
@@ -118,10 +118,12 @@
                             <a class="icons iconb5 bds_qzone" href="#" data-cmd="qzone" title="分享到QQ空间"></a>
                         </div>
                     </span>
+                    {if $_SESSION['utype']!=2}
                     <span class="com_ico jubao"><svg class="icon fexico">
                             <use xlink:href="#icon-tishi"></use>
                         </svg>举报
                     </span>
+                    {/if}
 
                     <script>
                         window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
