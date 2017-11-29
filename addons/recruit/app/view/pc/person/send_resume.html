@@ -48,7 +48,7 @@
                 {if $apply_jobs}
                 {loop $apply_jobs $list}
                 {if $list['direction']==2}
-                <div class="list_item {if $list['status']<>3}pass{/if}" data-id="{php echo $list['id']}">
+                <div class="list_item {if $list['status']<>3}pass{/if}" data-id="{php echo $list['apply_id']}">
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
@@ -319,7 +319,7 @@
         $("#confirm_btns").click(function () {
             var data_id=$(this).closest("#remove_action").attr("data-id");
             $.ajax({
-                url:"",
+                url:"{php echo app_url('person/index/delete_apply')}",
                 type:"post",
                 data:{
                     dataid:data_id

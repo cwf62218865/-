@@ -159,7 +159,7 @@
             </div>
 
 <!--工作经历-->
-
+            {if unserialize($resume['work_experience'])}
             <div class="basic_msg width670" style="margin-top: 50px">
                 <div class="basic_msg_content">
                     <div class="resume_title">
@@ -192,6 +192,7 @@
                     </div>
                 </div>
             </div>
+            {/if}
 
 <!--教育经历-->
             <div class="basic_msg width670" style="margin-top: 50px">

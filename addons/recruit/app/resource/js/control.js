@@ -227,7 +227,7 @@ $(".general-input input").on("focus",function(){
 
 $(".general-input input").on("blur",function(){
     var _this=$(this);
-    $(this).closest(".general-input").css("border-color","#f5f5f5");
+    $(this).closest(".general-input").css("border-color","#eee");
 });
 
 $("body").on("focus",".general-input input",function(){
@@ -237,7 +237,7 @@ $("body").on("focus",".general-input input",function(){
 
 $("body").on("blur",".general-input input",function(){
     var _this=$(this);
-    $(this).closest(".general-input").css("border-color","#f5f5f5");
+    $(this).closest(".general-input").css("border-color","#eee");
 });
 
 

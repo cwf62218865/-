@@ -56,7 +56,8 @@ function create_bind_account(){
                         }
                     },1000)
                 }else{
-                    hint("error",data.content);
+                    //hint("error",data.content);
+                    $("#tel_number").closest(".general-input").next().html(tipmsg("error","该手机号已被注册"));
                 }
             }
         })

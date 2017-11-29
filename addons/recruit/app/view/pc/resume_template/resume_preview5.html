@@ -127,7 +127,7 @@
 
 
                 <!--工作经历-->
-                {if $resume['work_experience']}
+                {if unserialize($resume['work_experience'])}
                 <div class="content730">
                     <div class="items_title mabotem0">
                         <span class="item_ico5">工作经历</span>

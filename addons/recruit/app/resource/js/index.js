@@ -94,11 +94,11 @@ $(document).on("scroll",function(){
         $(".back_topbtn").show();
     }
     if(height-top<310){
-        $(".footer_banner").css("position","relative");
+        //$(".footer_banner").css("position","relative");
         $(".back_top").css("bottom",(455-height+top)+"px");
 
     }else{
-        $(".footer_banner").css("position","fixed");
+        //$(".footer_banner").css("position","fixed");
         $(".back_top").css("bottom","140px");
     }
 });

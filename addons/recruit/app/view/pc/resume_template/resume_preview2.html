@@ -145,7 +145,7 @@
             </div>
             {/if}
 <!--工作经历-->
-            {if $resume['work_experience']}
+            {if unserialize($resume['work_experience'])}
             <div class="content770">
                 <div class="items_title itemmb">
                     <span class="itme_name">工作经历</span>
