@@ -367,7 +367,7 @@
     display: inline-block;border-radius: 4px;border: 1px solid #eeeeee;color: #bbbbbb;font-size: 12px;padding-left: 6px;padding-right: 6px;height: 24px;line-height: 24px;
 }
 .item_con .xian1{
-    border: 1px dashed #cccccc;float: left;margin-top: 30px;width: 340px;
+    border-bottom: 1px dashed #eeeeee;float: left;margin-top: 30px;width: 340px;
 }
 .status{
     position: relative;
@@ -758,16 +758,20 @@
     overflow: hidden;
     white-space: nowrap;
 }
-.job_send .width80{
-    width: 80px;
+.job_send .width200{
+    min-width: 70px;
+    max-width: 200px;
+    width: auto;
+    text-align: left;
+    padding-left: 22px;
 }
 .my_joblist{
     display: none;
     position: absolute;
     width: 132px;max-height: 130px;
     height: auto;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     text-align: center;overflow-y: auto;
     box-shadow: 6px 5px 24px rgba(0,0,0,0.12);background: #ffffff;top: 45px;left: -20px;line-height: 42px;
 }
@@ -777,7 +781,7 @@
     color: #0099cc;
 }
 .shoucanginput{
-    float: right;margin-top: 15px;margin-right: 25px;display: none;
+    float: right;margin-top: 12px;margin-right: 25px;display: none;
 }
 .inputcon{
     width: 240px;height: 34px;background: #f5f5f5;float: left;line-height: 36px;border: 1px solid #f5f5f5 ;
@@ -804,8 +808,14 @@
 }
 
 .basic_massage .name{
-    font-size: 20px;color: #333333;width: 65px;height: 26px;line-height: 26px;
-    display: inline-block;overflow: hidden;
+    font-size: 20px;
+    color: #333333;
+    max-width: 80px;
+    margin-right: 6px;
+    height: 26px;
+    line-height: 26px;
+    display: inline-block;
+    overflow: hidden;
 }
 .basic_massage .name:hover{
     color: #0099cc;
@@ -824,10 +834,10 @@
     width: 216px;margin-top: 20px;
 }
 .bm_hang3{
-    width: 216px;margin-top: 12px;
+    width: 216px;margin-top: 12px;height: 22px;
 }
 .bm_hang4{
-    width: 216px;margin-top: 12px;
+    width: 216px;margin-top: 12px;height: 22px;
 }
 .basic_xx{
     color: #666666;
@@ -1290,5 +1300,19 @@
 }
 .review_statas .statussc{
     color: #bbbbbb;
+}
+.xuelidd{
+    float: right;
+    height: 26px;
+    line-height: 32px;
+}
+.floatl{
+    float: left;
+}
+.norwappp{
+    display: block;
+    float: left;
+    width: 160px;
+    overflow: hidden;
 }
 

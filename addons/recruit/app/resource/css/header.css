@@ -5,7 +5,7 @@ body,html{
     margin: 0;
     border: none;
     width: 100%;
-    background-color: #f8f9fb;
+    background-color: #f4f4f4;
     float: left;
 }
 a{
@@ -147,7 +147,7 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     overflow: hidden;
     background-color:#e7eef0 ;
     text-align: center;
-    line-height: 30px;
+    line-height: 0;
     font-size: 18px;
     float: left;
     margin-top: 9px;
@@ -529,4 +529,11 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     line-height: 36px;
     margin-right: 30px;
     cursor: pointer;
+}
+
+.linkhover,.item_con .hang1 .linkhover{
+    color: #0099cc !important;
+}
+.linkhover:hover,.item_con .hang1 .linkhover:hover{
+    color: #057aa0 !important;
 }

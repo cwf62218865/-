@@ -23,12 +23,12 @@
     <div class="p1_left">
         <div class="con_list">
             <div class="list_top">
-                <div class="job_send job_manage_send">
-                    <span class="wenzi width80">发布的职位</span>
+                <div class="job_send job_manage_send" style="margin-left: 0px;">
+                    <span class="wenzi width200">发布的职位</span>
                     <svg class="icon ico_xiala" style="padding-top: 22px;color: #bbbbbb;padding-left: 10px">
                         <use xlink:href="#icon-xiala"></use>
                     </svg>
-                    <div class="my_joblist">
+                    <div class="my_joblist" style="width: 204px;left: 0px;padding-left: 22px;text-align: left;">
                         <p class="option_select">全部职位</p>
                         {loop $jobs $list}
                         <p class="option_select">{$list['jobs_name']}</p>
@@ -40,14 +40,14 @@
                     <a class="release_new_jobbtn" href="{php echo app_url('company/index/job_manage_release')}">发布新的职位</a>
                 </div>
             </div>
-            <!--收到的简历start------------------------------------------------------------------------------->
+            <!--发布的职位start------------------------------------------------------------------------------->
             <div class="list_content">
                 {loop $jobs $list}
                 {if $list['open']}
                 <div class="list_item">
                     <div class="item_con">
                         <div class="hang1">
-                            <a class="jobname nowrap">{php echo $list['jobs_name']}</a>
+                            <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" target="_blank">{php echo $list['jobs_name']}</a>
                             <a class="salary">{if $list['wage_min']>0 && $list['wage_max']>0}{php echo $list['wage_min']}-{php echo $list['wage_max']}K{else}面议{/if}</a>
                         </div>
                         <div class="hang2">
@@ -119,7 +119,7 @@
                 </div>
 
             </div>
-            <!--收到的简历end-------------------------------------------------------------------------->
+            <!--发布的职位end-------------------------------------------------------------------------->
         </div>
     </div>
     {php include wl_template('common/company_right');}
@@ -266,6 +266,8 @@
                             if(data1.status==1){
                                 $(".modalbox").hide();
                                 var stopbox=_this.closest(".list_item");
+                                stopbox.find(".jobname").removeClass("linkhover");
+                                stopbox.find(".jobname").attr("href","javascript:void(0);");
                                 stopbox.find(".jobname").css("color","#999").append("<span class='font999'>（已停止招聘）</span>");
                                 stopbox.find(".salary").css("color","#999");
                                 stopbox.find(".received_resumemsg_num").css("color","#999");
@@ -290,7 +292,7 @@
 
     function deletejob(obj){
         var _this=$(obj);
-        var stop=stop_action("删除职位","删除职位后。。。，确定要删除吗？","再考虑下","确定删除",function(data){
+        var stop=stop_action("删除职位","删除职位后将无法继续进行职位编辑和招聘，确定要删除吗？","再考虑下","确定删除",function(data){
             if(data){
                 var data_id=_this.attr("data-id");
                 $.ajax({

@@ -20,7 +20,7 @@
     float: left;
     margin-top: 60px;
     color: #999999;
-    border-left: 2px solid #fff;
+    border-left: 2px solid #fafafa;
 }
 .left_btn_con:hover{
     color: #0099cc;
@@ -115,7 +115,7 @@
 .bindico{
     width:36px;
     height: 36px;
-    margin: 6px 6px;
+    margin: 7px 7px;
 }
 .bdbiaoti{
     text-align: center;color: #666666;
@@ -544,4 +544,10 @@
 }
 .tips11{
     float: left;margin-left: 85px;
+}
+.m_t_15{
+    margin-top: 15px;
+}
+.color74{
+    color: #7b8fc9;
 }

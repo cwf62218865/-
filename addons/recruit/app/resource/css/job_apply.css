@@ -181,18 +181,20 @@
     float: left;
 }
 .city_team{
-    width: 340px;
-    float: right;
-    margin-left: 20px;
+    width: 330px;
+    float: left;
     color: #666666;
     line-height: 22px;
 }
 .letter{
-    margin-right: 20px;
+    width: 70px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
     color: #e23d46;
     float: left;
-    display: block;
-    margin-left: 20px;
+    display: inline-block;
+    float: left;
 }
 .city_o{
     margin-right: 20px;
@@ -204,7 +206,8 @@
     border-bottom: 1px solid #eeeeee;
 }
 .zimu_zu{
-    width: 60px;
+    width: 40px;
+    margin-right: 30px;
     display: inline-block;
     float: left;
     height: 38px;
@@ -215,9 +218,10 @@
 }
 .selest{
     border-bottom: 2px solid #0099cc;
+    color: #0099cc;
 }
-.marl52{
-    margin-left: 52px;
+.marl70{
+    margin-left: 70px;
 }
 .magr30{
     margin-right: 30px;
@@ -480,16 +484,22 @@
     width: 180px ;
     color: #999999;
     font-size: 14px;
+    height: 18px;
+    line-height: 14px;
 }
 .job_n{
     color: #333333;
     font-size: 16px;
+    height: 16px;
+    line-height: 16px;
     width: 100%;
     display: block;
 }
 .job_s{
     color: #e23d46;
     font-size: 16px;
+    height: 36px;
+    line-height: 36px;
 }
 .daoshi_list{
 

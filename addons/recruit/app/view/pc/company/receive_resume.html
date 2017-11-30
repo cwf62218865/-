@@ -68,7 +68,7 @@
                         </a>
                         <div class="basic_massage">
                             <div class="bm_hang1">
-                                <a class="name" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">{php echo $list['fullname']}</a>
+                                <a class="name linkhover" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">{php echo $list['fullname']}</a>
                                 <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">查看</a>
 
                                 <label style="float: right;width: 60px;display: inline-block;height: 26px;line-height: 26px;">
@@ -101,11 +101,11 @@
                             </p>
                         </div>
                     </div>
-                    <div class="review_statas">
+                    <div class="review_statas" style="border-top: none;">
                         {if $list['status']==-1}
                             <div class="jujuestatus">已拒绝面试</div>
                         {elseif $list['status']==3}
-                            <div class="tongyi1" data-id="{php echo $list['jobs_id']}"  data-puid="{php echo $list['puid']}" style="width: 49%">等待面试</div>
+                            <div class="tongyi1" data-id="{php echo $list['jobs_id']}"  data-puid="{php echo $list['puid']}" style="width: 49%;color: #666666;">等待面试</div>
                             {if $list['collect_resume']}
                             <div class="jujue1 shoucangbtn" data-id="{php echo $list['apply_id']}"  style="width: 50%">已收藏</div>
                             {else}
@@ -151,7 +151,7 @@
                         </a>
                         <div class="basic_massage">
                             <div class="bm_hang1">
-                                <a class="name" class="name" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">{php echo $list['fullname']}</a>
+                                <a class="name linkhover" class="name" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">{php echo $list['fullname']}</a>
                                 <a class="view_i" class="name" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">查看</a>
                                 <label style="float: right;width: 60px;display: inline-block;height: 26px;line-height: 26px;">
                                     <span class="basic_xx" style="line-height: 26px;">{if $list['sex']==2}女{else}男{/if}</span>
@@ -159,26 +159,26 @@
                                 </label>
                             </div>
                             <div class="bm_hang2">
-                                <span class="basic_xx">{php echo $list['experience']}</span>
-                                <span class="basic_xx" style="margin-left: 26px;">{php echo $list['education']}</span>
+                                <span class="basic_xx">{php echo $list['education']}</span>
+                                <span class="basic_xx"style="margin-left: 26px;">{php echo $list['school_name']}</span>
                             </div>
                             <div class="bm_hang3 nowrap">
-                                <span class="basic_xx">{php echo $list['school_name']}</span>
-                                <span class="basic_xx"  style="margin-left: 16px;">{php echo $list['major']}</span>
+                                <span class="basic_xx">{php echo $list['major']}</span>
                             </div>
                         </div>
                         <div class="xian1"></div>
                         <div class="status">
                             <p class="time">
                             <div style="height: 26px">
+                                <span style="display:inline-block;float: left;line-height: 26px">工作经验：</span>
+                                <span class="job_hope">{php echo $list['experience']}</span>
+                            </div>
+                            </p>
+                            <p class="review_tel">
                                 <span style="display:inline-block;float: left;line-height: 26px">期望职位：</span>
                                 {loop explode(",",$list['hope_job']) $li}
                                 <span class="job_hope nowrap">{$li}</span>
                                 {/loop}
-                            </div>
-                            </p>
-                            <p class="review_tel">
-                                <span>期望薪资：<label>{php echo $list['salary']}</label></span>
                             </p>
                             <p class="">
                                 <span>期望工作地点：<label>{php echo $list['hope_place']}</label></span>
@@ -192,7 +192,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="review_statas">
+                    <div class="review_statas" style="border-top:none; ">
                         <div class="tongyi yaoqing_interview" data-id="{php echo $list['collect_id']}">邀请面试</div>
                         <div class="jujue" data-id="{php echo $list['collect_id']}">取消收藏</div>
                     </div>
@@ -519,7 +519,7 @@
                             status.html("等待面试");
                             status.next().remove();
                             var di=$(this).find(".review_statas div");
-                            di.css("width","49%");
+                            di.css({"width":"49%","color":"#666"});
                             status.removeClass("agree_review").unbind("click");
                             status.addClass("statussc");
                         }
@@ -536,25 +536,31 @@
 
 
     //拒绝面试
-
     $("body").on("click",".refuse_review",function () {
         var _this = $(this);
-        $.ajax({
-            type:"post",
-            url:"{php echo app_url('company/resume/refuse_review')}",
-            data:{
-                apply_id:$(this).attr('data-id')
-            },
-            success:function (data) {
-                var data = JSON.parse(data);
-                if(data.status==1){
-                    _this.closest(".review_statas").html("<div class='jujuestatus cur' data-id='1'>已拒绝面试</div>");
-                    hint("success","拒绝面试成功");
-                }else{
-                    hint("error",data.content);
-                }
+        stop_action("拒绝面试","拒绝面试邀请后将无法邀请面试，您确定要拒绝吗？","再考虑下","确定拒绝",function (data) {
+            if(data){
+                $("#stop_action").remove();
+                $.ajax({
+                    type:"post",
+                    url:"{php echo app_url('company/resume/refuse_review')}",
+//                    url:"",
+                    data:{
+                        apply_id:_this.attr('data-id')
+                    },
+                    success:function (data) {
+                        var data = JSON.parse(data);
+                        if(data.status==1){
+                            _this.closest(".review_statas").html("<div class='jujuestatus cur'>已拒绝面试</div>");
+                            hint("success","拒绝面试成功");
+                        }else{
+                            hint("error",data.content);
+                        }
+
+                    }
+                })
             }
-        })
+        });
     })
 
 

@@ -592,7 +592,7 @@ elseif ($op=="search_jobs_ajax"){
                 "<div class=\"list_item\">
                     <div class=\"item_con\">
                         <div class=\"hang1\">
-                            <a class=\"jobname nowrap\" href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."'>{$list['jobs_name']}</a>
+                            <a class=\"jobname nowrap linkhover\" href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."'>{$list['jobs_name']}</a>
                             <label class=\"salary\">{$list['salary']}</label>
                         </div>
                         <div class=\"hang2\"  style=\"width: 100%;\">
