@@ -261,13 +261,14 @@ class jobs{
         $comment['more'] = "";
         foreach ($comment_jobs as $list) {
             $jobs = pdo_fetch("select id,jobs_name from " . tablename(WL . "jobs") . " where id=" . $list['jobs_id']);
-            $company = pdo_fetch("select headimgurl from " . tablename(WL . "company_profile") . " where uid=" . $list['uid']);
+            $company = pdo_fetch("select headimgurl,companyname from " . tablename(WL . "company_profile") . " where uid=" . $list['uid']);
             $resume = m("resume")->get_resume($list['puid'],"fullname,headimgurl");
 //            pdo_fetch("select fullname,headimgurl from " . tablename(WL . "resume") . " where uid=" . $list['puid']);
             $list['jobs_name'] = $jobs['jobs_name'];
             $list['jobs_id'] = $jobs['id'];
             $list['headimgurl'] = $resume['headimgurl'];
             $list['logo'] = $company['headimgurl'];
+            $list['companyname'] = $company['companyname'];
             if ($list['hide']) {
                 $list['fullname'] = "匿名";
             } else {

@@ -828,7 +828,7 @@
     font-size: 16px;color: #7b8fc9;width: 110px;float: right;line-height: 26px;text-align: right;display: inline-block;overflow: hidden;text-overflow:ellipsis;-o-text-overflow:ellipsis; white-space:nowrap;
 }
 .bm_hang1{
-    width: 216px;height: 26px;
+    width: 216px;height: 26px;display: block;
 }
 .bm_hang2{
     width: 216px;margin-top: 20px;

@@ -9,37 +9,60 @@ $(function () {
 })
 
 //我的评价的展开和收起
-$("body").on("click",".zhankai",function () {
+$("body").on("click",".zhankai1",function () {
     $(this).closest(".list_item1").find(".my_evaluate").show();
     $(this).html("收起我的评价");
-    $(this).removeClass("zhankai");
-    $(this).addClass("shouqi");
+    $(this).removeClass("zhankai1");
+    $(this).addClass("shouqi1");
 });
-$("body").on("click",".shouqi",function () {
+$("body").on("click",".shouqi1",function () {
     $(this).closest(".list_item1").find(".my_evaluate").hide();
     $(this).html("展开我的评价");
-    $(this).removeClass("shouqi");
-    $(this).addClass("zhankai");
+    $(this).removeClass("shouqi1");
+    $(this).addClass("zhankai1");
 });
 
 
 //省略号显示
-var pj=$(".pingjia_neir").html();
-if(pj && pj.length>60){
-    $(".pingjia_neir").html(pj.substring(0,60)+"......");
-}
-var htmls="收起<svg class='icon' aria-hidden='true'><use xlink:href='#icon-shangjiantou'></use></svg>";
-var htmls1="显示全部<svg class='icon' aria-hidden='true'><use xlink:href='#icon-xiajiantou'></use></svg>";
-$("body").on("click",".xianshi_ico",function () {
-    var pj1=$(this).prev().html();
-    if(pj1.length<67){
-        $(this).prev().html(pj);
-        $(this).html(htmls);
-    }else{
-        $(this).prev().html(pj.substring(0,60)+"......");
-        $(this).html(htmls1);
-    }
-})
+// $(".pingjia_neir").each(function () {
+//     var pj=$(this).html();
+//     if(pj && pj.length>60){
+//         $(this).html(pj.substring(0,60)+"......");
+//     }
+
+    var htmls="收起<svg class='icon' aria-hidden='true'><use xlink:href='#icon-shangjiantou'></use></svg>";
+    var htmls1="显示全部<svg class='icon' aria-hidden='true'><use xlink:href='#icon-xiajiantou'></use></svg>";
+    $("body").on("click",".xianshi_ico",function () {
+        var pj1=$(this).closest(".pingjia_con").find(".pingjia_neir");
+        var pj=$(this).closest(".pingjia_con").find(".pingjiacon").val();
+        if(pj1.html().length<67){
+            pj1.html(pj);
+            $(this).html(htmls);
+        }else{
+            pj1.html(pj.substring(0,60)+"......");
+            $(this).html(htmls1);
+        }
+    })
+// })
+
+
+//
+// var pj=$(".pingjia_neir").html();
+// if(pj && pj.length>60){
+//     $(".pingjia_neir").html(pj.substring(0,60)+"......");
+// }
+// var htmls="收起<svg class='icon' aria-hidden='true'><use xlink:href='#icon-shangjiantou'></use></svg>";
+// var htmls1="显示全部<svg class='icon' aria-hidden='true'><use xlink:href='#icon-xiajiantou'></use></svg>";
+// $("body").on("click",".xianshi_ico",function () {
+//     var pj1=$(this).prev().html();
+//     if(pj1.length<67){
+//         $(this).prev().html(pj);
+//         $(this).html(htmls);
+//     }else{
+//         $(this).prev().html(pj.substring(0,60)+"......");
+//         $(this).html(htmls1);
+//     }
+// })
 
 //勾选匿名
 $(".checkbox").on("click",function () {

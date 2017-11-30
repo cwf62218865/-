@@ -8,7 +8,7 @@
     <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
-    <title>投递简历</title>
+    <title>收藏订阅</title>
 </head>
 <body bgcolor="#f4f4f4">
 {if $_SESSION['uid']}
@@ -31,7 +31,7 @@
                 <div class="list_item">
                     <div class="item_con">
                         <div class="hang1">
-                            <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
+                            <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
                             <a class="salary">
                                 {if $list['wage_min']>0 && $list['wage_max']>0}
                                     {$list['wage_min']}-{$list['wage_max']}K
@@ -225,7 +225,7 @@
                 <div class="list_item">
                     <div class="item_con">
                         <div class="hang1">
-                            <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
+                            <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
                             <a class="salary">
                                 {if $list['wage_min']>0 && $list['wage_max']>0}
                                     {php echo $list['wage_min']}-{php echo $list['wage_max']}k
@@ -248,7 +248,7 @@
                         <div class="status">
                             <a class="collection_logo"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}"><img src="{WL_URL_ARES}images/qiyelogo.png"></a>
                             <div class="collection_companymsg">
-                                <a class="nowrap company_name" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
+                                <a class="nowrap company_name"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
                                 <span class="nowrap company_address">{php echo $list['address']}</span>
                             </div>
                         </div>

@@ -72,24 +72,45 @@
                         <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;height: 100px;"/>
                         </a>
-                        <div class="basic_massage" style="height: auto;">
+                        <!--<div class="basic_massage" style="height: auto;">-->
+                            <!--<div class="bm_hang1">-->
+                                <!--<span class="name nowrap">{php echo $list['fullname']}</span>-->
+                                <!--<a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">查看</a>-->
+                                <!--<span class="hope_job">{php echo $list['jobs_name']}</span>-->
+                            <!--</div>-->
+                            <!--<div class="bm_hang2"  style="height: 22px;">-->
+                                <!--<span class="basic_xx">{if $list['sex']==2}女生{else}男生{/if}</span>-->
+                                <!--<span class="basic_xx">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>-->
+                                <!--<span class="basic_xx" style="margin-left: 16px;">{php echo $list['education']}</span>-->
+                            <!--</div>-->
+                            <!--<div class="bm_hang3"  style="height: 22px;">-->
+                                <!--<span class="basic_xx">{php echo $list['school_name']}</span>-->
+                                <!--<span class="basic_xx"  style="float: right;">{php echo $list['major']}</span>-->
+                            <!--</div>-->
+                            <!--<div class="bm_hang4"  style="height: 22px;">-->
+                                <!--<span class="basic_xx"><span>{php echo $list['experience']}</span></span>-->
+                                <!--<span class="basic_xx" style="float: right;">{php echo $list['telphone']}</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="basic_massage">
                             <div class="bm_hang1">
-                                <span class="name nowrap">{php echo $list['fullname']}</span>
-                                <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">查看</a>
-                                <span class="hope_job">{php echo $list['jobs_name']}</span>
+                                <a class="name linkhover" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">{php echo $list['fullname']}</a>
+                                <a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">查看</a>
+
+                                <label style="float: right;width: 60px;display: inline-block;height: 26px;line-height: 26px;">
+                                    <span class="basic_xx" style="line-height: 26px;">{if $list['sex']==2}女{else}男{/if}</span>
+                                    <span class="basic_xx" style="margin-left: 10px;line-height: 26px;">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
+                                </label>
                             </div>
-                            <div class="bm_hang2"  style="height: 22px;">
-                                <span class="basic_xx">{if $list['sex']==2}女生{else}男生{/if}</span>
-                                <span class="basic_xx">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>
-                                <span class="basic_xx" style="margin-left: 16px;">{php echo $list['education']}</span>
+                            <div class="bm_hang2">
+                                应聘岗位：
                             </div>
-                            <div class="bm_hang3"  style="height: 22px;">
-                                <span class="basic_xx">{php echo $list['school_name']}</span>
-                                <span class="basic_xx"  style="float: right;">{php echo $list['major']}</span>
-                            </div>
-                            <div class="bm_hang4"  style="height: 22px;">
-                                <span class="basic_xx"><span>{php echo $list['experience']}</span></span>
-                                <span class="basic_xx" style="float: right;">{php echo $list['telphone']}</span>
+                            <div class="bm_hang3">
+                                {if $list['open']}
+                                <a  class="hope_job" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['jobs_id']))}" style="text-align: left;width: 100%;">{php echo $list['jobs_name']}</a>
+                                {else}
+                                <a  class="hope_job" style="text-align: left;width: 100%;color: #999999;">{php echo $list['jobs_name']}(已停招)</a>
+                                {/if}
                             </div>
                         </div>
                         <div class="xian1"></div>

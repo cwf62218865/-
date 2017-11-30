@@ -50,7 +50,7 @@
                             <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" target="_blank">{php echo $list['jobs_name']}</a>
                             <a class="salary">{if $list['wage_min']>0 && $list['wage_max']>0}{php echo $list['wage_min']}-{php echo $list['wage_max']}K{else}面议{/if}</a>
                         </div>
-                        <div class="hang2">
+                        <div class="hang2" style="line-height: 23px;">
                             <a class="exptime nowrap" style="color: #666">工作地点：{php echo $list['city'].$list['city_erea'].$list['address']}</a>
                             <span class="date" style="color: #666">{php echo date('Y-m-d',$list['addtime'])}</span>
                         </div>
@@ -75,14 +75,14 @@
                 <div class="list_item">
                     <div class="item_con">
                         <div class="hang1" >
-                            <a class="jobname nowrap" style="color: #999">{php echo $list['jobs_name']}<span class="font999">（已停止招聘）</span></a>
-                            <a class="salary" style="color: #999">
+                            <a class="jobname nowrap" style="color: #999;width: 200px;">{php echo $list['jobs_name']}<span class="font999">（已停止招聘）</span></a>
+                            <a class="salary" style="color: #999;width: 130px;">
                                 {if $list['wage_min']>0 && $list['wage_max']>0}
                                 {php echo $list['wage_min']}-{php echo $list['wage_max']}K
                                 {else}面议{/if}
                             </a>
                         </div>
-                        <div class="hang2">
+                        <div class="hang2"  style="line-height: 23px;">
                             <a class="exptime nowrap" style="color: #666">工作地点：{php echo $list['city'].$list['city_erea'].$list['address']}</a>
                             <span class="date" style="color: #666">{php echo date('Y-m-d',$list['addtime'])}</span>
                         </div>
@@ -267,7 +267,7 @@
                                 $(".modalbox").hide();
                                 var stopbox=_this.closest(".list_item");
                                 stopbox.find(".jobname").removeClass("linkhover");
-                                stopbox.find(".jobname").attr("href","javascript:void(0);");
+                                stopbox.find(".jobname").removeAttr("href");
                                 stopbox.find(".jobname").css("color","#999").append("<span class='font999'>（已停止招聘）</span>");
                                 stopbox.find(".salary").css("color","#999");
                                 stopbox.find(".received_resumemsg_num").css("color","#999");
