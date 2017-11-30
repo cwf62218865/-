@@ -267,18 +267,21 @@
                     </span>
 
                     <span>
-                        <a href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid'],'pingjia'=>1))}" class="results">{$comment_count}条</a>
+                        <a href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}" class="results">{$comment_count}条</a>
+
                         <div class="color999">面试评价</div>
                     </span>
 
                     <span>
-                        <span  class="results " style="color: #999">{php echo $last_login_time}</span>
+                        <a href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}" class="results " style="color: #999">{php echo $last_login_time}</a>
+
                         <div class="color999">企业最近登录</div>
                     </span>
                 </div>
             </div>
 
         </div>
+
 
         {if $_SESSION['utype']!=2}
         <div class="part_one">
@@ -288,7 +291,7 @@
             {loop $similar_jobs $list}
             <div class="items_list">
                 <div class="logo1">
-                    <img src="" class="logopic">
+                    <img src="{$list['logo']}" class="logopic">
                 </div>
                 <div class="company_name">
                     <p class="job_n">{$list['jobs_name']}</p>

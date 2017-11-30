@@ -119,7 +119,6 @@ elseif($op=="company_detail"){
 
 //忘记密码by手机
 elseif ($op=="forget_password"){
-
     include wl_template("member/forget_password");
 }
 
@@ -130,7 +129,6 @@ elseif ($op=="forget_password_email"){
 }
 //忘记密码by邮箱
 elseif ($op=="forget_password_permit"){
-
     include wl_template("member/forget_password_permit");
 }
 //设置密码
@@ -356,6 +354,7 @@ elseif ($op=="pwd_bypermit"){
 }
 //执照找回之图片上传
 elseif ($op=="permit_validate"){
+
     $img = upload_img($_FILES);
     call_back(1,$img);
 }
@@ -997,6 +996,7 @@ elseif ($op=="add"){
 
 /********************************************第三方登录接入请求*****************************************/
 elseif($op=="baidu_callback"){
+    $back_top = 1;
     $apiClient = $baidu->getBaiduApiClientService();
     $profile = $apiClient->api('/rest/2.0/passport/users/getInfo',
         array('fields' => 'userid,username,sex,birthday'));
@@ -1026,6 +1026,7 @@ elseif($op=="baidu_callback"){
        }
     }
 }elseif($op=="weibo_callback"){
+    $back_top = 1;
     include_once(WL_CORE.'/common/libweibo-master/saetv2.ex.class.php');
     include_once(WL_CORE.'/common/libweibo-master/config.php');
     $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
@@ -1059,7 +1060,7 @@ elseif($op=="baidu_callback"){
         }
     }
 }elseif ($op=="qq_callback"){
-
+    $back_top = 1;
     if($_GPC['qq_openid']){
         $qq_openid = $_GPC['qq_openid'];
         $account = pdo_fetch("select * from ".tablename(WL."members")." where utype=1 and qq_openid='".$qq_openid."'");
