@@ -25,6 +25,12 @@ if($op=="1"){
     $data['fullname'] = check_pasre($_POST['user_name'],"请输入姓名");
     $data['telphone'] = check_pasre($_POST['telphone'],"请输入手机号");
     $data['email'] = check_pasre($_POST['email'],"请输入邮箱");
+    $members = pdo_fetch("select id from ".tablename(WL.'members')." where email=".$data['email']);
+    if($members){
+        call_back(2,"该邮箱已注册");
+    }else{
+        pdo_update(WL."members",array('email'=>$data['email']),array("uid"=>$_SESSION['uid']));
+    }
     $data['city'] = $_POST['city'];
     $data['city_area'] = $_POST['city_area'];
     $data['address'] = $_POST['address'];
