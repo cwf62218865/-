@@ -261,17 +261,17 @@
 
                 <div class="recruit_result">
                     <span>
-                        <a href="#" class="results">{$jobs_count}个</a>
+                        <a  href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}" class="results">{$jobs_count}个</a>
                         <div class="color999">在招职位</div>
                     </span>
 
                     <span>
-                        <a href="#" class="results">{$comment_count}条</a>
+                        <a href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}" class="results">{$comment_count}条</a>
                         <div class="color999">面试评价</div>
                     </span>
 
                     <span>
-                        <a href="#" class="results " style="color: #999">{php echo $last_login_time}</a>
+                        <a href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}" class="results " style="color: #999">{php echo $last_login_time}</a>
                         <div class="color999">企业最近登录</div>
                     </span>
                 </div>
@@ -279,7 +279,7 @@
 
         </div>
 
-
+        {if $similar_jobs}
         <div class="part_one">
             <div class="title-top">
                 <label class="top_con">相似职位</label>
@@ -287,7 +287,7 @@
             {loop $similar_jobs $list}
             <div class="items_list">
                 <div class="logo1">
-                    <img src="" class="logopic">
+                    <img src="{$list['logo']}" class="logopic">
                 </div>
                 <div class="company_name">
                     <p class="job_n">{$list['jobs_name']}</p>
@@ -297,6 +297,7 @@
             </div>
             {/loop}
         </div>
+        {/if}
         <div class="part_one">
             <div class="title-top">
                 <label class="top_con">职业导师推荐</label>
