@@ -61,7 +61,7 @@
                 {if $received_resume}
                 {loop $received_resume $list}
 
-                <div class="list_item {if $list['status']==-1}refuse{/if}" data-id="{php echo $list['apply_id']}" >
+                <div class="list_item {if $list['status']==-1}refuse{/if}" data-id="{php echo $list['apply_id']}">
                     <div class="item_con">
                         <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;"/>
@@ -80,7 +80,11 @@
                                应聘岗位：
                             </div>
                             <div class="bm_hang3">
-                                <a  class="hope_job" href="{php echo app_url('company/index/job_manage')}" style="text-align: left;width: 100%;">{php echo $list['jobs_name']}</a>
+                                {if $list['open']}
+                                <a  class="hope_job" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['jobs_id']))}" style="text-align: left;width: 100%;">{php echo $list['jobs_name']}</a>
+                                {else}
+                                <a  class="hope_job" style="text-align: left;width: 100%;color: #999999;">{php echo $list['jobs_name']}(已停招)</a>
+                                {/if}
                             </div>
                         </div>
                         <div class="xian1"></div>

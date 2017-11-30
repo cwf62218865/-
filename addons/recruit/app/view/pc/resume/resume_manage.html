@@ -1989,6 +1989,13 @@
 
     //修改教育经历
     $("#edutionexp").on("click"," .addandeditbtn",function(){
+        //教育经历至少存在一条
+        if($("#edutionexp .resume_exp_content").length>1){
+            $("#edutionbox").find(".delbtn").html("删除本条");
+        }else{
+            $("#edutionbox").find(".delbtn").html("");
+        }
+
         $("#edutionexp").hide();
         $("#addedutionexp").show();
         $("#edutionbox").show();
@@ -2021,30 +2028,31 @@
 
     //删除教育经历
     $("#edutionbox .delbtn").on("click",function(){
-        var _this=$(this);
-        var data_id=_this.attr("data-id");
-        $.ajax({
-            url:"{php echo app_url('person/resume/edu_exp_delete')}",
-            type:"post",
-            data:{
-                data_id:data_id
-            },
-            success: function (data) {
-                var data=JSON.parse(data);
-                if(data.status==1){
-                    $(".resume_exp_content[data-id="+data_id+"]").remove();
-                    $("#edutionexp").show();
-                    $("#addedutionexp").show();
-                    $("#edutionbox").hide();
-                    var resume_exp_contentlength=$("#edutionexp .resume_exp_content").length;
-                    if(resume_exp_contentlength==0){
-                        $("#edutionexp1").show();
+            var _this=$(this);
+            var data_id=_this.attr("data-id");
+            $.ajax({
+                url:"{php echo app_url('person/resume/edu_exp_delete')}",
+                type:"post",
+                data:{
+                    data_id:data_id
+                },
+                success: function (data) {
+                    var data=JSON.parse(data);
+                    if(data.status==1){
+                        $(".resume_exp_content[data-id="+data_id+"]").remove();
+                        $("#edutionexp").show();
+                        $("#addedutionexp").show();
+                        $("#edutionbox").hide();
+                        var resume_exp_contentlength=$("#edutionexp .resume_exp_content").length;
+                        if(resume_exp_contentlength==0){
+                            $("#edutionexp1").show();
+                        }
+                    }else{
+                        hint("error",data.content);
                     }
-                }else{
-                    hint("error",data.content);
                 }
-            }
-        })
+            })
+
     })
 
 

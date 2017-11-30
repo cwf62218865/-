@@ -51,7 +51,7 @@
                 <div class="list_item {if $list['status']<>3}pass{/if}" data-id="{php echo $list['apply_id']}">
                     <div class="item_con">
                         <div class="hang1">
-                            <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
+                            <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
                             <a class="salary">
                                 {if $list['wage_min']>0 && $list['wage_max']>0}
                                 {php echo $list['wage_min']}-{php echo $list['wage_max']}k
@@ -61,7 +61,7 @@
                             </a>
                         </div>
                         <div class="hang2">
-                            <a class="company nowrap" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
+                            <a class="company nowrap comhover" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
                             <span class="address nowrap">{php echo $list['city']}</span>
                             <span class="date">{php echo date("Y-m-d",$list['createtime'])}</span>
                         </div>
@@ -118,7 +118,7 @@
                 <div class="list_item"  data-id="{php echo $list['id']}">
                     <div class="item_con">
                         <div class="hang1">
-                            <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['jobs_id']))}">{php echo $list['jobs_name']}</a>
+                            <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['jobs_id']))}">{php echo $list['jobs_name']}</a>
                             <a class="salary">
                                 {if $list['wage_min']>0 && $list['wage_max']>0}
                                 {php echo $list['wage_min']}-{php echo $list['wage_max']}k
@@ -128,7 +128,7 @@
                             </a>
                         </div>
                         <div class="hang2">
-                            <a class="company nowrap" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
+                            <a class="company nowrap comhover" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
                             <span class="address nowrap">{php echo $list['city']}</span>
                             <span class="date">{php echo date('Y-m-d',$list['createtime'])}</span>
                         </div>

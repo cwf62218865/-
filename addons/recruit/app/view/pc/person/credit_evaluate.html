@@ -29,11 +29,12 @@
             <div class="lists list_content">
             {if $agree_jobs}
                 {loop $agree_jobs $list}
+                {if empty($list['comment'])}
                 <div class="item_conpj" data-id="{$list['apply_id']}">
                     <div class="item_conpj1">
                         <div class="">
-                            <span class="jobname">{$list['jobs_name']}</span>
-                            <span class="companyname">{$list['companyname']}</span>
+                            <a class="jobname linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
+                            <a class="companyname comhover" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{$list['companyname']}</a>
                             <span class="icos_jubao" data-id="{$list['company_uid']}">
                                 <label class="com_ico jubaoms" data-id="{$list['id']}">
                                     <svg class="icon fexico">
@@ -184,6 +185,7 @@
                         </div>
                     </div>
                 </div>
+                {/if}
                 {/loop}
 
                 <div class="morejob">更多简历信息>></div>
@@ -196,6 +198,7 @@
             <!--收到的评价start---------------------------------------------------------------------------->
 
             <div class="lists resume_content" style="background: none;">
+
                 {if $comment_jobs}
                 <div class="contanier">
                     {loop $comment_jobs $id $list}
@@ -203,9 +206,9 @@
                     <div class="list_item1" data-id="{$list['id']}">
                         <div class="item_con">
                             <div class="basic_massage maleft_3">
-                                <div class="bm_hang1" style="font-size: 20px;">
+                                <a class="bm_hang1 linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['jobs_id']))}" style="font-size: 20px;">
                                     {$list['jobs_name']}
-                                </div>
+                                </a>
                                 <div class="bm_hang3">
                                     <span class="basic_xx">{$list['companyname']}</span>
                                 </div>
@@ -217,6 +220,7 @@
                                     <span class="pingjia_neir">
                                         {$list['hr_reply']}
                                     </span>
+                                    <input type="hidden" value="{$list['hr_reply']}" class="pingjiacon">
                                     <span class="xianshi_ico">
                                     显示全部
                                     <svg class="icon" style="">
@@ -232,7 +236,7 @@
                                         {$list['content']}
                                     </div>
                                 </div>
-                                <div class="zhankai_btn zhankai">展开我的评价</div>
+                                <div class="zhankai_btn zhankai1">展开我的评价</div>
                             </div>
                         </div>
                     </div>
@@ -248,9 +252,9 @@
                     <div class="list_item1" data-id="{$list['id']}">
                         <div class="item_con">
                             <div class="basic_massage maleft_3">
-                                <div class="bm_hang1" style="font-size: 20px;">
+                                <a class="bm_hang1 linkhover" style="font-size: 20px;" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['jobs_id']))}">
                                     {$list['jobs_name']}
-                                </div>
+                                </a>
                                 <div class="bm_hang3">
                                     <span class="basic_xx">{$list['companyname']}</span>
                                 </div>
@@ -262,6 +266,7 @@
                                     <span class="pingjia_neir">
                                         {$list['hr_reply']}
                                     </span>
+                                    <input type="hidden" value="{$list['hr_reply']}" class="pingjiacon">
                                     <span class="xianshi_ico">
                                     显示全部
                                     <svg class="icon" style="">
@@ -277,7 +282,7 @@
                                         {$list['content']}
                                     </div>
                                 </div>
-                                <div class="zhankai_btn zhankai">展开我的评价</div>
+                                <div class="zhankai_btn zhankai1">展开我的评价</div>
                             </div>
                         </div>
                     </div>

@@ -98,10 +98,11 @@ class company{
                     $resume['experience'] = "无工作经验";
                 }
             }
-            $job = pdo_fetch("select jobs_name from ".tablename(WL.'jobs')." where id=".$list['jobs_id']);
+            $job = pdo_fetch("select jobs_name,open from ".tablename(WL.'jobs')." where id=".$list['jobs_id']);
             $resume['collect_resume'] = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where jobs_id=".$list['jobs_id']." and resume_id=".$list['resume_id']);
 
             $resume['jobs_name'] = $job['jobs_name'];
+            $resume['open'] = $job['open'];
             $resume['jobs_id'] = $list['jobs_id'];
             $resume['apply_id'] = $list['id'];
             $resume['puid'] = $list['puid'];
