@@ -156,28 +156,28 @@ elseif ($op=="bind_account"){
 elseif ($op=="mobile_upload"){
     if($_GPC['kind']=="headimgurl"){
         $kind = "简历头像上传";
-        $url = app_url("member/index/save_members_temp",array('kind'=>'headimgurl'));
+        $url = app_url("member/index/save_members_temp",array('kinds'=>'headimgurl'));
     }elseif($_GPC['kind']=="idcard1"){
         $kind = "法人身份证(正面)";
-        $url = app_url("member/index/save_members_temp",array('kind'=>'idcard1'));
+        $url = app_url("member/index/save_members_temp",array('kinds'=>'idcard1'));
     }elseif($_GPC['kind']=="idcard2"){
         $kind = "法人身份证(反面)";
-        $url = app_url("member/index/save_members_temp",array('kind'=>'idcard2'));
+        $url = app_url("member/index/save_members_temp",array('kinds'=>'idcard2'));
     }elseif($_GPC['kind']=="license"){
         $kind = "营业执照上传";
-        $url = app_url("member/index/save_members_temp",array('kind'=>'license'));
+        $url = app_url("member/index/save_members_temp",array('kinds'=>'license'));
     }elseif($_GPC['kind']=="resume_works"){
         $kind = "个人作品上传";
-        $url = app_url("member/index/save_members_temp",array('kind'=>'person_works'));
+        $url = app_url("member/index/save_members_temp",array('kinds'=>'person_works'));
     }elseif($_GPC['kind']=="honor"){
         $kind = "荣誉证书上传";
-        $url = app_url("member/index/save_members_temp",array('kind'=>'honor'));
+        $url = app_url("member/index/save_members_temp",array('kinds'=>'honor'));
     }elseif($_GPC['kind']=="company_logo"){
         $kind = "公司logo上传";
-        $url = app_url("member/index/save_members_temp",array('kind'=>'company_logo'));
+        $url = app_url("member/index/save_members_temp",array('kinds'=>'company_logo'));
     }elseif($_GPC['kind']=="atlas"){
         $kind = "公司图集上传";
-        $url = app_url("member/index/save_members_temp",array('kind'=>'atlas'));
+        $url = app_url("member/index/save_members_temp",array('kinds'=>'atlas'));
     }
 
     include wl_template("member/mobileupload1");exit();
@@ -547,7 +547,7 @@ elseif ($op=="save_members_temp"){
 //            $file = upload_img($_FILES);
             $file = base64_upload($_POST['file']);
             $data['uid'] = $id;
-            $kind = $_GPC['kind'];
+            $kind = $_GPC['kinds'];
             $data[$kind] = $file;
 
             $temp = pdo_fetch("select id from ".tablename(WL."members_temp")." where uid=".$id);

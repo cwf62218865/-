@@ -15,5 +15,8 @@ require IA_ROOT . '/app/common/bootstrap.app.inc.php';
 load()->func('communication');
 
 
-ihttp_email("1421514791@qq.com", '包崇林的简历推荐'.date('Y-m-d H:i:s'), "12345上山打老虎");
+$r = ihttp_email("1421514791@qq.com", '包崇林的简历推荐'.date('Y-m-d H:i:s'), "12345上山打老虎");
+if($r){
+    echo "ok";
+}
 

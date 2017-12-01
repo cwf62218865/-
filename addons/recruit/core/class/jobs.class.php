@@ -167,7 +167,7 @@ class jobs{
 
 
     //订阅器时间判断
-    public function check_order_jobs($order_times,$differ_time){
+    public function check_order_jobs($order_times,$differ_time,$page=0){
 
         $order_jobs = $this->order_jobs();
         if($order_times=="三天一次" && $differ_time>3){
@@ -182,13 +182,22 @@ class jobs{
             return $this->refresh_jobs($order_jobs);
         }else{
 //            return $this->refresh_jobs($order_jobs);
-            $order_jobs_lists = pdo_fetchall("select * from ".tablename(WL."jobs")." where id in(".$order_jobs['order_jobs_ids'].") order by addtime desc");
+            $start = $page*8;
+            $limit = " limit ".$start.",8";
+            $order_jobs_list = pdo_fetchall("select * from ".tablename(WL."jobs")." where id in(".$order_jobs['order_jobs_ids'].")  order by addtime desc".$limit);
+            $order_jobs_lists = "";
+            foreach ($order_jobs_list as $li){
+                $company = m("company")->get_profile($li['uid'],"headimgurl");
+                $li['headimgurl'] = $company['headimgurl'];
+                $order_jobs_lists[] = $li;
+            }
             return $this->order_jobs_list($order_jobs_lists);
         }
     }
 
 
     public function refresh_jobs($order_jobs){
+
         $old_order_jobs_count = count(explode(",",$order_jobs['order_jobs_ids']));
         $order_jobs_lists = $this->show_order_jobs($order_jobs);
         $order_jobs_ids = $this->order_jobs_list($order_jobs_lists);
