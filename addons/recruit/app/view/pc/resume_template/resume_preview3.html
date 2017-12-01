@@ -51,7 +51,9 @@
                             <label class="basic_style">{php echo $resume['political_status']}</label>
                             <label class="basic_style">{php echo $resume['education']}</label>
                             <label class="basic_style">{php echo $resume['experience']}</label>
+                            {if $resume['work_status']}
                             <label class="basic_style">{php echo $resume['work_status']}</label>
+                            {/if}
                         </div>
                         <div class="bshang1">
                             <label class="basic_style2">毕业学校：<span class="college_name">{php echo $resume['school_name']}</span></label>
@@ -97,7 +99,7 @@
                     <div class="line_title"></div>
                 </div>
                 {if $resume['hope_job']}
-                <div class="bshang1 lineheight">
+                <div class="bshang1 lineheight" style="width: 100%;">
                     <label class="basic_style2">期望职位：
                         {loop explode(",",$resume['hope_job']) $list}
                         <span class="jlcontent">{$list}</span>
@@ -106,7 +108,7 @@
                 </div>
                 {/if}
                 {if $resume['trade']}
-                <div class="bshang1 lineheight">
+                <div class="bshang1 lineheight" style="width: 100%;">
                     <label class="basic_style2">期望行业：
                         {loop explode(",",$resume['trade']) $list}
                         <span class="jlcontent">{$list}</span>
@@ -115,21 +117,21 @@
                 </div>
                 {/if}
                 {if $resume['salary']}
-                <div class="bshang1 lineheight">
+                <div class="bshang1 lineheight" style="width: 100%;">
                     <label class="basic_style2">期望薪资：
                         <span class="jlcontent">{$resume['salary']}</span>
                     </label>
                 </div>
                 {/if}
                 {if $resume['nature']}
-                <div class="bshang1 lineheight">
+                <div class="bshang1 lineheight" style="width: 100%;">
                     <label class="basic_style2">期望工作性质：
                         <span class="jlcontent">{$resume['nature']}</span>
                     </label>
                 </div>
                 {/if}
                 {if $resume['hope_place']}
-                <div class="bshang1 lineheight">
+                <div class="bshang1 lineheight" style="width: 100%;">
                     <label class="basic_style2">期望工作地点：
                         <span class="jlcontent">{$resume['hope_place']}</span>
                     </label>

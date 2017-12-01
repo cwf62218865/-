@@ -1114,13 +1114,13 @@
 .datalist{
     display: none;
     position: absolute;
-    width: 132px;height: 90px;
+    width: 132px;height: 150px;
     overflow-y: auto;background: #ffffff;
     z-index: 99999;
     box-shadow:6px 5px 24px rgba(0,0,0,0.12);
     top:50px;
     left: 0px;
-    padding-top: 30px;padding-bottom: 30px;line-height: 30px;text-align: center;
+    padding-top: 10px;padding-bottom: 10px;line-height: 30px;text-align: center;
 }
 .select_date_option .date_list{
     height: 240px;
