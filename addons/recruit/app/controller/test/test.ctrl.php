@@ -62,8 +62,8 @@ echo $url;exit();
      include wl_template("member/news_detail");exit();
   }
 
-  elseif ($op=="super_company"){
-    include wl_template("company/super_company");exit();
+  elseif ($op=="super_company_list"){
+    include wl_template("company/super_company_list");exit();
 }
 
 
