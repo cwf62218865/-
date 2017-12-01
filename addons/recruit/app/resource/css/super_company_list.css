@@ -1,0 +1,150 @@
+.swiper-slide{
+    height: 420px;
+}
+.company_img{
+    width: 100%;
+    height: 420px;
+}
+.super_company_nav{
+    height: 82px;
+    line-height: 82px;
+}
+.change_jobaddress{
+    font-size: 12px;
+    color: #7b8fc9;
+    margin-left: 6px;
+    cursor: pointer;
+}
+.change_alt{
+    margin-left: 26px;
+    color: #999;
+}
+.search_box{
+    float: right;
+    height: 42px;
+    margin-top: 20px;
+    width:300px;
+    line-height: 42px;
+}
+.search_box label{
+    width: 220px;
+    background-color: #fff;
+    height: 42px;
+    float: left;
+}
+.search_box label input{
+    margin-left: 20px;
+    outline: none;
+    width: 180px;
+}
+.search_sub{
+    display: inline-block;
+    width: 80px;
+    height: 42px;
+    text-align: center;
+    background-color: #0099cc;
+    color: #fff;
+    cursor: pointer;
+}
+.super_company_lists{
+    width: 100%;
+    height: 380px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+.super_company_banner{
+    display: inline-block;
+    width: 820px;
+    height: 260px;
+    margin: 20px 0 0 20px;
+    position: relative;
+}
+.super_company_bannerbox{
+    display: inline-block;
+    width: 820px;
+    height: 260px;
+    overflow: hidden;
+    position: relative;
+}
+.super_company_banner:before{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    height: 260px;
+    right: -20px;
+    border-right: 1px dashed #eee;
+
+}
+.super_company_bannerbox img{
+    position: absolute;
+    left: -180px;
+    height: 260px;
+}
+.super_company_msg{
+    float: right;
+    width: 339px;
+    margin-top: 40px;
+    text-align: center;
+}
+.super_company_logo{
+    display: inline-block;
+    width: 140px;
+    height: 140px;
+    overflow: hidden;
+}
+.super_company_logo img{
+    width: 100%;
+}
+.surper_company_title{
+    font-size: 16px;
+    margin-top: 14px;
+    display: inline-block;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.surper_company_introduce{
+    display: inline-block;
+    width: 260px;
+    text-align: left;
+    margin-top: 10px;
+    color: #999;
+    line-height: 24px;
+}
+.recruit_jobs{
+    height: 100px;
+    line-height: 100px;
+    margin: 0 20px;
+}
+.recruit_jobsbtn{
+    display: inline-block;
+    height: 34px;
+    line-height: 34px;
+    padding: 0 20px;
+    border: 1px solid #7b8fc9;
+    color: #7b8fc9;
+    border-radius: 20px;
+    margin-right: 18px;
+}
+.recruit_jobsbtn:hover{
+    background-color: #7b8fc9;
+    color: #fff;
+}
+.find_morejob {
+    display: inline-block;
+    width: 368px;
+    height: 44px;
+    border: 1px solid #09c;
+    color: #09c;
+    line-height: 44px;
+    text-align: center;
+    margin-left: 385px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+.find_morejob:hover{
+    background-color: #09c;
+    color: #fff;
+}
