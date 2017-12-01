@@ -212,9 +212,10 @@
 }
 .basic_pr5{
     background: #51516b;
-    height: 210px;
+    height: auto;
     width: 100%;
     float: left;
+    padding-bottom: 40px;
 }
 .tx5{
     width: 130px;

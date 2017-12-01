@@ -44,17 +44,17 @@
     float: left;
 }
 .tel_number{
-    width: 113px;
+    /*width: 113px;*/
     display: block;
     float: left;
 }
 .email_number{
-    width: 170px;
+    /*width: 170px;*/
     display: block;
     float: left;
 }
 .address_con{
-    width: 145px;
+    /*width: 145px;*/
     display: block;
     float: left;
 }

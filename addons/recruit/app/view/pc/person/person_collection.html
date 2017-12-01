@@ -246,7 +246,9 @@
                         </div>
                         <div class="xian1"></div>
                         <div class="status">
-                            <a class="collection_logo"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}"><img src="{WL_URL_ARES}images/qiyelogo.png"></a>
+                            <a class="collection_logo"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">
+                                <img src="{php echo $list['headimgurl']}">
+                            </a>
                             <div class="collection_companymsg">
                                 <a class="nowrap company_name"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
                                 <span class="nowrap company_address">{php echo $list['address']}</span>
