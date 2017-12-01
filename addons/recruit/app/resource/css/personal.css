@@ -717,6 +717,9 @@
     color: #ffffff;
     background: #ff6060;border: 1px solid #ff6060;
 }
+.download{
+    margin-top: -5px;
+}
 .genghuanbeijing{
     height: 40px;
     width: 280px;

@@ -10,7 +10,7 @@
         </label>
 
         <label class="resume_btns"  id="download_resume">
-            <svg class="icon icon_resume" aria-hidden="true">
+            <svg class="icon icon_resume download" aria-hidden="true">
                 <use xlink:href="#icon-xiazaijianli"></use>
             </svg>
             下载简历
@@ -21,7 +21,7 @@
             </svg>
             打印简历
         </label>
-        <a class="resume_btns" id="exit_view"  href="javascript:;" onClick="window.location.href=document.referrer;">
+        <a class="resume_btns" id="exit_view"  href="{php echo app_url('person/resume/manage_resume')}">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-tuichuyulan"></use>
             </svg>
@@ -62,7 +62,7 @@
         <!--查看应聘者投递简历-->
 
         <label class="resume_btns"  id="download_resume">
-            <svg class="icon icon_resume" aria-hidden="true">
+            <svg class="icon icon_resume download" aria-hidden="true">
                 <use xlink:href="#icon-xiazaijianli"></use>
             </svg>
             下载简历
