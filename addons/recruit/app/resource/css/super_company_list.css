@@ -8,6 +8,15 @@
 .super_company_nav{
     height: 82px;
     line-height: 82px;
+    position: relative;
+}
+.mingqio{
+    left: 420px;
+    top: 62px;
+}
+.city_item:hover{
+    background: none;
+    color: #0099cc;
 }
 .change_jobaddress{
     font-size: 12px;
