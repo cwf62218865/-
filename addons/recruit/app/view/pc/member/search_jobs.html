@@ -350,7 +350,7 @@
 <script src="{WL_URL_ARES}js/style_zj.js" rel="script"></script>
 <!--<script src="{WL_URL_ARES}js/hotarea.js" rel="script"></script>-->
 <script src="{WL_URL_ARES}js/newfile.js" rel="script"></script>
-<!--<script src="{WL_URL_ARES}js/zimu.js" rel="script"></script>-->
+<script src="{WL_URL_ARES}js/morecity.js" rel="script"></script>
 
 <script>
 
@@ -760,45 +760,6 @@
                 $(".ico_xiala").css("color","#bbbbbb");
             };
         });
-
-
-        //初始首字母城市
-        var first=["A","B","C","D"];
-        var con="";
-//        con+="<div class='city_list' style='padding-bottom: 0px;'>";
-        for(var i=0;i<first.length;i++){
-            con+="<div class='zimu_one'>";
-            con+="<label class='letter'>"+first[i]+"</label><div class='city_team'>";
-                for(var j=0;j<zimuarea.length;j++){
-                    if(first[i]==$.trim(zimuarea[j].word)){
-                            con+="<span class='city_item'>"+zimuarea[j].title+"</span>";
-                    }
-                }
-            con+="</div></div>";
-//            con+="</div>";
-        }
-
-        $(".city_lister").html(con);
-
-        //按照字母显示城市
-        $(".zimu_zu").mouseover(function () {
-            var html=$(this).html();
-            var zimu_arr=html.split("");
-            var content="";
-//            content+="<div class='city_list'  style='padding-bottom: 0px;'>";
-            for(var i=0;i<zimu_arr.length;i++){
-                content+="<div class='zimu_one'>";
-                content+="<label class='letter'>"+zimu_arr[i]+"</label><div class='city_team'>";
-                for(var j=0;j<zimuarea.length;j++){
-                    if(zimu_arr[i]==$.trim(zimuarea[j].word)){
-                        content+="<span class='city_item'>"+zimuarea[j].title+"</span>";
-                    }
-                }
-                content+="</div></div>";
-            }
-//            content+="</div>";
-            $(".city_lister").html(content);
-        })
 
 
         //更多城市点击效果
