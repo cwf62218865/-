@@ -42,7 +42,7 @@
                 <div class="basic_miaoshu">
 
                     <div class="basic_jieshao">
-                        <div class="namew">{php echo $resume['fullname']}</div>
+                        <div class="namew nowrap widm20">{php echo $resume['fullname']}</div>
                         <div class="bshang1">
                             <div style="width: 230px;"><label class="basic_style1">{if $resume['sex']==1}男{else}女{/if}</label>
                             <label class="basic_style">{php echo ceil((time()-$resume['birthday'])/31536000)}岁</label>
@@ -56,17 +56,17 @@
                             <div class="title_top_con">
                                 <div class="title_top">基本信息</div>
                             </div>
-                            <div>姓名：<span class="basic_name">{php echo $resume['fullname']}</span></div>
-                            <div>性别：<span class="basic_name">{if $resume['sex']==1}男{else}女{/if}</span></div>
-                            <div>民族：<span class="basic_name">{$resume['nation']}</span></div>
-                            <div>政治面貌：<span class="basic_name">{$resume['political_status']}</span></div>
-                            <div>籍贯：<span class="basic_name">{$resume['origin_place']}</span></div>
-                            <div>出生年月：<span class="basic_name">{php echo date("Y-m",$resume['birthday'])}</span></div>
-                            <div>毕业学校：<span class="basic_name">{php echo $resume['school_name']}</span></div>
-                            <div>学历：<span class="basic_name">{php echo $resume['education']}</span></div>
-                            <div>专业：<span class="basic_name">{php echo $resume['major']}</span></div>
+                            <div class="hangmsg"><span class="basic_title">姓名：</span><span class="basic_name nowrap">{php echo $resume['fullname']}</span></div>
+                            <div class="hangmsg"><span class="basic_title">性别：</span><span class="basic_name nowrap">{if $resume['sex']==1}男{else}女{/if}</span></div>
+                            <div class="hangmsg"><span class="basic_title">民族：</span><span class="basic_name nowrap">{$resume['nation']}</span></div>
+                            <div class="hangmsg"><span class="basic_title">政治面貌：</span><span class="basic_name nowrap">{$resume['political_status']}</span></div>
+                            <div class="hangmsg"><span class="basic_title">籍贯：</span><span class="basic_name nowrap">{$resume['origin_place']}</span></div>
+                            <div class="hangmsg"><span class="basic_title">出生年月：</span><span class="basic_name nowrap">{php echo date("Y-m",$resume['birthday'])}</span></div>
+                            <div class="hangmsg"><span class="basic_title">毕业学校：</span><span class="basic_name nowrap">{php echo $resume['school_name']}</span></div>
+                            <div class="hangmsg"><span class="basic_title">学历：</span><span class="basic_name nowrap">{php echo $resume['education']}</span></div>
+                            <div class="hangmsg"><span class="basic_title">专业：</span><span class="basic_name nowrap">{php echo $resume['major']}</span></div>
                         </div>
-                        <div class="basic_msg_h">
+                        <div class="basic_msg_h" style="clear: both;">
                             <div class="title_top_con">
                                 <div class="title_top">联系方式</div>
                             </div>
@@ -321,42 +321,9 @@
 <script src="{WL_URL_ARES}js/resume_picker.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/date_list.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/interview.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/resume_preview.js" rel="script"></script>
 <script>
-    $(document).ready(function () {
-        $("#download_resume").click(function(){
-            var uid = "{php echo $_GPC['uid']}";
-            $.ajax({
-                type:"post",
-                url:"http://www.yingjieseng.com/app/pdf_enter.php",
-                data:{
-                    resumeuid:uid
-                },
-                success:function (data) {
-//                    window.location.href = "http://ios.huiliewang.com/app/"+data+".pdf";
-                    window.location.href = "{php echo app_url('member/index/download')}filename="+data;
-                }
-            })
-        })
 
-        var mySwiper = new Swiper ('.swiper-container', {
-            direction: 'horizontal',
-            slidesPerView: 4,
-            roundLengths : true,
-            // 如果需要前进后退按钮
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-        })
-        $("#modal_box").hide().css("opacity",1);
-
-        $("#change_modal").click(function () {
-            $("#modal_box").show();
-        })
-        $(".modalclose,.quxiao").on("click",function(){
-            $("#modal_box").hide();
-        });
-
-
-    })
 
 </script>
 </html>

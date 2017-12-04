@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/swiper-3.4.2.min.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/super_company.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/super_company_list.css" rel="stylesheet">
+    <title>名企招聘</title>
+    <style>
+        .abnormal .formtip{
+            position: absolute;
+            margin-top: 0;
+        }
+        .relative input{
+            position: absolute;
+        }
+        .recruit_result span{
+            width: 120px;
+        }
+        .swiper-container{
+            width: 100%;
+        }
+        .swiper-pagination-bullet{
+            width: 50px;
+            height: 10px;
+            border-radius: 6px;
+            background-color: rgba(255,255,255,0.5);
+            opacity: 1;
+        }
+        .swiper-pagination-bullet-active{
+            background-color:#09c;
+        }
+    </style>
+
+</head>
+<body bgcolor="#f4f4f4">
+
+{if $_SESSION['uid']}
+{php include wl_template('common/top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
+<div class="super_banner" style="background: none">
+    <div class="swiper-container swiper-container-horizontal">
+        <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+            <div class="swiper-slide">
+                <div class="company_img" style="background:url('/addons/recruit/app/resource/images/super_banner.png')no-repeat center"></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="company_img" style="background:url('/addons/recruit/app/resource/images/super_banner.png')no-repeat center"></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="company_img" style="background:url('/addons/recruit/app/resource/images/super_banner.png')no-repeat center"></div>
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+        <!-- 如果需要导航按钮 -->
+    </div>
+</div>
+
+<div class="width1200">
+    <div class="super_company_nav">
+        <span class="font18">工作地点：全国</span>
+        <span class="change_jobaddress">[切换]</span>
+        <span class="change_alt">根据您的IP自动匹配，如需查看其他城市，请点击</span>
+        <span class="change_jobaddress" style="margin-left: 0">[切换]</span>
+
+        <div class="search_box">
+            <label>
+                <input type="text" placeholder="请输入公司名查找" id="company_name">
+            </label>
+            <span class="search_sub">搜索</span>
+        </div>
+    </div>
+
+    <div id="company_box">
+        <div class="super_company_lists">
+            <div class="super_company_banner">
+                <div class="super_company_bannerbox">
+                    <img class="changesize" src="/addons/recruit/app/resource/images/super_banner.png"/>
+                </div>
+            </div>
+            <div class="super_company_msg">
+                <div class="super_company_logo">
+                    <a href="#">
+                        <img class="changesize" src="/addons/recruit/app/resource/images/qiyelogo.png">
+                    </a>
+                </div>
+                <div class="surper_company_title">重庆大风车有限公司</div>
+                <div class="surper_company_introduce">
+                    钢丝变形和镀膜技术领域居全球领先地位钢丝变形和镀膜技术领域居全球领先
+                </div>
+            </div>
+
+            <div class="recruit_jobs">
+                <img style="float: left;margin: 34px 30px 0 0;" src="/addons/recruit/app/resource/images/recruit_job.png">
+
+                <a href="#" class="recruit_jobsbtn">
+                    运营支持类（个贷业务）
+                </a>
+
+                <a href="#" class="recruit_jobsbtn">
+                    运营支持类（个贷业务）
+                </a>
+                <a href="#" class="recruit_jobsbtn">
+                    运营支持类（个贷业务）
+                </a>
+                <a href="#" class="recruit_jobsbtn">
+                    运营支持类（个贷业务）
+                </a>
+
+                <a href="#" style="float: right;margin:32px 0 0 0" class="recruit_jobsbtn">
+                    更多职位>>
+                </a>
+
+
+            </div>
+        </div>
+
+
+        <div class="super_company_lists">
+            <div class="super_company_banner">
+                <div class="super_company_bannerbox">
+                    <img class="changesize" src="/addons/recruit/app/resource/images/super_banner.png"/>
+                </div>
+            </div>
+            <div class="super_company_msg">
+                <div class="super_company_logo">
+                    <a href="#">
+                        <img class="changesize" src="/addons/recruit/app/resource/images/qiyelogo.png">
+                    </a>
+                </div>
+                <div class="surper_company_title">重庆大风车有限公司</div>
+                <div class="surper_company_introduce">
+                    钢丝变形和镀膜技术领域居全球领先地位钢丝变形和镀膜技术领域居全球领先
+                </div>
+            </div>
+
+            <div class="recruit_jobs">
+                <img style="float: left;margin: 34px 30px 0 0;" src="/addons/recruit/app/resource/images/recruit_job.png">
+
+                <a href="#" class="recruit_jobsbtn">
+                    运营支持类（个贷业务）
+                </a>
+
+                <a href="#" class="recruit_jobsbtn">
+                    运营支持类（个贷业务）
+                </a>
+                <a href="#" class="recruit_jobsbtn">
+                    运营支持类（个贷业务）
+                </a>
+                <a href="#" class="recruit_jobsbtn">
+                    运营支持类（个贷业务）
+                </a>
+
+                <a href="#" style="float: right;margin:32px 0 0 0" class="recruit_jobsbtn">
+                    更多职位>>
+                </a>
+
+
+            </div>
+        </div>
+
+
+        <div class="super_company_lists">
+            <div class="super_company_banner">
+                <div class="super_company_bannerbox">
+                    <img class="changesize" src="/addons/recruit/app/resource/images/super_banner.png"/>
+                </div>
+            </div>
+            <div class="super_company_msg">
+                <div class="super_company_logo">
+                    <a href="#">
+                        <img class="changesize" src="/addons/recruit/app/resource/images/qiyelogo.png">
+                    </a>
+                </div>
+                <div class="surper_company_title">重庆大风车有限公司</div>
+                <div class="surper_company_introduce">
+                    钢丝变形和镀膜技术领域居全球领先地位钢丝变形和镀膜技术领域居全球领先
+                </div>
+            </div>
+
+            <div class="recruit_jobs">
+                <img style="float: left;margin: 34px 30px 0 0;" src="/addons/recruit/app/resource/images/recruit_job.png">
+
+                <a href="#" class="recruit_jobsbtn">
+                    运营支持类（个贷业务）
+                </a>
+
+                <a href="#" class="recruit_jobsbtn">
+                    运营支持类（个贷业务）
+                </a>
+                <a href="#" class="recruit_jobsbtn">
+                    运营支持类（个贷业务）
+                </a>
+                <a href="#" class="recruit_jobsbtn">
+                    运营支持类（个贷业务）
+                </a>
+
+                <a href="#" style="float: right;margin:32px 0 0 0" class="recruit_jobsbtn">
+                    更多职位>>
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div>
+        <span class="find_morejob">加载更多>></span>
+    </div>
+</div>
+
+
+
+
+
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/swiper.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+
+<script type="text/javascript">
+
+
+    $(function () {
+        var mySwiper = new Swiper ('.swiper-container', {
+            direction: 'horizontal',
+            slidesPerView: 1,
+            roundLengths : true,
+            autoplay:3000,
+            pagination: '.swiper-pagination'
+            // 如果需要前进后退按钮
+        });
+
+        var option={
+            page:1,
+            job_city:"",
+            company_name:""
+        };
+
+        $(".search_sub").on("click",function(){
+            var company_name=$("#company_name").val();
+            option.company_name=company_name;
+            supercompany(option);
+        });
+
+
+        $(".find_morejob").on("click",function(){
+            if(!$(this).hasClass("no_content")){
+                option.page+=1;
+                supercompany(option);
+            }
+        });
+        function supercompany(option){
+            $.ajax({
+                url:"",
+                type:"post",
+                data:option,
+                success:function(data){
+                    var data=JSON.parse(data);
+                    if(data.status==1){
+                        if(data.content){
+                            $("#company_box").append(data.content);
+                        }else{
+                            $(".find_morejob").html("没有更多内容了").addClass("no_content");
+                        }
+
+                    }
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            })
+        }
+
+    })
+
+
+</script>
+</html>

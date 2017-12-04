@@ -52,6 +52,11 @@ if($op=="index"){
 //        echo "resume_template/resume_preview".$resume['template_id'];exit();
         $jobs = pdo_fetchall("select id,jobs_name from ".tablename(WL."jobs")." where uid=".$_SESSION['uid']);
         $collect_resume = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where uid=".$_SESSION['uid']." and puid=".$_GPC['uid']);
+        if($_GPC['apply_id']){
+            $status = pdo_fetch("select status from ".tablename(WL."jobs_apply")." where id=".$_GPC['apply_id']);
+            $status = $status['status'];
+        }
+
         include wl_template("resume_template/resume_preview".$resume['template_id']);
     }else{
         include wl_template("resume_template/resume_preview".$resume['template_id']);

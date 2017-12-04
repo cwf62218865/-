@@ -8,7 +8,7 @@
     <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
-    <title>投递简历</title>
+    <title>收藏订阅</title>
 </head>
 <body bgcolor="#f4f4f4">
 {if $_SESSION['uid']}
@@ -182,77 +182,79 @@
                     <div class="biezhu"> 同时发送到邮箱</div>
                     <span class="cur deletedyq" id="delete_dy">删除订阅器</span>
                 </div>
-            </div>
-            <!--编辑订阅器end-->
-            <!--第一次打开我的订阅-->
-            <div class="no_dingyue_list" {if $order_jobs}style="display:none;"{/if}>
-            您还没有订阅职位，请先<span class="color_main cur" id="edit_dytj">编辑条件</span>
-            <p class="why_zi">我们为什么强烈推荐您订阅</p>
-            <p class="font_grey margin_t">帮助您节省浏览和筛选时间，快速找到适合的职位信息。 </p>
-            <p  class="font_grey margin_t">我们会严格按照您订阅的频次和条件为您推送，并对您的个人信息绝对保密。</p>
-        </div>
-        <!--第一次打开我的订阅end-->
-        <!--订阅编辑成功显示-->
-        <div class="success_dingyue" {if $order_jobs}style="display:block;"{/if}>
-        订阅成功，次日生效。<span class="color_main cur" id="alter_dy">修改订阅条件>></span>
-        <p class="why_zi" id="dy_job_name">{php echo $order_jobs['jobs_name']}</p>
-        <p class="font_grey margin_t">
-            {if $order_jobs['work_place']}
-            <span class="dy_tiaojian" id="dy_dz">{php echo $order_jobs['work_place']}</span>|
-            {/if}
-            {if $order_jobs['trade']}
-            {loop explode(',',$order_jobs['trade']) $id $list}
-            <span class="dy_tiaojian" id="dy_hy{php echo $id+1;}">{php echo $list}</span>|
-            {/loop}
-            {/if}
-            {if $order_jobs['order_time']}
-            <span  class="dy_tiaojian" id="dy_pl">{php echo $order_jobs['order_time']}</span>|
-            {/if}
-            {if $order_jobs['wage_range']}
-            <span  class="dy_tiaojian" id="dy_gz">{php echo $order_jobs['wage_range']}</span>
-            {/if}
-        </p>
-    </div>
-    <!--订阅编辑成功显示end-->
-    <!--订阅生效之后，显示订阅职位-->
-    <div class="dingyue_list" style="display: block;">
-        <div class="dingyue_tishi">
-            <span class="grey">以下是您订阅的职位</span>
-            <span class="color_main cur" id="edit_dyq">修改订阅条件>></span>
-        </div>
-        <div class="order_jobs_list">
-            {if $order_jobs_list}
-            {loop $order_jobs_list $list}
-            <div class="list_item">
-                <div class="item_con">
-                    <div class="hang1">
-                        <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
-                        <a class="salary">
-                            {if $list['wage_min']>0 && $list['wage_max']>0}
-                            {php echo $list['wage_min']}-{php echo $list['wage_max']}k
-                            {else}
-                            面议
-                            {/if}
-                        </a>
-                    </div>
-                    <div class="hang2">
-                        <a class="exptime nowrap">{php echo $list['experience']}</a>
-                        <span class="exptime nowrap">{php echo $list['education']}</span>
-                        <span class="date">{php echo date('Y-m-d',$list['addtime'])}</span>
-                    </div>
-                    <div class="hang3">
-                        {loop explode(",",$list['tag']) $li}
-                        <span class="fuli">{php echo $li}</span>
+                </div>
+                <!--编辑订阅器end-->
+                <!--第一次打开我的订阅-->
+                <div class="no_dingyue_list" {if $order_jobs}style="display:none;"{/if}>
+                    您还没有订阅职位，请先<span class="color_main cur" id="edit_dytj">编辑条件</span>
+                    <p class="why_zi">我们为什么强烈推荐您订阅</p>
+                    <p class="font_grey margin_t">帮助您节省浏览和筛选时间，快速找到适合的职位信息。 </p>
+                    <p  class="font_grey margin_t">我们会严格按照您订阅的频次和条件为您推送，并对您的个人信息绝对保密。</p>
+                </div>
+                <!--第一次打开我的订阅end-->
+                <!--订阅编辑成功显示-->
+                <div class="success_dingyue" {if $order_jobs}style="display:block;"{/if}>
+                    订阅成功，次日生效。<span class="color_main cur" id="alter_dy">修改订阅条件>></span>
+                    <p class="why_zi" id="dy_job_name">{php echo $order_jobs['jobs_name']}</p>
+                    <p class="font_grey margin_t">
+                        {if $order_jobs['work_place']}
+                        <span class="dy_tiaojian" id="dy_dz">{php echo $order_jobs['work_place']}</span>|
+                        {/if}
+                        {if $order_jobs['trade']}
+                        {loop explode(',',$order_jobs['trade']) $id $list}
+                        <span class="dy_tiaojian" id="dy_hy{php echo $id+1;}">{php echo $list}</span>|
                         {/loop}
-                    </div>
-                    <div class="xian1"></div>
-                    <div class="status">
-                        <a class="collection_logo"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}"><img src="{$list['headimgurl']}"></a>
-                        <div class="collection_companymsg">
-                            <a class="nowrap company_name" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
-                            <span class="nowrap company_address">{php echo $list['address']}</span>
+                        {/if}
+                        {if $order_jobs['order_time']}
+                        <span  class="dy_tiaojian" id="dy_pl">{php echo $order_jobs['order_time']}</span>|
+                        {/if}
+                        {if $order_jobs['wage_range']}
+                        <span  class="dy_tiaojian" id="dy_gz">{php echo $order_jobs['wage_range']}</span>
+                        {/if}
+                    </p>
+                </div>
+                <!--订阅编辑成功显示end-->
+                <!--订阅生效之后，显示订阅职位-->
+                <div class="dingyue_list" style="display: block;">
+                <div class="dingyue_tishi">
+                    <span class="grey">以下是您订阅的职位</span>
+                    <span class="color_main cur" id="edit_dyq">修改订阅条件>></span>
+                </div>
+
+                    {if $order_jobs_list}
+                {loop $order_jobs_list $list}
+                <div class="list_item">
+                    <div class="item_con">
+                        <div class="hang1">
+                            <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
+                            <a class="salary">
+                                {if $list['wage_min']>0 && $list['wage_max']>0}
+                                    {php echo $list['wage_min']}-{php echo $list['wage_max']}k
+                                {else}
+                                    面议
+                                {/if}
+                            </a>
                         </div>
-                    </div>
+                        <div class="hang2">
+                            <a class="exptime nowrap">{php echo $list['experience']}</a>
+                            <span class="exptime nowrap">{php echo $list['education']}</span>
+                            <span class="date">{php echo date('Y-m-d',$list['addtime'])}</span>
+                        </div>
+                        <div class="hang3">
+                            {loop explode(",",$list['tag']) $li}
+                            <span class="fuli">{php echo $li}</span>
+                            {/loop}
+                        </div>
+                        <div class="xian1"></div>
+                        <div class="status">
+                            <a class="collection_logo"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">
+                                <img src="{php echo $list['headimgurl']}">
+                            </a>
+                            <div class="collection_companymsg">
+                                <a class="nowrap company_name"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
+                                <span class="nowrap company_address">{php echo $list['address']}</span>
+                            </div>
+                        </div>
 
                 </div>
                 <div class="collection_action"  data-id="{php echo $list['uid']}">
