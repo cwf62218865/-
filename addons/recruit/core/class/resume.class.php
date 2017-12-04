@@ -184,6 +184,13 @@ class resume{
         $resumes = pdo_fetchall("select * from ".tablename(WL.'resume').$wheresql);
         $arr = "";
         foreach ($resumes as $resume){
+           if($data['collect']){
+               $collect = pdo_fetch("select id from ".tablename(WL."collect_resume")." where uid=".$_SESSION['uid']." and puid=".$resume['uid']);
+                if($collect){
+                    $resume['collect'] = 1;
+                }
+           }
+
             $blacklist = explode(",",$resume['blacklist']);
             if($resume['experience']){
                 $resume['experience'] = $resume['experience']."年以上工作经验";

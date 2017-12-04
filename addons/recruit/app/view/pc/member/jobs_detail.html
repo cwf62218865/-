@@ -283,7 +283,7 @@
         </div>
 
 
-        {if $_SESSION['utype']!=2}
+        {if $_SESSION['utype']!=2 && $similar_jobs}
         <div class="part_one">
             <div class="title-top">
                 <label class="top_con">相似职位</label>
@@ -291,11 +291,17 @@
             {loop $similar_jobs $list}
             <div class="items_list">
                 <div class="logo1">
-                    <img src="{$list['logo']}" class="logopic">
+                    <img src="{$list['headimgurl']}" class="logopic">
                 </div>
                 <div class="company_name">
                     <p class="job_n">{$list['jobs_name']}</p>
-                    <p class="job_s">{$list['wage_min']}-{$list['wage_max']}K</p>
+                    <p class="job_s">
+                        {if $list['wage_min']>0 && $list['wage_max']>0}
+                        {$list['wage_min']}-{$list['wage_max']}K
+                        {else}
+                        面议
+                        {/if}
+                    </p>
                     <p class="companyn nowrap" style="font-size: 14px;">{$list['city']}{$list['city_area']}{$list['address']}</p>
                 </div>
             </div>

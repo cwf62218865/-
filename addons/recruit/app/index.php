@@ -51,6 +51,7 @@ if(!$_SESSION['uid']){
 		    die("暂无权限访问");
         }
 	}elseif ($_SESSION['utype']==1){
+        check_order_update();
 		$person_statistics = person_statistics();
 		$resume_integrity = resume_integrity();
 		$add_order_num =  add_order_num();

@@ -115,7 +115,7 @@ elseif ($op=="msg_deal"){
                             <span style=\"display: inline-block;margin-top: 22px\">最新状态：{$status}</span>
                         </div>
 
-                        <a href=\"#\" class=\"see_system_msg see_day_msg\" >查看详情>></a>
+                        <a href='".app_url('person/index/send_resume')."' class=\"see_system_msg see_day_msg\" >查看详情>></a>
                     </div>";
         }
 
@@ -143,7 +143,7 @@ elseif ($op=="msg_deal"){
                             <span style=\"display: inline-block;margin-top: 22px\">{$list['companyname']}</span>
                         </div>
 
-                        <a href=\"#\" class=\"see_system_msg see_day_msg\" >查看详情>></a>
+                        <a href='".app_url('person/index/send_resume')."' class=\"see_system_msg see_day_msg\" >查看详情>></a>
                     </div>";
         }
 
@@ -417,4 +417,125 @@ elseif ($op=="invite_ajax"){
 
         call_back(1,$html);
     }
+}
+elseif ($op=="order_page_ajax"){
+    $page = check_pasre($_POST['page'],"参数错误");
+    $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
+    $differ_time = (time()-$order_jobs['updatetime'])/86400;
+    $order_jobs_list = m("jobs")->check_order_jobs($order_jobs['order_time'],$differ_time,$page);
+    $html = "";
+    foreach ($order_jobs_list as $list){
+
+        if($list['post_status']){
+            $post_status = "<span class=\"left_actionbtn post_action\" data-id=\"{$list['id']}\">投递简历</span>";
+        }else{
+            $post_status = " <span class=\"left_actionbtn \" data-id=\"{$list['id']}\" style=\"color: #bbb;\">已投递</span>";
+        }
+
+        if($list['is_collect']){
+            $is_collect = "<span class=\"right_actionbtn revoke_action\" data-id=\"{$list['id']}\">收藏职位</span>";
+        }else{
+            $is_collect = "<span class=\"right_actionbtn \" data-id=\"{$list['id']}\"  style=\"color: #bbb;\">已收藏</span>";
+        }
+
+        if($list['wage_min']>0 && $list['wage_max']>0){
+            $salary = $list['wage_min']."-".$list['wage_max']."k";
+        }else{
+            $salary = "面议";
+        }
+        $tag = "";
+        foreach ($list['tag'] as $li){
+            $tag.="<span class=\"fuli\">{$li}</span>";
+        }
+        $html .= "<div class=\"list_item\">
+                    <div class=\"item_con\">
+                        <div class=\"hang1\">
+                            <a class=\"jobname nowrap\" href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."'>{$list['jobs_name']}</a>
+                            <a class=\"salary\">
+                                {$salary}
+                            </a>
+                        </div>
+                        <div class=\"hang2\">
+                            <a class=\"exptime nowrap\">{$list['experience']}</a>
+                            <span class=\"exptime nowrap\">{$list['education']}</span>
+                            <span class=\"date\">".date('Y-m-d',$list['addtime'])."</span>
+                        </div>
+                        <div class=\"hang3\">
+                            {$tag}
+                        </div>
+                        <div class=\"xian1\"></div>
+                        <div class=\"status\">
+                            <a class=\"collection_logo\"  href='".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."'><img src=\"{$list['headimgurl']}\"></a>
+                            <div class=\"collection_companymsg\">
+                                <a class=\"nowrap company_name\" href='".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."'>{$list['companyname']}</a>
+                                <span class=\"nowrap company_address\">{$list['address']}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class=\"collection_action\"  data-id=\"{$list['uid']}\">{$post_status}{$is_collect}
+                    </div>
+                </div>";
+    }
+
+    call_back(1,$html);
+}
+
+elseif ($op=="collect_page_ajax"){
+    if($_POST['page']){
+        $collect_jobs = m("person")->collect_jobs($_POST['page']);
+        $collect_jobs_count = $collect_jobs['count'];
+        $collect_jobs = $collect_jobs['list'];
+        $html = "";
+        foreach ($collect_jobs as $list){
+            if($list['post_status']){
+                $post_status = "<span class=\"left_actionbtn post_action\" data-id=\"{$list['id']}\">投递简历</span>";
+            }else{
+                $post_status = " <span class=\"left_actionbtn \" data-id=\"{$list['id']}\" style=\"color: #bbb;\">已投递</span>";
+            }
+
+
+            if($list['wage_min']>0 && $list['wage_max']>0){
+                $salary = $list['wage_min']."-".$list['wage_max']."k";
+            }else{
+                $salary = "面议";
+            }
+            $tag = "";
+            foreach ($list['tag'] as $li){
+                $tag.="<span class=\"fuli\">{$li}</span>";
+            }
+            $html .="<div class=\"list_item\">
+                    <div class=\"item_con\">
+                        <div class=\"hang1\">
+                            <a class=\"jobname nowrap\" href='".app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))."'>{$list['jobs_name']}</a>
+                            <a class=\"salary\">
+                                {$salary}
+                            </a>
+                        </div>
+                        <div class=\"hang2\">
+                            <a class=\"exptime nowrap\">{$list['experience']}</a>
+                            <span class=\"exptime nowrap\">{$list['education']}</span>
+                            <span class=\"date\">".date('Y-m-d',$list['createtime'])."</span>
+                        </div>
+                        <div class=\"hang3\">
+                           {$tag}
+                        </div>
+                        <div class=\"xian1\"></div>
+                        <div class=\"status\">
+                            <a class=\"collection_logo\" href='".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."'><img src=\"{$list['headimgurl']}\"></a>
+                            <div class=\"collection_companymsg\">
+                                <a class=\"nowrap company_name\" href='".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."'>{$list['companyname']}</a>
+                                <span class=\"nowrap company_address\">{$list['city']}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class=\"collection_action\" data-id=\"{$list['uid']}\">
+                       {$post_status}
+                        <span class=\"right_actionbtn  remove_collect\" data-id=\"{$list['id']}\">取消收藏</span>
+                    </div>
+                </div>";
+        }
+    }
+    call_back(1,$html);
 }
