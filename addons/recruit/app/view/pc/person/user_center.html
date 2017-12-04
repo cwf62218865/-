@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/credit_evaluate.css" rel="stylesheet">
+    <title>个人中心</title>
+</head>
+<body bgcolor="#f4f4f4">
+{if $_SESSION['uid']}
+{php include wl_template('common/top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
+<div class="width1200 p1content">
+    {php include wl_template('common/person_nav');}
+    <div class="p1_left">
+        <div class="con_list">
+
+
+
+        </div>
+    </div>
+    {php include wl_template('common/person_right');}
+
+
+    <!--举报弹框--------->
+    <div class="modalbox" id="jubaobox" style="display: none;">
+        <div class="modal" style="width: 496px;margin-left: -248px;">
+            <p class="title_content">举报该评论</p>
+            <span class="modalclose">
+                <img src="{WL_URL_ARES}images/close.png"/>
+            </span>
+            <p class="color666 jubaotishi" style="margin-top: 34px;text-align: center">若发现评论存在敏感词句，欢迎举报</p>
+
+            <div style="margin-left: 40px;margin-top: 34px">
+                <span class="color666" style="display: inline-block;vertical-align: top;margin-top: 15px;">举报原因</span>
+                <div class=" relative general-select " style="float: none">
+                    <label class="general-input relative general-select" style="float: none;width: 330px">
+                        <input class="relative jubaoreason" type="text" readonly=""  name="company_scale" value="实际与描述不符" style="width: 310px;z-index: 10">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use  xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                    </label>
+                    <div class="options" style="width: 332px;top:48px">
+                        <div class="select-option" style="width: 330px"><span>培训机构</span></div>
+                        <div class="select-option" style="width: 330px"><span>实际与描述不符</span></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="margin-left: 40px;margin-top: 34px">
+                <span class="color666" style="float: left">详细描述</span>
+                <div class="" style="display: inline-block;margin-left: 24px;height: 120px;border: 1px solid #f5f5f5;width: 330px;background-color: #f5f5f5">
+                    <textarea   class="cwftextarea detailcon"  placeholder="请输入详细描述" style="width: 296px;height: 92px;"></textarea>
+                </div>
+                <div class="ico_niming">
+                    <div class="checkbox" style=" margin-right: 15px;">
+                        <svg class="icon iconfont color1aa ico_right">
+                            <use xlink:href=""></use>
+                        </svg>
+                    </div>
+                    <label class="nimingbz">匿名提交</label>
+                </div>
+            </div>
+            <div class="btns" style="margin-bottom: 20px">
+                <button class="tijiao1"  id="" style="margin-left: 156px;">确定</button>
+                <span class="quxiao" style="color: #0099cc">取消</span>
+            </div>
+        </div>
+    </div>
+    <!--举报弹框end-->
+    <!--未参加-->
+    <div class="modalbox" id="weicanjiabox" style="display: none;">
+        <div class="modal" style="width: 516px;margin-left: -258px;">
+            <p class="title_content">未参加面试理由</p>
+            <span class="modalclose">
+                <img src="{WL_URL_ARES}images/close.png"/>
+            </span>
+            <div class="xuanxiang">
+                <div class="itemsxx">
+                    <div class="checkbox" style=" margin-right: 15px;"></div>
+                    <label class="sss">临时有其他安排</label>
+                </div>
+                <div class="itemsxx">
+                    <div class="checkbox" style=" margin-right: 15px;"></div>
+                    <label class="sss">公司氛围太差</label>
+                </div>
+                <div class="itemsxx">
+                    <div class="checkbox" style=" margin-right: 15px;"></div>
+                    <label class="sss">等HR时间太长</label>
+                </div>
+                <div class="itemsxx">
+                    <div class="checkbox" style=" margin-right: 15px;"></div>
+                    <label class="sss">没找到公司具体位置</label>
+                </div>
+                <div class="itemsxx">
+                    <div class="checkbox" style=" margin-right: 15px;"></div>
+                    <label class="sss">已找到合适工作</label>
+                </div>
+                <div class="inputbox flonome">
+                    <input type="text" class="bqzidingyi weicanj" placeholder="自定义未参加面试理由">
+                </div>
+            </div>
+
+
+            <div class="btns" style="margin-bottom: 20px;margin-top: 15px">
+                <button class="tijiao1"  style="margin-left: 180px;">确定</button>
+                <span class="quxiao" style="color: #0099cc">取消</span>
+            </div>
+        </div>
+    </div>
+    <!--未参加end-->
+
+</div>
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/credit_evaluate.js" rel="script"></script>
+
+<script>
+    $(function () {
+        var nav = "{$_GPC['nav']}"?"{$_GPC['nav']}":0;
+        $(".list_item_btn").removeClass("select");
+        $(".list_item_btn").eq(nav).addClass("select");
+        $(".lists").hide();
+        $(".lists").eq(nav).show();
+
+    })
+
+    $(document).click(function(e){
+//        var _con = $('.morebiaoqian');   // 设置目标区域
+//        if(!_con.is(e.target) && _con.has(e.target).length === 0){
+//            $(".morebiaoqian").hide();//点击的动作
+//        };
+    });
+
+
+</script>
+</html>
