@@ -100,7 +100,6 @@ elseif ($op=="collect_resume_page"){
     if($_POST['page']){
         $page = $_POST['page'];
         $collect_resume  = m("company")->getall_collect($_SESSION['uid'],$page);
-        var_dump($collect_resume);exit();
         $html = "";
         foreach ($collect_resume as $list){
             if($list['sex']==2){$list['sex'] = '女生';}else{$list['sex'] = '男生';}

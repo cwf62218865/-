@@ -31,7 +31,7 @@ elseif($op=="pwd_login_out"){
 }
 //登录
 elseif ($op=="login"){
-
+    $weinxin_uri = urldecode("http://www.yingjieseng.com/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=weixin_callback");
     $back_top = 1;
    if($_SESSION['utype']==1){
        header("location:".app_url('person/index/send_resume'));
@@ -219,9 +219,10 @@ elseif ($op=="aboutus"){
 
 //验证码
 elseif ($op=="captcha"){
+
     header("Content-type:image/png");
-    m("imageCaptcha")->set_show_mode();
-    $code = m("imageCaptcha")->createImage();
+    m("imagecaptcha")->set_show_mode();
+    $code = m("imagecaptcha")->createImage();
     $_SESSION['imageCaptcha_content'] = strtolower($code);
     exit();
 }
@@ -1084,6 +1085,29 @@ elseif($op=="baidu_callback"){
         }
     }
 }elseif ($op=="weixin_callback"){
+    $back_top = 1;
+    if($_GPC['weixin_openid']){
+        $weixin_openid = $_GPC['weixin_openid'];
+        $account = pdo_fetch("select * from ".tablename(WL."members")." where utype=1 and weixin_openid='".$weixin_openid."'");
+        if($account){
+            $_SESSION['uid'] = $account['id'];
+            $_SESSION['utype'] = $account['utype'];
+            $resume = m("resume")->get_resume($_SESSION['uid']);
+            if(!$resume['fullname'] || !$resume['edu_experience'] || !$resume['introduce']){
+                $url = app_url('person/index');
+            }else{
+                $url = $_SESSION['record_url'];
+                if(empty($url)){
+                    $url = app_url("member/index/login");
+                }
+                unset($_SESSION['record_url']);
+            }
+            header("location:".$url);exit();
+        }else{
+            include wl_template("member/create_bind_account");exit();
+        }
+    }
+
 
 }elseif ($op=="record_url"){
     $_SESSION['record_url'] = $_SERVER["HTTP_REFERER"];
