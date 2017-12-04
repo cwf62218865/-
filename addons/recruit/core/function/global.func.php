@@ -338,6 +338,18 @@ function update_table($data,$tables,$condition=""){
 	return pdo_update($tables,$new_data,$condition);
 }
 
+function check_order_update(){
+//    $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where uid=".$_SESSION['uid']);
+//    m("jobs")->show_order_jobs($order_jobs);
+
+    $order_jobs = pdo_fetch("select * from ".tablename(WL."order_jobs")." where puid=".$_SESSION['uid']);
+    if($order_jobs){
+        $differ_time = (time()-$order_jobs['updatetime'])/(60*60*24);
+        $order_jobs_list = m("jobs")->check_order_jobs($order_jobs['order_time'],$differ_time);
+    }
+
+}
+
 /*
  * 删除数据
  */

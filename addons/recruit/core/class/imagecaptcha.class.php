@@ -8,7 +8,7 @@ header('Cache-Control: post-check=0, pre-check=0, max-age=0', false);
 header('Pragma: no-cache');
 
 error_reporting(E_ERROR);
-class imageCaptcha
+class imagecaptcha
 {
 private $height;
 private $width;

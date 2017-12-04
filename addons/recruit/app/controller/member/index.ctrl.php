@@ -6,13 +6,14 @@ wl_load()->model('verify');
 //首页
 if($op=="index"){
     $company  = m("member")->company_list();
-    $data['data']['job_order']="发布时间";
+    $data['data']['job_order']="最新";
     $jobs = m("jobs")->getall_jobs_page($data,9);
     $jobs = $jobs['more'];
 
-    $data['data']['job_order']="关注度";
+    $data['data']['job_order']="热门";
     $collect_jobs = m("jobs")->getall_jobs_page($data,9);
     $collect_jobs = $collect_jobs['more'];
+//    var_dump($collect_jobs);exit();
     include wl_template("member/index");exit();
 }
 //退出登录
@@ -30,7 +31,7 @@ elseif($op=="pwd_login_out"){
 }
 //登录
 elseif ($op=="login"){
-
+    $weinxin_uri = urldecode("http://www.yingjieseng.com/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=weixin_callback");
     $back_top = 1;
    if($_SESSION['utype']==1){
        header("location:".app_url('person/index/send_resume'));
@@ -62,7 +63,7 @@ elseif($op=="jobs_detail"){
         $report = pdo_fetch("select id from ".tablename(WL."report")." where jobs_id=".$_GPC['jobs_id']." and report_uid=".$_SESSION['uid']);
         $last_login_time = m("member")->last_login($jobs['uid']);
         $collect_status = pdo_fetch("select id from ".tablename(WL."collect_jobs")." where uid=".$_SESSION['uid']." and jobs_id=".$_GPC['jobs_id']);
-        $similar_jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$jobs['jobs_name']."%' and id<>".$jobs['id']);
+        $similar_jobs = pdo_fetchall("select j.*,c.headimgurl from ".tablename(WL."jobs")." j,".tablename(WL."company_profile")." c where c.uid=j.uid and j.jobs_name like '%".$jobs['jobs_name']."%' and j.id<>".$jobs['id']);
         $data['jobs_id'] = $_GPC['jobs_id'];
         $comment_jobs = m("jobs")->comment_apply($data);
         $comment_jobs = $comment_jobs['more'];
@@ -218,9 +219,10 @@ elseif ($op=="aboutus"){
 
 //验证码
 elseif ($op=="captcha"){
+
     header("Content-type:image/png");
-    m("imageCaptcha")->set_show_mode();
-    $code = m("imageCaptcha")->createImage();
+    m("imagecaptcha")->set_show_mode();
+    $code = m("imagecaptcha")->createImage();
     $_SESSION['imageCaptcha_content'] = strtolower($code);
     exit();
 }
@@ -1083,6 +1085,29 @@ elseif($op=="baidu_callback"){
         }
     }
 }elseif ($op=="weixin_callback"){
+    $back_top = 1;
+    if($_GPC['weixin_openid']){
+        $weixin_openid = $_GPC['weixin_openid'];
+        $account = pdo_fetch("select * from ".tablename(WL."members")." where utype=1 and weixin_openid='".$weixin_openid."'");
+        if($account){
+            $_SESSION['uid'] = $account['id'];
+            $_SESSION['utype'] = $account['utype'];
+            $resume = m("resume")->get_resume($_SESSION['uid']);
+            if(!$resume['fullname'] || !$resume['edu_experience'] || !$resume['introduce']){
+                $url = app_url('person/index');
+            }else{
+                $url = $_SESSION['record_url'];
+                if(empty($url)){
+                    $url = app_url("member/index/login");
+                }
+                unset($_SESSION['record_url']);
+            }
+            header("location:".$url);exit();
+        }else{
+            include wl_template("member/create_bind_account");exit();
+        }
+    }
+
 
 }elseif ($op=="record_url"){
     $_SESSION['record_url'] = $_SERVER["HTTP_REFERER"];

@@ -38,6 +38,14 @@
 
         <!--查看应聘者投递简历-->
         {if $_GPC['apply_id']}
+        {if $status==3}
+        <label class="resume_btns invite_interview" id="invite">
+            <svg class="icon icon_resume" aria-hidden="true">
+                <use xlink:href="#icon-tongyimianshi"></use>
+            </svg>
+            已同意面试
+        </label>
+        {else}
         <label class="resume_btns invite_interview" id="invite">
             <svg class="icon icon_resume" aria-hidden="true">
                 <use xlink:href="#icon-tongyimianshi"></use>
@@ -50,6 +58,8 @@
             </svg>
             拒绝面试
         </label>
+        {/if}
+
         {else}
         <!--主动查看-->
         <label class="resume_btns" id="invite">

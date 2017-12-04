@@ -49,14 +49,14 @@ class jobs{
         if($data['data']['job_education'] && $data['data']['job_education']<>"不限"){
             $wheresql .=" and education='".$data['data']['job_education']."' ";
         }
-        if($data['data']['job_order'] && $data['data']['job_order']=="默认排序"){
+        if($data['data']['job_order'] && $data['data']['job_order']=="默认"){
             $orderby = " order by id asc,open desc";
         }
-        if($data['data']['job_order'] && $data['data']['job_order']=="发布时间"){
+        if($data['data']['job_order'] && $data['data']['job_order']=="最新"){
             $orderby = " order by addtime desc,open desc";
         }
 
-        if($data['data']['job_order'] && $data['data']['job_order']=="关注度"){
+        if($data['data']['job_order'] && $data['data']['job_order']=="热门"){
             $orderby = " order by collect_num desc,open desc";
         }
 
@@ -208,6 +208,7 @@ class jobs{
             $data['order_jobs_ids'] .=$list['id'].",";
         }
         $data['order_jobs_ids'] = substr($data['order_jobs_ids'],0,-1);
+        $data['new_order_ids'] = str_replace($order_jobs['order_jobs_ids'],"",$data['order_jobs_ids']);
         $data['updatetime'] = time();
         pdo_update(WL."order_jobs",$data,array('puid'=>$_SESSION['uid']));
         return $order_jobs_ids;
