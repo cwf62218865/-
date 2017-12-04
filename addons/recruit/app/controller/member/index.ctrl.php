@@ -6,13 +6,14 @@ wl_load()->model('verify');
 //首页
 if($op=="index"){
     $company  = m("member")->company_list();
-    $data['data']['job_order']="发布时间";
+    $data['data']['job_order']="最新";
     $jobs = m("jobs")->getall_jobs_page($data,9);
     $jobs = $jobs['more'];
 
-    $data['data']['job_order']="关注度";
+    $data['data']['job_order']="热门";
     $collect_jobs = m("jobs")->getall_jobs_page($data,9);
     $collect_jobs = $collect_jobs['more'];
+//    var_dump($collect_jobs);exit();
     include wl_template("member/index");exit();
 }
 //退出登录
@@ -62,7 +63,7 @@ elseif($op=="jobs_detail"){
         $report = pdo_fetch("select id from ".tablename(WL."report")." where jobs_id=".$_GPC['jobs_id']." and report_uid=".$_SESSION['uid']);
         $last_login_time = m("member")->last_login($jobs['uid']);
         $collect_status = pdo_fetch("select id from ".tablename(WL."collect_jobs")." where uid=".$_SESSION['uid']." and jobs_id=".$_GPC['jobs_id']);
-        $similar_jobs = pdo_fetchall("select * from ".tablename(WL."jobs")." where jobs_name like '%".$jobs['jobs_name']."%' and id<>".$jobs['id']);
+        $similar_jobs = pdo_fetchall("select j.*,c.headimgurl from ".tablename(WL."jobs")." j,".tablename(WL."company_profile")." c where c.uid=j.uid and j.jobs_name like '%".$jobs['jobs_name']."%' and j.id<>".$jobs['id']);
         $data['jobs_id'] = $_GPC['jobs_id'];
         $comment_jobs = m("jobs")->comment_apply($data);
         $comment_jobs = $comment_jobs['more'];

@@ -8,7 +8,7 @@
     <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
-    <title>收藏订阅</title>
+    <title>投递简历</title>
 </head>
 <body bgcolor="#f4f4f4">
 {if $_SESSION['uid']}
@@ -27,16 +27,17 @@
             <!--收藏职位-------------------------------->
             <div class="lists_contanier list_content">
                 {if $collect_jobs}
+                <div class="collect_jobs_list">
                 {loop $collect_jobs $list}
                 <div class="list_item">
                     <div class="item_con">
                         <div class="hang1">
-                            <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
+                            <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
                             <a class="salary">
                                 {if $list['wage_min']>0 && $list['wage_max']>0}
-                                    {$list['wage_min']}-{$list['wage_max']}K
+                                {$list['wage_min']}-{$list['wage_max']}K
                                 {else}
-                                    面议
+                                面议
                                 {/if}
                             </a>
                         </div>
@@ -70,10 +71,10 @@
                     </div>
                 </div>
                 {/loop}
-
-                    {if $collect_jobs_count>6}
-                <div class="morejob">更多简历信息&gt;&gt;</div>
-                    {/if}
+                </div>
+                {if $collect_jobs_count>6}
+                <div class="morejob collect_page">更多简历信息&gt;&gt;</div>
+                {/if}
                 {else}
                 <div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有收藏的职位</div><div class="color999" style="margin-top: 30px">请前往职位列表浏览更多职位信息</div></div></div>
                 {/if}
@@ -83,90 +84,90 @@
             <div class="lists_contanier resume_content">
                 <!--编辑订阅器-->
                 <div class="edit_dingyue" {if $order_jobs}flag="1"{else}flag="0"{/if} >
-                    <label class="general-input current">
-                        <input type="text" id="job_name" style="" placeholder="请输入职位名称" value="{php echo $order_jobs['jobs_name']}">
+                <label class="general-input current">
+                    <input type="text" id="job_name" style="" placeholder="请输入职位名称" value="{php echo $order_jobs['jobs_name']}">
+                </label>
+                <div class="relative general-select input_wai city1">
+                    <label class="general-input relative general-select current1">
+                        <input type="text" readonly="" id="gz_address" placeholder="工作地点"  style="width: 70px;" value="{php echo $order_jobs['work_place']}">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
                     </label>
-                    <div class="relative general-select input_wai city1">
-                        <label class="general-input relative general-select current1">
-                            <input type="text" readonly="" id="gz_address" placeholder="工作地点"  style="width: 70px;" value="{php echo $order_jobs['work_place']}">
-                            <svg class="icon inputicon" aria-hidden="true">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                            </svg>
-                        </label>
-                        <div class="options scend" style="width: 272px;top:48px">
-                            <div class="cwfcityoptions2">
+                    <div class="options scend" style="width: 272px;top:48px">
+                        <div class="cwfcityoptions2">
 
-                            </div>
-                            <div class="cwfarea">
-                                <span>请先选择城市</span>
-                            </div>
+                        </div>
+                        <div class="cwfarea">
+                            <span>请先选择城市</span>
                         </div>
                     </div>
-                    <div class=" relative general-select input_wai statesinput">
-                        <label class="current1 general-input relative general-select">
-                            <input type="text" readonly="" placeholder="月薪" id="salery" style="width: 80px;" value="{php echo $order_jobs['wage_range']}">
-                            <svg class="icon inputicon" aria-hidden="true">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                            </svg>
-                        </label>
-                        <div class="options" style="height: 0px;">
-                            <div class="select-option"><span>2k以下</span></div>
-                            <div class="select-option"><span>2k-4k</span></div>
-                            <div class="select-option"><span>4k-6k</span></div>
-                            <div class="select-option"><span>6k-10k</span> </div>
-                            <div class="select-option"><span>10k以上</span> </div>
+                </div>
+                <div class=" relative general-select input_wai statesinput">
+                    <label class="current1 general-input relative general-select">
+                        <input type="text" readonly="" placeholder="月薪" id="salery" style="width: 80px;" value="{php echo $order_jobs['wage_range']}">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                    </label>
+                    <div class="options" style="height: 0px;">
+                        <div class="select-option"><span>2k以下</span></div>
+                        <div class="select-option"><span>2k-4k</span></div>
+                        <div class="select-option"><span>4k-6k</span></div>
+                        <div class="select-option"><span>6k-10k</span> </div>
+                        <div class="select-option"><span>10k以上</span> </div>
+                    </div>
+                </div>
+                <div class="chec_tip1">
+                    <div class="left_align" style="width: 320px;"></div>
+                    <div class="center_align" style="width: 120px;margin-left: 340px;"></div>
+                    <div class="right_align" style="width: 120px;float: right"></div>
+                </div>
+                <div class=" relative general-select p1content statesinput" style="margin-top: 30px;">
+                    <label class="current1 general-input relative general-select current2" style="margin-left: 0">
+                        <input type="text" id="hy_district" readonly="" placeholder="选择行业（最多三项）" class="" style="width: 420px;" value="{php echo $order_jobs['trade']}">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                    </label>
+                    <div class="options options1" style="height: 0px;">
+                        <div class="select-option1" flag="0"><span>IT互联网</span></div>
+                        <div class="select-option1" flag="0"><span>物流运输</span></div>
+                        <div class="select-option1" flag="0"><span>制造加工</span></div>
+                        <div class="select-option1" flag="0"><span>房地产</span></div>
+                        <div class="select-option1" flag="0"><span>教育培训</span></div>
+                        <div class="select-option1" flag="0"><span>医疗医药</span></div>
+                        <div class="select-option1" flag="0"><span>能源化工</span></div>
+                        <div class="select-option1" flag="0"><span>餐饮百货</span></div>
+                        <div class="select-option1" flag="0"><span>人力资源</span></div>
+                        <div class="select-option1" flag="0"><span>金融投资证券</span></div>
+                        <div class="select-option1" flag="0"><span>其他</span> </div>
+                        <div class="btns_d">
+                            <div class="public_bigbtn bg1aa currntbtn" id="hy_preserve">保存</div><span class="color_main cur margin_l" id="hy_quxiao">取消</span>
                         </div>
                     </div>
-                    <div class="chec_tip1">
-                        <div class="left_align" style="width: 320px;"></div>
-                        <div class="center_align" style="width: 120px;margin-left: 340px;"></div>
-                        <div class="right_align" style="width: 120px;float: right"></div>
+                </div>
+                <div class="relative general-select p1content statesinput"  style="margin-top: 30px;">
+                    <label class="current1 general-input relative general-select current1">
+                        <input type="text" readonly="" id="dy_pinlv" placeholder="订阅频率" class="" style="width: 80px;" value="{php echo $order_jobs['order_time']}">
+                        <svg class="icon inputicon" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                        </svg>
+                    </label>
+                    <div class="options" style="height: 0px;">
+                        <div class="select-option"><span>三天一次</span></div>
+                        <div class="select-option"><span>一周一次</span></div>
+                        <div class="select-option"><span>一个月一次</span> </div>
+                        <div class="select-option"><span>半年一次</span> </div>
+                        <div class="select-option"><span>一年一次</span> </div>
                     </div>
-                    <div class=" relative general-select p1content statesinput" style="margin-top: 30px;">
-                        <label class="current1 general-input relative general-select current2" style="margin-left: 0">
-                            <input type="text" id="hy_district" readonly="" placeholder="选择行业（最多三项）" class="" style="width: 420px;" value="{php echo $order_jobs['trade']}">
-                            <svg class="icon inputicon" aria-hidden="true">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                            </svg>
-                        </label>
-                        <div class="options options1" style="height: 0px;">
-                            <div class="select-option1" flag="0"><span>IT互联网</span></div>
-                            <div class="select-option1" flag="0"><span>物流运输</span></div>
-                            <div class="select-option1" flag="0"><span>制造加工</span></div>
-                            <div class="select-option1" flag="0"><span>房地产</span></div>
-                            <div class="select-option1" flag="0"><span>教育培训</span></div>
-                            <div class="select-option1" flag="0"><span>医疗医药</span></div>
-                            <div class="select-option1" flag="0"><span>能源化工</span></div>
-                            <div class="select-option1" flag="0"><span>餐饮百货</span></div>
-                            <div class="select-option1" flag="0"><span>人力资源</span></div>
-                            <div class="select-option1" flag="0"><span>金融投资证券</span></div>
-                            <div class="select-option1" flag="0"><span>其他</span> </div>
-                            <div class="btns_d">
-                                <div class="public_bigbtn bg1aa currntbtn" id="hy_preserve">保存</div><span class="color_main cur margin_l" id="hy_quxiao">取消</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative general-select p1content statesinput"  style="margin-top: 30px;">
-                        <label class="current1 general-input relative general-select current1">
-                            <input type="text" readonly="" id="dy_pinlv" placeholder="订阅频率" class="" style="width: 80px;" value="{php echo $order_jobs['order_time']}">
-                            <svg class="icon inputicon" aria-hidden="true">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                            </svg>
-                        </label>
-                        <div class="options" style="height: 0px;">
-                            <div class="select-option"><span>三天一次</span></div>
-                            <div class="select-option"><span>一周一次</span></div>
-                            <div class="select-option"><span>一个月一次</span> </div>
-                            <div class="select-option"><span>半年一次</span> </div>
-                            <div class="select-option"><span>一年一次</span> </div>
-                        </div>
-                    </div>
-                    <div class="chec_tip1">
-                        <div class="left_align" style="width: 460px;"></div>
-                        <div class="right_align" style="width: 120px;float: right"></div>
-                    </div>
-                    <span class="public_bigbtn bg1aa wrap" id="dy_preserve">保存</span>
-                    <span class="color_main cur margin_l quxiao_ico" id="dy_quxiao">取消</span>
+                </div>
+                <div class="chec_tip1">
+                    <div class="left_align" style="width: 460px;"></div>
+                    <div class="right_align" style="width: 120px;float: right"></div>
+                </div>
+                <span class="public_bigbtn bg1aa wrap" id="dy_preserve">保存</span>
+                <span class="color_main cur margin_l quxiao_ico" id="dy_quxiao">取消</span>
                 <div class="right_icos" >
                     <div class="checkbox ico_rightstatas" style="display: inline-block;margin-left: 60px;">
                         <label>
@@ -181,125 +182,125 @@
                     <div class="biezhu"> 同时发送到邮箱</div>
                     <span class="cur deletedyq" id="delete_dy">删除订阅器</span>
                 </div>
-                </div>
-                <!--编辑订阅器end-->
-                <!--第一次打开我的订阅-->
-                <div class="no_dingyue_list" {if $order_jobs}style="display:none;"{/if}>
-                    您还没有订阅职位，请先<span class="color_main cur" id="edit_dytj">编辑条件</span>
-                    <p class="why_zi">我们为什么强烈推荐您订阅</p>
-                    <p class="font_grey margin_t">帮助您节省浏览和筛选时间，快速找到适合的职位信息。 </p>
-                    <p  class="font_grey margin_t">我们会严格按照您订阅的频次和条件为您推送，并对您的个人信息绝对保密。</p>
-                </div>
-                <!--第一次打开我的订阅end-->
-                <!--订阅编辑成功显示-->
-                <div class="success_dingyue" {if $order_jobs}style="display:block;"{/if}>
-                    订阅成功，次日生效。<span class="color_main cur" id="alter_dy">修改订阅条件>></span>
-                    <p class="why_zi" id="dy_job_name">{php echo $order_jobs['jobs_name']}</p>
-                    <p class="font_grey margin_t">
-                        {if $order_jobs['work_place']}
-                        <span class="dy_tiaojian" id="dy_dz">{php echo $order_jobs['work_place']}</span>|
-                        {/if}
-                        {if $order_jobs['trade']}
-                        {loop explode(',',$order_jobs['trade']) $id $list}
-                        <span class="dy_tiaojian" id="dy_hy{php echo $id+1;}">{php echo $list}</span>|
-                        {/loop}
-                        {/if}
-                        {if $order_jobs['order_time']}
-                        <span  class="dy_tiaojian" id="dy_pl">{php echo $order_jobs['order_time']}</span>|
-                        {/if}
-                        {if $order_jobs['wage_range']}
-                        <span  class="dy_tiaojian" id="dy_gz">{php echo $order_jobs['wage_range']}</span>
-                        {/if}
-                    </p>
-                </div>
-                <!--订阅编辑成功显示end-->
-                <!--订阅生效之后，显示订阅职位-->
-                <div class="dingyue_list" style="display: block;">
-                <div class="dingyue_tishi">
-                    <span class="grey">以下是您订阅的职位</span>
-                    <span class="color_main cur" id="edit_dyq">修改订阅条件>></span>
-                </div>
-
-                    {if $order_jobs_list}
-                {loop $order_jobs_list $list}
-                <div class="list_item">
-                    <div class="item_con">
-                        <div class="hang1">
-                            <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
-                            <a class="salary">
-                                {if $list['wage_min']>0 && $list['wage_max']>0}
-                                    {php echo $list['wage_min']}-{php echo $list['wage_max']}k
-                                {else}
-                                    面议
-                                {/if}
-                            </a>
-                        </div>
-                        <div class="hang2">
-                            <a class="exptime nowrap">{php echo $list['experience']}</a>
-                            <span class="exptime nowrap">{php echo $list['education']}</span>
-                            <span class="date">{php echo date('Y-m-d',$list['addtime'])}</span>
-                        </div>
-                        <div class="hang3">
-                            {loop explode(",",$list['tag']) $li}
-                            <span class="fuli">{php echo $li}</span>
-                            {/loop}
-                        </div>
-                        <div class="xian1"></div>
-                        <div class="status">
-                            <a class="collection_logo"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}"><img src="{WL_URL_ARES}images/qiyelogo.png"></a>
-                            <div class="collection_companymsg">
-                                <a class="nowrap company_name"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
-                                <span class="nowrap company_address">{php echo $list['address']}</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="collection_action"  data-id="{php echo $list['uid']}">
-                        {if $list['post_status']}
-                        <span class="left_actionbtn post_action" data-id="{php echo $list['id']}">投递简历</span>
-                        {else}
-                        <span class="left_actionbtn " data-id="{php echo $list['id']}" style="color: #bbb;">已投递</span>
-                        {/if}
-                        {if $list['is_collect']}
-                        <span class="right_actionbtn revoke_action" data-id="{php echo $list['id']}">收藏职位</span>
-                        {else}
-                        <span class="right_actionbtn " data-id="{php echo $list['id']}"  style="color: #bbb;">已收藏</span>
-                        {/if}
-                    </div>
-                </div>
-                {/loop}
-                    {else}
-                    <!--<div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有符合订阅条件的职位</div><div class="color999" style="margin-top: 30px">请重新修改订阅条件</div></div></div>-->
-                    {/if}
-
-                    {if count($order_jobs_list)>6}
-                        <span class="find_morejob">发现更多好职位>></span>
-                    {/if}
-                </div>
-                <!--订阅生效之后，显示订阅职位end-->
             </div>
-            <!--订阅职位end-------------------------------->
+            <!--编辑订阅器end-->
+            <!--第一次打开我的订阅-->
+            <div class="no_dingyue_list" {if $order_jobs}style="display:none;"{/if}>
+            您还没有订阅职位，请先<span class="color_main cur" id="edit_dytj">编辑条件</span>
+            <p class="why_zi">我们为什么强烈推荐您订阅</p>
+            <p class="font_grey margin_t">帮助您节省浏览和筛选时间，快速找到适合的职位信息。 </p>
+            <p  class="font_grey margin_t">我们会严格按照您订阅的频次和条件为您推送，并对您的个人信息绝对保密。</p>
         </div>
-
+        <!--第一次打开我的订阅end-->
+        <!--订阅编辑成功显示-->
+        <div class="success_dingyue" {if $order_jobs}style="display:block;"{/if}>
+        订阅成功，次日生效。<span class="color_main cur" id="alter_dy">修改订阅条件>></span>
+        <p class="why_zi" id="dy_job_name">{php echo $order_jobs['jobs_name']}</p>
+        <p class="font_grey margin_t">
+            {if $order_jobs['work_place']}
+            <span class="dy_tiaojian" id="dy_dz">{php echo $order_jobs['work_place']}</span>|
+            {/if}
+            {if $order_jobs['trade']}
+            {loop explode(',',$order_jobs['trade']) $id $list}
+            <span class="dy_tiaojian" id="dy_hy{php echo $id+1;}">{php echo $list}</span>|
+            {/loop}
+            {/if}
+            {if $order_jobs['order_time']}
+            <span  class="dy_tiaojian" id="dy_pl">{php echo $order_jobs['order_time']}</span>|
+            {/if}
+            {if $order_jobs['wage_range']}
+            <span  class="dy_tiaojian" id="dy_gz">{php echo $order_jobs['wage_range']}</span>
+            {/if}
+        </p>
     </div>
+    <!--订阅编辑成功显示end-->
+    <!--订阅生效之后，显示订阅职位-->
+    <div class="dingyue_list" style="display: block;">
+        <div class="dingyue_tishi">
+            <span class="grey">以下是您订阅的职位</span>
+            <span class="color_main cur" id="edit_dyq">修改订阅条件>></span>
+        </div>
+        <div class="order_jobs_list">
+            {if $order_jobs_list}
+            {loop $order_jobs_list $list}
+            <div class="list_item">
+                <div class="item_con">
+                    <div class="hang1">
+                        <a class="jobname nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
+                        <a class="salary">
+                            {if $list['wage_min']>0 && $list['wage_max']>0}
+                            {php echo $list['wage_min']}-{php echo $list['wage_max']}k
+                            {else}
+                            面议
+                            {/if}
+                        </a>
+                    </div>
+                    <div class="hang2">
+                        <a class="exptime nowrap">{php echo $list['experience']}</a>
+                        <span class="exptime nowrap">{php echo $list['education']}</span>
+                        <span class="date">{php echo date('Y-m-d',$list['addtime'])}</span>
+                    </div>
+                    <div class="hang3">
+                        {loop explode(",",$list['tag']) $li}
+                        <span class="fuli">{php echo $li}</span>
+                        {/loop}
+                    </div>
+                    <div class="xian1"></div>
+                    <div class="status">
+                        <a class="collection_logo"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}"><img src="{$list['headimgurl']}"></a>
+                        <div class="collection_companymsg">
+                            <a class="nowrap company_name" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">{php echo $list['companyname']}</a>
+                            <span class="nowrap company_address">{php echo $list['address']}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="collection_action"  data-id="{php echo $list['uid']}">
+                    {if $list['post_status']}
+                    <span class="left_actionbtn post_action" data-id="{php echo $list['id']}">投递简历</span>
+                    {else}
+                    <span class="left_actionbtn " data-id="{php echo $list['id']}" style="color: #bbb;">已投递</span>
+                    {/if}
+                    {if $list['is_collect']}
+                    <span class="right_actionbtn revoke_action" data-id="{php echo $list['id']}">收藏职位</span>
+                    {else}
+                    <span class="right_actionbtn " data-id="{php echo $list['id']}"  style="color: #bbb;">已收藏</span>
+                    {/if}
+                </div>
+            </div>
+            {/loop}
+            {else}
+            <!--<div class="no_data_box"><img src="/addons/recruit/app/resource/images/no_data.png" style="float: left"><div class="no_data_boxmsg"><div style="font-size: 20px;color: #333;margin-top: 20px">暂时没有符合订阅条件的职位</div><div class="color999" style="margin-top: 30px">请重新修改订阅条件</div></div></div>-->
+            {/if}
+        </div>
+        {if count($order_jobs_list)>6}
+        <span class="find_morejob order_page">发现更多好职位>></span>
+        {/if}
+    </div>
+    <!--订阅生效之后，显示订阅职位end-->
+</div>
+<!--订阅职位end-------------------------------->
+</div>
+
+</div>
 {php include wl_template('common/person_right');}
 
 
-    <!--弹框-->
-    <div class="modalbox" id="deletebox" style="display: none;">
-        <div class="modal" style="width: 430px;margin-left: -215px;height: auto">
-            <p class="title_content">删除订阅器</p>
-            <span class="modalclose">
+<!--弹框-->
+<div class="modalbox" id="deletebox" style="display: none;">
+    <div class="modal" style="width: 430px;margin-left: -215px;height: auto">
+        <p class="title_content">删除订阅器</p>
+        <span class="modalclose">
                 <img src="{WL_URL_ARES}images/close.png"/>
             </span>
-            <div class="delete_tips">删除订阅器后将无法继续收到职位推送，确定要删除吗？</div>
-            <div class="btns_tk">
-                <div class="public_bigbtn bg1aa currntbtn" id="nodelete">再考虑下</div>
-                <span class="color_main cur margin_l" id="sure_delete">确定删除</span>
-            </div>
+        <div class="delete_tips">删除订阅器后将无法继续收到职位推送，确定要删除吗？</div>
+        <div class="btns_tk">
+            <div class="public_bigbtn bg1aa currntbtn" id="nodelete">再考虑下</div>
+            <span class="color_main cur margin_l" id="sure_delete">确定删除</span>
         </div>
     </div>
-    <!--弹框end-->
+</div>
+<!--弹框end-->
 </div>
 
 
@@ -409,7 +410,7 @@
             $(".edit_dingyue").show();
             $(".success_dingyue").hide();
         })
-        
+
         //删除订阅
         $("#delete_dy").click(function () {
             $("#deletebox").animate({"opacity":1},300);
@@ -467,23 +468,23 @@
                 }
             })
         })
-        
+
         //收藏职位
         $("body").on("click",".revoke_action",function () {
-           var _this=$(this);
-           $.ajax({
-               type:"post",
-               url:"{php echo app_url('person/collection/collection_jobs')}",
-               data:{
-                   jobs_id:_this.attr("data-id")
-               },
+            var _this=$(this);
+            $.ajax({
+                type:"post",
+                url:"{php echo app_url('person/collection/collection_jobs')}",
+                data:{
+                    jobs_id:_this.attr("data-id")
+                },
                 success:function (data) {
                     var data = JSON.parse(data);
                     if(data.status==1){
                         _this.html("已收藏").removeClass("revoke_action").unbind("click");
                     }
                 }
-           })
+            })
         })
 
 
@@ -508,7 +509,47 @@
             })
         })
 
+        //订阅分页
+        var order_page = 1;
+        $(".order_page").click(function () {
+            $.ajax({
+                type:"post",
+                url:"{php echo app_url('person/index/order_page_ajax')}",
+                data:{
+                    page:order_page
+                },
+                success:function (data) {
+                    var data = JSON.parse(data);
+                    if(data.status==1){
+                        $(".order_jobs_list").append(data.content);
+                        order_page +=1;
+                    }else{
+                        hint("error",data.content);
+                    }
+                }
+            })
+        })
 
+        //收藏分页
+        var collect_page = 1;
+        $(".collect_page").click(function () {
+            $.ajax({
+                type:"post",
+                url:"{php echo app_url('person/index/collect_page_ajax')}",
+                data:{
+                    page:collect_page
+                },
+                success:function (data) {
+                    var data = JSON.parse(data);
+                    if(data.status==1){
+                        $(".collect_jobs_list").append(data.content);
+                        collect_page +=1;
+                    }else{
+                        hint("error",data.content);
+                    }
+                }
+            })
+        })
     })
 </script>
 </html>
