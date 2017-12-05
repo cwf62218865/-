@@ -379,38 +379,42 @@ elseif ($op=="search_keyword"){
                         <a class=\"touxiang_pic\"  href='".app_url('resume/index',array('uid'=>$list['uid']))."'>
                             <img src=\"{$list['headimgurl']}\" style=\"width: 100px;height: 100px;\"/>
                         </a>
-                       
+
                         <div class=\"basic_massage\">
                             <div class=\"bm_hang1\">
-                                <span class=\"name nowrap\">{$list['fullname']}</span>
-                                <span class=\"view_i\">查看</span>
-                                <span class=\"basic_xx\">{$sex}</span>
-                                <span class=\"basic_xx\" style=\"margin-left: 5px;\">".ceil((time()-$list['birthday'])/31536000)."岁</span>
-                                <span class=\"basic_xx\" style=\"margin-left: 25px;\">{$list['education']}</span>
+                                <a class=\"name linkhover\" class=\"name\" href='".app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))."'>{$list['fullname']}</a>
+                                <a class=\"view_i\" class=\"name\" href='". app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))."'>查看</a>
+                                <label style=\"float: right;width: 60px;display: inline-block;height: 26px;line-height: 26px;\">
+                                    <span class=\"basic_xx\" style=\"line-height: 26px;\">{$sex}</span>
+                                    <span class=\"basic_xx\" style=\"margin-left: 10px;line-height: 26px;\">".ceil((time()-$list['birthday'])/31536000)."岁</span>
+                                </label>
                             </div>
-                            <div class=\"bm_hang3\">
-                                <span class=\"basic_xx\">{$list['school_name']}</span>
-                                <span class=\"basic_xx\"  style=\"margin-left: 16px;\">{$list['major']}</span>
+                            <div class=\"bm_hang2\">
+                                <span class=\"basic_xx floatl\">{$list['education']}</span>
+                                <span class=\"basic_xx floatl norwappp width130\">{$list['school_name']}</span>
                             </div>
-                            <div class=\"bm_hang4\">
-                                <span class=\"basic_xx expirencw\">{$list['experience']}</span>
-                                <span class=\"basic_xx\" style=\"margin-left: 16px;\">{$list['telphone']}</span>
+                             <div class=\"bm_hang3 nowrap\">
+                                <span class=\"basic_xx\">{$list['major']}</span>
                             </div>
                         </div>
                         <div class=\"xian1\"></div>
                         <div class=\"status\">
-                            <p class=\"time\">
-                                <span>
-                                    期望职位：
-                                    {$hope_job}
-                                </span>
-                            </p>
-                            <p class=\"review_tel\">
-                                <span>期望薪资：<label>{$list['salary']}</label></span>
-                            </p>
-                            <p class=\"\" style=\"margin-bottom: 20px;\">
-                                <span>期望工作地点：<label>{$list['hope_place']}</label></span>
-                            </p>
+
+                        <p class=\"time\">
+                        <div style=\"height: 26px\">
+                            <span style=\"display:inline-block;float: left;line-height: 26px\">工作经验：</span>
+                            <span class=\"job_hope\">{$list['experience']}</span>
+                        </div>
+                        </p>
+                        <p class=\"time\">
+                            <span>
+                                期望职位：
+                               {$hope_job}
+                            </span>
+                        </p>
+                        <p style=\"margin-bottom: 20px;\">
+                            <span>期望工作地点：<label>{$list['hope_place']}</label></span>
+                        </p>
                         </div>
                     </div>
                     <div class=\"review_statas\">
@@ -418,6 +422,8 @@ elseif ($op=="search_keyword"){
                         <div class=\"jujue shoucang shoucang_resume\"  data-id=\"{$list['id']}\">收藏简历</div>
                     </div>
                 </div>";
+
+
     }
 
     call_back(1,$str);
