@@ -9,6 +9,7 @@
     <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/super_company.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/super_company_list.css" rel="stylesheet">
     <title>名企招聘</title>
     <style>
@@ -66,10 +67,23 @@
 
 <div class="width1200">
     <div class="super_company_nav">
-        <span class="font18">工作地点：全国</span>
-        <span class="change_jobaddress">[切换]</span>
+        <span class="font18">工作地点：<lable class="gzaddress">全国</lable></span>
+        <span class="change_jobaddress change1">[切换]</span>
         <span class="change_alt">根据您的IP自动匹配，如需查看其他城市，请点击</span>
-        <span class="change_jobaddress" style="margin-left: 0">[切换]</span>
+        <span class="change_jobaddress change2" style="margin-left: 0">[切换]</span>
+
+        <div class="city_option mingqio">
+            <div class="city_top">
+                <label class="zimu_zu selest marl70">ABCD</label>
+                <label class="zimu_zu">FGHJ</label>
+                <label class="zimu_zu">KLMN</label>
+                <label class="zimu_zu">PQST</label>
+                <label class="zimu_zu magr30">WXYZ</label>
+            </div>
+            <div class="city_lister">
+                <div class="zimu_one"></div>
+            </div>
+        </div>
 
         <div class="search_box">
             <label>
@@ -230,6 +244,9 @@
 <script src="{WL_URL_ARES}js/swiper.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/newfile.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/style_zj.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/morecity.js" rel="script"></script>
 
 <script type="text/javascript">
 
@@ -284,6 +301,30 @@
                 }
             })
         }
+        
+        
+        $(".change1").click(function () {
+            $(".mingqio").css({
+                "display":"block",
+                "left":"20px"
+            })
+        })
+        $(".change2").click(function () {
+            $(".mingqio").css({
+                "display":"block",
+                "left":"420px"
+            })
+        })
+        $("body").on("click",".city_item",function () {
+            var city=$.trim($(this).html());
+            $(".mingqio").hide();
+            $(".gzaddress").html(city);
+            option.job_city=city;
+            supercompany(option);
+
+        })
+
+
 
     })
 

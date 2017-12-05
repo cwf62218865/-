@@ -39,6 +39,13 @@ elseif ($op=="send_resume"){
     include wl_template("person/send_resume");exit();
 }
 
+//个人中心页面
+elseif ($op=="user_center"){
+
+ include wl_template("person/user_center");exit();
+
+}
+
 //面试评价
 elseif ($op=="credit_evaluate"){
     $agree_jobs = m("resume")->jobs_apply($_SESSION['uid'],-1,3);
