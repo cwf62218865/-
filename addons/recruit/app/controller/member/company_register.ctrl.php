@@ -29,6 +29,7 @@ elseif($op=="base_save"){
     }
     $data['utype'] = 2;
     $data['createtime'] = time();
+    $data['last_login_time'] = time();
     $r = pdo_insert(WL."members",$data);
     $_SESSION['uid'] = pdo_insertid();
     $_SESSION['utype'] = 2;
