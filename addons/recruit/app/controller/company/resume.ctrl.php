@@ -291,18 +291,17 @@ elseif ($op=="collect"){
         $jobs_apply = pdo_fetch("select * from ".tablename(WL.'jobs_apply')." where id=".$data_id);
         $data['uid'] = $jobs_apply['uid'];
         $data['puid'] = $jobs_apply['puid'];
-        $data['jobs_id'] = $jobs_apply['jobs_id'];
         $data['resume_id'] = $jobs_apply['resume_id'];
-        $collect_resume = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where uid=".$_SESSION['uid']." and resume_id=".$data['resume_id']." and jobs_id=".$data['jobs_id']);
+        $collect_resume = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where uid=".$_SESSION['uid']." and resume_id=".$data['resume_id']);
         if($collect_resume){
             call_back(2,"该简历已收藏");
         }else{
             $data['createtime'] = time();
             $r = insert_table($data,WL."collect_resume");
             if($r){
-                call_back(1,"ok");
+                call_back(1,"收藏成功");
             }else{
-                call_back(2,"no");
+                call_back(2,"收藏失败");
             }
         }
     }
@@ -320,7 +319,7 @@ elseif ($op=="collect_resume"){
         $data['createtime'] = time();
         $r = insert_table($data,WL."collect_resume");
         if($r){
-            call_back(1,"ok");
+            call_back(1,"收藏成功");
         }else{
             call_back(2,"收藏失败");
         }

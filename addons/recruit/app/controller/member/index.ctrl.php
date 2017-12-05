@@ -63,7 +63,7 @@ elseif($op=="jobs_detail"){
         $report = pdo_fetch("select id from ".tablename(WL."report")." where jobs_id=".$_GPC['jobs_id']." and report_uid=".$_SESSION['uid']);
         $last_login_time = m("member")->last_login($jobs['uid']);
         $collect_status = pdo_fetch("select id from ".tablename(WL."collect_jobs")." where uid=".$_SESSION['uid']." and jobs_id=".$_GPC['jobs_id']);
-        $similar_jobs = pdo_fetchall("select j.*,c.headimgurl from ".tablename(WL."jobs")." j,".tablename(WL."company_profile")." c where c.uid=j.uid and j.jobs_name like '%".$jobs['jobs_name']."%' and j.id<>".$jobs['id']);
+        $similar_jobs = pdo_fetchall("select j.*,c.headimgurl from ".tablename(WL."jobs")." j,".tablename(WL."company_profile")." c where c.uid=j.uid and j.jobs_name like '%".$jobs['jobs_name']."%' and j.id<>".$jobs['id']." limit 0,2");
         $data['jobs_id'] = $_GPC['jobs_id'];
         $comment_jobs = m("jobs")->comment_apply($data);
         $comment_jobs = $comment_jobs['more'];

@@ -156,7 +156,7 @@ class resume{
     public function getall_resume($data=""){
         $wheresql = " where 1=1 ";
         if($data['keyword']){
-            $wheresql .=" and hope_job like '%".$data['keyword']."%' ";
+            $wheresql .=" and (hope_job like '%".$data['keyword']."%' or fullname like '%".$data['keyword']."%' or school_name like '%".$data['keyword']."%' or education like '%".$data['keyword']."%' or major like '%".$data['keyword']."%')";
         }
 
         if($data['didian']){
@@ -180,7 +180,7 @@ class resume{
         if($data['major']){
             $wheresql .=" and major=".$data['major'];
         }
-
+//echo "select * from ".tablename(WL.'resume').$wheresql;exit();
         $resumes = pdo_fetchall("select * from ".tablename(WL.'resume').$wheresql);
         $arr = "";
         foreach ($resumes as $resume){

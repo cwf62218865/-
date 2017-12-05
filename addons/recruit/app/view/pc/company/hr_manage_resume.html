@@ -266,7 +266,11 @@
                     </div>
                     <div class="review_statas" style="border-top: none">
                         <div class="tongyi yaoqing_interview">邀请面试</div>
+                        {if $list['collect']}
+                        <div class="jujue "  data-id="{php echo $list['id']}" data-uid="{php echo $list['uid']}">已收藏</div>
+                        {else}
                         <div class="jujue shoucang shoucang_resume"  data-id="{php echo $list['id']}" data-uid="{php echo $list['uid']}">收藏简历</div>
+                        {/if}
                     </div>
                 </div>
                 {/loop}
@@ -496,13 +500,13 @@
                 <div class="in_hang">
                     <span class="biaoti">联系人</span>
                     <label class="general-input" >
-                        <input type="text" id="contacts_name"  value="{$user['']}">
+                        <input type="text" id="contacts_name"  value="{$user['fullname']}">
                     </label>
                 </div>
                 <div class="in_hang">
                     <span class="biaoti">联系电话</span>
                     <label class="general-input" >
-                        <input type="text" id="contacts_tel" value="默认注册电话">
+                        <input type="text" id="contacts_tel" value="{$user['mobile']}">
                     </label>
                 </div>
                 <div class="in_hang">

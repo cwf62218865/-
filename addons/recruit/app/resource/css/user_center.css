@@ -1,0 +1,356 @@
+.content_u{
+    width: 770px;
+    height: auto;
+    margin-left: 50px;
+    margin-top: 30px;
+    float: left;
+}
+.content_p{
+    width: 730px;
+    height: auto;
+    margin-left: 70px;
+    margin-top: 50px;
+    float: left;
+}
+.touxiangimg{
+    width: 120px;
+    float: left;
+    height: 120px;
+    overflow: hidden;
+    margin-right: 30px;
+}
+.touxipi{
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+
+}
+.xinximsg{
+    width: 620px;
+    float: left;
+}
+.wenhou{
+    font-size: 18px;
+    color: #333333;
+}
+.tongjinum{
+    width: 100%;
+    margin-top: 36px;
+}
+.tjnum{
+    float: left;
+    width: 140px;
+    text-align: center;
+    border-left: 1px dashed #eeeeee;
+}
+.tjnum:nth-child(1){
+    margin-left: -30px;
+    border-left: none;
+}
+.nubss{
+    font-size: 24px;
+    color: #0099cc;
+ }
+.jsnm{
+    margin-top: 10px;
+}
+.p_title{
+    width: 100%;
+}
+.zitile{
+    float: left;
+    font-size: 20px;
+    color: #333333;
+}
+.xianx{
+    width: 620px;
+    float: right;
+    height: 13px;
+    border-bottom: 2px solid #eeeeee;
+}
+.dateselect{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    margin-top: 40px;
+}
+.font14{
+    font-size: 14px;
+}
+.font16{
+    font-size: 16px;
+}
+.color66{
+    color: #666666;
+}
+.color33{
+    color: #333333;
+}
+.color99{
+    color: #999999;
+}
+.colormain{
+    color: #0099cc;
+}
+.m_r_16{
+    margin-right: 16px;
+}
+.ziriqi{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+}
+.bg_kuang{
+    display: inline-block;
+    width: 238px;
+    height: 38px;
+    border: 1px solid #eeeeee;
+    background: #f5f5f5;
+    margin-right: 80px;
+    float: left;
+    position: relative;
+}
+.nianrili{
+    display: none;
+    position: absolute;
+    width: 240px;
+    height: auto;
+    left: -1px;
+    top: 39px;
+    background: #ffffff;
+    z-index: 999;
+    box-shadow: 6px 5px 24px rgba(0,0,0,0.12);
+}
+.brn_con{
+    float: left;
+    width: 200px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.btn_niann{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border: 1px solid #eeeeee;
+    float: left;
+    background: #fff;
+    cursor: pointer;
+}
+.years{
+    width: 100%;
+    height: auto;
+}
+.yearn{
+    display: block;
+    float: left;
+   width: 79px;
+    height:39px;
+    border-right: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    text-align: center;
+    line-height: 40px;
+    color: #666666;
+}
+.yearn:nth-child(3n-2){
+    width: 78px;
+    border-left: 1px solid #eeeeee;
+}
+.yearn:nth-child(1),
+.yearn:nth-child(2),
+.yearn:nth-child(3){
+    border-top: 1px solid #eeeeee;
+}
+.btn_niann .icon{
+    margin: 3px 3px;
+}
+.niann{
+    width: 156px;
+    float: left;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    color: #333333;
+    font-size: 14px;
+}
+.nianbtn{
+    width: 100%;
+    height: 40px;
+    background: #f5f5f5;
+}
+.ckrc{
+    float: left;
+    width: 220px;
+    height: 34px;
+    background: #0099cc;
+    text-align: center;
+    line-height: 34px;
+    color: #ffffff;
+    margin: 10px 10px;
+    cursor: pointer;
+}
+.yearn:hover{
+    background: #0099cc;
+    color: #ffffff;
+}
+.inputku{
+    width: 186px;
+    height:20px;
+    margin-top: 10px;
+    margin-left: 18px;
+    float: left;
+    background: none;
+}
+.riliico{
+    width: 24px;
+    height: 24px;
+    color: #bdc8d4;margin-top: 8px;
+    float: left;
+    cursor: pointer;
+}
+.nomsges{
+    float: left;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+}
+.zph_list{
+    width: 730px;
+    float: left;
+    margin-top: 30px;
+}
+.zph_item{
+    width: 228px;
+    height: 238px;
+    float: left;
+    border: 1px solid #eeeeee;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+.zph_item:nth-child(3n){
+    margin-right: 0px;
+}
+.zhejiao1{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: -13px;
+    bottom: -10px;
+    overflow: hidden;
+}
+.zph_item:hover{
+    box-shadow: 5px 9px 6px rgba(0,0,0,0.04);
+}
+.zhejiao1 img{
+    width: 40px;height: 40px;
+}
+.zph_title,.zph_time,.zph_ttt,.zph_sss{
+    width: 190px;
+    text-align: center;
+    margin-left: 20px;
+}
+.zph_title{
+    margin-top: 40px;
+    font-size: 20px;color: #333333;
+}
+.zph_time{
+    margin-top: 10px;
+    color: #E23D46;
+    font-size: 16px;
+}
+.zph_ttt{
+    margin-top: 40px;
+    font-size: 14px;
+    color: #666666;
+}
+.zph_sss{
+    margin-top: 7px;
+    font-size: 14px;
+    color: #999999;
+}
+.thisbm{
+    margin-top: 10px;
+    margin-left: 180px;
+    margin-bottom: 0;
+}
+.male0{
+    margin-left: 0 !important;
+}
+.day_msgbox{
+    margin: 20px 0px;
+}
+.delivery_headerimg{
+    overflow: inherit;
+    height: auto;
+}
+.delivery_headerimg img{
+    width: 66px;
+    height: 66px;
+    border-radius: 100%;
+}
+.nicheng{
+    text-align: center;
+    font-size: 14px;
+    color: #999999;
+}
+.see_day_msg{
+    margin-top: -50px;
+}
+.morejobss{
+    width: 100%;
+    display: block;
+    float: left;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.jobname{
+    height: 50px;
+    line-height: 24px;
+}
+.titleri{
+    width: 100%;
+    height: 68px;
+    line-height: 68px;
+    text-align: center;
+    font-size: 20px;
+    color: #333333;
+}
+.jianli{
+    float: left;
+}
+.btns_resume{
+    width: 100%;
+    height: 68px;
+    float: left;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.menus{
+float: left;
+    width: 68px;
+    height: 68px;
+    background: #f5f5f5;
+    margin-right: 6px;
+    text-align: center;
+    cursor: pointer;
+
+}
+.menus:nth-child(1){
+    margin-left: 10px;
+}
+.menus .icon_item{
+    color: #bdc8d4;
+}
+.bb12{
+    color: #bbbbbb;
+    font-size: 12px;
+}
+.menus:hover{
+    background: #0099cc;
+}
+.menus:hover .icon_item,.menus:hover .bb12{
+    color: #ffffff !important;
+}
