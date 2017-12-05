@@ -65,7 +65,7 @@ elseif ($op=="user_center"){
         $new_arr[$i]['content'] = $list;
         $i++;
     }
-
+//    var_export($new_arr);exit();
  include wl_template("person/user_center");exit();
 
 }
@@ -298,12 +298,17 @@ elseif ($op=="post_resume"){
     if($jobs_apply){
         call_back(2,"已存在");
     }else{
-        $r = insert_table($data,WL."jobs_apply");
-        if($r){
-            call_back(1,"ok");
+        if($resume_integrity>70){
+            $r = insert_table($data,WL."jobs_apply");
+            if($r){
+                call_back(1,"ok");
+            }else{
+                call_back(2,"no");
+            }
         }else{
-            call_back(2,"no");
+            call_back(2,"请完善您的简历");
         }
+
     }
 }
 

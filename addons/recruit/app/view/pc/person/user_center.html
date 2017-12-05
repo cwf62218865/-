@@ -115,7 +115,7 @@
                         </div>
                     </label>
 
-                    <label class="nomsges">
+                    <label class="nomsges" {if empty($interviews)}style="display:block;"{else}style="display:none;"{/if}>
                         <span class="font16 color33">所选月份暂无日程安排</span>
                         <span class="font14 color33" style="margin-left: 10px;">请前往<a class="colormain" href="{php echo app_url('member/index/search_jobs')}">找工作</a></span>
                     </label>
@@ -136,7 +136,7 @@
                         <p class="zph_time nowrap">{$list['interview_time']}</p>
                         <p class="zph_ttt nowrap">{$list['jobs_name']}</p>
                         <p class="zph_sss nowrap">{$list['companyname']}</p>
-                        <div class="zhejiao1"><img src="{$list['headimgurl']}"></div>
+                        <div class="zhejiao1"><img src="{WL_URL_ARES}images/sanjiaox.png"></div>
                     </div>
                     {elseif $list['directon']==2}
                     <div class="zph_item">
@@ -144,7 +144,7 @@
                         <p class="zph_time nowrap">{$list['interview_time']}</p>
                         <p class="zph_ttt nowrap">{$list['jobs_name']}</p>
                         <p class="zph_sss nowrap">{$list['companyname']}</p>
-                        <div class="zhejiao1"><img src="{$list['headimgurl']}"></div>
+                        <div class="zhejiao1"><img src="{WL_URL_ARES}images/sanjiaox.png"></div>
                     </div>
                     {/if}
                     {/loop}
@@ -199,7 +199,7 @@
 
                         <!--投递申请-->
                         {loop $list['content'] $li}
-                        {if $li['direction']==1}
+                        {if $li['direction']==2}
                         <div class="day_msgbox">
                             <div class="system_msg_title">
                                 <svg class="icon" aria-hidden="true">
@@ -235,7 +235,7 @@
                         {/loop}
                         <!--面试邀请-->
                         {loop $list['content'] $li}
-                        {if $li['direction']==2 && $li['status']==3}
+                        {if $li['direction']==1 && $li['status']==3}
                         <div class="day_msgbox">
                             <div class="system_msg_title">
                                 <svg class="icon" aria-hidden="true">
@@ -334,7 +334,7 @@
         <div class="part_one">
             <p class="titleri">我的简历</p>
             <div class="wanzhengdu" style="margin-top: 10px;">
-                <div class="jianli"><span>简历完整度：</span><span class="color_main">71%</span>
+                <div class="jianli"><span>简历完整度：</span><span class="color_main">{php echo $resume_integrity}%</span>
                     <a class="color_main resume_view" href="{php echo app_url('person/resume/manage_resume')}" style="float: right;">去完善</a>
                    <div class="jindutiao">
                         <div class="jindu_con" style="width: 71%"></div>
