@@ -83,6 +83,7 @@ class resume{
                 }
             }
         }
+
         return array_filter($jobs);
     }
 

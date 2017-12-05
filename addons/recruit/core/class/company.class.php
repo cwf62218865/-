@@ -149,6 +149,21 @@ class company{
         }
         return $resumes;
     }
-    
+
+
+    /*
+     * 热门公司筛选
+     */
+    public function company_list(){
+        $companys = pdo_fetchall("select * from ".tablename(WL.'company_profile')." order by createtime desc limit 0,5");
+
+        $company = "";
+        foreach ($companys as $list){
+            $list['jobs_num'] = pdo_fetchcolumn("select count(*) from ".tablename(WL.'jobs')." where uid=".$list['uid']);
+
+            $company[] = $list;
+        }
+        return $company;
+    }
     
 }
