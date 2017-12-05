@@ -50,11 +50,11 @@
                     </div>
                     <div class="tongjinum">
                         <div class="tjnum">
-                            <a class="nubss" href="#">5</a>
+                            <a class="nubss" href="{php echo app_url('person/index/credit_evaluate')}">{$comment_num}</a>
                             <p class="jsnm">面试评价</p>
                         </div>
                         <div class="tjnum">
-                            <a class="nubss" href="#">5</a>
+                            <a class="nubss" href="{php echo app_url('person/index/collection_jobs_list',array('nav'=>1))}">{if $add_order_num}{$add_order_num}{else}0{/if}</a>
                             <p class="jsnm">新增订阅</p>
                         </div>
                         <div class="tjnum">
@@ -62,7 +62,7 @@
                             <p class="jsnm">问题回答</p>
                         </div>
                         <div class="tjnum">
-                            <a class="nubss" href="#">5</a>
+                            <a class="nubss" href="{php echo app_url('person/index/credit_evaluate',array('nav'=>1))}">{$reply_num}</a>
                             <p class="jsnm">收到评论</p>
                         </div>
                     </div>
@@ -115,56 +115,42 @@
                         </div>
                     </label>
 
-                    <label class="nomsges">
+                    <label class="nomsges" {if empty($interviews)}style="display:block;"{else}style="display:none;"{/if}>
                         <span class="font16 color33">所选月份暂无日程安排</span>
                         <span class="font14 color33" style="margin-left: 10px;">请前往<a class="colormain" href="{php echo app_url('member/index/search_jobs')}">找工作</a></span>
                     </label>
                 </div>
                 <div class="zph_list">
+                    {if $interviews}
+                    {loop $interviews $list}
                     <div class="zph_item">
                         <p class="zph_title nowrap">招聘会</p>
                         <p class="zph_time nowrap">今天8:15</p>
                         <p class="zph_ttt nowrap">2017重庆第二三届</p>
                         <p class="zph_sss nowrap">现代服务业大型招聘会</p>
-                        <div class="zhejiao1"><img src="/addons/recruit/app/resource/images/sanjiaox1.png"></div>
+                        <div class="zhejiao1"><img src="{WL_URL_ARES}images/sanjiaox.png"></div>
                     </div>
+                    {if $list['directon']==1}
                     <div class="zph_item">
                         <p class="zph_title nowrap">面试</p>
-                        <p class="zph_time nowrap">明天8:15</p>
-                        <p class="zph_ttt nowrap">新媒体编辑</p>
-                        <p class="zph_sss nowrap">重庆大风车科技有限公司</p>
-                        <div class="zhejiao1"><img src="/addons/recruit/app/resource/images/sanjiaox1.png"></div>
+                        <p class="zph_time nowrap">{$list['interview_time']}</p>
+                        <p class="zph_ttt nowrap">{$list['jobs_name']}</p>
+                        <p class="zph_sss nowrap">{$list['companyname']}</p>
+                        <div class="zhejiao1"><img src="{WL_URL_ARES}images/sanjiaox.png"></div>
                     </div>
+                    {elseif $list['directon']==2}
                     <div class="zph_item">
                         <p class="zph_title nowrap">职位邀请</p>
-                        <p class="zph_time nowrap">12月8日8:15</p>
-                        <p class="zph_ttt nowrap">高级Java工程师</p>
-                        <p class="zph_sss nowrap">重庆小青蛙科技有限公司</p>
-                        <div class="zhejiao1"><img src="/addons/recruit/app/resource/images/sanjiaox1.png"></div>
+                        <p class="zph_time nowrap">{$list['interview_time']}</p>
+                        <p class="zph_ttt nowrap">{$list['jobs_name']}</p>
+                        <p class="zph_sss nowrap">{$list['companyname']}</p>
+                        <div class="zhejiao1"><img src="{WL_URL_ARES}images/sanjiaox.png"></div>
                     </div>
-                    <div class="zph_item">
-                        <p class="zph_title nowrap">招聘会</p>
-                        <p class="zph_time nowrap">今天8:15</p>
-                        <p class="zph_ttt nowrap">2017重庆第二三届</p>
-                        <p class="zph_sss nowrap">现代服务业大型招聘会</p>
-                        <div class="zhejiao1"><img src="/addons/recruit/app/resource/images/sanjiaox1.png"></div>
-                    </div>
-                    <div class="zph_item">
-                        <p class="zph_title nowrap">招聘会</p>
-                        <p class="zph_time nowrap">今天8:15</p>
-                        <p class="zph_ttt nowrap">2017重庆第二三届</p>
-                        <p class="zph_sss nowrap">现代服务业大型招聘会</p>
-                        <div class="zhejiao1"><img src="/addons/recruit/app/resource/images/sanjiaox1.png"></div>
-                    </div>
-                    <div class="zph_item">
-                        <p class="zph_title nowrap">招聘会</p>
-                        <p class="zph_time nowrap">今天8:15</p>
-                        <p class="zph_ttt nowrap">2017重庆第二三届</p>
-                        <p class="zph_sss nowrap">现代服务业大型招聘会</p>
-                        <div class="zhejiao1"><img src="/addons/recruit/app/resource/images/sanjiaox1.png"></div>
-                    </div>
+                    {/if}
+                    {/loop}
+                    {/if}
                 </div>
-                <div class="morejob thisbm">更多简历信息&gt;&gt;</div>
+                <!--<div class="morejob thisbm">更多简历信息&gt;&gt;</div>-->
             </div>
 
             <div class="content_p">
@@ -197,112 +183,86 @@
                             </div>
 
                             <div class="system_msg_img" style="width: 634px;">
-                                <img src="http://localhost/addons/recruit/app/resource/images/index_big_banner.png">
+                                <img src="{WL_URL_ARES}images/index_big_banner.png">
                             </div>
                             <a href="#" class="see_system_msg">查看详情&gt;&gt;</a>
                         </div>
                     </div>
                     <!--一天的消息-->
+                    {loop $new_arr $list}
                     <div class="one_day_msg">
                         <div class="day_time">
-                            <i style="left: 215px;"></i>
-                            <span style="left: 293px;">2017/12/01</span>
                             <i></i>
+                            <span>{$list['time']}</span>
                         </div>
 
 
                         <!--投递申请-->
+                        {loop $list['content'] $li}
+                        {if $li['direction']==2}
                         <div class="day_msgbox">
                             <div class="system_msg_title">
                                 <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-qiuzhiyixiang"></use>
+                                    <use xlink:href="#icon-qiuzhiyixiang"></use>
                                 </svg>
                                 <span class="color999">投递申请</span>
-                                <span class="colorbbb">2017-12-01 12:01</span>
+                                <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
                             </div>
 
                             <div class="delivery_left">
-                                <a class="delivery_logo" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;jobs_id=707">
-                                    <img src="/addons/recruit/app/resource/temp/2017-12-01/5a20c265f01dd.jpg">
+                                <a class="delivery_logo" href="{php echo app_url('member/index/company_detail',array('jobs_id'=>$li['company_uid']))}">
+                                    <img src="{$li['headimgurl']}">
                                 </a>
-                                <a href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=482">心理咨询师</a>
-                                <a style="margin-left: 20px" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;jobs_id=707">重庆大唐科技</a><br>
+                                <a  href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$li['id']))}">{$li['jobs_name']}</a>
+                                <a style="margin-left: 20px"  href="{php echo app_url('member/index/company_detail',array('jobs_id'=>$li['company_uid']))}">{$li['companyname']}</a><br>
                                 <span style="display: inline-block;margin-top: 22px">
                                 最新状态：
-                                                                    邀请面试
-                                                            </span>
+                                {if $li['status']==-1}
+                                    不合适
+                                {elseif $li['status']==0}
+                                    未查看
+                                {elseif $li['status']==1}
+                                    已查看
+                                {elseif $li['status']==3}
+                                    邀请面试
+                                {/if}
+                            </span>
                             </div>
 
-                            <a href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=person&amp;ac=index&amp;op=send_resume&amp;" class="see_system_msg see_day_msg">查看详情&gt;&gt;</a>
+                            <a href="{php echo app_url('person/index/send_resume')}" class="see_system_msg see_day_msg" >查看详情>></a>
                         </div>
-                        <div class="day_msgbox">
-                            <div class="system_msg_title">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-qiuzhiyixiang"></use>
-                                </svg>
-                                <span class="color999">投递申请</span>
-                                <span class="colorbbb">2017-12-01 12:01</span>
-                            </div>
-
-                            <div class="delivery_left">
-                                <a class="delivery_logo" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;jobs_id=655">
-                                    <img src="/addons/recruit/app/resource/temp/2017-12-01/5a20c265f01dd.jpg">
-                                </a>
-                                <a href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=32">护士</a>
-                                <a style="margin-left: 20px" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;jobs_id=655">羽</a><br>
-                                <span style="display: inline-block;margin-top: 22px">
-                                最新状态：
-                                                                    未查看
-                                                            </span>
-                            </div>
-
-                            <a href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=person&amp;ac=index&amp;op=send_resume&amp;" class="see_system_msg see_day_msg">查看详情&gt;&gt;</a>
-                        </div>
+                        {/if}
+                        {/loop}
                         <!--面试邀请-->
+                        {loop $list['content'] $li}
+                        {if $li['direction']==1 && $li['status']==3}
                         <div class="day_msgbox">
                             <div class="system_msg_title">
                                 <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-gongzuojingli"></use>
+                                    <use xlink:href="#icon-gongzuojingli"></use>
                                 </svg>
                                 <span class="color999">面试邀请</span>
-                                <span class="colorbbb">2017-12-01 12:01</span>
+                                <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
                             </div>
 
                             <div class="delivery_left">
-                                <a class="delivery_logo" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;company_id=707">
-                                    <img src="/addons/recruit/app/resource/temp/2017-12-01/5a20c265f01dd.jpg">
+                                <a class="delivery_logo" href="{php echo app_url('member/index/company_detail',array('company_id'=>$li['company_uid']))}">
+                                    <img src="{$li['headimgurl']}">
                                 </a>
-                                <a href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=482">心理咨询师</a><br>
-                                <a style="display: inline-block;margin-top: 22px" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;company_id=707">重庆大唐科技</a>
+                                <a  href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$li['id']))}">{$li['jobs_name']}</a><br>
+                                <a style="display: inline-block;margin-top: 22px"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$li['uid']))}">{$li['companyname']}</a>
                             </div>
 
-                            <a href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=person&amp;ac=index&amp;op=send_resume&amp;nav=1" class="see_system_msg see_day_msg">查看详情&gt;&gt;</a>
+                            <a href="{php echo app_url('person/index/send_resume',array('nav'=>1))}" class="see_system_msg see_day_msg" >查看详情>></a>
                         </div>
-                        <div class="day_msgbox">
-                            <div class="system_msg_title">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-gongzuojingli"></use>
-                                </svg>
-                                <span class="color999">面试邀请</span>
-                                <span class="colorbbb">2017-12-01 12:01</span>
-                            </div>
-
-                            <div class="delivery_left">
-                                <a class="delivery_logo" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;company_id=655">
-                                    <img src="/addons/recruit/app/resource/temp/2017-12-01/5a20c265f01dd.jpg">
-                                </a>
-                                <a href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=32">护士</a><br>
-                                <a style="display: inline-block;margin-top: 22px" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;company_id=655">羽</a>
-                            </div>
-
-                            <a href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=person&amp;ac=index&amp;op=send_resume&amp;nav=1" class="see_system_msg see_day_msg">查看详情&gt;&gt;</a>
-                        </div>
+                        {/if}
+                        {/loop}
 
                         <!--问答提醒-->
                         <div class="day_msgbox">
                             <div class="system_msg_title">
                                 <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-wendatixing"></use>
+                                    <use xlink:href="#icon-wendatixing"></use>
                                 </svg>
                                 <span class="color999">问答提醒</span>
                                 <span class="colorbbb">2017-09-31 15:45</span>
@@ -310,58 +270,60 @@
 
                             <div class="delivery_left" style="line-height: 24px">
                         <span class="delivery_headerimg">
-                            <img src="http://localhost/addons/recruit/app/resource/images/qiyelogo.png">
-                            <p class="nicheng">赵本山</p>
+                            <img src="{WL_URL_ARES}images/qiyelogo.png">
                         </span>
                                 <span>拒绝了您的问题：</span><br>
                                 <span>刚毕业的大学生找工作如何防止被骗？</span>
                             </div>
 
-                            <a href="#" class="see_system_msg see_day_msg">查看详情&gt;&gt;</a>
+                            <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
                         </div>
 
                         <!--评论回复-->
                         <div class="day_msgbox">
                             <div class="system_msg_title">
                                 <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-pinglunhuifu"></use>
+                                    <use xlink:href="#icon-pinglunhuifu"></use>
                                 </svg>
                                 <span class="color999">评论回复</span>
                                 <span class="colorbbb">2017-09-31 15:45</span>
                             </div>
 
                             <div class="delivery_left" style="line-height: 24px">
-                        <span class="delivery_headerimg" style="float: left;">
-                            <img src="http://localhost/addons/recruit/app/resource/images/qiyelogo.png">
-                            <p class="nicheng">赵本山</p>
+                        <span class="delivery_headerimg">
+                            <img src="{WL_URL_ARES}images/qiyelogo.png">
                         </span>
-                                <span class="nowrap" style="display: block;width: 510px;float: left;">回复了您在<span style="color: #7b8fc9">“一个刚毕业的会计学生简历上有哪些经历会加分？”</span>中的评论</span>
+                                <span>回复了您在<span style="color: #7b8fc9">“一个刚毕业的会计学生简历上有哪些经历会加分？”</span>中的评论</span>
                             </div>
 
-                            <a href="#" class="see_system_msg see_day_msg">查看详情&gt;&gt;</a>
+                            <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
                         </div>
 
                         <!--面试评价-->
+                        {loop $list['content'] $li}
+                        {if $li['hr_reply_status']==1}
                         <div class="day_msgbox">
                             <div class="system_msg_title">
                                 <svg class="icon" aria-hidden="true">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-pinglunhuifu"></use>
+                                    <use xlink:href="#icon-pinglunhuifu"></use>
                                 </svg>
                                 <span class="color999">面试评价</span>
-                                <span class="colorbbb">2017-12-01 12:01</span>
+                                <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
                             </div>
 
                             <div class="delivery_left">
-                                <a class="delivery_logo" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;jobs_id=707">
-                                    <img src="/addons/recruit/app/resource/temp/2017-12-01/5a20c265f01dd.jpg">
-                                </a>
-                               <a href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;jobs_id=707" style="color: #7b8fc9;">重庆大唐科技</a>
-                                <span>回复了您的面试评价</span>
+                        <span class="delivery_logo">
+                            <img src="{$li['headimgurl']}">
+                        </span>
+                                <span><span style="color: #7b8fc9">{$li['companyname']}</span>回复了您的面试评价</span>
                             </div>
 
-                            <a href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=person&amp;ac=index&amp;op=send_resume&amp;" class="see_system_msg see_day_msg">查看详情&gt;&gt;</a>
+                            <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
                         </div>
+                        {/if}
+                        {/loop}
                     </div>
+                    {/loop}
                 </div>
             </div>
 
@@ -372,7 +334,7 @@
         <div class="part_one">
             <p class="titleri">我的简历</p>
             <div class="wanzhengdu" style="margin-top: 10px;">
-                <div class="jianli"><span>简历完整度：</span><span class="color_main">71%</span>
+                <div class="jianli"><span>简历完整度：</span><span class="color_main">{php echo $resume_integrity}%</span>
                     <a class="color_main resume_view" href="{php echo app_url('person/resume/manage_resume')}" style="float: right;">去完善</a>
                    <div class="jindutiao">
                         <div class="jindu_con" style="width: 71%"></div>
@@ -421,118 +383,42 @@
             <div class="title-top">
                 <label class="top_con">猜你喜欢</label>
             </div>
+            {loop $guess_jobs $list}
             <div class="items_list">
-                <a class="logo1" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=432">
-                    <img src="/addons/recruit/app/resource/temp/2017-11-17/5a0e4b2b1a29a.jpg" class="logopic">
+                <a class="logo1" href="{php echo app_url('member/index/jobs_detail',array('id'=>$list['id']))}">
+                    <img src="{$list['headimgurl']}" class="logopic">
                 </a>
                 <div class="company_name" style="height: 66px;">
-                    <a class="job_n nowrap" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=432">法律类（重庆主城）</a>
+                    <a class="job_n nowrap" href="">{$list['jobs_name']}</a>
                     <p class="job_s nowrap" style="display: block;">
+                        {if $list['wage_min']>0 && $list['wage_max']>0}
+                        {$list['wage_min']}-{$list['wage_max']}K
+                        {else}
                         面议
+                        {/if}
                     </p>
-                    <p class="companyn nowrap">中国电信</p>
+                    <p class="companyn nowrap">{$list['companyname']}</p>
                 </div>
             </div>
-            <div class="items_list">
-                <a class="logo1" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=437">
-                    <img src="/addons/recruit/app/resource/temp/2017-11-17/5a0e4b2b1a29a.jpg" class="logopic">
-                </a>
-                <div class="company_name" style="height: 66px;">
-                    <a class="job_n nowrap" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=437">新兴技术类（重庆主城）</a>
-                    <p class="job_s nowrap" style="display: block;">
-                        3K-5K
-                    </p>
-                    <p class="companyn nowrap">中国电信</p>
-                </div>
-            </div>
-            <div class="items_list">
-                <a class="logo1" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=437">
-                    <img src="/addons/recruit/app/resource/temp/2017-11-17/5a0e4b2b1a29a.jpg" class="logopic">
-                </a>
-                <div class="company_name" style="height: 66px;">
-                    <a class="job_n nowrap" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=437">新兴技术类（重庆主城）</a>
-                    <p class="job_s nowrap" style="display: block;">
-                        面议
-                    </p>
-                    <p class="companyn nowrap">中国电信</p>
-                </div>
-            </div>
-            <div class="items_list">
-                <a class="logo1" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=437">
-                    <img src="/addons/recruit/app/resource/temp/2017-11-17/5a0e4b2b1a29a.jpg" class="logopic">
-                </a>
-                <div class="company_name" style="height: 66px;">
-                    <a class="job_n nowrap" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=437">新兴技术类（重庆主城）</a>
-                    <p class="job_s nowrap" style="display: block;">
-                        3K-5K
-                    </p>
-                    <p class="companyn nowrap">中国电信</p>
-                </div>
-            </div>
-            <div class="items_list">
-                <a class="logo1" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=437">
-                    <img src="/addons/recruit/app/resource/temp/2017-11-17/5a0e4b2b1a29a.jpg" class="logopic">
-                </a>
-                <div class="company_name" style="height: 66px;">
-                    <a class="job_n nowrap" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=437">新兴技术类（重庆主城）</a>
-                    <p class="job_s nowrap" style="display: block;">
-                        3K-5K
-                    </p>
-                    <p class="companyn nowrap">中国电信</p>
-                </div>
-            </div>
-            <a class="morejobss color99" href="#">查看更多职位>></a>
+            {/loop}
+            <a class="morejobss color99" href="{php echo app_url('member/index/search_jobs')}">查看更多职位>></a>
         </div>
         <div class="part_one">
             <div class="title-top">
                 <label class="top_con">热招名企</label>
             </div>
+            {loop $companys $list}
             <div class="items_list">
-                <a class="logo1" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=432">
-                    <img src="/addons/recruit/app/resource/temp/2017-11-17/5a0e4b2b1a29a.jpg" class="logopic">
+                <a class="logo1" href="">
+                    <img src="{$list['headimgurl']}" class="logopic">
                 </a>
                 <div class="" style="height: 66px;">
-                    <a class="job_n jobname" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=432">北京金三顺科技有限公司</a>
-                    <p class="companyn nowrap">15个热招职位</p>
+                    <a class="job_n jobname" href="">{$list['companyname']}</a>
+                    <p class="companyn nowrap">{$list['jobs_num']}个热招职位</p>
                 </div>
             </div>
-            <div class="items_list">
-                <a class="logo1" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=432">
-                    <img src="/addons/recruit/app/resource/temp/2017-11-17/5a0e4b2b1a29a.jpg" class="logopic">
-                </a>
-                <div class="" style="height: 66px;">
-                    <a class="job_n jobname" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=432">北京金三顺科技有限公司</a>
-                    <p class="companyn nowrap">15个热招职位</p>
-                </div>
-            </div>
-            <div class="items_list">
-                <a class="logo1" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=432">
-                    <img src="/addons/recruit/app/resource/temp/2017-11-17/5a0e4b2b1a29a.jpg" class="logopic">
-                </a>
-                <div class="" style="height: 66px;">
-                    <a class="job_n jobname" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=432">北京金三顺科技有限公司</a>
-                    <p class="companyn nowrap">15个热招职位</p>
-                </div>
-            </div>
-            <div class="items_list">
-                <a class="logo1" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=432">
-                    <img src="/addons/recruit/app/resource/temp/2017-11-17/5a0e4b2b1a29a.jpg" class="logopic">
-                </a>
-                <div class="" style="height: 66px;">
-                    <a class="job_n jobname" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=432">北京金三顺科技有限公司</a>
-                    <p class="companyn nowrap">15个热招职位</p>
-                </div>
-            </div>
-            <div class="items_list">
-                <a class="logo1" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=432">
-                    <img src="/addons/recruit/app/resource/temp/2017-11-17/5a0e4b2b1a29a.jpg" class="logopic">
-                </a>
-                <div class="" style="height: 66px;">
-                    <a class="job_n jobname" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=jobs_detail&amp;jobs_id=432">北京金三顺科技金三顺科技有限公司</a>
-                    <p class="companyn nowrap">15个热招职位</p>
-                </div>
-            </div>
-            <a class="morejobss color99" href="#">查看更多职位&gt;&gt;</a>
+            {/loop}
+            <!--<a class="morejobss color99" href="#">查看更多职位&gt;&gt;</a>-->
         </div>
 
     </div>
@@ -662,11 +548,11 @@
 <script>
 
     $(".zph_item").mouseover(function () {
-        $(".zph_item").find(".zhejiao1 img").attr("src","/addons/recruit/app/resource/images/sanjiaox1.png");
-        $(this).find(".zhejiao1 img").attr("src","/addons/recruit/app/resource/images/sanjiaox.png");
+        $(".zph_item").find(".zhejiao1 img").attr("src","{WL_URL_ARES}images/sanjiaox.png");
+        $(this).find(".zhejiao1 img").attr("src","{WL_URL_ARES}images/sanjiaox.png");
     })
     $(".zph_item").mouseout(function (){
-        $(".zph_item").find(".zhejiao1 img").attr("src","/addons/recruit/app/resource/images/sanjiaox1.png");
+        $(".zph_item").find(".zhejiao1 img").attr("src","{WL_URL_ARES}images/sanjiaox.png");
     })
 
     $(".btn_prey").click(function () {
@@ -713,7 +599,6 @@
         if(data.status==1){
             hint("success","发送成功");
             $("#envelope_modal").css("display","none");
-//            location = location;
         }
     })
 

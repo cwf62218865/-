@@ -90,4 +90,44 @@ class person{
            call_back(2,"还没有面试邀请");
         }
     }
+
+    /*
+     * 应聘历程
+     */
+    public function apply_list(){
+        $interview = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and puid=".$_SESSION['uid']);
+//        var_dump($interview);exit();
+        $interviews = "";
+        foreach ($interview as $list){
+            $li = pdo_fetch("select interview_time,time_stamp from ".tablename(WL.'interview')." where apply_id=".$list['id']);
+            $company = pdo_fetch("select headimgurl,companyname from ".tablename(WL."company_profile")." where uid=".$list['uid']);
+            $jobs = pdo_fetch("select jobs_name from ".tablename(WL."jobs")." where id=".$list['jobs_id']);
+            $li['headimgurl'] = $company['headimgurl'];
+            $li['companyname'] = $company['companyname'];
+            $li['directon'] = $list['direction'];
+            $li['jobs_name'] = $jobs['jobs_name'];
+            $beginToday=mktime(0,0,0,date('m'),date('d'),date('Y'));
+            $endToday=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
+            $beginYesterday=mktime(0,0,0,date('m'),date('d')-1,date('Y'));
+            $endYesterday=mktime(0,0,0,date('m'),date('d'),date('Y'))-1;
+            $endTomday=mktime(0,0,0,date('m'),date('d')+1,date('Y'));
+            $beginTomday=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
+
+            if($li['time_stamp']>$beginToday && $li['time_stamp']<$endToday){
+                $li['time_stamp'] = "今天 ".date("h:i",$li['time_stamp']);
+            }elseif ($li['time_stamp']>$beginYesterday && $li['time_stamp']<$endYesterday){
+                $li['time_stamp'] = "昨天 ".date("h:i",$li['time_stamp']);
+            }elseif ($li['time_stamp']>$endTomday && $li['time_stamp']<$beginTomday){
+                $li['time_stamp'] = "明天 ".date("h:i",$li['time_stamp']);
+            }
+
+//            if($list['directon']==1){
+//                $li['status'] = "面试";
+//            }else{
+//                $li['status'] = "职位邀请";
+//            }
+            $interviews[] = $li;
+        }
+        return $interviews;
+    }
 }

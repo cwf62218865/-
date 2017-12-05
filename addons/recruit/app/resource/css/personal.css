@@ -895,7 +895,7 @@
     width: 20px;height: 20px;float: right;color: #0099cc;
 }
 .job_hope{
-    /*margin-right: 16px;*/
+    margin-right: 16px;
     max-width: 70px;
     overflow: hidden;
     vertical-align: bottom;
@@ -1323,5 +1323,8 @@
     float: left;
     width: 160px;
     overflow: hidden;
+}
+.width130{
+    margin-left: 26px;width: 130px;
 }
 

@@ -41,7 +41,31 @@ elseif ($op=="send_resume"){
 
 //个人中心页面
 elseif ($op=="user_center"){
+    $data['data']['guess'] = 1;
+    $guess_jobs = m("jobs")->getall_jobs_page($data,4);
+    $guess_jobs = $guess_jobs['more'];
+    $companys = m("company")->company_list();
+    $interviews = m("person")->apply_list();
+//    var_dump($interviews);exit();
 
+    $msg = m("resume")->jobs_apply($_SESSION['uid'],-1,0);
+    $new_msg = "";
+    foreach ($msg as $list){
+        $list['addtime'] = date("Y/m/d", $list['createtime']);
+        $new_msg[] = $list;
+    }
+    $arr = "";
+    foreach ($new_msg as $key=>$list){
+        $arr[$list['addtime']][$key] = $list;
+    }
+    $new_arr = "";
+    $i = 0;
+    foreach ($arr as $key=>$list){
+        $new_arr[$i]['time'] =$key;
+        $new_arr[$i]['content'] = $list;
+        $i++;
+    }
+//    var_export($new_arr);exit();
  include wl_template("person/user_center");exit();
 
 }
@@ -274,12 +298,17 @@ elseif ($op=="post_resume"){
     if($jobs_apply){
         call_back(2,"已存在");
     }else{
-        $r = insert_table($data,WL."jobs_apply");
-        if($r){
-            call_back(1,"ok");
+        if($resume_integrity>70){
+            $r = insert_table($data,WL."jobs_apply");
+            if($r){
+                call_back(1,"ok");
+            }else{
+                call_back(2,"no");
+            }
         }else{
-            call_back(2,"no");
+            call_back(2,"请完善您的简历");
         }
+
     }
 }
 
