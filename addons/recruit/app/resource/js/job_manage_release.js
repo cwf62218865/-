@@ -268,3 +268,45 @@ $("#do_job_duty_textarea").on("keyup",function (e) {
         $("#do_job_duty_textarea").val(content2+length+".");
     }
 });
+
+
+//职位输入提示
+var jobsnewfile=jobsnewfile;
+var jobs=[];
+var job_tips=[]
+for (var i in jobsnewfile){
+    for( var k in jobsnewfile[i]){
+        jobs.push(jobsnewfile[i][k])
+    }
+};
+$("input[name=job_name]").on("input",function(){
+    job_tips=[];
+    var content= $.trim($(this).val());
+    if(content==""){
+        $(".job_tip").html("");
+        return false;
+    }
+    for(var i in jobs){
+        var _this=jobs[i];
+        var bool=_this.indexOf(content);
+        if(job_tips.length>=5){
+            break;
+        }else{
+            if(bool>=0){
+                job_tips.push(_this);
+            }
+        }
+    }
+
+    var job_tipscontent="";
+    for(var k in job_tips){
+        job_tipscontent+='<div class="job_tip_option"><span>'+job_tips [k]+'</span></div>'
+    }
+    $(this).next().html(job_tipscontent);
+});
+
+$("body").on("click",".job_tip_option",function(){
+    var content=$(this).find("span").eq(0).html();
+    $(this).closest(".school_tip").prev().val(content);
+    $(".school_tip").html("");
+});

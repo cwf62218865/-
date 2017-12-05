@@ -267,6 +267,10 @@ elseif ($op=="hr_send_review"){
             $data1['city_area'] = check_pasre($_POST['city_area'],"参数错误");
             $data1['address'] = check_pasre($_POST['detail_address'],"参数错误");
             $data1['createtime'] = time();
+            $time_stamp = explode(" ",$data1['interview_time']);
+            $time_stamp[0] = str_replace("月","-",str_replace("日","",$time_stamp[0]));
+            $time_stamp = date("Y")."-".$time_stamp[0]." ".$time_stamp[2];
+            $data1['time_stamp'] = strtotime($time_stamp);
             pdo_insert(WL."interview",$data1);
             call_back(1,"邀请面试成功");
         }
@@ -291,18 +295,17 @@ elseif ($op=="collect"){
         $jobs_apply = pdo_fetch("select * from ".tablename(WL.'jobs_apply')." where id=".$data_id);
         $data['uid'] = $jobs_apply['uid'];
         $data['puid'] = $jobs_apply['puid'];
-        $data['jobs_id'] = $jobs_apply['jobs_id'];
         $data['resume_id'] = $jobs_apply['resume_id'];
-        $collect_resume = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where uid=".$_SESSION['uid']." and resume_id=".$data['resume_id']." and jobs_id=".$data['jobs_id']);
+        $collect_resume = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where uid=".$_SESSION['uid']." and resume_id=".$data['resume_id']);
         if($collect_resume){
             call_back(2,"该简历已收藏");
         }else{
             $data['createtime'] = time();
             $r = insert_table($data,WL."collect_resume");
             if($r){
-                call_back(1,"ok");
+                call_back(1,"收藏成功");
             }else{
-                call_back(2,"no");
+                call_back(2,"收藏失败");
             }
         }
     }
@@ -320,7 +323,7 @@ elseif ($op=="collect_resume"){
         $data['createtime'] = time();
         $r = insert_table($data,WL."collect_resume");
         if($r){
-            call_back(1,"ok");
+            call_back(1,"收藏成功");
         }else{
             call_back(2,"收藏失败");
         }

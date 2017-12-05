@@ -90,4 +90,29 @@ class person{
            call_back(2,"还没有面试邀请");
         }
     }
+
+    /*
+     * 应聘历程
+     */
+    public function apply_list(){
+        $interview = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and puid=".$_SESSION['uid']);
+
+        $interviews = "";
+        foreach ($interview as $list){
+            $li = pdo_fetch("select direction from ".tablename(WL.'interview')." where apply_id=".$list['id']);
+            $company = pdo_fetch("select headimgurl,companyname from ".tablename(WL."company_profile")." where uid=".$list['uid']);
+            $jobs = pdo_fetch("select jobs_name from ".tablename(WL."jobs")." where id=".$list['jobs_id']);
+            $li['headimgurl'] = $company['headimgurl'];
+            $li['companyname'] = $company['companyname'];
+            $li['directon'] = $list['directon'];
+            $li['jobs_name'] = $jobs['jobs_name'];
+//            if($list['directon']==1){
+//                $li['status'] = "面试";
+//            }else{
+//                $li['status'] = "职位邀请";
+//            }
+            $interviews[] = $li;
+        }
+        return $interviews;
+    }
 }
