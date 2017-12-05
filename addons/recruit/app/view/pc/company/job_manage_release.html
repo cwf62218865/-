@@ -8,9 +8,19 @@
     <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/job_manage.css" rel="stylesheet">
     <!--<script src="http://api.map.baidu.com/api?v=2.0&ak=YrLaqu3cNGX66NynxPIWR9sS7n5ASDd1"></script>-->
     <title>收到简历</title>
+    <style>
+        .school_tip{
+            top: 46px;
+            z-index: 1000;
+        }
+        .job_tip_option{
+            width: 100%;
+        }
+    </style>
 </head>
 <body bgcolor="#f4f4f4">
 {if $_SESSION['uid']}
@@ -49,6 +59,9 @@
                         <span class="font999 resume_msg_name">职位名称</span>
                         <label class="general-input relative lable590">
                             <input type="text"  data-error="请输入职位名称"  name="job_name" placeholder="请输入职位名称" value="{php echo $jobs['jobs_name']}">
+                            <div class="school_tip">
+
+                            </div>
                         </label>
                     </div>
 

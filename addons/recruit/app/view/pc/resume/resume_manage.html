@@ -54,6 +54,10 @@
             margin-bottom: 40px;
             margin-top: 27px;
         }
+        .school_tip{
+            top: 46px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body bgcolor="#f4f4f4">
@@ -165,7 +169,7 @@
                         <span class="basic_msg_contents1">{php echo $resume['school_name']}</span>
                         <span class="basic_msg_contents1">{php echo $resume['major']}</span>
                         <span class="basic_msg_contents1">{php echo $resume['experience']}</span>
-                        <span class="basic_msg_contents1" style="border-right: none">{php echo $resume['origin_place']}（籍贯）</span>
+                        <span class="basic_msg_contents1" id="placeoforigin" style="border-right: none">{php echo $resume['origin_place']}（籍贯）</span>
                     </div>
 
                     <div class="personmsg">
@@ -327,7 +331,7 @@
                         <span class="font999 resume_msg_name">现居地址</span>
                         <div class=" relative general-select " style="float: none">
                             <label class="general-input relative general-select" style="width: 140px;float: none">
-                                <input type="text" readonly="" data-error="请选择现居住地址" name="city" value="{php echo $resume['city']}" placeholder="省/市" style="width: 120px">
+                                <input type="text" readonly=""  name="city" value="{php echo $resume['city']}" placeholder="省/市" style="width: 120px">
                                 <svg class="icon inputicon" aria-hidden="true">
                                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
                                 </svg>
@@ -372,7 +376,7 @@
 
                         <div  class="cwftextareatip" style="height: auto;margin-top: 10px;padding-bottom: 13px">
                             <label class="general-input relative" style="width: 260px;;margin-left: 80px;height: 0;border: none">
-                                <input type="hidden" name="introduce" id="introduce" data-error="请输入自我介绍" value="{php echo $resume['introduce']}">
+                                <input type="hidden" name="introduce" id="introduce"  value="{php echo $resume['introduce']}">
                             </label>
                             <span class="cwftextareamsg">还可输入<span id="textareanum" style="color: #1aa9d2">60</span>字</span>
                         </div>
@@ -904,6 +908,9 @@
             <span class="font999 resume_msg_name">学校名称</span>
             <label class="general-input relative" style="width: 430px;">
                 <input type="text" placeholder="学校名称" data-error="请输入学校名称" style="width: 390px;" name="school_name">
+                <div class="school_tip">
+
+                </div>
             </label>
             <div class=" relative general-select " style="float: right">
                 <label class="general-input relative general-select" style="float: none;width: 138px">
@@ -928,6 +935,9 @@
             <span class="font999 resume_msg_name">所学专业</span>
             <label class="general-input relative" style="width: 430px;">
                 <input type="text" placeholder="所学专业" data-error="请输入所学专业" style="width: 390px;" name="edu_major">
+                <div class="school_tip">
+
+                </div>
             </label>
             <div class=" relative general-select " style="float: right">
                 <label class="general-input relative general-select" style="float: none;width: 138px">
@@ -1746,7 +1756,8 @@
             $(".basic_msg_content  .basic_msg_contents").eq(4).html($("#person_msgbox input[name=job_status]").val());//工作状态
             $(".basic_msg_content  .basic_msg_contents").eq(5).html($("#person_msgbox input[name=moblie]").val());//电话
             $(".basic_msg_content  .basic_msg_contents").eq(6).html($("#person_msgbox input[name=email]").val());//邮箱
-            $(".basic_msg_content  .basic_msg_contents").eq(7).html($("#person_msgbox input[name=city]").val()+$("#person_msgbox input[name=area]").val()+$("#person_msgbox input[name=address_msg]").val());//邮箱
+            $("#placeoforigin").html($("#person_msgbox input[name=placeoforigin]").val());//籍贯
+            $(".basic_msg_content  .basic_msg_contents").eq(7).html($("#person_msgbox input[name=city]").val()+$("#person_msgbox input[name=area]").val()+$("#person_msgbox input[name=address_msg]").val());//现居地址
             $(".personmsg").html($("#person_msgbox input[name=introduce]").val());
         }else{
             hint("error",data.content);

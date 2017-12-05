@@ -135,6 +135,7 @@ $('.cwfnationaloptions').append(date_options);
 //籍贯
 var  area=dsy.Items[0];
 var city="";
+var areas="";
 for(var i=0;i<area.length;i++){
     city+="<div class='select-option' style='width:120px;' data-id='"+i+"'><span>"+area[i]+"</span></div>"
 };
@@ -142,7 +143,7 @@ $('.cwfcityoptions').append(city);
 
 $("body").on("mousedown",".cwfcityoptions .select-option",function(){
     var _this=$(this);
-    var areas="";
+    areas="";
     var data_id=_this.attr("data-id");
     if(data_id<=3){
         var listnum="0_"+data_id+"_0";
@@ -684,4 +685,68 @@ $(".menus").eq(4).on("click",function(){
     $('html').animate({scrollTop:0},300);
 })
 
+var school_arr=school_arr;
+var school_tips=[];
+$("input[name=school_name]").on("input",function(){
+    school_tips=[];
+    var content= $.trim($(this).val());
+    if(content==""){
+        $(".school_tip").html("");
+        return false;
+    }
+    for(var i in school_arr){
+        var _this=school_arr[i];
+        var bool=_this.indexOf(content);
+        if(school_tips.length>=5){
+            break;
+        }else{
+            if(bool>=0){
+                school_tips.push(_this);
+            }
+        }
+    }
 
+    var school_tipscontent="";
+    for(var k in school_tips){
+        school_tipscontent+='<div class="school_tip_option"><span>'+school_tips[k]+'</span></div>'
+    }
+    $(this).next().html(school_tipscontent);
+});
+
+$("body").on("click",".school_tip_option",function(){
+    var content=$(this).find("span").eq(0).html();
+    $(this).closest(".school_tip").prev().val(content);
+    $(".school_tip").html("");
+});
+
+var major_arr=major_arr;
+var major_tips=[];
+$("input[name=edu_major]").on("input",function(){
+    major_tips=[];
+    var content= $.trim($(this).val());
+    if(content==""){
+        $(".school_tip").html("");
+        return false;
+    }
+    for(var i in major_arr){
+        var _this=major_arr[i];
+        var bool=_this.indexOf(content);
+        if(major_tips.length>=5){
+            break;
+        }else{
+            if(bool>=0){
+                major_tips.push(_this);
+            }
+        }
+    }
+
+    var major_tipscontent="";
+    for(var k in major_tips){
+        major_tipscontent+='<div class="school_tip_option"><span>'+major_tips [k]+'</span></div>'
+    }
+    $(this).next().html(major_tipscontent);
+});
+
+$("body").on("click",function(){
+    $(".school_tip").html("");
+})
