@@ -113,6 +113,7 @@
     position: relative;
 }
 .nianrili{
+    display: none;
     position: absolute;
     width: 240px;
     height: auto;
@@ -206,6 +207,7 @@
     height: 24px;
     color: #bdc8d4;margin-top: 8px;
     float: left;
+    cursor: pointer;
 }
 .nomsges{
     float: left;

@@ -27,26 +27,26 @@
         <div class="con_list">
             <div class="content_u">
                 <div class="touxiangimg">
-                    <img src="{WL_URL_ARES}images/resume_head.png" class="touxipi"/>
+                    <img src="{if $resume['headimgurl']}{php echo $resume['headimgurl']}{else}{WL_URL_ARES}images/resume_head.png{/if}" class="touxipi"/>
                 </div>
                 <div class="xinximsg">
-                    <label class="wenhou">早上好，马云同学。</label>
+                    <label class="wenhou">早上好，{php echo $resume['fullname']}同学。</label>
                     <label class="font666" style="margin-left: 50px;">
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shouji"></use>
                         </svg>
-                        <span class="basic_msg_contents" style="margin-right: 20px;">18791589763</span>
+                        <span class="basic_msg_contents" style="margin-right: 20px;">{php echo $resume['telphone']}</span>
                         <svg class="icon" aria-hidden="true">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-youxiang"></use>
                         </svg>
-                        <span class="basic_msg_contents">333@qq.com</span>
+                        <span class="basic_msg_contents">{php echo $resume['email']}</span>
                     </label>
                     <div class="" style="margin-top: 16px;text-align: left;font-size: 14px;color: #666666;">
-                        <span class="basic_msg_contents1">重庆卡卡大学</span>
-                        <span class="basic_msg_contents1">本科</span>
-                        <span class="basic_msg_contents1">计算机科学与技术 </span>
-                        <span class="basic_msg_contents1">1年以上工作经验</span>
-                        <span class="basic_msg_contents1" style="border-right: none">正在找工作</span>
+                        <span class="basic_msg_contents1">{php echo $resume['school_name']}</span>
+                        <span class="basic_msg_contents1">{php echo $resume['education']}</span>
+                        <span class="basic_msg_contents1">{php echo $resume['major']} </span>
+                        <span class="basic_msg_contents1">{php echo $resume['experience']}</span>
+                        <span class="basic_msg_contents1" style="border-right: none">{php echo $resume['work_status']}</span>
                     </div>
                     <div class="tongjinum">
                         <div class="tjnum">
@@ -84,13 +84,13 @@
                         <div class="nianrili">
                             <div class="nianbtn">
                                 <div class="brn_con">
-                                    <div class="btn_niann">
+                                    <div class="btn_niann btn_prey">
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-more-copy"></use>
                                         </svg>
                                     </div>
                                     <div class="niann">2017</div>
-                                    <div class="btn_niann">
+                                    <div class="btn_niann btn_nexty">
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-more"></use>
                                         </svg>
@@ -98,18 +98,18 @@
                                 </div>
                             </div>
                             <div class="years">
-                                <label class="yearn">一月</label>
-                                <label class="yearn">二月</label>
-                                <label class="yearn">三月</label>
-                                <label class="yearn">四月</label>
-                                <label class="yearn">五月</label>
-                                <label class="yearn">六月</label>
-                                <label class="yearn">七月</label>
-                                <label class="yearn">八月</label>
-                                <label class="yearn">九月</label>
-                                <label class="yearn">十月</label>
-                                <label class="yearn">十一月</label>
-                                <label class="yearn">十二月</label>
+                                <label class="yearn" data-id="1">一月</label>
+                                <label class="yearn" data-id="2">二月</label>
+                                <label class="yearn" data-id="3">三月</label>
+                                <label class="yearn" data-id="4">四月</label>
+                                <label class="yearn" data-id="5">五月</label>
+                                <label class="yearn" data-id="6">六月</label>
+                                <label class="yearn" data-id="7">七月</label>
+                                <label class="yearn" data-id="8">八月</label>
+                                <label class="yearn" data-id="9">九月</label>
+                                <label class="yearn" data-id="10">十月</label>
+                                <label class="yearn" data-id="11">十一月</label>
+                                <label class="yearn" data-id="12">十二月</label>
                             </div>
                             <div class="ckrc">查看近期日程</div>
                         </div>
@@ -380,7 +380,7 @@
                 </div>
             </div>
             <div class="btns_resume">
-                <div class="menus">
+                <div class="menus send_email">
                     <svg class="icon icon_item" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-fasongyouxiang"></use>
                     </svg>
@@ -390,28 +390,28 @@
                 </div>
                 <div class="menus">
                     <svg class="icon icon_item" aria-hidden="true">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-weixin"></use>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shouji"></use>
                     </svg>
                     <div class="bb12">
-                        发至微信
+                        发至手机
                     </div>
                 </div>
-                <div class="menus">
+                <a class="menus" href="{php echo app_url('resume/index',array('uid'=>$resume['uid']))}">
                     <svg class="icon icon_item" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-dayinjianli"></use>
                     </svg>
                     <div class="bb12">
                         打印简历
                     </div>
-                </div>
-                <div class="menus">
+                </a>
+                <a class="menus" href="{php echo app_url('resume/index',array('uid'=>$resume['uid']))}">
                     <svg class="icon icon_item" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiazaijianli"></use>
                     </svg>
                     <div class="bb12">
                         下载简历
                     </div>
-                </div>
+                </a>
 
 
 
@@ -586,6 +586,70 @@
     </div>
     <!--举报弹框end-->
 
+    <!--发送邮箱-->
+    <div class="modalbox" id="envelope_modal" style="display: none">
+        <div class="envelope_modal">
+
+            <div class="envelope">
+                <div class="envelope_content">
+                    <span class="font666 resume_msg_name" style="font-size: 14px;width: auto">发送求职信至HR邮箱:</span>
+                    <label class="general-input relative" style="width: 210px">
+                        <input type="text"  name="email" style="width: 170px;position: absolute;z-index: 99"  placeholder="请输入用人单位招聘邮箱" data-error="请输入邮箱">
+                    </label>
+                    <span class="public_bigbtn bg1aa post_envelopebtn" style="float: right;margin-right: 30px;height: 44px;line-height: 44px;">
+                    点击发送
+                </span>
+
+                    <div class="envelope_content_msg">
+                    <textarea  class="envelope_content_textarea" id="envelope_content_msg"  placeholder="你想对hr说什么"> 尊敬的HR：
+　　您好！
+　　{php echo $resume['introduce']}
+
+    我是一名{php echo $resume['school_name']}{php echo $resume['edu_finish_time']}届的{php echo $resume['edu_district']}毕业生。所学专业：{php echo $resume['major']}。
+　　{if $work_experience}
+大学期间实习经历：
+    {loop $work_experience $list}{php echo $list['job_starttime']}-{php echo $list['job_endtime']}，职位：{php echo $list['job_name']}，工作内容：{php echo $list['job_content']}。
+　　{/loop}
+    {/if}
+
+    我怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
+恭祝商祺。</textarea>
+                    </div>
+
+                    <input type="hidden" name="envelope_content" id="envelope_content">
+
+                </div>
+            </div>
+
+            <div class="envelope_enclosure">
+                <div style="display: inline-block">
+                    <span class="font20666">附件:</span>
+
+                    <svg class="icon pdficon" aria-hidden="true">
+                        <use xlink:href="#icon-file-pdf"></use>
+                    </svg>
+                    <a href="{php echo '/app/'.$_SESSION['uid'].'.pdf'}" class="envelope_resume" target="_blank">{php echo $resume['fullname']}的个人简历</a>
+                </div>
+
+                <div style="float: right;text-align: center;line-height: 24px;color: #666">
+                    <span>{php echo $resume['fullname']}</span>
+                    <div>{php echo date('Y年m月d日')}</div>
+                </div>
+
+            </div>
+
+            <span class="close_envelopebtn">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-shan"></use>
+            </svg>
+        </span>
+
+
+        </div>
+    </div>
+
+    <!--发送邮箱-->
+
 </div>
 
 
@@ -593,6 +657,7 @@
 <script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
 
 <script>
 
@@ -602,6 +667,54 @@
     })
     $(".zph_item").mouseout(function (){
         $(".zph_item").find(".zhejiao1 img").attr("src","/addons/recruit/app/resource/images/sanjiaox1.png");
+    })
+
+    $(".btn_prey").click(function () {
+        var year=$(".niann").html();
+        year --;
+        $(".niann").html(year);
+    })
+    $(".btn_nexty").click(function () {
+        var year=$(".niann").html();
+        year ++;
+        $(".niann").html(year);
+    })
+    $(".riliico").click(function () {
+        $(".nianrili").show();
+    })
+
+    //选择招聘日期发送ajax
+    $(".yearn").click(function () {
+        $(".nianrili").hide();
+        var month=$(this).attr("data-id");
+        var year=$(".niann").html();
+        $(".inputku").val(year+"-"+month);
+    })
+
+    $(".ckrc").click(function () {
+        $(".nianrili").hide();
+        $(".inputku").val("近期日程");
+    })
+
+    $(".send_email").click(function () {
+        $("#envelope_modal").show();
+    })
+    $(".close_envelopebtn").click(function () {
+        $("#envelope_modal").hide();
+    })
+
+    $(".post_envelopebtn").click(function () {
+        $("#envelope_content").val($("#envelope_content_msg").val());
+    })
+
+    //发送邮件
+    $.fromdata("#envelope_modal","{php echo app_url('person/resume/send_email')}",".post_envelopebtn",function(data){
+        var data = JSON.parse(data);
+        if(data.status==1){
+            hint("success","发送成功");
+            $("#envelope_modal").css("display","none");
+//            location = location;
+        }
     })
 
 
