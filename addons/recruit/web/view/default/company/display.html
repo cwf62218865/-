@@ -24,7 +24,7 @@
 			{loop $list $li}
 				<tr>
 					<td> {php echo $li['id']}</td>
-					<td>{php echo $li['companyname']}</td>
+					<td><a href="{php echo app_url('company/index/job_manage',array('uid'=>$li['uid']))}" target="_blank">{php echo $li['companyname']}</a></td>
 					<td><img src="{php echo $li['license']}" alt="" width="107" height="107"></td>
 					<td><img src="{php echo $li['idcard1']}" alt="" width="107" height="107"></td>
 					<td><img src="{php echo $li['idcard2']}" alt="" width="107" height="107"></td>
@@ -34,7 +34,7 @@
 					<td class="text-center" style="overflow:visible;">
 						<!--<a href="" class="btn btn-warning btn-sm">审核</a>-->
 						<a href="{php echo app_url('company/member/editmember',array('id'=>$li['id']))}" class="btn btn-success btn-sm sms">审核</a>
-						<a href="" class="btn  btn-info btn-sm">查看详情</a>
+						<a href="{php echo app_url('company/index/job_manage',array('uid'=>$li['uid']))}" class="btn  btn-info btn-sm">查看详情</a>
 					</td>
 				</tr>
 			{/loop}
