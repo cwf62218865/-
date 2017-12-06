@@ -115,22 +115,22 @@
                         </div>
                     </label>
 
-                    <label class="nomsges" {if empty($interviews)}style="display:block;"{else}style="display:none;"{/if}>
+                    <label class="nomsges" {if empty($interviews['list'])}style="display:block;"{else}style="display:none;"{/if}>
                         <span class="font16 color33">所选月份暂无日程安排</span>
                         <span class="font14 color33" style="margin-left: 10px;">请前往<a class="colormain" href="{php echo app_url('member/index/search_jobs')}">找工作</a></span>
                     </label>
                 </div>
                 <div class="zph_list">
-                    {if $interviews}
-                    {loop $interviews $list}
-                    <div class="zph_item">
-                        <p class="zph_title nowrap">招聘会</p>
-                        <p class="zph_time nowrap">今天8:15</p>
-                        <p class="zph_ttt nowrap">2017重庆第二三届</p>
-                        <p class="zph_sss nowrap">现代服务业大型招聘会</p>
-                        <div class="zhejiao1"><img src="{WL_URL_ARES}images/sanjiaox.png"></div>
-                    </div>
-                    {if $list['directon']==1}
+                    {if $interviews['list']}
+                    {loop $interviews['list'] $list}
+                    <!--<div class="zph_item">-->
+                        <!--<p class="zph_title nowrap">招聘会</p>-->
+                        <!--<p class="zph_time nowrap">今天8:15</p>-->
+                        <!--<p class="zph_ttt nowrap">2017重庆第二三届</p>-->
+                        <!--<p class="zph_sss nowrap">现代服务业大型招聘会</p>-->
+                        <!--<div class="zhejiao1"><img src="{WL_URL_ARES}images/sanjiaox.png"></div>-->
+                    <!--</div>-->
+                    {if $list['directon']==2}
                     <div class="zph_item">
                         <p class="zph_title nowrap">面试</p>
                         <p class="zph_time nowrap">{$list['interview_time']}</p>
@@ -138,7 +138,7 @@
                         <p class="zph_sss nowrap">{$list['companyname']}</p>
                         <div class="zhejiao1"><img src="{WL_URL_ARES}images/sanjiaox.png"></div>
                     </div>
-                    {elseif $list['directon']==2}
+                    {elseif $list['directon']==1}
                     <div class="zph_item">
                         <p class="zph_title nowrap">职位邀请</p>
                         <p class="zph_time nowrap">{$list['interview_time']}</p>
@@ -150,7 +150,9 @@
                     {/loop}
                     {/if}
                 </div>
-                <!--<div class="morejob thisbm">更多简历信息&gt;&gt;</div>-->
+                {if $interviews['count']>6}
+                <div class="morejob thisbm interview_page">更多简历信息&gt;&gt;</div>
+                {/if}
             </div>
 
             <div class="content_p">
@@ -547,6 +549,11 @@
 
 <script>
 
+    var option = {
+        year:"",
+        month:"",
+        page:1
+    }
     $(".zph_item").mouseover(function () {
         $(".zph_item").find(".zhejiao1 img").attr("src","{WL_URL_ARES}images/sanjiaox.png");
         $(this).find(".zhejiao1 img").attr("src","{WL_URL_ARES}images/sanjiaox.png");
@@ -575,6 +582,29 @@
         var month=$(this).attr("data-id");
         var year=$(".niann").html();
         $(".inputku").val(year+"-"+month);
+        option.month = month;
+        option.year = year;
+        option.page = 0;
+        $.ajax({
+            type:"post",
+            url:"{php echo app_url('person/index/select_course')}",
+            data:option,
+            success:function (data) {
+                var data = JSON.parse(data);
+                if(data.status==1){
+                    $(".nomsges").css("display","none");
+                    $(".zph_list").html(data.content);
+                    option.page =1;
+                    if(parseInt(data.others)>6){
+                        $(".interview_page").css("display","block");
+                    }
+                }else{
+                    $(".zph_list").html("");
+                    $(".interview_page").css("display","none");
+                    $(".nomsges").css("display","block");
+                }
+            }
+        })
     })
 
     $(".ckrc").click(function () {
@@ -603,6 +633,27 @@
     })
 
 
+    $(".interview_page").click(function () {
+        $.ajax({
+            type:"post",
+            url:"{php echo app_url('person/index/select_course')}",
+            data:option,
+            success:function (data) {
+                var data = JSON.parse(data);
+                if(data.status==1){
+                    option.page +=1;
+                    $(".zph_list").append(data.content);
+                    if(parseInt(data.others)>6){
+                        $(".interview_page").css("display","block");
+                    }else{
+                        $(".interview_page").css("display","none");
+                    }
+                }else{
+                    $(".interview_page").css("display","none");
+                }
+            }
+        })
+    })
 
 </script>
 </html>
