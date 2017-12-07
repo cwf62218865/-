@@ -375,6 +375,7 @@
 <script src="{WL_URL_ARES}js/resume_manager.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/job_manage_release.js" rel="script"></script>
 <script>
+    var jobs_id = "{$_GPC['$job_id']}";
     $(function () {
         $(".wenzi,.ico_xiala").click(function () {
             if( $(".my_joblist").css("display")=="none"){
@@ -424,7 +425,7 @@
         });
 
 
-        if($("#salarybox input").eq(0).val()==""){
+        if($("#salarybox input").eq(0).val()=="" && jobs_id){
             if($("#salarybox input").eq(1).val()==""){
                 $("#salarybox label").css("color","#eee");
                 $("#salarybox input").attr("disabled",true);

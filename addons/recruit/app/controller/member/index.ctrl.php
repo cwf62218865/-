@@ -294,7 +294,7 @@ elseif ($op=="login_deal"){
                 $company = m("company")->get_profile($member['id']);
                 if(empty($company) ||!$company['license'] || !$company['idcard1'] || !$company['idcard2']){
                     $url = app_url('member/company_register/step2');
-                }elseif (!$company['slogan']){
+                }elseif (!$company['nature']){
                     $url = app_url('member/company_register/step3');
                 }else{
                     $url = app_url('company/resume/received_resume');
