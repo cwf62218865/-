@@ -10,6 +10,7 @@
     <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/job_manage.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/jquery-ui.css" rel="stylesheet">
     <!--<script src="http://api.map.baidu.com/api?v=2.0&ak=YrLaqu3cNGX66NynxPIWR9sS7n5ASDd1"></script>-->
     <title>发布职位</title>
     <style>
@@ -176,12 +177,25 @@
 
                     </div>
 
-                    <div class="release_list">
-                        <span class="font999 resume_msg_name">招聘人数</span>
-                        <label class="general-input relative lable590" style="width: 218px;">
-                            <!--<input type="text" maxlength="4" style="width: 180px" data-rg="^\+?[1-9][0-9]*$" data-warn="请输入大于0的整数"  data-error="请输入招聘人数"  name="job_persons" placeholder="请输入招聘人数" value="{php echo $jobs['number_range']}">-->
-                            <input type="text" maxlength="4" style="width: 180px"   data-error="请输入招聘人数"  name="job_persons" placeholder="请输入招聘人数" value="{php echo $jobs['number_range']}">
-                        </label>
+                    <div class="person_changes" style="margin-top: 30px">
+                        <div class="width300 person_changes_left">
+                            <span class="font999 resume_msg_name">招聘人数</span>
+                            <label class="general-input relative lable590" style="width: 218px;">
+                                <!--<input type="text" maxlength="4" style="width: 180px" data-rg="^\+?[1-9][0-9]*$" data-warn="请输入大于0的整数"  data-error="请输入招聘人数"  name="job_persons" placeholder="请输入招聘人数" value="{php echo $jobs['number_range']}">-->
+                                <input type="text" maxlength="4" style="width: 180px"   data-error="请输入招聘人数"  name="job_persons" placeholder="请输入招聘人数" value="{php echo $jobs['number_range']}">
+                            </label>
+                        </div>
+                        <div class="width300 person_changes_right">
+                            <span class="font999 resume_msg_name">截止日期</span>
+                            <div class=" relative general-select " style="float: none">
+                                <label class="general-input relative " style="float: none">
+                                    <input type="text" readonly name="endtime" id="endtime" data-error="请选择截止日期" placeholder="停止招聘时间" style="margin-left: 0;padding-left: 20px">
+                                    <svg class="icon inputicon" aria-hidden="true" style="width: 2em">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili" class="colorbbb"></use>
+                                    </svg>
+                                </label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="person_changes">
@@ -313,9 +327,11 @@
 
 </body>
 <script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery-ui.min.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/jquery.mousewheel.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+
 
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/area.js" rel="script"></script>
@@ -348,8 +364,17 @@
             }
             console.log(data.content);
         })
-        
 
+
+        $('#endtime').datepicker({
+            minDate:0,
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            dayNames: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+            dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+            monthNamesShort: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+
+        })
 
     })
 </script>
