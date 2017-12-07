@@ -14,6 +14,7 @@ class recruitModuleSite extends WeModuleSite
 		require WL_CORE . 'class/wlloader.class.php';
 		wl_load()->func('global');
 		wl_load()->func('pdo');
+		wl_load()->func('timer');
 		$isWeb = stripos($name, 'doWeb') === 0;
 		$isMobile = stripos($name, 'doMobile') === 0;
 		$isAdmin = stripos($name, 'doAdmin') === 0;

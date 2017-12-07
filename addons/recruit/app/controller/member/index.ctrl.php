@@ -13,6 +13,15 @@ if($op=="index"){
     $data['data']['job_order']="热门";
     $collect_jobs = m("jobs")->getall_jobs_page($data,9);
     $collect_jobs = $collect_jobs['more'];
+    $news = pdo_fetchall("select * from ".tablename("article_news")." order by createtime desc limit 0,3");
+    foreach ($news as $list){
+        $list['content'] = strip_tags($list['content']);
+        if(mb_strlen($list['content'])>44){
+            $list['content'] = strip_tags(str_replace(" ","",mb_substr($list['content'],0,44,"UTF8")."..."));
+        }
+        $arr_news[] = $list;
+    }
+
 //    var_dump($collect_jobs);exit();
     include wl_template("member/index");exit();
 }
@@ -210,6 +219,9 @@ elseif ($op=="aboutus"){
         $news = pdo_fetch("select * from ".tablename("article_news")." where id=".$_GPC['id']);
         $news['click'] +=1;
         pdo_update("article_news",array('click'=>$news['click']),array('id'=>$_GPC['id']));
+
+        $hot_news = pdo_fetchall("select * from ".tablename("article_news")." where thumb<>'' order by click desc limit 0,5");
+        $related_news = pdo_fetchall("select id,title from ".tablename("article_news")." order by rand() limit 0,3");
         include wl_template("member/news_detail");exit();
     }else{
         die();

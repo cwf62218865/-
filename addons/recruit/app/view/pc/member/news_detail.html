@@ -77,9 +77,9 @@
                     <label class="xg_title">相关文章</label>
                 </div>
                 <div class="xg_lists">
-                    <a class="xg_titles" href="#">光线“复活”了许多动画电影，但爆款何时再来？</a>
-                    <a class="xg_titles" href="#">携程幼儿园虐童事件最新进展：上海市妇联表示强烈谴责、严肃处理</a>
-                    <a class="xg_titles" href="#">爬虫泛滥：“爬”现金贷窃取数据，支付宝和微信也遭殃</a>
+                    {loop $related_news $list}
+                    <a class="xg_titles" href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}">{$list['title']}</a>
+                    {/loop}
                 </div>
             </div>
         </div>
@@ -90,69 +90,21 @@
             <div class="title-top">
                 <label class="top_con">热门文章</label>
             </div>
+            {loop $hot_news $list}
             <a href="" class="items_list">
                 <div class="news_logo">
-                    <img src="{WL_URL_ARES}images/gongsi.png" style="width: 100%;">
+                    <img src="/attachment/{$list['thumb']}" style="width: 100%;">
                 </div>
                 <div class="news_company_content">
                     <!--需要限制字符长度-->
-                    <div class="news_company_title">36氪首发 | 租包将会成为主流消费行氪首…</div>
+                    <div class="news_company_title"  style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 220px;">{$list['title']}</div>
                     <!--超出24小时显示日期-->
                     <div class="news_list_box_classify" style="position: absolute;bottom: 0">
-                        11小时前
+                        {php echo _format_date($list['createtime'])}
                     </div>
                 </div>
             </a>
-            <a href="" class="items_list">
-                <div class="news_logo">
-                    <img src="{WL_URL_ARES}images/gongsi.png" style="width: 100%;">
-                </div>
-                <div class="news_company_content">
-                    <div class="news_company_title">36氪首发 | 租包将会成为主流消费行氪首…</div>
-                    <div class="news_list_box_classify" style="position: absolute;bottom: 0">
-                        11小时前
-                    </div>
-                </div>
-            </a>
-            <a href="" class="items_list">
-                <div class="news_logo">
-                    <img src="{WL_URL_ARES}images/gongsi.png" style="width: 100%;">
-                </div>
-                <div class="news_company_content">
-                    <!--需要限制字符长度-->
-                    <div class="news_company_title">36氪首发 | 租包将会成为主流消费行氪首…</div>
-                    <!--超出24小时显示日期-->
-                    <div class="news_list_box_classify" style="position: absolute;bottom: 0">
-                        11小时前
-                    </div>
-                </div>
-            </a>
-            <a href="" class="items_list">
-                <div class="news_logo">
-                    <img src="{WL_URL_ARES}images/gongsi.png" style="width: 100%;">
-                </div>
-                <div class="news_company_content">
-                    <!--需要限制字符长度-->
-                    <div class="news_company_title">36氪首发 | 租包将会成为主流消费行氪首…</div>
-                    <!--超出24小时显示日期-->
-                    <div class="news_list_box_classify" style="position: absolute;bottom: 0">
-                        11小时前
-                    </div>
-                </div>
-            </a>
-            <a href="" class="items_list">
-                <div class="news_logo">
-                    <img src="{WL_URL_ARES}images/gongsi.png" style="width: 100%;">
-                </div>
-                <div class="news_company_content">
-                    <!--需要限制字符长度-->
-                    <div class="news_company_title">36氪首发 | 租包将会成为主流消费行氪首…</div>
-                    <!--超出24小时显示日期-->
-                    <div class="news_list_box_classify" style="position: absolute;bottom: 0">
-                        11小时前
-                    </div>
-                </div>
-            </a>
+          {/loop}
 
             <div class="ads">
                 <div class="ads_con">
