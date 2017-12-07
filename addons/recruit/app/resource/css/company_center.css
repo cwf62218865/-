@@ -1,0 +1,117 @@
+.companylogoc{
+    width: 140px;
+    height: 140px;
+}
+.touxipi{
+    width: 100%;
+    height: 140px;
+    border-radius: inherit;
+}
+.xinximsg{
+    width: 600px;
+}
+.rezheng,.weirezheng{
+    color: #0099cc;font-size: 16px;margin-left: 30px;
+}
+.weirezheng{
+    color: #999999;
+}
+.renzhengico{
+    width: 20px;
+    height: 20px;
+    vertical-align: bottom;
+    margin-left: 20px;
+}
+.qiyehang{
+    margin-top: 16px;text-align: left;font-size: 14px;color: #666666;
+}
+.ljbz{
+    color: #7b8fc9;
+    margin-left: 30px;
+    cursor: pointer;
+}
+.czbtnitem{
+    width: 230px;
+    height: 130px;
+    display: inline-block;
+    border: 1px solid #eeeeee;text-align: center;color: #818c9f;margin-right: 12px;
+    cursor: pointer;
+}
+.czbtnitem:hover{
+    background: #0099cc;
+    color: #ffffff;
+}
+.czbtnitem:last-child{
+    margin-right: 0;
+}
+.dateselect1{
+    width: 100%;
+   height: auto;
+    float: left;
+    margin-top: 40px;
+
+}
+.czico{
+    width: 40px;height: 40px;
+    margin-top: 25px;
+}
+.brnzi{
+    font-size: 16px;margin-top: 10px;
+}
+.listcon{
+    width: 270px;
+    padding: 0 20px 0px 20px;
+    border-top: 2px solid #0099cc;
+    float: left;
+}
+.minashi_list{
+    width: 100%;
+    height: auto;
+    padding: 20px 0 20px 0;
+    border-bottom: 1px dashed #eeeeee;
+}
+.name_sm{
+    color: #333333;
+    font-size: 16px;
+}
+.viewico{
+    color: #7b8fc9;
+    font-size: 14px;
+    float: right;
+}
+.zhiwei_ms{
+    color: #999999;
+    font-size: 14px;
+}
+.link_con{
+    width: 250px;
+    height: auto;
+    padding: 30px 10px 20px 30px;
+}
+.title_kf{
+    font-size: 14px;
+    color: #bbbbbb;
+    margin-right: 40px;
+}
+.widthkf{
+    width: 100%;
+}
+.kf_msg{
+    color: #666666;
+}
+.erweimakf{
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    margin-top: 30px;
+    overflow: hidden;
+}
+.erweimakf img{
+    width: 100%;
+}
+.tssm{
+    margin-top: 8px;
+    width: 100%;
+    text-align: center;
+    color: #999999;
+}
