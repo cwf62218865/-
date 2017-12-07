@@ -21,7 +21,6 @@ function createPage(name, url){
                 var data = JSON.parse(data);
                 obj.data = data;
                 if(data.status==1){
-                    console.log(data.others);
                     obj.callback_content();
 
                     var page_num = Math.ceil(data.others/6);
