@@ -10,14 +10,17 @@ wl_load()->model('verify');
 if ($op=="save_company_profile"){
 
 
-    if(check_phone($_POST['data']['company_mobile'])){
-        $data1['mobile'] =$_POST['data']['company_mobile'];
-    }
+//    if(check_phone($_POST['data']['company_mobile'])){
+//        $data1['mobile'] =$_POST['data']['company_mobile'];
+//    }
+    $data1['fullname'] =$_POST['data']['company_name'];
     $data1['salt'] = mt_rand(100,999);
-    $data1['password'] = pwd_hash($data['mobile'],$data1['salt']);
+    $data1['password'] = pwd_hash("123456",$data1['salt']);
+    $data1['mobile'] = mt_rand(100000,999999);
     $data1['createtime'] = time();
     $data1['utype'] = 2;
     $r = pdo_insert(WL."members",$data1);
+    
     $data['uid'] = pdo_insertid();
     if($data['uid']){
         $data['nature'] = check_pasre($_POST['data']['company_nature'],"请填写公司性质");
@@ -57,11 +60,7 @@ if ($op=="save_company_profile"){
 //        $r = pdo_update(WL."company_profile",$data,array('uid'=>$_SESSION['uid']));
     }
 
-if($r){
-    call_back(1,"ok");
-}else{
-    call_back(2,"no");
-}
+
 //    var_dump($_POST);exit();
 }
 

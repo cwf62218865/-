@@ -42,12 +42,12 @@ class person{
             pdo_insert(WL."resume_jobs",$data);
         }
     }
-    
+
     /*
      * 查看投递的简历
      */
     public function check_send_resume(){
-        
+
     }
 
     /*
@@ -70,7 +70,7 @@ class person{
         }
 
         return $collect_jobs;
-        
+
     }
 
     /*
@@ -87,47 +87,63 @@ class person{
             $data['createtime'] = time();
             return pdo_insert(WL."comment",$data);
         }else{
-           call_back(2,"还没有面试邀请");
+            call_back(2,"还没有面试邀请");
         }
     }
 
     /*
      * 应聘历程
      */
-    public function apply_list(){
-        $interview = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and puid=".$_SESSION['uid']);
-//        var_dump($interview);exit();
-        $interviews = "";
+    public function apply_list($data=""){
+        if($data['page']){
+            $limit = " limit ".($data['page']*6).",6";
+        }else{
+            $limit = " limit 0,6";
+        }
+        $interview = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where status=3 and puid=".$_SESSION['uid'].$limit);
+        $interviews['count'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs_apply")." where status=3 and puid=".$_SESSION['uid']);
+        $interviews['list'] = "";
         foreach ($interview as $list){
-            $li = pdo_fetch("select interview_time,time_stamp from ".tablename(WL.'interview')." where apply_id=".$list['id']);
-            $company = pdo_fetch("select headimgurl,companyname from ".tablename(WL."company_profile")." where uid=".$list['uid']);
-            $jobs = pdo_fetch("select jobs_name from ".tablename(WL."jobs")." where id=".$list['jobs_id']);
-            $li['headimgurl'] = $company['headimgurl'];
-            $li['companyname'] = $company['companyname'];
-            $li['directon'] = $list['direction'];
-            $li['jobs_name'] = $jobs['jobs_name'];
-            $beginToday=mktime(0,0,0,date('m'),date('d'),date('Y'));
-            $endToday=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
-            $beginYesterday=mktime(0,0,0,date('m'),date('d')-1,date('Y'));
-            $endYesterday=mktime(0,0,0,date('m'),date('d'),date('Y'))-1;
-            $endTomday=mktime(0,0,0,date('m'),date('d')+1,date('Y'));
-            $beginTomday=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
+            if($data['year'] && $data['month']){
+                $wheresql = " where apply_id=".$list['id'];
 
-            if($li['time_stamp']>$beginToday && $li['time_stamp']<$endToday){
-                $li['time_stamp'] = "今天 ".date("h:i",$li['time_stamp']);
-            }elseif ($li['time_stamp']>$beginYesterday && $li['time_stamp']<$endYesterday){
-                $li['time_stamp'] = "昨天 ".date("h:i",$li['time_stamp']);
-            }elseif ($li['time_stamp']>$endTomday && $li['time_stamp']<$beginTomday){
-                $li['time_stamp'] = "明天 ".date("h:i",$li['time_stamp']);
+                $beginMonthday=mktime(0,0,0,$data['month'],date('d'),$data['year']);
+                $endMonthday=mktime(0,0,0,$data['month']+1,date('d'),$data['year'])-1;
+//                echo $beginMonthday."<br/>".$endMonthday;exit();
+                $wheresql .=" and time_stamp>".$beginMonthday." and time_stamp<".$endMonthday;
+                $li = pdo_fetch("select interview_time,time_stamp from ".tablename(WL.'interview').$wheresql);
+
+            }else{
+                $li = pdo_fetch("select interview_time,time_stamp from ".tablename(WL.'interview')." where apply_id=".$list['id']);
             }
 
-//            if($list['directon']==1){
-//                $li['status'] = "面试";
-//            }else{
-//                $li['status'] = "职位邀请";
-//            }
-            $interviews[] = $li;
+
+            if($li){
+                $company = pdo_fetch("select headimgurl,companyname from ".tablename(WL."company_profile")." where uid=".$list['uid']);
+                $jobs = pdo_fetch("select jobs_name from ".tablename(WL."jobs")." where id=".$list['jobs_id']);
+                $li['headimgurl'] = $company['headimgurl'];
+                $li['companyname'] = $company['companyname'];
+                $li['directon'] = $list['direction'];
+                $li['jobs_name'] = $jobs['jobs_name'];
+                $beginToday=mktime(0,0,0,date('m'),date('d'),date('Y'));
+                $endToday=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
+                $beginYesterday=mktime(0,0,0,date('m'),date('d')-1,date('Y'));
+                $endYesterday=mktime(0,0,0,date('m'),date('d'),date('Y'))-1;
+                $beginTomday=mktime(0,0,0,date('m'),date('d')+1,date('Y'));
+                $endTomday=mktime(0,0,0,date('m'),date('d')+2,date('Y'))-1;
+//echo $beginTomday."<br/>".$endTomday;exit();
+                if($li['time_stamp']>$beginToday && $li['time_stamp']<$endToday){
+                    $li['interview_time'] = "今天 ".date("h:i",$li['time_stamp']);
+                }elseif ($li['interview_time']>$beginYesterday && $li['time_stamp']<$endYesterday){
+                    $li['interview_time'] = "昨天 ".date("h:i",$li['time_stamp']);
+                }elseif ($li['time_stamp']>$beginTomday && $li['time_stamp']<$endTomday){
+                    $li['interview_time'] = "明天 ".date("h:i",$li['time_stamp']);
+                }
+
+                $interviews['list'][] = $li;
+            }
         }
+
         return $interviews;
     }
 }
