@@ -127,6 +127,10 @@
     color: #bbb;
     margin-top: 15px;
 }
+.refresh{
+    font-size: 12px;
+    color: #bbb;
+}
 .welfare_label{
     display: inline-block;
     border-radius: 20px;

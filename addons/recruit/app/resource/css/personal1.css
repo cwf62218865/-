@@ -427,7 +427,7 @@
     height: 48px;
     line-height: 48px;
     position: absolute;
-    z-index: 99;
+    z-index: 98;
 }
 .person_changes .select-option{
     width: 218px;
