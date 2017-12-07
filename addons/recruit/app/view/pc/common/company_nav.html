@@ -1,6 +1,17 @@
 <div class="con_top">
     <div class="items">
-        <a class="items_yuan itemm1" href="{php echo app_url('company/resume/received_resume')}">
+        <a class="items_yuan itemm1" href="{php echo app_url('company/index/company_center')}">
+            <svg class="icon icon_item" aria-hidden="true">
+                <use xlink:href="#icon-jianliguanli"></use>
+            </svg>
+        </a>
+        <a class="title_items" href="{php echo app_url('company/index/company_center')}">
+            <p class="span" {if $op=="company_center"}style="color: #333333;"{/if}>企业中心</p>
+            <p class="item_beizhu">日程安排、消息提醒</p>
+        </a>
+    </div>
+    <div class="items">
+        <a class="items_yuan itemm2" href="{php echo app_url('company/resume/received_resume')}">
             <svg class="icon icon_item" aria-hidden="true">
                 <use xlink:href="#icon-jianliguanli"></use>
             </svg>
@@ -9,11 +20,9 @@
             <p class="span" {if $op=="received_resume"}style="color: #333333;"{/if}>简历管理</p>
             <p class="item_beizhu">收到、收藏的简历</p>
         </a>
-
-
     </div>
     <div class="items">
-        <a class="items_yuan itemm2" href="{php echo app_url('company/index/job_manage')}">
+        <a class="items_yuan itemm3" href="{php echo app_url('company/index/job_manage')}">
             <svg class="icon icon_item" aria-hidden="true">
                 <use xlink:href="#icon-zhiweiguanli"></use>
             </svg>
@@ -24,7 +33,7 @@
         </a>
     </div>
     <div class="items">
-        <a class="items_yuan itemm3" href="{php echo app_url('company/index/manage_resume')}">
+        <a class="items_yuan itemm4" href="{php echo app_url('company/index/manage_resume')}">
             <svg class="icon icon_item" aria-hidden="true">
                 <use xlink:href="#icon-HRgongzuo"></use>
             </svg>
@@ -35,7 +44,7 @@
         </a>
     </div>
     <div class="items">
-        <a class="items_yuan itemm4" href="{php echo app_url('company/company_profile')}">
+        <a class="items_yuan itemm5" href="{php echo app_url('company/company_profile')}">
             <svg class="icon icon_item" aria-hidden="true">
                 <use xlink:href="#icon-gongsixinxi"></use>
             </svg>

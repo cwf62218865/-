@@ -11,6 +11,11 @@ elseif ($op=="job_manage"){
     $jobs = m('jobs')->getall_jobs($_SESSION['uid'],0);
     include wl_template('company/job_manage');
 }
+//企业中心
+elseif ($op=="company_center"){
+    $jobs = m('jobs')->getall_jobs($_SESSION['uid'],0);
+    include wl_template('company/company_center');
+}
 //发布职位页面
 elseif ($op=="job_manage_release"){
     $jobs = m('jobs')->getall_jobs($_SESSION['uid']);

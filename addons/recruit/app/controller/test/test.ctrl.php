@@ -58,8 +58,8 @@ echo $url;exit();
 }elseif ($op=="news"){
     include wl_template("member/news");exit();
  }
- elseif ($op=="news_detail"){
-     include wl_template("member/news_detail");exit();
+ elseif ($op=="agreement"){
+     include wl_template("member/agreement");exit();
   }
 
   elseif ($op=="super_company_list"){

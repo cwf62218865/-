@@ -40,6 +40,7 @@ elseif($op=="pwd_login_out"){
 }
 //登录
 elseif ($op=="login"){
+
     $weinxin_uri = urldecode("http://www.yingjieseng.com/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=weixin_callback");
     $back_top = 1;
    if($_SESSION['utype']==1){
