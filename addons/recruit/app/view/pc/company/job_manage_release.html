@@ -21,6 +21,22 @@
         .job_tip_option{
             width: 100%;
         }
+        .negotiable{
+            display: inline-block;
+            float: right;
+            height: 24px;
+            font-size: 12px;
+            margin-top: 11px;
+            cursor: pointer;
+            line-height: 24px;
+            padding: 0 8px;
+            border-radius: 3px;
+            border: 1px solid #eee;
+        }
+        .negotiabled{
+            background-color: #0099cc;
+            color: #fff;
+        }
     </style>
 </head>
 <body bgcolor="#f4f4f4">
@@ -182,7 +198,7 @@
                             <span class="font999 resume_msg_name">招聘人数</span>
                             <label class="general-input relative lable590" style="width: 218px;">
                                 <!--<input type="text" maxlength="4" style="width: 180px" data-rg="^\+?[1-9][0-9]*$" data-warn="请输入大于0的整数"  data-error="请输入招聘人数"  name="job_persons" placeholder="请输入招聘人数" value="{php echo $jobs['number_range']}">-->
-                                <input type="text" maxlength="4" style="width: 180px"   data-error="请输入招聘人数"  name="job_persons" placeholder="请输入招聘人数" value="{php echo $jobs['number_range']}">
+                                <input type="text" maxlength="4"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  style="width: 180px"   data-error="请输入招聘人数"  name="job_persons" placeholder="请输入招聘人数" value="{php echo $jobs['number_range']}">
                             </label>
                         </div>
                         <div class="width300 person_changes_right">
@@ -216,14 +232,33 @@
                         </div>
                         <div class="width300 person_changes_right">
                             <span class="font999 resume_msg_name">薪资待遇</span>
-                            <div class=" relative general-select " style="float: none">
-                                <label class="general-input relative " style="float: none">
-                                    <input type="text"  id="salarychoice"  name="salary" value="{if $jobs['wage_min'] && $jobs['wage_max']}{php echo $jobs['wage_min']}-{php echo $jobs['wage_max']}{else}面谈{/if}">
-                                    <svg class="icon inputicon" aria-hidden="true">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
-                                    </svg>
+                            <div class=" relative general-select " id="salarybox" style="float: none;width: 240px">
+                                <label class="general-input relative general-select" style="float: none;width: 64px;text-align: right">
+                                    <input type="text" maxlength="2"  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  style="width: 34px;height: 46px;line-height: 46px;left: 0"  name="wage_min" value="{php echo $jobs['wage_min']}">
+                                    <!--<svg class="icon inputicon" aria-hidden="true">-->
+                                        <!--<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>-->
+                                    <!--</svg>-->
+                                    <span style="margin-right: 10px">K</span>
                                 </label>
+                                <span style="display: inline-block;width: 20px;text-align: center;line-height: 46px">-</span>
+                                <label class="general-input relative general-select" style="float: none;width: 64px;text-align: right;margin-left: 0">
+                                    <input type="text" maxlength="2" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  style="width: 34px;height: 46px;line-height: 46px;left: 0"   name="wage_max" value="{php echo $jobs['wage_max']}">
+                                    <!--<svg class="icon inputicon" aria-hidden="true">-->
+                                    <!--<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>-->
+                                    <!--</svg>-->
+                                    <span style="margin-right: 10px">K</span>
+                                </label>
+                                <span>
+                                    <span class="negotiable ">面议</span>
+                                </span>
 
+                                <!--<div class="options noscend" style="width: 220px;top:48px">-->
+                                    <!--<div class="select-option" style="width: 217px"><span>无工作经验</span></div>-->
+                                    <!--<div class="select-option" style="width: 217px"><span>1到3年</span></div>-->
+                                    <!--<div class="select-option" style="width: 217px"><span>3到5年</span></div>-->
+                                    <!--<div class="select-option" style="width: 217px"><span>5到10年</span></div>-->
+                                    <!--<div class="select-option" style="width: 217px"><span>10年以上</span></div>-->
+                                <!--</div>-->
                             </div>
                         </div>
                     </div>
@@ -340,6 +375,7 @@
 <script src="{WL_URL_ARES}js/resume_manager.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/job_manage_release.js" rel="script"></script>
 <script>
+    var jobs_id = "{$_GPC['$job_id']}";
     $(function () {
         $(".wenzi,.ico_xiala").click(function () {
             if( $(".my_joblist").css("display")=="none"){
@@ -375,6 +411,27 @@
             monthNamesShort: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
 
         })
+
+        $(".negotiable").on("click",function(){
+            if($(this).hasClass("negotiabled")){
+                $(this).removeClass("negotiabled");
+                $("#salarybox input").attr("disabled",false);
+                $("#salarybox label").css("color","#333")
+            }else{
+                $(this).addClass("negotiabled");
+                $("#salarybox input").attr("disabled",true).val("");
+                $("#salarybox label").css("color","#eee")
+            }
+        });
+
+
+        if($("#salarybox input").eq(0).val()=="" && jobs_id){
+            if($("#salarybox input").eq(1).val()==""){
+                $("#salarybox label").css("color","#eee");
+                $("#salarybox input").attr("disabled",true);
+                $("#salarybox .negotiable").addClass("negotiabled");
+            }
+        }
 
     })
 </script>

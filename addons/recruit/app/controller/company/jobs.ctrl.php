@@ -15,7 +15,7 @@ elseif ($op=="edit_jobs"){
 
 //发布职位
 elseif ($op=="send_jobs"){
-//    var_dump($_GPC['data']['area']);exit();
+//    var_dump($_POST);exit();
     $data['jobs_name'] = check_pasre($_GPC['data']['job_name'],"请输入职位名称");
     $data['duty'] = check_pasre($_GPC['data']['job_duty'],"请输入岗位职责");
     $data['require'] = check_pasre($_GPC['data']['job_requirement'],"请输入任职要求");
@@ -26,10 +26,20 @@ elseif ($op=="send_jobs"){
     $data['city'] = check_pasre($_GPC['data']['city'],"请输入所在城市");
     $data['city_area'] = check_pasre($_GPC['data']['area'],"请输入所在区域");
     $data['address'] = $_GPC['data']['address'];
-    $_GPC['salary'] = check_pasre($_GPC['data']['salary'],"请输入薪资");
-    $salary = explode("-",$_GPC['salary']);
-    $data['wage_min'] = str_replace("k","",$salary[0]);
-    $data['wage_max'] = str_replace("k","",$salary[1]);
+    $data['close_time'] = strtotime($_GPC['data']['endtime']);
+//    echo $data['close_time'];exit();
+//    $_GPC['salary'] = check_pasre($_GPC['data']['salary'],"请输入薪资");
+//    $salary = explode("-",$_GPC['salary']);
+//    $data['wage_min'] = str_replace("k","",$salary[0]);
+//    $data['wage_max'] = str_replace("k","",$salary[1]);
+    if($_GPC['data']['wage_max']>$_GPC['data']['wage_min']){
+        $data['wage_min'] = $_GPC['data']['wage_min'];
+        $data['wage_max'] = $_GPC['data']['wage_max'];
+    }else{
+        $data['wage_max'] = $_GPC['data']['wage_min'];
+        $data['wage_min'] = $_GPC['data']['wage_max'];
+    }
+
     $data['tag'] = $_GPC['data']['tag'];
     $data['uid'] =$company['uid'];
     $data['companyname'] =$company['companyname'];

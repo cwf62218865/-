@@ -169,26 +169,14 @@
 
 
             <div>
-                <a href="{php echo app_url('member/index/news_detail')}" class="index_news">
-                    <div class="index_news_title">《网易新闻》：刺猬体验分享会</div>
+                {loop $arr_news $list}
+                <a href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}" class="index_news">
+                    <div class="index_news_title" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 220px;">{$list['title']}</div>
                     <span  class="index_news_content">
-                        经济停止增长、房产税出台，将是终结一线城市房价的紧箍咒紧箍咒…
+                        {$list['content']}
                     </span>
                 </a>
-
-                <a href="{php echo app_url('member/index/news_detail')}" class="index_news">
-                    <div class="index_news_title">《网易新闻》：刺猬体验分享会</div>
-                    <span  class="index_news_content">
-                        经济停止增长、房产税出台，将是终结一线城市房价的紧箍咒紧箍咒…
-                    </span>
-                </a>
-
-                <a href="{php echo app_url('member/index/news_detail')}" class="index_news">
-                    <div class="index_news_title">《网易新闻》：刺猬体验分享会</div>
-                    <span  class="index_news_content">
-                        经济停止增长、房产税出台，将是终结一线城市房价的紧箍咒紧箍咒…
-                    </span>
-                </a>
+                {/loop}
             </div>
         </div>
     </div>

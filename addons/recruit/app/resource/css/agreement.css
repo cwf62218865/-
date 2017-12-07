@@ -1,0 +1,40 @@
+.agreementbox{
+    width: 930px;
+    background-color: #fff;
+    margin: 0 auto;
+    margin-top: 30px;
+
+}
+.agreementtitle{
+    display: inline-block;
+    width: 730px;
+    margin-left: 100px;
+    margin-top: 40px;
+    font-size: 28px;
+    color: #0099cc;
+    text-align: center;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #eee;
+}
+.agreementcontent{
+    display: inline-block;
+    width: 730px;
+    margin-left: 100px;
+    margin-top: 30px;
+    color: #666;
+    line-height: 28px;
+}
+.agreementname{
+    display: inline-block;
+    width: 730px;
+    margin-left: 100px;
+    margin-top:40px;
+    font-weight: 600;
+}
+.agreementtel{
+    width: 100%;
+    margin-top: 40px;
+    text-align: center;
+    color: #999;
+    padding-bottom: 80px;
+}

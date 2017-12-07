@@ -92,7 +92,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     height: 0px;
     top:38px;
     overflow:hidden;
-    z-index: 1000;
+    z-index: 99;
 
 }
 

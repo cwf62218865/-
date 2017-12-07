@@ -300,7 +300,7 @@ position: absolute;
 }
 .msg_zj .city1 .general-input input,.msg_zj .district1 .general-input input,.education input,.year input{
     position: absolute;
-    z-index: 99;
+    z-index: 98;
     width: 100px;
     padding-right: 40px;
     overflow: hidden;
@@ -637,7 +637,7 @@ position: absolute;
 .reg3_zj .general-input input{
     width: 150px;
     position: absolute;
-    z-index: 99;
+    z-index: 98;
 }
 .zjbq{
     display: inline-block;
