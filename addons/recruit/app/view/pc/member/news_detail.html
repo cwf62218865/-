@@ -140,8 +140,12 @@
                 {if $_SESSION['utype']==""}
                 <img src="{WL_URL_ARES}images/notouxiang.png" style="width: 100%;"/>
                 <!--登录状态-->
+                {elseif $portrait['headimgurl']==""}
+                <svg class="icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xuesheng"></use>
+                </svg>
                 {else}
-                <img src="{$portrait['headimgurl']}" style="width: 100%;"/>
+                <img src="{$portrait['headimgurl']}" style="width: 100%;" class="eee"/>
                 {/if}
             </div>
 
