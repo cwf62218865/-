@@ -107,6 +107,11 @@
     overflow: hidden;
     background: #e7eef0;
 }
+.touxiang .icon{
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+}
 .icos_btns{
    margin-top: 16px;
     text-align: center;

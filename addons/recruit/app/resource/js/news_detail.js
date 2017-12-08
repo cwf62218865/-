@@ -5,7 +5,6 @@ $(document).on("scroll",function() {
 
     if(top>=80){
         $(".pingpluqu1").css({"position":"fixed","top":"0px","height":height,"overflow-y":"auto"});
-        $(".close_kuang").css({"position":"fixed"});
     }else{
         $(".pingpluqu1").css({"position":"relative","height":"auto"});
     }

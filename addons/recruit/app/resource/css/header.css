@@ -153,6 +153,10 @@ input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
     margin-top: 9px;
     margin-right: 5px;
 }
+.login_header .icon{
+    width: 30px;
+    height: 30px;
+}
 .login_username{
     display: inline-block;
     width: 50px;
