@@ -82,7 +82,7 @@
     width: 300px;
     border-bottom: 1px dashed #eee;
     position: absolute;
-    left: 285px;
+    left: 215px;
     top: 7px;
     z-index: 1;
 }
@@ -90,7 +90,7 @@
     display: inline-block;
     width: 140px;
     background-color: #fff;
-    left: 365px;
+    left: 295px;
     color: #999;
     position: absolute;
     height: 14px;
