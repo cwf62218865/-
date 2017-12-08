@@ -63,8 +63,8 @@ class company{
      * 收到的简历
      * status 1表示收到的简历，2表示面试邀请的简历 3表示收到的简历
      */
-    public function getall_resume($uid,$page=0,$status=1,$jobs_id=""){
-        $wheresql = " where 1=1 and uid=".$uid;
+    public function getall_resume($uid,$page=0,$status=1,$jobs_id="",$unset_id=""){
+        $wheresql = " where uid=".$uid;
 
         if($status==1){
             $wheresql .=" and direction=2 and status=3 ";
@@ -78,6 +78,11 @@ class company{
             $wheresql .=" and jobs_id=".$jobs_id;
         }
 
+        if($unset_id){
+            $orderby = " order by case when id=".$unset_id." then 0 else 1 end,createtime desc";
+        }else{
+            $orderby = " order by createtime desc";
+        }
         if($page==-1){
             $limit = "";
         }else{
@@ -85,20 +90,13 @@ class company{
         }
 
 
-        $resume_jobs = pdo_fetchall("select id,resume_id,jobs_id,uid,puid,status from ".tablename(WL.'jobs_apply').$wheresql." order by createtime desc".$limit);
+        $resume_jobs = pdo_fetchall("select id,resume_id,jobs_id,uid,puid,status from ".tablename(WL.'jobs_apply').$wheresql.$orderby.$limit);
 
 
         $resumes = "";
         foreach ($resume_jobs as $list){
-            $resume = pdo_fetch("select * from ".tablename(WL.'resume')." where id=".$list['resume_id']);
-            if($resume){
-                if($resume['experience']){
-                    $resume['experience'] = $resume['experience']."年以上工作经验";
-                }else{
-                    $resume['experience'] = "无工作经验";
-                }
-            }
-            $job = pdo_fetch("select jobs_name,open from ".tablename(WL.'jobs')." where id=".$list['jobs_id']);
+            $resume = m("resume")->get_resume($list['puid']);
+            $job = m("jobs")->get_jobs($list['jobs_id']);
             $resume['collect_resume'] = pdo_fetch("select id from ".tablename(WL.'collect_resume')." where jobs_id=".$list['jobs_id']." and resume_id=".$list['resume_id']);
 
             $resume['jobs_name'] = $job['jobs_name'];
@@ -114,12 +112,14 @@ class company{
                 $resume['interview_time'] = $interview['interview_time'];
                 $interview_time = explode(" ",$interview['interview_time']);
                 $resume['interview_date'] = str_replace("月","-",str_replace("日","",$interview_time[0]));
+
             }
 
             $resumes[] = $resume;
         }
-        return $resumes;
+        return array_filter($resumes);
     }
+
 
 
     /*

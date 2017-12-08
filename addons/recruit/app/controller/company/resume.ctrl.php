@@ -12,6 +12,7 @@ if($op=="index"){
 }
 //我收到的简历
 elseif ($op=="received_resume"){
+    $apply_id = isset($_GPC['apply_id'])?$_GPC['apply_id']:"";
     $company = m("company")->get_profile($_SESSION['uid']);
     $jobs_id = isset($_GPC['jobs_id'])?$_GPC['jobs_id']:"";
     if($_POST['page']){
@@ -19,7 +20,7 @@ elseif ($op=="received_resume"){
     }else{
         $page = 0;
     }
-    $received_resume  = m("company")->getall_resume($_SESSION['uid'],$page,3,$jobs_id);
+    $received_resume  = m("company")->getall_resume($_SESSION['uid'],$page,3,$jobs_id,$apply_id);
 
     if($_POST['page']){
         call_back(1,$received_resume);

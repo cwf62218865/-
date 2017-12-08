@@ -16,8 +16,8 @@ if($op=="index"){
     $news = pdo_fetchall("select * from ".tablename("article_news")." order by createtime desc limit 0,3");
     foreach ($news as $list){
         $list['content'] = strip_tags($list['content']);
-        if(mb_strlen($list['content'])>44){
-            $list['content'] = strip_tags(str_replace(" ","",mb_substr($list['content'],0,44,"UTF8")."..."));
+        if(mb_strlen($list['content'])>30){
+            $list['content'] = strip_tags(str_replace(" ","",mb_substr($list['content'],0,30,"UTF8")."..."));
         }
         $arr_news[] = $list;
     }
@@ -625,7 +625,10 @@ elseif ($op=="save_books"){
     }
     exit();
 }
+elseif ($op=="agreement"){
 
+    include wl_template("member/agreement");exit();
+}
 elseif ($op=="img_upload"){
     $data = upload_img($_FILES);
     call_back(1,$data);

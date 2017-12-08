@@ -45,6 +45,7 @@ class resume{
         }elseif($status==2){
             $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=1 and status=3 and puid=".$uid." order by createtime desc ".$limit);
         }elseif ($status==0){
+
             $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where puid=".$uid." order by createtime desc ".$limit);
         }elseif ($status==3){
             $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where comment=0 and offer=1 and status=3 and puid=".$uid." order by createtime desc ".$limit);

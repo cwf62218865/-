@@ -73,6 +73,25 @@ class jobs{
             $wheresql .=" and uid=".$data['data']['uid'];
         }
 
+        if($data['data']['upper'] && $data['data']['lower']){
+            $upper =$data['data']['upper'];
+            $lower =$data['data']['lower'];
+            if($upper>$lower){
+                $data['data']['upper'] =$upper;
+                $data['data']['lower'] =$lower;
+            }else{
+                $data['data']['upper'] =$lower;
+                $data['data']['lower'] =$upper;
+            }
+        }
+        if($data['data']['lower']){
+            $wheresql .=" and wage_min>=".$data['data']['lower'];
+        }
+
+        if($data['data']['upper']){
+            $wheresql .=" and wage_max<=".$data['data']['upper'];
+        }
+
         $limit = " limit ".$page.",".$pagenum;
 //        echo "select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit;exit();
         $jobs = pdo_fetchall("select * from ".tablename(WL."jobs").$wheresql.$orderby.$limit);
