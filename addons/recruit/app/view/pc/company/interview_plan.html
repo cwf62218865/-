@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/person_msg.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/user_center.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/company_center.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/jquery-ui.css" rel="stylesheet">
+    <title>面试安排</title>
+</head>
+<body bgcolor="#f4f4f4">
+{if $_SESSION['uid']}
+{php include wl_template('common/top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
+<div class="width1200 p1content">
+    {php include wl_template('common/company_nav');}
+    <div class="p1_left">
+        <div class="con_list">
+
+            <div class="content_p">
+                <div class="p_title">
+                    <div class="zitile">面试安排</div>
+                    <div class="xianx"></div>
+                </div>
+                <div class="dateselect">
+                    <label class="font14 color66 m_r_16 ziriqi">选择日期</label>
+                    <label class="bg_kuang">
+                        <input class="inputku" type="text" readonly="" name="endtime" id="endtime" value="{php echo date('Y-m-d')}" style="margin-left: 0;padding-left: 18px;">
+                        <svg class="icon riliico" aria-hidden="true">
+                            <use xlink:href="#icon-rili"></use>
+                        </svg>
+
+
+                    </label>
+
+                    <label class="nomsges">
+                        <span class="font16 color33">所选月份暂无日程安排</span>
+                        <span class="font14 color33" style="margin-left: 10px;">请前往<a class="colormain" href="#">搜人才</a></span>
+                    </label>
+                </div>
+                <div class="content_lister">
+                    <div class="item_liit">
+                        <div class="mstoux">
+                            <img src="/addons/recruit/app/resource/file/2017-12-08/5a29e737713ba.jpg" class="touxian">
+                        </div>
+                        <div class="namere center">张翠山</div>
+                        <div class="timers center">上午8:00</div>
+                        <div class="zhiweiname center">高级Java工程师</div>
+                        <div class="btns_cz">
+                            <a class="item_btn" href="#">查看简历</a>
+                            <div class="item_btn">打印简历</div>
+                        </div>
+                    </div>
+                    <div class="item_liit">
+                        <div class="mstoux">
+                            <img src="/addons/recruit/app/resource/file/2017-12-08/5a29e737713ba.jpg" class="touxian">
+                        </div>
+                        <div class="namere center">张翠山</div>
+                        <div class="timers center">上午8:00</div>
+                        <div class="zhiweiname center">高级Java工程师</div>
+                        <div class="btns_cz">
+                            <a class="item_btn" href="#">查看简历</a>
+                            <div class="item_btn">打印简历</div>
+                        </div>
+                    </div>
+                    <div class="item_liit">
+                        <div class="mstoux">
+                            <img src="/addons/recruit/app/resource/file/2017-12-08/5a29e737713ba.jpg" class="touxian">
+                        </div>
+                        <div class="namere center">张翠山</div>
+                        <div class="timers center">上午8:00</div>
+                        <div class="zhiweiname center">高级Java工程师</div>
+                        <div class="btns_cz">
+                            <a class="item_btn" href="#">查看简历</a>
+                            <div class="item_btn">打印简历</div>
+                        </div>
+                    </div>
+                    <div class="item_liit">
+                        <div class="mstoux">
+                            <img src="/addons/recruit/app/resource/file/2017-12-08/5a29e737713ba.jpg" class="touxian">
+                        </div>
+                        <div class="namere center">张翠山</div>
+                        <div class="timers center">上午8:00</div>
+                        <div class="zhiweiname center">高级Java工程师</div>
+                        <div class="btns_cz">
+                            <a class="item_btn" href="#">查看简历</a>
+                            <div class="item_btn">打印简历</div>
+                        </div>
+                    </div>
+                    <div class="item_liit">
+                        <div class="mstoux">
+                            <img src="/addons/recruit/app/resource/file/2017-12-08/5a29e737713ba.jpg" class="touxian">
+                        </div>
+                        <div class="namere center">张翠山</div>
+                        <div class="timers center">上午8:00</div>
+                        <div class="zhiweiname center">高级Java工程师</div>
+                        <div class="btns_cz">
+                            <a class="item_btn" href="#">查看简历</a>
+                            <div class="item_btn">打印简历</div>
+                        </div>
+                    </div>
+                    <div class="item_liit">
+                        <div class="mstoux">
+                            <img src="/addons/recruit/app/resource/file/2017-12-08/5a29e737713ba.jpg" class="touxian">
+                        </div>
+                        <div class="namere center">张翠山</div>
+                        <div class="timers center">上午8:00</div>
+                        <div class="zhiweiname center">高级Java工程师</div>
+                        <div class="btns_cz">
+                            <a class="item_btn" href="#">查看简历</a>
+                            <div class="item_btn">打印简历</div>
+                        </div>
+                    </div>
+                    <div class="morejob" style="margin-left: 180px;margin-top: 10px;">查看更多面试安排&gt;&gt;</div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="p1_right" style="margin-top: 10px">
+        <div class="part_one">
+            <div class="tongjis tongjis1" style="width: 100%;">
+                <div class="items2">
+                    <a class="number" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=company&amp;ac=resume&amp;op=received_resume&amp;">0</a>
+                    <p class="font1_zj chengxian">收到申请</p>
+                </div>
+                <div class="items2">
+                    <a class="number" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=company&amp;ac=index&amp;op=manage_resume&amp;">7</a>
+                    <p class="font1_zj chengxian">等待面试</p>
+                </div>
+                <div class="items2">
+                    <a class="number" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=company&amp;ac=index&amp;op=manage_resume&amp;nav=2">0</a>
+                    <p class="font1_zj chengxian">收到评价</p>
+                </div>
+                <div class="items2">
+                    <a class="number" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=company&amp;ac=index&amp;op=job_manage&amp;">1</a>
+                    <p class="font1_zj chengxian">在招职位</p>
+                </div>
+            </div>
+            <div class="resume_district">
+                <div class="wanzhengdu">
+                    <div class="jianli"><span>资料完整度：</span><span class="color_main">95%</span>
+                        <a class="color_main resume_view" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;company_id=707">预览</a>
+                        <a class="color_main resume_edit" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=company&amp;ac=company_profile&amp;">修改</a></div>
+                    <div class="jindutiao">
+                        <div class="jindu_con" style="width: 95%"></div>
+                    </div>
+                    <div class="sousuo">
+                        <svg class="icon icon_sousuo" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
+                        </svg>
+                        <input type="text" class="sousuo_content font1_zj" placeholder="输入职位" style="font-size: 12px;">
+                    </div>
+                    <a href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=company&amp;ac=index&amp;op=manage_resume&amp;nav=1">
+                        <input type="button" class="sousuo_btn" value="找人才">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="part_one">
+            <div class="about_company_img" style="margin-bottom: 10px;">
+                <img src="http://localhost/addons/recruit/app/resource/images/ads1.png">
+            </div>
+            <div class="about_company_img" style="margin-bottom: 10px;">
+                <img src="http://localhost/addons/recruit/app/resource/images/ads1.png">
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery-ui.min.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
+<script>
+
+
+    $('#endtime').datepicker({
+        minDate:0,
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        dayNames: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+        dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+        monthNamesShort: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+
+    })
+
+</script>
+</html>
