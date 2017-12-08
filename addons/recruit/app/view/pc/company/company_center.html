@@ -82,12 +82,12 @@
                 </div>
                 <div class="dateselect" style="margin-top: 10px;height: auto;">
                     <div class="person_msg_titles">
-                        <span  class="person_msg_title_check male0" data-id="">全部消息</span>
-                        <span data-id="">职位申请</span>
-                        <span data-id="">职位邀请</span>
-                        <span data-id="">待反馈面试结果</span>
-                        <span data-id="">待回复面试评价</span>
-                        <span data-id="">系统消息</span>
+                        <span  class="person_msg_title_check male0">全部消息</span>
+                        <span data-id="职位申请">职位申请</span>
+                        <span data-id="职位邀请">职位邀请</span>
+                        <span data-id="待反馈面试结果">待反馈面试结果</span>
+                        <span data-id="待回复面试评价">待回复面试评价</span>
+                        <span data-id="系统通知">系统通知</span>
                     </div>
                 </div>
                 <div id="all_msg" style="float: left;">
@@ -123,131 +123,72 @@
 
                         <!--投递申请-->
                         {loop $list['content'] $li}
-                        {if $li['direction']==2}
+                        {if $li['status']==3 && $li['direction']==1}
                         <div class="day_msgbox">
                             <div class="system_msg_title">
                                 <svg class="icon" aria-hidden="true">
                                     <use xlink:href="#icon-qiuzhiyixiang"></use>
                                 </svg>
-                                <span class="color999">投递申请</span>
+                                <span class="color999">职位邀请</span>
                                 <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
                             </div>
 
                             <div class="delivery_left">
-                                <a class="delivery_logo" href="{php echo app_url('member/index/company_detail',array('jobs_id'=>$li['company_uid']))}">
-                                    <img src="{$li['headimgurl']}">
-                                </a>
-                                <a  href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$li['id']))}">{$li['jobs_name']}</a>
-                                <a style="margin-left: 20px"  href="{php echo app_url('member/index/company_detail',array('jobs_id'=>$li['company_uid']))}">{$li['companyname']}</a><br>
+                         <span class="delivery_headerimg">
+                            <img src="{$li['headimgurl']}" />
+                        </span>
+                                <span>{$li['fullname']}</span>
+                                <span style="margin-left: 20px">{$li['jobs_name']}</span><br>
                                 <span style="display: inline-block;margin-top: 22px">
                                 最新状态：
-                                {if $li['status']==-1}
-                                    不合适
-                                {elseif $li['status']==0}
-                                    未查看
-                                {elseif $li['status']==1}
-                                    已查看
-                                {elseif $li['status']==3}
-                                    邀请面试
+                                {if $li['offer']==1}
+                                    同意面试
+                                {elseif $li['offer']==2}
+                                    拒绝面试
+                                {else}
+                                    未处理
                                 {/if}
                             </span>
                             </div>
 
-                            <a href="{php echo app_url('person/index/send_resume')}" class="see_system_msg see_day_msg" >查看详情>></a>
+                            <a href="{php echo app_url('company/index/manage_resume')}" class="see_system_msg see_day_msg" >查看详情>></a>
                         </div>
                         {/if}
                         {/loop}
-                        <!--面试邀请-->
+                        <!--申请通知-->
                         {loop $list['content'] $li}
-                        {if $li['direction']==1 && $li['status']==3}
+                        {if $li['direction']==2}
                         <div class="day_msgbox">
                             <div class="system_msg_title">
                                 <svg class="icon" aria-hidden="true">
                                     <use xlink:href="#icon-gongzuojingli"></use>
                                 </svg>
-                                <span class="color999">面试邀请</span>
+                                <span class="color999">职位申请</span>
                                 <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
                             </div>
 
                             <div class="delivery_left">
-                                <a class="delivery_logo" href="{php echo app_url('member/index/company_detail',array('company_id'=>$li['company_uid']))}">
-                                    <img src="{$li['headimgurl']}">
-                                </a>
-                                <a  href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$li['id']))}">{$li['jobs_name']}</a><br>
-                                <a style="display: inline-block;margin-top: 22px"  href="{php echo app_url('member/index/company_detail',array('company_id'=>$li['uid']))}">{$li['companyname']}</a>
+                         <span class="delivery_headerimg">
+                            <img src="{$li['headimgurl']}" />
+                        </span>
+                                <span style="display:inline-block;padding-right: 10px;border-right: 1px solid #666;line-height: 14px">{$li['fullname']}</span>
+                                <span style="margin-left: 8px;padding-right: 10px;border-right: 1px solid #666;display:inline-block;line-height: 14px">{$li['edu_major']}</span>
+                                <span style="margin-left: 8px">{$li['school_name']}-{$li['education']}</span><br>
+                                <span style="display: inline-block;margin-top: 22px">
+                                申请了{$li['jobs_name']}的职位
+                            </span>
                             </div>
 
-                            <a href="{php echo app_url('person/index/send_resume',array('nav'=>1))}" class="see_system_msg see_day_msg" >查看详情>></a>
+                            <a href="{php echo app_url('company/resume/received_resume')}" class="see_system_msg see_day_msg" >查看详情>></a>
                         </div>
                         {/if}
                         {/loop}
 
-                        <!--问答提醒-->
-                        <div class="day_msgbox">
-                            <div class="system_msg_title">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-wendatixing"></use>
-                                </svg>
-                                <span class="color999">问答提醒</span>
-                                <span class="colorbbb">2017-09-31 15:45</span>
-                            </div>
-
-                            <div class="delivery_left" style="line-height: 24px">
-                        <span class="delivery_headerimg">
-                            <img src="{WL_URL_ARES}images/qiyelogo.png">
-                        </span>
-                                <span>拒绝了您的问题：</span><br>
-                                <span>刚毕业的大学生找工作如何防止被骗？</span>
-                            </div>
-
-                            <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
-                        </div>
-
-                        <!--评论回复-->
-                        <div class="day_msgbox">
-                            <div class="system_msg_title">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-pinglunhuifu"></use>
-                                </svg>
-                                <span class="color999">评论回复</span>
-                                <span class="colorbbb">2017-09-31 15:45</span>
-                            </div>
-
-                            <div class="delivery_left" style="line-height: 24px">
-                        <span class="delivery_headerimg">
-                            <img src="{WL_URL_ARES}images/qiyelogo.png">
-                        </span>
-                                <span>回复了您在<span style="color: #7b8fc9">“一个刚毕业的会计学生简历上有哪些经历会加分？”</span>中的评论</span>
-                            </div>
-
-                            <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
-                        </div>
-
-                        <!--面试评价-->
-                        {loop $list['content'] $li}
-                        {if $li['hr_reply_status']==1}
-                        <div class="day_msgbox">
-                            <div class="system_msg_title">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-pinglunhuifu"></use>
-                                </svg>
-                                <span class="color999">面试评价</span>
-                                <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
-                            </div>
-
-                            <div class="delivery_left">
-                        <span class="delivery_logo">
-                            <img src="{$li['headimgurl']}">
-                        </span>
-                                <span><span style="color: #7b8fc9">{$li['companyname']}</span>回复了您的面试评价</span>
-                            </div>
-
-                            <a href="#" class="see_system_msg see_day_msg" >查看详情>></a>
-                        </div>
-                        {/if}
-                        {/loop}
                     </div>
                     {/loop}
+                </div>
+                <div id="one_msg" style="float: left;">
+
                 </div>
             </div>
 
@@ -345,7 +286,30 @@
     //消息切换效果
     $(".person_msg_titles span").click(function () {
         $(".person_msg_titles span").removeClass("person_msg_title_check")
-        $(this).addClass("person_msg_title_check")
+        $(this).addClass("person_msg_title_check");
+        if($(this).attr("data-id")){
+            $("#one_msg").css("display","block");
+            $("#all_msg").css("display","none");
+            $.ajax({
+                type:"post",
+                url:"{php echo app_url('company/index/msg_deal')}",
+                data:{
+                    msg:$(this).attr("data-id")
+                },
+                success:function (data) {
+                    var data = JSON.parse(data);
+                    if(data.status==1){
+                        $("#one_msg").html(data.content);
+                    }else{
+                        $("#one_msg").html("");
+                        no_data("#one_msg","没有消息","当前板块没有消息");
+                    }
+                }
+            })
+        }else{
+            $("#one_msg").css("display","none");
+            $("#all_msg").css("display","block");
+        }
     })
 
 </script>

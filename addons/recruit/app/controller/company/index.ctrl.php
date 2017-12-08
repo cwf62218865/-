@@ -22,12 +22,24 @@ elseif ($op=="company_center"){
     $jobs = m('jobs')->getall_jobs($_SESSION['uid'],0);
     $company = m("company")->get_profile($_SESSION['uid']);
     $resume  = m("company")->getall_resume($_SESSION['uid'],-1,2);
+    $msg = m("resume")->resume_apply($_SESSION['uid'],-1);
+    $new_msg = "";
+    foreach ($msg as $list){
+        $list['addtime'] = date("Y/m/d", $list['createtime']);
+        $new_msg[] = $list;
+    }
+    $arr = "";
+    foreach ($new_msg as $key=>$list){
+        $arr[$list['addtime']][$key] = $list;
+    }
+    $new_arr = "";
+    $i = 0;
+    foreach ($arr as $key=>$list){
+        $new_arr[$i]['time'] =$key;
+        $new_arr[$i]['content'] = $list;
+        $i++;
+    }
     include wl_template('company/company_center');
-}
-//面试安排
-elseif ($op=="interview_plan"){
-
-    include wl_template('company/interview_plan');
 }
 //发布职位页面
 elseif ($op=="job_manage_release"){
@@ -169,7 +181,7 @@ elseif ($op=="comment_reply"){
 
 //消息页面请求
 elseif ($op=="msg_deal"){
-    if($_POST['msg']=="邀请反馈"){
+    if($_POST['msg']=="职位邀请"){
         $msg = m("resume")->resume_apply($_SESSION['uid'],-1,1);
         $content = "";
         foreach ($msg as $list){
@@ -205,7 +217,7 @@ elseif ($op=="msg_deal"){
                     </div>";
         }
         call_back(1,$content);
-    }elseif ($_POST['msg']=="申请通知"){
+    }elseif ($_POST['msg']=="职位申请"){
         $msg = m("resume")->resume_apply($_SESSION['uid'],-1,2);
         $content = "";
         foreach ($msg as $list){
@@ -235,5 +247,7 @@ elseif ($op=="msg_deal"){
         }
         call_back(1,$content);
     }
+
+    call_back(2,"");
 }
 
