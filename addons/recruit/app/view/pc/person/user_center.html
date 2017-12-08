@@ -163,9 +163,9 @@
                 <div class="dateselect" style="margin-top: 10px;height: auto;">
                     <div class="person_msg_titles">
                         <span  class="person_msg_title_check male0">全部消息</span>
-                        <span data-id="投递申请">面试消息</span>
-                        <span data-id="面试邀请">导师消息</span>
-                        <span data-id="面试评价">系统消息</span>
+                        <span data-id="面试消息">面试消息</span>
+                        <span data-id="导师消息">导师消息</span>
+                        <span data-id="系统消息">系统消息</span>
                     </div>
                 </div>
                 <div id="all_msg" style="float: left;">
@@ -327,6 +327,8 @@
                     </div>
                     {/loop}
                 </div>
+
+                <div id="one_msg" style="float: left;"></div>
             </div>
 
 
@@ -664,8 +666,29 @@
 
     //消息切换效果
     $(".person_msg_titles span").click(function () {
-        $(".person_msg_titles span").removeClass("person_msg_title_check")
-        $(this).addClass("person_msg_title_check")
+        $(".person_msg_titles span").removeClass("person_msg_title_check");
+        $(this).addClass("person_msg_title_check");
+        if($(this).attr("data-id")){
+            $("#one_msg").show();
+            $("all_msg").hide();
+            $.ajax({
+                type:"post",
+                url:"{php echo app_url('person/index/msg_deal')}",
+                data:{
+                    kind:$(this).attr("data-id")
+                },
+                success:function (data) {
+                    var data = JSON.parse(data);
+                    if(data.status==1){
+
+                    }
+                }
+            })
+        }else{
+            $("#one_msg").hide();
+            $("all_msg").show();
+        }
+
     })
 
 </script>
