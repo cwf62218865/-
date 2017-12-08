@@ -70,6 +70,10 @@
     padding: 20px 0 20px 0;
     border-bottom: 1px dashed #eeeeee;
 }
+.minashi_list p{
+    width: 100%;
+    height: 21px;
+}
 .name_sm{
     color: #333333;
     font-size: 16px;
