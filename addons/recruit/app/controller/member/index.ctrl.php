@@ -421,7 +421,7 @@ elseif ($op=="login_deal"){
                 }elseif (!$resume['edu_experience']){
 //                    $url = app_url('resume/resume_reg/2');
                     $url = app_url('person/index');
-                }elseif (!$resume['introduce']){
+                }elseif (!$resume['birthday']){
 //                    $url = app_url('resume/resume_reg/4');
                     $url = app_url('person/index');
                 }else{
@@ -1200,7 +1200,7 @@ elseif($op=="baidu_callback"){
             $_SESSION['uid'] = $account['id'];
             $_SESSION['utype'] = $account['utype'];
             $resume = m("resume")->get_resume( $_SESSION['uid']);
-            if(!$resume['fullname'] || !$resume['edu_experience'] || !$resume['introduce']){
+            if(!$resume['fullname'] || !$resume['edu_experience'] || !$resume['birthday']){
                 $url = app_url('person/index');
             }else{
                 $url = $_SESSION['record_url'];
@@ -1220,7 +1220,7 @@ elseif($op=="baidu_callback"){
             $_SESSION['uid'] = $account['id'];
             $_SESSION['utype'] = $account['utype'];
             $resume = m("resume")->get_resume($_SESSION['uid']);
-            if(!$resume['fullname'] || !$resume['edu_experience'] || !$resume['introduce']){
+            if(!$resume['fullname'] || !$resume['edu_experience'] || !$resume['birthday']){
                 $url = app_url('person/index');
             }else{
                 $url = $_SESSION['record_url'];
@@ -1243,7 +1243,7 @@ elseif($op=="baidu_callback"){
             $_SESSION['uid'] = $account['id'];
             $_SESSION['utype'] = $account['utype'];
             $resume = m("resume")->get_resume($_SESSION['uid']);
-            if(!$resume['fullname'] || !$resume['edu_experience'] || !$resume['introduce']){
+            if(!$resume['fullname'] || !$resume['edu_experience'] || !$resume['birthday']){
                 $url = app_url('person/index');
             }else{
                 $url = $_SESSION['record_url'];

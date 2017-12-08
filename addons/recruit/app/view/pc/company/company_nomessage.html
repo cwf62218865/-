@@ -606,10 +606,20 @@
         window.clearTimeout(timer1);
     })
     $("#person_worksaddbtn").on("click",function(){
+        company_img();
         $(".erweima").attr("id","atlas").children().remove();
         code_url("atlas");
         upload_timer();
     })
+
+
+
+    function company_img(){
+        $("#modalbox .one_btn").html('<svg class="icon" aria-hidden="true">'+
+                '<use xlink:href="#icon-shangchuan"></use>'+
+                '</svg>');
+
+    }
 //    上传logo
     $(".company_logo_upload span").on("click",function(){
         $(".logo_tip .formtip").remove();
@@ -778,6 +788,15 @@ $(".modalbtn").on("click",function(){
                 }
 
 //                       $(".img_tx img").eq(0).attr("src",data.others);
+
+                $("#company_imgbox .person_worksbtn img").each(function(){
+                    if($(this).width()>$(this).height()){
+                        $(this).css({"width":"auto","height":"100%"})
+                    }else{
+                        $(this).css({"width":"100%","height":"auto"})
+                    }
+                })
+
             }
             if($(".person_worksbox img").length>=6){
                 $(".person_worksbtn1").hide();
