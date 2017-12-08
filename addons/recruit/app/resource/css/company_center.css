@@ -119,3 +119,71 @@
     text-align: center;
     color: #999999;
 }
+.content_lister{
+    width: 100%;
+    height: auto;
+    clear: both;
+    float: left;
+    margin-top: 30px;
+}
+.item_liit{
+    width: 228px;
+    height:auto;
+    border: 1px solid #eeeeee;
+    float: left;
+    margin-right: 20px;
+    line-height: 26px;
+    margin-bottom: 20px;
+}
+.item_liit:nth-child(3n){
+    margin-right: 0;
+}
+.mstoux{
+    width: 80px;
+    height: 80px;
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: 40px;
+}
+.touxian{
+    width: 100%;
+}
+.namere{
+    width: 100%;
+    color: #333333;
+    font-size: 16px;
+}
+.timers{
+    font-size: 14px;
+    color: #E23D46;
+}
+.center{
+    text-align: center;
+    height: 26px;
+}
+.zhiweiname{
+    color: #999999;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.btns_cz{
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid #eeeeee;
+    color: #666666;
+}
+.item_btn{
+    width: 113.5px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    display: block;
+    float: left;
+    cursor: pointer;
+}
+.item_btn:nth-child(1){
+    border-right: 0.5px solid #eeeeee;
+}
+.item_btn:nth-child(2){
+    border-left: 0.5px solid #eeeeee;
+}
