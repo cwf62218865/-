@@ -48,23 +48,23 @@
             <div class="foot_btns">
                 <div class="con" style="width: 100%;margin-top: 20px;margin-bottom: 50px;">
                     <label class=" bdsharebuttonbox share">
-                    <a class="icons bds_sqq" href="#" data-cmd="sqq" title="分享到QQ好友">
+                    <a class="icons bds_sqq"  data-cmd="sqq" title="分享到QQ好友">
                         <svg class="icon" style="color: #ffffff">
                             <use xlink:href="#icon-qq"></use>
                         </svg>
                     </a>
-                    <a class="icons left bds_weixin"  href="#"  data-cmd="weixin" title="分享到微信">
+                    <a class="icons left bds_weixin"   data-cmd="weixin" title="分享到微信">
                         <svg class="icon" style="color: #ffffff">
                             <use  xlink:href="#icon-weixin"></use>
                         </svg>
                     </a>
-                    <a class="icons left bds_tsina" href="#"  data-cmd="tsina" title="分享到新浪微博">
+                    <a class="icons left bds_tsina"  data-cmd="tsina" title="分享到新浪微博">
                         <svg class="icon" style="color: #ffffff">
                             <use  xlink:href="#icon-weibo"></use>
                         </svg>
                     </a>
 
-                    <a class="icons left baidu_icons bds_qzone" href="#"  data-cmd="qzone" title="分享到QQ空间">
+                    <a class="icons left bds_qzone"  data-cmd="qzone" title="分享到QQ空间">
                         <svg class="icon" style="color: #ffffff">
                             <use xlink:href="#icon-QQkongjian"></use>
                         </svg>
@@ -221,6 +221,10 @@
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/news_detail.js" rel="script"></script>
 <script>
+
+    $(".share .icon").click(function () {
+        $(this).closest(".icons").click();
+    })
     var page = 1;
     var count = parseInt("{$comment_count}");
     $(".huanyipi").click(function () {

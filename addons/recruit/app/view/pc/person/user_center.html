@@ -26,6 +26,12 @@
     <div class="p1_left">
         <div class="con_list">
             <div class="content_u">
+                <a class="editbtn" href="{php echo app_url('person/resume/manage_resume')}">
+                    <svg class="icon xiugaiico" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiugai"></use>
+                    </svg>
+                    修改
+                </a>
                 <div class="touxiangimg">
                     <img src="{if $resume['headimgurl']}{php echo $resume['headimgurl']}{else}{WL_URL_ARES}images/resume_head.png{/if}" class="touxipi"/>
                 </div>
@@ -68,14 +74,14 @@
                     </div>
                 </div>
             </div>
-            <div class="content_p">
+            <div class="content_p" style="margin-top: 30px;">
                 <div class="p_title">
                     <div class="zitile">应聘历程</div>
                     <div class="xianx"></div>
                 </div>
                 <div class="dateselect">
                     <label class="font14 color66 m_r_16 ziriqi">选择日期</label>
-                    <label class="bg_kuang">
+                    <label class="bg_kuang rilibtn">
                         <input class="inputku" type="text" readonly value="近期日程">
                         <svg class="icon riliico" aria-hidden="true">
                             <use xlink:href="#icon-rili"></use>
@@ -582,13 +588,15 @@
         year ++;
         $(".niann").html(year);
     })
-    $(".riliico").click(function () {
+
+    $(".rilibtn").click(function () {
         $(".nianrili").show();
     })
 
     //选择招聘日期发送ajax
     $(".yearn").click(function () {
         $(".nianrili").hide();
+        $(".nianrili").css("display","none");
         var month=$(this).attr("data-id");
         var year=$(".niann").html();
         $(".inputku").val(year+"-"+month);
@@ -666,7 +674,7 @@
     })
 
     $(document).click(function(e){
-        var _con = $('.bg_kuang');   // 设置目标区域
+        var _con = $(".rilibtn,.nianbtn");   // 设置目标区域
         if(!_con.is(e.target) && _con.has(e.target).length === 0){
             $(".nianrili").hide();
         };
