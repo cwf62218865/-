@@ -33,7 +33,7 @@
                         <span class="font34 color333" style="vertical-align: middle;">{php echo $jobs['jobs_name']}</span>
 
                         {if $_SESSION['utype']!=2}
-                        <span class="{if $report}collections1{else}collections{/if}">
+                        <span id="report" class="{if $report}collections1{else}collections{/if}">
 
                             {if $report}已举报{else}<svg class="icon">
                                 <use xlink:href="#icon-tishi"></use>

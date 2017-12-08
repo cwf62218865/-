@@ -22,7 +22,7 @@ $(document).ready(function(){
 
     //举报相关
 
-    $(".collections").eq(0).on("click",function(){
+    $("#report").on("click",function(){
         $("#modalbox").show();
     })
 
@@ -35,12 +35,12 @@ $(document).ready(function(){
         $("#modalbox").hide();
     });
 
-    $(".collections").eq(1).on("click",function(){
-        if($("#sharebox").css("display")=="none"){
-            $("#sharebox").show();
-        }else{
-            $("#sharebox").hide();
-        }
-
-    })
+    //$(".collections").eq(1).on("click",function(){
+    //    if($("#sharebox").css("display")=="none"){
+    //        $("#sharebox").show();
+    //    }else{
+    //        $("#sharebox").hide();
+    //    }
+    //
+    //})
 })
