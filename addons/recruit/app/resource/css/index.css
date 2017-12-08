@@ -326,6 +326,11 @@
 }
 .linkhover,.resume_position .linkhover{
     color: #0099cc;
+    display: inline-block;
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .linkhover:hover,.resume_position .linkhover:hover{
     color: #057aa0;
