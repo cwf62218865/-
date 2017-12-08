@@ -146,8 +146,10 @@ elseif ($op=="resume_center"){
 /****************************************ajax请求处理******************************************/
 //消息请求
 elseif ($op=="msg_deal"){
+    var_dump($_POST);exit();
     if($_POST['msg']=="投递申请"){
-        $jobs = m("resume")->jobs_apply($_SESSION['uid'],-1,1);
+//        $msg = m("resume")->jobs_apply($_SESSION['uid'],-1,0);
+//        $jobs = m("resume")->jobs_apply($_SESSION['uid'],-1,1);
         $msg = "";
         foreach ($jobs as $list){
             $createtime = date("Y-m-d h:i",$list['createtime']);
