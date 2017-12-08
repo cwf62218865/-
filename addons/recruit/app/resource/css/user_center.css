@@ -354,3 +354,43 @@ float: left;
 .menus:hover .icon_item,.menus:hover .bb12{
     color: #ffffff !important;
 }
+.erwei_codebox{
+    display: none;
+    position: absolute;
+    text-align: center;
+    width: 204px;
+    left: -68px;
+    top:84px;
+    background-color: #fff;
+    box-shadow: -1px -1px 6px rgba(0, 0, 0, 0.1);
+}
+.erwei_codebox:before{
+    content: "";
+    position: absolute;
+    top:-10px;
+    left: 96px;
+    z-index: 999;
+    border-left:8px solid transparent;
+    border-right:8px solid transparent;
+    border-bottom:10px solid #fff;
+}
+.erwei_codebox:after{
+    content: "";
+    position: absolute;
+    top:-11px;
+    left: 95px;
+    z-index: 998;
+    border-left:8px solid transparent;
+    border-right:8px solid transparent;
+    border-bottom:10px solid #eee;
+    visibility: visible !important;
+}
+.erwei_img{
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    margin-top: 34px;
+}
+#posttel_erwei:hover .erwei_codebox{
+    display: block;
+}

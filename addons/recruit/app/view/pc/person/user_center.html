@@ -354,13 +354,21 @@
                         发至邮箱
                     </div>
                 </div>
-                <div class="menus">
+                <div class="menus relative" id="posttel_erwei">
                     <svg class="icon icon_item" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-shouji"></use>
                     </svg>
                     <div class="bb12">
                         发至手机
                     </div>
+
+                    <div class="erwei_codebox">
+                        <span class="erwei_img">
+                            <img src="{WL_URL_ARES}images/erweima.png">
+                        </span>
+                        <div style="font-size: 12px;color: #666;margin-top: 6px;padding-bottom: 30px">扫描二维码，将简历发送至手机</div>
+                    </div>
+
                 </div>
                 <a class="menus" href="{php echo app_url('resume/index',array('uid'=>$resume['uid']))}">
                     <svg class="icon icon_item" aria-hidden="true">
