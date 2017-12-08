@@ -40,7 +40,6 @@ elseif($op=="pwd_login_out"){
 }
 //登录
 elseif ($op=="login"){
-
     $weinxin_uri = urldecode("http://www.yingjieseng.com/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=weixin_callback");
     $back_top = 1;
    if($_SESSION['utype']==1){
@@ -215,9 +214,28 @@ elseif ($op=="aboutus"){
     $nav = $_GPC['nav'];
 
     include wl_template("member/aboutus");exit();
-}elseif ($op=="news_detail"){
+}
+
+elseif ($op=="news"){
+    $news = m("member")->news_list();
+    $news_count = pdo_fetchcolumn("select count(*) from ".tablename("article_news"));
+
+    include wl_template("member/news");exit();
+}
+
+elseif ($op=="news_detail"){
     if($_GPC['id']){
+        if($_SESSION['utype']==1){
+            $resume = pdo_fetch("select fullname,headimgurl from ".tablename(WL."resume")." where uid=".$_SESSION['uid']);
+            $user['fullname'] = $resume['fullname'];
+        }elseif ($_SESSION['utype']==2){
+            $company = pdo_fetch("select companyname,headimgurl from ".tablename(WL."company_profile")." where uid=".$_SESSION['uid']);
+            $user['fullname'] = $company['companyname'];
+        }
+
         $news = pdo_fetch("select * from ".tablename("article_news")." where id=".$_GPC['id']);
+        $comment_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."evaluate")." where news_id=".$_GPC['id']);
+        $comment = m('member')->get_news_comment($_GPC['id']);
         $news['click'] +=1;
         pdo_update("article_news",array('click'=>$news['click']),array('id'=>$_GPC['id']));
 
@@ -250,6 +268,125 @@ elseif ($op=="switch_city"){
     $_SESSION['city'] = $city;
     call_back(1,"ok");
 }
+//文章主评论
+elseif ($op=="comment_news"){
+
+    if(empty($_SESSION['uid'])){
+        call_back(3,"未登录");
+    }else{
+       $data['news_id'] = check_pasre($_POST['id'],"参数错误");
+       $data['content'] = check_pasre($_POST['pj_content'],"请输入评论内容");
+       $data['uid'] = $_SESSION['uid'];
+       $data['utype'] = $_SESSION['utype'];
+       $data['addtime'] = time();
+       $data['comment_id'] = intval($_POST['comment_id']);
+       $r = pdo_insert(WL."evaluate",$data);
+       if($r){
+           call_back(1,"添加成功");
+       }else{
+           call_back(2,"添加失败");
+       }
+    }
+}
+
+elseif ($op=="comment_page_ajax"){
+    $page = intval($_POST['page']);
+    $id = check_pasre($_POST['news_id'],"参数错误");
+    $comment = m("member")->get_news_comment($id,$page);
+    $html = "";
+    foreach ($comment as $list){
+        if($list['comment_id']){
+            $html .="<div class=\"pinglun_item\">
+                <div class=\"touxiang_pl\">
+                    <img src=\"{$list['headimgurl']}\" style=\"width: 100%;\">
+                </div>
+                <div class=\"pl_user\">{$list['fullname']}</div>
+                <div class=\"pinglunneir\"><label class=\"beizhu_pl\">[回复{$list['pl_user']}]</label>{$list['content']}</div>
+                <div class=\"pl_status\">
+                    <label class=\"time_pl\">"._format_date($list['addtime'])."</label>
+                </div>
+            </div>";
+        }else{
+            $html .="<div class=\"pinglun_item\" data-id=\"{$list['id']}\">
+                <div class=\"touxiang_pl\">
+                    <img src=\"{$list['headimgurl']}\" style=\"width: 100%;\">
+                </div>
+                <div class=\"pl_user\">{$list['fullname']}</div>
+                <div class=\"pinglunneir\">{$list['content']}
+                </div>
+                <div class=\"pl_status\">
+                    <label class=\"time_pl\">"._format_date($list['addtime'])."</label>
+                    <label class=\"ico_plbtn\">
+                        <span class=\"jubao_btn\">举报</span>
+                        <span class=\"huifu_btn\">回复</span>
+                    </label>
+                </div>
+            </div>";
+        }
+    }
+   call_back(1,$html);
+}
+
+//新闻分页
+elseif ($op=="news_page_ajax"){
+
+    $page = intval($_POST['data']['page']);
+    if($page){
+        $page = $page-1;
+    }
+
+    $kind = "";
+    if($_POST['kind']=="招聘新闻"){
+        $kind = 4;
+    }elseif ($_POST['kind']=="活动报道"){
+        $kind = 3;
+    }elseif ($_POST['kind']=="网站公告"){
+        $kind = 2;
+    }elseif ($_POST['kind']=="系统推荐"){
+        $kind = 1;
+    }
+    $news = m("member")->news_list($page,$kind);
+    $news_count = pdo_fetchcolumn("select count(*) from ".tablename("article_news"));
+    $html = "";
+    foreach ($news as $list){
+        if($list['thumb']){
+            $thumb = "<img src=\"/attachment/{$list['thumb']}\" />";
+        }else{
+            $thumb = "<img src='".WL_URL_ARES."/images/nopic-107.png' height='160' />";
+        }
+        $html .=" <div class=\"news_list_box\">
+                    <a href=\"#\" class=\"news_list_box_img\">
+                    {$thumb}
+                    </a>
+                    <div class=\"news_list_box_content\">
+                        <a href=\"#\" class=\"news_list_box_title\">{$list['title']}</a>
+                        <span class=\"news_list_box_msg\">".strip_tags($list['title'])."</span>
+                        <div class=\"news_list_box_bottom_msg\">
+                            <span class=\"news_list_box_classify \">
+                                <svg class=\"icon\">
+                                    <use xlink:href=\"#icon-shuqian1\"></use>
+                                </svg>
+                                <span class=\"classifys\">招聘新闻</span>
+                            </span>
+                            <div class=\"right_classify\">
+                                <span class=\"news_list_box_classify\">
+                                    <svg class=\"icon\">
+                                        <use xlink:href=\"#icon-liulanliang\"></use>
+                                    </svg>
+                                    {$list['click']}
+                                </span>
+                                <span class=\"news_list_box_classify\" style=\"margin-left: 25px\">
+                                   ".date('Y-m-d',$list['createtime'])."
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+    }
+
+    call_back(1,$html,$news_count);
+}
+
 //登录处理
 elseif ($op=="login_deal"){
     $data['baidu_openid'] = $_GPC['baidu_openid'];
@@ -295,7 +432,7 @@ elseif ($op=="login_deal"){
                 $company = m("company")->get_profile($member['id']);
                 if(empty($company) ||!$company['license'] || !$company['idcard1'] || !$company['idcard2']){
                     $url = app_url('member/company_register/step2');
-                }elseif (!$company['nature']){
+                }elseif (!$company['slogan']){
                     $url = app_url('member/company_register/step3');
                 }else{
                     $url = app_url('company/resume/received_resume');

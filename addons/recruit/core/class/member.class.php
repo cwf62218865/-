@@ -65,4 +65,51 @@ class member{
     }
 
 
+    /*
+     * 评论新闻
+     */
+    public function get_news_comment($id,$page=0){
+        $limit = " limit ".($page*4).",4";
+        $comment = pdo_fetchall("select * from ".tablename(WL."evaluate")." where news_id=".$id.$limit);
+        $comments ="";
+        foreach ($comment as $list){
+            if($list['utype']==1){
+                $resume = pdo_fetch("select fullname,headimgurl from ".tablename(WL."resume")." where uid=".$list['uid']);
+                $list['headimgurl'] = $resume['headimgurl'];
+                $list['fullname'] = $resume['fullname'];
+            }elseif ($list['utype']==2){
+                $company = pdo_fetch("select companyname,headimgurl from ".tablename(WL."company_profile")." where uid=".$list['uid']);
+                $list['headimgurl'] = $company['headimgurl'];
+                $list['fullname'] = $company['companyname'];
+            }
+
+            if($list['comment_id']){
+                $pre_comment = pdo_fetch("select uid,utype from ".tablename(WL."evaluate")." where id=".$list['comment_id']);
+
+                if($pre_comment['utype']==1){
+                    $resume = pdo_fetch("select fullname from ".tablename(WL."resume")." where uid=".$pre_comment['uid']);
+                    $list['pl_user'] = $resume['fullname'];
+                }elseif ($pre_comment['utype']==2){
+                    $company = pdo_fetch("select companyname from ".tablename(WL."company_profile")." where uid=".$pre_comment['uid']);
+                    $list['pl_user'] = $company['companyname'];
+                }
+            }
+            $comments[] = $list;
+        }
+        return $comments;
+    }
+
+    //新闻列表
+    public function news_list($page=0,$kind=""){
+        $limit = " limit ".($page*6).",6";
+        if($kind){
+            $wheresql = " where cateid=".$kind;
+        }else{
+            $wheresql = "";
+        }
+        $article_news = pdo_fetchall("select * from ".tablename("article_news").$wheresql.$limit);
+//        var_dump($article_news);exit();
+        return $article_news;
+    }
+
 }

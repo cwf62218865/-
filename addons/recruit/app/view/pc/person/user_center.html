@@ -655,5 +655,18 @@
         })
     })
 
+    $(document).click(function(e){
+        var _con = $('.bg_kuang');   // 设置目标区域
+        if(!_con.is(e.target) && _con.has(e.target).length === 0){
+            $(".nianrili").hide();
+        };
+    });
+
+    //消息切换效果
+    $(".person_msg_titles span").click(function () {
+        $(".person_msg_titles span").removeClass("person_msg_title_check")
+        $(this).addClass("person_msg_title_check")
+    })
+
 </script>
 </html>

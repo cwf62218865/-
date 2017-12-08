@@ -35,15 +35,22 @@
 
 
             <div id="all_msg">
-
-
+                {loop $news $list}
                 <div class="news_list_box">
-                    <a href="#" class="news_list_box_img"><img src="{WL_URL_ARES}images/gongsi.png" /> </a>
+                    <a href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}" class="news_list_box_img">
+                        {if $list['thumb']}
+                        <img src="/attachment/{$list['thumb']}" />
+                        {else}
+                        <img src="{WL_URL_ARES}/images/nopic-107.png" height="160" />
+                        {/if}
+                    </a>
                     <div class="news_list_box_content">
                         <!--news_list_box_title内容长度限制40个汉字，超出...-->
-                        <a href="#" class="news_list_box_title">马克·库班：我为什么要投资 Packback？教育科技的未来在哪里？</a>
+                        <a href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}" class="news_list_box_title">{$list['title']}</a>
 
-                        <span class="news_list_box_msg">马克·库班是NBA球队达拉斯小牛的拥有者。马克·库班是NBA球队达拉斯小牛的拥有者。马克·库班是NBA球队达拉斯小牛的拥有者。</span>
+                        <span class="news_list_box_msg">
+                            {php echo strip_tags($list['title'])}
+                        </span>
 
                         <div class="news_list_box_bottom_msg">
                             <span class="news_list_box_classify ">
@@ -58,10 +65,10 @@
                                     <svg class="icon">
                                         <use xlink:href="#icon-liulanliang"></use>
                                     </svg>
-                                    1453
+                                    {$list['click']}
                                 </span>
                                 <span class="news_list_box_classify" style="margin-left: 25px">
-                                    2017-11-14
+                                    {php echo date('Y-m-d',$list['createtime'])}
                                 </span>
 
                             </div>
@@ -69,76 +76,7 @@
 
                     </div>
                 </div>
-
-
-
-                <div class="news_list_box">
-                    <a href="#" class="news_list_box_img"><img src="{WL_URL_ARES}images/gongsi.png" /> </a>
-                    <div class="news_list_box_content">
-                        <!--news_list_box_title内容长度限制40个汉字，超出...-->
-                        <a href="#" class="news_list_box_title">马克·库班：我为什么要投资 Packback？教育科技的未来在哪里？</a>
-
-                        <span class="news_list_box_msg">马克·库班是NBA球队达拉斯小牛的拥有者。马克·库班是NBA球队达拉斯小牛的拥有者。马克·库班是NBA球队达拉斯小牛的拥有者。</span>
-
-                        <div class="news_list_box_bottom_msg">
-                            <span class="news_list_box_classify">
-                                <svg class="icon">
-                                    <use xlink:href="#icon-shuqian1"></use>
-                                </svg>
-                                <span class="classifys">活动报道</span>
-                            </span>
-                            <div class="right_classify">
-
-                                <span class="news_list_box_classify">
-                                    <svg class="icon">
-                                        <use xlink:href="#icon-liulanliang"></use>
-                                    </svg>
-                                    1453
-                                </span>
-                                <span class="news_list_box_classify" style="margin-left: 25px">
-                                    2017-11-14
-                                </span>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-                <div class="news_list_box">
-                    <a href="#" class="news_list_box_img"><img src="{WL_URL_ARES}images/gongsi.png" /> </a>
-                    <div class="news_list_box_content">
-                        <!--news_list_box_title内容长度限制40个汉字，超出...-->
-                        <a href="#" class="news_list_box_title">马克·库班：我为什么要投资 Packback？教育科技的未来在哪里？</a>
-
-                        <span class="news_list_box_msg">马克·库班是NBA球队达拉斯小牛的拥有者。马克·库班是NBA球队达拉斯小牛的拥有者。马克·库班是NBA球队达拉斯小牛的拥有者。</span>
-
-                        <div class="news_list_box_bottom_msg">
-                            <span class="news_list_box_classify">
-                                <svg class="icon">
-                                    <use xlink:href="#icon-shuqian1"></use>
-                                </svg>
-                                <span class="classifys">网站公告</span>
-                            </span>
-                            <div class="right_classify">
-
-                                <span class="news_list_box_classify">
-                                    <svg class="icon">
-                                        <use xlink:href="#icon-liulanliang"></use>
-                                    </svg>
-                                    1453
-                                </span>
-                                <span class="news_list_box_classify" style="margin-left: 25px">
-                                    2017-11-14
-                                </span>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                {/loop}
 
 
             </div>
@@ -147,7 +85,9 @@
             <div id="one_msg">
 
             </div>
+            <div id="page" class="news_page">
 
+            </div>
         </div>
     </div>
 
@@ -173,7 +113,7 @@
                 </div>
             </a>
             <div style="clear: both"></div>
-            <a href="{php echo app_url('member/index/search_jobs')}" class="seemorejob">查看更多职位>></a>
+            <a href="{php echo app_url('member/index/news')}" class="seemorejob" style="display: inline-block;width: 100%;line-height: 54px;text-align: center;color: #999;">查看更多新闻>></a>
         </div>
 
 
@@ -192,8 +132,24 @@
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/news.js" rel="script"></script>
-
+<script src="{WL_URL_ARES}js/page.js" rel="script"></script>
 <script>
+
+//    $(".news_page").html(pages(1,"{php echo ceil($news_count/4)}"));
+    var kind = "";
+    var page1 = createPage("news_page", "{php echo app_url('member/index/news_page_ajax')}");
+    var pagenum = "{php echo ceil($news_count/6)}";
+    if(pagenum>1){
+        $(".news_page").html(pages(1,"{php echo ceil($news_count/6)}"));
+    }
+    page1.option={
+        page:1,
+        kind:kind
+    };
+    page1.callback_content = function () {
+//        console.log(page1.data.content);return;
+        $("#all_msg").html(page1.data.content);
+    }
     $(".person_msg_titles span").on("click",function(){
         var _this=$(this);
         var dataid=_this.attr("data-id");
@@ -202,14 +158,16 @@
 
         if(dataid){
             $.ajax({
-                url:"{php echo app_url('person/index/msg_deal')}",
+                url:"{php echo app_url('member/index/news_page_ajax')}",
                 type:"post",
                 data:{
-                    msg:dataid
+                    kind:dataid
                 },
                 success:function(data){
                     var data=JSON.parse(data);
                     if(data.status==1){
+                        page1.option.page = 1;
+                        $(".news_page").html(pages(1, Math.ceil(data.others/6)));
                         $("#all_msg").hide();
                         $("#one_msg").show();
                         if(data.content){
