@@ -1037,8 +1037,15 @@
                     }else{
                         $(".person_worksbtn1").show();
                     }
-
+                    $("#company_imgbox .person_worksbtn img").each(function(){
+                        if($(this).width()>$(this).height()){
+                            $(this).css({"width":"auto","height":"100%"})
+                        }else{
+                            $(this).css({"width":"100%","height":"auto"})
+                        }
+                    });
                     window.clearTimeout(timer1);
+
                 }
                 $(".chec_tip1").eq(1).html("");
             }
@@ -1048,6 +1055,9 @@
 
 
     $("#person_worksaddbtn").click(function () {
+        $("#modalbox .one_btn").html('<svg class="icon" aria-hidden="true">'+
+                '<use xlink:href="#icon-shangchuan"></use>'+
+                '</svg>');
         code_url("atlas");
         upload_timer();
     })

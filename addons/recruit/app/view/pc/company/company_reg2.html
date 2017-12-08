@@ -158,6 +158,9 @@
        var boxbum="";
 
         $(".btn1").click(function () {
+            $("#modalbox .one_btn").html('<svg class="icon" aria-hidden="true">'+
+                    '<use xlink:href="#icon-shangchuan"></use>'+
+                    '</svg>');
             boxbum=1;
             $("#licensetip").html("");
             $(".title_content").html("上传营业执照");
@@ -166,6 +169,9 @@
             upload_timer();
         });
        $(".btn2").click(function () {
+           $("#modalbox .one_btn").html('<svg class="icon" aria-hidden="true">'+
+                   '<use xlink:href="#icon-shangchuan"></use>'+
+                   '</svg>');
            boxbum=2;
            $("#licensetip").html("");
            $(".title_content").html("上传身份证正面照");
@@ -175,6 +181,9 @@
 
        });
        $(".btn3").click(function () {
+           $("#modalbox .one_btn").html('<svg class="icon" aria-hidden="true">'+
+                   '<use xlink:href="#icon-shangchuan"></use>'+
+                   '</svg>');
            boxbum=3;
            $("#licensetip").html("");
            $(".title_content").html("上传身份证反面照");
@@ -283,5 +292,7 @@
             $(".idcard2").find(".rzpic").attr("src",data.content);
         }
     }
+
+
 </script>
 </html>

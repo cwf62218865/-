@@ -24,6 +24,11 @@ elseif ($op=="company_center"){
     $resume  = m("company")->getall_resume($_SESSION['uid'],-1,2);
     include wl_template('company/company_center');
 }
+//面试安排
+elseif ($op=="interview_plan"){
+
+    include wl_template('company/interview_plan');
+}
 //发布职位页面
 elseif ($op=="job_manage_release"){
     $jobs = m('jobs')->getall_jobs($_SESSION['uid']);
