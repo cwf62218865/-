@@ -13,7 +13,15 @@ elseif ($op=="job_manage"){
 }
 //企业中心
 elseif ($op=="company_center"){
+
+    $h=date('G');
+    if ($h<11) $current_time = '早上好';
+    else if ($h<13) $current_time = '中午好';
+    else if ($h<17) $current_time = '下午好';
+    else $current_time = '晚上好';
     $jobs = m('jobs')->getall_jobs($_SESSION['uid'],0);
+    $company = m("company")->get_profile($_SESSION['uid']);
+    $resume  = m("company")->getall_resume($_SESSION['uid'],-1,2);
     include wl_template('company/company_center');
 }
 //发布职位页面

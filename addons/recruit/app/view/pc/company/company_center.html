@@ -29,10 +29,10 @@
         <div class="con_list">
             <div class="content_u">
                 <div class="touxiangimg companylogoc">
-                    <img src="{if $resume['headimgurl']}{php echo $resume['headimgurl']}{else}{WL_URL_ARES}images/qiyelogo.png{/if}" class="touxipi"/>
+                    <img src="{if $company['headimgurl']}{php echo $company['headimgurl']}{else}{WL_URL_ARES}images/qiyelogo.png{/if}" class="touxipi"/>
                 </div>
                 <div class="xinximsg">
-                    <label class="wenhou">早上好，{php echo $resume['fullname']}。</label>
+                    <label class="wenhou">{$current_time}，{php echo $company['companyname']}。</label>
 
                     <div class="qiyehang">
                         基本资料：<label class="rezheng">已认证
@@ -52,19 +52,19 @@
                     <div class="xianx"></div>
                 </div>
                 <div class="dateselect1">
-                    <a class="czbtnitem">
+                    <a class="czbtnitem" href="{php echo app_url('company/index/job_manage_release')}">
                         <svg class="icon czico" aria-hidden="true">
                             <use xlink:href="#icon-tianjia"></use>
                         </svg>
                         <p class="brnzi">发布新职位</p>
                     </a>
-                    <a class="czbtnitem">
+                    <a class="czbtnitem" href="{php echo app_url('company/index/job_manage')}">
                         <svg class="icon czico" aria-hidden="true">
                             <use xlink:href="#icon-hangye"></use>
                         </svg>
                         <p class="brnzi">管理在招职位</p>
                     </a>
-                    <a class="czbtnitem">
+                    <a class="czbtnitem" href="{php echo app_url('company/company_profile')}">
                         <svg class="icon czico" aria-hidden="true">
                             <use xlink:href="#icon-xiugai"></use>
                         </svg>
@@ -257,64 +257,30 @@
             <p class="titleri">面试安排</p>
             <div class="wanzhengdu" style="margin-top: 10px;float: left;margin-left: 20px;">
                 <label class="bg_kuang" style="width: 268px;margin-right: 0;margin-bottom: 30px;">
-                    <input class="inputku" type="text" readonly=""  name="endtime" id="endtime" value="近期日程" style="width: 216px;">
+                    <input class="inputku" type="text" readonly=""  name="endtime" id="endtime" value="{php echo date('Y-m-d')}" style="width: 216px;">
                     <svg class="icon riliico" aria-hidden="true">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-rili"></use>
                     </svg>
                 </label>
             </div>
             <div class="listcon">
+                {if $resume}
+                {loop $resume $list}
                 <div class="minashi_list">
                     <p>
-                        <label class="name_sm">张三丰</label>
+                        <label class="name_sm">{$list['fullname']}</label>
                         <a class="viewico" href="#">查看简历</a>
                     </p>
                     <p style="margin-top: 10px;">
-                        <label class="zhiwei_ms">高级Java工程师</label>
+                        <label class="zhiwei_ms">{$list['jobs_name']}</label>
                         <a class="viewico" >打印简历</a>
                     </p>
                 </div>
-                <div class="minashi_list">
-                    <p>
-                        <label class="name_sm">张三丰</label>
-                        <a class="viewico" href="#">查看简历</a>
-                    </p>
-                    <p style="margin-top: 10px;">
-                        <label class="zhiwei_ms">高级Java工程师</label>
-                        <a class="viewico" >打印简历</a>
-                    </p>
-                </div>
-                <div class="minashi_list">
-                    <p>
-                        <label class="name_sm">张三丰</label>
-                        <a class="viewico" href="#">查看简历</a>
-                    </p>
-                    <p style="margin-top: 10px;">
-                        <label class="zhiwei_ms">高级Java工程师</label>
-                        <a class="viewico" >打印简历</a>
-                    </p>
-                </div>
-                <div class="minashi_list">
-                    <p>
-                        <label class="name_sm">张三丰</label>
-                        <a class="viewico" href="#">查看简历</a>
-                    </p>
-                    <p style="margin-top: 10px;">
-                        <label class="zhiwei_ms">高级Java工程师</label>
-                        <a class="viewico" >打印简历</a>
-                    </p>
-                </div>
-                <div class="minashi_list">
-                    <p>
-                        <label class="name_sm">张三丰</label>
-                        <a class="viewico" href="#">查看简历</a>
-                    </p>
-                    <p style="margin-top: 10px;">
-                        <label class="zhiwei_ms">高级Java工程师</label>
-                        <a class="viewico" >打印简历</a>
-                    </p>
-                </div>
+                {/loop}
                 <a class="morejobss color99" href="#">展开更多职位&gt;&gt;</a>
+                {else}
+                <span class="morejobss color99" >暂无面试安排</span>
+                {/if}
             </div>
         </div>
         <div class="part_one">

@@ -39,7 +39,7 @@
                 <label class="fu_icos_right fbpinglun">
                     <svg class="icon" style="margin-right: 10px;width: 18px;height: 18px;">
                         <use xlink:href="#icon-xiugai"></use>
-                    </svg>评论(1342)
+                    </svg>评论({$comment_count})
                 </label>
             </div>
             <div class="news_content">
@@ -70,7 +70,7 @@
                     <label class="fu_icos_right fbpinglun">
                         <svg class="icon" style="margin-right: 10px;width: 18px;height: 18px;">
                             <use xlink:href="#icon-xiugai"></use>
-                        </svg>评论(1342)
+                        </svg>评论({$comment_count})
                     </label>
                 </div>
                 <div class="xiangguan">
@@ -91,7 +91,7 @@
                 <label class="top_con">热门文章</label>
             </div>
             {loop $hot_news $list}
-            <a href="" class="items_list">
+            <a href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}" class="items_list">
                 <div class="news_logo">
                     <img src="/attachment/{$list['thumb']}" style="width: 100%;">
                 </div>
@@ -105,6 +105,8 @@
                 </div>
             </a>
           {/loop}
+            <div style="clear: both"></div>
+            <a href="{php echo app_url('member/index/news')}" class="seemorejob" style="display: inline-block;width: 100%;line-height: 54px;text-align: center;color: #999;">查看更多新闻>></a>
 
             <div class="ads">
                 <div class="ads_con">
@@ -143,7 +145,7 @@
                 <!--未登录状态end-->
                 <!--登录状态-->
                 {else}
-                <label class="user_name">{$user['mobile']}</label>
+                <label class="user_name">{$user['fullname']}</label>
                 {/if}
                 <!--登录状态end-->
             </div>
@@ -151,8 +153,8 @@
             <div class="text_area_pl">
                 <textarea class="shuru_text" placeholder="请输入评论"></textarea>
             </div>
-            <div class="fabupjbtn">发布评价</div>
-            <div class="pinglu_title">最新评论<label class="pl_total">(1234)</label>
+            <div class="fabupjbtn" data-id="{$_GPC['id']}">发布评价</div>
+            <div class="pinglu_title">最新评论<label class="pl_total">({$comment_count})</label>
                 <label class="huanyipi">
                     <svg class="icon" style="">
                         <use xlink:href="#icon-huanyipi"></use>
@@ -160,73 +162,43 @@
                     换一批
                 </label>
             </div>
-            <div class="pinglun_item">
+            <div class="comment_content">
+            {loop $comment $list}
+            {if empty($list['comment_id'])}
+            <div class="pinglun_item" data-id="{$list['id']}">
                 <div class="touxiang_pl">
-                    <img src="{WL_URL_ARES}images/resume_tx1.png" style="width: 100%;">
+                    <img src="{$list['headimgurl']}" style="width: 100%;">
                 </div>
-                <div class="pl_user">赵翔雷</div>
-                <div class="pinglunneir">全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进。
+                <div class="pl_user">{$list['fullname']}</div>
+                <div class="pinglunneir">{$list['content']}
                 </div>
                 <div class="pl_status">
-                    <label class="time_pl">11小时前</label>
+                    <label class="time_pl">{php echo _format_date($list['addtime'])}</label>
                     <label class="ico_plbtn">
                         <span class="jubao_btn">举报</span>
                         <span class="huifu_btn">回复</span>
                     </label>
                 </div>
             </div>
+            {else}
             <div class="pinglun_item">
                 <div class="touxiang_pl">
-                    <img src="{WL_URL_ARES}images/resume_tx1.png" style="width: 100%;">
+                    <img src="{$list['headimgurl']}" style="width: 100%;">
                 </div>
-                <div class="pl_user">赵翔雷</div>
-                <div class="pinglunneir"><label class="beizhu_pl">[回复黄振宇]</label>全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进。</div>
+                <div class="pl_user">{$list['fullname']}</div>
+                <div class="pinglunneir"><label class="beizhu_pl">[回复{$list['pl_user']}]</label>{$list['content']}</div>
                 <div class="pl_status">
-                    <label class="time_pl">11小时前</label>
-                    <label class="ico_plbtn">
-                        <span class="jubao_btn">举报</span>
-                        <span class="huifu_btn">回复</span>
-                    </label>
+                    <label class="time_pl">{php echo _format_date($list['addtime'])}</label>
+                    <!--<label class="ico_plbtn">-->
+                        <!--<span class="jubao_btn">举报</span>-->
+                        <!--<span class="huifu_btn">回复</span>-->
+                    <!--</label>-->
                 </div>
             </div>
-            <div class="pinglun_item">
-                <div class="touxiang_pl">
-                    <img src="{WL_URL_ARES}images/resume_tx1.png" style="width: 100%;">
-                </div>
-                <div class="pl_user">赵翔雷</div>
-                <!--截取3行以内的内容，40字-->
-                <div class="pinglunneir">
-                    <label class="pinglunzi">全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进全党全国各族</label>
-                    <input type="hidden" class="pl_all" value="全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进。">
-                    <!--超出3行需要显示-->
-                    <label class="btn_zk">展开
-                        <svg class="icon" style="">
-                            <use xlink:href="#icon-xiajiantou"></use>
-                        </svg>
-                    </label>
-                </div>
-                <div class="pl_status">
-                    <label class="time_pl">11小时前</label>
-                    <label class="ico_plbtn">
-                        <span class="jubao_btn">举报</span>
-                        <span class="huifu_btn">回复</span>
-                    </label>
-                </div>
+            {/if}
+           {/loop}
             </div>
-            <div class="pinglun_item">
-                <div class="touxiang_pl">
-                    <img src="{WL_URL_ARES}images/resume_tx1.png" style="width: 100%;">
-                </div>
-                <div class="pl_user">赵翔雷</div>
-                <div class="pinglunneir">全党全国各族人民万众一心,开拓进取，把新时代中国特色社会主义推向前进。</div>
-                <div class="pl_status">
-                    <label class="time_pl">11小时前</label>
-                    <label class="ico_plbtn">
-                        <span class="jubao_btn">举报</span>
-                        <span class="huifu_btn">回复</span>
-                    </label>
-                </div>
-            </div>
+
         </div>
     </div>
 
@@ -241,7 +213,29 @@
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/news_detail.js" rel="script"></script>
 <script>
+    var page = 1;
+    var count = parseInt("{$comment_count}");
+    $(".huanyipi").click(function () {
+        if(page*4>=count){
+            page = 0;
+        }
 
+        $.ajax({
+            type:"post",
+            url:"{php echo app_url('member/index/comment_page_ajax')}",
+            data:{
+                page:page,
+                news_id:"{$_GPC['id']}"
+            },
+            success:function (data) {
+                var data = JSON.parse(data);
+                if(data.status==1){
+                    page +=1;
+                    $(".comment_content").html(data.content);
+                }
+            }
+        })
+    })
 </script>
 
 
