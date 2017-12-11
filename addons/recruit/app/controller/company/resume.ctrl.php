@@ -12,6 +12,7 @@ if($op=="index"){
 }
 //我收到的简历
 elseif ($op=="received_resume"){
+    $apply_id = isset($_GPC['apply_id'])?$_GPC['apply_id']:"";
     $company = m("company")->get_profile($_SESSION['uid']);
     $jobs_id = isset($_GPC['jobs_id'])?$_GPC['jobs_id']:"";
     if($_POST['page']){
@@ -19,7 +20,7 @@ elseif ($op=="received_resume"){
     }else{
         $page = 0;
     }
-    $received_resume  = m("company")->getall_resume($_SESSION['uid'],$page,3,$jobs_id);
+    $received_resume  = m("company")->getall_resume($_SESSION['uid'],$page,3,$jobs_id,$apply_id);
 
     if($_POST['page']){
         call_back(1,$received_resume);
@@ -164,11 +165,16 @@ elseif ($op=="collect_resume_page"){
 elseif ($op=="check_resume_deal"){
     $jobs_apply_id = check_pasre($_GPC['jobs_apply_id'],"参数错误");
     $status = check_pasre($_GPC['status'],"参数错误");
-    $r = pdo_update(WL."jobs_apply",array('status'=>$status),array('id'=>$jobs_apply_id,'uid'=>$_SESSION['uid']));
+    $r = pdo_update(WL."jobs_apply",array('status'=>$status,'updatetime'=>time()),array('id'=>$jobs_apply_id,'uid'=>$_SESSION['uid']));
     if($status==2){
         $data['address'] = check_pasre($_GPC['address'],"请输入地址");
         $data['linker'] = check_pasre($_GPC['linker'],"请输入联系人");
         $data['interview_time'] = check_pasre($_GPC['interview_time'],"请输入面试时间");
+        $time_stamp = explode(" ",$data['interview_time']);
+        $time_stamp[0] = str_replace("月","-",str_replace("日","",$time_stamp[0]));
+        $time_stamp = date("Y")."-".$time_stamp[0]." ".$time_stamp[2];
+        $data['time_stamp'] = strtotime($time_stamp);
+
         $jobs_apply = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where id=".$jobs_apply_id);
         $interview = pdo_fetch("select * from ".tablename(WL.'interview')." where jobs_id=".$jobs_apply['jobs_id']." and resume_id=".$jobs_apply['resume_id']);
         if($interview){
@@ -197,7 +203,7 @@ elseif ($op=="check_resume_deal"){
 //拒绝面试
 elseif ($op=="refuse_review"){
     if($_POST['apply_id']){
-        $r = pdo_update(WL."jobs_apply",array('status'=>'-1'),array('id'=>$_POST['apply_id'],'uid'=>$_SESSION['uid']));
+        $r = pdo_update(WL."jobs_apply",array('status'=>'-1','updatetime'=>time()),array('id'=>$_POST['apply_id'],'uid'=>$_SESSION['uid']));
         if($r){
             call_back(1,"提交成功");
         }else{
@@ -209,7 +215,7 @@ elseif ($op=="refuse_review"){
 //求职者投递面试邀请
 elseif ($op=="send_review"){
     $data['apply_id'] = check_pasre($_POST['data_id'],"参数错误");
-    pdo_update(WL."jobs_apply",array('status'=>'3'),array('id'=>$data['apply_id'],'uid'=>$_SESSION['uid']));
+    pdo_update(WL."jobs_apply",array('status'=>'3','updatetime'=>time()),array('id'=>$data['apply_id'],'uid'=>$_SESSION['uid']));
     $jobs_apply = pdo_fetch("select resume_id,jobs_id,puid,uid from ".tablename(WL.'jobs_apply')." where id=".$data['apply_id']);
     $data['resume_id'] =$jobs_apply['resume_id'];
     $data['jobs_id'] =$jobs_apply['jobs_id'];
@@ -247,13 +253,13 @@ elseif ($op=="hr_send_review"){
     $data['resume_id'] = check_pasre($_POST['resume_id'],"参数错误");
     $data['puid'] = check_pasre($_POST['puid'],"参数错误");
     $data['uid'] = $_SESSION['uid'];
-    $jobs_apply = pdo_fetch("select id from ".tablename(WL.'jobs_apply')." where jobs_id=".$data['jobs_id']." and resume_id=".$data['resume_id']);
+    $jobs_apply = m("jobs")->judge_jobs_apply_status($data['jobs_id'], $data['puid']);
     if($jobs_apply){
-        call_back(2,"已邀请面试");
-    }else{
         $data['status'] = 3;
         $data['createtime'] = time();
-        $r = pdo_insert(WL."jobs_apply",$data);
+        $data['updatetime'] = time();
+        $r = m("jobs")->hr_post_resume($data);
+//        $r = pdo_insert(WL."jobs_apply",$data);
         if($r){
             $data1['apply_id'] = pdo_insertid();
             $data1['uid'] = $data['uid'];
@@ -275,6 +281,8 @@ elseif ($op=="hr_send_review"){
             call_back(1,"邀请面试成功");
         }
 
+    }else{
+        call_back(2,"已邀请面试");
     }
 }
 

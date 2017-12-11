@@ -21,7 +21,7 @@ elseif ($op=="company_center"){
     else $current_time = '晚上好';
     $jobs = m('jobs')->getall_jobs($_SESSION['uid'],0);
     $company = m("company")->get_profile($_SESSION['uid']);
-    $resume  = m("company")->getall_resume($_SESSION['uid'],-1,2);
+    $resume  = m("company")->getall_resume($_SESSION['uid'],-1,2,"","",time());
     $msg = m("resume")->resume_apply($_SESSION['uid'],-1);
     $new_msg = "";
     foreach ($msg as $list){
@@ -39,6 +39,7 @@ elseif ($op=="company_center"){
         $new_arr[$i]['content'] = $list;
         $i++;
     }
+
     include wl_template('company/company_center');
 }
 //发布职位页面
@@ -62,6 +63,7 @@ elseif ($op=="step3"){
 //hr工作页面
 elseif($op=="manage_resume"){
     $nav = isset($_GPC['nav'])?$_GPC['nav']:0;
+
     $resume  = m("company")->getall_resume($_SESSION['uid'],-1,2);
     $resume1 =m("resume")->getall_resume();
 
@@ -132,6 +134,11 @@ elseif($op=="company_msg"){
     include wl_template('company/company_msg');
 }
 
+elseif ($op=="interview_plan"){
+    $resume  = m("company")->getall_resume($_SESSION['uid'],-1,2);
+//    var_dump($resume);exit();
+    include wl_template('company/interview_plan');
+}
 
 /****************************************ajax请求处理******************************************/
 //注册第二步：营业执照保存

@@ -16,8 +16,8 @@ if($op=="index"){
     $news = pdo_fetchall("select * from ".tablename("article_news")." order by createtime desc limit 0,3");
     foreach ($news as $list){
         $list['content'] = strip_tags($list['content']);
-        if(mb_strlen($list['content'])>44){
-            $list['content'] = strip_tags(str_replace(" ","",mb_substr($list['content'],0,44,"UTF8")."..."));
+        if(mb_strlen($list['content'])>30){
+            $list['content'] = strip_tags(str_replace(" ","",mb_substr($list['content'],0,30,"UTF8")."..."));
         }
         $arr_news[] = $list;
     }
@@ -63,12 +63,16 @@ elseif ($op=="register"){
 elseif($op=="jobs_detail"){
 
     if($_GPC['jobs_id']){
-        $jobs = pdo_fetch("select * from ".tablename(WL."jobs")." where id=".$_GPC['jobs_id']);
+        $jobs = m("jobs")->get_jobs($_GPC['jobs_id']);
+        $company = m("company")->get_profile($jobs['uid']);
+
+
         $jobs_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."jobs")." where open=1 and uid=".$jobs['uid']);
         $comment_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where uid=".$jobs['uid']);
         $current_comment_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."comment")." where jobs_id=".$_GPC['jobs_id']." and uid=".$jobs['uid']);
-        $company = pdo_fetch("select * from ".tablename(WL."company_profile")." where uid=".$jobs['uid']);
-        $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where jobs_id=".$_GPC['jobs_id']." and puid=".$_SESSION['uid']);
+
+//        $jobs_apply = pdo_fetch("select id from ".tablename(WL."jobs_apply")." where jobs_id=".$_GPC['jobs_id']." and puid=".$_SESSION['uid']);
+        $jobs_apply = m("jobs")->judge_jobs_apply_status($_GPC['jobs_id'],$_SESSION['uid']);
         $report = pdo_fetch("select id from ".tablename(WL."report")." where jobs_id=".$_GPC['jobs_id']." and report_uid=".$_SESSION['uid']);
         $last_login_time = m("member")->last_login($jobs['uid']);
         $collect_status = pdo_fetch("select id from ".tablename(WL."collect_jobs")." where uid=".$_SESSION['uid']." and jobs_id=".$_GPC['jobs_id']);
@@ -1077,6 +1081,7 @@ elseif ($op=="jobs_datail_comment_page"){
 }
 //下载文件
 elseif ($op=="download"){
+
     downfile($_GPC['filename'].".pdf");echo "<script>history.go(-1);</script>";exit();
 }
 elseif ($op=="companys_slide"){
@@ -1264,6 +1269,13 @@ elseif($op=="baidu_callback"){
     call_back(1,"ok");
 }
 
+elseif($op=="company_center"){
+    if($_COOKIE['ab13___session'] && $_GPC['uid']){
+        $_SESSION['uid'] = $_GPC['uid'];
+        $_SESSION['utype'] = 2;
+        header("location:".app_url('company/index/job_manage',array('uid'=>$_GPC['uid'])));exit();
+    }
+}
 
 if(empty($_SESSION['mid'])){
     header("location:".app_url("member/index/index"));

@@ -131,13 +131,12 @@ class person{
                 $endYesterday=mktime(0,0,0,date('m'),date('d'),date('Y'))-1;
                 $beginTomday=mktime(0,0,0,date('m'),date('d')+1,date('Y'));
                 $endTomday=mktime(0,0,0,date('m'),date('d')+2,date('Y'))-1;
-//echo $beginTomday."<br/>".$endTomday;exit();
                 if($li['time_stamp']>$beginToday && $li['time_stamp']<$endToday){
-                    $li['interview_time'] = "今天 ".date("h:i",$li['time_stamp']);
+                    $li['interview_time'] = "今天 ".date("H:i",$li['time_stamp']);
                 }elseif ($li['interview_time']>$beginYesterday && $li['time_stamp']<$endYesterday){
-                    $li['interview_time'] = "昨天 ".date("h:i",$li['time_stamp']);
+                    $li['interview_time'] = "昨天 ".date("H:i",$li['time_stamp']);
                 }elseif ($li['time_stamp']>$beginTomday && $li['time_stamp']<$endTomday){
-                    $li['interview_time'] = "明天 ".date("h:i",$li['time_stamp']);
+                    $li['interview_time'] = "明天 ".date("H:i",$li['time_stamp']);
                 }
 
                 $interviews['list'][] = $li;

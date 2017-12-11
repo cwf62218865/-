@@ -9,7 +9,7 @@
 /*
  * 发布职位数据
  */
-
+var_dump($_COOKIE);exit();
 use Qiniu\Auth;
 use Qiniu\Storage\UploadManager;
 if($op=="jobs") {

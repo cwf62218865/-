@@ -50,81 +50,21 @@
                     </label>
                 </div>
                 <div class="content_lister">
+                    {loop $resume $list}
                     <div class="item_liit">
                         <div class="mstoux">
-                            <img src="/addons/recruit/app/resource/file/2017-12-08/5a29e737713ba.jpg" class="touxian">
+                            <img src="{$list['headimgurl']}" class="touxian">
                         </div>
-                        <div class="namere center">张翠山</div>
-                        <div class="timers center">上午8:00</div>
-                        <div class="zhiweiname center">高级Java工程师</div>
+                        <div class="namere center">{$list['fullname']}</div>
+                        <div class="timers center">{$list['interview_time']}</div>
+                        <div class="zhiweiname center">{$list['jobs_name']}</div>
                         <div class="btns_cz">
-                            <a class="item_btn" href="#">查看简历</a>
+                            <a class="item_btn" href="{php echo app_url('resume/index',array('uid'=>$list['puid']))}">查看简历</a>
                             <div class="item_btn">打印简历</div>
                         </div>
                     </div>
-                    <div class="item_liit">
-                        <div class="mstoux">
-                            <img src="/addons/recruit/app/resource/file/2017-12-08/5a29e737713ba.jpg" class="touxian">
-                        </div>
-                        <div class="namere center">张翠山</div>
-                        <div class="timers center">上午8:00</div>
-                        <div class="zhiweiname center">高级Java工程师</div>
-                        <div class="btns_cz">
-                            <a class="item_btn" href="#">查看简历</a>
-                            <div class="item_btn">打印简历</div>
-                        </div>
-                    </div>
-                    <div class="item_liit">
-                        <div class="mstoux">
-                            <img src="/addons/recruit/app/resource/file/2017-12-08/5a29e737713ba.jpg" class="touxian">
-                        </div>
-                        <div class="namere center">张翠山</div>
-                        <div class="timers center">上午8:00</div>
-                        <div class="zhiweiname center">高级Java工程师</div>
-                        <div class="btns_cz">
-                            <a class="item_btn" href="#">查看简历</a>
-                            <div class="item_btn">打印简历</div>
-                        </div>
-                    </div>
-                    <div class="item_liit">
-                        <div class="mstoux">
-                            <img src="/addons/recruit/app/resource/file/2017-12-08/5a29e737713ba.jpg" class="touxian">
-                        </div>
-                        <div class="namere center">张翠山</div>
-                        <div class="timers center">上午8:00</div>
-                        <div class="zhiweiname center">高级Java工程师</div>
-                        <div class="btns_cz">
-                            <a class="item_btn" href="#">查看简历</a>
-                            <div class="item_btn">打印简历</div>
-                        </div>
-                    </div>
-                    <div class="item_liit">
-                        <div class="mstoux">
-                            <img src="/addons/recruit/app/resource/file/2017-12-08/5a29e737713ba.jpg" class="touxian">
-                        </div>
-                        <div class="namere center">张翠山</div>
-                        <div class="timers center">上午8:00</div>
-                        <div class="zhiweiname center">高级Java工程师</div>
-                        <div class="btns_cz">
-                            <a class="item_btn" href="#">查看简历</a>
-                            <div class="item_btn">打印简历</div>
-                        </div>
-                    </div>
-                    <div class="item_liit">
-                        <div class="mstoux">
-                            <img src="/addons/recruit/app/resource/file/2017-12-08/5a29e737713ba.jpg" class="touxian">
-                        </div>
-                        <div class="namere center">张翠山</div>
-                        <div class="timers center">上午8:00</div>
-                        <div class="zhiweiname center">高级Java工程师</div>
-                        <div class="btns_cz">
-                            <a class="item_btn" href="#">查看简历</a>
-                            <div class="item_btn">打印简历</div>
-                        </div>
-                    </div>
-                    <div class="morejob" style="margin-left: 180px;margin-top: 10px;">查看更多面试安排&gt;&gt;</div>
+                    {/loop}
                 </div>
-
 
             </div>
 
