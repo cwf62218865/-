@@ -174,7 +174,7 @@
             {loop $comment $list}
 
             <div class="pinglun_item" data-id="{$list['id']}">
-                {if empty($list['comment_id'])}
+
                 <div class="touxiang_pl">
                     <img src="{$list['headimgurl']}" style="width: 100%;">
                 </div>
@@ -188,16 +188,16 @@
                         <span class="huifu_btn">回复</span>
                     </label>
                 </div>
-                {else}
-                <div class="pinglunneir"><label class="beizhu_pl">{$list['fullname']}回复:</label>{$list['content']}</div>
+                {loop $list['son_comment'] $li}
+                <div class="pinglunneir"><label class="beizhu_pl">{$li['pl_user']}回复:</label>{$li['content']}</div>
                 <div class="pl_status">
-                    <label class="time_pler">{php echo _format_date($list['addtime'])}</label>
+                    <label class="time_pler">{php echo _format_date($li['addtime'])}</label>
                     <label class="ico_plbtn">
                         <span class="jubao_btn">举报</span>
                         <!--<span class="huifu_btn">回复</span>-->
                     </label>
                 </div>
-                {/if}
+                {/loop}
             </div>
 
 

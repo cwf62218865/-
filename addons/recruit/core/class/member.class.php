@@ -68,9 +68,8 @@ class member{
     /*
      * 评论新闻
      */
-    public function get_news_comment($id,$page=0){
-        $limit = " limit ".($page*4).",4";
-        $comment = pdo_fetchall("select * from ".tablename(WL."evaluate")." where news_id=".$id.$limit);
+    public function get_news_comment($id){
+        $comment = pdo_fetchall("select * from ".tablename(WL."evaluate")." where comment_id=0 and news_id=".$id);
         $comments ="";
         foreach ($comment as $list){
             if($list['utype']==1){
@@ -82,20 +81,22 @@ class member{
                 $list['headimgurl'] = $company['headimgurl'];
                 $list['fullname'] = $company['companyname'];
             }
-
-            if($list['comment_id']){
-                $pre_comment = pdo_fetch("select uid,utype from ".tablename(WL."evaluate")." where id=".$list['comment_id']);
-
-                if($pre_comment['utype']==1){
-                    $resume = pdo_fetch("select fullname from ".tablename(WL."resume")." where uid=".$pre_comment['uid']);
-                    $list['pl_user'] = $resume['fullname'];
-                }elseif ($pre_comment['utype']==2){
-                    $company = pdo_fetch("select companyname from ".tablename(WL."company_profile")." where uid=".$pre_comment['uid']);
-                    $list['pl_user'] = $company['companyname'];
+            $list['son_comment'] = "";
+            $pre_comment = pdo_fetchall("select * from ".tablename(WL."evaluate")." where comment_id=".$list['id']." and comment_id=".$list['id']);
+            foreach ($pre_comment as $li){
+                if($li['utype']==1){
+                    $resume = pdo_fetch("select fullname from ".tablename(WL."resume")." where uid=".$li['uid']);
+                    $li['pl_user'] = $resume['fullname'];
+                }elseif ($li['utype']==2){
+                    $company = pdo_fetch("select companyname from ".tablename(WL."company_profile")." where uid=".$li['uid']);
+                    $li['pl_user'] = $company['companyname'];
                 }
+                $list['son_comment'][] = $li;
             }
+
             $comments[] = $list;
         }
+//        var_dump($comments);exit();
         return $comments;
     }
 
