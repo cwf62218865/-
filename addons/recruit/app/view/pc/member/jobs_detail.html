@@ -30,7 +30,7 @@
                 <div class="width730" style="margin-left: 70px">
                     <div  class="refresh" style="margin-top: 70px">刷新于：{php echo date('Y-m-d',$jobs['updatetime'])}</div>
                     <div  style="margin-top: 10px">
-                        <span class="font34 color333" style="vertical-align: middle;">{php echo $jobs['jobs_name']}</span>
+                        <span class="font34 color333 nowrap" style="vertical-align: middle;max-width: 480px;display: inline-block;">{php echo $jobs['jobs_name']}</span>
 
                         {if $_SESSION['utype']!=2}
                         <span id="report" class="{if $report}collections1{else}collections{/if}">
@@ -397,6 +397,23 @@
     </div>
     <!--举报-->
 
+
+    <!--创建成功弹框-->
+    <div class="modalbox creatsucessbox"  style="display: none;">
+        <div class="modal" style="width: 430px;margin-left: -215px;height: auto">
+            <p class="title_content">提示</p>
+
+            <div class="bdresure textalign" style="width: 340px;">
+                为保证您投递成功率，完善度不足60%的简历无法投递
+                <p class="tiaozhuanbz"><label class="seconds">5</label>s后跳转至简历管理中心</p>
+            </div>
+            <div class="surebtns" style="margin-left: 150px;margin-bottom: 30px;margin-top: 20px;">
+                <a class="surebtn denglu" style="margin-left: 15px" href="/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&">前往完善</a>
+            </div>
+        </div>
+    </div>
+    <!--创建成功弹框end-->
+
 </div>
 
 
@@ -431,6 +448,22 @@ $(function () {
                     hint("error",data.content);
                }else if(data.status==3){
                    $("#small_modalbox").show();
+                   var secons=4;
+                   var timer=setInterval(function () {
+                       $(".seconds").html(secons);
+                       secons--;
+                       if(secons==0){
+                           clearInterval(timer);
+                           //前往完善简历的链接
+                           window.location.href="/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&";
+                       }
+
+                       $(".denglu").click(function () {
+                           clearInterval(timer);
+                           // 前往完善简历的链接
+                           window.location.href="/app/index.php?c=site&a=entry&m=recruit&do=person&ac=resume&op=manage_resume&";
+                       })
+                   },1000);
                }
            }
        })
@@ -476,7 +509,8 @@ $(function () {
                 }else if(data.status==3){
                     $("#small_modalbox").show();
                 }else{
-                    hint("error",data.content);
+
+                    $(".creatsucessbox").show()
                 }
             }
         })

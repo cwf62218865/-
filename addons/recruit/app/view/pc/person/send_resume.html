@@ -13,9 +13,7 @@
         .status1, .status2{
             margin-bottom: 12px;
         }
-        .list_item{
-            height: 320px;
-        }
+
     </style>
 </head>
 <body bgcolor="#f4f4f4">
@@ -121,7 +119,7 @@
                 <div class="list_item"  data-id="{php echo $list['id']}">
                     <div class="item_con">
                         <div class="hang1">
-                            <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['jobs_id']))}">{php echo $list['jobs_name']}</a>
+                            <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{php echo $list['jobs_name']}</a>
                             <a class="salary">
                                 {if $list['wage_min']>0 && $list['wage_max']>0}
                                 {php echo $list['wage_min']}-{php echo $list['wage_max']}k

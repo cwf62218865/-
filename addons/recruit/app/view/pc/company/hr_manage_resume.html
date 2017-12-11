@@ -69,29 +69,9 @@
                 {if $list['status']==3}
                 <div class="list_item">
                     <div class="item_con">
-                        <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">
+                        <a class="touxiang_pic"  href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">
                             <img src="{php echo $list['headimgurl']}" style="width: 100px;height: 100px;"/>
                         </a>
-                        <!--<div class="basic_massage" style="height: auto;">-->
-                            <!--<div class="bm_hang1">-->
-                                <!--<span class="name nowrap">{php echo $list['fullname']}</span>-->
-                                <!--<a class="view_i" href="{php echo app_url('resume/index',array('uid'=>$list['uid']))}">查看</a>-->
-                                <!--<span class="hope_job">{php echo $list['jobs_name']}</span>-->
-                            <!--</div>-->
-                            <!--<div class="bm_hang2"  style="height: 22px;">-->
-                                <!--<span class="basic_xx">{if $list['sex']==2}女生{else}男生{/if}</span>-->
-                                <!--<span class="basic_xx">{php echo ceil((time()-$list['birthday'])/31536000)}岁</span>-->
-                                <!--<span class="basic_xx" style="margin-left: 16px;">{php echo $list['education']}</span>-->
-                            <!--</div>-->
-                            <!--<div class="bm_hang3"  style="height: 22px;">-->
-                                <!--<span class="basic_xx">{php echo $list['school_name']}</span>-->
-                                <!--<span class="basic_xx"  style="float: right;">{php echo $list['major']}</span>-->
-                            <!--</div>-->
-                            <!--<div class="bm_hang4"  style="height: 22px;">-->
-                                <!--<span class="basic_xx"><span>{php echo $list['experience']}</span></span>-->
-                                <!--<span class="basic_xx" style="float: right;">{php echo $list['telphone']}</span>-->
-                            <!--</div>-->
-                        <!--</div>-->
                         <div class="basic_massage">
                             <div class="bm_hang1">
                                 <a class="name linkhover" href="{php echo app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))}">{php echo $list['fullname']}</a>
@@ -801,6 +781,7 @@
             data:{
                 jobs_id:job_id,
                 resume_id:resume_id,
+                year:new Date().getFullYear(),
                 puid:puid,
                 jobs_name:jobs_name,
                 reviewtime:reviewtime,

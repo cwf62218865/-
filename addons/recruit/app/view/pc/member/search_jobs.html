@@ -219,7 +219,7 @@
                 <div class="list_item">
                     <div class="item_con">
                         <div class="hang1">
-                            <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
+                            <a class="jobname nowrap linkhover" target="_blank" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
                             <label class="salary nowrap">
                                 {if $list['wage_min']>0 && $list['wage_max']>0}
                                     {$list['wage_min']}-{$list['wage_max']}K
@@ -248,7 +248,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="review_statas bordertop" data-id="{$list['uid']}" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" style="border-top: 1px solid #eeeeee">
+                    <a class="review_statas bordertop" target="_blank" data-id="{$list['uid']}" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" style="border-top: 1px solid #eeeeee">
                         查看详情
                     </a>
                 </div>
