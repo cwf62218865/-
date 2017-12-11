@@ -45,8 +45,10 @@ elseif ($op=="user_center"){
     $guess_jobs = m("jobs")->getall_jobs_page($data,4);
     $guess_jobs = $guess_jobs['more'];
     $companys = m("company")->company_list();
-    $interviews = m("person")->apply_list();
-//    var_dump($interviews);exit();
+    $data = "";
+    $data['month'] = date("m");
+    $data['year'] = date("Y");
+    $interviews = m("person")->apply_list($data);
 
     $msg = m("resume")->jobs_apply($_SESSION['uid'],-1,0);
     $new_msg = "";
@@ -76,6 +78,7 @@ elseif ($op=="select_course"){
     $data['month']=$_POST['month'];
     $data['page'] = $_POST['page'];
     $interviews = m("person")->apply_list($data);
+//    var_dump($interviews);exit();
     if($interviews['list']){
 
         $html = "";
@@ -146,12 +149,15 @@ elseif ($op=="resume_center"){
 /****************************************ajax请求处理******************************************/
 //消息请求
 elseif ($op=="msg_deal"){
-    var_dump($_POST);exit();
-    if($_POST['msg']=="投递申请"){
-//        $msg = m("resume")->jobs_apply($_SESSION['uid'],-1,0);
+//echo 11;exit();
+    if($_POST['msg']=="面试消息"){
+
+        $jobs = m("resume")->jobs_apply($_SESSION['uid'],-1,0);
+
 //        $jobs = m("resume")->jobs_apply($_SESSION['uid'],-1,1);
         $msg = "";
         foreach ($jobs as $list){
+
             $createtime = date("Y-m-d h:i",$list['createtime']);
             if($list['status']==-1){
                 $status = "不合适";
@@ -162,7 +168,10 @@ elseif ($op=="msg_deal"){
             }elseif($list['status']==3){
                 $status = "邀请面试";
             }
-            $msg .= " <div class=\"day_msgbox\">
+
+            if($list['direction']==2){
+
+                $msg .= " <div class=\"day_msgbox\">
                         <div class=\"system_msg_title\">
                             <svg class=\"icon\" aria-hidden=\"true\">
                                 <use xlink:href=\"#icon-qiuzhiyixiang\"></use>
@@ -182,6 +191,27 @@ elseif ($op=="msg_deal"){
 
                         <a href='".app_url('person/index/send_resume')."' class=\"see_system_msg see_day_msg\" >查看详情>></a>
                     </div>";
+            }else{
+                $msg .= " <div class=\"day_msgbox\">
+                        <div class=\"system_msg_title\">
+                            <svg class=\"icon\" aria-hidden=\"true\">
+                                <use xlink:href=\"#icon-gongzuojingli\"></use>
+                            </svg>
+                            <span class=\"color999\">面试邀请</span>
+                            <span class=\"colorbbb\">{$createtime}</span>
+                        </div>
+
+                        <div class=\"delivery_left\">
+                        <span class=\"delivery_logo\">
+                            <img src=\"{$list['headimgurl']}\">
+                        </span>
+                            <span>{$list['jobs_name']}</span><br>
+                            <span style=\"display: inline-block;margin-top: 22px\">{$list['companyname']}</span>
+                        </div>
+                        <a href='".app_url('person/index/send_resume')."' class=\"see_system_msg see_day_msg\" >查看详情>></a>
+                    </div>";
+            }
+
         }
 
         call_back(1,$msg);
@@ -190,7 +220,6 @@ elseif ($op=="msg_deal"){
         $msg = "";
         foreach ($jobs as $list){
             $createtime = date("Y-m-d h:i",$list['createtime']);
-
             $msg .= " <div class=\"day_msgbox\">
                         <div class=\"system_msg_title\">
                             <svg class=\"icon\" aria-hidden=\"true\">
@@ -210,6 +239,7 @@ elseif ($op=="msg_deal"){
 
                         <a href='".app_url('person/index/send_resume')."' class=\"see_system_msg see_day_msg\" >查看详情>></a>
                     </div>";
+
         }
 
         call_back(1,$msg);
@@ -247,7 +277,8 @@ elseif ($op=="msg_deal"){
     }elseif ($_POST['msg']=="评论回复"){
 
     }
-    var_dump($_POST);exit();
+
+    call_back(2,"");
 }
 elseif($op=="delete_apply"){
     if($_POST['dataid']){
@@ -316,7 +347,6 @@ elseif ($op=="save_evaluate"){
 
 //投递简历
 elseif ($op=="post_resume"){
-//    var_dump($_POST);exit();
     $data['jobs_id'] = check_pasre($_POST['data_id'],"参数错误");
     $data['uid'] = check_pasre($_POST['uid'],"参数错误");
     $data['resume_id'] = $resume['id'];
@@ -324,26 +354,31 @@ elseif ($op=="post_resume"){
     $data['direction'] = 2;
     $data['offer'] = 1;
     $data['createtime'] = time();
-
-    $jobs_apply = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where jobs_id=".$data['jobs_id']." and resume_id=".$data['resume_id']);
+    $data['updatetime'] = time();
+//    echo time()-60*60*24*7;exit();
+//    var_dump($data);exit();
+//    $jobs_apply = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where jobs_id=".$data['jobs_id']." and resume_id=".$data['resume_id']);
+//    echo $jobs_apply['id'];exit();
     if(empty($_SESSION['uid'])){
         call_back(2,"请先登录账号");
     }
-    if($jobs_apply){
-        call_back(2,"已存在");
-    }else{
-        if($resume_integrity>70){
-            $r = insert_table($data,WL."jobs_apply");
-            if($r){
-                call_back(1,"ok");
-            }else{
-                call_back(2,"no");
-            }
-        }else{
-            call_back(2,"请完善您的简历");
-        }
 
-    }
+    m('jobs')->user_post_resume($data);
+//    if($jobs_apply){
+//        call_back(2,"已存在");
+//    }else{
+//        if($resume_integrity>70){
+//            $data['updatetime'] = time();
+//            $r = insert_table($data,WL."jobs_apply");
+//            if($r){
+//                call_back(1,"投递成功");
+//            }else{
+//                call_back(2,"投递失败");
+//            }
+//        }else{
+//            call_back(2,"请完善您的简历");
+//        }
+//    }
 }
 
 

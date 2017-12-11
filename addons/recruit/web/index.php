@@ -12,7 +12,7 @@ if(empty($controller) || empty($action)) {
 	$_GPC['do'] = $controller = 'test';
 //	$_GPC['ac'] = $action = 'index';
 }
-
+$_COOKIE['recruit___uniacid'] = 1;
 $auth = wl_syssetting_read('auth');
 !defined('WL_EDITION') && define('WL_EDITION', $auth['family']);
 $getlistFrames = 'get'.$controller.'Frames';

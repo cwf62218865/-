@@ -113,9 +113,11 @@
                     <p  class="tongjititle">企业最近登录</p>
                 </div>
                 <div class="company_icos">
-                    <span class="com_ico fenxiang" style="position: relative;"><svg class="icon fexico">
+                    <span class="com_ico fenxiang" style="position: relative;">
+                        <svg class="icon fexico">
                             <use xlink:href="#icon-fenxiang"></use>
                         </svg>分享
+                        <span class="sharehoverbox"></span>
                         <div class="fenxiang_con bdsharebuttonbox share">
                             <a class="icons iconb1 bds_sqq" href="#" data-cmd="sqq" title="分享到QQ好友"></a>
                             <a class="icons iconb2 bds_weixin" href="#" data-cmd="weixin" title="分享到微信"></a>
@@ -619,6 +621,8 @@
                 }
             })
         })
+
+        $(".showoehideall").click()
     })
 
     {if $_GET['zaizhao']}

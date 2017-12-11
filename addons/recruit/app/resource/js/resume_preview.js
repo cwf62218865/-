@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#download_resume").click(function(){
-        var uid = "{php echo $_GPC['uid']}";
+        var uid = $(".header").attr("data-url");
         $.ajax({
             type:"post",
             url:"http://www.yingjieseng.com/app/pdf_enter.php",
@@ -9,7 +9,7 @@ $(document).ready(function () {
             },
             success:function (data) {
 //                    window.location.href = "http://ios.huiliewang.com/app/"+data+".pdf";
-                window.location.href = "{php echo app_url('member/index/download')}filename="+data;
+                window.location.href = "/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=download&filename="+data;
             }
         })
     })

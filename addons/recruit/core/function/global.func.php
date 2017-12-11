@@ -69,9 +69,9 @@ function resume_integrity(){
 	if($resume['telphone']) $score += 5;
 	if($resume['email']) $score += 5;
 	if($resume['evaluation']) $score += 5;
-	if($resume['work_experience']) $score += 20;
+	if($resume['work_experience']) $score += 10;
 	if($resume['edu_experience']) $score += 20;
-	if($resume['personal_works']) $score += 10;
+	if($resume['personal_works']) $score += 5;
 	if($resume['city']) $score += 5;
 	if($resume['city_erea']) $score += 5;
 	if($resume['address']) $score += 5;
@@ -80,8 +80,13 @@ function resume_integrity(){
 	if($resume['origin_place']) $score += 5;
 	if($resume['introduce']) $score += 5;
 	if($resume['work_status']) $score += 5;
-	if($resume['person_video']) $score += 10;
-	if($resume['honor']) $score += 10;
+	if($resume['person_video']) $score += 5;
+	if($resume['honor']) $score += 5;
+	if($resume['hope_job']) $score += 5;
+	if($resume['trade']) $score += 5;
+	if($resume['salary']) $score += 5;
+	if($resume['hope_place']) $score += 5;
+	if($resume['nature']) $score += 5;
 	return intval($score/160*100);
 //	echo $score/160;exit();
 //	echo $score;exit();

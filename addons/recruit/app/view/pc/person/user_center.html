@@ -214,7 +214,7 @@
                                     <use xlink:href="#icon-qiuzhiyixiang"></use>
                                 </svg>
                                 <span class="color999">投递申请</span>
-                                <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
+                                <span class="colorbbb">{php echo date('Y-m-d H:i',$li['createtime'])}</span>
                             </div>
 
                             <div class="delivery_left">
@@ -250,7 +250,7 @@
                                     <use xlink:href="#icon-gongzuojingli"></use>
                                 </svg>
                                 <span class="color999">面试邀请</span>
-                                <span class="colorbbb">{php echo date('Y-m-d h:i',$li['createtime'])}</span>
+                                <span class="colorbbb">{php echo date('Y-m-d H:i',$li['createtime'])}</span>
                             </div>
 
                             <div class="delivery_left">
@@ -369,8 +369,8 @@
                     </div>
 
                     <div class="erwei_codebox">
-                        <span class="erwei_img">
-                            <img src="{WL_URL_ARES}images/erweima.png">
+                        <span class="erwei_img" id="erwei_img">
+
                         </span>
                         <div style="font-size: 12px;color: #666;margin-top: 6px;padding-bottom: 30px">扫描二维码，将简历发送至手机</div>
                     </div>
@@ -562,8 +562,15 @@
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.qrcode.min.js" rel="script"></script>
 
 <script>
+    $("#erwei_img").qrcode({
+        width: 100, //宽度
+        height:100, //高度
+        text: "http://www.yingjieseng.com/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=download&filename="+"{$_SESSION['uid']}" //任意内容
+    });
+
 
     var option = {
         year:"",
@@ -596,7 +603,6 @@
     //选择招聘日期发送ajax
     $(".yearn").click(function () {
         $(".nianrili").hide();
-        $(".nianrili").css("display","none");
         var month=$(this).attr("data-id");
         var year=$(".niann").html();
         $(".inputku").val(year+"-"+month);
@@ -685,24 +691,27 @@
         $(".person_msg_titles span").removeClass("person_msg_title_check");
         $(this).addClass("person_msg_title_check");
         if($(this).attr("data-id")){
-            $("#one_msg").show();
-            $("#all_msg").hide();
+            $("#one_msg").css("display","block");
+            $("#all_msg").css("display","none");
             $.ajax({
                 type:"post",
                 url:"{php echo app_url('person/index/msg_deal')}",
                 data:{
-                    kind:$(this).attr("data-id")
+                    msg:$(this).attr("data-id")
                 },
                 success:function (data) {
                     var data = JSON.parse(data);
                     if(data.status==1){
-
+                        $("#one_msg").html(data.content);
+                    }else{
+                        $("#one_msg").html("");
+                        no_data("#one_msg","没有消息","当前板块没有消息");
                     }
                 }
             })
         }else{
-            $("#one_msg").hide();
-            $("#all_msg").show();
+            $("#one_msg").css("display","none");
+            $("#all_msg").css("display","block");
         }
 
     })

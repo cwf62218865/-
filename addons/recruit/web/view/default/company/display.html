@@ -24,7 +24,7 @@
 			{loop $list $li}
 				<tr>
 					<td> {php echo $li['id']}</td>
-					<td><a href="{php echo app_url('company/index/job_manage',array('uid'=>$li['uid']))}" target="_blank">{php echo $li['companyname']}</a></td>
+					<td><a href="{php echo app_url('member/index/company_center',array('uid'=>$li['uid']))}" target="_blank">{php echo $li['companyname']}</a></td>
 					<td><img src="{php echo $li['license']}" alt="" width="107" height="107"></td>
 					<td><img src="{php echo $li['idcard1']}" alt="" width="107" height="107"></td>
 					<td><img src="{php echo $li['idcard2']}" alt="" width="107" height="107"></td>
