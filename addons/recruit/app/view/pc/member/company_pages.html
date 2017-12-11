@@ -189,7 +189,7 @@
                             </div>
                         </div>
                         <!--面试评价-->
-                    {if ceil($company_count['count'])}
+                    {if count($comment_jobs)}
                         <div class="evaluate" style="margin-top: 60px">
                             <div id="evaluate_list"></div>
                             <div class="company_title relative">
@@ -280,7 +280,7 @@
                                         <svg class="icon zan1" aria-hidden="true">
                                             <use  xlink:href="#icon-zan1"></use>
                                         </svg>
-                                        <span class="zannum">({php echo count(array_filter(explode(",",$list['zan'])))})</span>
+                                            (<span class="zannum">{php echo count(array_filter(explode(",",$list['zan'])))}</span>)
                                     </div>
                                     {if $list['hr_reply']}
                                     <div class="evaluate_huifu">

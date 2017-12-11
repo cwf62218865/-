@@ -34,7 +34,7 @@ $(function () {
         var _this=$(this).closest(".pinglun_item");
         var html='<div class="text_area_pl1"><textarea class="shuru_text1" placeholder="请输入评论"></textarea></div><div class="fabupjbtn1">提交回复</div>';
         if(_this.find(".text_area_pl1").length==0){
-            _this.append(html);
+            _this.find(".pl_status").eq(0).after(html);
             $(".fabupjbtn1").attr("data-commentid",id);
             $(".fabupjbtn1").attr("data-id",$(".fabupjbtn").attr("data-id"));
             $(".fabupjbtn1").attr("data-pl_user",pl_user);
@@ -124,24 +124,16 @@ $(function () {
                     if(data){
                         var data=JSON.parse(data);
                         if(data.status==1){
-                            html='<div class="pinglun_item">\n' +
-                                '                <div class="touxiang_pl">\n' +
-                                '                    <img src="'+headimgurl+'" style="width: 100%;">\n' +
-                                '                </div>\n' +
-                                '                <div class="pl_user">'+fullname+'</div>\n' +
-                                '                <div class="pinglunneir"><label class="beizhu_pl">[回复'+pl_user+']</label>'+plhf+'</div>\n' +
+                            html='              <div class="pinglunneir"><label class="beizhu_pl">我回复:</label>'+plhf+'</div>\n' +
                                 '                <div class="pl_status">\n' +
-                                '                    <label class="time_pl">1分钟前</label>\n' +
+                                '                    <label class="time_pler">1分钟前</label>\n' +
                                 '                    <label class="ico_plbtn">\n' +
                                 '                        <span class="jubao_btn">举报</span>\n' +
-                                '                        <span class="huifu_btn">回复</span>\n' +
                                 '                    </label>\n' +
-                                '                </div>\n' +
-                                '            </div>';
-
+                                '                </div>';
                             $(".text_area_pl1").hide();
                             $(".fabupjbtn1").hide();
-                            _this.closest(".pinglun_item").after(html);
+                            _this.closest(".pinglun_item").find(".pl_status").after(html);
                             hint("success","回复评论成功");
                             // location=location;
 
