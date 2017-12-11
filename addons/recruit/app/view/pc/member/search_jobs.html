@@ -273,7 +273,11 @@
             {loop $guess_jobs $list}
             <div class="items_list">
                 <a class="logo1" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">
+                    {if $list['headimgurl']}
                     <img src="{$list['headimgurl']}" class="logopic">
+                    {else}
+                    <img src="{WL_URL_ARES}images/notimg_com.png" class="logopic">
+                    {/if}
                 </a>
                 <div class="company_name" style="height: 66px;">
                     <a class="job_n nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
