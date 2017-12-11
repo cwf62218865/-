@@ -71,7 +71,13 @@
 
     <!--公司基本信息-->
     <div id="basic_msg">
-        <span class="company_logo"><img src="{php echo $company['headimgurl']}"></span>
+        <span class="company_logo">
+            {if $li['headimgurl']}
+            <img src="{$company['headimgurl']}" />
+            {else}
+            <img src="{WL_URL_ARES}images/notimg_com.png" />
+            {/if}
+        </span>
         <div class="company_basacmsg">
             <div class="relative">
                 <span class="company_name">{php echo $company['companyname']}</span>

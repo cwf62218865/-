@@ -27,9 +27,9 @@
     {php include wl_template('common/company_nav');}
     <div class="p1_left">
         <div class="con_list">
-            <div class="content_u">
+            <div class="content_u" style="background: none;">
                 <div class="touxiangimg companylogoc">
-                    <img src="{if $company['headimgurl']}{php echo $company['headimgurl']}{else}{WL_URL_ARES}images/qiyelogo.png{/if}" class="touxipi"/>
+                    <img src="{if $company['headimgurl']}{php echo $company['headimgurl']}{else}{WL_URL_ARES}images/notimg_com.png{/if}" class="touxipi"/>
                 </div>
                 <div class="xinximsg">
                     <label class="wenhou">{$current_time}，{php echo $company['companyname']}。</label>
@@ -135,7 +135,11 @@
 
                             <div class="delivery_left">
                          <span class="delivery_headerimg">
+                             {if $li['headimgurl']}
                             <img src="{$li['headimgurl']}" />
+                             {else}
+                             <img src="{WL_URL_ARES}images/notimg_com.png" />
+                             {/if}
                         </span>
                                 <span>{$li['fullname']}</span>
                                 <span style="margin-left: 20px">{$li['jobs_name']}</span><br>
