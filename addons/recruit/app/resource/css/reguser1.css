@@ -203,6 +203,7 @@ position: absolute;
     float: left;
     text-align: center;
     cursor: pointer;
+    padding: 0px;
 }
 .foot_btns .register{
     width: 164px;

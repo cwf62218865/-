@@ -178,12 +178,12 @@
     outline: none;
 }
 .plnm{
-    float: left;
+    float: right;
     margin-top: 0;
-    margin-left: 130px;
 }
 .pjtjbtn{
     width: 120px;
+    float: right;
     margin-left: 65px;
     margin-top: -10px;
     margin-bottom: 30px;
@@ -243,7 +243,7 @@
     outline: none;
     width: 120px;
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 7px;
 }
 .biaoqians .onebq{
     cursor: pointer;

@@ -241,7 +241,11 @@
                 {loop $company $list}
                 <div class="hot_companys">
                     <a class="hot_companys_logo" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">
-                        <img src="{$list['headimgurl']}">
+                        {if $list['headimgurl']}
+                        <img src="{$list['headimgurl']}" />
+                        {else}
+                        <img src="{WL_URL_ARES}images/notimg_com.png" />
+                        {/if}
                     </a>
                     <a class="nowrap hot_companys_name linkhover" href="{php echo app_url('member/index/company_detail',array('company_id'=>$list['uid']))}">
                         {$list['companyname']}
@@ -369,7 +373,7 @@
             <div class="resume_position">
                 <div style="margin: 40px 24px 24px 24px">
                     <div>
-                        <a style="font-size: 20px" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
+                        <a class="linkhover" style="font-size: 20px" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
                         <span style="font-size: 18px;color: #e23d46;float: right">
                             {if $list['wage_min']>0 && $list['wage_max']>0}
                                     {$list['wage_min']}-{$list['wage_max']}K

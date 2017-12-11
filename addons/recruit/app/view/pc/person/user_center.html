@@ -26,6 +26,12 @@
     <div class="p1_left">
         <div class="con_list">
             <div class="content_u">
+                <a class="editbtn" href="{php echo app_url('person/resume/manage_resume')}">
+                    <svg class="icon xiugaiico" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiugai"></use>
+                    </svg>
+                    修改
+                </a>
                 <div class="touxiangimg">
                     <img src="{if $resume['headimgurl']}{php echo $resume['headimgurl']}{else}{WL_URL_ARES}images/resume_head.png{/if}" class="touxipi"/>
                 </div>
@@ -68,14 +74,14 @@
                     </div>
                 </div>
             </div>
-            <div class="content_p">
+            <div class="content_p" style="margin-top: 30px;">
                 <div class="p_title">
                     <div class="zitile">应聘历程</div>
                     <div class="xianx"></div>
                 </div>
                 <div class="dateselect">
                     <label class="font14 color66 m_r_16 ziriqi">选择日期</label>
-                    <label class="bg_kuang">
+                    <div class="bg_kuang rilibtn">
                         <input class="inputku" type="text" readonly value="近期日程">
                         <svg class="icon riliico" aria-hidden="true">
                             <use xlink:href="#icon-rili"></use>
@@ -113,7 +119,7 @@
                             </div>
                             <div class="ckrc">查看近期日程</div>
                         </div>
-                    </label>
+                    </div>
 
                     <label class="nomsges" {if empty($interviews['list'])}style="display:block;"{else}style="display:none;"{/if}>
                         <span class="font16 color33">所选月份暂无日程安排</span>
@@ -131,21 +137,21 @@
                         <!--<div class="zhejiao1"><img src="{WL_URL_ARES}images/sanjiaox.png"></div>-->
                     <!--</div>-->
                     {if $list['directon']==2}
-                    <div class="zph_item">
+                    <a href="#" class="zph_item">
                         <p class="zph_title nowrap">面试</p>
                         <p class="zph_time nowrap">{$list['interview_time']}</p>
                         <p class="zph_ttt nowrap">{$list['jobs_name']}</p>
                         <p class="zph_sss nowrap">{$list['companyname']}</p>
                         <div class="zhejiao1"><img src="{WL_URL_ARES}images/sanjiaox.png"></div>
-                    </div>
+                    </a>
                     {elseif $list['directon']==1}
-                    <div class="zph_item">
+                    <a href="#" class="zph_item">
                         <p class="zph_title nowrap">职位邀请</p>
                         <p class="zph_time nowrap">{$list['interview_time']}</p>
                         <p class="zph_ttt nowrap">{$list['jobs_name']}</p>
                         <p class="zph_sss nowrap">{$list['companyname']}</p>
                         <div class="zhejiao1"><img src="{WL_URL_ARES}images/sanjiaox.png"></div>
-                    </div>
+                    </a>
                     {/if}
                     {/loop}
                     {/if}
@@ -589,7 +595,8 @@
         year ++;
         $(".niann").html(year);
     })
-    $(".riliico").click(function () {
+
+    $(".rilibtn .inputku,.riliico").click(function () {
         $(".nianrili").show();
     })
 
@@ -673,7 +680,7 @@
     })
 
     $(document).click(function(e){
-        var _con = $('.bg_kuang');   // 设置目标区域
+        var _con = $(".inputku,.riliico,.nianbtn");   // 设置目标区域
         if(!_con.is(e.target) && _con.has(e.target).length === 0){
             $(".nianrili").hide();
         };

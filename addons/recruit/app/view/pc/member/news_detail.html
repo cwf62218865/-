@@ -47,26 +47,34 @@
             </div>
             <div class="foot_btns">
                 <div class="con" style="width: 100%;margin-top: 20px;margin-bottom: 50px;">
-                    <a class="icons" href="http://localhost/addons/recruit/core/common/Connect2.1/example/oauth/index.php" target="_blank">
+                    <label class=" bdsharebuttonbox share">
+                    <a class="icons bds_sqq"  data-cmd="sqq" title="分享到QQ好友">
                         <svg class="icon" style="color: #ffffff">
                             <use xlink:href="#icon-qq"></use>
                         </svg>
                     </a>
-                    <a href="" class="icons left">
+                    <a class="icons left bds_weixin"   data-cmd="weixin" title="分享到微信">
                         <svg class="icon" style="color: #ffffff">
                             <use  xlink:href="#icon-weixin"></use>
                         </svg>
                     </a>
-                    <a class="icons left" href="https://api.weibo.com/oauth2/authorize?client_id=494225968&amp;redirect_uri=http%3A%2F%2Flocalhost%2Faddons%2Frecruit%2Fcore%2Fcommon%2Flibweibo-master%2Fcallback.php&amp;response_type=code" target="_blank">
+                    <a class="icons left bds_tsina"  data-cmd="tsina" title="分享到新浪微博">
                         <svg class="icon" style="color: #ffffff">
                             <use  xlink:href="#icon-weibo"></use>
                         </svg>
                     </a>
-                    <span class="icons left baidu_icons">
+
+                    <a class="icons left bds_qzone"  data-cmd="qzone" title="分享到QQ空间">
                         <svg class="icon" style="color: #ffffff">
-                            <use xlink:href="#icon-baidu"></use>
+                            <use xlink:href="#icon-QQkongjian"></use>
                         </svg>
-                    </span>
+                    </a>
+                    </label>
+                    <script>
+                        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+
                     <label class="fu_icos_right fbpinglun">
                         <svg class="icon" style="margin-right: 10px;width: 18px;height: 18px;">
                             <use xlink:href="#icon-xiugai"></use>
@@ -132,8 +140,12 @@
                 {if $_SESSION['utype']==""}
                 <img src="{WL_URL_ARES}images/notouxiang.png" style="width: 100%;"/>
                 <!--登录状态-->
+                {elseif $portrait['headimgurl']==""}
+                <svg class="icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xuesheng"></use>
+                </svg>
                 {else}
-                <img src="{$portrait['headimgurl']}" style="width: 100%;"/>
+                <img src="{$portrait['headimgurl']}" style="width: 100%;" class="eee"/>
                 {/if}
             </div>
 
@@ -213,6 +225,10 @@
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/news_detail.js" rel="script"></script>
 <script>
+
+    $(".share .icon").click(function () {
+        $(this).closest(".icons").click();
+    })
     var page = 1;
     var count = parseInt("{$comment_count}");
     $(".huanyipi").click(function () {

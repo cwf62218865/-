@@ -153,15 +153,16 @@
 }
 .didianbtn{
     display: inline-block;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin-right: 24px;
-    width: 94px;
-    height: 46px;
-    line-height: 46px;
+
+    margin: 37px 24px 37px 6px;
+    width: 60px;
+    height: 32px;
+    line-height: 32px;
     text-align: center;
-    background: #f5f5f5;
-    font-size: 16px;
+    background: #09c;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 4px;
     cursor: pointer;
 }
 .bntl{
@@ -169,13 +170,12 @@
     width: 94px;
     height: 46px;
     line-height: 46px;
-    font-size: 16px;
+    font-size: 14px;
     background: none;
     text-align: left;
 }
 .selectdd,.didianbtn:hover{
-    background: #a8c9ea;
-    color: #ffffff;
+    background: #1aa9d2;
 }
 
 .zhejiao {

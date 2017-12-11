@@ -115,6 +115,7 @@
     $(document).ready(function(){
 
         var telphone_reg=/^1[3|5|7|8][0-9]\d{8}$/;
+        var nonum_reg=/^[0-9]*$/;
         $(".general-input input").focus(function(){
             var _this=$(this);
             if(_this.closest(".general-input").css("borderColor")=="rgb(226, 61, 70)"){
@@ -188,6 +189,10 @@
             if($.trim(conpany_username)==""){
                 company_input.css("border-color","#e23d46");
                 company_input.next().html(tipmsg("error","请输入企业登录用户名"));
+                return false;
+            }else if(nonum_reg.test(conpany_username)){
+                company_input.css("border-color","#e23d46");
+                company_input.next().html(tipmsg("error","用户名不能为纯数字"));
                 return false;
             }else{
                 company_input.next().html("");

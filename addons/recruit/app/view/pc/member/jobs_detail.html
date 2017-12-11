@@ -229,7 +229,11 @@
 
             <div class="company_logo" style="float: none;margin-bottom: 20px;">
                 <a href="{php echo app_url('member/index/company_detail',array('company_id'=>$company['uid']))}">
-                    <img src="{php echo $company['headimgurl']}" >
+                    {if $company['headimgurl']}
+                    <img src="{$company['headimgurl']}" />
+                    {else}
+                    <img src="{WL_URL_ARES}images/notimg_com.png" />
+                    {/if}
                 </a>
             </div>
 
