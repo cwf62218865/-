@@ -23,6 +23,7 @@ class recruitModuleSite extends WeModuleSite
 			if ($isWeb) {
 				$dir .= 'web/';
 				$controller = strtolower(substr($name, 5));
+
 				$tmpdir = IA_ROOT . '/addons/recruit/core/common';
 				$f = file_get_contents($tmpdir . '/common.log');
 				$commonlog = json_decode($f, true);

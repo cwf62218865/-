@@ -67,15 +67,20 @@ if ($op=="save_company_profile"){
 
 
 elseif ($_POST['token']=="edit"){
-   $data = $_POST;
-    $data['photolist'] = implode(",",$_POST['photolist']);
-   $data['createtime'] = time();
-    $r = insert_table($data,WL."star_hr");
-    if($r){
-        message('名企信息保存成功 ！', web_url('star_hr/detail'), 'success');exit();
+    if($data['uid']){
+        $data = $_POST;
+        $data['photolist'] = implode(",",$_POST['photolist']);
+        $data['createtime'] = time();
+        $r = insert_table($data,WL."star_hr");
+        if($r){
+            message('名企信息保存成功 ！', web_url('star_jobs/detail'), 'success');exit();
+        }else{
+            message('名企信息保存失败 ！', web_url('star_jobs/detail'), 'error');exit();
+        }
     }else{
-        message('名企信息保存失败 ！', web_url('star_hr/detail'), 'error');exit();
+        message('参数错误 ！', web_url('star_jobs/detail'), 'error');exit();
     }
 
+
 }
-include wl_template('star_hr/detail');exit();
+include wl_template('star_jobs/detail');exit();
