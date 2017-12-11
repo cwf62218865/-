@@ -47,7 +47,7 @@
             </div>
             <div class="foot_btns">
                 <div class="con" style="width: 100%;margin-top: 20px;margin-bottom: 50px;">
-                    <label class=" bdsharebuttonbox share">
+                    <label class="bdsharebuttonbox share" style="display: inline-block;">
                     <a class="icons bds_sqq"  data-cmd="sqq" title="分享到QQ好友">
                         <svg class="icon" style="color: #ffffff">
                             <use xlink:href="#icon-qq"></use>
@@ -134,13 +134,18 @@
             <div class="close_kuang">
                 <img src="{WL_URL_ARES}images/close.png" class="close_ico">
             </div>
+
+            <!--未登录状态-->
+            {if $_SESSION['utype']==""}
+            <div class="icos_btns">
+                <label class="denglu">登录</label>
+                <a class="zhuce" href="{php echo app_url('member/index/register')}">注册</a>
+            </div>
+            <!--登录状态-->
+            {else}
             <img src="{WL_URL_ARES}images/youhuashuo.png" class="youhuashuo">
             <div class="touxiang">
-                <!--未登录状态-->
-                {if $_SESSION['utype']==""}
-                <img src="{WL_URL_ARES}images/notouxiang.png" style="width: 100%;"/>
-                <!--登录状态-->
-                {elseif $portrait['headimgurl']==""}
+                {if $portrait['headimgurl']==""}
                 <svg class="icon">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xuesheng"></use>
                 </svg>
@@ -148,19 +153,10 @@
                 <img src="{$portrait['headimgurl']}" style="width: 100%;" class="eee"/>
                 {/if}
             </div>
-
             <div class="icos_btns">
-                <!--未登录状态-->
-                {if $_SESSION['utype']==""}
-                <label class="denglu">登录</label>
-                <a class="zhuce" href="{php echo app_url('member/index/register')}" style="color: #999999">注册</a>
-                <!--未登录状态end-->
-                <!--登录状态-->
-                {else}
                 <label class="user_name">{$user['fullname']}</label>
-                {/if}
-                <!--登录状态end-->
             </div>
+            {/if}
 
             <div class="text_area_pl">
                 <textarea class="shuru_text" placeholder="请输入评论"></textarea>
@@ -171,13 +167,14 @@
                     <svg class="icon" style="">
                         <use xlink:href="#icon-huanyipi"></use>
                     </svg>
-                    换一批
+                    刷新
                 </label>
             </div>
             <div class="comment_content">
             {loop $comment $list}
-            {if empty($list['comment_id'])}
+
             <div class="pinglun_item" data-id="{$list['id']}">
+                {if empty($list['comment_id'])}
                 <div class="touxiang_pl">
                     <img src="{$list['headimgurl']}" style="width: 100%;">
                 </div>
@@ -191,23 +188,19 @@
                         <span class="huifu_btn">回复</span>
                     </label>
                 </div>
-            </div>
-            {else}
-            <div class="pinglun_item">
-                <div class="touxiang_pl">
-                    <img src="{$list['headimgurl']}" style="width: 100%;">
-                </div>
-                <div class="pl_user">{$list['fullname']}</div>
-                <div class="pinglunneir"><label class="beizhu_pl">[回复{$list['pl_user']}]</label>{$list['content']}</div>
+                {else}
+                <div class="pinglunneir"><label class="beizhu_pl">{$list['fullname']}回复:</label>{$list['content']}</div>
                 <div class="pl_status">
-                    <label class="time_pl">{php echo _format_date($list['addtime'])}</label>
-                    <!--<label class="ico_plbtn">-->
-                        <!--<span class="jubao_btn">举报</span>-->
+                    <label class="time_pler">{php echo _format_date($list['addtime'])}</label>
+                    <label class="ico_plbtn">
+                        <span class="jubao_btn">举报</span>
                         <!--<span class="huifu_btn">回复</span>-->
-                    <!--</label>-->
+                    </label>
                 </div>
+                {/if}
             </div>
-            {/if}
+
+
            {/loop}
             </div>
 
