@@ -742,7 +742,7 @@ elseif ($op=="search_jobs_ajax"){
             if($list['wage_min']>0 && $list['wage_max']>0){
                 $list['salary'] = $list['wage_min']."-".$list['wage_max']."k";
             }else{
-                $list['salary'] = "面议";
+                $list['salary'] = "薪酬面议";
             }
             $html .=
                 "<div class=\"list_item\">
@@ -908,7 +908,7 @@ elseif ($op=="company_detail_jobs_page"){
         if($list['wage_min']>0 && $list['wage_max']>0) {
             $salary = $list['wage_min']."-".$list['wage_max'] . "K";
         }else{
-            $salary = "面议";
+            $salary = "薪酬面议";
 
         }
 

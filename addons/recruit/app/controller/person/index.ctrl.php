@@ -398,7 +398,7 @@ elseif ($op=="send_resume_ajax"){
             if($list['wage_min']>0 && $list['wage_max']>0){
                 $salary = $list['wage_min']."-".$list['wage_max']."k";
             }else{
-                $salary = "面议";
+                $salary = "薪酬面议";
             }
             $status = "";
             if ($list['status']==0){
@@ -546,7 +546,7 @@ elseif ($op=="order_page_ajax"){
         if($list['wage_min']>0 && $list['wage_max']>0){
             $salary = $list['wage_min']."-".$list['wage_max']."k";
         }else{
-            $salary = "面议";
+            $salary = "薪酬面议";
         }
         $tag = "";
         foreach ($list['tag'] as $li){
@@ -603,7 +603,7 @@ elseif ($op=="collect_page_ajax"){
             if($list['wage_min']>0 && $list['wage_max']>0){
                 $salary = $list['wage_min']."-".$list['wage_max']."k";
             }else{
-                $salary = "面议";
+                $salary = "薪酬面议";
             }
             $tag = "";
             foreach ($list['tag'] as $li){

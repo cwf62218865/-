@@ -224,7 +224,7 @@
                                 {if $list['wage_min']>0 && $list['wage_max']>0}
                                     {$list['wage_min']}-{$list['wage_max']}K
                                 {else}
-                                    面议
+                                    薪酬面议
                                 {/if}
                             </label>
                         </div>
@@ -285,7 +285,7 @@
                         {if $list['wage_min']>0 && $list['wage_max']>0}
                             {$list['wage_min']}-{$list['wage_max']}K
                         {else}
-                            面议
+                            薪酬面议
                         {/if}
                     </p>
                     <p class="companyn nowrap">{$list['companyname']}</p>
@@ -407,7 +407,7 @@
         
         
         var salarychoice= $.salarychoice({
-            data:["面议","1k","2k","3k","4k","5k","6k","7k","8k"],
+            data:["薪酬面议","1k","2k","3k","4k","5k","6k","7k","8k"],
             input:"#money",
             width:"218px"
         })

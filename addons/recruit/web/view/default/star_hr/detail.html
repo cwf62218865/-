@@ -1,0 +1,286 @@
+{template 'common/header'}
+
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            添加活动
+        </h3>
+    </div>
+    <div class="panel-body">
+        <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2 control-label">活动类型（ 0 免费不审核 1 免费要审核 2 收费审核 3接力打卡  ）</label>
+
+                <select name="type" class="form-control" style="width:50%" >
+                    <option value="0" {if intval($list['type']) == 0}selected{/if}>免费不审核</option>
+                    <option value="1" {if intval($list['type']) == 1}selected{/if}>免费要审核</option>
+                    <option value="2" {if intval($list['type']) == 2}selected{/if}>收费审核</option>
+                    <option value="3" {if intval($list['type']) == 3}selected{/if}>接力打卡</option>
+                </select>
+            </div>
+            <div class="form-group" style="display:none;">
+                <label for="inputEmail3" class="col-sm-2 control-label">后台指定打卡类型（独立打卡/接力打卡/协助打卡）</label>
+                <div class="col-sm-10">
+                    <label class="radio radio-inline">
+                        <input type="radio" name="clock_type" value="1" {if intval($list['clock_type']) == 1}checked="checked"{/if}>独立打卡
+                    </label>
+                    <label class="radio radio-inline">
+                        <input type="radio" name="clock_type" value="2" {if intval($list['clock_type']) == 2}checked="checked"{/if}>接力打卡
+                    </label>
+                    <label class="radio radio-inline">
+                        <input type="radio" name="clock_type" value="3" {if intval($list['clock_type']) == 3}checked="checked"{/if}>协助打卡
+                    </label>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">活动名称</label>
+                <div class="col-sm-10">
+                    <input type="text"  name="title" style="width:50%"  class="form-control" value="{$list['title']}" placeholder="请输入活动在地图上的显示名称"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">tag</label>
+                <div class="col-sm-10">
+                    <input type="text"  name="tag" style="width:50%"  class="form-control" value="{$list['tag']}" placeholder="请输入tag"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">活动口号</label>
+                <div class="col-sm-10">
+                    <input type="text"  name="sub_title" class="form-control" value="{$list['sub_title']}" placeholder="请输入活动口号"/>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">活动logo</label>
+                <div class="col-sm-10">
+                    {php echo tpl_form_field_image('thumb', $list['thumb']);}
+                    <span class="help-block">点击后显示的活动logo，推荐与参数设置中的logo一致。</span>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">联系电话</label>
+                <div class="col-sm-10">
+                    <input type="text" name="mobile" class="form-control" value="{$list['mobile']}" placeholder="请输入活动联系电话"/>
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2 control-label">省市区</label>
+                <div class="col-sm-7 col-xs-12">
+                    {php echo tpl_form_field_district('reside', array('province' => $list['province'], 'city' => $list['city'], 'district' => $list['district'] ));}
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">活动地址</label>
+                <div class="col-sm-10">
+                    <input type="text" name="address" class="form-control" value="{$list['address']}" placeholder="请输入活动地址"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2 control-label">坐标</label>
+                <div class="col-sm-9">
+                    {php echo tpl_form_field_coordinate('baidumap', $list)}
+                    <span class="help-block">请在地图中选择正确的坐标位置</span>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名开始时间</label>
+                <div class="col-sm-4 col-xs-6">{php echo tpl_form_field_date('enroll_starttime', !empty($list['enroll_starttime']) ? date('Y-m-d H:i',$list['enroll_starttime']) : date('Y-m-d H:i'), 1)}</div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2 control-label">报名截止时间</label>
+                <div class="col-sm-4 col-xs-6">{php echo tpl_form_field_date('enroll_endtime', !empty($list['enroll_endtime']) ? date('Y-m-d H:i',$list['enroll_endtime']) : date('Y-m-d H:i'), 1)}</div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2 control-label">活动时间</label>
+                <div class="col-sm-4 col-xs-6">{php echo tpl_form_field_date('starttime', !empty($list['starttime']) ? date('Y-m-d H:i',$list['starttime']) : date('Y-m-d H:i'), 1)}</div>
+                <div class="col-sm-4 col-xs-6">{php echo tpl_form_field_date('endtime', !empty($list['endtime']) ? date('Y-m-d H:i',$list['endtime']) : date('Y-m-d H:i'), 1)}</div>
+            </div>
+
+
+
+
+
+
+            <div class="form-group">
+                <label class="col-xs-12 col-sm-3 col-md-2 control-label">滚动图</label>
+                <div class="col-sm-7 col-xs-12">
+                    {php echo tpl_form_field_multi_image('photolist', $piclist);}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">联系电话</label>
+                <div class="col-sm-10">
+                    <input type="text" name="tel" class="form-control" value="{$list['tel']}" placeholder="请输入组织者联系电话"/>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">活动简介</label>
+                <div class="col-sm-10">
+
+
+
+
+                    {php echo tpl_ueditor('content',$list['content'])}
+
+
+
+                    <span class="help-block">用简短对活动情况进行介绍，最多300字</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">费用结构说明</label>
+                <div class="col-sm-10">
+
+
+                    <textarea name="description" rows="10"  cols="60"  id="description" >{php echo  $list['description'] }</textarea>
+
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">每人费用</label>
+                <div class="col-sm-10">
+                    <input type="text" name="price" class="form-control" value="{$list['price']}" placeholder="请输入每人费用"/>
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">人数（上限）</label>
+                <div class="col-sm-10">
+                    <input type="text" name="limit_join_amount" class="form-control" value="{$list['limit_join_amount']}" placeholder="请输入人数上限"/>
+
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">活动备注</label>
+                <div class="col-sm-10">
+
+                    <textarea name="remark" rows="10"  cols="60"  id="remark" >{php echo  $list['remark'] }</textarea>
+
+
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">活动报名条件选项</label>
+                <div class="col-sm-60">
+
+                    <textarea name="question" rows="10"  cols="60"  id="question" >{php echo  $list['question'] }</textarea>
+
+
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">活动星级</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <select class="form-control" name="star_score">
+                            <option value='5' {if $list['star_score'] == 5}selected{/if}>★★★★★</option>
+                            <option value='4' {if $list['star_score'] == 4}selected{/if}>★★★★</option>
+                            <option value='3' {if $list['star_score'] == 3}selected{/if}>★★★</option>
+                            <option value='2' {if $list['star_score'] == 2}selected{/if}>★★</option>
+                            <option value='1' {if $list['star_score'] == 1}selected{/if}>★</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">是否已结束</label>
+                <div class="col-sm-10">
+                    <label class="radio radio-inline">
+                        <input type="radio" name="is_end" value="0" {if intval($list['is_end']) == 0}checked="checked"{/if}>进行中
+                    </label>
+                    <label class="radio radio-inline">
+                        <input type="radio" name="is_end" value="1" {if intval($list['is_end']) == 1}checked="checked"{/if}>已结束
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">活动状态</label>
+                <div class="col-sm-10">
+
+                    <label class="radio radio-inline">
+                        <input type="radio" name="status" value="-1" {if intval($list['status']) == -1}checked="checked"{/if}>已关闭
+                    </label>
+
+                    <label class="radio radio-inline">
+                        <input type="radio" name="status" value="0" {if intval($list['status']) == 0}checked="checked"{/if}>筹备中
+                    </label>
+
+                    <label class="radio radio-inline">
+                        <input type="radio" name="status" value="1" {if intval($list['status']) == 1}checked="checked"{/if}>进行中
+                    </label>
+
+                    <label class="radio radio-inline">
+                        <input type="radio" name="status" value="2" {if intval($list['status']) == 2}checked="checked"{/if}>已到期
+                    </label>
+
+
+                    <label class="radio radio-inline">
+                        <input type="radio" name="status" value="3" {if intval($list['status']) == 3}checked="checked"{/if}>已结束
+                    </label>
+
+                </div>
+            </div>
+
+
+
+            <div class="form-group col-sm-12">
+                <input name="token" type="hidden" value="{$_W['token']}" />
+                <input type="submit" class="btn btn-primary col-lg-1" name="submit" value="提交" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{template 'common/footer'}
