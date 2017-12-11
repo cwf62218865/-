@@ -122,7 +122,8 @@ $(function () {
             var detail_address=$("#detail_address").val();
 
             var telphone_reg=/^1[3|5|7|8][0-9]\d{8}$/;
-            if(jobs_name==""){
+
+            if(jobs_name==""&&$("#job_review").length>0){
                 hint("error","请选择面试职位");
                 return;
             }
