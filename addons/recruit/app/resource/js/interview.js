@@ -53,6 +53,7 @@ $(function () {
                 data:{
                     data_id:data_id,
                     reviewtime:reviewtime,
+                    year:new Date().getFullYear(),
                     contacts_name:contacts_name,
                     contacts_tel:contacts_tel,
                     city:city,
@@ -121,6 +122,11 @@ $(function () {
             var detail_address=$("#detail_address").val();
 
             var telphone_reg=/^1[3|5|7|8][0-9]\d{8}$/;
+            if(jobs_name==""){
+                hint("error","请选择面试职位");
+                return;
+            }
+
             if(reviewtime==""){
                 hint("error","请输入面试日期");
                 return;
@@ -159,6 +165,7 @@ $(function () {
                     jobs_id:job_id,
                     resume_id:resume_id,
                     puid:puid,
+                    year:new Date().getFullYear(),
                     jobs_name:jobs_name,
                     reviewtime:reviewtime,
                     contacts_name:contacts_name,
