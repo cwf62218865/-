@@ -15,10 +15,10 @@ require_once(WL_CORE."/common/Connect2.1/API/qqConnectAPI.php");
 
 $baidu_loginUrl = $baidu->getLoginUrl('', 'popup')."&url=".$_SERVER['QUERY_STRING'];
 
-if($_COOKIE['recruit___uniacid']==1 && $_GPC['uid']){
-    $_SESSION['uid'] = $_GPC['uid'];
-    $_SESSION['utype'] = 2;
-}
+//if($_COOKIE['ab13___session'] && $_GPC['uid']){
+//    $_SESSION['uid'] = $_GPC['uid'];
+//    $_SESSION['utype'] = 2;
+//}
 
 
 //用户登录判断

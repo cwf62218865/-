@@ -49,7 +49,6 @@ elseif ($op=="user_center"){
     $data['month'] = date("m");
     $data['year'] = date("Y");
     $interviews = m("person")->apply_list($data);
-//    var_dump($interviews);exit();
 
     $msg = m("resume")->jobs_apply($_SESSION['uid'],-1,0);
     $new_msg = "";
@@ -348,7 +347,6 @@ elseif ($op=="save_evaluate"){
 
 //投递简历
 elseif ($op=="post_resume"){
-//    var_dump($_POST);exit();
     $data['jobs_id'] = check_pasre($_POST['data_id'],"参数错误");
     $data['uid'] = check_pasre($_POST['uid'],"参数错误");
     $data['resume_id'] = $resume['id'];
@@ -356,26 +354,31 @@ elseif ($op=="post_resume"){
     $data['direction'] = 2;
     $data['offer'] = 1;
     $data['createtime'] = time();
-
-    $jobs_apply = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where jobs_id=".$data['jobs_id']." and resume_id=".$data['resume_id']);
+    $data['updatetime'] = time();
+//    echo time()-60*60*24*7;exit();
+//    var_dump($data);exit();
+//    $jobs_apply = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where jobs_id=".$data['jobs_id']." and resume_id=".$data['resume_id']);
+//    echo $jobs_apply['id'];exit();
     if(empty($_SESSION['uid'])){
         call_back(2,"请先登录账号");
     }
-    if($jobs_apply){
-        call_back(2,"已存在");
-    }else{
-        if($resume_integrity>70){
-            $r = insert_table($data,WL."jobs_apply");
-            if($r){
-                call_back(1,"ok");
-            }else{
-                call_back(2,"no");
-            }
-        }else{
-            call_back(2,"请完善您的简历");
-        }
 
-    }
+    m('jobs')->user_post_resume($data);
+//    if($jobs_apply){
+//        call_back(2,"已存在");
+//    }else{
+//        if($resume_integrity>70){
+//            $data['updatetime'] = time();
+//            $r = insert_table($data,WL."jobs_apply");
+//            if($r){
+//                call_back(1,"投递成功");
+//            }else{
+//                call_back(2,"投递失败");
+//            }
+//        }else{
+//            call_back(2,"请完善您的简历");
+//        }
+//    }
 }
 
 

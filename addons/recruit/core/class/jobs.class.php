@@ -3,13 +3,11 @@
 class jobs{
 
     public function get_jobs($id,$field=""){
-        if($field){
-            $jobs = pdo_fetch("select ".$field." from ".tablename(WL.'jobs')." where id=".$id);
-            return $jobs[$field];
-        }else{
-            $jobs = pdo_fetch("select * from ".tablename(WL.'jobs')." where display=1 and id=".$id);
-            return $jobs;
+        if(empty($field)){
+            $field = "*";
         }
+        $jobs = pdo_fetch("select ".$field." from ".tablename(WL.'jobs')." where id=".$id);
+        return $jobs;
     }
 
 
@@ -427,6 +425,97 @@ class jobs{
 
         return $data;
     }
+
+
+    /*
+     * 个人求职记录
+     */
+    public function jobs_apply($jobs_id,$puid){
+        $jobs_apply = pdo_fetch("select * from ".tablename(WL."jobs_apply")." where jobs_id=".$jobs_id." and puid=".$puid);
+        return $jobs_apply;
+
+    }
+
+    /*
+     * 判断职位申请状态
+     * 返回结果true表示可以投递，false表示不可以投递
+     */
+    public function judge_jobs_apply_status($jobs_id,$puid){
+        $jobs_apply = $this->jobs_apply($jobs_id,$puid);
+        if($jobs_apply){
+
+            //7天为一个投递有效期限，时间到后可以重新投递
+            $validity_time = 60*60*24*7+$jobs_apply['updatetime'];
+            if($validity_time<time()){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    /*
+     * 求职者投递简历处理
+     */
+    public function user_post_resume($data){
+        if($data['jobs_id'] && $data['puid']){
+            $jobs_apply = $this->jobs_apply($data['jobs_id'],$data['puid']);
+            if($jobs_apply){
+                $status = $this->judge_jobs_apply_status($data['jobs_id'],$data['puid']);
+                if($status){
+                    if($jobs_apply['status']==3){
+                        pdo_delete(WL."interview",array('jobs_id'=>$data['jobs_id'],'puid'=>$data['puid']));
+                    }
+                    if($jobs_apply['comment']==1){
+                        pdo_delete(WL."comment",array('jobs_id'=>$data['jobs_id'],'puid'=>$data['puid']));
+                    }
+                    pdo_delete(WL."jobs_apply",array('jobs_id'=>$data['jobs_id'],'puid'=>$data['puid']));
+                }else{
+                    call_back(2,"已投递");
+                }
+            }
+            $r = insert_table($data,WL."jobs_apply");
+            $utype = $_SESSION['utype'];
+            if($r){
+                call_back(1,"投递成功");
+            }else{
+                call_back(2,"投递失败");
+            }
+        }
+    }
+
+
+    /*
+     * 求职者投递简历处理
+     */
+    public function hr_post_resume($data){
+        if($data['jobs_id'] && $data['puid']){
+            $jobs_apply = $this->jobs_apply($data['jobs_id'],$data['puid']);
+            if($jobs_apply){
+                $status = $this->judge_jobs_apply_status($data['jobs_id'],$data['puid']);
+                if($status){
+                    if($jobs_apply['status']==3){
+                        pdo_delete(WL."interview",array('jobs_id'=>$data['jobs_id'],'puid'=>$data['puid']));
+                    }
+                    if($jobs_apply['comment']==1){
+                        pdo_delete(WL."comment",array('jobs_id'=>$data['jobs_id'],'puid'=>$data['puid']));
+                    }
+                    pdo_delete(WL."jobs_apply",array('jobs_id'=>$data['jobs_id'],'puid'=>$data['puid']));
+                }else{
+                    call_back(2,"已邀请");
+                }
+            }
+            $r = insert_table($data,WL."jobs_apply");
+            if($r){
+               return true;
+            }else{
+                call_back(2,"邀请失败");
+            }
+        }
+    }
+
 }
 
 
