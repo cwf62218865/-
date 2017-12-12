@@ -204,6 +204,20 @@ position: absolute;
     text-align: center;
     cursor: pointer;
     padding: 0px;
+    position: relative;
+}
+.foot_btns .iconcc{
+    position: absolute;
+    width:30px;
+    height: 30px;
+    border-radius: 100%;
+    top: 0;
+    left: 0;
+    padding: 0;margin: 0;
+    opacity: 0;
+}
+.foot_btns .iconcc:hover{
+    opacity: 0;
 }
 .foot_btns .register{
     width: 164px;
