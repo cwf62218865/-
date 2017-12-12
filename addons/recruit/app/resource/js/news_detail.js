@@ -148,7 +148,7 @@ $(function () {
     })
     
     $(".pl_all").each(function () {
-        if($(this).val().length>90){
+        if($(this).val().length>50){
             $(this).after('<div class="btn_zk">展开<svg class="icon" style="">\n' +
                 '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiajiantou"></use>\n' +
                 '</svg></div>');
@@ -175,6 +175,46 @@ $(function () {
         $(this).closest(".pinglunneir").css("max-height","72px");
         $(this).closest(".pinglunneir").find(".pinglunzi").html(jie_pl);
         $(this).removeClass("btn_sq").addClass("btn_zk");
+    })
+
+    $(".pinglun_item").each(function () {
+        var zhakai='<p class="xialazk">查看更多<svg class="icon">\n' +
+            '           <use  xlink:href="#icon-xiajiantou"></use>\n' +
+            '           </svg></p>';
+        if($(this).find(".plhuifu").length>5){
+            $(this).append(zhakai);
+            for(var i=0;i<$(this).find(".plhuifu").length;i++){
+                if(i<5){
+                    $(this).find(".plhuifu").eq(i).show();
+                    $(this).find(".pl_status").eq(i+1).show();
+                }else{
+                    $(this).find(".plhuifu").eq(i).hide();
+                    $(this).find(".pl_status").eq(i+1).hide();
+                }
+            }
+        }
+    })
+    
+    $("body").on("click",".xialazk",function () {
+        var parent=$(this).closest(".pinglun_item");
+        var list=$(this).closest(".pinglun_item").find(".plhuifu");
+        var arr=[];
+        list.each(function () {
+           if($(this).css("display")=="none"){
+               arr.push($(this).index());
+           }
+       })
+        console.log(arr);
+        var i=(arr[0]-4)/2;
+        for(i;i<list.length;i++){
+            if(i<(arr[0]-4)/2+5){
+                parent.find(".plhuifu").eq(i).show();
+                parent.find(".pl_status").eq(i+1).show();
+            }else{
+                parent.find(".plhuifu").eq(i).hide();
+                parent.find(".pl_status").eq(i+1).hide();
+            }
+        }
     })
 
 
