@@ -1,0 +1,91 @@
+{template 'common/header'}
+
+
+<ul class="nav nav-tabs">
+    <li {if $_GPC['do']=='star_career' && $action == 'index'}class="active"{/if}><a href="{php echo web_url('star_career/index',array('uid'=>$_GPC['uid']))}">名企宣讲会列表</a></li>
+    <li {if $_GPC['do']=='star_career' && $action == 'detail'}class="active"{/if} ><a href="{php echo web_url('star_career/detail',array('uid'=>$_GPC['uid']))}">添加宣讲会</a></li>
+</ul>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            添加宣讲会
+        </h3>
+    </div>
+    <div class="panel-body">
+        <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label"><span style="color: red">*  </span>学校</label>
+                <div class="col-sm-10">
+                    <input type="text"  name="school" style="width:50%"  class="form-control" value="{$list['school']}" placeholder="请输入学校"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label"><span style="color: red">*  </span>城市</label>
+                <div class="col-sm-5">
+                    <input type="text"  name="city"  class="form-control" value="{$list['city']}" placeholder="请输入城市"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label"><span style="color: red">*  </span>宣讲会开始时间</label>
+                <div class="col-sm-5">
+                    {php echo tpl_form_field_date('career_starttime', !empty($list['career_starttime']) ? date('Y-m-d H:i',$list['career_starttime']) : "请输入时间",true)}
+                    <!--<input type="text"  name="career_time"  class="form-control" value="{$list['career_time']}" placeholder="请输入宣讲会时间"/>-->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label"><span style="color: red">*  </span>宣讲会结束时间</label>
+                <div class="col-sm-5">
+                    {php echo tpl_form_field_date('career_endtime', !empty($list['career_endtime']) ? date('Y-m-d H:i',$list['career_endtime']) : "请输入时间",true)}
+                    <!--<input type="text"  name="career_time"  class="form-control" value="{$list['career_time']}" placeholder="请输入宣讲会时间"/>-->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label"><span style="color: red">*  </span>宣讲会地点</label>
+                <div class="col-sm-5">
+                    <input type="text"  name="place"  class="form-control" value="{$list['place']}" placeholder="请输入宣讲会地点"/>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="form-group col-sm-6 ">
+                <input name="token" type="hidden" value="edit" />
+                <input name="uid" type="hidden" value="{$_GPC['uid']}" />
+                <input name="career_id" type="hidden" value="{$_GPC['career_id']}" />
+                <input type="submit" class="btn btn-primary col-lg-1" name="submit" value="提交" style="float: right;" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $('#form1').submit(function(){
+//            if(!$.trim($(':text[name="jobs_name"]').val())) {
+//                util.message('请填写职位名称', '', 'error');
+//                return false;
+//            }
+
+//            if(!$.trim($('#cateid').val())) {
+//                util.message('请选择新闻分类', '', 'error');
+//                return false;
+//            }
+//            if(!$.trim($('textarea[name="content"]').val())) {
+//                util.message('请填写新闻内容', '', 'error');
+//                return false;
+//            }
+            return true;
+        });
+    });
+</script>
+
+{template 'common/footer'}

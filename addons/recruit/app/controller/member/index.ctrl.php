@@ -22,6 +22,8 @@ if($op=="index"){
         $arr_news[] = $list;
     }
 
+    $star_company =m("company")->star_company_list();
+
 //    var_dump($collect_jobs);exit();
     include wl_template("member/index");exit();
 }
@@ -107,7 +109,14 @@ elseif ($op=="search_jobs"){
     include wl_template("member/search_jobs");exit();
 }
 elseif ($op=="super_company"){
+    $company = pdo_fetch("select * from ".tablename(WL."star_hr")." where id=".$_GPC['id']);
+    $jobs = pdo_fetchall("select * from ".tablename(WL."star_jobs")." where uid=".$_GPC['id']);
+    $star_career = pdo_fetchall("select * from ".tablename(WL."star_career")." where uid=".$_GPC['id']);
     include wl_template("company/super_company");exit();
+
+}
+elseif ($op=="super_company_list"){
+    include wl_template("company/super_company_list");exit();
 }
 //公司详情页
 elseif($op=="company_detail"){

@@ -166,6 +166,13 @@ class company{
         return $company;
     }
 
-
+    /*
+     * 名企分页列表
+     */
+    public function star_company_list($page=0){
+        $limit = " limit ".($page*15).",15";
+        $company = pdo_fetchall("select * from ".tablename(WL."star_hr").$limit);
+        return $company;
+    }
 
 }
