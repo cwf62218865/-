@@ -137,7 +137,6 @@
         }
 
         $("#login").on("click",function(){
-
             login()
         });
 
@@ -159,33 +158,6 @@
 
 
 //        console.log($.cookie())
-        var COOKIE_NAME = 'user_name';
-        var COOKIE_PWD = 'password';
-        if($.cookie("rmbuser")== "true"){
-            $("#rember_pwdbtn").attr("checked", true);
-            $("#rember_pwdbtn").next().find("use").attr("xlink:href","#icon-zhengque1")
-            $("#user_name").val($.cookie(COOKIE_NAME));
-            $("#password").val($.cookie(COOKIE_PWD));
-        }else{
-            $("#rember_pwdbtn").attr("checked", false);
-            $("#user_name").val("");
-            $("#password").val("");
-        }
-
-        function savecookie(){
-            if ($("#rember_pwdbtn").attr("checked")) {
-                var user_name = $("#user_name").val();
-                var password = $("#password").val();
-                $.cookie("rmbuser", "true", { expires: 7 }); //存储一个带7天期限的cookie
-                $.cookie("user_name", user_name, { expires: 7 });
-                $.cookie("password", password, { expires: 7 });
-            }
-            else {
-                $.cookie("rmbuser", "false", { expire: -1 });
-                $.cookie("user_name", "", { expires: -1 });
-                $.cookie("password", "", { expires: -1 });
-            }
-        }
     })
 </script>
 </html>

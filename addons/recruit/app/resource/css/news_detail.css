@@ -111,7 +111,7 @@
     height: 80px;
     margin: 10px;
 }
-.icos_btns{
+.icos_btns,.icos_btns1{
    margin-top: 16px;
     text-align: center;
     padding-bottom: 30px;
@@ -253,6 +253,9 @@
     color: #999999;
     margin-top: 24px;
     position: relative;
+}
+.plhuifu{
+    font-size: 12px;
 }
 .btn_zk,.btn_sq{
     position: absolute;

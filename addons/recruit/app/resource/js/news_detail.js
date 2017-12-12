@@ -5,13 +5,14 @@ $(document).on("scroll",function() {
 
     if(top>=80){
         $(".pingpluqu1").css({"position":"fixed","top":"0px","height":height,"overflow-y":"auto"});
+        $(".close_kuang").css({"position":"fixed"});
+        $(".icos_btns").css({"margin-top":"60px"});
     }else{
         $(".pingpluqu1").css({"position":"relative","height":"auto"});
     }
 });
 
 $(function () {
-
     $(".denglu").click(function () {
         $("#small_modalbox").show();
     })
@@ -74,15 +75,14 @@ $(function () {
                             hint("success","评论成功");
 
                             html='<div class="pinglun_item">\n' +
-                                '                <div class="touxiang_pl">\n' +
-                                '                    <img src="'+headimgurl+'" style="width: 100%;">\n' +
-                                '                </div>\n' +
-                                '                <div class="pl_user">我的评论</div>\n' +
-                                '                <div class="pinglunneir">'+pj_content+'</div>\n' +
-                                '                <div class="pl_status">\n' +
-                                '                    <label class="time_pl">1分钟前</label>\n' +
-                                '                    \n' +
-                                '                </div>';
+                                '       <div class="touxiang_pl">\n' +
+                                '            <img src="'+headimgurl+'" style="width: 100%;">\n' +
+                                '       </div>\n' +
+                                '       <div class="pl_user">我的评论</div>\n' +
+                                '       <div class="pinglunneir">'+pj_content+'</div>\n' +
+                                '       <div class="pl_status">\n' +
+                                '       <label class="time_pl">刚刚</label>\n' +
+                                '</div>';
                             $(".pinglu_title").after(html);
                             $(".shuru_text").val("");
                             // location=location;
@@ -124,16 +124,17 @@ $(function () {
                     if(data){
                         var data=JSON.parse(data);
                         if(data.status==1){
-                            html='              <div class="pinglunneir"><label class="beizhu_pl">我回复:</label>'+plhf+'</div>\n' +
+                            html='              <div class="pinglunneir plhuifu"><label class="beizhu_pl">我回复:</label>'+plhf+'</div>\n' +
                                 '                <div class="pl_status">\n' +
-                                '                    <label class="time_pler">1分钟前</label>\n' +
+                                '                    <label class="time_pler">刚刚</label>\n' +
                                 '                    <label class="ico_plbtn">\n' +
                                 '                        <span class="jubao_btn">举报</span>\n' +
                                 '                    </label>\n' +
                                 '                </div>';
+
                             $(".text_area_pl1").hide();
                             $(".fabupjbtn1").hide();
-                            _this.closest(".pinglun_item").find(".pl_status").after(html);
+                            _this.closest(".pinglun_item").find(".pl_status").eq(0).after(html);
                             hint("success","回复评论成功");
                             // location=location;
 
@@ -145,6 +146,15 @@ $(function () {
             })
         }
     })
+    
+    $(".pl_all").each(function () {
+        if($(this).val().length>90){
+            $(this).after('<div class="btn_zk">展开<svg class="icon" style="">\n' +
+                '<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiajiantou"></use>\n' +
+                '</svg></div>');
+        }
+    })
+
 
     $("body").on("click",".btn_zk",function () {
         var all_pl=$(this).closest(".pinglunneir").find(".pl_all").val();

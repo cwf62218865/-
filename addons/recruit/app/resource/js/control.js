@@ -633,7 +633,7 @@ $(document).ready(function(){
         $("#small_modalbox").hide();
     });
 
-    function  login(){
+    function  login1(){
         var user_name=$("#small_user_name").val();
         var password=$("#small_password").val();
 
@@ -659,6 +659,7 @@ $(document).ready(function(){
             success:function(data){
                 var data=JSON.parse(data);
                 if(data.status==1){
+                    savecookie();
                     location=location
                 }else if(data.status==4){
                     $("#small_modalbox .chec_tip").eq(0).html(tipmsg("error","账户不存在"));
@@ -675,13 +676,45 @@ $(document).ready(function(){
         })
     }
 
+    var COOKIE_NAME = 'user_name';
+    var COOKIE_PWD = 'password';
+    if($.cookie("rmbuser")== "true"){
+        $("#rember_pwdbtn").attr("checked", true);
+        $("#rember_pwdbtn").next().find("use").attr("xlink:href","#icon-zhengque1");
+        $("#user_name").val($.cookie(COOKIE_NAME));
+        $("#password").val($.cookie(COOKIE_PWD));
+
+        $("#rember_pwdbtn1").attr("checked", true);
+        $("#rember_pwdbtn1").next().find("use").attr("xlink:href","#icon-zhengque1");
+        $("#small_user_name").val($.cookie(COOKIE_NAME));
+        $("#small_password").val($.cookie(COOKIE_PWD));
+    }else{
+        $("#rember_pwdbtn").attr("checked", false);
+        $("#user_name").val("");
+        $("#password").val("");
+        $("#rember_pwdbtn1").attr("checked", false);
+        $("#small_user_name").val("");
+        $("#small_password").val("");
+    }
+
+
+
+    $("#rember_pwdbtn1").on("change",function(){
+        if($(this).is(':checked')){
+            $(this).next().find("use").attr("xlink:href","#icon-zhengque1")
+        }else{
+            $(this).next().find("use").attr("xlink:href","")
+        }
+    });
+
+
     $("#small_login").on("click",function(){
-        login()
+        login1()
     });
     document.onkeydown = function(e){
         var ev = document.all ? window.event : e;
         if(ev.keyCode==13) {
-            login()
+            login1()
         }
     }
 
@@ -718,6 +751,29 @@ $(document).ready(function(){
 
 
 
-})
+
+
+});
+
+function savecookie(){
+    if ($("#rember_pwdbtn").attr("checked")) {
+        var user_name = $("#user_name").val();
+        var password = $("#password").val();
+        $.cookie("rmbuser", "true", { expires: 7 }); //存储一个带7天期限的cookie
+        $.cookie("user_name", user_name, { expires: 7 });
+        $.cookie("password", password, { expires: 7 });
+    }else if($("#rember_pwdbtn1").attr("checked")){
+        var user_name = $("#small_user_name").val();
+        var password = $("#small_password").val();
+        $.cookie("rmbuser", "true", { expires: 7 }); //存储一个带7天期限的cookie
+        $.cookie("user_name", user_name, { expires: 7 });
+        $.cookie("password", password, { expires: 7 });
+    }
+    else {
+        $.cookie("rmbuser", "false", { expire: -1 });
+        $.cookie("user_name", "", { expires: -1 });
+        $.cookie("password", "", { expires: -1 });
+    }
+}
 
 
