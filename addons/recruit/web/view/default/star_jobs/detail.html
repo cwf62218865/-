@@ -1,0 +1,86 @@
+{template 'common/header'}
+
+
+<ul class="nav nav-tabs">
+    <li {if $_GPC['do']=='star_jobs' && $action == 'index'}class="active"{/if}><a href="{php echo web_url('star_jobs/index',array('uid'=>$_GPC['uid']))}">名企职位列表</a></li>
+    <li {if $_GPC['do']=='star_jobs' && $action == 'detail'}class="active"{/if} ><a href="{php echo web_url('star_jobs/detail',array('uid'=>$_GPC['uid']))}">添加名企职位</a></li>
+</ul>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            添加职位
+        </h3>
+    </div>
+    <div class="panel-body">
+        <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label"><span style="color: red">*  </span>职位名称</label>
+                <div class="col-sm-10">
+                    <input type="text"  name="jobs_name" style="width:50%"  class="form-control" value="{$list['jobs_name']}" placeholder="请输入职位名称"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label"><span style="color: red">*  </span>工作地</label>
+                <div class="col-sm-5">
+                    <input type="text"  name="work_place"  class="form-control" value="{$list['work_place']}" placeholder="请输入工作地"/>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">岗位职责</label>
+                <div class="col-sm-10">
+                    <textarea name="duty" rows="4"  cols="60"  id="duty" class="form-control">{php echo  $list['duty'] }</textarea>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">岗位要求</label>
+                <div class="col-sm-10">
+                    <textarea name="require" rows="4"  cols="60"  id="require" class="form-control">{php echo  $list['require'] }</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">专业要求</label>
+                <div class="col-sm-10">
+                    <textarea name="major" rows="4"  cols="60"  id="major" class="form-control">{php echo  $list['major'] }</textarea>
+                </div>
+            </div>
+
+
+            <div class="form-group col-sm-6 ">
+                <input name="token" type="hidden" value="edit" />
+                <input type="submit" class="btn btn-primary col-lg-1" name="submit" value="提交" style="float: right;" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $('#form1').submit(function(){
+            if(!$.trim($(':text[name="jobs_name"]').val())) {
+                util.message('请填写职位名称', '', 'error');
+                return false;
+            }
+
+//            if(!$.trim($('#cateid').val())) {
+//                util.message('请选择新闻分类', '', 'error');
+//                return false;
+//            }
+//            if(!$.trim($('textarea[name="content"]').val())) {
+//                util.message('请填写新闻内容', '', 'error');
+//                return false;
+//            }
+            return true;
+        });
+    });
+</script>
+
+{template 'common/footer'}

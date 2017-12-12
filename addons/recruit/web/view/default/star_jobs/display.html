@@ -1,7 +1,7 @@
 {php include template('common/header');}
 <ul class="nav nav-tabs">
-	<li {if $_GPC['do']=='star_hr' && $action == 'index'}class="active"{/if}><a href="{php echo web_url('star_hr/index')}">名企列表</a></li>
-	<li {if $_GPC['do']=='star_hr' && $action == 'detail'}class="active"{/if} ><a href="{php echo web_url('star_hr/detail')}">添加名企</a></li>
+	<li {if $_GPC['do']=='star_jobs' && $action == 'index'}class="active"{/if}><a href="{php echo web_url('star_jobs/index',array('uid'=>$_GPC['uid']))}">名企职位列表</a></li>
+	<li {if $_GPC['do']=='star_jobs' && $action == 'detail'}class="active"{/if} ><a href="{php echo web_url('star_jobs/detail',array('uid'=>$_GPC['uid']))}">添加职位</a></li>
 </ul>
 
 <div class="panel panel-default">
@@ -11,7 +11,7 @@
 			<table class="table table-hover">
 				<thead class="navbar-inner">
 				<tr>
-					<th style="width:15%;">企业名称</th>
+					<th style="width:15%;">职位名称</th>
 					<th style="width:15%;">所属行业</th>
 					<th style="width:10%;">公司规模</th>
 					<th style="width:10%;">招聘职位数</th>
@@ -23,7 +23,6 @@
 				<tbody>
 				{loop $lists $list}
 				<tr>
-
 					<td>
 						{$list['companyname']}
 					</td>
@@ -39,9 +38,9 @@
 					<td style="text-align: center;">
 						<a href="{php echo $this->createWebUrl('activity', array('dopost' => 'edit','id' => $list['id']))}" title="编辑" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
 							编辑</a>
-						<a href="{php echo web_url('star_jobs/index',array('uid'=>$list['id']))}" title="职位管理" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
+						<a href="{php echo $this->createWebUrl('activity_apply', array('display' => 'list','id' => $list['id']))}" title="报名管理" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
 							职位管理</a>
-						<a href="" title="编辑" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
+						<a href="{php echo $this->createWebUrl('activity', array('dopost' => 'edit','id' => $list['id']))}" title="编辑" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
 							宣讲会管理</a>
 
 						<a href="{php echo $this->createWebUrl('activity', array('dopost' => 'delete','id' => $list['id']))}" onclick="return confirm('确认删除此活动信息吗？');return false;" title="删除" class="btn btn-default btn-sm"><i class="icon-remove"></i>

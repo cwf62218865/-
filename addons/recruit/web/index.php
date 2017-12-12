@@ -5,7 +5,8 @@ wl_load()->model('syssetting');
 load()->func('communication');
 
 $controller = $_GPC['do'];
-$action = $_GPC['ac'];
+
+$action = $_GPC['ac']?$_GPC['ac']:"index";
 $op = $_GPC['op']?$_GPC['op']:"index";
 
 if(empty($controller) || empty($action)) {
