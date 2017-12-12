@@ -169,8 +169,15 @@ class company{
     /*
      * 名企分页列表
      */
-    public function star_company_list($page=0){
-        $limit = " limit ".($page*15).",15";
+    public function star_company_list($page=0,$pagenum=15){
+//        $limit = " limit ".($page*15).",15";
+
+        $company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."star_hr"));
+
+        if($page*$pagenum>$company_count){
+            $page = 0;
+        }
+        $limit = " limit ".$page*$pagenum.",".$pagenum;
         $company = pdo_fetchall("select * from ".tablename(WL."star_hr").$limit);
         return $company;
     }

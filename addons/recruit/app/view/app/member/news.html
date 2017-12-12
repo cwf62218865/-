@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/person_msg.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/news_list.css" rel="stylesheet">
+    <title>新闻</title>
+</head>
+<body>
+{if $_SESSION['utype']==1}
+{php include wl_template('common/top');}
+{elseif $_SESSION['utype']==2}
+{php include wl_template('common/company_top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
+<div class="width1200 p1content">
+
+    <div class="p1_left" style="margin-top: 10px">
+        <div class="con_list">
+
+
+            <div class="person_msg_titles" style="margin:0 70px">
+                <span class="person_msg_title_check" style="margin-left: 0">全部新闻</span>
+                <span data-id="招聘新闻">招聘新闻</span>
+                <span data-id="活动报道">活动报道</span>
+                <span data-id="网站公告">网站公告</span>
+            </div>
+
+
+
+
+            <div id="all_msg">
+                {loop $news $list}
+                <div class="news_list_box">
+                    <a href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}" class="news_list_box_img">
+                        {if $list['thumb']}
+                        <img src="/attachment/{$list['thumb']}" />
+                        {else}
+                        <img src="{WL_URL_ARES}/images/nopic-107.png" height="160" />
+                        {/if}
+                    </a>
+                    <div class="news_list_box_content">
+                        <!--news_list_box_title内容长度限制40个汉字，超出...-->
+                        <a href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}" class="news_list_box_title">{$list['title']}</a>
+
+                        <span class="news_list_box_msg">
+                            {php echo strip_tags($list['title'])}
+                        </span>
+
+                        <div class="news_list_box_bottom_msg">
+                            <span class="news_list_box_classify ">
+                                <svg class="icon">
+                                    <use xlink:href="#icon-shuqian1"></use>
+                                </svg>
+                                <span class="classifys">招聘新闻</span>
+                            </span>
+                            <div class="right_classify">
+
+                                <span class="news_list_box_classify">
+                                    <svg class="icon">
+                                        <use xlink:href="#icon-liulanliang"></use>
+                                    </svg>
+                                    {$list['click']}
+                                </span>
+                                <span class="news_list_box_classify" style="margin-left: 25px">
+                                    {php echo date('Y-m-d',$list['createtime'])}
+                                </span>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                {/loop}
+
+
+            </div>
+
+
+            <div id="one_msg">
+
+            </div>
+            <div id="page" class="news_page">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="p1_right"  style="margin-top: 20px">
+        <div class="part_one">
+            <div class="title-top">
+                <label class="top_con">热门文章</label>
+            </div>
+
+            <a href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" class="items_list">
+                <div class="news_logo">
+                    <img src="{WL_URL_ARES}images/gongsi.png" style="width: 100%;">
+                </div>
+                <div class="news_company_content">
+                    <!--需要限制字符长度-->
+                    <div class="news_company_title">36氪首发 | 租包将会成为主流消费行氪首…</div>
+                    <!--超出24小时显示日期-->
+                    <div class="news_list_box_classify" style="position: absolute;bottom: 0">
+                        11小时前
+                    </div>
+                </div>
+            </a>
+            <div style="clear: both"></div>
+            <a href="{php echo app_url('member/index/news')}" class="seemorejob" style="display: inline-block;width: 100%;line-height: 54px;text-align: center;color: #999;">查看更多新闻>></a>
+        </div>
+
+
+    </div>
+
+
+
+
+</div>
+
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.cookie.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/news.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/page.js" rel="script"></script>
+<script>
+
+//    $(".news_page").html(pages(1,"{php echo ceil($news_count/4)}"));
+    var kind = "";
+    var page1 = createPage("news_page", "{php echo app_url('member/index/news_page_ajax')}");
+    var pagenum = "{php echo ceil($news_count/6)}";
+    if(pagenum>1){
+        $(".news_page").html(pages(1,"{php echo ceil($news_count/6)}"));
+    }
+    page1.option={
+        page:1,
+        kind:kind
+    };
+    page1.callback_content = function () {
+//        console.log(page1.data.content);return;
+        $("#all_msg").html(page1.data.content);
+    }
+    $(".person_msg_titles span").on("click",function(){
+        var _this=$(this);
+        var dataid=_this.attr("data-id");
+        $(".person_msg_titles span").removeClass("person_msg_title_check");
+        _this.addClass("person_msg_title_check");
+
+        if(dataid){
+            $.ajax({
+                url:"{php echo app_url('member/index/news_page_ajax')}",
+                type:"post",
+                data:{
+                    kind:dataid
+                },
+                success:function(data){
+                    var data=JSON.parse(data);
+                    if(data.status==1){
+                        page1.option.page = 1;
+                        $(".news_page").html(pages(1, Math.ceil(data.others/6)));
+                        $("#all_msg").hide();
+                        $("#one_msg").show();
+                        if(data.content){
+                            $("#one_msg").html(data.content);
+                        }else{
+                            no_data("#one_msg","没有消息","当前板块没有消息")
+                        }
+
+                    }
+                }
+
+            })
+        }else if(_this.html()=="全部新闻"){
+            $("#all_msg").show();
+            $("#one_msg").hide();
+        }
+    })
+</script>
+</html>

@@ -1136,6 +1136,16 @@ elseif ($op=="companys_slide"){
     call_back(1,$str);
 }
 
+elseif ($op=="star_hr_slide"){
+    $page = $_POST['page']?$_POST['page']:0;
+    $company  = m("company")->star_company_list($page);
+    $html = "";
+    foreach ($company as $list){
+        $html = "<a href=\"".app_url('member/index/super_company',array('id'=>$list['id']))."\" class=\"surper_company\"><img src=\"/attachment/{$list['headimgurl']}\"> </a>";
+    }
+    call_back(1,$html);
+}
+
 /**********未知接口*******/
 elseif ($op=="resume_worksupload"){
     $kind = "个人作品上传";

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/mobileuoload.css" rel="stylesheet">
     <title>手机照片上传</title>
 </head>
@@ -12,22 +14,23 @@
     <div class="top_structure">
         <img class="logo" src="{WL_URL_ARES}images/logo_1.png">
         <div class="file_name">
-            {if $_GPC['kind']==1}
-            上传营业执照
-            {elseif $_GPC['kind']==2}
-            法人身份证(正面)
-            {else}
-            法人身份证(反面)
-            {/if}
+            {php echo $kind}
         </div>
 
-        <div class="imgbox">
-            <svg class="icon icon1" aria-hidden="true" >
+        <div class="imgbox camera"  style="border: 0;background-color: #f8f9fb;">
+            <svg class="icon icon1" aria-hidden="true" style="width: auto">
                 <use xlink:href="#icon-shangchuan"></use>
             </svg>
         </div>
-        <input type='file' name='file' id='file' accept='image/*' style="display: none">
-        <span class="file_btn camera">选择文件</span>
+        <div class="success_upload" style="display: none"><svg class="icon" aria-hidden="true" >
+            <use xlink:href="#icon-zhengque2"></use>
+        </svg>上传成功
+        </div>
+        <form id="choosefile1" enctype="multipart/form-data">
+            <input type='file' name='file' id='file' accept='image/*' style="display: none">
+            <input type="hidden" name="identity" value="{php echo $_GPC['identity']}">
+        </form>
+        <span class="file_btn camera choose_file">选择文件</span>
         <span class="file_btn camera1">确定上传</span>
         <span class="file_btn Album1">更换照片</span>
     </div>
@@ -40,10 +43,12 @@
 
 <script>
 
+    var imgsrc="";
     //上传文件
     $('.camera,.Album1').on('click',function(){
         var file=$("#file");
         file.click();
+
         file.on('change',function(e){
             var height=$(window).height();
 
@@ -53,49 +58,48 @@
             $('.imgbox').html(uploadsuccesspic);
             $(".camera1").css("display","block");
             $(".Album1").css("display","block");
-            $(".camera").css("display","none")
+            $(".choose_file").css("display","none");
+            $(".camera1").show();
+            $(".success_upload").hide();
             //uploadFile(this,'file');
-            dealImage(file.val(),{
+            dealImage(src,{
                 width:200
             },function(data){
-                console.log(data);
+                imgsrc=data;
             });
         });
     });
-    
-    
-    $(".camera1").on("click",function () {
-        uploadFile($("#file"),'file');
-    })
+
+    //上传图片
+    $(".camera1").on("click",function(){
 
 
-
-    function uploadFile(obj, type) {
-
-        $.ajaxFileUpload({
-            url : "{php echo app_url('member/company_register/save_license',array('identity'=>$_GPC['identity'],'kind'=>$_GPC['kind']))}",
-            secureuri : false,// 一般设置为false
-            fileElementId :type,// 文件上传表单的id <input type="file" id="fileUpload" name="file" />
-            dataType : 'json',// 返回值类型 一般设置为json
-            data: {'type': type, "type2":2},
-            success : function(data) // 服务器成功响应处理函数
-            {
-                console.log(data);
-                var data = JSON.parse(data);
-                if(data.status==1){
-                    var imgfile=obj.files[0];
-                    var src=URL.createObjectURL(imgfile);
-                    var uploadsuccesspic="<span class='uploadpic'><img src='"+src+"'></span>"
-                    $('.adduploadpic').before(uploadsuccesspic);
-                }
+        $.ajax({
+            url:"{$url}",
+            type:"post",
+            data:{
+                file:imgsrc,
+                identity:"{$_GPC['identity']}",
+                kind:"{$_GPC['kind']}"
             },
-            error : function(data)// 服务器响应失败处理函数
-            {
-                console.log("服务器异常");
+            success:function (data) {
+                var data=JSON.parse(data);
+                if(data.status==1){
+                    $(".success_upload").show().html("<svg class='icon' aria-hidden='true'>"+
+                            "<use xlink:href='#icon-zhengque2'></use></svg>上传成功")
+                    $(".camera1").hide();
+                }else{
+                    $(".success_upload").show().html("<svg class='icon' aria-hidden='true' style='color: #ea5941'>"+
+                    "<use xlink:href='#icon-cuowu'></use></svg>上传头像弹窗已关闭，上传失败")
+                }
+                $(".chec_tip1").eq(1).html("");
+            },
+            error:function(err){
+                $(".success_upload").hide();
             }
         });
-        return false;
-    };
+    })
+
 
     function dealImage(path, obj, callback){
         var img = new Image();
@@ -130,6 +134,8 @@
             callback(base64);
         }
     }
+
+
 
 </script>
 </html>
