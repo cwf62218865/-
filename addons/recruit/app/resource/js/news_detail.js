@@ -131,6 +131,7 @@ $(function () {
                                 '                        <span class="jubao_btn">举报</span>\n' +
                                 '                    </label>\n' +
                                 '                </div>';
+
                             $(".text_area_pl1").hide();
                             $(".fabupjbtn1").hide();
                             _this.closest(".pinglun_item").find(".pl_status").eq(0).after(html);
