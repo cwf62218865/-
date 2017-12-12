@@ -4,7 +4,6 @@
 .super_banner{
     width: 100%;
     height: 420px;
-    background: url("../images/super_banner.png")no-repeat center;
 }
 .super_con{
     padding-bottom: 90px;width: 730px;height: auto;margin-left: 70px;margin-top: 30px;

@@ -16,10 +16,23 @@
     <link href="{WL_URL_ARES}css/super_company.css" rel="stylesheet">
     <title>名企招聘</title>
     <style>
-        .swiper-container{
-            width: 680px;
-            height: 360px;
 
+        .swiper-container{
+            width: 100%;
+        }
+        .swiper-pagination-bullet{
+            width: 50px;
+            height: 10px;
+            border-radius: 6px;
+            background-color: rgba(255,255,255,0.5);
+            opacity: 1;
+        }
+        .swiper-pagination-bullet-active{
+            background-color:#09c;
+        }
+        .company_img{
+            width: 100%;
+            height: 420px;
         }
         .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{
             margin: 0 10px;
@@ -84,7 +97,24 @@
 {else}
 {php include wl_template('common/header');}
 {/if}
-<div class="super_banner"></div>
+<div class="super_banner">
+    <div class="swiper-container swiper-container-horizontal">
+        <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+            <div class="swiper-slide">
+                <div class="company_img" style="background:url('/addons/recruit/app/resource/images/super_banner.png')no-repeat center"></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="company_img" style="background:url('/addons/recruit/app/resource/images/super_banner.png')no-repeat center"></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="company_img" style="background:url('/addons/recruit/app/resource/images/super_banner.png')no-repeat center"></div>
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+        <!-- 如果需要导航按钮 -->
+    </div>
+</div>
 <div class="width1200 p1content">
     <div class="p1_left" style="background: #ffffff;margin-top: 10px;">
         <div class="con_list super_con">
@@ -98,23 +128,29 @@
             <div class="super_content">
                 <div class="jobs_detail_title">公司简介</div>
                 <div class="gongsijianjie">
-                    <img src="/addons/recruit/app/resource/images/gongsi.png"  class="gongsi_pic"/>
-                    环球网（www.huanqiu.com）由人民日报社、国务院新闻办批准，人民网和环球时报社共同投资设立，于2007年11月正式上线，是中央级重点新闻网站、国新办获准的可供网站转载新闻的新闻单位。环球网及时准确、角度独特的国际资讯和深度分析，被国内外媒体广泛转载，是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户环球网（www.huanqiu.com）由人民日报社、国务院新闻办批准，人民网和环球时报社共同投资设立，于2007年11月正式上线，是中央级重点新闻网站、国新办获准的可供网站转载新闻的新闻单位。环球网及时准确、角度独特的国际资讯和深度分析，被国内外媒体广泛转载，是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户。是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户。
+                    {if $company['introduce_pic']}
+                    <img src="/attachment/{$company['introduce_pic']}"  class="gongsi_pic"/>
+                    {/if}
+                    {$company['introduce']}
                 </div>
                 <div class="jobs_detail_title" style="margin-top: 60px;">企业文化</div>
                 <div style="margin-top: 60px">
                     <div style="margin-top: 40px" id="company_img">
+                        {if $company['photolist']}
                         <div class="swiper-container swiper-container-horizontal">
                             <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-                                <div class="swiper-slide swiper-slide-active" style="width: 680px;">
-                                    <div class="company_img"><img src="/addons/recruit/app/resource/images/gongsi.png"></div>
-                                </div>
-                                <div class="swiper-slide swiper-slide-next" style="width: 680px;">
-                                    <div class="company_img"><img src="/addons/recruit/app/resource/images/gongsi.png"></div>
-                                </div>
+                                <!--<div class="swiper-slide swiper-slide-active" style="width: 680px;">-->
+                                    <!--<div class="company_img"><img src="/addons/recruit/app/resource/images/gongsi.png"></div>-->
+                                <!--</div>-->
+                                <!--<div class="swiper-slide swiper-slide-next" style="width: 680px;">-->
+                                    <!--<div class="company_img"><img src="/addons/recruit/app/resource/images/gongsi.png"></div>-->
+                                <!--</div>-->
+
+                                {loop explode(',',$company['photolist']) $list}
                                 <div class="swiper-slide" style="width: 680px;">
-                                    <div class="company_img"><img src="/addons/recruit/app/resource/images/gongsi.png"></div>
+                                    <div class="company_img"><img src="/attachment/{$list}"></div>
                                 </div>
+                                {/loop}
 
                             </div>
                             <div class="swiper-pagination swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div>
@@ -122,209 +158,131 @@
                             <div class="swiper-button-prev"></div>
                             <div class="swiper-button-next"></div>
                         </div>
+                        {/if}
                     </div>
                 </div>
+                {if $company['core_idea']}
                 <div class="qiyewenhua" style="margin-top: 40px;">
                     <img src="/addons/recruit/app/resource/images/super_ico1.png" class="super_ico"/>
                     <div class="content_list">
                         <p class="content_list_title">核心理念:</p>
-                        <p class="content_list_con">全城材料报价”的查询，业主在下单购买前，可致电土巴兔了解市场价格。我们承诺全城材料报价”的查询，业主在下单购买前，可致电土巴兔了解市场价格。我们承诺差价双倍赔偿全城材料报价”全城材料报价”的查询，业主在下单购买前，可致电土巴兔了解市场价格。我们承诺全城材料报价”的查询，业主在下单购买前，可致电土巴兔了解市场价格。我们承诺全城材料报价”的查询，业主在下单购买前，可致电土巴兔了解市场价格。我们承诺</p>
+                        <p class="content_list_con">
+                            {$company['core_idea']}
+                        </p>
                     </div>
                 </div>
+                {/if}
+
+                {if $company['vision']}
                 <div class="qiyewenhua">
                     <img src="/addons/recruit/app/resource/images/super_ico2.png" class="super_ico"/>
                     <div class="content_list">
                         <p class="content_list_title">企业愿景:</p>
-                        <p class="content_list_con">全城材料报价”的查询，业主在下单购买前。</p>
+                        <p class="content_list_con">{$company['vision']}</p>
                     </div>
                 </div>
+                {/if}
+                {if $company['human_concept']}
                 <div class="qiyewenhua">
                     <img src="/addons/recruit/app/resource/images/super_ico3.png" class="super_ico"/>
                     <div class="content_list">
                         <p class="content_list_title">用人理念:</p>
-                        <p class="content_list_con">全城材料报价”的查询，业主在下单购买前。</p>
+                        <p class="content_list_con">{$company['human_concept']}</p>
                     </div>
                 </div>
+                {/if}
+                {if $company['mission']}
                 <div class="qiyewenhua">
                     <img src="/addons/recruit/app/resource/images/super_ico4.png" class="super_ico"/>
                     <div class="content_list">
                         <p class="content_list_title">企业使命:</p>
-                        <p class="content_list_con">全城材料报价”的查询，业主在下单购买前。</p>
+                        <p class="content_list_con">{$company['mission']}</p>
                     </div>
                 </div>
+                {/if}
+                {if $company['management_idea']}
                 <div class="qiyewenhua">
                     <img src="/addons/recruit/app/resource/images/super_ico5.png" class="super_ico"/>
                     <div class="content_list">
                         <p class="content_list_title">经营理念:</p>
-                        <p class="content_list_con">全城材料报价”的查询，业主在下单购买前。</p>
+                        <p class="content_list_con">{$company['management_idea']}</p>
                     </div>
                 </div>
+                {/if}
+                {if $company['cultural_idea']}
                 <div class="qiyewenhua">
                     <img src="/addons/recruit/app/resource/images/super_ico6.png" class="super_ico"/>
                     <div class="content_list">
                         <p class="content_list_title">文化理念:</p>
-                        <p class="content_list_con">全城材料报价”的查询，业主在下单购买前。</p>
+                        <p class="content_list_con">{$company['cultural_idea']}</p>
                     </div>
                 </div>
-
+                {/if}
+                {if $company['development_strategy']}
                 <div class="gongsijianjie" style="margin-top: 60px;">
-                    <img src="/addons/recruit/app/resource/images/gongsi.png"  class="gongsi_pic1"/>
+                    {if $company['strategy_pic']}
+                    <img src="/attachment/{$company['strategy_pic']}"  class="gongsi_pic1"/>
+                    {/if}
                     <div class="title_huan">发展战略</div>
-                    环球网（www.huanqiu.com）由人民日报社、国务院新闻办批准，人民网和环球时报社共同投资设立，于2007年11月正式上线，是中央级重点新闻网站、国新办获准的可供网站转载新闻的新闻单位。环球网及时准确、角度独特的国际资讯和深度分析，被国内外媒体广泛转载，是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户环球网（www.huanqiu.com）由人民日报社、国务院新闻办批准，人民网和环球时报社共同投资设立，于2007年11月正式上线，是中央级重点新闻网站、国新办获准的可供网站转载新闻的新闻单位。环球网及时准确、角度独特的国际资讯和深度分析，被国内外媒体广泛转载，是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户。是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户。
+                    {$company['development_strategy']}
                 </div>
-
+                {/if}
+                {if $company['ten_year']}
                 <div class="gongsijianjie" style="margin-top: 60px;">
-                    <img src="/addons/recruit/app/resource/images/gongsi.png"  class="gongsi_pic"/>
+                    {if $company['ten_year_pic']}
+                    <img src="/attachment/{$company['ten_year_pic']}"  class="gongsi_pic"/>
+                    {/if}
                     <div class="title_huan">未来十年（添加内容）</div>
-                    环球网（www.huanqiu.com）由人民日报社、国务院新闻办批准，人民网和环球时报社共同投资设立，于2007年11月正式上线，是中央级重点新闻网站、国新办获准的可供网站转载新闻的新闻单位。环球网及时准确、角度独特的国际资讯和深度分析，被国内外媒体广泛转载，是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户环球网（www.huanqiu.com）由人民日报社、国务院新闻办批准，人民网和环球时报社共同投资设立，于2007年11月正式上线，是中央级重点新闻网站、国新办获准的可供网站转载新闻的新闻单位。环球网及时准确、角度独特的国际资讯和深度分析，被国内外媒体广泛转载，是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户。是互联网中英文双语资讯最重要的原创内容供应商，最具海外影响力的中英文双语新闻门户。
+                    {$company['ten_year']}
                 </div>
-
+                {/if}
             </div>
 <!--公司简介end-->
 <!--招聘职位-->
             <div class="super_content" style="display: none;">
                 <div class="job_lists_super" style="margin-top: 40px;">
-                    <a class="job_list_item selectit" href="#job1">运营支持员(个贷业务)</a>
-                    <a class="job_list_item"  href="#job2">Java开发工程师</a>
-                    <a class="job_list_item"  href="#job3">测试工程师</a>
-                    <a class="job_list_item"  href="#job4">大数据科学家</a>
-                    <a class="job_list_item"  href="#job5">IOS/andriod客户端开发工程师</a>
-                    <a class="job_list_item"  href="#job6">数据产品经理</a>
-                    <a class="job_list_item"  href="#job7">法务专员</a>
-                    <a class="job_list_item"  href="#job8">计算机视觉算法工程师</a>
+                    {loop $jobs $list}
+                    <a class="job_list_item"  href="#{$list['jobs_name']}{$list['id']}">{$list['jobs_name']}</a>
+                    {/loop}
                 </div>
-                <div class="job_details" id="job1" style="margin-top: 20px;">
+                {loop $jobs $list}
+                <div class="job_details" id="{$list['jobs_name']}{$list['id']}" style="margin-top: 20px;">
                     <svg class="icon huixingzhen" aria-hidden="true" style="">
                         <use  xlink:href="#icon-niukou"></use>
                     </svg>
 
                     <div class="job_titles">
-                        <label class="job_name_super">运营支持员(个贷业务)</label>
-                        <label class="job_address_super">工作地：北京/重庆/武汉</label>
+                        <label class="job_name_super">{$list['jobs_name']}</label>
+                        <label class="job_address_super">工作地：{$list['work_place']}</label>
                     </div>
                     <div class="job_superc">
                         <p class="gangwei">岗位职责</p>
                         <ol class="zhize_super">
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            {$list['duty']}
                         </ol>
                     </div>
                     <div class="job_superc">
                         <p class="gangwei">岗位要求</p>
                         <ol class="zhize_super">
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
+                            {$list['require']}
                         </ol>
                     </div>
                     <div class="job_superc">
                         <p class="gangwei">专业要求</p>
                         <p class="zhize_super">
-                           承接各类个贷业务的面签面审等全流程作业
+                           {$list['major']}
                         </p>
                     </div>
                     <div class="job_superc didianrukou">
                         <label class="bntl">工作地：</label>
+                        {loop explode("/",$list['work_place']) $li}
                         <label>上海</label>
                         <label class="didianbtn">申请</label>
-                        <label>北京</label>
-                        <label class="didianbtn">北京</label>
-                        <label>广州</label>
-                        <label class="didianbtn">广州</label>
+                        {/loop}
                     </div>
                     <div class="zhejiao"><img src="/addons/recruit/app/resource/images/sanjiaox.png"/></div>
                 </div>
-                <div class="job_details"  id="job2" style="background:linear-gradient(-45deg, transparent 20px, #fff 0);">
-                    <svg class="icon huixingzhen" aria-hidden="true" style="">
-                        <use  xlink:href="#icon-niukou"></use>
-                    </svg>
-
-                    <div class="job_titles">
-                        <label class="job_name_super">运营支持员(个贷业务)</label>
-                        <label class="job_address_super">工作地：北京/重庆/武汉</label>
-                    </div>
-                    <div class="job_superc">
-                        <p class="gangwei">岗位职责</p>
-                        <ol class="zhize_super">
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                        </ol>
-                    </div>
-                    <div class="job_superc">
-                        <p class="gangwei">岗位要求</p>
-                        <ol class="zhize_super">
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                        </ol>
-                    </div>
-                    <div class="job_superc">
-                        <p class="gangwei">专业要求</p>
-                        <p class="zhize_super">
-                            承接各类个贷业务的面签面审等全流程作业
-                        </p>
-                    </div>
-                    <div class="job_superc didianrukou">
-                        <label class="bntl">工作地：</label>
-                        <label>上海</label>
-                        <label class="didianbtn">申请</label>
-                        <label>北京</label>
-                        <label class="didianbtn">北京</label>
-                        <label>广州</label>
-                        <label class="didianbtn">广州</label>
-                    </div>
-                    <div class="zhejiao"><img src="/addons/recruit/app/resource/images/sanjiaox.png"/></div>
-                </div>
-                <div class="job_details"  id="job3" style="background:linear-gradient(-45deg, transparent 20px, #fff 0);">
-                    <svg class="icon huixingzhen" aria-hidden="true" style="">
-                        <use  xlink:href="#icon-niukou"></use>
-                    </svg>
-
-                    <div class="job_titles">
-                        <label class="job_name_super">运营支持员(个贷业务)</label>
-                        <label class="job_address_super">工作地：北京/重庆/武汉</label>
-                    </div>
-                    <div class="job_superc">
-                        <p class="gangwei">岗位职责</p>
-                        <ol class="zhize_super">
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                        </ol>
-                    </div>
-                    <div class="job_superc">
-                        <p class="gangwei">岗位要求</p>
-                        <ol class="zhize_super">
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                            <li>承接各类个贷业务的面签面审等全流程作业</li>
-                        </ol>
-                    </div>
-                    <div class="job_superc">
-                        <p class="gangwei">专业要求</p>
-                        <p class="zhize_super">
-                            承接各类个贷业务的面签面审等全流程作业
-                        </p>
-                    </div>
-                    <div class="job_superc didianrukou">
-                        <label class="bntl">工作地：</label>
-                        <label>上海</label>
-                        <label class="didianbtn">申请</label>
-                        <label>北京</label>
-                        <label class="didianbtn">北京</label>
-                        <label>广州</label>
-                        <label class="didianbtn">广州</label>
-                    </div>
-                    <div class="zhejiao"><img src="/addons/recruit/app/resource/images/sanjiaox.png"/></div>
-                </div>
+                {/loop}
             </div>
 <!--招聘职位end-->
 <!--宣讲进程-->
@@ -339,64 +297,28 @@
                     <div class="xz_title">校招行程</div>
                 </div>
                 <div class="xzlicontent">
-                    <div class="xzitem" data-id="0">
+                    {loop $star_career $list}
+                    <div class="xzitem" data-id="{$list['id']}">
                         <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
-                        <div class="college_name">武汉大学(文理科技学院)</div>
+                        <div class="college_name">{$list['school']}</div>
                         <div class="xiangxixinxi">
-                        <div class="dizhi_shi">武汉市</div>
-                        <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
-                        <div class="detail_dizhi" style="margin-top: 5px;">学生就业服务中心就业服务中心卓越厅</div>
+                        <div class="dizhi_shi">{$list['city']}</div>
+                        <div class="time_xz" style="margin-top: 5px;">{php echo date('m月d日 H:i',$list['career_starttime'])}-{php echo date('H:i',$list['career_endtime'])}</div>
+                        <div class="detail_dizhi" style="margin-top: 5px;">{$list['place']}</div>
                         </div>
                         <div class="dingyuebtn">
                             <span>订阅</span>
                             <div class="dy_tip">订阅后，我们将以短信的形式提前一天告知您宣讲会的相关事宜</div>
                         </div>
                     </div>
-                    <div class="xzitem"  data-id="1">
-                        <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
-                        <div class="college_name">武汉大学</div>
-                        <div class="xiangxixinxi">
-                            <div class="dizhi_shi">武汉市</div>
-                            <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
-                            <div class="detail_dizhi" style="margin-top: 5px;">学生就业服务中心</div>
-                        </div>
-                        <div class="dingyuebtn">
-                            <span>订阅</span>
-                            <div class="dy_tip">订阅后，我们将以短信的形式提前一天告知您宣讲会的相关事宜</div>
-                        </div>
-                    </div>
-                    <div class="xzitem"  data-id="2">
-                        <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
-                        <div class="college_name">武汉大学</div>
-                        <div class="xiangxixinxi">
-                            <div class="dizhi_shi">武汉市</div>
-                            <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
-                            <div class="detail_dizhi" style="margin-top: 5px;">学生就业服务中心就业服务中心卓越厅</div>
-                        </div>
-                        <div class="dingyuebtn">
-                            <span>订阅</span>
-                            <div class="dy_tip">订阅后，我们将以短信的形式提前一天告知您宣讲会的相关事宜</div>
-                        </div>
-                    </div>
-                    <div class="xzitem"  data-id="3">
-                        <img class="ico_dw" src="/addons/recruit/app/resource/images/xiaozahoap.png"/>
-                        <div class="college_name">武汉大学</div>
-                        <div class="xiangxixinxi">
-                            <div class="dizhi_shi">武汉市</div>
-                            <div class="time_xz" style="margin-top: 5px;">11月13日19:00-21:00</div>
-                            <div class="detail_dizhi" style="margin-top: 5px;">学生就业服务中心就业服务中心卓越厅</div>
-                        </div>
-                        <div class="dingyuebtn">
-                            <span>订阅</span>
-                            <div class="dy_tip">订阅后，我们将以短信的形式提前一天告知您宣讲会的相关事宜</div>
-                        </div>
-                    </div>
+                    {/loop}
                 </div>
             </div>
 <!--宣讲进程end-->
 <!--培训计划-->
             <div class="super_content" style="display: none;">
-                <img class="xichufu" src="/addons/recruit/app/resource/images/xinchoufl.png">
+                {$company['training_plan']}
+                <!--<img class="xichufu" src="/addons/recruit/app/resource/images/xinchoufl.png">-->
             </div>
 <!--培训计划end-->
         </div>
@@ -408,63 +330,67 @@
 
             <div class="company_logo" style="float: none">
                 <a href="#">
-                    <img src="/addons/recruit/app/resource/images/qiyelogo.png">
+                    <img src="/attachment/{$company['headimgurl']}">
                 </a>
             </div>
 
             <div class="company_recruit_msg">
                 <a class="font18 color333 hover09c" style="margin-top: 20px" href="http://localhost/app/index.php?c=site&amp;a=entry&amp;m=recruit&amp;do=member&amp;ac=index&amp;op=company_detail&amp;company_id=655">
-                    大风车科技有限公司
+                    {$company['companyname']}
                 </a>
 
 
                 <div class="company_recruit"style="margin-top: 40px">
                     <span class="colorbbb">所属行业</span>
-                    <span class="company_recruit_result">IT互联网</span>
+                    <span class="company_recruit_result">{$company['industry']}</span>
                 </div>
 
                 <div class="company_recruit">
                     <span class="colorbbb">公司规模</span>
-                    <span class="company_recruit_result">20-50人</span>
+                    <span class="company_recruit_result">{$company['number']}</span>
                 </div>
 
 
                 <div class="recruit_result">
                     <span>
-                        <a href="#" class="results">12个</a>
+                        <a href="#" class="results">{php echo count($jobs)}个</a>
                         <div class="color999">在招职位</div>
                     </span>
 
                     <span>
-                        <a href="#" class="results">3条</a>
+                        <a href="#" class="results">{php echo count($star_career)}条</a>
                         <div class="color999">宣讲会</div>
                     </span>
 
                 </div>
                 <div class="foot_btns">
-                    <div class="con" style="width: 100%;margin-top: 0px;margin-bottom: 0px;">
+                    <div class="con bdsharebuttonbox" style="width: 100%;margin-top: 0px;margin-bottom: 0px;">
                         <label class="fenxiang_title">分享:</label>
-                        <a class="icons" href="http://localhost/addons/recruit/core/common/Connect2.1/example/oauth/index.php" target="_blank">
+                        <a class="icons bds_sqq"  data-cmd="sqq" title="分享到QQ好友">
                             <svg class="icon" style="color: #ffffff">
                                 <use  xlink:href="#icon-qq"></use>
                             </svg>
                         </a>
-                        <a href="" class="icons left">
+                        <a class="icons left bds_weixin"   data-cmd="weixin" title="分享到微信">
                             <svg class="icon" style="color: #ffffff">
                                 <use  xlink:href="#icon-weixin"></use>
                             </svg>
                         </a>
-                        <a class="icons left" href="https://api.weibo.com/oauth2/authorize?client_id=494225968&amp;redirect_uri=http%3A%2F%2Flocalhost%2Faddons%2Frecruit%2Fcore%2Fcommon%2Flibweibo-master%2Fcallback.php&amp;response_type=code" target="_blank">
+                        <a class="icons left bds_tsina"   data-cmd="tsina" title="分享到新浪微博">
                             <svg class="icon" style="color: #ffffff">
                                 <use  xlink:href="#icon-weibo"></use>
                             </svg>
                         </a>
-                        <span class="icons left baidu_icons">
-                        <svg class="icon" style="color: #ffffff">
-                            <use xlink:href="#icon-baidu"></use>
-                        </svg>
-                    </span>
+                        <a class="icons left bds_qzone"   data-cmd="qzone" title="分享到QQ空间">
+                            <svg class="icon" style="color: #ffffff">
+                                <use xlink:href="#icon-QQkongjian"></use>
+                            </svg>
+                        </a>
                     </div>
+                    <script>
+                        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
 
 
                 </div>

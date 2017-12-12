@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/swiper-3.4.2.min.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/company_msg.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=YrLaqu3cNGX66NynxPIWR9sS7n5ASDd1"></script>
+
+    <title>企业主页</title>
+    <style>
+        .swiper-container{
+            width: 680px;
+            height: 360px;
+        }
+        .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{
+            margin: 0 10px;
+        }
+        .swiper-pagination-bullet{
+            background-color: #eee;
+            opacity: 1;
+
+        }
+        .swiper-pagination-bullet-active{
+            background-color: #09c;
+        }
+        .swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+            background-image: url("{WL_URL_ARES}images/left.png");
+        }
+        .swiper-button-next, .swiper-container-rtl .swiper-button-prev{
+            background-image: url("{WL_URL_ARES}images/next.png");
+        }
+        .swiper-button-next, .swiper-button-prev{
+            width: 30px;
+            height: 60px;
+            background-size: 30px 60px;
+            margin-top: -30px;
+        }
+        .abnormal .formtip{
+            position: absolute;
+            margin-top: 0;
+        }
+        .relative input{
+            position: absolute;
+        }
+        #l-map{
+            width: 582px;
+            height: 320px;
+            margin-left: 88px;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body bgcolor="#f4f4f4">
+{if $_SESSION['utype']==1}
+{php include wl_template('common/top');}
+{elseif $_SESSION['utype']==2}
+{php include wl_template('common/company_top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
+<div class="width1200 p1content m_t_30">
+
+    <!--公司基本信息-->
+    <div id="basic_msg">
+        <span class="company_logo">
+            {if $company['headimgurl']}
+            <img src="{$company['headimgurl']}" />
+            {else}
+            <img src="{WL_URL_ARES}images/notimg_com.png" />
+            {/if}
+        </span>
+        <div class="company_basacmsg">
+            <div class="relative">
+                <span class="company_name" style="width: auto">{php echo $company['companyname']}</span>
+                <span class="biaoqian_ico1">
+                        <svg class="icon renzheng">
+                            <use xlink:href="#icon-renzheng"></use>
+                        </svg>
+                        秒猎认证
+                </span>
+                <img src="{WL_URL_ARES}images/mingxing.png" class="mingxing"/>
+
+                <span class="btn_xiny color_main cur">查看该公司信用</span>
+            </div>
+
+            <div class="font666 company_introduce wrap" >{php echo $company['slogan']}</div>
+
+            <div class="font999" style="margin-top: 16px">
+                {loop explode(',',$company['tag']) $list}
+                <span class="basic_msg_bq">{$list}</span>
+                {/loop}
+            </div>
+            <div class="zpzhuangtai relative">
+                <div class="tjitem cur" id="jobs_list">
+                    <p class="tongjinum">{$jobs_num}个</p>
+                    <p  class="tongjititle">在招职位</p>
+                </div>
+                <a class="tjitem cur evaluate" href="#evaluate_list">
+                    <p class="tongjinum">{$company_count['comment_count']}条</p>
+                    <p  class="tongjititle">面试评价</p>
+                </a>
+                <div class="tjitem">
+                    <p class="tongjinum">{$last_login_time}</p>
+                    <p  class="tongjititle">企业最近登录</p>
+                </div>
+                <div class="company_icos">
+                    <span class="com_ico fenxiang" style="position: relative;">
+                        <svg class="icon fexico">
+                            <use xlink:href="#icon-fenxiang"></use>
+                        </svg>分享
+                        <span class="sharehoverbox"></span>
+                        <div class="fenxiang_con bdsharebuttonbox share">
+                            <a class="icons iconb1 bds_sqq" href="#" data-cmd="sqq" title="分享到QQ好友"></a>
+                            <a class="icons iconb2 bds_weixin" href="#" data-cmd="weixin" title="分享到微信"></a>
+                            <a class="icons iconb3 bds_tsina" href="#" data-cmd="tsina" title="分享到新浪微博"></a>
+                            <a class="icons iconb4 bds_weixin" href="#" data-cmd="weixin" title="分享到微信"></a>
+                            <a class="icons iconb5 bds_qzone" href="#" data-cmd="qzone" title="分享到QQ空间"></a>
+                        </div>
+                    </span>
+                    {if $_SESSION['utype']!=2}
+                    <span class="com_ico jubao"><svg class="icon fexico">
+                            <use xlink:href="#icon-tishi"></use>
+                        </svg>举报
+                    </span>
+                    {/if}
+
+                    <script>
+                        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p1_left">
+        <div class="con_list" style="padding-bottom: 80px">
+           <div class="company_width730">
+                <div style="">
+                    <div class="select_title" style="margin-bottom: 40px;margin-top: 0;">
+                        <span class="cur title_se {if empty($_GPC['nav'])}sleft{/if}">公司介绍</span>
+                        <span class="zaizhao cur title_se {if $_GPC['nav']}sleft{/if}">在招职位<label class="num_jobing">({$jobs_num})</label></span>
+                    </div>
+
+                    <!--公司介绍信息---------------------------------------------->
+                    <div  id="introduces_msg"  {if empty($_GPC['nav'])}style="display:block;"{else}style="display:none;"{/if}>
+                        <div class="introduces">
+                            {if mb_strlen($company['introduce'],'utf-8')<300}
+                            {php echo $company['introduce']}
+                            {else}
+                            {php echo mb_substr($company['introduce'],0,300,'utf-8')}...
+                            {/if}
+
+                        </div>
+                        <input type="hidden" value="{php echo $company['introduce']}" id="introduces">
+
+                        <span class="showoehideall">
+                            <span>显示全部</span>
+                            <svg class="icon" aria-hidden="true" style="font-size: 18px">
+                                <use  xlink:href="#icon-xiajiantou"></use>
+                            </svg>
+                        </span>
+                        <div style="margin-top: 60px">
+                            <div style="margin-top: 40px"  id="company_img">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        {loop explode(',',$company['atlas']) $list}
+                                        <div class="swiper-slide">
+                                            <div class="company_img"><img src="{$list}"></div>
+                                        </div>
+                                       {/loop}
+
+                                    </div>
+                                    <div class="swiper-pagination" ></div>
+                                    <!-- 如果需要导航按钮 -->
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--面试评价-->
+                    {if count($comment_jobs)}
+                        <div class="evaluate" style="margin-top: 60px">
+                            <div id="evaluate_list"></div>
+                            <div class="company_title relative">
+                                <span >面试评价({$company_count['comment_count']})</span>
+                            </div>
+                            <div class="zongtipingfen">
+                                <p class="point">{$company_count['count']}</p>
+                                <p class="miaoshus">总体评分</p>
+                            </div>
+                            <div class="xingxing_list">
+                                <div class="xing1">
+                                    <span class="xing_title">信息真实:</span>
+                                    <span class="stars_n">
+                                    {$company_count['information_star']}
+                           </span>
+                                    <span class="point_num">{$company_count['information_count']}分</span>
+                                </div>
+                                <div class="xing1">
+                                    <span class="xing_title">公司环境:</span>
+                                    <span class="stars_n">
+                               {$company_count['environment_star']}
+                           </span>
+                                    <span class="point_num">{$company_count['environment_count']}分</span>
+                                </div>
+                                <div class="xing1">
+                                    <span class="xing_title">面试官:</span>
+                                    <span class="stars_n">
+                               {$company_count['interviewer_star']}
+                           </span>
+                                    <span class="point_num">{$company_count['interviewer_count']}分</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="biaoqian">
+                            <label class="fulibiaoq">环境好<span class="num_totla">(10)</span></label>
+                            <label class="fulibiaoq">环境好<span class="num_totla">(10)</span></label>
+                            <label class="fulibiaoq">环境好<span class="num_totla">(10)</span></label>
+                            <label class="fulibiaoq">环境好<span class="num_totla">(10)</span></label>
+                            <label class="fulibiaoq">环境好<span class="num_totla">(10)</span></label>
+                        </div>
+                        <div class="select_title1">
+                            <span class="cur title_sr selsrt" data-id="1">推荐度排序</span>
+                            <span class="cur title_sr" data-id="2">时间排序</span>
+                        </div>
+                    {/if}
+                        <div class="evaluate_list" >
+                            <div class="evaluate_content">
+                            {loop $comment_jobs $list}
+                            <div class="evaluate_item">
+                                <div class="left_tx">
+                                    {if $list['hide']}
+                                    <svg class="icon nimingtx">
+                                        <use xlink:href="#icon-xuesheng"></use>
+                                    </svg>
+                                    {else}
+                                    <img src="{$list['headimgurl']}"  class="touxiangpic">
+                                    {/if}
+                                    <div class="eva_name nowrap">{$list['fullname']}</div>
+                                </div>
+                                <div class="xiangqing">
+                                    <div class="xqhang">
+                                        <span class="ico_titlesta" style="margin-right: 14px;">总体评价:</span>
+                                        <span class="stars_n">
+                                        {$list['count_score']}
+                                        </span>
+                                        <span class="point_num">{$list['score']}分</span>
+                                        <span class="jobname_eva">面试职位：<a class="namedd" href="#">{$list['jobs_name']}</a></span>
+                                        <span class="date_eva">{php echo date('Y-m-d',$list['createtime'])}</span>
+                                    </div>
+                                    <div class="xqhang" style="margin-top: 18px;">
+                                        {if $list['tag']}
+                                        {loop explode(",",$list['tag']) $li}
+                                        <span class="pingjiabq">{$li}</span>
+                                        {/loop}
+                                        {/if}
+                                    </div>
+                                    <div class="xqhang" style="margin-top: 20px;">
+                                        [面试过程]<span class="evaluate_con">
+                                        {$list['content']}
+                                    </span>
+                                    </div>
+                                    {if in_array($_SESSION['uid'],explode(",",$list['zan']))}
+                                        <div class="hangxq zan" data-id="{$list['id']}">
+                                    {else}
+                                        <div class="hangxq pre_zan" data-id="{$list['id']}">
+                                    {/if}
+
+                                        <svg class="icon zan1" aria-hidden="true">
+                                            <use  xlink:href="#icon-zan1"></use>
+                                        </svg>
+                                            (<span class="zannum">{php echo count(array_filter(explode(",",$list['zan'])))}</span>)
+                                    </div>
+                                    {if $list['hr_reply']}
+                                    <div class="evaluate_huifu">
+                                        <img class="hrtx" src="{$list['logo']}"/>
+                                        <div class="hrhf">
+                                            <p class="hftitle">HR回复：</p><span class="date_num">{php echo date("Y-m-d",$list['reply_time'])}</span>
+                                            <p class="hfcon">{$list['hr_reply']}</p>
+                                        </div>
+                                    </div>
+                                    {/if}
+                                </div>
+                            </div>
+                            {/loop}
+                            </div>
+                            <div class="pages_btnbox job_comment">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--公司介绍信息end---------------------------------------------->
+                    <!--在招职位列表---------------------------------------------->
+                    <div class="job_list" {if $_GPC['nav']}style="display:block;"{else}style="display:none;"{/if}>
+                        <div class="job_list_con">
+                            {loop $jobs $list}
+                            <a class="job_iteme" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" style="position: relative;">
+                                <p class="job_hang relative">
+                                    <div class="job_names" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</div>
+                                    <span class="refume_statas">{php echo date('Y-m-d',$list['updatetime'])}</span>
+                                </p>
+                                <p class="miaosu">
+                                    <span class="salery_num">
+                                        {if $list['wage_min']>0 && $list['wage_max']>0}
+                                            {$list['wage_min']}-{$list['wage_max']}K
+                                        {else}
+                                            薪酬面议
+                                        {/if}
+                                    </span>
+                                    <span class="miaoshuitem"><label class="itaemm">{php echo $list['education']}</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">{php echo $list['experience']}</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">{php echo $list['work_nature']}</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">招聘{php echo $list['number_range']}人</label></span>
+                                    <span class="miaoshuitem"><label class="itaemm">{php echo $list['city']."-".$list['city_area']}</label></span>
+                                </p>
+                            </a>
+                            {/loop}
+                        </div>
+                        <div  class="pages_btnbox company_findjob">
+
+                        </div>
+                    </div>
+                    <!--在招职位列表end---------------------------------------------->
+                </div>
+           </div>
+        </div>
+    </div>
+    <div class="p1_right">
+        <div class="part_one">
+            <div class="title-top">
+                <label class="top_con">公司基本信息</label>
+            </div>
+            <div class="company_list1">
+                <div class="list_itema">
+                    <svg class="icon comicoa" aria-hidden="true">
+                        <use  xlink:href="#icon-gongsixingzhi_blue"></use>
+                    </svg>
+                    <span class="titlsc">{$company['nature']}</span>
+                </div>
+                <div class="list_itema">
+                    <svg class="icon comicoa" aria-hidden="true">
+                        <use  xlink:href="#icon-guimo"></use>
+                    </svg>
+                    <span class="titlsc">{$company['number']}</span>
+                </div>
+                <div class="list_itema">
+                    <svg class="icon comicoa" aria-hidden="true">
+                        <use  xlink:href="#icon-hangye"></use>
+                    </svg>
+                    <span class="titlsc">{$company['industry']}</span>
+                </div>
+                {if $company['website']}
+                <div class="list_itema">
+                    <svg class="icon comicoa" aria-hidden="true">
+                        <use  xlink:href="#icon-wangzhi"></use>
+                    </svg>
+                    <a class="titlsc titlsclink" href="#">{$company['website']}</a>
+                </div>
+                {/if}
+                <div class="list_itema">
+                    <svg class="icon comicoa" aria-hidden="true">
+                        <use  xlink:href="#icon-didian"></use>
+                    </svg>
+                    <span class="titlsc">{$company['city']}-{$company['city_area']}</span>
+                </div>
+            </div>
+            <!--地图加载-->
+            <div class="qiyeditu" id="allmap"></div>
+            <div class="btnditu" data-id="{php echo $company['retoate_x'].','.$company['retoate_y']}" data-city="{$company['city']}">
+                <img src="{WL_URL_ARES}images/ditu_ico.png"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--举报-->
+<div class="modalbox jubaobox" id="modalbox" style="display: none;">
+    <div class="modal" style="width: 496px;margin-left: -248px;height: auto;padding-bottom: 20px">
+            <span class="modalclose">
+                <img src="{WL_URL_ARES}images/close.png"/>
+            </span>
+        <p class="title_content" style="margin-top: 34px">举报该公司</p>
+        <p class="color666" style="margin-top: 34px;text-align: center">若你发现该公司存在违规现象，欢迎举报</p>
+
+        <div style="margin-left: 40px;margin-top: 34px">
+            <span class="color666" style="display: inline-block;vertical-align: top;margin-top: 15px;">举报原因</span>
+            <div class=" relative general-select " style="float: none">
+                <label class="general-input relative general-select" style="float: none;width: 330px">
+                    <input class="relative" type="text" readonly=""  name="company_scale" value="实际与描述不符" style="width: 310px;z-index: 10">
+                    <svg class="icon inputicon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                    </svg>
+                </label>
+                <div class="options" style="width: 332px;top:48px">
+                    <div class="select-option" style="width: 330px"><span>培训机构</span></div>
+                    <div class="select-option" style="width: 330px"><span>实际与描述不符</span></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="margin-left: 40px;margin-top: 34px">
+            <span class="color666" style="float: left">详细描述</span>
+            <div class="cwfreg4content" style="display: inline-block;margin-left: 24px;height: 120px;border: 1px solid #f5f5f5;width: 330px;background-color: #f5f5f5">
+                <textarea   class="cwftextarea" id="companymsg_introduce"  placeholder="请输入详细描述" style="width: 296px;height: 80px;"></textarea>
+            </div>
+            <input type="hidden" name="report_content" id="companymsg_introduceinput">
+            <input type="hidden" name="company_uid" value="{php echo $company['uid']}">
+
+        </div>
+
+
+        <div class="person_changes"  style="margin-top: 30px;text-align: center">
+            <span class="savebtn public_bigbtn bg1aa" id="save_company_nomsg" style="padding: 0 30px 0 30px">提交</span>
+            <span class="cancelbtn" style="margin-left: 30px;color: #09c;cursor: pointer">取消</span>
+        </div>
+
+
+    </div>
+</div>
+<!--举报-->
+
+<!--地图弹框-->
+<div class="modalbox" id="modalbox1" style="display: none;">
+    <div class="modal" style="width: 650px;margin-left: -325px;height: auto">
+        <p class="title_content">公司地址</p>
+        <span class="modalclose">
+                <img src="{WL_URL_ARES}images/close.png"/>
+            </span>
+        <iframe style="width: 550px;height: 430px;border: none;margin: 40px 50px"></iframe>
+    </div>
+</div>
+<!--地图弹框end-->
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.cookie.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/swiper.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/area.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/company_msg.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/job_detail.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/page.js" rel="script"></script>
+
+<script type="text/javascript">
+
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point("{php echo $company['retoate_x']}","{php echo $company['retoate_y']}");
+    map.centerAndZoom(point,16);
+    map.addOverlay(new BMap.Marker(point));
+
+
+
+
+    $(".btnditu").on("click",function () {
+        $("#modalbox1").show();
+        var points=$(this).attr("data-id").split(",");
+        $("iframe").attr("src","{php echo app_url('member/index/show_map')}retoate_x="+points[0]+"&retoate_y="+points[1]);
+    });
+
+    $(".modalclose").on("click",function () {
+        $("#modalbox1").hide();
+    })
+
+    $(".title_se").click(function () {
+        $(".title_se").removeClass("sleft");
+        $(this).addClass("sleft");
+    })
+    $(".title_sr").click(function () {
+        $(".title_sr").removeClass("selsrt");
+        $(this).addClass("selsrt");
+    })
+    $(".title_se").eq(0).click(function () {
+        $("#introduces_msg").show();
+        $(".job_list").hide();
+    })
+    $(".title_se").eq(1).click(function () {
+        $("#introduces_msg").hide();
+        $(".job_list").show();
+    })
+    $("#jobs_list").click(function () {
+        $("#introduces_msg").hide();
+        $(".job_list").show();
+        $(".title_se").removeClass("sleft");
+        $(".title_se").eq(1).addClass("sleft");
+    })
+    $(".evaluate").click(function () {
+        $("#introduces_msg").show();
+        $(".job_list").hide();
+        $(".title_se").removeClass("sleft");
+        $(".title_se").eq(0).addClass("sleft");
+    })
+    $("body").on("click",".hangxq",function () {
+        $(this).css("color","#0099cc");
+        $(this).find(".zan1").css("color","#0099cc");
+    })
+    
+    $(".title_sr").click(function () {
+        //定义排序方式，0为推荐度排序，1为时间排序
+        var sort_method=$(this).attr("data-id");
+        $.ajax({
+            url:"",
+            post:"post",
+            data:{
+                sort_method:sort_method,
+                page:1
+            },
+            success:function () {
+                
+            }
+        })
+
+    })
+
+    $(".jubao").click(function () {
+        $(".jubaobox").show();
+    })
+
+    //举报提交
+    $.fromdata("#modalbox","{php echo app_url('member/index/tip_off')}","#save_company_nomsg",function(data){
+        //do something
+        var data = JSON.parse(data);
+        if(data.status==1){
+            hint("success","提交成功");
+            $(".modalbox").hide();
+        }else {
+            hint("error",data.content);
+        }
+    })
+
+    $("body").on("click",".pre_zan",function () {
+        var _this = $(this);
+        $.ajax({
+            type:"post",
+            url:"{php echo app_url('member/index/comment_zan')}",
+            data:{
+                comment_id:$(this).attr("data-id")
+            },
+            success:function (data) {
+                var data = JSON.parse(data);
+                console.log(data);
+                if(data.status==1){
+                    var good_num = parseInt(_this.find(".zannum").html())+1;
+                    _this.find(".zannum").html(good_num);
+                    _this.removeClass("pre_zan").addClass("zan");
+                }else if(data.status==2){
+                    hint("error",data.content);
+                }else if(data.status==3){
+                    $("#small_modalbox").show();
+                }
+            }
+        })
+    })
+
+
+
+
+    $(function () {
+        var job_comment_pagenum = "{php echo ceil($company_count['comment_count']/6)}";
+        if(parseInt(job_comment_pagenum)>1){
+            $(".job_comment").html(pages(1,job_comment_pagenum));
+        }
+        var company_findjob_pagenum = "{php echo ceil($jobs_num/6)}";
+        if(parseInt(company_findjob_pagenum)>1){
+            $(".company_findjob").html(pages(1,company_findjob_pagenum));
+        }
+        var page1 = createPage("job_comment", "{php echo app_url('member/index/jobs_comment_page')}");
+        var page2 = createPage("company_findjob", "{php echo app_url('member/index/company_detail_jobs_page')}");
+        page1.option={
+            page:1,
+            company_uid:"{$company['uid']}",
+            orderby:"zan_num"
+        };
+        page2.option={
+            page:1,
+            uid:"{$company['uid']}"
+        };
+
+
+        page1.callback_content = function () {
+            $(".evaluate_content").html(page1.data.content);
+        }
+        page2.callback_content = function () {
+            $(".job_list_con").html(page2.data.content);
+        }
+
+        //评论推荐排序
+        $(".title_sr").click(function () {
+            if($(this).html()=="推荐度排序"){
+                page1.option.orderby = "zan_num";
+            }else{
+                page1.option.orderby = "createtime";
+            }
+            $.ajax({
+                type:"post",
+                url:"{php echo app_url('member/index/jobs_comment_page')}",
+                data:{
+                    data:page1.option
+                },
+                success:function (data) {
+                    var data = JSON.parse(data);
+                    if(data.status==1){
+                        $(".evaluate_content").html(data.content);
+                    }
+                }
+            })
+        })
+
+        $(".showoehideall").click()
+    })
+
+    {if $_GET['zaizhao']}
+    $("#jobs_list").click();
+    {/if}
+    {if $_GET['pingjia']}
+        var url=$(".evaluate").attr("href");
+        var test = window.location.href;
+        window.location.href=test+url;
+    {/if}
+
+</script>
+</html>

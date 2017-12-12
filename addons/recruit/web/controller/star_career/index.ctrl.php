@@ -15,12 +15,12 @@ if($op=="display"){
     $where = " where uid=".$_GPC['uid'];
     $size = 15;
     $page = $_GPC['page'];
-    $sqlTotal = pdo_sql_select_count_from(WL.'star_jobs') . $where;
+    $sqlTotal = pdo_sql_select_count_from(WL.'star_career') . $where;
 
-    $sqlData = pdo_sql_select_all_from(WL.'star_jobs') . $where . ' ORDER BY `id` desc ';
+    $sqlData = pdo_sql_select_all_from(WL.'star_career') . $where . ' ORDER BY `id` desc ';
 
     $lists = pdo_pagination($sqlTotal, $sqlData, $params, '', $total, $page, $size);
 
     $pager = pagination($total, $page, $size);
-    include wl_template("star_jobs/display");
+    include wl_template("star_career/display");
 }
