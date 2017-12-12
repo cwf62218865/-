@@ -16,10 +16,23 @@
     <link href="{WL_URL_ARES}css/super_company.css" rel="stylesheet">
     <title>名企招聘</title>
     <style>
-        .swiper-container{
-            width: 680px;
-            height: 360px;
 
+        .swiper-container{
+            width: 100%;
+        }
+        .swiper-pagination-bullet{
+            width: 50px;
+            height: 10px;
+            border-radius: 6px;
+            background-color: rgba(255,255,255,0.5);
+            opacity: 1;
+        }
+        .swiper-pagination-bullet-active{
+            background-color:#09c;
+        }
+        .company_img{
+            width: 100%;
+            height: 420px;
         }
         .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{
             margin: 0 10px;
@@ -84,7 +97,24 @@
 {else}
 {php include wl_template('common/header');}
 {/if}
-<div class="super_banner"></div>
+<div class="super_banner">
+    <div class="swiper-container swiper-container-horizontal">
+        <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+            <div class="swiper-slide">
+                <div class="company_img" style="background:url('/addons/recruit/app/resource/images/super_banner.png')no-repeat center"></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="company_img" style="background:url('/addons/recruit/app/resource/images/super_banner.png')no-repeat center"></div>
+            </div>
+            <div class="swiper-slide">
+                <div class="company_img" style="background:url('/addons/recruit/app/resource/images/super_banner.png')no-repeat center"></div>
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+        <!-- 如果需要导航按钮 -->
+    </div>
+</div>
 <div class="width1200 p1content">
     <div class="p1_left" style="background: #ffffff;margin-top: 10px;">
         <div class="con_list super_con">
@@ -334,29 +364,33 @@
 
                 </div>
                 <div class="foot_btns">
-                    <div class="con" style="width: 100%;margin-top: 0px;margin-bottom: 0px;">
+                    <div class="con bdsharebuttonbox" style="width: 100%;margin-top: 0px;margin-bottom: 0px;">
                         <label class="fenxiang_title">分享:</label>
-                        <a class="icons" href="http://localhost/addons/recruit/core/common/Connect2.1/example/oauth/index.php" target="_blank">
+                        <a class="icons bds_sqq"  data-cmd="sqq" title="分享到QQ好友">
                             <svg class="icon" style="color: #ffffff">
                                 <use  xlink:href="#icon-qq"></use>
                             </svg>
                         </a>
-                        <a href="" class="icons left">
+                        <a class="icons left bds_weixin"   data-cmd="weixin" title="分享到微信">
                             <svg class="icon" style="color: #ffffff">
                                 <use  xlink:href="#icon-weixin"></use>
                             </svg>
                         </a>
-                        <a class="icons left" href="https://api.weibo.com/oauth2/authorize?client_id=494225968&amp;redirect_uri=http%3A%2F%2Flocalhost%2Faddons%2Frecruit%2Fcore%2Fcommon%2Flibweibo-master%2Fcallback.php&amp;response_type=code" target="_blank">
+                        <a class="icons left bds_tsina"   data-cmd="tsina" title="分享到新浪微博">
                             <svg class="icon" style="color: #ffffff">
                                 <use  xlink:href="#icon-weibo"></use>
                             </svg>
                         </a>
-                        <span class="icons left baidu_icons">
-                        <svg class="icon" style="color: #ffffff">
-                            <use xlink:href="#icon-baidu"></use>
-                        </svg>
-                    </span>
+                        <a class="icons left bds_qzone"   data-cmd="qzone" title="分享到QQ空间">
+                            <svg class="icon" style="color: #ffffff">
+                                <use xlink:href="#icon-QQkongjian"></use>
+                            </svg>
+                        </a>
                     </div>
+                    <script>
+                        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
 
 
                 </div>

@@ -8,6 +8,7 @@ class recruitModuleSite extends WeModuleSite
 {
 	public function __call($name, $arguments)
 	{
+
 		global $_W;
 		global $_GPC;
 		require IA_ROOT . '/addons/recruit/core/common/defines.php';
