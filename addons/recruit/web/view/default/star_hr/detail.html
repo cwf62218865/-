@@ -24,14 +24,38 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label"><span style="color: red">*  </span>所属行业</label>
                 <div class="col-sm-5">
-                    <input type="text"  name="industry"  class="form-control" value="{$list['industry']}" placeholder="请输入tag"/>
+                    <select class="form-control" name="industry">
+                    <option value="IT互联网" {if $list['industry']=="IT互联网"}selected="selected"{/if}>IT互联网</option>
+                    <option value="物流运输" {if $list['industry']=="物流运输"}selected="selected"{/if}>物流运输</option>
+                    <option value="制造加工" {if $list['industry']=="制造加工"}selected="selected"{/if}>制造加工</option>
+                    <option value="房地产" {if $list['industry']=="房地产"}selected="selected"{/if}>房地产</option>
+                    <option value="教育培训" {if $list['industry']=="教育培训"}selected="selected"{/if}>教育培训</option>
+                    <option value="医疗医药" {if $list['industry']=="医疗医药"}selected="selected"{/if}>医疗医药</option>
+                    <option value="能源化工" {if $list['industry']=="能源化工"}selected="selected"{/if}>能源化工</option>
+                    <option value="餐饮百货" {if $list['industry']=="餐饮百货"}selected="selected"{/if}>餐饮百货</option>
+                    <option value="通信" {if $list['industry']=="通信"}selected="selected"{/if}>通信</option>
+                    <option value="广告媒体" {if $list['industry']=="广告媒体"}selected="selected"{/if}>广告媒体</option>
+                    <option value="旅游" {if $list['industry']=="旅游"}selected="selected"{/if}>旅游</option>
+                    <option value="农林牧渔" {if $list['industry']=="农林牧渔"}selected="selected"{/if}>农林牧渔</option>
+                    <option value="人力资源" {if $list['industry']=="人力资源"}selected="selected"{/if}>人力资源</option>
+                    <option value="金融投资证券" {if $list['industry']=="金融投资证券"}selected="selected"{/if}>金融投资证券</option>
+                    <option value="其他" {if $list['industry']=="其他"}selected="selected"{/if}>其他</option>
+                    </select>
+                    <!--<input type="text"  name="industry"  class="form-control" value="{$list['industry']}" placeholder="请输入tag"/>-->
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label"><span style="color: red">*  </span>企业规模</label>
                 <div class="col-sm-5">
-                    <input type="text"  name="number" class="form-control" value="{$list['number']}" placeholder="请选择企业规模"/>
+                    <select class="form-control" name="number">
+                        <option value="20人以下" {if $list['number']=="20人以下"}selected="selected"{/if}>20人以下</option>
+                        <option value="20-50人" {if $list['number']=="20-50人"}selected="selected"{/if}>20-50人</option>
+                        <option value="50-200人" {if $list['number']=="50-200人"}selected="selected"{/if}>50-200人</option>
+                        <option value="200-500人" {if $list['number']=="200-500人"}selected="selected"{/if}>200-500人</option>
+                        <option value="500-1000人" {if $list['number']=="500-1000人"}selected="selected"{/if}>500-1000人</option>
+                        <option value="1000人以上" {if $list['number']=="1000人以上"}selected="selected"{/if}>1000人以上</option>
+                    </select>
                 </div>
             </div>
 
@@ -41,6 +65,15 @@
                 <div class="col-sm-5">
                     {php echo tpl_form_field_image('headimgurl', $list['headimgurl']);}
                     <span class="help-block">点击后显示的企业logo，推荐与参数设置中的logo一致。</span>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label"><span style="color: red">*  </span>企业banner</label>
+                <div class="col-sm-5">
+                    {php echo tpl_form_field_image('banner', $list['banner']);}
+                    <span class="help-block">点击后显示的企业banner，推荐与参数设置中的banner一致。</span>
                 </div>
 
             </div>
@@ -59,6 +92,14 @@
                     {php echo tpl_ueditor('introduce',$list['introduce'])}
                     <span class="help-block">用简短对企业情况进行介绍，最多300字</span>
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">公司简介配图</label>
+                <div class="col-sm-5">
+                    {php echo tpl_form_field_image('introduce_pic', $list['introduce_pic']);}
+                </div>
+
             </div>
 
             <div class="form-group">
@@ -128,12 +169,26 @@
             </div>
 
             <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">发展战略配图</label>
+                <div class="col-sm-5">
+                    {php echo tpl_form_field_image('development_strategy', $list['development_strategy']);}
+                </div>
+
+            </div>
+
+            <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">未来十年:</label>
                 <div class="col-sm-10">
                     <textarea name="ten_year" rows="4"  cols="20"  id="ten_year" class="form-control">{php echo  $list['ten_year'] }</textarea>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">未来十年配图</label>
+                <div class="col-sm-5">
+                    {php echo tpl_form_field_image('ten_year', $list['ten_year']);}
+                </div>
 
+            </div>
             <div class="form-group col-sm-6 ">
                 <input name="token" type="hidden" value="edit" />
                 <input name="uid" type="hidden" value="{$_GPC['uid']}" />
@@ -151,10 +206,7 @@
                 util.message('请填写公司名称', '', 'error');
                 return false;
             }
-            if(!$.trim($(':text[name="industry"]').val())) {
-                util.message('请填写新闻标题', '', 'error');
-                return false;
-            }
+
 //            if(!$.trim($('#cateid').val())) {
 //                util.message('请选择新闻分类', '', 'error');
 //                return false;
