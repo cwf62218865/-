@@ -94,6 +94,7 @@
     </div>
 
     <div id="company_box">
+        {loop $star_company $list}
         <div class="super_company_lists">
             <div class="super_company_banner">
                 <div class="super_company_bannerbox">
@@ -103,12 +104,12 @@
             <div class="super_company_msg">
                 <div class="super_company_logo">
                     <a href="#">
-                        <img class="changesize" src="/addons/recruit/app/resource/images/qiyelogo.png">
+                        <img class="changesize" src="/attachment/{$list['headimgurl']}">
                     </a>
                 </div>
-                <div class="surper_company_title">重庆大风车有限公司</div>
+                <div class="surper_company_title">{$list['companynmae']}</div>
                 <div class="surper_company_introduce">
-                    钢丝变形和镀膜技术领域居全球领先地位钢丝变形和镀膜技术领域居全球领先
+                    {$list['introduce']}
                 </div>
             </div>
 
@@ -136,94 +137,7 @@
 
             </div>
         </div>
-
-
-        <div class="super_company_lists">
-            <div class="super_company_banner">
-                <div class="super_company_bannerbox">
-                    <img class="changesize" src="/addons/recruit/app/resource/images/super_banner.png"/>
-                </div>
-            </div>
-            <div class="super_company_msg">
-                <div class="super_company_logo">
-                    <a href="#">
-                        <img class="changesize" src="/addons/recruit/app/resource/images/qiyelogo.png">
-                    </a>
-                </div>
-                <div class="surper_company_title">重庆大风车有限公司</div>
-                <div class="surper_company_introduce">
-                    钢丝变形和镀膜技术领域居全球领先地位钢丝变形和镀膜技术领域居全球领先
-                </div>
-            </div>
-
-            <div class="recruit_jobs">
-                <img style="float: left;margin: 34px 30px 0 0;" src="/addons/recruit/app/resource/images/recruit_job.png">
-
-                <a href="#" class="recruit_jobsbtn">
-                    运营支持类（个贷业务）
-                </a>
-
-                <a href="#" class="recruit_jobsbtn">
-                    运营支持类（个贷业务）
-                </a>
-                <a href="#" class="recruit_jobsbtn">
-                    运营支持类（个贷业务）
-                </a>
-                <a href="#" class="recruit_jobsbtn">
-                    运营支持类（个贷业务）
-                </a>
-
-                <a href="#" style="float: right;margin:32px 0 0 0" class="recruit_jobsbtn">
-                    更多职位>>
-                </a>
-
-
-            </div>
-        </div>
-
-
-        <div class="super_company_lists">
-            <div class="super_company_banner">
-                <div class="super_company_bannerbox">
-                    <img class="changesize" src="/addons/recruit/app/resource/images/super_banner.png"/>
-                </div>
-            </div>
-            <div class="super_company_msg">
-                <div class="super_company_logo">
-                    <a href="#">
-                        <img class="changesize" src="/addons/recruit/app/resource/images/qiyelogo.png">
-                    </a>
-                </div>
-                <div class="surper_company_title">重庆大风车有限公司</div>
-                <div class="surper_company_introduce">
-                    钢丝变形和镀膜技术领域居全球领先地位钢丝变形和镀膜技术领域居全球领先
-                </div>
-            </div>
-
-            <div class="recruit_jobs">
-                <img style="float: left;margin: 34px 30px 0 0;" src="/addons/recruit/app/resource/images/recruit_job.png">
-
-                <a href="#" class="recruit_jobsbtn">
-                    运营支持类（个贷业务）
-                </a>
-
-                <a href="#" class="recruit_jobsbtn">
-                    运营支持类（个贷业务）
-                </a>
-                <a href="#" class="recruit_jobsbtn">
-                    运营支持类（个贷业务）
-                </a>
-                <a href="#" class="recruit_jobsbtn">
-                    运营支持类（个贷业务）
-                </a>
-
-                <a href="#" style="float: right;margin:32px 0 0 0" class="recruit_jobsbtn">
-                    更多职位>>
-                </a>
-
-
-            </div>
-        </div>
+        {/loop}
     </div>
 
 

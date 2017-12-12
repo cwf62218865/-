@@ -116,6 +116,7 @@ elseif ($op=="super_company"){
 
 }
 elseif ($op=="super_company_list"){
+    $star_company =m("company")->star_company_list();
     include wl_template("company/super_company_list");exit();
 }
 //公司详情页
