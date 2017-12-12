@@ -295,3 +295,13 @@
     color: #666666;
     margin-right: 16px;
 }
+.xialazk{
+    text-align: center;
+    color: #999999;
+    font-size: 12px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.xialazk .icon{
+    margin-left: 10px;
+}
