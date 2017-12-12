@@ -116,6 +116,7 @@ elseif ($op=="super_company"){
 
 }
 elseif ($op=="super_company_list"){
+    $star_company =m("company")->star_company_list();
     include wl_template("company/super_company_list");exit();
 }
 //公司详情页
@@ -1133,6 +1134,16 @@ elseif ($op=="companys_slide"){
                 </div>";
     }
     call_back(1,$str);
+}
+
+elseif ($op=="star_hr_slide"){
+    $page = $_POST['page']?$_POST['page']:0;
+    $company  = m("company")->star_company_list($page);
+    $html = "";
+    foreach ($company as $list){
+        $html = "<a href=\"".app_url('member/index/super_company',array('id'=>$list['id']))."\" class=\"surper_company\"><img src=\"/attachment/{$list['headimgurl']}\"> </a>";
+    }
+    call_back(1,$html);
 }
 
 /**********未知接口*******/

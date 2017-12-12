@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/reguser1.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/news_list.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/news_detail.css" rel="stylesheet">
+    <title>新闻详情</title>
+    <style>
+        .rember_pwd{
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body bgcolor="#f4f4f4">
+{if $_SESSION['utype']==1}
+{php include wl_template('common/top');}
+{elseif $_SESSION['utype']==2}
+{php include wl_template('common/company_top');}
+{else}
+{php include wl_template('common/header');}
+{/if}
+<div class="width1200 p1content">
+
+
+
+    <div class="p1_left" style="margin-top: 30px;">
+        <div class="con_list" style="padding-bottom: 80px">
+            <div class="top_news">{$news['title']}</div>
+            <div class="fu_topnews">
+                <label class="fu_icos">
+                    <svg class="icon">
+                        <use xlink:href="#icon-shuqian1"></use>
+                    </svg>网站公告</label>
+                <label class="fu_icos">
+                    <svg class="icon">
+                        <use xlink:href="#icon-liulanliang"></use>
+                    </svg>{$news['click']}</label>
+                <label class="fu_icos">{php echo date('Y-m-d',$news['createtime'])}</label>
+                <label class="fu_icos_right fbpinglun">
+                    <svg class="icon" style="margin-right: 10px;width: 18px;height: 18px;">
+                        <use xlink:href="#icon-xiugai"></use>
+                    </svg>评论({$comment_count})
+                </label>
+            </div>
+            <div class="news_content">
+             {$news['content']}
+            </div>
+            <div class="foot_btns">
+                <div class="con" style="width: 100%;margin-top: 20px;margin-bottom: 50px;">
+                    <label class="bdsharebuttonbox share" style="display: inline-block;">
+                    <a class="icons bds_sqq"  data-cmd="sqq" title="分享到QQ好友">
+                        <svg class="icon" style="color: #ffffff">
+                            <use xlink:href="#icon-qq"></use>
+                        </svg>
+                    </a>
+                    <a class="icons left bds_weixin"   data-cmd="weixin" title="分享到微信">
+                        <svg class="icon" style="color: #ffffff">
+                            <use  xlink:href="#icon-weixin"></use>
+                        </svg>
+                    </a>
+                    <a class="icons left bds_tsina"  data-cmd="tsina" title="分享到新浪微博">
+                        <svg class="icon" style="color: #ffffff">
+                            <use  xlink:href="#icon-weibo"></use>
+                        </svg>
+                    </a>
+
+                    <a class="icons left bds_qzone"  data-cmd="qzone" title="分享到QQ空间">
+                        <svg class="icon" style="color: #ffffff">
+                            <use xlink:href="#icon-QQkongjian"></use>
+                        </svg>
+                    </a>
+                    </label>
+                    <script>
+                        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    </script>
+
+                    <label class="fu_icos_right fbpinglun">
+                        <svg class="icon" style="margin-right: 10px;width: 18px;height: 18px;">
+                            <use xlink:href="#icon-xiugai"></use>
+                        </svg>评论({$comment_count})
+                    </label>
+                </div>
+                <div class="xiangguan">
+                    <label class="xg_title">相关文章</label>
+                </div>
+                <div class="xg_lists">
+                    {loop $related_news $list}
+                    <a class="xg_titles" href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}">{$list['title']}</a>
+                    {/loop}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p1_right" style="margin-top: 30px;">
+        <div class="part_one">
+            <div class="title-top">
+                <label class="top_con">热门文章</label>
+            </div>
+            {loop $hot_news $list}
+            <a href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}" class="items_list">
+                <div class="news_logo">
+                    <img src="/attachment/{$list['thumb']}" style="width: 100%;">
+                </div>
+                <div class="news_company_content">
+                    <!--需要限制字符长度-->
+                    <div class="news_company_title"  style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 220px;">{$list['title']}</div>
+                    <!--超出24小时显示日期-->
+                    <div class="news_list_box_classify" style="position: absolute;bottom: 0">
+                        {php echo _format_date($list['createtime'])}
+                    </div>
+                </div>
+            </a>
+          {/loop}
+            <div style="clear: both"></div>
+            <a href="{php echo app_url('member/index/news')}" class="seemorejob" style="display: inline-block;width: 100%;line-height: 54px;text-align: center;color: #999;">查看更多新闻>></a>
+
+            <div class="ads">
+                <div class="ads_con">
+                    <a class="ads2" href="">
+                        <span class="topnum1">Top2</span>
+                        <div class="title">
+                            <p class="title_con">IOS11更新了，给你100+个IOS11实用技巧</p>
+                        </div>
+                        <img src="{WL_URL_ARES}images/ads2.png" class="ads_pic">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pingpluqu1" style="display: none;">
+            <div class="close_kuang">
+                <img src="{WL_URL_ARES}images/close.png" class="close_ico">
+            </div>
+
+
+            {if $_SESSION['utype']==""}
+            <!--未登录状态-->
+            <div class="icos_btns" style="margin-top: 30px;">
+                <label class="denglu">登录</label>
+                <a class="zhuce" href="{php echo app_url('member/index/register')}">注册</a>
+            </div>
+
+            {else}
+            <!--登录状态-->
+            <img src="{WL_URL_ARES}images/youhuashuo.png" class="youhuashuo">
+            <div class="touxiang">
+                {if $portrait['headimgurl']==""}
+                <svg class="icon">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xuesheng"></use>
+                </svg>
+                {else}
+                <img src="{$portrait['headimgurl']}" style="width: 100%;" class="eee"/>
+                {/if}
+            </div>
+            <div class="icos_btns1">
+                <label class="user_name">{$user['fullname']}</label>
+            </div>
+            {/if}
+
+            <div class="text_area_pl">
+                <textarea class="shuru_text" placeholder="请输入评论"></textarea>
+            </div>
+            <div class="fabupjbtn" data-id="{$_GPC['id']}">发布评价</div>
+            <div class="pinglu_title">最新评论<label class="pl_total">({$comment_count})</label>
+                <label class="huanyipi">
+                    <svg class="icon" style="">
+                        <use xlink:href="#icon-huanyipi"></use>
+                    </svg>
+                    刷新
+                </label>
+            </div>
+            <div class="comment_content">
+            {loop $comment $list}
+
+            <div class="pinglun_item" data-id="{$list['id']}">
+
+                <div class="touxiang_pl">
+                    <img src="{$list['headimgurl']}" style="width: 100%;">
+                </div>
+                <div class="pl_user">{$list['fullname']}</div>
+                <div class="pinglunneir">
+                    <label class="pinglunzi">{$list['content']}</label>
+                    <input type="hidden" class="pl_all" value="{$list['content']}">
+                </div>
+                <div class="pl_status">
+                    <label class="time_pl">{php echo _format_date($list['addtime'])}</label>
+                    <label class="ico_plbtn">
+                        <span class="jubao_btn">举报</span>
+                        <span class="huifu_btn">回复</span>
+                    </label>
+                </div>
+                {loop $list['son_comment'] $li}
+                <div class="pinglunneir plhuifu"><label class="beizhu_pl">{$li['pl_user']}回复:</label>
+                    <label class="pinglunzi">{$li['content']}</label>
+                    <input type="hidden" class="pl_all" value="{$li['content']}">
+                </div>
+                <div class="pl_status">
+                    <label class="time_pler">{php echo _format_date($li['addtime'])}</label>
+                    <label class="ico_plbtn">
+                        <span class="jubao_btn">举报</span>
+                        <!--<span class="huifu_btn">回复</span>-->
+                    </label>
+                </div>
+                {/loop}
+            </div>
+           {/loop}
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+</body>
+<script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.cookie.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/news_detail.js" rel="script"></script>
+<script>
+
+    $(".share .icon").click(function () {
+        $(this).closest(".icons").click();
+    })
+    var page = 1;
+    var count = parseInt("{$comment_count}");
+    $(".huanyipi").click(function () {
+        if(page*4>=count){
+            page = 0;
+        }
+
+        $.ajax({
+            type:"post",
+            url:"{php echo app_url('member/index/comment_page_ajax')}",
+            data:{
+                page:page,
+                news_id:"{$_GPC['id']}"
+            },
+            success:function (data) {
+                var data = JSON.parse(data);
+                if(data.status==1){
+                    page +=1;
+                    $(".comment_content").html(data.content);
+                }
+            }
+        })
+    })
+
+    $("#rember_pwdbtn1").on("change",function(){
+        if($(this).is(':checked')){
+            $(this).next().find("use").attr("xlink:href","#icon-zhengque1")
+        }else{
+            $(this).next().find("use").attr("xlink:href","")
+        }
+    });
+</script>
+
+
+
+</html>

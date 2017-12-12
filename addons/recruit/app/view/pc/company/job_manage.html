@@ -48,7 +48,7 @@
                     <div class="item_con">
                         <div class="hang1">
                             <a class="jobname nowrap linkhover" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" target="_blank">{php echo $list['jobs_name']}</a>
-                            <a class="salary">{if $list['wage_min']>0 && $list['wage_max']>0}{php echo $list['wage_min']}-{php echo $list['wage_max']}K{else}薪酬薪酬面议{/if}</a>
+                            <a class="salary">{if $list['wage_min']>0 && $list['wage_max']>0}{php echo $list['wage_min']}-{php echo $list['wage_max']}K{else}薪酬面议{/if}</a>
                         </div>
                         <div class="hang2" style="line-height: 23px;">
                             <a class="exptime nowrap" style="color: #666">工作地点：{php echo $list['city'].$list['city_erea'].$list['address']}</a>
@@ -79,7 +79,7 @@
                             <a class="salary" style="color: #999;width: 130px;">
                                 {if $list['wage_min']>0 && $list['wage_max']>0}
                                 {php echo $list['wage_min']}-{php echo $list['wage_max']}K
-                                {else}薪酬薪酬面议{/if}
+                                {else}薪酬面议{/if}
                             </a>
                         </div>
                         <div class="hang2"  style="line-height: 23px;">

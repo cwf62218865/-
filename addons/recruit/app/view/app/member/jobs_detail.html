@@ -30,7 +30,7 @@
                 <div class="width730" style="margin-left: 70px">
                     <div  class="refresh" style="margin-top: 70px">刷新于：{php echo date('Y-m-d',$jobs['updatetime'])}</div>
                     <div  style="margin-top: 10px">
-                        <span class="font34 color333" style="vertical-align: middle;max-width: 480px;display: inline-block;">{php echo $jobs['jobs_name']}</span>
+                        <span class="font34 color333 nowrap" style="vertical-align: middle;max-width: 480px;display: inline-block;">{php echo $jobs['jobs_name']}</span>
 
                         {if $_SESSION['utype']!=2}
                         <span id="report" class="{if $report}collections1{else}collections{/if}">

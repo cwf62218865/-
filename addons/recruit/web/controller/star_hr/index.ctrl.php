@@ -19,7 +19,12 @@ if($op=="display"){
     $sqlData = pdo_sql_select_all_from(WL.'star_hr') . $where . ' ORDER BY `id` desc ';
 
     $lists = pdo_pagination($sqlTotal, $sqlData, $params, '', $total, $page, $size);
-
+    $star_hr = "";
+    foreach ($lists as $list){
+        $list['jobs_count'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."star_jobs")." where uid=".$list['id']);
+        $list['career_count'] = pdo_fetchcolumn("select count(*) from ".tablename(WL."star_career")." where uid=".$list['id']);
+        $star_hr[] = $list;
+    }
     $pager = pagination($total, $page, $size);
     include wl_template("star_hr/display");
 }
