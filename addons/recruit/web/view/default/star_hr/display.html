@@ -37,14 +37,14 @@
 					<td>{$list['career_count']}</td>
 					<td>{php echo date('Y-m-d',$list['createtime'])}</td>
 					<td style="text-align: center;">
-						<a href="{php echo $this->createWebUrl('activity', array('dopost' => 'edit','id' => $list['id']))}" title="编辑" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
+						<a href="{php echo web_url('star_hr/detail',array('uid'=>$list['id']))}" title="编辑" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
 							编辑</a>
 						<a href="{php echo web_url('star_jobs/index',array('uid'=>$list['id']))}" title="职位管理" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
 							职位管理</a>
 						<a href="" title="编辑" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
 							宣讲会管理</a>
 
-						<a href="{php echo $this->createWebUrl('activity', array('dopost' => 'delete','id' => $list['id']))}" onclick="return confirm('确认删除此活动信息吗？');return false;" title="删除" class="btn btn-default btn-sm"><i class="icon-remove"></i>
+						<a  onclick="return confirm('确认删除此名企信息吗？');return false;" title="删除" class="btn btn-default btn-sm"><i class="icon-remove"></i>
 							删除</a>
 					</td>
 				</tr>

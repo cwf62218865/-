@@ -48,7 +48,7 @@
             <div class="form-group">
                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">企业图集</label>
                 <div class="col-sm-7 col-xs-12">
-                    {php echo tpl_form_field_multi_image('photolist', $list['photolist']);}
+                    {php echo tpl_form_field_multi_image('photolist', explode(",",$list['photolist']));}
                 </div>
             </div>
 
@@ -136,6 +136,7 @@
 
             <div class="form-group col-sm-6 ">
                 <input name="token" type="hidden" value="edit" />
+                <input name="uid" type="hidden" value="{$_GPC['uid']}" />
                 <input type="submit" class="btn btn-primary col-lg-1" name="submit" value="提交" style="float: right;" />
             </div>
 
