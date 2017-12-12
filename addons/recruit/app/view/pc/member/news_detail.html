@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{WL_URL_ARES}css/header.css" rel="stylesheet">
+    <link href="{WL_URL_ARES}css/resume.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/control.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/personal.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/job_apply.css" rel="stylesheet">
@@ -12,6 +13,11 @@
     <link href="{WL_URL_ARES}css/news_list.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/news_detail.css" rel="stylesheet">
     <title>新闻详情</title>
+    <style>
+        .rember_pwd{
+            margin-top: 0;
+        }
+    </style>
 </head>
 <body bgcolor="#f4f4f4">
 {if $_SESSION['utype']==1}
@@ -137,14 +143,16 @@
                 <img src="{WL_URL_ARES}images/close.png" class="close_ico">
             </div>
 
-            <!--未登录状态-->
+
             {if $_SESSION['utype']==""}
-            <div class="icos_btns">
+            <!--未登录状态-->
+            <div class="icos_btns" style="margin-top: 30px;">
                 <label class="denglu">登录</label>
                 <a class="zhuce" href="{php echo app_url('member/index/register')}">注册</a>
             </div>
-            <!--登录状态-->
+
             {else}
+            <!--登录状态-->
             <img src="{WL_URL_ARES}images/youhuashuo.png" class="youhuashuo">
             <div class="touxiang">
                 {if $portrait['headimgurl']==""}
@@ -155,7 +163,7 @@
                 <img src="{$portrait['headimgurl']}" style="width: 100%;" class="eee"/>
                 {/if}
             </div>
-            <div class="icos_btns">
+            <div class="icos_btns1">
                 <label class="user_name">{$user['fullname']}</label>
             </div>
             {/if}
@@ -181,7 +189,9 @@
                     <img src="{$list['headimgurl']}" style="width: 100%;">
                 </div>
                 <div class="pl_user">{$list['fullname']}</div>
-                <div class="pinglunneir">{$list['content']}
+                <div class="pinglunneir">
+                    <label class="pinglunzi">{$list['content']}</label>
+                    <input type="hidden" class="pl_all" value="{$list['content']}">
                 </div>
                 <div class="pl_status">
                     <label class="time_pl">{php echo _format_date($list['addtime'])}</label>
@@ -191,7 +201,10 @@
                     </label>
                 </div>
                 {loop $list['son_comment'] $li}
-                <div class="pinglunneir"><label class="beizhu_pl">{$li['pl_user']}回复:</label>{$li['content']}</div>
+                <div class="pinglunneir plhuifu"><label class="beizhu_pl">{$li['pl_user']}回复:</label>
+                    <label class="pinglunzi">{$li['content']}</label>
+                    <input type="hidden" class="pl_all" value="{$li['content']}">
+                </div>
                 <div class="pl_status">
                     <label class="time_pler">{php echo _format_date($li['addtime'])}</label>
                     <label class="ico_plbtn">
@@ -245,6 +258,14 @@
             }
         })
     })
+
+    $("#rember_pwdbtn1").on("change",function(){
+        if($(this).is(':checked')){
+            $(this).next().find("use").attr("xlink:href","#icon-zhengque1")
+        }else{
+            $(this).next().find("use").attr("xlink:href","")
+        }
+    });
 </script>
 
 
