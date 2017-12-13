@@ -762,7 +762,7 @@ elseif ($op=="search_jobs_ajax"){
             }else{
                 $toudijianli = "toudijianli";
             }
-            $list['updatetime'] = date("Y-m-d",$list['updatetime']);
+            $list['updatetime'] = diff_timestamp($list['updatetime']);
             if($list['wage_min']>0 && $list['wage_max']>0){
                 $list['salary'] = $list['wage_min']."-".$list['wage_max']."k";
             }else{
