@@ -791,7 +791,7 @@ elseif ($op=="search_jobs_ajax"){
                             </a>
                             <div class=\"companyname\">
                                 <a class=\"name\" href='".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."'>{$list['companyname']}</a>
-                                <p class=\"shuxin\">{$list['updatetime']}</p>
+                                <p class=\"shuxin\">{$list['updatetime']}刷新</p>
                             </div>
                         </div>
                     </div>

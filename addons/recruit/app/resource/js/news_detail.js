@@ -232,6 +232,7 @@ $(function () {
             var num=parseInt($(this).find(".zannum").html());
             $(this).find(".zannum").html(num+1);
         }
+        $(this).removeClass("dianzan").unbind("click");
 
         $.ajax({
             url:"",
