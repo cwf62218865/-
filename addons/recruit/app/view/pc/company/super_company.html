@@ -87,6 +87,7 @@
         .recruit_result span{
             width: 120px;
         }
+
     </style>
 
 </head>
@@ -362,26 +363,30 @@
                 <div class="foot_btns">
                     <div class="con bdsharebuttonbox" style="width: 100%;margin-top: 0px;margin-bottom: 0px;">
                         <label class="fenxiang_title">分享:</label>
-                        <a class="icons bds_sqq"  data-cmd="sqq" title="分享到QQ好友">
+                        <div class="icons">
                             <svg class="icon" style="color: #ffffff">
                                 <use  xlink:href="#icon-qq"></use>
                             </svg>
-                        </a>
-                        <a class="icons left bds_weixin"   data-cmd="weixin" title="分享到微信">
+                            <a class="iconcc bds_sqq"  data-cmd="sqq" title="分享到QQ好友"></a>
+                        </div>
+                        <div class="icons left">
                             <svg class="icon" style="color: #ffffff">
                                 <use  xlink:href="#icon-weixin"></use>
                             </svg>
-                        </a>
-                        <a class="icons left bds_tsina"   data-cmd="tsina" title="分享到新浪微博">
+                            <a class="iconcc bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                        </div>
+                        <div class="icons left " >
                             <svg class="icon" style="color: #ffffff">
                                 <use  xlink:href="#icon-weibo"></use>
                             </svg>
-                        </a>
-                        <a class="icons left bds_qzone"   data-cmd="qzone" title="分享到QQ空间">
+                            <a class="iconcc bds_tsina"  data-cmd="tsina" title="分享到新浪微博"></a>
+                        </div>
+                        <div class="icons left " >
                             <svg class="icon" style="color: #ffffff">
                                 <use xlink:href="#icon-QQkongjian"></use>
                             </svg>
-                        </a>
+                            <a class="iconcc bds_qzone"  data-cmd="qzone" title="分享到QQ空间"></a>
+                        </div>
                     </div>
                     <script>
                         window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
@@ -510,7 +515,7 @@
 <script src="{WL_URL_ARES}js/jquery.cookie.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/swiper.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
-<script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<!--<script src="{WL_URL_ARES}js/control.js" rel="script"></script>-->
 
 <script type="text/javascript">
 
@@ -578,6 +583,10 @@
                     }
                 }
             })
+        })
+
+        $(".foot_btns .icon").click(function () {
+            $(this).parent().attr("href");
         })
         
         

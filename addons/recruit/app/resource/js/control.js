@@ -194,7 +194,7 @@ function no_data(boxid,msg1,msg2){
 var telphonetest=/^1[3|5|7|8][0-9]\d{8}$/;
 var inttest=/^[1-9]\d*$/;
 var eamiltest=/^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/;
-var expirence_arr=["无经验","1年以下","1-3年","3-5年","5年以上"];
+var expirence_arr=["经验不限","1年以下","1-3年","3-5年","5年以上"];
 
 //聚焦时红色提示消失，呈输入状态。
 $(".general-input input").on("focus",function(){

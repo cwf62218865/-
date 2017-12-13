@@ -624,11 +624,13 @@
         })
 
         $(".showoehideall").click()
+
+        {if $_GET['zaizhao']}
+        $("#jobs_list").click();
+        {/if}
     })
 
-    {if $_GET['zaizhao']}
-    $("#jobs_list").click();
-    {/if}
+
     {if $_GET['pingjia']}
         var url=$(".evaluate").attr("href");
         var test = window.location.href;
