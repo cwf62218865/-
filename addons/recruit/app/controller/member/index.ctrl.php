@@ -112,14 +112,19 @@ elseif ($op=="super_company"){
     $company = pdo_fetch("select * from ".tablename(WL."star_hr")." where id=".$_GPC['id']);
     $jobs = pdo_fetchall("select * from ".tablename(WL."star_jobs")." where uid=".$_GPC['id']);
     $star_career = pdo_fetchall("select * from ".tablename(WL."star_career")." where uid=".$_GPC['id']);
-
+    $resume = m("resume")->get_resume($_SESSION['uid']);
+    if(trim($resume['work_experience'])){
+        $work_experience = unserialize($resume['work_experience']);
+    }else{
+        $work_experience = array();
+    }
     $guess_jobs = m("jobs")->getall_jobs_page($data,4);
 
     include wl_template("company/super_company");exit();
 
 }
 elseif ($op=="super_company_list"){
-    $star_companys =m("company")->star_company_list();
+    $star_companys =m("company")->star_company_list(0,6);
     $star_company = "";
     foreach ($star_companys as $list){
         $list['star_jobs'] = pdo_fetchall("select id,jobs_name from ".tablename(WL."star_jobs")." where uid=".$list['id']." limit 0,4");
@@ -1146,11 +1151,67 @@ elseif ($op=="companys_slide"){
 
 elseif ($op=="star_hr_slide"){
     $page = $_POST['page']?$_POST['page']:0;
+    $company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."star_hr"));
+    if($page*15>$company_count){
+        $page = 0;
+    }
     $company  = m("company")->star_company_list($page);
     $html = "";
     foreach ($company as $list){
         $html = "<a href=\"".app_url('member/index/super_company',array('id'=>$list['id']))."\" class=\"surper_company\"><img src=\"/attachment/{$list['headimgurl']}\"> </a>";
     }
+    call_back(1,$html);
+}
+elseif ($op=="star_page_ajax"){
+    $page = $_POST['page'];
+//    $company_name = $_POST['company_name'];
+    $star_companys =m("company")->star_company_list($page,6);
+
+    $html = "";
+    if($star_companys){
+
+        foreach ($star_companys as $list){
+            $list['star_jobs'] = pdo_fetchall("select id,jobs_name from ".tablename(WL."star_jobs")." where uid=".$list['id']." limit 0,4");
+            if($list['star_jobs']){
+                $jobs = " <div class=\"recruit_jobs\">
+                <img style=\"float: left;margin: 34px 30px 0 0;\" src=\"/addons/recruit/app/resource/images/recruit_job.png\">";
+                foreach ($list['star_jobs'] as $li){
+                    $jobs .= "<a href='".app_url('member/index/super_company',array('id'=>$list['id']))."' class=\"recruit_jobsbtn\">
+                    {$li['jobs_name']}
+                </a>";
+                }
+
+                $jobs .="
+                <a href='". app_url('member/index/super_company')."' style=\"float: right;margin:32px 0 0 0\" class=\"recruit_jobsbtn\">
+                    更多职位>>
+                </a>
+                </div>";
+            }
+
+
+            $html .="
+         <div class=\"super_company_lists\">
+            <div class=\"super_company_banner\">
+                <div class=\"super_company_bannerbox\">
+                    <img class=\"changesize\" src=\"/attachment/{$list['banner']}\"/>
+                </div>
+            </div>
+            <div class=\"super_company_msg\">
+                <div class=\"super_company_logo\">
+                    <a href=\"#\">
+                        <img class=\"changesize\" src=\"/attachment/{$list['headimgurl']}\">
+                    </a>
+                </div>
+                <div class=\"surper_company_title\">{$list['companynmae']}</div>
+                <div class=\"surper_company_introduce\">
+                    ".mb_substr(strip_tags($list['introduce']),0,30,"UTF8")."
+                </div>
+            </div>
+            {$jobs}
+        </div>";
+        }
+    }
+
     call_back(1,$html);
 }
 

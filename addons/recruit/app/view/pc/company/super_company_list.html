@@ -107,7 +107,7 @@
                         <img class="changesize" src="/attachment/{$list['headimgurl']}">
                     </a>
                 </div>
-                <div class="surper_company_title">{$list['companynmae']}</div>
+                <div class="surper_company_title">{$list['companyname']}</div>
                 <div class="surper_company_introduce">
                     {php echo mb_substr(strip_tags($list['introduce']),0,30,"UTF8")}
                 </div>
@@ -191,7 +191,7 @@
         });
         function supercompany(option){
             $.ajax({
-                url:"",
+                url:"{php echo app_url('member/index/star_page_ajax')}",
                 type:"post",
                 data:option,
                 success:function(data){
