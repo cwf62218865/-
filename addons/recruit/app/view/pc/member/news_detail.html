@@ -182,7 +182,7 @@
             </div>
             <div class="fabupjbtn" data-id="{$_GPC['id']}">发布评价</div>
             <div class="pinglu_title">最新评论<label class="pl_total">({$comment_count})</label>
-                <label class="huanyipi">
+                <label class="shuaxin">
                     <svg class="icon" style="">
                         <use xlink:href="#icon-huanyipi"></use>
                     </svg>
@@ -206,9 +206,11 @@
                     <label class="time_pl">{php echo _format_date($list['addtime'])}</label>
                     <span class="jubao_btn" style="margin-left: 20px;color: #7b8fc9;">举报</span>
                     <label class="ico_plbtn">
-                        <span class="dianzan">点赞
+                        <span {if in_array($_SESSION['uid'],explode(",",$list['zan']))}{else}class="dianzan"{/if}>点赞
                             <!--有赞的时候显示-->
-                            <label class="zans">(<label class="zannum">11</label>)</label>
+                            {if $list['zan']}
+                            <label class="zans">(<label class="zannum">{php echo count(explode(",",$list['zan']))}</label>)</label>
+                            {/if}
                         </span>
                         <span class="huifu_btn">回复</span>
                     </label>
@@ -218,13 +220,15 @@
                     <label class="pinglunzi">{$li['content']}</label>
                     <input type="hidden" class="pl_all" value="{$li['content']}">
                 </div>
-                <div class="pl_status font12" data-id=1>
+                <div class="pl_status font12" data-id="{$li['id']}">
                     <label class="time_pl">{php echo _format_date($li['addtime'])}</label>
                     <span class="jubao_btn" style="margin-left: 20px;color: #7b8fc9;">举报</span>
                     <label class="ico_plbtn">
-                        <span class="dianzan">点赞
+                        <span {if in_array($_SESSION['uid'],explode(",",$list['zan']))}{else}class="dianzan"{/if}>点赞
                             <!--有赞的时候显示-->
-                            <label class="zans">(<label class="zannum">11</label>)</label>
+                            {if $list['zan']}
+                            <label class="zans">(<label class="zannum">{php echo count(explode(",",$list['zan']))}</label>)</label>
+                            {/if}
                         </span>
                     </label>
                 </div>
@@ -344,7 +348,7 @@
     })
 
     //举报提交
-    $.fromdata("#modalbox","","#save_pl_msg",function(data){
+    $.fromdata("#modalbox","{php echo app_url('member/index/report_save')}","#save_pl_msg",function(data){
         //do something
         var data = JSON.parse(data);
         if(data.status==1){
