@@ -112,11 +112,19 @@ elseif ($op=="super_company"){
     $company = pdo_fetch("select * from ".tablename(WL."star_hr")." where id=".$_GPC['id']);
     $jobs = pdo_fetchall("select * from ".tablename(WL."star_jobs")." where uid=".$_GPC['id']);
     $star_career = pdo_fetchall("select * from ".tablename(WL."star_career")." where uid=".$_GPC['id']);
+
+    $guess_jobs = m("jobs")->getall_jobs_page($data,4);
+
     include wl_template("company/super_company");exit();
 
 }
 elseif ($op=="super_company_list"){
-    $star_company =m("company")->star_company_list();
+    $star_companys =m("company")->star_company_list();
+    $star_company = "";
+    foreach ($star_companys as $list){
+        $list['star_jobs'] = pdo_fetchall("select id,jobs_name from ".tablename(WL."star_jobs")." where uid=".$list['id']." limit 0,4");
+        $star_company[] = $list;
+    }
     include wl_template("company/super_company_list");exit();
 }
 //公司详情页
