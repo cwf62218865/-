@@ -631,3 +631,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     left: 0;
     top: 30px;
 }
+.hot_more{
+    float: right;
+    font-size: 14px;
+    color: #8590a6;
+    margin-right: 20px;
+}

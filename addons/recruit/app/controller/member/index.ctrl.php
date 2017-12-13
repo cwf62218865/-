@@ -232,6 +232,7 @@ elseif ($op=="aboutus"){
 
 elseif ($op=="news"){
     $news = m("member")->news_list();
+     $hot_news = pdo_fetchall("select * from ".tablename("article_news")." where thumb<>'' order by click desc limit 0,5");
     $news_count = pdo_fetchcolumn("select count(*) from ".tablename("article_news"));
 
     include wl_template("member/news");exit();

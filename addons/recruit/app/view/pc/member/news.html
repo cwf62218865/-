@@ -99,23 +99,41 @@
         <div class="part_one">
             <div class="title-top">
                 <label class="top_con">热门文章</label>
+                <a class="hot_more" href="{php echo app_url('member/index/news')}">
+                    <svg class="icon" style="vertical-align: middle;margin-right: 5px;">
+                        <use xlink:href="#icon-huanyipi"></use>
+                    </svg>换一批
+                </a>
             </div>
-
-            <a href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}" class="items_list">
+            {loop $hot_news $list}
+            <a href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}" class="items_list">
                 <div class="news_logo">
-                    <img src="{WL_URL_ARES}images/gongsi.png" style="width: 100%;">
+                    <img src="/attachment/{$list['thumb']}" style="width: 100%;">
                 </div>
                 <div class="news_company_content">
                     <!--需要限制字符长度-->
-                    <div class="news_company_title">36氪首发 | 租包将会成为主流消费行氪首…</div>
+                    <div class="news_company_title">{$list['title']}</div>
                     <!--超出24小时显示日期-->
                     <div class="news_list_box_classify" style="position: absolute;bottom: 0">
-                        11小时前
+                        {php echo _format_date($list['createtime'])}
                     </div>
                 </div>
             </a>
+            {/loop}
             <div style="clear: both"></div>
-            <a href="{php echo app_url('member/index/news')}" class="seemorejob" style="display: inline-block;width: 100%;line-height: 54px;text-align: center;color: #999;">查看更多新闻>></a>
+            <!--<a href="{php echo app_url('member/index/news')}" class="seemorejob" style="display: inline-block;width: 100%;line-height: 54px;text-align: center;color: #999;">查看更多新闻>></a>-->
+
+            <div class="ads">
+                <div class="ads_con">
+                    <a class="ads2" href="">
+                        <span class="topnum1">Top2</span>
+                        <div class="title">
+                            <p class="title_con">IOS11更新了，给你100+个IOS11实用技巧</p>
+                        </div>
+                        <img src="{WL_URL_ARES}images/ads2.png" class="ads_pic">
+                    </a>
+                </div>
+            </div>
         </div>
 
 

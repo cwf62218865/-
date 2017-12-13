@@ -271,7 +271,9 @@
     background: #1aa9d2;
 }
 .ads{
-    width: 100%;height: auto;background: #ffffff;margin-top: 10px;float: left;
+    width: 100%;height: auto;background: #ffffff;
+    /*margin-top: 10px;*/
+    float: left;
 }
 .ads_con{
     width: 290px;margin: 20px auto;

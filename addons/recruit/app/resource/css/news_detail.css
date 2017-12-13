@@ -15,7 +15,7 @@
 }
 .fu_topnews{
     margin-top: 15px;
-    color: #bbbbbb;
+    color: #999999;
     font-size: 14px;
     padding-bottom: 30px;
     border-bottom: 1px solid #eeeeee;
@@ -23,6 +23,10 @@
 .fu_icos{
     margin-right: 30px;
 }
+.gonggao:hover{
+    color: #0099cc;
+}
+
 .fu_icos .icon{
     margin-right: 12px;
     width: 18px;
@@ -254,6 +258,15 @@
     margin-top: 24px;
     position: relative;
 }
+.jubao_btn{
+    cursor: pointer;
+}
+.pinglunzi{
+    color: #666666;
+}
+.plhuifu .pinglunzi{
+    color: #999999;
+}
 .plhuifu{
     font-size: 12px;
 }
@@ -285,6 +298,9 @@
     margin-left: 20px;
     cursor: pointer;
 }
+.font12{
+    font-size: 12px;
+}
 .user_name{
     color: #0099cc;
 }
@@ -304,4 +320,12 @@
 }
 .xialazk .icon{
     margin-left: 10px;
+}
+.cwftextarea {
+    margin-left: 20px;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    resize: none;
+    background-color: #f5f5f5;
 }

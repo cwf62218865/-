@@ -74,4 +74,6 @@
 .news_company_title{
     font-size: 16px;
     line-height: 24px;
+    max-height: 48px;
+    overflow: hidden;
 }
