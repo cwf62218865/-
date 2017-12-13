@@ -7,6 +7,7 @@ $(document).on("scroll",function() {
         $(".pingpluqu1").css({"position":"fixed","top":"0px","height":height,"overflow-y":"auto"});
         $(".close_kuang").css({"position":"fixed"});
         $(".icos_btns").css({"margin-top":"60px"});
+        $(".touxiang").css({"margin-top":"80px"});
     }else{
         $(".pingpluqu1").css({"position":"relative","height":"auto"});
     }
@@ -125,10 +126,11 @@ $(function () {
                         var data=JSON.parse(data);
                         if(data.status==1){
                             html='              <div class="pinglunneir plhuifu"><label class="beizhu_pl">我回复:</label>'+plhf+'</div>\n' +
-                                '                <div class="pl_status">\n' +
-                                '                    <label class="time_pler">刚刚</label>\n' +
+                                '                <div class="pl_status font12">\n' +
+                                '                    <label class="time_pl">刚刚</label>\n' +
+                                '                    <span class="jubao_btn" style="margin-left: 20px;color: #7b8fc9;">举报</span>\n'+
                                 '                    <label class="ico_plbtn">\n' +
-                                '                        <span class="jubao_btn">举报</span>\n' +
+                                '                        <span class="dianzan">点赞</span>\n' +
                                 '                    </label>\n' +
                                 '                </div>';
 
@@ -216,6 +218,57 @@ $(function () {
             }
         }
     })
+
+    //点赞
+    $("body").on("click",".dianzan",function () {
+        //获取操作的评论id
+        var zan_id=$(this).closest(".pl_status").attr("data-id");
+
+        //请求成功的效果
+        var html='<label class="zans">(<label class="zannum">1</label>)</label>';
+        if($(this).find(".zans").length<=0){
+            $(this).append(html);
+        }else{
+            var num=parseInt($(this).find(".zannum").html());
+            $(this).find(".zannum").html(num+1);
+        }
+
+        $.ajax({
+            url:"",
+            type:"post",
+            data:{
+                zan_id:zan_id
+            },
+            success:function (data) {
+                var data = JSON.parse(data);
+                if(data.status==1){
+
+                }
+            }
+        })
+
+    })
+    //举报
+    $(".jubaolist").click(function () {
+        if($(this).next().css("height")=="0px"){
+
+            $(this).next().css({"height":"111px","overflow-y":"auto"});
+        }else{
+            $(this).next().css("height","0px");
+        }
+    })
+
+    $(".select-option").click(function () {
+        var select=$(this).find("span").html();
+        $(this).closest(".general-select").find(".jubaore").val(select);
+        $(this).closest(".options").css("height","0px");
+    })
+    $(".cwftextarea").on("input",function(){
+        var content=$(this).val();
+        $("#jubao_detail").val(content);
+    })
+
+
 
 
 })

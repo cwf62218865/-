@@ -82,7 +82,8 @@
     width: 300px;
     border-bottom: 1px dashed #eee;
     position: absolute;
-    left: 215px;
+    left: 50%;
+    margin-left: -150px;
     top: 7px;
     z-index: 1;
 }
@@ -90,7 +91,8 @@
     display: inline-block;
     width: 140px;
     background-color: #fff;
-    left: 295px;
+    left: 50%;
+    margin-left: -70px;
     color: #999;
     position: absolute;
     height: 14px;
