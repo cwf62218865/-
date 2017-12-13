@@ -7,19 +7,19 @@ if($_SESSION['uid']){
 
 //二次元页面
 if($op=="index"){
-    if(!$resume['fullname']){
-        $url = app_url('resume/resume_reg/1');
-
-    }elseif (!$resume['edu_experience']){
-        $url = app_url('resume/resume_reg/2');
-
-    }elseif (!$resume['work_experience']){
-        $url = app_url('resume/resume_reg/3');
-
-    }elseif (!$resume['introduce']){
-        $url = app_url('resume/resume_reg/4');
-    }
-    include wl_template("resume/first_index");exit();
+//    if(!$resume['fullname']){
+//        $url = app_url('resume/resume_reg/1');
+//
+//    }elseif (!$resume['edu_experience']){
+//        $url = app_url('resume/resume_reg/2');
+//
+//    }elseif (!$resume['work_experience']){
+//        $url = app_url('resume/resume_reg/3');
+//
+//    }elseif (!$resume['introduce']){
+//        $url = app_url('resume/resume_reg/4');
+//    }
+//    include wl_template("resume/first_index");exit();
 }elseif($op=="home"){
     include wl_template("resume/first_index");exit();
 }

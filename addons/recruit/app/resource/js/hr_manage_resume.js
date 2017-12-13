@@ -5,7 +5,7 @@ $(function () {
     for(var i=0;i<area.length;i++){
         html+="<div class='option_date' id='city"+i+"'>"+area[i]+"</div>";
     }
-    $(".select_option .cityitem").html(html);
+    $(".select_option .cityitem").append(html);
     $(".list_item_btn").click(function () {
         $(".list_item_btn").removeClass("select");
         $(this).addClass("select");

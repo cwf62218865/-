@@ -11,6 +11,7 @@
 			<table class="table table-hover" style="text-align: center;">
 				<thead class="navbar-inner" style="text-align: center;">
 				<tr>
+					<th style="width:5%;text-align: center;">id</th>
 					<th style="width:15%;text-align: center;">企业名称</th>
 					<th style="width:15%;text-align: center;">所属行业</th>
 					<th style="width:10%;text-align: center;">公司规模</th>
@@ -23,7 +24,9 @@
 				<tbody>
 				{loop $star_hr $list}
 				<tr>
-
+					<td>
+						{$list['id']}
+					</td>
 					<td>
 						{$list['companyname']}
 					</td>
@@ -54,6 +57,8 @@
 				{/loop}
 				</tbody>
 			</table>
+
+			{$pager}
 		</form>
 	</div>
 </div>

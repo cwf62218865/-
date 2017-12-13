@@ -124,4 +124,4 @@ if($op=='teacher'){
 }
 
 
-include wl_template('member/member');
+include wl_template('member/display');

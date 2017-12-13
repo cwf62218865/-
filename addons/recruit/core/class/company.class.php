@@ -169,17 +169,28 @@ class company{
     /*
      * 名企分页列表
      */
-    public function star_company_list($page=0,$pagenum=15){
+    public function star_company_list($page=0,$pagenum=15,$companyname){
 //        $limit = " limit ".($page*15).",15";
 
-        $company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."star_hr"));
 
-        if($page*$pagenum>$company_count){
-            $page = 0;
+
+//        if($page*$pagenum>$company_count){
+//            $page = ceil($company_count/$pagenum)-1;
+//        }
+        $wheresql = "where 1=1 ";
+        if($companyname){
+            $wheresql .= " and companyname=".$companyname;
         }
-        $limit = " limit ".$page*$pagenum.",".$pagenum;
-        $company = pdo_fetchall("select * from ".tablename(WL."star_hr").$limit);
-        return $company;
+
+        $limit = " limit ".($page*$pagenum).",".$pagenum;
+        $company = pdo_fetchall("select * from ".tablename(WL."star_hr").$wheresql.$limit);
+        $companys = "";
+        foreach ($company as $list){
+            $banner = explode(",",$list['banner']);
+            $list['banner'] = $banner[0];
+            $companys[] = $list;
+        }
+        return $companys;
     }
 
 }

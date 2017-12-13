@@ -191,20 +191,6 @@
             {loop $star_company $list}
             <a href="{php echo app_url('member/index/super_company',array('id'=>$list['id']))}" class="surper_company"><img src="/attachment/{$list['headimgurl']}"> </a>
             {/loop}
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/albb.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/ddw.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/dfzq.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/he.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/JD.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/jlqc.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/lh.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/rc.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/TX.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/unilever.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/wylp.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/xdf.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/xyzq.png"> </a>-->
-            <!--<a href="{php echo app_url('member/index/super_company')}" class="surper_company"><img src="{WL_URL_ARES}images/zxzq.png"> </a>-->
 
         </div>
 
@@ -478,29 +464,7 @@
     })
 
 
-    //明星企业换一批
-    var new_surper_companypage=1;
-    $(".new_surper_company").on("click",function(){
-        $.ajax({
-            url:"",
-            type:"post",
-            data:{
-                page:new_surper_companypage
-            },
-            success:function(data){
-                var data=JSON.parse(data);
-                if(data.status==1){
-                    $("#surper_companys").html(data.content);
-                    new_surper_companypage+=1;
-                }else{
-                    hint("error","刷新失败")
-                }
-            },
-            error:function(err){
-                hint("error",err);
-            }
-        })
-    });
+
 
     //热门公司换一批
     var hot_companypage=1;

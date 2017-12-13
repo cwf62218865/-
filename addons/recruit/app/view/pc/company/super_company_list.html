@@ -98,7 +98,7 @@
         <div class="super_company_lists">
             <div class="super_company_banner">
                 <div class="super_company_bannerbox">
-                    <img class="changesize" src="/addons/recruit/app/resource/images/super_banner.png"/>
+                    <img class="changesize" src="/attachment/{$list['banner']}"/>
                 </div>
             </div>
             <div class="super_company_msg">
@@ -107,35 +107,29 @@
                         <img class="changesize" src="/attachment/{$list['headimgurl']}">
                     </a>
                 </div>
-                <div class="surper_company_title">{$list['companynmae']}</div>
+                <div class="surper_company_title">{$list['companyname']}</div>
                 <div class="surper_company_introduce">
-                    {$list['introduce']}
+                    {php echo mb_substr(strip_tags($list['introduce']),0,30,"UTF8")}
                 </div>
             </div>
 
+            {if $list['star_jobs']}
             <div class="recruit_jobs">
                 <img style="float: left;margin: 34px 30px 0 0;" src="/addons/recruit/app/resource/images/recruit_job.png">
 
-                <a href="#" class="recruit_jobsbtn">
-                    运营支持类（个贷业务）
+                {loop $list['star_jobs'] $li}
+                <a href="{php echo app_url('member/index/super_company',array('id'=>$list['id']))}#{php echo $li['jobs_name'].$li['id']}" class="recruit_jobsbtn">
+                    {$li['jobs_name']}
                 </a>
+                {/loop}
 
-                <a href="#" class="recruit_jobsbtn">
-                    运营支持类（个贷业务）
-                </a>
-                <a href="#" class="recruit_jobsbtn">
-                    运营支持类（个贷业务）
-                </a>
-                <a href="#" class="recruit_jobsbtn">
-                    运营支持类（个贷业务）
-                </a>
-
-                <a href="#" style="float: right;margin:32px 0 0 0" class="recruit_jobsbtn">
+                <a href="{php echo app_url('member/index/super_company')}" style="float: right;margin:32px 0 0 0" class="recruit_jobsbtn">
                     更多职位>>
                 </a>
 
 
             </div>
+            {/if}
         </div>
         {/loop}
     </div>
@@ -197,7 +191,7 @@
         });
         function supercompany(option){
             $.ajax({
-                url:"",
+                url:"{php echo app_url('member/index/star_page_ajax')}",
                 type:"post",
                 data:option,
                 success:function(data){

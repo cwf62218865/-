@@ -101,15 +101,11 @@
 <div class="super_banner">
     <div class="swiper-container swiper-container-horizontal">
         <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+            {loop explode(",",$company['banner']) $list}
             <div class="swiper-slide">
-                <div class="company_img" style="background:url('/addons/recruit/app/resource/images/super_banner.png')no-repeat center"></div>
+                <div class="company_img" style="background:url('/attachment/{$list}') no-repeat center"></div>
             </div>
-            <div class="swiper-slide">
-                <div class="company_img" style="background:url('/addons/recruit/app/resource/images/super_banner.png')no-repeat center"></div>
-            </div>
-            <div class="swiper-slide">
-                <div class="company_img" style="background:url('/addons/recruit/app/resource/images/super_banner.png')no-repeat center"></div>
-            </div>
+            {/loop}
 
         </div>
         <div class="swiper-pagination"></div>
@@ -277,7 +273,7 @@
                     <div class="job_superc didianrukou">
                         <label class="bntl">工作地：</label>
                         {loop explode("/",$list['work_place']) $li}
-                        <label>上海</label>
+                        <label>{$li}</label>
                         <label class="didianbtn">申请</label>
                         {/loop}
                     </div>
@@ -409,66 +405,24 @@
             <div class="title-top">
                 <label class="top_con">猜你喜欢</label>
             </div>
+            {loop $guess_jobs['more'] $list}
             <div class="items_list">
-                <a class="logo1" href="#">
-                    <img src="/addons/recruit/app/resource/images/qiyelogo.png" class="logopic">
+                <a class="logo1" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">
+                    <img src="{$list['headimgurl']}" class="logopic">
                 </a>
                 <div class="company_name" style="height: 66px;">
-                    <a class="job_n nowrap" href="#">Java工程师</a>
+                    <a class="job_n nowrap" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
                     <p class="job_s nowrap" style="display: block;">
-                        5-8K
+                        {if $list['wage_min']>0 && $list['wage_max']>0}
+                        {$list['wage_min']}-{$list['wage_max']}K
+                        {else}
+                        薪酬面议
+                        {/if}
                     </p>
-                    <p class="companyn nowrap">北京秒猎科技有限公司</p>
+                    <p class="companyn nowrap">{$list['companyname']}</p>
                 </div>
             </div>
-            <div class="items_list">
-                <a class="logo1" href="#">
-                    <img src="/addons/recruit/app/resource/images/qiyelogo.png" class="logopic">
-                </a>
-                <div class="company_name" style="height: 66px;">
-                    <a class="job_n nowrap" href="#">Java工程师</a>
-                    <p class="job_s nowrap" style="display: block;">
-                        5-8K
-                    </p>
-                    <p class="companyn nowrap">北京秒猎科技有限公司</p>
-                </div>
-            </div>
-            <div class="items_list">
-                <a class="logo1" href="#">
-                    <img src="/addons/recruit/app/resource/images/qiyelogo.png" class="logopic">
-                </a>
-                <div class="company_name" style="height: 66px;">
-                    <a class="job_n nowrap" href="#">Java工程师</a>
-                    <p class="job_s nowrap" style="display: block;">
-                        5-8K
-                    </p>
-                    <p class="companyn nowrap">北京秒猎科技有限公司</p>
-                </div>
-            </div>
-            <div class="items_list">
-                <a class="logo1" href="#">
-                    <img src="/addons/recruit/app/resource/images/qiyelogo.png" class="logopic">
-                </a>
-                <div class="company_name" style="height: 66px;">
-                    <a class="job_n nowrap" href="#">Java工程师</a>
-                    <p class="job_s nowrap" style="display: block;">
-                        5-8K
-                    </p>
-                    <p class="companyn nowrap">北京秒猎科技有限公司</p>
-                </div>
-            </div>
-            <div class="items_list">
-                <a class="logo1" href="#">
-                    <img src="/addons/recruit/app/resource/images/qiyelogo.png" class="logopic">
-                </a>
-                <div class="company_name" style="height: 66px;">
-                    <a class="job_n nowrap" href="#">Java工程师</a>
-                    <p class="job_s nowrap" style="display: block;">
-                        5-8K
-                    </p>
-                    <p class="companyn nowrap">北京秒猎科技有限公司</p>
-                </div>
-            </div>
+            {/loop}
         </div>
     </div>
 
@@ -506,7 +460,7 @@
 　　您好！
 　　{php echo $resume['introduce']}
 
-    我是一名{php echo $resume['arr_education']['school_name']}{php echo $resume['arr_education']['edu_finish_time']}届的{php echo $resume['arr_education']['edu_district']}毕业生。所学专业：{php echo $resume['arr_education']['edu_major']}。
+    我是一名{php echo $resume['school_name']}{php echo $resume['arr_education']['edu_finish_time']}届的{php echo $resume['arr_education']['edu_district']}毕业生。所学专业：{php echo $resume['major']}。
 　　{if $work_experience}
 大学期间实习经历：
     {loop $work_experience $list}
@@ -515,19 +469,7 @@
     {/if}
 
     怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。 怀着崇敬的心情给您发了这封邮件，希望您能在百忙之中抽空查看我的个人简历，谢谢。
-恭祝商祺。</textarea>
+</textarea>
                 </div>
 
                 <input type="hidden" name="envelope_content" id="envelope_content">
@@ -546,7 +488,7 @@
             </div>
 
             <div style="float: right;text-align: center;line-height: 24px;color: #666">
-                <span>{php echo $resume['fullname']}张三</span>
+                <span>{php echo $resume['fullname']}</span>
                 <div>{php echo date('Y年m月d日')}</div>
             </div>
             <div class="public_bigbtn bg1aa modalbtn shengqing">立即申请</div>
@@ -650,18 +592,37 @@
         
         //发送邮件
         $(".didianbtn").click(function () {
-            $(this).closest(".didianrukou").find(".didianbtn").removeClass("selectdd");
-            $(this).addClass("selectdd");
-            $("#email_modal").show();
+            $.ajax({
+                url:"{php echo app_url('person/index')}",
+                type:"post",
+                data:{
+                  check:1
+                },
+                success:function(data){
+                    if(data){
+                        var data=JSON.parse(data);
+                        if(data.status==3){
+                            $("#small_modalbox").show();return;
+                        }
+                    }
+                    $(this).closest(".didianrukou").find(".didianbtn").removeClass("selectdd");
+                    $(this).addClass("selectdd");
+                    $("#email_modal").show();
+                }
+            })
+
         })
         
         $(".shengqing").click(function () {
 
             $.ajax({
-                url:"",
+                url:"{php echo app_url('person/resume/send_email')}",
                 type:"post",
                 data:{
-
+                    data:{
+                        email:"{php echo $company['email']}",
+                        envelope_content:$("#envelope_content_msg").html()
+                    }
                 },
                 success:function(data){
                     if(data){

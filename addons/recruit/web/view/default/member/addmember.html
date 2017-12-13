@@ -1,4 +1,4 @@
-{php include wl_template('common/header');}
+{php include template('common/header');}
 <ul class="nav nav-tabs">
 	<li {if $op=='display'}class="active"{/if}><a href="{php echo web_url('member/member/display')}">会员列表</a></li>
 	<li {if $op=='addmember'}class="active"{/if}><a href="{php echo web_url('member/member/addmember')}">新增会员</a></li>
@@ -67,4 +67,4 @@ $(function () {
 		})
 	});
 </script>
-{php include wl_template('common/footer');}
+{php include template('common/footer');}

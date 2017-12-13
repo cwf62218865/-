@@ -11,6 +11,7 @@
 			<table class="table table-hover">
 				<thead class="navbar-inner">
 				<tr>
+					<th style="width:5%;">id</th>
 					<th style="width:15%;">职位名称</th>
 					<th style="width:15%;">工作地</th>
 					<!--<th style="width:10%;">岗位职责</th>-->
@@ -23,6 +24,9 @@
 				<tbody>
 				{loop $lists $list}
 				<tr>
+					<td>
+						{$list['id']}
+					</td>
 					<td>
 						{$list['jobs_name']}
 					</td>
@@ -40,6 +44,7 @@
 				{/loop}
 				</tbody>
 			</table>
+			{$pager}
 		</form>
 	</div>
 </div>
