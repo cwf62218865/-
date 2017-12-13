@@ -235,7 +235,7 @@ $(function () {
         $(this).removeClass("dianzan").unbind("click");
 
         $.ajax({
-            url:"",
+            url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=evaluate_zan",
             type:"post",
             data:{
                 zan_id:zan_id
@@ -244,6 +244,8 @@ $(function () {
                 var data = JSON.parse(data);
                 if(data.status==1){
 
+                }else if(data.status==3){
+                    $("#small_modalbox").show();
                 }
             }
         })

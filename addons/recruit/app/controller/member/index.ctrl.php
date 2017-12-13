@@ -1150,6 +1150,46 @@ elseif ($op=="companys_slide"){
     call_back(1,$str);
 }
 
+elseif($op=="evaluate_zan"){
+
+    if($_SESSION['uid']){
+        $comment_id = check_pasre($_POST['zan_id'],"参数错误");
+        $evaluate = pdo_fetch("select zan from ".tablename(WL."evaluate")." where id=".$comment_id);
+        $zan = array_filter(explode(",",$evaluate['zan']));
+
+        array_push($zan,$_SESSION['uid']);
+        $zan = implode(",",$zan);
+
+        $r = pdo_update(WL."evaluate",array('zan'=>$zan),array('id'=>$comment_id));
+        if($r){
+            call_back(1,"修改成功");
+        }else{
+            call_back(2,"修改失败");
+        }
+    }else{
+        call_back(3,"未登录");
+    }
+}
+
+elseif ($op=="report_save"){
+    $data['company_scale'] = check_pasre($_POST['data']['reason'],"请选择举报原因");
+    $data['report_content'] = check_pasre($_POST['data']['jubao_detail'],"请输入举报内容");
+    $data['report_uid'] = $_SESSION['uid'];
+    $data['evaluate_id'] = check_pasre($_POST['data']['pl_id'],"参数错误");
+    $report = pdo_fetch("select id from ".tablename(WL."report")." where report_uid=".$data['report_uid']." and evaluate_id=".$data['evaluate_id']);
+    if($report){
+        call_back(2,"已举报");
+    }else{
+        $data['addtime'] = time();
+        $r = insert_table($data,WL."report");
+        if($r){
+            call_back(1,"举报成功");
+        }else{
+            call_back(2,"举报失败");
+        }
+    }
+}
+
 elseif ($op=="star_hr_slide"){
     $page = $_POST['page']?$_POST['page']:0;
     $company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."star_hr"));
