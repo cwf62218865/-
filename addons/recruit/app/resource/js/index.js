@@ -126,3 +126,40 @@ $(".index_menu").on("mouseover",function(){
 $(".index_menu").on("mouseleave",function(){
     $(this).find(".index_menu_content").hide();
 })
+
+
+//职位输入提示
+var jobs=words;
+var job_tips=[];
+
+$("input[name=jobs_name]").on("input",function(){
+    job_tips=[];
+    var content= $.trim($(this).val()).toLowerCase();
+    if(content==""){
+        $(".job_tip").html("");
+        return false;
+    }
+    for(var i in jobs){
+        var _this=jobs[i];
+        var bool=_this.toLowerCase().indexOf(content);
+        if(job_tips.length>=5){
+            break;
+        }else{
+            if(bool>=0){
+                job_tips.push(_this);
+            }
+        }
+    }
+
+    var job_tipscontent="";
+    for(var k in job_tips){
+        job_tipscontent+='<div class="job_tip_option"><span>'+job_tips [k]+'</span></div>'
+    }
+    $(this).next().html(job_tipscontent);
+});
+
+$("body").on("click",".job_tip_option",function(){
+    var content=$(this).find("span").eq(0).html();
+    $(this).closest(".job_tip").prev().val(content);
+    $(".job_tip").html("");
+});

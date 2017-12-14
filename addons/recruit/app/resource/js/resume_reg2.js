@@ -110,14 +110,14 @@ var school_arr=school_arr;
 var school_tips=[];
 $("body").on("input",".school_name",function(){
     school_tips=[];
-    var content= $.trim($(this).val());
+    var content= $.trim($(this).val()).toLowerCase();
     if(content==""){
         $(".school_tip").html("");
         return false;
     }
     for(var i in school_arr){
         var _this=school_arr[i];
-        var bool=_this.indexOf(content);
+        var bool=_this.toLowerCase().indexOf(content);
         if(school_tips.length>=5){
             break;
         }else{
@@ -146,14 +146,14 @@ var major_arr=major_arr;
 var major_tips=[];
 $("body").on("input",".edu_major",function(){
     major_tips=[];
-    var content= $.trim($(this).val());
+    var content= $.trim($(this).val()).toLowerCase();
     if(content==""){
         $(".school_tip").html("");
         return false;
     }
     for(var i in major_arr){
         var _this=major_arr[i];
-        var bool=_this.indexOf(content);
+        var bool=_this.toLowerCase().indexOf(content);
         if(major_tips.length>=5){
             break;
         }else{
