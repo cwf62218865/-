@@ -66,6 +66,7 @@
 .xg_titles{
     margin-top: 20px;
     display: block;
+    width: 100%;
 }
 .xg_titles:hover{
     color: #0099cc;

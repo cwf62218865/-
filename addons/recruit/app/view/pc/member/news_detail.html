@@ -103,7 +103,7 @@
                 </div>
                 <div class="xg_lists">
                     {loop $related_news $list}
-                    <a class="xg_titles" href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}">{$list['title']}</a>
+                    <a class="xg_titles nowrap" href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}">{$list['title']}</a>
                     {/loop}
                 </div>
             </div>

@@ -103,10 +103,9 @@
         <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
             {loop explode(",",$company['banner']) $list}
             <div class="swiper-slide">
-                <div class="company_img" style="background:url('/attachment/{$list}') no-repeat center"></div>
+                <div class="company_img" style="background:url('/attachment/{$list}') no-repeat center;background-size:100% 100%;"></div>
             </div>
             {/loop}
-
         </div>
         <div class="swiper-pagination"></div>
         <!-- 如果需要导航按钮 -->
