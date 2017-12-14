@@ -95,13 +95,10 @@
         </form>
         <div class="hot_job">
             <span style="margin-right: 10px">热门搜索：</span>
-            <a href="{php echo app_url('member/index/search_jobs',array('jobs_name'=>'java'))}">java</a>
-            <a href="{php echo app_url('member/index/search_jobs',array('jobs_name'=>'java实习'))}">java实习</a>
-            <a href="{php echo app_url('member/index/search_jobs',array('jobs_name'=>'UI设计师'))}">UI设计师</a>
-            <a href="{php echo app_url('member/index/search_jobs',array('jobs_name'=>'PHP'))}">PHP</a>
-            <a href="{php echo app_url('member/index/search_jobs',array('jobs_name'=>'销售经理'))}">销售经理</a>
-            <a href="{php echo app_url('member/index/search_jobs',array('jobs_name'=>'产品经理'))}">产品经理</a>
-            <a href="{php echo app_url('member/index/search_jobs',array('jobs_name'=>'网页设计师'))}">网页设计师</a>
+            {loop $hot_words $list}
+            <a href="{php echo app_url('member/index/search_jobs',array('jobs_name'=>$list['word']))}">{$list['word']}</a>
+            {/loop}
+
         </div>
     </div>
 
@@ -299,10 +296,9 @@
 
             <div class="resume_jobsbox">
                 <span class="font999" style="">热门搜索:</span>
-                <a href="#" class="font999 resume_jobs">java</a>
-                <a href="#" class="font999 resume_jobs">java</a>
-                <a href="#" class="font999 resume_jobs">java</a>
-                <a href="#" class="font999 resume_jobs">java</a>
+                {loop $hot_words_xia $list}
+                <a href="{php echo app_url('member/index/search_jobs',array('jobs_name'=>$list['word']))}" class="font999 resume_jobs">{$list['word']}</a>
+                {/loop}
 
             </div>
         </div>

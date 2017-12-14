@@ -38,13 +38,15 @@
         </div>
         <div class="search_items" style="margin-bottom: 30px;">
             <label class="title">热门搜索：</label>
-            <span class="job_item">java</span>
-            <span class="job_item">java实习</span>
-            <span class="job_item">UI设计师</span>
-            <span class="job_item">PHP</span>
-            <span class="job_item">销售经理</span>
-            <span class="job_item">产品经理</span>
-            <span class="job_item">网页设计师</span>
+            {loop $hot_words $list}
+            <span class="job_item">{$list['word']}</span>
+            {/loop}
+            <!--<span class="job_item">java实习</span>-->
+            <!--<span class="job_item">UI设计师</span>-->
+            <!--<span class="job_item">PHP</span>-->
+            <!--<span class="job_item">销售经理</span>-->
+            <!--<span class="job_item">产品经理</span>-->
+            <!--<span class="job_item">网页设计师</span>-->
         </div>
     </div>
     <div class="condition_select">

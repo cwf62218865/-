@@ -59,7 +59,13 @@ class jobs{
         }
 
         if($data['data']['job_name']){
+
             $wheresql .=" and jobs_name like '%".$data['data']['job_name']."%' ";
+            $hotword = pdo_fetch("select id,hot from ".tablename(WL."hotword")." where word='".trim($data['data']['job_name'])."'");
+            if($hotword){
+                $hot = $hotword['hot']+1;
+                pdo_update(WL."hotword",array('hot'=>$hot),array('id'=>$hotword['id']));
+            }
         }
         if($_SESSION['city'] && $_SESSION['city']<>"全国"){
             $wheresql .= " and city like '%".$_SESSION['city']."%' ";
@@ -452,7 +458,7 @@ class jobs{
                 return false;
             }
         }else{
-            return false;
+            return true;
         }
     }
 
@@ -506,6 +512,8 @@ class jobs{
                 }else{
                     call_back(2,"已邀请");
                 }
+            }else{
+                call_back(2,"已邀请");
             }
             $r = insert_table($data,WL."jobs_apply");
             if($r){

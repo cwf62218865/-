@@ -1,0 +1,66 @@
+{php include template('common/header');}
+<ul class="nav nav-tabs">
+	<li {if $_GPC['do']=='star_hr' && $action == 'index'}class="active"{/if}><a href="{php echo web_url('star_hr/index')}">系统配置</a></li>
+	<li {if $_GPC['do']=='star_hr' && $action == 'detail'}class="active"{/if} ><a href="{php echo web_url('star_hr/detail')}">添加名企</a></li>
+</ul>
+
+<div class="panel panel-default">
+	<div class="table-responsive panel-body">
+
+		<form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+			<table class="table table-hover" style="text-align: center;">
+				<thead class="navbar-inner" style="text-align: center;">
+				<tr>
+					<th style="width:5%;text-align: center;">id</th>
+					<th style="width:15%;text-align: center;">企业名称</th>
+					<th style="width:15%;text-align: center;">所属行业</th>
+					<th style="width:10%;text-align: center;">公司规模</th>
+					<th style="width:10%;text-align: center;">招聘职位数</th>
+					<th style="width:10%;text-align: center;">宣讲会数</th>
+					<th style="width:10%;text-align: center;">注册时间</th>
+					<th style="width:40%;text-align: center;" >操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				{loop $star_hr $list}
+				<tr>
+					<td>
+						{$list['id']}
+					</td>
+					<td>
+						{$list['companyname']}
+					</td>
+					<td>
+						{$list['industry']}
+					</td>
+					<td>{$list['number']}</td>
+					<td>
+						<a href="{php echo web_url('star_jobs/index',array('uid'=>$list['id']))}">{$list['jobs_count']}</a>
+					</td>
+					<td>
+						<a href="{php echo web_url('star_career/index',array('uid'=>$list['id']))}">{$list['career_count']}</a>
+
+					</td>
+					<td>{php echo date('Y-m-d',$list['createtime'])}</td>
+					<td style="text-align: center;">
+						<a href="{php echo web_url('star_hr/detail',array('uid'=>$list['id']))}" title="编辑" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
+							编辑</a>
+						<a href="{php echo web_url('star_jobs/index',array('uid'=>$list['id']))}" title="职位管理" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
+							职位管理</a>
+						<a href="{php echo web_url('star_career/index',array('uid'=>$list['id']))}" title="宣讲会管理" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
+							宣讲会管理</a>
+
+						<a  onclick="return confirm('确认删除此名企信息吗？');return false;" title="删除" class="btn btn-default btn-sm"><i class="icon-remove"></i>
+							删除</a>
+					</td>
+				</tr>
+				{/loop}
+				</tbody>
+			</table>
+
+			{$pager}
+		</form>
+	</div>
+</div>
+
+{php include template('common/footer');}

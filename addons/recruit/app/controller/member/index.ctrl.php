@@ -23,7 +23,8 @@ if($op=="index"){
     }
 
     $star_company =m("company")->star_company_list();
-
+    $hot_words = pdo_fetchall("select word from ".tablename(WL."hotword")." order by hot desc limit 0,7");
+    $hot_words_xia = pdo_fetchall("select word from ".tablename(WL."hotword")." order by hot desc limit 0,4");
 //    var_dump($collect_jobs);exit();
     include wl_template("member/index");exit();
 }
@@ -106,6 +107,7 @@ elseif ($op=="search_jobs"){
     $guess_jobs = $guess_jobs['more'];
     $jobs_count = $jobs['count'];
     $jobs = $jobs['more'];
+    $hot_words = pdo_fetchall("select word from ".tablename(WL."hotword")." order by hot desc limit 0,7");
     include wl_template("member/search_jobs");exit();
 }
 elseif ($op=="super_company"){
