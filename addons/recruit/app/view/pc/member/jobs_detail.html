@@ -30,7 +30,7 @@
                 <div class="width730" style="margin-left: 70px">
                     <div  class="refresh" style="margin-top: 70px">刷新于：{php echo date('Y-m-d',$jobs['updatetime'])}</div>
                     <div  style="margin-top: 10px">
-                        <span class="font34 color333" style="vertical-align: middle;max-width: 480px;display: inline-block;">{php echo $jobs['jobs_name']}</span>
+                        <span class="font34 color333 nowrap" style="vertical-align: middle;max-width: 480px;display: inline-block;">{php echo $jobs['jobs_name']}</span>
 
                         {if $_SESSION['utype']!=2}
                         <span id="report" class="{if $report}collections1{else}collections{/if}">
@@ -72,7 +72,10 @@
                     </div>
                     <!--<div class="relative" id="sharebox">-->
                         <!--<div class="bdsharebuttonbox share"><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>-->
-                        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                        <script>
+                            var jobs_name = "{$jobs['jobs_name']}";
+                            var logo = "http://www.yingjieseng.com{$company['headimgurl']}";
+                            window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdDesc":"最新的应届僧职位【"+jobs_name+"】,来自最安全的@应届僧  求职平台","bdMini":"2","bdMiniList":false,"bdUrl":"www.baidu.com","bdPic":""+logo+"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
                         with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 

@@ -69,3 +69,24 @@ function doTimeParse($time)
     }
     return "发表于".$elapse."前";
 }
+
+
+
+/*
+ * 对时间戳进行判断 区分出今天昨天
+ */
+
+function  diff_timestamp($time){
+    $beginToday=mktime(0,0,0,date('m'),date('d'),date('Y'));
+    $endToday=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
+    $beginYesterday=mktime(0,0,0,date('m'),date('d')-1,date('Y'));
+    $endYesterday=mktime(0,0,0,date('m'),date('d'),date('Y'))-1;
+    if($time>$beginToday && $time<$endToday){
+        $current_time = "今天 ".date("H:i",$time);
+    }elseif ($time>$beginYesterday && $time<$endYesterday){
+        $current_time = "昨天 ".date("H:i",$time);
+    }else{
+        $current_time = date('Y-m-d',$time);
+    }
+    return $current_time;
+}
