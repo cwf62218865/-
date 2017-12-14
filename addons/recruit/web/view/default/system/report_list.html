@@ -1,0 +1,48 @@
+{php include template('common/header');}
+<ul class="nav nav-tabs">
+	<li {if $_GPC['do']=='system' && $action == 'index'}class="active"{/if}><a href="{php echo web_url('system/index')}">热词管理</a></li>
+	<li {if $_GPC['do']=='system' && $action == 'report'}class="active"{/if} ><a href="{php echo web_url('system/report')}">举报管理</a></li>
+</ul>
+
+<div class="panel panel-default">
+	<div class="table-responsive panel-body">
+
+		<form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+			<table class="table table-hover" style="text-align: center;">
+				<thead class="navbar-inner" style="text-align: center;">
+				<tr>
+					<th style="width:5%;text-align: center;">id</th>
+					<th style="width:15%;text-align: center;">举报人</th>
+					<th style="width:15%;text-align: center;">举报类型</th>
+					<th style="width:40%;text-align: center;" >操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				{loop $lists $list}
+				<tr>
+					<td>
+						{$list['id']}
+					</td>
+					<td>
+						{$list['word']}
+					</td>
+					<td>
+						{$list['hot']}
+					</td>
+					<td style="text-align: center;">
+						<a href="{php echo web_url('star_hr/detail',array('uid'=>$list['id']))}" title="编辑" class="btn btn-default btn-sm"><i class="fa fa-edit"></i>
+							编辑</a>
+						<a  onclick="return confirm('确认删除此名企信息吗？');return false;" title="删除" class="btn btn-default btn-sm"><i class="icon-remove"></i>
+							删除</a>
+					</td>
+				</tr>
+				{/loop}
+				</tbody>
+			</table>
+
+			{$pager}
+		</form>
+	</div>
+</div>
+
+{php include template('common/footer');}

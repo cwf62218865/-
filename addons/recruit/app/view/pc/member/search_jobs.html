@@ -20,6 +20,36 @@
         #pages_btnbox{
             margin-bottom: 80px;
         }
+        .job_tip {
+            width: 728px;
+            height: auto;
+            position: absolute;
+            z-index: 10;
+            top:50px;
+        }
+        .job_tip_option {
+            width: 706px;
+            padding-left: 20px;
+            line-height: 36px;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-top: none;
+            cursor: pointer;
+        }
+        .job_tip_option:hover{
+            color: #fff;
+            background-color: #0099cc;
+        }
+        .relative  .input_search {
+            width: 688px;
+            height: 48px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border: 1px solid #eeeeee;
+            float: left;
+            outline: none;
+            background-color: #fff;
+        }
     </style>
 </head>
 <body bgcolor="#f4f4f4">
@@ -32,19 +62,24 @@
 {/if}
 <div class="width1200 p1content">
     <div class="search_nav" style="margin-top: 40px;">
-        <div>
-        <input type="text" class="input_search" id="search_jobs" placeholder="请输入搜索的职位" value="{php echo $_GPC['jobs_name']}" style="font-size: 16px;">
-        <button class="btn_search cur" type="button" onclick="Searchjobs()">搜索</button>
-        </div>
+        <label class="relative">
+            <input type="text" class="input_search" id="search_jobs" placeholder="请输入搜索的职位" value="{php echo $_GPC['jobs_name']}" style="font-size: 16px;">
+            <div class="job_tip">
+
+            </div>
+            <button class="btn_search cur" type="button" >搜索</button>
+        </label>
         <div class="search_items" style="margin-bottom: 30px;">
             <label class="title">热门搜索：</label>
-            <span class="job_item">java</span>
-            <span class="job_item">java实习</span>
-            <span class="job_item">UI设计师</span>
-            <span class="job_item">PHP</span>
-            <span class="job_item">销售经理</span>
-            <span class="job_item">产品经理</span>
-            <span class="job_item">网页设计师</span>
+            {loop $hot_words $list}
+            <span class="job_item">{$list['word']}</span>
+            {/loop}
+            <!--<span class="job_item">java实习</span>-->
+            <!--<span class="job_item">UI设计师</span>-->
+            <!--<span class="job_item">PHP</span>-->
+            <!--<span class="job_item">销售经理</span>-->
+            <!--<span class="job_item">产品经理</span>-->
+            <!--<span class="job_item">网页设计师</span>-->
         </div>
     </div>
     <div class="condition_select">
@@ -356,6 +391,7 @@
 <script src="{WL_URL_ARES}js/style_zj.js" rel="script"></script>
 <!--<script src="{WL_URL_ARES}js/hotarea.js" rel="script"></script>-->
 <script src="{WL_URL_ARES}js/newfile.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jobsname.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/morecity.js" rel="script"></script>
 
 <script>
@@ -433,7 +469,7 @@
 
         //搜索职位按钮请求
         $(".btn_search").on("click",function () {
-            option.job_name=$(this).prev().val();
+            option.job_name=$("#search_jobs").val();
             option.page=1;
             layer(option);
         });
@@ -819,6 +855,43 @@
                 }
             }
         })
+
+        //职位输入提示
+        var jobs=words;
+        var job_tips=[];
+
+        $("#search_jobs").on("input",function(){
+            job_tips=[];
+            var content= $.trim($(this).val()).toLowerCase();
+            if(content==""){
+                $(".job_tip").html("");
+                return false;
+            }
+            for(var i in jobs){
+                var _this=jobs[i];
+                var bool=_this.toLowerCase().indexOf(content);
+                if(job_tips.length>=5){
+                    break;
+                }else{
+                    if(bool>=0){
+                        job_tips.push(_this);
+                    }
+                }
+            }
+
+            var job_tipscontent="";
+            for(var k in job_tips){
+                job_tipscontent+='<div class="job_tip_option"><span>'+job_tips [k]+'</span></div>'
+            }
+            $(this).next().html(job_tipscontent);
+        });
+
+        $("body").on("click",".job_tip_option",function(){
+            var content=$(this).find("span").eq(0).html();
+            $(this).closest(".job_tip").prev().val(content);
+            $(".job_tip").html("");
+        });
+
     })
 
 

@@ -75,7 +75,8 @@
                         <script>
                             var jobs_name = "{$jobs['jobs_name']}";
                             var logo = "http://www.yingjieseng.com{$company['headimgurl']}";
-                            window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdDesc":"最新的应届僧职位【"+jobs_name+"】,来自最安全的@应届僧  求职平台","bdMini":"2","bdMiniList":false,"bdUrl":"www.baidu.com","bdPic":""+logo+"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                            var url = window.location.href;
+                            window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"最新的应届僧职位【"+jobs_name+"】,来自最安全的@应届僧  求职平台","bdDesc":"","bdMini":"2","bdMiniList":false,"bdUrl":""+url+"","bdPic":""+logo+"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
                         with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
 
@@ -111,7 +112,7 @@
                         {/loop}
                         {/if}
                         {if $_SESSION['utype']!=2}
-                        <span class="{if $jobs_apply}delivery_resume1{else}delivery_resume{/if}" data-id="{php echo $jobs['id']}">{if $jobs_apply}已投递{else}投递简历{/if}</span>
+                        <span class="{if $jobs_apply}delivery_resume{else}delivery_resume1{/if}" data-id="{php echo $jobs['id']}">{if $jobs_apply}投递简历{else}已投递{/if}</span>
                         {/if}
                     </div>
 
@@ -514,8 +515,11 @@ $(function () {
                 }else if(data.status==3){
                     $("#small_modalbox").show();
                 }else{
-
-                    $(".creatsucessbox").show()
+                    if(data.content=="请完善您的简历"){
+                        $(".creatsucessbox").show()
+                    }else{
+                        hint("error",data.content);
+                    }
                 }
             }
         })

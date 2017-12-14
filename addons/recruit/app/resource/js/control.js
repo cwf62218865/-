@@ -594,7 +594,7 @@ $(document).ready(function(){
 
     })
 
-    //$("input").attr("autocomplete","off");
+    $("input").attr("autocomplete","off");
 
     //切换全国城市
     $(".changecity").on("click",function(){

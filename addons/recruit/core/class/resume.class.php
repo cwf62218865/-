@@ -34,11 +34,11 @@ class resume{
      * 我投递过的职位
      * status 0表示所有 1表示投递申请 2表示面试邀请 3表示同意面试
      */
-    public function jobs_apply($uid,$page=1,$status=1){
+    public function jobs_apply($uid,$page=0,$status=1){
         if($page==-1){
             $limit = "";
         }else{
-            $limit = " limit ".(($page-1)*6).",6";
+            $limit = " limit ".($page*6).",6";
         }
         if($status==1){
             $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=2 and offer=1 and puid=".$uid." order by createtime desc ".$limit);
