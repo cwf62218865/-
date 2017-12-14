@@ -7,19 +7,19 @@ if($_SESSION['uid']){
 
 //二次元页面
 if($op=="index"){
-    if(!$resume['fullname']){
-        $url = app_url('resume/resume_reg/1');
-
-    }elseif (!$resume['edu_experience']){
-        $url = app_url('resume/resume_reg/2');
-
-    }elseif (!$resume['work_experience']){
-        $url = app_url('resume/resume_reg/3');
-
-    }elseif (!$resume['introduce']){
-        $url = app_url('resume/resume_reg/4');
-    }
-    include wl_template("resume/first_index");exit();
+//    if(!$resume['fullname']){
+//        $url = app_url('resume/resume_reg/1');
+//
+//    }elseif (!$resume['edu_experience']){
+//        $url = app_url('resume/resume_reg/2');
+//
+//    }elseif (!$resume['work_experience']){
+//        $url = app_url('resume/resume_reg/3');
+//
+//    }elseif (!$resume['introduce']){
+//        $url = app_url('resume/resume_reg/4');
+//    }
+//    include wl_template("resume/first_index");exit();
 }elseif($op=="home"){
     include wl_template("resume/first_index");exit();
 }
@@ -88,13 +88,13 @@ elseif ($op=="select_course"){
             }else{
                 $status = "职位邀请";
             }
-            $html .="<div class=\"zph_item\">
+            $html .="<a class=\"zph_item\" href=\"#\">
                         <p class=\"zph_title nowrap\">{$status}</p>
                         <p class=\"zph_time nowrap\">{$list['interview_time']}</p>
                         <p class=\"zph_ttt nowrap\">{$list['jobs_name']}</p>
                         <p class=\"zph_sss nowrap\">{$list['companyname']}</p>
                         <div class=\"zhejiao1\"><img src='".WL_URL_ARES."images/sanjiaox.png'></div>
-                    </div>";
+                    </a>";
         }
         call_back(1,$html,$interviews['count']);
     }else{

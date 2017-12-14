@@ -12,15 +12,15 @@ $op = in_array($op, $ops) ? $op : 'display';
 
 
 if($op=="display"){
-    $where = " where uid=".$_GPC['uid'];
+    $where = "";
     $size = 15;
     $page = $_GPC['page'];
-    $sqlTotal = pdo_sql_select_count_from(WL.'star_jobs') . $where;
+    $sqlTotal = pdo_sql_select_count_from(WL.'company_profile') . $where;
+    $sqlData = pdo_sql_select_all_from(WL.'company_profile') . $where . ' ORDER BY `id` desc ';
 
-    $sqlData = pdo_sql_select_all_from(WL.'star_jobs') . $where . ' ORDER BY `id` asc ';
+    $list = pdo_pagination($sqlTotal, $sqlData, $params, '', $total, $page, $size);
 
-    $lists = pdo_pagination($sqlTotal, $sqlData, $params, '', $total, $page, $size);
-
+    $lists = "";
     $pager = pagination($total, $page, $size);
-    include wl_template("star_jobs/display");
+    include wl_template("company/display");
 }

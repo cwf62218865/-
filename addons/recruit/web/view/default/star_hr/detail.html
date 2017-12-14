@@ -22,6 +22,13 @@
             </div>
 
             <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label"><span style="color: red">*  </span>邮箱</label>
+                <div class="col-sm-10">
+                    <input type="text"  name="email" style="width:50%"  class="form-control" value="{$list['email']}" placeholder="请输入邮箱"/>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label"><span style="color: red">*  </span>所属行业</label>
                 <div class="col-sm-5">
                     <select class="form-control" name="industry">
@@ -72,7 +79,7 @@
             <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label"><span style="color: red">*  </span>企业banner</label>
                 <div class="col-sm-5">
-                    {php echo tpl_form_field_image('banner', $list['banner']);}
+                    {php echo tpl_form_field_multi_image('banner', explode(",",$list['banner']));}
                     <span class="help-block">点击后显示的企业banner，推荐与参数设置中的banner一致。</span>
                 </div>
 
@@ -171,7 +178,7 @@
             <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">发展战略配图</label>
                 <div class="col-sm-5">
-                    {php echo tpl_form_field_image('development_strategy', $list['development_strategy']);}
+                    {php echo tpl_form_field_image('strategy_pic', $list['strategy_pic']);}
                 </div>
 
             </div>
@@ -185,7 +192,7 @@
             <div class="form-group">
                 <label for="inputPassword3" class="col-sm-2 control-label">未来十年配图</label>
                 <div class="col-sm-5">
-                    {php echo tpl_form_field_image('ten_year', $list['ten_year']);}
+                    {php echo tpl_form_field_image('ten_year_pic', $list['ten_year_pic']);}
                 </div>
 
             </div>

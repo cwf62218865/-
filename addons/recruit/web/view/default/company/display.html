@@ -1,8 +1,14 @@
 {php include template('common/header');}
-
+<link rel="stylesheet" href="{WL_URL_ARES}js/picsrc/images-grid.css">
+<script type="text/javascript" src="{WL_URL_ARES}js/picsrc/images-grid.js"></script>
+<style>
+	.license{width: 100px;height: 60px;display: block;}
+	.license img{width: 100px;height: 40px;display: block;float: left;}
+</style>
 <div class="container-fluid" style="margin-top: 36px;margin-bottom: 88px;min-height: 700px;max-width: 1600px;">
 	<ul class="nav nav-tabs">
-		<li {if $action=='index'}class="active"{/if}><a href="{php echo web_url('company/index')}">公司列表</a></li>
+		<li {if $action=='index'}class="active"{/if}><a href="{php echo web_url('company/index')}">已审核公司列表</a></li>
+		<li {if $action=='examine'}class="active"{/if}><a href="{php echo web_url('company/examine')}">未审核公司列表</a></li>
 		<li {if $action=='detail'}class="active"{/if}><a href="{php echo web_url('company/detail')}">添加公司</a></li>
 	</ul>
 <div class="panel panel-default">
@@ -17,7 +23,13 @@
 					<th style="width:120px;">身份证反面</th>
 					<th style="width:150px;">行业</th>
 					<th style="width:100px;">企业性质</th>
-					<th style="width:210px;" class="text-center">操作</th>
+					<th style="width:210px;" class="text-center">
+						{if $action=='examine'}
+						审核
+						{else}
+						操作
+						{/if}
+					</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,16 +37,32 @@
 				<tr>
 					<td> {php echo $li['id']}</td>
 					<td><a href="{php echo app_url('member/index/company_center',array('uid'=>$li['uid']))}" target="_blank">{php echo $li['companyname']}</a></td>
-					<td><img src="{php echo $li['license']}" alt="" width="107" height="107"></td>
-					<td><img src="{php echo $li['idcard1']}" alt="" width="107" height="107"></td>
-					<td><img src="{php echo $li['idcard2']}" alt="" width="107" height="107"></td>
+					<td class="license">
+						<img src="{php echo $li['license']}" alt="" width="107" height="40" class="license_pic">
+						<div class="license_gallery" style="display: none;"></div>
+					</td>
+					<td class="idcard1">
+						<img src="{php echo $li['idcard1']}" alt="" width="107" height="40" class="idcard1_pic">
+						<div class="idcard1_gallery" style="display: none;"></div>
+					</td>
+					<td class="idcard2">
+						<img src="{php echo $li['idcard2']}" alt="" width="107" height="40" class="idcard2_pic">
+						<div class="idcard2_gallery" style="display: none;"></div>
+					</td>
 					<td>{php echo $li['industry']}</td>
 					<td>{php echo $li['nature']}</td>
 
 					<td class="text-center" style="overflow:visible;">
 						<!--<a href="" class="btn btn-warning btn-sm">审核</a>-->
-						<a href="{php echo app_url('company/member/editmember',array('id'=>$li['id']))}" class="btn btn-success btn-sm sms">审核</a>
-						<a href="{php echo app_url('company/index/job_manage',array('uid'=>$li['uid']))}" class="btn  btn-info btn-sm">查看详情</a>
+						<!--<a href="{php echo app_url('company/member/editmember',array('id'=>$li['id']))}" class="btn btn-success btn-sm sms">审核</a>-->
+						<!--<a  class="btn btn-success btn-sm sms">查看营业执照</a>-->
+						<!--<a  class="btn btn-success btn-sm sms">查看营业执照</a>-->
+						{if $action=='examine'}
+						<a  class="btn btn-success btn-sm sms examine">通过</a>
+						<a  class="btn btn-success btn-sm sms examine">拒绝</a>
+						{else}
+						<a  class="btn btn-success btn-sm sms examine">详情</a>
+						{/if}
 					</td>
 				</tr>
 			{/loop}
@@ -46,3 +74,28 @@
 </div>
 
 {php include template('common/footer');}
+<script type="text/javascript" src="{WL_URL_WRES}js/layer/layer.js"></script>
+<script>
+	$(".license_pic").click(function () {
+        $(this).parent().find(".license_gallery").imagesGrid({
+            images:[$(this).attr("src")]
+        });
+        $(this).parent().find(".imgs-grid-image").click();
+    })
+
+    $(".idcard1_pic").click(function () {
+        $(this).parent().find(".idcard1_gallery").imagesGrid({
+            images:[$(this).attr("src")]
+        });
+        $(this).parent().find(".imgs-grid-image").click();
+    })
+
+    $(".idcard2_pic").click(function () {
+        $(this).parent().find(".idcard2_gallery").imagesGrid({
+            images:[$(this).attr("src")]
+        });
+        $(this).parent().find(".imgs-grid-image").click();
+    })
+
+
+</script>

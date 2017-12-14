@@ -609,6 +609,7 @@
 }
 .tongjititle{
     color: #bbbbbb;
+    margin-top: 5px;
 }
 .biaoqian_ico1,.biaoqian_ico2{
     padding-left: 35px;
@@ -963,7 +964,7 @@ margin-left: 30px;
     margin-left: 10px;
 }
 .pre_zan{
-    color: #bbbbbb !important;
+    /*color: #bbbbbb !important;*/
 }
 .pre_zan:hover .zannum{
     color: #0099cc;

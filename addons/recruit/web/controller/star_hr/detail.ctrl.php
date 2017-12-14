@@ -68,23 +68,26 @@ if ($op=="save_company_profile"){
 
 elseif ($_POST['token']=="edit"){
    $data = $_POST;
-    $data['photolist'] = implode(",",$_POST['photolist']);
+
+    $data['photolist'] = implode(",",array_filter($_POST['photolist']));
+    $data['banner'] = implode(",",array_filter($_POST['banner']));
    if($data['uid']){
         unset($data['token']);
         unset($data['submit']);
         unset($data['uid']);
-
+//       $r = update_table($data,WL."star_hr",array('id'=>$_POST['uid']));
+       $data['updatetime'] = time();
        $r = pdo_update(WL."star_hr",$data,array('id'=>$_POST['uid']));
    }else{
-//       echo 333;exit();
+
        $data['createtime'] = time();
        $r = insert_table($data,WL."star_hr");
    }
 
     if($r){
-        message('名企信息保存成功 ！', web_url('star_hr/detail'), 'success');exit();
+        message('名企信息保存成功 ！', web_url('star_hr/index'), 'success');exit();
     }else{
-        message('名企信息保存失败 ！', web_url('star_hr/detail'), 'error');exit();
+        message('名企信息保存失败 ！', web_url('star_hr/index'), 'error');exit();
     }
 }
 

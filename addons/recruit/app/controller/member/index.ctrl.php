@@ -112,11 +112,24 @@ elseif ($op=="super_company"){
     $company = pdo_fetch("select * from ".tablename(WL."star_hr")." where id=".$_GPC['id']);
     $jobs = pdo_fetchall("select * from ".tablename(WL."star_jobs")." where uid=".$_GPC['id']);
     $star_career = pdo_fetchall("select * from ".tablename(WL."star_career")." where uid=".$_GPC['id']);
+    $resume = m("resume")->get_resume($_SESSION['uid']);
+    if(trim($resume['work_experience'])){
+        $work_experience = unserialize($resume['work_experience']);
+    }else{
+        $work_experience = array();
+    }
+    $guess_jobs = m("jobs")->getall_jobs_page($data,4);
+
     include wl_template("company/super_company");exit();
 
 }
 elseif ($op=="super_company_list"){
-    $star_company =m("company")->star_company_list();
+    $star_companys =m("company")->star_company_list(0,6);
+    $star_company = "";
+    foreach ($star_companys as $list){
+        $list['star_jobs'] = pdo_fetchall("select id,jobs_name from ".tablename(WL."star_jobs")." where uid=".$list['id']." limit 0,4");
+        $star_company[] = $list;
+    }
     include wl_template("company/super_company_list");exit();
 }
 //公司详情页
@@ -232,6 +245,7 @@ elseif ($op=="aboutus"){
 
 elseif ($op=="news"){
     $news = m("member")->news_list();
+     $hot_news = pdo_fetchall("select * from ".tablename("article_news")." where thumb<>'' order by click desc limit 0,5");
     $news_count = pdo_fetchcolumn("select count(*) from ".tablename("article_news"));
 
     include wl_template("member/news");exit();
@@ -748,7 +762,7 @@ elseif ($op=="search_jobs_ajax"){
             }else{
                 $toudijianli = "toudijianli";
             }
-            $list['updatetime'] = date("Y-m-d",$list['updatetime']);
+            $list['updatetime'] = diff_timestamp($list['updatetime']);
             if($list['wage_min']>0 && $list['wage_max']>0){
                 $list['salary'] = $list['wage_min']."-".$list['wage_max']."k";
             }else{
@@ -777,7 +791,7 @@ elseif ($op=="search_jobs_ajax"){
                             </a>
                             <div class=\"companyname\">
                                 <a class=\"name\" href='".app_url('member/index/company_detail',array('company_id'=>$list['uid']))."'>{$list['companyname']}</a>
-                                <p class=\"shuxin\">{$list['updatetime']}</p>
+                                <p class=\"shuxin\">{$list['updatetime']}刷新</p>
                             </div>
                         </div>
                     </div>
@@ -1136,13 +1150,109 @@ elseif ($op=="companys_slide"){
     call_back(1,$str);
 }
 
+elseif($op=="evaluate_zan"){
+
+    if($_SESSION['uid']){
+        $comment_id = check_pasre($_POST['zan_id'],"参数错误");
+        $evaluate = pdo_fetch("select zan from ".tablename(WL."evaluate")." where id=".$comment_id);
+        $zan = array_filter(explode(",",$evaluate['zan']));
+
+        array_push($zan,$_SESSION['uid']);
+        $zan = implode(",",$zan);
+
+        $r = pdo_update(WL."evaluate",array('zan'=>$zan),array('id'=>$comment_id));
+        if($r){
+            call_back(1,"修改成功");
+        }else{
+            call_back(2,"修改失败");
+        }
+    }else{
+        call_back(3,"未登录");
+    }
+}
+
+elseif ($op=="report_save"){
+    $data['company_scale'] = check_pasre($_POST['data']['reason'],"请选择举报原因");
+    $data['report_content'] = check_pasre($_POST['data']['jubao_detail'],"请输入举报内容");
+    $data['report_uid'] = $_SESSION['uid'];
+    $data['evaluate_id'] = check_pasre($_POST['data']['pl_id'],"参数错误");
+    $report = pdo_fetch("select id from ".tablename(WL."report")." where report_uid=".$data['report_uid']." and evaluate_id=".$data['evaluate_id']);
+    if($report){
+        call_back(2,"已举报");
+    }else{
+        $data['addtime'] = time();
+        $r = insert_table($data,WL."report");
+        if($r){
+            call_back(1,"举报成功");
+        }else{
+            call_back(2,"举报失败");
+        }
+    }
+}
+
 elseif ($op=="star_hr_slide"){
     $page = $_POST['page']?$_POST['page']:0;
+    $company_count = pdo_fetchcolumn("select count(*) from ".tablename(WL."star_hr"));
+    if($page*15>$company_count){
+        $page = 0;
+    }
     $company  = m("company")->star_company_list($page);
     $html = "";
     foreach ($company as $list){
         $html = "<a href=\"".app_url('member/index/super_company',array('id'=>$list['id']))."\" class=\"surper_company\"><img src=\"/attachment/{$list['headimgurl']}\"> </a>";
     }
+    call_back(1,$html);
+}
+elseif ($op=="star_page_ajax"){
+    $page = $_POST['page'];
+//    $company_name = $_POST['company_name'];
+    $star_companys =m("company")->star_company_list($page,6);
+
+    $html = "";
+    if($star_companys){
+
+        foreach ($star_companys as $list){
+            $list['star_jobs'] = pdo_fetchall("select id,jobs_name from ".tablename(WL."star_jobs")." where uid=".$list['id']." limit 0,4");
+            if($list['star_jobs']){
+                $jobs = " <div class=\"recruit_jobs\">
+                <img style=\"float: left;margin: 34px 30px 0 0;\" src=\"/addons/recruit/app/resource/images/recruit_job.png\">";
+                foreach ($list['star_jobs'] as $li){
+                    $jobs .= "<a href='".app_url('member/index/super_company',array('id'=>$list['id']))."' class=\"recruit_jobsbtn\">
+                    {$li['jobs_name']}
+                </a>";
+                }
+
+                $jobs .="
+                <a href='". app_url('member/index/super_company')."' style=\"float: right;margin:32px 0 0 0\" class=\"recruit_jobsbtn\">
+                    更多职位>>
+                </a>
+                </div>";
+            }
+
+
+            $html .="
+         <div class=\"super_company_lists\">
+            <div class=\"super_company_banner\">
+                <div class=\"super_company_bannerbox\">
+                    <img class=\"changesize\" src=\"/attachment/{$list['banner']}\"/>
+                </div>
+            </div>
+            <div class=\"super_company_msg\">
+                <div class=\"super_company_logo\">
+                    <a href=\"#\">
+                        <img class=\"changesize\" src=\"/attachment/{$list['headimgurl']}\">
+                    </a>
+                </div>
+                <div class=\"surper_company_title\">{$list['companynmae']}</div>
+                <div class=\"surper_company_introduce\">
+                    ".mb_substr(strip_tags($list['introduce']),0,30,"UTF8")."
+                </div>
+            </div>
+            {$jobs}
+        </div>";
+        }
+    }
+
     call_back(1,$html);
 }
 

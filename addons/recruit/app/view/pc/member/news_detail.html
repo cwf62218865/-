@@ -37,12 +37,13 @@
                 <label class="fu_icos">
                     <svg class="icon">
                         <use xlink:href="#icon-shuqian1"></use>
-                    </svg>网站公告</label>
+                    </svg><a href="{php echo app_url('member/index/news')}" class="gonggao">网站公告</a></label>
                 <label class="fu_icos">
                     <svg class="icon">
                         <use xlink:href="#icon-liulanliang"></use>
                     </svg>{$news['click']}</label>
                 <label class="fu_icos">{php echo date('Y-m-d',$news['createtime'])}</label>
+                <label class="fu_icos">张三</label>
                 <label class="fu_icos_right fbpinglun">
                     <svg class="icon" style="margin-right: 10px;width: 18px;height: 18px;">
                         <use xlink:href="#icon-xiugai"></use>
@@ -82,7 +83,12 @@
                     </div>
                     </label>
                     <script>
-                        window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}};
+                        window._bd_share_config={
+                            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},
+                            "share":{},
+                            "":{"viewList":["sqq","weixin","tsina","qzone"],"viewText":"分享到：","viewSize":"16"},
+                            "selectShare":{"bdContainerClass":null,"bdSelectMiniList":["sqq","weixin","tsina","qzone"]}
+                        };
                     with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
                     </script>
 
@@ -108,6 +114,11 @@
         <div class="part_one">
             <div class="title-top">
                 <label class="top_con">热门文章</label>
+                <a class="hot_more" href="{php echo app_url('member/index/news')}">更多
+                    <svg class="icon" style="vertical-align: middle;">
+                        <use xlink:href="#icon-more"></use>
+                    </svg>
+                </a>
             </div>
             {loop $hot_news $list}
             <a href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}" class="items_list">
@@ -116,7 +127,7 @@
                 </div>
                 <div class="news_company_content">
                     <!--需要限制字符长度-->
-                    <div class="news_company_title"  style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 220px;">{$list['title']}</div>
+                    <div class="news_company_title">{$list['title']}</div>
                     <!--超出24小时显示日期-->
                     <div class="news_list_box_classify" style="position: absolute;bottom: 0">
                         {php echo _format_date($list['createtime'])}
@@ -125,7 +136,7 @@
             </a>
           {/loop}
             <div style="clear: both"></div>
-            <a href="{php echo app_url('member/index/news')}" class="seemorejob" style="display: inline-block;width: 100%;line-height: 54px;text-align: center;color: #999;">查看更多新闻>></a>
+            <!--<a href="{php echo app_url('member/index/news')}" class="seemorejob" style="display: inline-block;width: 100%;line-height: 54px;text-align: center;color: #999;">查看更多新闻>></a>-->
 
             <div class="ads">
                 <div class="ads_con">
@@ -176,7 +187,7 @@
             </div>
             <div class="fabupjbtn" data-id="{$_GPC['id']}">发布评价</div>
             <div class="pinglu_title">最新评论<label class="pl_total">({$comment_count})</label>
-                <label class="huanyipi">
+                <label class="shuaxin">
                     <svg class="icon" style="">
                         <use xlink:href="#icon-huanyipi"></use>
                     </svg>
@@ -196,10 +207,16 @@
                     <label class="pinglunzi">{$list['content']}</label>
                     <input type="hidden" class="pl_all" value="{$list['content']}">
                 </div>
-                <div class="pl_status">
+                <div class="pl_status" data-id="{$list['id']}">
                     <label class="time_pl">{php echo _format_date($list['addtime'])}</label>
+                    <span class="jubao_btn" style="margin-left: 20px;color: #7b8fc9;">举报</span>
                     <label class="ico_plbtn">
-                        <span class="jubao_btn">举报</span>
+                        <span {if in_array($_SESSION['uid'],explode(",",$list['zan']))}{else}class="dianzan"{/if}>点赞
+                            <!--有赞的时候显示-->
+                            {if $list['zan']}
+                            <label class="zans">(<label class="zannum">{php echo count(explode(",",$list['zan']))}</label>)</label>
+                            {/if}
+                        </span>
                         <span class="huifu_btn">回复</span>
                     </label>
                 </div>
@@ -208,11 +225,16 @@
                     <label class="pinglunzi">{$li['content']}</label>
                     <input type="hidden" class="pl_all" value="{$li['content']}">
                 </div>
-                <div class="pl_status">
-                    <label class="time_pler">{php echo _format_date($li['addtime'])}</label>
+                <div class="pl_status font12" data-id="{$li['id']}">
+                    <label class="time_pl">{php echo _format_date($li['addtime'])}</label>
+                    <span class="jubao_btn" style="margin-left: 20px;color: #7b8fc9;">举报</span>
                     <label class="ico_plbtn">
-                        <span class="jubao_btn">举报</span>
-                        <!--<span class="huifu_btn">回复</span>-->
+                        <span {if in_array($_SESSION['uid'],explode(",",$list['zan']))}{else}class="dianzan"{/if}>点赞
+                            <!--有赞的时候显示-->
+                            {if $list['zan']}
+                            <label class="zans">(<label class="zannum">{php echo count(explode(",",$list['zan']))}</label>)</label>
+                            {/if}
+                        </span>
                     </label>
                 </div>
                 {/loop}
@@ -225,6 +247,53 @@
 
 
 </div>
+<!--举报-->
+<div class="modalbox jubaobox" id="modalbox" style="display: none;">
+    <div class="modal" style="width: 496px;margin-left: -248px;height: auto;padding-bottom: 20px">
+            <span class="modalclose">
+                <img src="{WL_URL_ARES}images/close.png"/>
+            </span>
+        <p class="title_content" style="margin-top: 34px">举报该条评论</p>
+        <p class="color666" style="margin-top: 34px;text-align: center">若你发现该评论存在违规现象，欢迎举报</p>
+
+        <div style="margin-left: 40px;margin-top: 34px">
+            <span class="color666" style="display: inline-block;vertical-align: top;margin-top: 15px;">举报原因</span>
+            <div class=" relative general-select" style="float: none">
+                <label class="general-input relative general-select jubaolist" style="float: none;width: 330px">
+                    <input class="relative jubaore" type="text" readonly=""  name="reason" value="语言攻击" style="width: 310px;z-index: 10">
+                    <svg class="icon inputicon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-xiala" class="colorbbb"></use>
+                    </svg>
+                </label>
+                <div class="options" style="width: 332px;top:48px">
+                    <div class="select-option" style="width: 330px"><span>语言攻击</span></div>
+                    <div class="select-option" style="width: 330px"><span>颠倒黑白</span></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="margin-left: 40px;margin-top: 34px">
+            <span class="color666" style="float: left">详细描述</span>
+            <div class="cwfreg4content" style="display: inline-block;margin-left: 24px;height: 120px;border: 1px solid #f5f5f5;width: 330px;background-color: #f5f5f5">
+                <textarea   class="cwftextarea" name="reasontext" placeholder="请输入详细描述" style="width: 296px;height: 80px;"></textarea>
+            </div>
+            <input type="hidden" name="jubao_detail" id="jubao_detail">
+            <input type="hidden" name="uid" id="">
+            <input type="hidden" name="pl_id" id="pl_id" value="">
+
+        </div>
+
+
+        <div class="person_changes"  style="margin-top: 30px;text-align: center">
+            <span class="savebtn public_bigbtn bg1aa" id="save_pl_msg" style="padding: 0 30px 0 30px">提交</span>
+            <span class="cancelbtn" style="margin-left: 30px;color: #09c;cursor: pointer">取消</span>
+        </div>
+
+
+    </div>
+</div>
+<!--举报-->
 
 
 
@@ -233,6 +302,7 @@
 <script src="{WL_URL_ARES}js/jquery.cookie.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/formdata.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/news_detail.js" rel="script"></script>
 <script>
 
@@ -270,6 +340,29 @@
             $(this).next().find("use").attr("xlink:href","")
         }
     });
+    
+    //评论举报
+    $(".jubao_btn").on("click",function () {
+        var data_id=$(this).closest(".pl_status").attr("data-id");
+        $(".jubaobox").show();
+        $(".jubaobox").find("#pl_id").val(data_id);
+    })
+
+    $(".cancelbtn,.modalclose").click(function () {
+        $(this).closest(".modalbox").hide();
+    })
+
+    //举报提交
+    $.fromdata("#modalbox","{php echo app_url('member/index/report_save')}","#save_pl_msg",function(data){
+        //do something
+        var data = JSON.parse(data);
+        if(data.status==1){
+            hint("success","提交成功");
+            $(".modalbox").hide();
+        }else {
+            hint("error",data.content);
+        }
+    })
 </script>
 
 
