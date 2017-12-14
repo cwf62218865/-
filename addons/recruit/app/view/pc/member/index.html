@@ -60,6 +60,36 @@
     .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet{
         margin: 0 15px;
     }
+    .job_tip {
+        height: auto;
+        position: absolute;
+        z-index: 10;
+    }
+    .job_tip_option {
+        padding-left: 20px;
+        line-height: 36px;
+        background-color: #fff;
+        border: 1px solid #eee;
+        border-top: none;
+        cursor: pointer;
+    }
+    .job_tip_option:hover{
+        color: #fff;
+        background-color: #0099cc;
+    }
+    #jobs_namebox1 .job_tip{
+        width: 688px;
+    }
+    #jobs_namebox1 .job_tip_option{
+        width: 666px;
+    }
+    #jobs_namebox2 .job_tip{
+        top: 42px;
+        width: 220px;
+    }
+    #jobs_namebox2 .job_tip_option{
+        width: 198px;
+    }
 </style>
 <body style="background-color: #f8f9fb;">
 {if $_SESSION['utype']==1}
@@ -88,8 +118,11 @@
             <input type="hidden" name="do" value="member">
             <input type="hidden" name="ac" value="index">
             <input type="hidden" name="op" value="search_jobs">
-            <label class="index_searchbox" style="height: 48px;line-height: 48px">
+            <label class="index_searchbox" id="jobs_namebox1" style="height: 48px;line-height: 48px">
                 <input type="text" name="jobs_name" placeholder="请输入搜索的职位" style="font-size: 16px;height: 48px;line-height: 48px">
+                <div class="job_tip">
+
+                </div>
             </label>
             <input type="submit" class="index_searchbtn" value="搜索">
         </form>
@@ -288,8 +321,11 @@
                 <input type="hidden" name="do" value="member">
                 <input type="hidden" name="ac" value="index">
                 <input type="hidden" name="op" value="search_jobs">
-                 <label class="index_searchbox" style="width: 220px;height: 40px;line-height: 40px">
+                 <label class="index_searchbox relative" id="jobs_namebox2" style="width: 220px;height: 40px;line-height: 40px">
                      <input type="text" style="width: 180px;float: left;height: 40px;line-height: 40px" name="jobs_name" placeholder="请输入搜索的职位">
+                     <div class="job_tip">
+
+                     </div>
                  </label>
                 <input type="submit" class="index_searchbtn" value="搜索" style="height: 42px;line-height: 42px;width: 80px;font-size: 14px">
             </form>
@@ -417,23 +453,25 @@
 
 </body>
 <script src="{WL_URL_ARES}js/jquery.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jquery.cookie.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/newfile.js" rel="script"></script>
+<script src="{WL_URL_ARES}js/jobsname.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/iconfont.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/swiper-3.4.2.min.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/control.js" rel="script"></script>
 <script src="{WL_URL_ARES}js/index.js" rel="script"></script>
 <script>
-    $(function () {
-        $.ajax({
-            type:"post",
-            url:"{php echo app_url('test/test/major_info')}",
-            data:jobsnewfile,
-            success:function (data) {
-                var data = JSON.parse(data);
-                console.log(data);
-            }
-        })
-    })
+//    $(function () {
+//        $.ajax({
+//            type:"post",
+//            url:"{php echo app_url('test/test/major_info')}",
+//            data:jobsnewfile,
+//            success:function (data) {
+//                var data = JSON.parse(data);
+//                console.log(data);
+//            }
+//        })
+//    })
 
 
     var big_bannercontent=[
