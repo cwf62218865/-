@@ -9,7 +9,17 @@
 /*
  * 发布职位数据
  */
-var_dump($_COOKIE);exit();
+$hotword = pdo_fetchall("select word from ".tablename(WL."hotword"));
+$arr = "var mycars=new Array(";
+
+foreach ($hotword as $list){
+    $arr = $arr."'".$list[word]."',";
+}
+echo $arr;exit();
+var_dump($hotword);exit();
+
+
+
 use Qiniu\Auth;
 use Qiniu\Storage\UploadManager;
 if($op=="jobs") {

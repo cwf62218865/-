@@ -613,6 +613,8 @@
             today=0;tomorrow=0;
         }else if(i==1 && $(".checkboxbox").eq(0).find("use").attr("xlink:href")!=""){
             today=1;tomorrow=0;
+        }else{
+            today=1;tomorrow=1;
         }
         var weekday=$("#weekday").val();
         if(weekday=="选择日期"){
@@ -639,8 +641,7 @@
                     $(this).show();
                 }else if(select_arr[2][0]==2){
                     list.show();
-                }
-                else{
+                } else{
                     $(this).hide();
                 }
 
