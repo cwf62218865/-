@@ -32,7 +32,7 @@
         var i=5;
         var timer=setInterval(function () {
            $(".icos .num").html(i--);
-            if(i==-1){
+            if(i<=0){
                 clearInterval(timer);
                 window.location.href="{php echo $url}";
 //                $.ajax({

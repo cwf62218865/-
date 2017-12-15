@@ -157,6 +157,9 @@ $("input[name=jobs_name]").on("input",function(){
     }
     $(this).next().html(job_tipscontent);
 });
+$("body").on("click",function(){
+    $(".job_tip").html("");
+});
 
 $("body").on("click",".job_tip_option",function(){
     var content=$(this).find("span").eq(0).html();

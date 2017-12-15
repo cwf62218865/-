@@ -406,23 +406,24 @@
             $(".salary_setting").hide();
         });
         $(".quedingbtns").click(function () {
-            var lower=$("#lower").val();
-            var upper=$("#upper").val();
+            var lower=parseInt($("#lower").val());
+            var upper=parseInt($("#upper").val());
             if(lower>=1 || upper>=1){
-                if(lower.indexOf(0)==0){
-                    lower=lower.substr(1);
-                }
-                if(upper.indexOf(0)==0){
-                    upper=upper.substr(1);
-                }
                 var zhong=0;
-                if(lower>upper){
+                if(lower>upper && lower!=null && upper!=null){
                     zhong=lower;
                     lower=upper;
                     upper=zhong;
+                }else{
+                    if(isNaN(lower)){
+                        lower="";
+                    }
+                    if(isNaN(upper)){
+                        upper="";
+                    }
                 }
-                $(".lower").val(lower);
-                $(".upper").val(upper);
+                $(".lower,#lower").val(lower);
+                $(".upper,#upper").val(upper);
                 //发送ajax请求
                 option.upper=upper;
                 option.lower=lower;
@@ -884,6 +885,10 @@
                 job_tipscontent+='<div class="job_tip_option"><span>'+job_tips [k]+'</span></div>'
             }
             $(this).next().html(job_tipscontent);
+        });
+
+        $("body").on("click",function(){
+            $(".job_tip").html("");
         });
 
         $("body").on("click",".job_tip_option",function(){
