@@ -77,6 +77,7 @@ elseif ($op=="select_course"){
     $data['year']= $_POST['year'];
     $data['month']=$_POST['month'];
     $data['page'] = $_POST['page'];
+
     $interviews = m("person")->apply_list($data);
 //    var_dump($interviews);exit();
     if($interviews['list']){

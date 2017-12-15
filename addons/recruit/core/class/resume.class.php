@@ -182,8 +182,13 @@ class resume{
         if($data['major']){
             $wheresql .=" and major=".$data['major'];
         }
-//echo "select * from ".tablename(WL.'resume').$wheresql;exit();
-        $resumes = pdo_fetchall("select * from ".tablename(WL.'resume').$wheresql);
+
+        if($data['page']){
+            $limit = " limit ".($data['page']*6).",6";
+        }else{
+            $limit = " limit 0,6";
+        }
+        $resumes = pdo_fetchall("select * from ".tablename(WL.'resume').$wheresql.$limit);
         $arr = "";
         foreach ($resumes as $resume){
            if($data['collect']){
