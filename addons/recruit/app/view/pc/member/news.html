@@ -11,6 +11,12 @@
     <link href="{WL_URL_ARES}css/person_msg.css" rel="stylesheet">
     <link href="{WL_URL_ARES}css/news_list.css" rel="stylesheet">
     <title>新闻</title>
+    <style>
+        .pages_btn{
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 {if $_SESSION['utype']==1}
@@ -156,13 +162,24 @@
 <script src="{WL_URL_ARES}js/page.js" rel="script"></script>
 <script>
 
-//    $(".news_page").html(pages(1,"{php echo ceil($news_count/4)}"));
+//初始化分页显示
     var kind = "";
     var page1 = createPage("news_page", "{php echo app_url('member/index/news_page_ajax')}");
+    var news_count="{php echo $news_count}";
     var pagenum = "{php echo ceil($news_count/6)}";
-    if(pagenum>1){
+    var pagenum_gonggao="{php echo ceil($news_count1/6)}";
+    var pagenum_baodao="{php echo ceil($news_count2/6)}";
+    var pagenum_xinwen="{php echo ceil($news_count3/6)}";
+
+    //初始化显示全部新闻的分页判断
+    if(news_count==0){
+        no_data("#one_msg","没有消息","当前板块没有消息");
+        $(".news_page").css("display","none");
+    } else if(pagenum>1){
+        $(".news_page").css("display","block");
         $(".news_page").html(pages(1,"{php echo ceil($news_count/6)}"));
     }
+
     page1.option={
         page:1,
         kind:kind
@@ -188,7 +205,29 @@
                     var data=JSON.parse(data);
                     if(data.status==1){
                         page1.option.page = 1;
-                        $(".news_page").html(pages(1, Math.ceil(data.others/6)));
+//                        $(".news_page").html(pages(1, Math.ceil(data.others/6)));
+                        if(dataid=="网站公告"){
+                            if(pagenum_gonggao>1){
+                                $(".news_page").html(pages(1,"{php echo ceil($news_count1/6)}"));
+                            }else{
+                                $(".news_page").html("");
+                            }
+                        }
+                        if(dataid=="活动报道"){
+                            if(pagenum_baodao>1){
+                                $(".news_page").html(pages(1,"{php echo ceil($news_count2/6)}"));
+                            }else{
+                                $(".news_page").html("");
+                            }
+                        }
+                        if(dataid=="招聘新闻"){
+                            if(pagenum_xinwen>1){
+                                $(".news_page").html(pages(1,"{php echo ceil($news_count3/6)}"));
+                            }else{
+                                $(".news_page").html("");
+                            }
+                        }
+
                         $("#all_msg").hide();
                         $("#one_msg").show();
                         if(data.content){
@@ -200,12 +239,19 @@
 
                     }
                 }
-
             })
         }else if(_this.html()=="全部新闻"){
             $("#all_msg").show();
             $("#one_msg").hide();
             $(".news_page").css("display","block");
+            if(pagenum>1){
+                $(".news_page").html(pages(1,"{php echo ceil($news_count/6)}"));
+            }else if(news_count==0){
+                no_data("#one_msg","没有消息","当前板块没有消息");
+                $(".news_page").css("display","none");
+            }else{
+                $(".news_page").html("");
+            }
         }
     })
 </script>
