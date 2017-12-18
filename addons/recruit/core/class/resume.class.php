@@ -128,6 +128,9 @@ class resume{
 
     public function jobs_interview($uid,$page=1){
         $limit = " limit ".(($page-1)*6).",6";
+        if($page==-1){
+            $limit = "";
+        }
         $orderby = " order by createtime desc";
         $jobs_apply = pdo_fetchall("select * from ".tablename(WL."jobs_apply")." where direction=1 and status=3 and puid=".$uid.$orderby.$limit);
 
@@ -182,8 +185,13 @@ class resume{
         if($data['major']){
             $wheresql .=" and major=".$data['major'];
         }
-//echo "select * from ".tablename(WL.'resume').$wheresql;exit();
-        $resumes = pdo_fetchall("select * from ".tablename(WL.'resume').$wheresql);
+
+        if($data['page']){
+            $limit = " limit ".($data['page']*6).",6";
+        }else{
+            $limit = " limit 0,6";
+        }
+        $resumes = pdo_fetchall("select * from ".tablename(WL.'resume').$wheresql.$limit);
         $arr = "";
         foreach ($resumes as $resume){
            if($data['collect']){

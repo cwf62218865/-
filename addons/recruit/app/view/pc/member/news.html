@@ -194,7 +194,8 @@
                         if(data.content){
                             $("#one_msg").html(data.content);
                         }else{
-                            no_data("#one_msg","没有消息","当前板块没有消息")
+                            no_data("#one_msg","没有消息","当前板块没有消息");
+                            $(".news_page").css("display","none");
                         }
 
                     }
@@ -204,6 +205,7 @@
         }else if(_this.html()=="全部新闻"){
             $("#all_msg").show();
             $("#one_msg").hide();
+            $(".news_page").css("display","block");
         }
     })
 </script>

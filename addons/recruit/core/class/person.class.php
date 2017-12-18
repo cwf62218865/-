@@ -106,10 +106,8 @@ class person{
         foreach ($interview as $list){
             if($data['year'] && $data['month']){
                 $wheresql = " where apply_id=".$list['id'];
-
-                $beginMonthday=mktime(0,0,0,$data['month'],date('d'),$data['year']);
-                $endMonthday=mktime(0,0,0,$data['month']+1,date('d'),$data['year'])-1;
-//                echo $beginMonthday."<br/>".$endMonthday;exit();
+                $beginMonthday=mktime(0,0,0,$data['month'],1,$data['year']);
+                $endMonthday=mktime(0,0,0,$data['month']+1,1,$data['year'])-1;
                 $wheresql .=" and time_stamp>".$beginMonthday." and time_stamp<".$endMonthday;
                 $li = pdo_fetch("select interview_time,time_stamp from ".tablename(WL.'interview').$wheresql);
 

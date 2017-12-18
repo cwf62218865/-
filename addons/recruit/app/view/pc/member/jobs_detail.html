@@ -300,11 +300,11 @@
             </div>
             {loop $similar_jobs $list}
             <div class="items_list">
-                <div class="logo1">
+                <a class="logo1" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">
                     <img src="{$list['headimgurl']}" class="logopic">
-                </div>
+                </a>
                 <div class="company_name">
-                    <p class="job_n">{$list['jobs_name']}</p>
+                    <a class="job_n" href="{php echo app_url('member/index/jobs_detail',array('jobs_id'=>$list['id']))}">{$list['jobs_name']}</a>
                     <p class="job_s">
                         {if $list['wage_min']>0 && $list['wage_max']>0}
                         {$list['wage_min']}-{$list['wage_max']}K

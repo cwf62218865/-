@@ -33,8 +33,8 @@ elseif ($op=="send_resume"){
     }else{
         $show = 1;
     }
-    $apply_jobs = m("resume")->jobs_apply($_SESSION['uid']);
-    $interview_jobs = m("resume")->jobs_interview($_SESSION['uid']);
+    $apply_jobs = m("resume")->jobs_apply($_SESSION['uid'],-1);
+    $interview_jobs = m("resume")->jobs_interview($_SESSION['uid'],-1);
 
     include wl_template("person/send_resume");exit();
 }
@@ -77,6 +77,7 @@ elseif ($op=="select_course"){
     $data['year']= $_POST['year'];
     $data['month']=$_POST['month'];
     $data['page'] = $_POST['page'];
+
     $interviews = m("person")->apply_list($data);
 //    var_dump($interviews);exit();
     if($interviews['list']){

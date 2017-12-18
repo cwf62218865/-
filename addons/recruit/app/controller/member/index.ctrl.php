@@ -126,6 +126,13 @@ elseif ($op=="super_company"){
 
 }
 elseif ($op=="super_company_list"){
+
+    if(GetIpLookup($_SERVER['REMOTE_ADDR'])){
+        $ip_city = GetIpLookup($_SERVER['REMOTE_ADDR']);
+        $ip_city = $ip_city['province'];
+    }else{
+        $ip_city = "重庆";
+    }
     $star_companys =m("company")->star_company_list(0,6);
     $star_company = "";
     foreach ($star_companys as $list){
@@ -1199,9 +1206,10 @@ elseif ($op=="star_hr_slide"){
         $page = 0;
     }
     $company  = m("company")->star_company_list($page);
+
     $html = "";
     foreach ($company as $list){
-        $html = "<a href=\"".app_url('member/index/super_company',array('id'=>$list['id']))."\" class=\"surper_company\"><img src=\"/attachment/{$list['headimgurl']}\"> </a>";
+        $html .= "<a href=\"".app_url('member/index/super_company',array('id'=>$list['id']))."\" class=\"surper_company\"><img src=\"/attachment/{$list['headimgurl']}\"> </a>";
     }
     call_back(1,$html);
 }

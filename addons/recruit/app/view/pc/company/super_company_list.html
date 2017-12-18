@@ -67,7 +67,7 @@
 
 <div class="width1200">
     <div class="super_company_nav">
-        <span class="font18">工作地点：<lable class="gzaddress">全国</lable></span>
+        <span class="font18">工作地点：<lable class="gzaddress">{$ip_city}</lable></span>
         <span class="change_jobaddress change1">[切换]</span>
         <span class="change_alt">根据您的IP自动匹配，如需查看其他城市，请点击</span>
         <span class="change_jobaddress change2" style="margin-left: 0">[切换]</span>
@@ -123,7 +123,7 @@
                 </a>
                 {/loop}
 
-                <a href="{php echo app_url('member/index/super_company')}" style="float: right;margin:32px 0 0 0" class="recruit_jobsbtn">
+                <a href="{php echo app_url('member/index/super_company',array('id'=>$list['id']))}" style="float: right;margin:32px 0 0 0" class="recruit_jobsbtn">
                     更多职位>>
                 </a>
 

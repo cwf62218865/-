@@ -258,3 +258,77 @@ elseif ($op=="msg_deal"){
     call_back(2,"");
 }
 
+elseif ($op=="resume_page_ajax"){
+    $data['page'] = check_pasre($_POST['page'],"参数错误");
+    $resume =m("resume")->getall_resume($data);
+
+    $html = "";
+    foreach ($resume as $list){
+
+        if($list['collect']){
+            $collect = "<div class=\"jujue \"  data-id=\"{$list['id']}\" data-uid=\"{$list['uid']}\">已收藏</div>";
+        }else{
+            $collect = " <div class='jujue shoucang shoucang_resume'  data-id='{$list['id']}' data-uid='{$list['uid']}'>收藏简历</div>";
+        }
+        $hope_jobs = "";
+        foreach (explode(",",$list['hope_job']) as $li){
+            $hope_jobs .= "<span class=\"job_hope nowrap\">{$li}</span>";
+        }
+
+        if($list['sex']==2){
+            $sex = "女";
+        }else{
+            $sex = "男";
+        }
+
+        $html .="<div class=\"list_item\" data-id=\"{$list['id']}\"  data-uid=\"{$list['uid']}\">
+                    <div class=\"item_con\">
+                        <a class=\"touxiang_pic\"  href='".app_url('resume/index',array('uid'=>$list['uid']))."'>
+                            <img src=\"{$list['headimgurl']}\" style=\"width: 100px;height: 100px;\"/>
+                        </a>
+                        <div class=\"basic_massage\">
+                            <div class=\"bm_hang1\">
+                                <a class=\"name linkhover\" class=\"name\" href='".app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))."'>{$list['fullname']}</a>
+                                <a class=\"view_i\" class=\"name\" href='".app_url('resume/index',array('uid'=>$list['uid'],'apply_id'=>$list['apply_id']))."'>查看</a>
+                                <label style=\"float: right;width: 60px;display: inline-block;height: 26px;line-height: 26px;\">
+                                    <span class=\"basic_xx\" style=\"line-height: 26px;\">
+                                    {$sex}
+                                    </span>
+                                    <span class=\"basic_xx\" style=\"margin-left: 10px;line-height: 26px;\">".ceil((time()-$list['birthday'])/31536000)."岁</span>
+                                </label>
+                            </div>
+                            <div class=\"bm_hang2\">
+                                <span class=\"basic_xx floatl\">{$list['education']}</span>
+                                <span class=\"basic_xx floatl norwappp width130\">{$list['school_name']}</span>
+                            </div>
+                            <div class=\"bm_hang3 nowrap\">
+                                <span class=\"basic_xx\">{$list['major']}</span>
+                            </div>
+                        </div>
+                        <div class=\"xian1\"></div>
+                        <div class=\"status\">
+                            <p class=\"time\">
+                            <div style=\"height: 26px\">
+                                <span style=\"display:inline-block;float: left;line-height: 26px\">工作经验：</span>
+                                <span class=\"job_hope\">{$list['experience']}</span>
+                            </div>
+                            </p>
+                            <p class=\"time\">
+                                <span>
+                                    期望职位：
+                                    {$hope_jobs}
+                                </span>
+                            </p>
+                            <p class=\"\" style=\"margin-bottom: 20px;\">
+                                <span>期望工作地点：<label>{$list['hope_place']}</label></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class=\"review_statas\" style=\"border-top: none\">
+                        <div class=\"tongyi yaoqing_interview\">邀请面试</div>
+                        {$collect}
+                    </div>
+                </div>";
+    }
+    call_back(1,$html);
+}

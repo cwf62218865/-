@@ -248,13 +248,16 @@ elseif ($op=="send_review"){
 
 //hr主动发起面试邀请
 elseif ($op=="hr_send_review"){
+
     $data['direction'] =1;
     $data['jobs_id'] = check_pasre($_POST['jobs_id'],"参数错误");
     $data['resume_id'] = check_pasre($_POST['resume_id'],"参数错误");
     $data['puid'] = check_pasre($_POST['puid'],"参数错误");
     $data['uid'] = $_SESSION['uid'];
     $jobs_apply = m("jobs")->judge_jobs_apply_status($data['jobs_id'], $data['puid']);
+
     if($jobs_apply){
+
         $data['status'] = 3;
         $data['createtime'] = time();
         $data['updatetime'] = time();
@@ -275,7 +278,7 @@ elseif ($op=="hr_send_review"){
             $data1['createtime'] = time();
             $time_stamp = explode(" ",$data1['interview_time']);
             $time_stamp[0] = str_replace("月","-",str_replace("日","",$time_stamp[0]));
-            $time_stamp = date("Y")."-".$time_stamp[0]." ".$time_stamp[2];
+            $time_stamp = $_POST['year']."-".$time_stamp[0]." ".$time_stamp[2];
             $data1['time_stamp'] = strtotime($time_stamp);
             pdo_insert(WL."interview",$data1);
             call_back(1,"邀请面试成功");
