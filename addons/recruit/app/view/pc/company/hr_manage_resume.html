@@ -629,6 +629,7 @@
         }else{
             weekday=0;
         }
+        console.log("今天："+today+",明天："+tomorrow);
         var select_arr=[[today,date.getDate()],[tomorrow,date.getDate()+1],[isweek,weekday]];
         var list=$(".list_content .list_item");
 
@@ -639,7 +640,7 @@
 
                 if((time==select_arr[0][1] && select_arr[0][0]==1)||(time==select_arr[1][1] && select_arr[1][0]==1) || (time==select_arr[2][1] && select_arr[2][0]==1)){
                     $(this).show();
-                }else if(select_arr[2][0]==2){
+                }else if(select_arr[2][0]==2 || (select_arr[0][0]==0 && select_arr[1][0]==0 && select_arr[2][0]==0)){
                     list.show();
                 } else{
                     $(this).hide();
