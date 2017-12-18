@@ -108,6 +108,7 @@ elseif ($op=="search_jobs"){
     $jobs_count = $jobs['count'];
     $jobs = $jobs['more'];
     $hot_words = pdo_fetchall("select word from ".tablename(WL."hotword")." order by hot desc limit 0,7");
+
     include wl_template("member/search_jobs");exit();
 }
 elseif ($op=="super_company"){

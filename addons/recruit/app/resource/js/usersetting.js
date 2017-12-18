@@ -172,7 +172,7 @@ $(function () {
             })
         }
         if(len==5){
-            alert("最多只能添加5个");
+            hint("error","最多只能添加5个");
             $(".pb_input").val("");
         }
 
@@ -306,16 +306,7 @@ $(function () {
     //获取验证码
     $("body").on("click",".click",function(){
         var time=60;
-        $(".yanzhengma").html(time+"s后重新获取");
-        $(".yanzhengma").removeClass("click");
-        var timer=setInterval(function(){
-            time--;
-            $(".yanzhengma").html(time+"s后重新获取");
-            if(time==0){
-                clearInterval(timer);
-                $(".yanzhengma").addClass("click").html("获取验证码");
-            }
-        },1000)
+
         var mobie=$("#mobile").val();
         $.ajax({
             url:"/app/index.php?c=site&a=entry&m=recruit&do=member&ac=index&op=normal_send_code",
@@ -327,9 +318,18 @@ $(function () {
                 var data = JSON.parse(data);
                 console.log(data);
                 if(data.status==1){
-                    console.log(1);
+                    $(".yanzhengma").html(time+"s后重新获取");
+                    $(".yanzhengma").removeClass("click");
+                    var timer=setInterval(function(){
+                        time--;
+                        $(".yanzhengma").html(time+"s后重新获取");
+                        if(time==0){
+                            clearInterval(timer);
+                            $(".yanzhengma").addClass("click").html("获取验证码");
+                        }
+                    },1000)
                 }else{
-                    alert(data.content);
+                    hint("error",data.content);
                 }
             }
         })
@@ -366,7 +366,7 @@ $(function () {
                     $(".changetelbox").hide();
                     $(".mobile").html(mobile);
                 }else{
-                    alert(data.content);
+                    hint("error",data.content);
                 }
             }
         })
