@@ -201,8 +201,8 @@
             <div>
                 {loop $arr_news $list}
                 <a href="{php echo app_url('member/index/news_detail',array('id'=>$list['id']))}" class="index_news" target="_blank">
-                    <div class="index_news_title" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 220px;">{$list['title']}</div>
-                    <span  class="index_news_content">
+                    <div class="index_news_title" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 238px;">{$list['title']}</div>
+                    <span  class="index_news_content" style="width: 240px">
                         {$list['content']}
                     </span>
                 </a>

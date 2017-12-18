@@ -16,8 +16,8 @@ if($op=="index"){
     $news = pdo_fetchall("select * from ".tablename("article_news")." order by createtime desc limit 0,3");
     foreach ($news as $list){
         $list['content'] = strip_tags($list['content']);
-        if(mb_strlen($list['content'])>30){
-            $list['content'] = strip_tags(str_replace(" ","",mb_substr($list['content'],0,30,"UTF8")."..."));
+        if(mb_strlen($list['content'])>33){
+            $list['content'] = strip_tags(str_replace(" ","",mb_substr($list['content'],0,33,"UTF8")."..."));
         }
         $arr_news[] = $list;
     }
