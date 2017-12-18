@@ -380,6 +380,7 @@
 
 <script>
     $(function () {
+
         var nav = "{$nav}";
         $(".left_btn_nav").removeClass("select");
         $(".left_btn_nav").eq(nav).addClass("select");
@@ -392,6 +393,9 @@
         $(".pic_yan").click(function () {
             $(this).attr("src","{php echo app_url('member/index/captcha')}");
         })
+        {if $_GET['fankui']}
+        $(".left_btn_nav").eq(3).click();
+        {/if}
     })
 </script>
 </html>
