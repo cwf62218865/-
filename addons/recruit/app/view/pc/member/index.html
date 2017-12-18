@@ -78,7 +78,7 @@
         background-color: #0099cc;
     }
     #jobs_namebox1 .job_tip{
-        width: 688px;
+        width: 689px;
     }
     #jobs_namebox1 .job_tip_option{
         width: 666px;
@@ -111,20 +111,20 @@
 
     <!--热门搜索-->
     <div class="index_right" style="background-color: #fff; margin-top: 30px;">
-        <form class="index_search" action="{php echo app_url('member/index/search_jobs')}">
+        <form class="index_search" style="width: 830px;height: 50px" action="{php echo app_url('member/index/search_jobs')}">
             <input type="hidden" name="c" value="site">
             <input type="hidden" name="a" value="entry">
             <input type="hidden" name="m" value="recruit">
             <input type="hidden" name="do" value="member">
             <input type="hidden" name="ac" value="index">
             <input type="hidden" name="op" value="search_jobs">
-            <label class="index_searchbox" id="jobs_namebox1" style="height: 48px;line-height: 48px">
+            <label class="index_searchbox" id="jobs_namebox1" style="width: 688px;float: left;height: 48px;line-height: 48px">
                 <input type="text" name="jobs_name" placeholder="请输入搜索的职位" style="font-size: 16px;height: 48px;line-height: 48px">
                 <div class="job_tip">
 
                 </div>
             </label>
-            <input type="submit" class="index_searchbtn" value="搜索">
+            <input type="submit" class="index_searchbtn" style="float: none" value="搜索">
         </form>
         <div class="hot_job">
             <span style="margin-right: 10px">热门搜索：</span>
