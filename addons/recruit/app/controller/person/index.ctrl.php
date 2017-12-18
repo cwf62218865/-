@@ -33,8 +33,8 @@ elseif ($op=="send_resume"){
     }else{
         $show = 1;
     }
-    $apply_jobs = m("resume")->jobs_apply($_SESSION['uid']);
-    $interview_jobs = m("resume")->jobs_interview($_SESSION['uid']);
+    $apply_jobs = m("resume")->jobs_apply($_SESSION['uid'],-1);
+    $interview_jobs = m("resume")->jobs_interview($_SESSION['uid'],-1);
 
     include wl_template("person/send_resume");exit();
 }
