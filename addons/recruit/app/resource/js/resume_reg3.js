@@ -113,7 +113,9 @@
 
 
     //职位输入提示
-var jobs=words;
+if(typeof(words)!="undefined"){
+    var jobs=words;
+}
 var job_tips=[];
 $("body").on("input",".job_name",function(){
     job_tips=[];

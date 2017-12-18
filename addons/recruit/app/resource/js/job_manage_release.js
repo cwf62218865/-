@@ -271,7 +271,9 @@ $("#do_job_duty_textarea").on("keyup",function (e) {
 
 
 //职位输入提示
-var jobs=words;
+if(typeof(words)!="undefined"){
+    var jobs=words;
+}
 var job_tips=[];
 
 $("input[name=job_name]").on("input",function(){
