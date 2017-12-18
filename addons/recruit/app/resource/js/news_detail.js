@@ -206,7 +206,7 @@ $(function () {
                arr.push($(this).index());
            }
        })
-        console.log(arr);
+        // console.log(arr);
         var i=(arr[0]-4)/2;
         for(i;i<list.length;i++){
             if(i<(arr[0]-4)/2+5){
