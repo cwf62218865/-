@@ -6,6 +6,7 @@ wl_load()->model('verify');
 //首页
 if($op=="index"){
     $company  = m("member")->company_list();
+
     $data['data']['job_order']="最新";
     $jobs = m("jobs")->getall_jobs_page($data,9);
     $jobs = $jobs['more'];
